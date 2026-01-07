@@ -1,30 +1,484 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Projets publics de natacha-aviat</title>
-	<style>
-        body {
-            display: flex;
-            justify-content: center;
-            align-items: center;
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Natacha Aviat Portfolio - Data Visualization, Interactive Mapping & Web Development">
+    <title>Natacha Aviat - Data Visualization & Web Development</title>
+    <style>
+        * {
             margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
 
-        .boite {
-            text-align: justify;
-            padding: 20px; /* Ajouter un espace intérieur à la boîte */
-            border: 1px solid #ccc; /* Ajouter une bordure pour visualiser la boîte */
-            background-color: #f8f8f8; /* Ajouter une couleur de fond à la boîte */
-	    width: 80%;
+        :root {
+            --primary-color: #2C3E50;
+            --secondary-color: #3498DB;
+            --accent-color: #E74C3C;
+            --text-color: #333;
+            --light-bg: #F8F9FA;
+            --white: #FFFFFF;
+            --shadow: 0 2px 10px rgba(0,0,0,0.1);
+            --shadow-hover: 0 5px 20px rgba(0,0,0,0.15);
         }
-	</style>
-	</head>
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--light-bg);
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: var(--white);
+            padding: 3rem 2rem;
+            text-align: center;
+            box-shadow: var(--shadow);
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+
+        header .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            font-weight: 300;
+        }
+
+        /* Navigation */
+        nav {
+            background-color: var(--white);
+            padding: 1rem 0;
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        nav a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+        }
+
+        nav a:hover {
+            color: var(--secondary-color);
+            background-color: var(--light-bg);
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+        }
+
+        /* Introduction Section */
+        .intro {
+            background-color: var(--white);
+            padding: 3rem;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+            margin-bottom: 3rem;
+            text-align: center;
+        }
+
+        .intro h2 {
+            color: var(--primary-color);
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .intro p {
+            font-size: 1.1rem;
+            color: #666;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.8;
+        }
+
+        /* Section Titles */
+        .section-title {
+            font-size: 2rem;
+            color: var(--primary-color);
+            margin-bottom: 2rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 3px solid var(--secondary-color);
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .section-title::before {
+            content: '';
+            width: 4px;
+            height: 2rem;
+            background-color: var(--secondary-color);
+            border-radius: 2px;
+        }
+
+        /* Projects Grid */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .project-card {
+            background-color: var(--white);
+            border-radius: 10px;
+            padding: 2rem;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s, box-shadow 0.3s;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .project-card h3 {
+            color: var(--primary-color);
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .project-card .category {
+            display: inline-block;
+            background-color: var(--secondary-color);
+            color: var(--white);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            margin-bottom: 1rem;
+            font-weight: 500;
+        }
+
+        .project-card .category.mamama {
+            background-color: #FFC107;
+            color: var(--primary-color);
+        }
+
+        .project-card p {
+            color: #666;
+            margin-bottom: 1.5rem;
+            flex-grow: 1;
+        }
+
+        .project-card .tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .project-card .tech span {
+            background-color: var(--light-bg);
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            color: var(--primary-color);
+        }
+
+        .project-link {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: var(--white);
+            padding: 0.8rem 1.5rem;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: background-color 0.3s;
+            text-align: center;
+        }
+
+        .project-link:hover {
+            background-color: var(--secondary-color);
+        }
+
+        /* Skills Section */
+        .skills {
+            background-color: var(--white);
+            padding: 3rem;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+            margin-bottom: 3rem;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .skill-category h3 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .skill-category ul {
+            list-style: none;
+        }
+
+        .skill-category li {
+            padding: 0.5rem 0;
+            color: #666;
+            border-bottom: 1px solid var(--light-bg);
+        }
+
+        .skill-category li:last-child {
+            border-bottom: none;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--primary-color);
+            color: var(--white);
+            padding: 2rem;
+            text-align: center;
+            margin-top: 4rem;
+        }
+
+        footer a {
+            color: var(--white);
+            text-decoration: none;
+            margin: 0 1rem;
+            transition: opacity 0.3s;
+        }
+
+        footer a:hover {
+            opacity: 0.8;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2rem;
+            }
+
+            .intro {
+                padding: 2rem 1.5rem;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+
+            nav ul {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+        }
+
+        /* Icons */
+        .icon {
+            display: inline-block;
+            margin-right: 0.5rem;
+        }
+    </style>
+</head>
 <body>
-<div class="boite">
-    <h1><a href="projets/cartes/carte_lycees.html">Carte de la valeur ajoutée des lycées 2022</a></h1>
-    <h1><a href="projets/visualisations/16yearsatengie.html">16 years at ENGIE</a></h1>
-    <h1><a href="projets/visualisations/NYC_Metro_Art_Map.html">New York city Metro Art Map</a></h1>
-</div>
+    <header>
+        <h1>Natacha Aviat</h1>
+        <p class="subtitle">Data Visualization • Interactive Mapping • Web Development</p>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <section class="intro">
+            <h2>Welcome to my portfolio</h2>
+            <p>
+                I specialize in <strong>data visualization</strong>, <strong>interactive mapping</strong> 
+                and <strong>web tool development</strong>. I create visual solutions to analyze complex data 
+                and develop operational web applications. My projects include public data analyses, interactive maps, 
+                and tools developed for the MaMaMa association.
+            </p>
+        </section>
+
+        <section id="projects">
+            <h2 class="section-title">📊 Data Visualization Projects</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <span class="category">Mapping</span>
+                    <h3>High School Value-Added Map</h3>
+                    <p>
+                        Interactive analysis of French high school performance in 2022. 
+                        Exploration of value-added, access rates, success rates, and honors at the baccalaureate level.
+                    </p>
+                    <div class="tech">
+                        <span>Leaflet</span>
+                        <span>Data.gouv.fr</span>
+                        <span>JavaScript</span>
+                    </div>
+                    <a href="projets/cartes/carte_lycees.html" class="project-link">View project →</a>
+                </div>
+
+                <div class="project-card">
+                    <span class="category">Mapping</span>
+                    <h3>OSEIDO Map</h3>
+                    <p>
+                        Geographic visualization of OSEIDO healthcare facilities.
+                    </p>
+                    <div class="tech">
+                        <span>Leaflet</span>
+                        <span>JavaScript</span>
+                    </div>
+                    <a href="projets/cartes/carte_OSEIDO.html" class="project-link">View project →</a>
+                </div>
+
+                <div class="project-card">
+                    <span class="category">Visualization</span>
+                    <h3>New York City Metro Art Map</h3>
+                    <p>
+                        Interactive map cataloging all artworks in the New York subway system. 
+                        Project combining MTA data and station geolocation.
+                    </p>
+                    <div class="tech">
+                        <span>Python</span>
+                        <span>Pandas</span>
+                        <span>Folium</span>
+                    </div>
+                    <a href="projets/visualisations/NYC_Metro_Art_Map.html" class="project-link">View project →</a>
+                </div>
+
+                <div class="project-card">
+                    <span class="category">Visualization</span>
+                    <h3>16 years at ENGIE</h3>
+                    <p>
+                        Interactive visualization of 16 years of career at ENGIE, created with Scratch.
+                    </p>
+                    <div class="tech">
+                        <span>Scratch</span>
+                    </div>
+                    <a href="projets/visualisations/16yearsatengie.html" class="project-link">View project →</a>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2 class="section-title">🛠️ Web Tools - MaMaMa Association</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <span class="category mamama">MaMaMa</span>
+                    <h3>MaMaExpress</h3>
+                    <p>
+                        Logistics route optimization tool for deliveries to PMI centers. 
+                        Automatic calculation of optimized routes with cartographic visualization.
+                    </p>
+                    <div class="tech">
+                        <span>JavaScript</span>
+                        <span>Leaflet</span>
+                        <span>Optimization</span>
+                    </div>
+                    <a href="projets/outils/MaMaExpress.html" class="project-link">View project →</a>
+                </div>
+
+                <div class="project-card">
+                    <span class="category mamama">MaMaMa</span>
+                    <h3>MaMaFoodScan</h3>
+                    <p>
+                        Mobile-friendly application to scan and analyze food products. 
+                        Nutritional data retrieval and Nutri-Score display.
+                    </p>
+                    <div class="tech">
+                        <span>JavaScript</span>
+                        <span>QuaggaJS</span>
+                        <span>Open Food Facts API</span>
+                    </div>
+                    <a href="projets/outils/MaMaFoodScan.html" class="project-link">View project →</a>
+                </div>
+
+                <div class="project-card">
+                    <span class="category mamama">MaMaMa</span>
+                    <h3>SaveEat</h3>
+                    <p>
+                        Recipe manager with manual addition, URL reception, 
+                        status management and data export/import.
+                    </p>
+                    <div class="tech">
+                        <span>JavaScript</span>
+                        <span>localStorage</span>
+                        <span>PWA</span>
+                    </div>
+                    <a href="projets/outils/SaveEat.html" class="project-link">View project →</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="skills" class="skills">
+            <h2 class="section-title">💼 Skills</h2>
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h3>Data Visualization</h3>
+                    <ul>
+                        <li>Interactive mapping (Leaflet, Folium)</li>
+                        <li>Public data analysis</li>
+                        <li>Dashboard creation</li>
+                        <li>Geolocation and geographic matching</li>
+                    </ul>
+                </div>
+                <div class="skill-category">
+                    <h3>Web Development</h3>
+                    <ul>
+                        <li>HTML5, CSS3, JavaScript</li>
+                        <li>Responsive applications</li>
+                        <li>Modern libraries (Leaflet, QuaggaJS)</li>
+                        <li>Mobile-friendly applications</li>
+                    </ul>
+                </div>
+                <div class="skill-category">
+                    <h3>Data Analysis</h3>
+                    <ul>
+                        <li>Python, Pandas</li>
+                        <li>Data processing</li>
+                        <li>Route optimization</li>
+                        <li>APIs and integrations</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <footer id="contact">
+        <p>
+            <strong>Natacha Aviat</strong> | 
+            <a href="https://github.com/natacha-aviat" target="_blank">GitHub</a> | 
+            <a href="https://natacha-aviat.github.io" target="_blank">Portfolio</a>
+        </p>
+        <p style="margin-top: 1rem; opacity: 0.8;">
+            Specialized in data visualization and web development for social impact projects
+        </p>
+    </footer>
 </body>
 </html>
