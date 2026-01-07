@@ -17,7 +17,7 @@ The two can intersect: I can create maps and data analyses for MaMaMa, but also 
 
 ### 🗺️ Interactive Maps
 
-#### [High School Value-Added Map 2022](carte_lycees.html)
+#### [High School Value-Added Map 2022](projets/cartes/carte_lycees.html)
 Interactive analysis of French high school performance in 2022. This map allows you to explore:
 - School value-added (public/private)
 - Baccalaureate access, success, and honors rates
@@ -26,12 +26,12 @@ Interactive analysis of French high school performance in 2022. This map allows 
 **Technologies** : Leaflet, Data.gouv.fr data  
 **Methodology** : Analysis of French Ministry of Education indicators
 
-#### [OSEIDO Map](carte_OSEIDO.html)
+#### [OSEIDO Map](projets/cartes/carte_OSEIDO.html)
 Geographic visualization of OSEIDO healthcare facilities.
 
 **Technologies** : Leaflet
 
-#### [New York City Metro Art Map](NYC_Metro_Art_Map.html)
+#### [New York City Metro Art Map](projets/visualisations/NYC_Metro_Art_Map.html)
 Interactive map cataloging all artworks in the New York subway system. Personal project combining:
 - MTA (Metropolitan Transportation Authority) data
 - Subway station geolocation
@@ -42,7 +42,7 @@ Interactive map cataloging all artworks in the New York subway system. Personal 
 
 ### 📈 Visualizations and Analyses
 
-#### [16 years at ENGIE](16yearsatengie.html)
+#### [16 years at ENGIE](projets/visualisations/16yearsatengie.html)
 Interactive visualization of 16 years of career at ENGIE, created with Scratch.
 
 **Technology** : Scratch
@@ -53,7 +53,7 @@ Interactive visualization of 16 years of career at ENGIE, created with Scratch.
 
 The [MaMaMa association](https://www.mamama.fr) fights against child malnutrition in Île-de-France. I have developed several operational tools to facilitate their field actions.
 
-### [MaMaExpress](MaMaExpress.html)
+### [MaMaExpress](projets/outils/MaMaExpress.html)
 **Logistics Route Optimization Tool**
 
 Web application to optimize delivery routes to PMI (Maternal and Child Protection Centers):
@@ -64,7 +64,7 @@ Web application to optimize delivery routes to PMI (Maternal and Child Protectio
 
 **Technologies** : JavaScript, Leaflet, optimization algorithms
 
-### [MaMaFoodScan](MaMaFoodScan.html)
+### [MaMaFoodScan](projets/outils/MaMaFoodScan.html)
 **Food Product Scanner**
 
 Mobile-friendly application to scan and analyze food products:
@@ -76,7 +76,7 @@ Mobile-friendly application to scan and analyze food products:
 
 **Technologies** : JavaScript, QuaggaJS, Open Food Facts API
 
-### [SaveEat](SaveEat.html)
+### [SaveEat](projets/outils/SaveEat.html)
 **Recipe Manager**
 
 Web application to collect and organize recipes:
