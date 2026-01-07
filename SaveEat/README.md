@@ -16,12 +16,12 @@ Cette version statique de SaveEat fonctionne parfaitement avec GitHub Pages. Ell
 5. Clique **Save**
 
 ### 3. Accéder à ton site
-Ton site sera disponible à : `https://hapyatila.github.io/SaveEat/`
+Ton site sera disponible à : `https://natacha-aviat.github.io/SaveEat/`
 
 ## 📱 Configuration iPhone Shortcut
 
 1. **Shortcuts** → **Nouveau raccourci**
-2. **Ouvrir des URLs** → `https://hapyatila.github.io/SaveEat/?url=[URL]`
+2. **Ouvrir des URLs** → `https://natacha-aviat.github.io/SaveEat/?url=[URL]`
 3. **Ajouter au menu Partager**
 
 ## ✨ Fonctionnalités
