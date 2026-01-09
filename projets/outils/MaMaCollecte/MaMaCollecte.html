@@ -1,0 +1,942 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MaMaCollecte - Association MaMaMa</title>
+    <link rel="stylesheet" href="../../assets/css/MaMaStyle.css">
+    <style>
+        .phone-input-section {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+        }
+        .phone-input-section h3 {
+            margin-top: 0;
+            margin-bottom: 15px;
+        }
+        .phone-input-section input {
+            width: 100%;
+            padding: 12px;
+            font-size: 16px;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            background-color: #fff;
+            box-sizing: border-box;
+        }
+        .phone-input-section input:focus {
+            outline: none;
+            border-color: #FFC107;
+        }
+        .location-selector {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+        }
+        .location-selector h3 {
+            margin-top: 0;
+            margin-bottom: 15px;
+        }
+        .location-selector select {
+            width: 100%;
+            padding: 12px;
+            font-size: 16px;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            background-color: #fff;
+        }
+        .calendar-container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+        }
+        .days-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        .day-card {
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 15px;
+            background-color: #fafafa;
+        }
+        .day-card h4 {
+            margin-top: 0;
+            color: #2C3E50;
+            border-bottom: 2px solid #FFC107;
+            padding-bottom: 10px;
+            margin-bottom: 15px;
+        }
+        .time-slot {
+            margin-bottom: 15px;
+            padding: 12px;
+            background-color: #fff;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+        }
+        .time-slot.full {
+            opacity: 0.6;
+            background-color: #f5f5f5;
+        }
+        .time-slot-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        .time-slot-title {
+            font-weight: bold;
+            color: #2C3E50;
+        }
+        .time-slot-availability {
+            font-size: 0.9em;
+            color: #666;
+        }
+        .time-slot-availability.available {
+            color: #2e7d32;
+            font-weight: bold;
+        }
+        .time-slot-availability.full {
+            color: #d32f2f;
+            font-weight: bold;
+        }
+        .book-button {
+            width: 100%;
+            padding: 10px;
+            background-color: #FFC107;
+            color: #2C3E50;
+            border: none;
+            border-radius: 5px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .book-button:hover:not(:disabled) {
+            background-color: #FFB300;
+        }
+        .book-button:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+            color: #666;
+        }
+        .registration-form {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+            display: none;
+        }
+        .registration-form.active {
+            display: block;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #2C3E50;
+        }
+        .form-group input {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+        .form-group input:focus {
+            outline: none;
+            border-color: #FFC107;
+        }
+        .form-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        .btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 5px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .btn-primary {
+            background-color: #FFC107;
+            color: #2C3E50;
+        }
+        .btn-primary:hover {
+            background-color: #FFB300;
+        }
+        .btn-secondary {
+            background-color: #666;
+            color: #fff;
+        }
+        .btn-secondary:hover {
+            background-color: #555;
+        }
+        .registrations-list {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            margin-top: 20px;
+        }
+        .registrations-list h3 {
+            margin-top: 0;
+        }
+        .registration-item {
+            padding: 10px;
+            border-bottom: 1px solid #e0e0e0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .registration-item:last-child {
+            border-bottom: none;
+        }
+        .registration-info {
+            flex: 1;
+        }
+        .registration-actions {
+            display: flex;
+            gap: 10px;
+        }
+        .btn-small {
+            padding: 5px 10px;
+            font-size: 0.9em;
+        }
+        .btn-danger {
+            background-color: #d32f2f;
+            color: #fff;
+        }
+        .btn-danger:hover {
+            background-color: #b71c1c;
+        }
+        .message {
+            padding: 12px;
+            border-radius: 5px;
+            margin-bottom: 15px;
+            display: none;
+        }
+        .message.success {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        .message.error {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        .message.active {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <img src="https://images.squarespace-cdn.com/content/v1/5ec8595ff51b0459bf5c59d8/d36a9706-f7a7-444a-9a13-fb2ee27373e8/mamama_logo.png?format=1500w" alt="Association MaMaMa" class="logo">
+    </div>
+    <div class="container">
+        <h1>MaMaCollecte</h1>
+        
+        <div class="phone-input-section">
+            <h3>Votre numéro de téléphone</h3>
+            <input type="tel" id="userPhoneInput" placeholder="06 12 34 56 78">
+        </div>
+
+
+        <div class="location-selector">
+            <h3>Sélectionner un lieu de collecte</h3>
+            <select id="locationSelect">
+                <option value="">-- Choisir un lieu --</option>
+            </select>
+        </div>
+
+        <div id="message" class="message"></div>
+
+        <div id="calendarContainer" class="calendar-container" style="display: none;">
+            <h3>Créneaux disponibles</h3>
+            <div id="daysGrid" class="days-grid"></div>
+        </div>
+
+        <div id="registrationForm" class="registration-form">
+            <h3>Inscription</h3>
+            <div class="form-group">
+                <label for="phoneInput">Numéro de téléphone *</label>
+                <input type="tel" id="phoneInput" placeholder="06 12 34 56 78" required>
+            </div>
+            <div class="form-group">
+                <label for="emailInput">Email *</label>
+                <input type="email" id="emailInput" placeholder="exemple@email.com" required>
+            </div>
+            <div class="form-actions">
+                <button class="btn btn-primary" onclick="confirmRegistration()">Confirmer l'inscription</button>
+                <button class="btn btn-secondary" onclick="cancelRegistration()">Annuler</button>
+            </div>
+        </div>
+
+        <div id="registrationsList" class="registrations-list" style="display: none;">
+            <h3>Mes inscriptions</h3>
+            <div id="registrationsContent"></div>
+        </div>
+
+    </div>
+    <div class="footer">
+        Pour toute idée d'amélioration, contactez Natacha : <a href="mailto:digital@asso-mamama.fr">digital@asso-mamama.fr</a>
+    </div>
+
+    <script src="creneaux_disponibles.js"></script>
+    <script src="inscriptions.js"></script>
+    <script>
+        // Variables globales
+        let LOCATIONS = [];
+        let CRENEAUX_DATA = {}; // Structure: { dateKey: { lieuId: { slotId: { time, capacity, lieuNom } } } }
+        let currentSelectedSlot = null;
+        let currentSelectedLocation = null;
+        let registrations = [];
+        let userPhone = '';
+        let inscriptionsFileHandle = null; // Handle pour le fichier inscriptions.js
+
+        // Parser le CSV
+        function parseCSV(csvText) {
+            const lines = csvText.trim().split('\n');
+            const headers = parseCSVLine(lines[0]);
+            
+            // Trouver les indices des colonnes
+            const dateIdx = headers.indexOf('Date');
+            const creneauIdx = headers.indexOf('Créneau');
+            const heureDebutIdx = headers.indexOf('Heure_Début');
+            const heureFinIdx = headers.indexOf('Heure_Fin');
+            const lieuIdIdx = headers.indexOf('Lieu_ID');
+            const lieuNomIdx = headers.indexOf('Lieu_Nom');
+            const capaciteIdx = headers.indexOf('Capacité');
+            
+            const creneaux = {};
+            const lieuxMap = new Map();
+            
+            // Parser chaque ligne (sauf l'en-tête)
+            for (let i = 1; i < lines.length; i++) {
+                const line = lines[i].trim();
+                if (!line) continue;
+                
+                // Parser la ligne en tenant compte des virgules dans les valeurs entre guillemets
+                const values = parseCSVLine(line);
+                
+                if (values.length < 7) {
+                    console.warn('Ligne ignorée (pas assez de colonnes):', line);
+                    continue;
+                }
+                
+                const dateKey = values[dateIdx] ? values[dateIdx].trim() : '';
+                const slotId = values[creneauIdx] ? values[creneauIdx].trim() : '';
+                const heureDebut = values[heureDebutIdx] ? values[heureDebutIdx].trim() : '';
+                const heureFin = values[heureFinIdx] ? values[heureFinIdx].trim() : '';
+                const lieuId = values[lieuIdIdx] ? values[lieuIdIdx].trim() : '';
+                const lieuNom = values[lieuNomIdx] ? values[lieuNomIdx].trim() : '';
+                const capacite = values[capaciteIdx] ? parseInt(values[capaciteIdx].trim()) : 0;
+                
+                if (!dateKey || !slotId || !lieuId || !lieuNom) {
+                    console.warn('Ligne ignorée (données manquantes):', line);
+                    continue;
+                }
+                
+                // Stocker le lieu
+                if (!lieuxMap.has(lieuId)) {
+                    lieuxMap.set(lieuId, lieuNom);
+                }
+                
+                // Organiser les créneaux par date, puis par lieu, puis par slot
+                if (!creneaux[dateKey]) {
+                    creneaux[dateKey] = {};
+                }
+                if (!creneaux[dateKey][lieuId]) {
+                    creneaux[dateKey][lieuId] = {};
+                }
+                
+                creneaux[dateKey][lieuId][slotId] = {
+                    time: `${heureDebut} - ${heureFin}`,
+                    capacity: capacite,
+                    lieuNom: lieuNom
+                };
+            }
+            
+            // Convertir la Map en tableau pour LOCATIONS
+            LOCATIONS = Array.from(lieuxMap.entries()).map(([id, name]) => ({ id, name }));
+            
+            console.log('Lieux chargés:', LOCATIONS);
+            console.log('Créneaux chargés:', CRENEAUX_DATA);
+            
+            CRENEAUX_DATA = creneaux;
+        }
+
+        // Parser une ligne CSV en tenant compte des guillemets
+        function parseCSVLine(line) {
+            const values = [];
+            let current = '';
+            let inQuotes = false;
+            
+            for (let i = 0; i < line.length; i++) {
+                const char = line[i];
+                
+                if (char === '"') {
+                    if (inQuotes && line[i + 1] === '"') {
+                        // Guillemet échappé
+                        current += '"';
+                        i++;
+                    } else {
+                        // Toggle quotes
+                        inQuotes = !inQuotes;
+                    }
+                } else if (char === ',' && !inQuotes) {
+                    values.push(current);
+                    current = '';
+                } else {
+                    current += char;
+                }
+            }
+            values.push(current);
+            return values;
+        }
+
+        // Charger les créneaux depuis le fichier JS
+        function loadCreneauxFromJS() {
+            // Vérifier si les données JS sont disponibles
+            if (typeof CRENEAUX_DISPONIBLES !== 'undefined' && typeof LIEUX_DISPONIBLES !== 'undefined') {
+                CRENEAUX_DATA = CRENEAUX_DISPONIBLES;
+                LOCATIONS = LIEUX_DISPONIBLES;
+                console.log('Créneaux chargés depuis creneaux_disponibles.js');
+                console.log('Lieux:', LOCATIONS);
+                console.log('Créneaux:', CRENEAUX_DATA);
+                // Masquer la section de chargement manuel
+                const csvSection = document.getElementById('csvUploadSection');
+                if (csvSection) {
+                    csvSection.style.display = 'none';
+                }
+                return true;
+            } else {
+                console.warn('Les fichiers JS ne sont pas chargés. Utilisation des valeurs par défaut.');
+                loadDefaultCreneaux();
+                return false;
+            }
+        }
+
+
+        // Charger les créneaux par défaut (pour le développement local)
+        function loadDefaultCreneaux() {
+            // Valeurs par défaut basées sur le CSV actuel
+            const defaultCSV = `Date,Créneau,Heure_Début,Heure_Fin,Lieu_ID,Lieu_Nom,Capacité
+2024-01-16,slot1,09:00,12:00,lieu1,Lieu 1 - Aubervilliers,8
+2024-01-16,slot2,13:00,16:00,lieu1,Lieu 1 - Aubervilliers,15
+2024-01-16,slot3,16:00,19:00,lieu1,Lieu 1 - Aubervilliers,15
+2024-01-17,slot1,09:00,12:00,lieu1,Lieu 1 - Aubervilliers,8
+2024-01-17,slot2,13:00,16:00,lieu1,Lieu 1 - Aubervilliers,15
+2024-01-17,slot3,16:00,19:00,lieu1,Lieu 1 - Aubervilliers,15
+2024-01-15,slot1,09:00,12:00,lieu2,Lieu 2 - Paris 19ème,8
+2024-01-15,slot2,13:00,16:00,lieu2,Lieu 2 - Paris 19ème,15
+2024-01-15,slot3,16:00,19:00,lieu2,Lieu 2 - Paris 19ème,15
+2024-01-16,slot1,09:00,12:00,lieu2,Lieu 2 - Paris 19ème,8
+2024-01-16,slot2,13:00,16:00,lieu2,Lieu 2 - Paris 19ème,15
+2024-01-16,slot3,16:00,19:00,lieu2,Lieu 2 - Paris 19ème,15
+2024-01-17,slot1,09:00,12:00,lieu2,Lieu 2 - Paris 19ème,8
+2024-01-17,slot2,13:00,16:00,lieu2,Lieu 2 - Paris 19ème,15
+2024-01-17,slot3,16:00,19:00,lieu2,Lieu 2 - Paris 19ème,15
+2024-01-15,slot1,09:00,12:00,lieu3,Lieu 3 - Pantin,8
+2024-01-15,slot2,13:00,16:00,lieu3,Lieu 3 - Pantin,15
+2024-01-15,slot3,16:00,19:00,lieu3,Lieu 3 - Pantin,15
+2024-01-16,slot1,09:00,12:00,lieu3,Lieu 3 - Pantin,8
+2024-01-16,slot2,13:00,16:00,lieu3,Lieu 3 - Pantin,15
+2024-01-16,slot3,16:00,19:00,lieu3,Lieu 3 - Pantin,15`;
+            
+            parseCSV(defaultCSV);
+            console.log('Créneaux par défaut chargés');
+        }
+
+        // Générer les jours à partir des dates disponibles dans le CSV
+        function getDays() {
+            const days = [];
+            const dateKeys = Object.keys(CRENEAUX_DATA).sort();
+            
+            dateKeys.forEach(dateKey => {
+                const date = new Date(dateKey + 'T00:00:00');
+                days.push({
+                    date: date,
+                    dateStr: date.toLocaleDateString('fr-FR', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }),
+                    dateKey: dateKey
+                });
+            });
+            
+            return days;
+        }
+
+        // Mettre à jour le numéro de téléphone de l'utilisateur
+        function updateUserPhone() {
+            userPhone = document.getElementById('userPhoneInput').value.trim();
+            displayMyRegistrations();
+        }
+
+        // Initialisation
+        async function init() {
+            // Charger les créneaux depuis le fichier JS
+            loadCreneauxFromJS();
+            await loadRegistrations();
+            populateLocationSelect();
+            displayCalendar();
+            // Écouter les changements du champ téléphone
+            const phoneInput = document.getElementById('userPhoneInput');
+            if (phoneInput) {
+                phoneInput.addEventListener('input', updateUserPhone);
+                phoneInput.addEventListener('change', updateUserPhone);
+            }
+            displayMyRegistrations();
+            
+            // Vérifier si le serveur Python est disponible (seulement si pas en mode file://)
+            if (window.location.protocol !== 'file:') {
+                try {
+                    const response = await fetch('/api/inscriptions');
+                    if (response.ok) {
+                        console.log('✅ Serveur Python détecté - sauvegarde automatique activée');
+                    }
+                } catch (error) {
+                    console.log('Serveur Python non disponible');
+                }
+            } else {
+                console.log('Mode file:// - utilisez le serveur Python (python server.py) pour la sauvegarde automatique');
+            }
+        }
+
+        // Charger les inscriptions depuis le fichier JS ou le serveur
+        async function loadRegistrations() {
+            // Si on est en mode file://, ne pas essayer de contacter le serveur
+            if (window.location.protocol === 'file:') {
+                console.log('Mode file:// détecté, chargement depuis le fichier JS');
+                if (typeof INSCRIPTIONS !== 'undefined' && Array.isArray(INSCRIPTIONS)) {
+                    registrations = INSCRIPTIONS;
+                    console.log('Inscriptions chargées depuis inscriptions.js:', registrations.length);
+                } else {
+                    registrations = [];
+                    console.log('Aucune inscription trouvée');
+                }
+                return;
+            }
+            
+            // Essayer de charger depuis le serveur Python
+            try {
+                const response = await fetch('/api/inscriptions');
+                if (response.ok) {
+                    const data = await response.json();
+                    if (Array.isArray(data)) {
+                        registrations = data;
+                        console.log('Inscriptions chargées depuis le serveur:', registrations.length);
+                        return;
+                    }
+                }
+            } catch (error) {
+                console.log('Serveur Python non disponible, chargement depuis le fichier JS');
+            }
+            
+            // Fallback: charger depuis le fichier JS
+            if (typeof INSCRIPTIONS !== 'undefined' && Array.isArray(INSCRIPTIONS)) {
+                registrations = INSCRIPTIONS;
+                console.log('Inscriptions chargées depuis inscriptions.js:', registrations.length);
+            } else {
+                registrations = [];
+                console.log('Aucune inscription trouvée');
+            }
+        }
+
+
+        // Sauvegarder les inscriptions dans le fichier JS via le serveur Python
+        async function saveRegistrationsToJS() {
+            // Si on est en mode file://, ne rien faire (pas de téléchargement)
+            if (window.location.protocol === 'file:') {
+                console.log('Mode file:// détecté - utilisez le serveur Python pour la sauvegarde automatique');
+                return false;
+            }
+            
+            // Essayer d'envoyer au serveur Python
+            try {
+                const response = await fetch('/api/inscriptions', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        inscriptions: registrations
+                    })
+                });
+                
+                if (response.ok) {
+                    const result = await response.json();
+                    console.log('Inscriptions sauvegardées via le serveur:', result);
+                    return true;
+                } else {
+                    throw new Error('Erreur serveur');
+                }
+            } catch (error) {
+                console.warn('Serveur Python non disponible:', error);
+                // Ne pas télécharger le fichier - l'utilisateur n'en a pas besoin
+                return false;
+            }
+        }
+
+        // Peupler la liste des lieux
+        function populateLocationSelect() {
+            const select = document.getElementById('locationSelect');
+            // Vider le select (garder seulement l'option par défaut)
+            select.innerHTML = '<option value="">-- Choisir un lieu --</option>';
+            
+            if (LOCATIONS.length === 0) {
+                console.warn('Aucun lieu trouvé dans LOCATIONS');
+                return;
+            }
+            
+            LOCATIONS.forEach(location => {
+                const option = document.createElement('option');
+                option.value = location.id;
+                option.textContent = location.name;
+                select.appendChild(option);
+            });
+            
+            // Supprimer l'ancien event listener s'il existe et en ajouter un nouveau
+            const newSelect = select.cloneNode(true);
+            select.parentNode.replaceChild(newSelect, select);
+            
+            document.getElementById('locationSelect').addEventListener('change', function() {
+                currentSelectedLocation = this.value;
+                displayCalendar();
+            });
+        }
+
+        // Afficher le calendrier
+        function displayCalendar() {
+            const container = document.getElementById('calendarContainer');
+            const daysGrid = document.getElementById('daysGrid');
+            
+            if (!currentSelectedLocation) {
+                container.style.display = 'none';
+                return;
+            }
+
+            container.style.display = 'block';
+            const days = getDays();
+            
+            daysGrid.innerHTML = '';
+            
+            days.forEach(day => {
+                const dayCard = document.createElement('div');
+                dayCard.className = 'day-card';
+                
+                const dayTitle = document.createElement('h4');
+                dayTitle.textContent = day.dateStr;
+                dayCard.appendChild(dayTitle);
+                
+                // Récupérer les créneaux disponibles pour ce jour et ce lieu depuis le CSV
+                const creneauxDuJour = CRENEAUX_DATA[day.dateKey];
+                if (!creneauxDuJour || !creneauxDuJour[currentSelectedLocation]) {
+                    dayCard.innerHTML = '<p style="color: #666; font-style: italic;">Aucun créneau disponible pour ce lieu ce jour.</p>';
+                    daysGrid.appendChild(dayCard);
+                    return;
+                }
+                
+                const slotsDuLieu = creneauxDuJour[currentSelectedLocation];
+                
+                // Afficher les créneaux dans l'ordre (slot1, slot2, slot3, etc.)
+                const slotIds = Object.keys(slotsDuLieu).sort();
+                
+                slotIds.forEach(slotId => {
+                    const slot = slotsDuLieu[slotId];
+                    const slotDiv = document.createElement('div');
+                    slotDiv.className = 'time-slot';
+                    
+                    const slotKey = `${day.dateKey}_${slotId}_${currentSelectedLocation}`;
+                    const slotRegistrations = registrations.filter(r => r.slotKey === slotKey);
+                    const available = slot.capacity - slotRegistrations.length;
+                    const isFull = available <= 0;
+                    
+                    if (isFull) {
+                        slotDiv.classList.add('full');
+                    }
+                    
+                    slotDiv.innerHTML = `
+                        <div class="time-slot-header">
+                            <span class="time-slot-title">${slot.time}</span>
+                            <span class="time-slot-availability ${isFull ? 'full' : 'available'}">
+                                ${available} / ${slot.capacity} places
+                            </span>
+                        </div>
+                        <button class="book-button" 
+                                onclick="openRegistrationForm('${day.dateKey}', '${slotId}', '${slot.time}')"
+                                ${isFull ? 'disabled' : ''}>
+                            ${isFull ? 'Complet' : 'Réserver'}
+                        </button>
+                    `;
+                    
+                    dayCard.appendChild(slotDiv);
+                });
+                
+                if (slotIds.length === 0) {
+                    dayCard.innerHTML = '<p style="color: #666; font-style: italic;">Aucun créneau disponible pour ce lieu ce jour.</p>';
+                }
+                
+                daysGrid.appendChild(dayCard);
+            });
+        }
+
+        // Ouvrir le formulaire d'inscription
+        function openRegistrationForm(dateKey, slotId, slotTime) {
+            if (!currentSelectedLocation) {
+                showMessage('Veuillez d\'abord sélectionner un lieu', 'error');
+                return;
+            }
+            
+            if (!userPhone) {
+                showMessage('Veuillez d\'abord saisir votre numéro de téléphone en haut de la page', 'error');
+                return;
+            }
+            
+            currentSelectedSlot = {
+                dateKey: dateKey,
+                slotId: slotId,
+                slotTime: slotTime,
+                location: currentSelectedLocation
+            };
+            
+            document.getElementById('registrationForm').classList.add('active');
+            document.getElementById('phoneInput').value = userPhone;
+            document.getElementById('emailInput').value = '';
+            document.getElementById('emailInput').focus();
+        }
+
+        // Annuler l'inscription
+        function cancelRegistration() {
+            document.getElementById('registrationForm').classList.remove('active');
+            currentSelectedSlot = null;
+        }
+
+        // Confirmer l'inscription
+        async function confirmRegistration() {
+            const phone = document.getElementById('phoneInput').value.trim();
+            const email = document.getElementById('emailInput').value.trim();
+            
+            // Validation
+            if (!phone || !email) {
+                showMessage('Veuillez remplir tous les champs', 'error');
+                return;
+            }
+            
+            if (!isValidPhone(phone)) {
+                showMessage('Numéro de téléphone invalide', 'error');
+                return;
+            }
+            
+            if (!isValidEmail(email)) {
+                showMessage('Email invalide', 'error');
+                return;
+            }
+            
+            // Vérifier si le téléphone est déjà inscrit au même créneau dans un autre lieu
+            const slotKey = `${currentSelectedSlot.dateKey}_${currentSelectedSlot.slotId}_${currentSelectedSlot.location}`;
+            const conflictingRegistration = registrations.find(r => 
+                r.phone === phone && 
+                r.dateKey === currentSelectedSlot.dateKey &&
+                r.slotId === currentSelectedSlot.slotId &&
+                r.location !== currentSelectedSlot.location
+            );
+            
+            if (conflictingRegistration) {
+                const locationName = LOCATIONS.find(l => l.id === conflictingRegistration.location)?.name || conflictingRegistration.location;
+                showMessage(`Vous êtes déjà inscrit(e) à ce créneau au ${locationName}. Un même numéro ne peut pas être inscrit au même moment à deux endroits différents.`, 'error');
+                return;
+            }
+            
+            // Vérifier si le créneau n'est pas complet
+            const slotRegistrations = registrations.filter(r => r.slotKey === slotKey);
+            const creneauxDuJour = CRENEAUX_DATA[currentSelectedSlot.dateKey];
+            const slot = creneauxDuJour && creneauxDuJour[currentSelectedSlot.location] && creneauxDuJour[currentSelectedSlot.location][currentSelectedSlot.slotId];
+            
+            if (!slot) {
+                showMessage('Ce créneau n\'est plus disponible', 'error');
+                displayCalendar();
+                return;
+            }
+            
+            if (slotRegistrations.length >= slot.capacity) {
+                showMessage('Ce créneau est complet', 'error');
+                displayCalendar();
+                return;
+            }
+            
+            // Créer l'inscription
+            const registration = {
+                id: Date.now().toString(),
+                phone: phone,
+                email: email,
+                dateKey: currentSelectedSlot.dateKey,
+                slotId: currentSelectedSlot.slotId,
+                slotTime: currentSelectedSlot.slotTime,
+                location: currentSelectedSlot.location,
+                slotKey: slotKey,
+                timestamp: new Date().toISOString()
+            };
+            
+            registrations.push(registration);
+            
+            // Mettre à jour le numéro de téléphone de l'utilisateur si différent
+            if (phone !== userPhone) {
+                userPhone = phone;
+                document.getElementById('userPhoneInput').value = phone;
+            }
+            
+            // Sauvegarder dans le fichier JS (via le serveur Python si disponible)
+            const saved = await saveRegistrationsToJS();
+            
+            if (saved) {
+                showMessage('Inscription confirmée ! Le fichier inscriptions.js a été mis à jour.', 'success');
+            } else {
+                showMessage('Inscription confirmée !', 'success');
+            }
+            document.getElementById('registrationForm').classList.remove('active');
+            currentSelectedSlot = null;
+            
+            displayCalendar();
+            displayMyRegistrations();
+        }
+
+        // Afficher mes inscriptions
+        function displayMyRegistrations() {
+            const listContainer = document.getElementById('registrationsList');
+            const content = document.getElementById('registrationsContent');
+            
+            if (!userPhone) {
+                listContainer.style.display = 'none';
+                return;
+            }
+            
+            const myRegistrations = registrations.filter(r => r.phone === userPhone);
+            
+            if (myRegistrations.length === 0) {
+                content.innerHTML = '<p>Aucune inscription trouvée pour ce numéro.</p>';
+                listContainer.style.display = 'block';
+                return;
+            }
+            
+            content.innerHTML = '';
+            myRegistrations.forEach(reg => {
+                const day = getDays().find(d => d.dateKey === reg.dateKey);
+                const locationName = LOCATIONS.find(l => l.id === reg.location)?.name || reg.location;
+                
+                const item = document.createElement('div');
+                item.className = 'registration-item';
+                item.innerHTML = `
+                    <div class="registration-info">
+                        <strong>${day ? day.dateStr : reg.dateKey}</strong><br>
+                        ${reg.slotTime} - ${locationName}<br>
+                        <small>${reg.email}</small>
+                    </div>
+                    <div class="registration-actions">
+                        <button class="btn btn-danger btn-small" onclick="cancelRegistrationById('${reg.id}')">Annuler</button>
+                    </div>
+                `;
+                content.appendChild(item);
+            });
+            
+            listContainer.style.display = 'block';
+        }
+
+        // Annuler une inscription par ID
+        async function cancelRegistrationById(id) {
+            if (confirm('Êtes-vous sûr de vouloir annuler cette inscription ?')) {
+                registrations = registrations.filter(r => r.id !== id);
+                // Sauvegarder dans le fichier JS (via le serveur Python si disponible)
+                await saveRegistrationsToJS();
+                displayCalendar();
+                displayMyRegistrations();
+                showMessage('Inscription annulée', 'success');
+            }
+        }
+
+        // Validation du téléphone
+        function isValidPhone(phone) {
+            // Format français : 10 chiffres, peut commencer par 0
+            const phoneRegex = /^(?:(?:\+|00)33|0)[1-9](?:[0-9]{8})$/;
+            const cleaned = phone.replace(/\s/g, '');
+            return phoneRegex.test(cleaned) || /^0[1-9][0-9]{8}$/.test(cleaned);
+        }
+
+        // Validation de l'email
+        function isValidEmail(email) {
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return emailRegex.test(email);
+        }
+
+        // Afficher un message
+        function showMessage(text, type) {
+            const messageDiv = document.getElementById('message');
+            messageDiv.textContent = text;
+            messageDiv.className = `message ${type} active`;
+            setTimeout(() => {
+                messageDiv.classList.remove('active');
+            }, 5000);
+        }
+
+        // Générer le contenu JS des inscriptions pour alimenter le fichier inscriptions.js
+        function generateInscriptionsJS() {
+            if (registrations.length === 0) {
+                return '// Inscriptions pour MaMaCollecte\n// Aucune inscription pour le moment\nconst INSCRIPTIONS = [];\n';
+            }
+            
+            let jsContent = '// Inscriptions pour MaMaCollecte\n';
+            jsContent += '// Généré le ' + new Date().toLocaleString('fr-FR') + '\n';
+            jsContent += 'const INSCRIPTIONS = [\n';
+            
+            registrations.forEach((reg, index) => {
+                const day = getDays().find(d => d.dateKey === reg.dateKey);
+                const locationName = LOCATIONS.find(l => l.id === reg.location)?.name || reg.location;
+                
+                // Échapper les guillemets dans les chaînes
+                const escapeString = (str) => {
+                    if (!str) return '""';
+                    return '"' + String(str).replace(/"/g, '\\"').replace(/\n/g, '\\n') + '"';
+                };
+                
+                jsContent += '    {\n';
+                jsContent += `        id: ${escapeString(reg.id)},\n`;
+                jsContent += `        phone: ${escapeString(reg.phone)},\n`;
+                jsContent += `        email: ${escapeString(reg.email)},\n`;
+                jsContent += `        dateKey: ${escapeString(reg.dateKey)},\n`;
+                jsContent += `        dateStr: ${escapeString(day ? day.dateStr : reg.dateKey)},\n`;
+                jsContent += `        slotId: ${escapeString(reg.slotId)},\n`;
+                jsContent += `        slotTime: ${escapeString(reg.slotTime)},\n`;
+                jsContent += `        location: ${escapeString(reg.location)},\n`;
+                jsContent += `        locationName: ${escapeString(locationName)},\n`;
+                jsContent += `        slotKey: ${escapeString(reg.slotKey)},\n`;
+                jsContent += `        timestamp: ${escapeString(reg.timestamp)}\n`;
+                jsContent += '    }';
+                if (index < registrations.length - 1) {
+                    jsContent += ',';
+                }
+                jsContent += '\n';
+            });
+            
+            jsContent += '];\n';
+            return jsContent;
+        }
+
+        // Initialiser au chargement
+        init();
+    </script>
+</body>
+</html>
