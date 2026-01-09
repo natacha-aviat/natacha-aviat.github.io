@@ -95,6 +95,25 @@
             overflow: hidden;
             box-shadow: 0 2px 4px rgba(0,0,0,0.1);
         }
+        #customAddress:focus {
+            outline: none;
+            border-color: #FFC107;
+            box-shadow: 0 0 0 2px rgba(255, 193, 7, 0.2);
+        }
+        #calculateCustomAddress:hover {
+            background-color: #FFB300 !important;
+            transform: translateY(-1px);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.15);
+        }
+        #calculateCustomAddress:active {
+            transform: translateY(0);
+        }
+        #calculateCustomAddress:disabled {
+            background-color: #cccccc !important;
+            color: #666 !important;
+            cursor: not-allowed;
+            transform: none;
+        }
     </style>
 </head>
 <body>
@@ -117,6 +136,24 @@
                     </div>
                     <div id="pmiList" class="pmi-list">
                         <p style="color: #666;">Chargement des données...</p>
+                    </div>
+                    <div class="custom-address-section" style="margin-top: 25px; padding: 20px; background-color: #fff; border-radius: 5px; border-left: 4px solid #FFC107; box-shadow: 0 2px 8px rgba(0,0,0,0.1); border-top: 1px solid #e0e0e0; border-right: 1px solid #e0e0e0; border-bottom: 1px solid #e0e0e0;">
+                        <h4 style="margin: 0 0 15px 0; font-size: 1.15em; color: #2C3E50; display: flex; align-items: center; gap: 8px;">
+                            <span style="width: 28px; height: 28px; background-color: #FFC107; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 16px; flex-shrink: 0;">📍</span>
+                            Ajouter une adresse personnalisée
+                        </h4>
+                        <div style="display: flex; gap: 10px; align-items: flex-start;">
+                            <input type="text" id="customAddress" placeholder="Entrez une adresse (ex: 10 rue de la Paix, Paris)" 
+                                   style="flex: 1; padding: 12px; border: 1px solid #ddd; border-radius: 4px; font-size: 14px; transition: border-color 0.3s;">
+                            <button id="calculateCustomAddress" class="select-button" style="white-space: nowrap; padding: 12px 24px; background-color: #FFC107; color: #2C3E50; font-weight: bold; border: none; border-radius: 4px; cursor: pointer; transition: background-color 0.3s;">
+                                Calculer
+                            </button>
+                        </div>
+                        <div id="customAddressStatus" style="margin-top: 12px; font-size: 0.9em; color: #666; min-height: 20px;"></div>
+                        <div id="customAddressesList" style="margin-top: 18px; display: none; padding-top: 15px; border-top: 1px solid #e8e8e8;">
+                            <div style="font-weight: bold; margin-bottom: 10px; font-size: 0.95em; color: #2C3E50;">Adresses personnalisées ajoutées :</div>
+                            <div id="customAddressesItems" style="display: flex; flex-direction: column; gap: 8px;"></div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -148,6 +185,7 @@
         let selectedPmiIndices = new Set();
         let currentMap = null;
         let isMapInitializing = false;
+        let customAddresses = []; // Stocke les adresses personnalisées ajoutées
         
         function initializeFromJS() {
             if (typeof PMI_ADDRESSES === 'undefined') {
@@ -314,6 +352,13 @@
             const id2 = getAddressId(adresse2);
             
             if (id1 === null || id2 === null) {
+                // Si l'une des adresses est personnalisée, calculer la durée approximative
+                const custom1 = customAddresses.find(addr => addr.address === adresse1);
+                const custom2 = customAddresses.find(addr => addr.address === adresse2);
+                
+                if (custom1 || custom2) {
+                    return calculateEstimatedDuration(adresse1, adresse2);
+                }
                 return Infinity;
             }
             
@@ -321,6 +366,72 @@
             const duree = dureesMap.get(key);
             
             return duree !== undefined ? duree : Infinity;
+        }
+
+        // Calcule la distance en kilomètres entre deux points (formule de Haversine)
+        function calculateDistance(lat1, lng1, lat2, lng2) {
+            const R = 6371; // Rayon de la Terre en km
+            const dLat = (lat2 - lat1) * Math.PI / 180;
+            const dLng = (lng2 - lng1) * Math.PI / 180;
+            const a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+                      Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) *
+                      Math.sin(dLng / 2) * Math.sin(dLng / 2);
+            const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+            return R * c;
+        }
+
+        // Calcule une durée estimée basée sur la distance
+        function calculateEstimatedDuration(adresse1, adresse2) {
+            let lat1, lng1, lat2, lng2;
+            
+            // Trouver les coordonnées de la première adresse
+            if (adresse1 === MAMAMA_ADDRESS) {
+                lat1 = 48.90355834151138;
+                lng1 = 2.378094237324154;
+            } else {
+                const custom1 = customAddresses.find(addr => addr.address === adresse1);
+                if (custom1) {
+                    lat1 = custom1.lat;
+                    lng1 = custom1.lng;
+                } else {
+                    const pmi1 = allPmis.find(pmi => pmi.address === adresse1);
+                    if (pmi1) {
+                        lat1 = pmi1.lat;
+                        lng1 = pmi1.lng;
+                    } else {
+                        return Infinity;
+                    }
+                }
+            }
+            
+            // Trouver les coordonnées de la deuxième adresse
+            if (adresse2 === MAMAMA_ADDRESS) {
+                lat2 = 48.90355834151138;
+                lng2 = 2.378094237324154;
+            } else {
+                const custom2 = customAddresses.find(addr => addr.address === adresse2);
+                if (custom2) {
+                    lat2 = custom2.lat;
+                    lng2 = custom2.lng;
+                } else {
+                    const pmi2 = allPmis.find(pmi => pmi.address === adresse2);
+                    if (pmi2) {
+                        lat2 = pmi2.lat;
+                        lng2 = pmi2.lng;
+                    } else {
+                        return Infinity;
+                    }
+                }
+            }
+            
+            const distance = calculateDistance(lat1, lng1, lat2, lng2);
+            // Vitesse moyenne en ville : 30 km/h, avec un facteur de correction pour les trajets urbains
+            // On ajoute aussi un temps de base pour les arrêts/feux rouges
+            const vitesseMoyenne = 30; // km/h
+            const tempsBase = 2; // minutes de base pour chaque trajet
+            const dureeMinutes = (distance / vitesseMoyenne) * 60 + tempsBase;
+            
+            return Math.round(dureeMinutes);
         }
 
         async function calculateOptimalOrder(waypoints) {
@@ -448,8 +559,18 @@
                         lng: pmi.lng
                     });
                 }
+                
+                // Ajouter les adresses personnalisées
+                for (const customAddr of customAddresses) {
+                    locations.push({
+                        nom: customAddr.nom || 'Adresse personnalisée',
+                        address: customAddr.address,
+                        lat: customAddr.lat,
+                        lng: customAddr.lng
+                    });
+                }
 
-                if (selectedPmis.length === 0) {
+                if (selectedPmis.length === 0 && customAddresses.length === 0) {
                     displayRoute(locations);
                     return;
                 }
@@ -780,10 +901,240 @@
             updateSelectedCount();
         }
 
+        async function geocodeAddress(address) {
+            const statusDiv = document.getElementById('customAddressStatus');
+            statusDiv.innerHTML = '<span style="color: #666;">⏳ Géocodage en cours...</span>';
+            
+            try {
+                const encodedAddress = encodeURIComponent(address);
+                
+                // Essayer d'abord Photon (API de géocodage qui supporte CORS nativement)
+                const photonUrl = `https://photon.komoot.io/api/?q=${encodedAddress}&limit=1&lang=fr`;
+                
+                let data = null;
+                let lastError = null;
+                
+                // Essayer Photon d'abord (support CORS natif)
+                try {
+                    const response = await fetch(photonUrl, {
+                        method: 'GET',
+                        mode: 'cors',
+                        cache: 'no-cache',
+                        headers: {
+                            'Accept': 'application/json'
+                        }
+                    });
+                    
+                    if (!response.ok) {
+                        throw new Error(`Erreur HTTP ${response.status}`);
+                    }
+                    
+                    const photonData = await response.json();
+                    
+                    if (photonData && photonData.features && photonData.features.length > 0) {
+                        const feature = photonData.features[0];
+                        const coordinates = feature.geometry.coordinates;
+                        const properties = feature.properties;
+                        
+                        return {
+                            address: address,
+                            lat: coordinates[1],
+                            lng: coordinates[0],
+                            nom: properties.name || properties.street || 'Adresse personnalisée'
+                        };
+                    }
+                } catch (photonError) {
+                    console.warn('Erreur avec Photon, tentative avec proxy:', photonError);
+                    lastError = photonError;
+                }
+                
+                // Si Photon n'a pas fonctionné, essayer avec des proxies CORS pour Nominatim
+                if (!data) {
+                    const nominatimUrl = `https://nominatim.openstreetmap.org/search?format=json&q=${encodedAddress}&limit=1&addressdetails=1`;
+                    
+                    // Liste de proxies CORS à essayer en cascade
+                    const proxyServices = [
+                        `https://api.allorigins.win/raw?url=${encodeURIComponent(nominatimUrl)}`,
+                        `https://corsproxy.io/?${encodeURIComponent(nominatimUrl)}`
+                    ];
+                    
+                    // Essayer chaque proxy jusqu'à ce qu'un fonctionne
+                    for (const proxyUrl of proxyServices) {
+                        try {
+                            const response = await fetch(proxyUrl, {
+                                method: 'GET',
+                                mode: 'cors',
+                                cache: 'no-cache',
+                                headers: {
+                                    'Accept': 'application/json'
+                                }
+                            });
+                            
+                            if (!response.ok) {
+                                throw new Error(`Erreur HTTP ${response.status}`);
+                            }
+                            
+                            const responseText = await response.text();
+                            
+                            // Essayer de parser le JSON
+                            try {
+                                data = JSON.parse(responseText);
+                            } catch (parseError) {
+                                // Si c'est un proxy qui retourne un wrapper JSON
+                                const wrapper = JSON.parse(responseText);
+                                if (wrapper.contents) {
+                                    data = JSON.parse(wrapper.contents);
+                                } else if (wrapper.data) {
+                                    data = JSON.parse(wrapper.data);
+                                } else {
+                                    data = wrapper;
+                                }
+                            }
+                            
+                            // Si on a des données valides, sortir de la boucle
+                            if (data && Array.isArray(data) && data.length > 0) {
+                                break;
+                            }
+                        } catch (proxyError) {
+                            console.warn(`Erreur avec proxy ${proxyUrl}:`, proxyError);
+                            lastError = proxyError;
+                            continue; // Essayer le proxy suivant
+                        }
+                    }
+                }
+                
+                // Si on a des données de Nominatim via proxy
+                if (data && Array.isArray(data) && data.length > 0) {
+                    const result = data[0];
+                    const lat = parseFloat(result.lat);
+                    const lng = parseFloat(result.lon);
+                    
+                    if (isNaN(lat) || isNaN(lng)) {
+                        throw new Error('Coordonnées invalides pour cette adresse');
+                    }
+                    
+                    return {
+                        address: address,
+                        lat: lat,
+                        lng: lng,
+                        nom: result.display_name ? result.display_name.split(',')[0].trim() : 'Adresse personnalisée'
+                    };
+                }
+                
+                // Si aucun service n'a fonctionné
+                if (lastError) {
+                    throw new Error('Impossible de se connecter au service de géocodage. Vérifiez votre connexion internet et réessayez.');
+                }
+                throw new Error('Adresse non trouvée. Veuillez être plus précis (ex: "10 rue de la Paix, 75002 Paris")');
+                
+            } catch (error) {
+                console.error('Erreur de géocodage:', error);
+                if (error.message.includes('Failed to fetch') || 
+                    error.message.includes('NetworkError') || 
+                    error.message.includes('fetch') ||
+                    error.message.includes('CORS')) {
+                    throw new Error('Impossible de se connecter au service de géocodage. Vérifiez votre connexion internet et réessayez.');
+                }
+                throw error;
+            }
+        }
+
+        function updateCustomAddressesList() {
+            const listContainer = document.getElementById('customAddressesList');
+            const itemsContainer = document.getElementById('customAddressesItems');
+            
+            if (customAddresses.length === 0) {
+                listContainer.style.display = 'none';
+                return;
+            }
+            
+            listContainer.style.display = 'block';
+            itemsContainer.innerHTML = '';
+            
+            customAddresses.forEach((addr, index) => {
+                const itemDiv = document.createElement('div');
+                itemDiv.style.cssText = 'display: flex; justify-content: space-between; align-items: center; padding: 8px; background-color: white; border-radius: 4px; border: 1px solid #ddd;';
+                
+                const addressText = document.createElement('span');
+                addressText.style.cssText = 'flex: 1; font-size: 0.9em; color: #555;';
+                addressText.textContent = `${addr.nom || 'Adresse personnalisée'} - ${addr.address}`;
+                
+                const removeButton = document.createElement('button');
+                removeButton.textContent = '✕';
+                removeButton.style.cssText = 'background-color: #d32f2f; color: white; border: none; border-radius: 3px; width: 24px; height: 24px; cursor: pointer; font-size: 14px; padding: 0; margin-left: 10px;';
+                removeButton.title = 'Supprimer cette adresse';
+                removeButton.addEventListener('click', () => {
+                    customAddresses.splice(index, 1);
+                    updateCustomAddressesList();
+                    // Effacer le message de statut
+                    const statusDiv = document.getElementById('customAddressStatus');
+                    if (statusDiv) {
+                        statusDiv.innerHTML = '';
+                    }
+                    calculateRoutes();
+                });
+                
+                itemDiv.appendChild(addressText);
+                itemDiv.appendChild(removeButton);
+                itemsContainer.appendChild(itemDiv);
+            });
+        }
+
+        async function handleCustomAddress() {
+            const addressInput = document.getElementById('customAddress');
+            const address = addressInput.value.trim();
+            const statusDiv = document.getElementById('customAddressStatus');
+            
+            if (!address) {
+                statusDiv.innerHTML = '<span style="color: #d32f2f;">⚠️ Veuillez entrer une adresse</span>';
+                return;
+            }
+            
+            // Vérifier si l'adresse n'est pas déjà dans la liste
+            const isAlreadyInList = allPmis.some(pmi => 
+                pmi.address.toLowerCase() === address.toLowerCase()
+            ) || customAddresses.some(addr => 
+                addr.address.toLowerCase() === address.toLowerCase()
+            );
+            
+            if (isAlreadyInList) {
+                statusDiv.innerHTML = '<span style="color: #d32f2f;">⚠️ Cette adresse est déjà dans la liste</span>';
+                return;
+            }
+            
+            const calculateButton = document.getElementById('calculateCustomAddress');
+            calculateButton.disabled = true;
+            calculateButton.textContent = 'Calcul en cours...';
+            
+            try {
+                const geocodedAddress = await geocodeAddress(address);
+                
+                // Ajouter l'adresse à la liste des adresses personnalisées
+                customAddresses.push(geocodedAddress);
+                
+                statusDiv.innerHTML = `<span style="color: #2e7d32;">✅ Adresse ajoutée : ${geocodedAddress.nom}</span>`;
+                addressInput.value = '';
+                
+                // Mettre à jour la liste des adresses personnalisées
+                updateCustomAddressesList();
+                
+                // Recalculer les routes
+                await calculateRoutes();
+                
+            } catch (error) {
+                statusDiv.innerHTML = `<span style="color: #d32f2f;">❌ Erreur : ${error.message}</span>`;
+            } finally {
+                calculateButton.disabled = false;
+                calculateButton.textContent = 'Calculer';
+            }
+        }
+
         function attachEventListeners() {
             const searchPmi = document.getElementById('searchPmi');
             const selectAll = document.getElementById('selectAll');
             const deselectAll = document.getElementById('deselectAll');
+            const calculateCustomAddress = document.getElementById('calculateCustomAddress');
+            const customAddressInput = document.getElementById('customAddress');
             
             if (searchPmi) {
                 searchPmi.addEventListener('input', function(e) {
@@ -797,6 +1148,18 @@
             
             if (deselectAll) {
                 deselectAll.addEventListener('click', deselectAllVisible);
+            }
+            
+            if (calculateCustomAddress) {
+                calculateCustomAddress.addEventListener('click', handleCustomAddress);
+            }
+            
+            if (customAddressInput) {
+                customAddressInput.addEventListener('keypress', function(e) {
+                    if (e.key === 'Enter') {
+                        handleCustomAddress();
+                    }
+                });
             }
             
             if (typeof PMI_ADDRESSES !== 'undefined' && typeof PMI_DUREES !== 'undefined') {
