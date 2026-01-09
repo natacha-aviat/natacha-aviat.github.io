@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Exemple d'article de blog - Resource Gossip Girl">
+    <title>Titre de l'article - Resource Gossip Girl</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <style>
+        .article-header {
+            background-color: var(--bg-light);
+            padding: var(--spacing-lg) 0;
+            margin-bottom: var(--spacing-lg);
+        }
+        
+        .article-meta {
+            display: flex;
+            gap: var(--spacing-md);
+            margin-bottom: var(--spacing-md);
+            font-size: 0.9rem;
+            color: var(--text-light);
+            flex-wrap: wrap;
+        }
+        
+        .article-content {
+            line-height: 1.8;
+        }
+        
+        .article-content h2 {
+            margin-top: var(--spacing-lg);
+            margin-bottom: var(--spacing-md);
+        }
+        
+        .article-content h3 {
+            margin-top: var(--spacing-md);
+            margin-bottom: var(--spacing-sm);
+        }
+        
+        .article-content p {
+            margin-bottom: var(--spacing-md);
+        }
+        
+        .article-content ul,
+        .article-content ol {
+            margin-bottom: var(--spacing-md);
+            padding-left: var(--spacing-md);
+        }
+        
+        .article-content li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .article-tags {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            margin-top: var(--spacing-lg);
+            padding-top: var(--spacing-md);
+            border-top: 1px solid var(--border-color);
+        }
+        
+        .back-to-blog {
+            display: inline-block;
+            margin-bottom: var(--spacing-md);
+            color: var(--accent-color);
+        }
+        
+        .back-to-blog:hover {
+            color: var(--accent-hover);
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <a href="../index.html" class="logo">Natacha Aviat</a>
+            <nav>
+                <ul>
+                    <li><a href="../index.html">Accueil</a></li>
+                    <li><a href="../services.html">Services</a></li>
+                    <li><a href="../realisations.html">Réalisations</a></li>
+                    <li><a href="../a-propos.html">À propos</a></li>
+                    <li><a href="../contact.html">Contact</a></li>
+                    <li><a href="index.html" class="active">Blog</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Article -->
+    <section class="section">
+        <div class="container container-narrow">
+            <a href="index.html" class="back-to-blog">← Retour au blog</a>
+            
+            <article class="card" style="padding: 3rem;">
+                <div class="article-header">
+                    <h1>Titre de l'article</h1>
+                    <div class="article-meta">
+                        <span>📅 Date de publication</span>
+                        <span>⏱️ Temps de lecture : X min</span>
+                        <span>🏷️ Catégorie</span>
+                    </div>
+                </div>
+                
+                <div class="article-content">
+                    <p><strong>Introduction de l'article qui accroche le lecteur et présente le sujet.</strong></p>
+                    
+                    <h2>Première section</h2>
+                    <p>Contenu de la première section. Vous pouvez structurer votre article avec des titres H2 et H3.</p>
+                    
+                    <h3>Sous-section</h3>
+                    <p>Contenu de la sous-section.</p>
+                    
+                    <ul>
+                        <li>Point important 1</li>
+                        <li>Point important 2</li>
+                        <li>Point important 3</li>
+                    </ul>
+                    
+                    <h2>Deuxième section</h2>
+                    <p>Contenu de la deuxième section.</p>
+                    
+                    <h2>Conclusion</h2>
+                    <p>Conclusion de l'article qui résume les points clés et peut inclure un appel à l'action.</p>
+                </div>
+                
+                <div class="article-tags">
+                    <span class="badge badge-light">Tag 1</span>
+                    <span class="badge badge-light">Tag 2</span>
+                    <span class="badge badge-light">Tag 3</span>
+                </div>
+            </article>
+            
+            <div style="text-align: center; margin-top: var(--spacing-lg);">
+                <a href="index.html" class="btn btn-primary">Voir tous les articles</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div style="text-align: center; padding: 2rem 0;">
+                <p style="color: var(--bg-white); margin-bottom: 1rem; font-size: 1.1rem;">
+                    <strong>Natacha Aviat</strong> - Cartographie interactive et analyse de données
+                </p>
+                <div style="display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap;">
+                    <a href="../cgv.html" style="color: var(--bg-white); opacity: 0.9;">CGV</a>
+                    <a href="../contact.html" style="color: var(--bg-white); opacity: 0.9;">Contact</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Natacha Aviat - Tous droits réservés</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
