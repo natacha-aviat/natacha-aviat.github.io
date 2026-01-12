@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MaMaCollecte - Association MaMaMa</title>
-    <link rel="stylesheet" href="../../assets/css/MaMaStyle.css">
+    <link rel="stylesheet" href="../../../assets/css/MaMaStyle.css">
     <style>
         .phone-input-section {
             background-color: #fff;
@@ -254,7 +254,7 @@
         
         <div class="phone-input-section">
             <h3>Votre numéro de téléphone</h3>
-            <input type="tel" id="userPhoneInput" placeholder="06 12 34 56 78">
+            <input type="tel" id="userPhoneInput" placeholder="0612345678" pattern="[0-9]{10}" title="10 chiffres (ex: 0612345678)">
         </div>
 
 
@@ -276,7 +276,7 @@
             <h3>Inscription</h3>
             <div class="form-group">
                 <label for="phoneInput">Numéro de téléphone *</label>
-                <input type="tel" id="phoneInput" placeholder="06 12 34 56 78" required>
+                <input type="tel" id="phoneInput" placeholder="0612345678" pattern="[0-9]{10}" title="10 chiffres (ex: 0612345678)" required>
             </div>
             <div class="form-group">
                 <label for="emailInput">Email *</label>
@@ -308,9 +308,30 @@
         let currentSelectedLocation = null;
         let registrations = [];
         let userPhone = '';
-        let inscriptionsFileHandle = null; // Handle pour le fichier inscriptions.js
 
-        // Parser le CSV
+        // Fonctions utilitaires d'échappement (centralisées)
+        function escapeForHTML(str) {
+            if (!str) return '';
+            return String(str)
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;')
+                .replace(/"/g, '&quot;')
+                .replace(/'/g, '&#39;');
+        }
+
+        function escapeForJS(str) {
+            if (!str) return '';
+            return String(str)
+                .replace(/\\/g, '\\\\')
+                .replace(/'/g, "\\'")
+                .replace(/"/g, '\\"')
+                .replace(/\n/g, '\\n')
+                .replace(/\r/g, '\\r')
+                .replace(/\t/g, '\\t');
+        }
+
+        // Parser le CSV (fonction conservée pour compatibilité/fallback, non utilisée si creneaux_disponibles.js est chargé)
         function parseCSV(csvText) {
             const lines = csvText.trim().split('\n');
             const headers = parseCSVLine(lines[0]);
@@ -420,11 +441,6 @@
                 console.log('Créneaux chargés depuis creneaux_disponibles.js');
                 console.log('Lieux:', LOCATIONS);
                 console.log('Créneaux:', CRENEAUX_DATA);
-                // Masquer la section de chargement manuel
-                const csvSection = document.getElementById('csvUploadSection');
-                if (csvSection) {
-                    csvSection.style.display = 'none';
-                }
                 return true;
             } else {
                 console.warn('Les fichiers JS ne sont pas chargés. Utilisation des valeurs par défaut.');
@@ -434,34 +450,18 @@
         }
 
 
-        // Charger les créneaux par défaut (pour le développement local)
+        // Charger les créneaux par défaut (fallback si creneaux_disponibles.js n'est pas chargé)
         function loadDefaultCreneaux() {
-            // Valeurs par défaut basées sur le CSV actuel
-            const defaultCSV = `Date,Créneau,Heure_Début,Heure_Fin,Lieu_ID,Lieu_Nom,Capacité
-2024-01-16,slot1,09:00,12:00,lieu1,Lieu 1 - Aubervilliers,8
-2024-01-16,slot2,13:00,16:00,lieu1,Lieu 1 - Aubervilliers,15
-2024-01-16,slot3,16:00,19:00,lieu1,Lieu 1 - Aubervilliers,15
-2024-01-17,slot1,09:00,12:00,lieu1,Lieu 1 - Aubervilliers,8
-2024-01-17,slot2,13:00,16:00,lieu1,Lieu 1 - Aubervilliers,15
-2024-01-17,slot3,16:00,19:00,lieu1,Lieu 1 - Aubervilliers,15
-2024-01-15,slot1,09:00,12:00,lieu2,Lieu 2 - Paris 19ème,8
-2024-01-15,slot2,13:00,16:00,lieu2,Lieu 2 - Paris 19ème,15
-2024-01-15,slot3,16:00,19:00,lieu2,Lieu 2 - Paris 19ème,15
-2024-01-16,slot1,09:00,12:00,lieu2,Lieu 2 - Paris 19ème,8
-2024-01-16,slot2,13:00,16:00,lieu2,Lieu 2 - Paris 19ème,15
-2024-01-16,slot3,16:00,19:00,lieu2,Lieu 2 - Paris 19ème,15
-2024-01-17,slot1,09:00,12:00,lieu2,Lieu 2 - Paris 19ème,8
-2024-01-17,slot2,13:00,16:00,lieu2,Lieu 2 - Paris 19ème,15
-2024-01-17,slot3,16:00,19:00,lieu2,Lieu 2 - Paris 19ème,15
-2024-01-15,slot1,09:00,12:00,lieu3,Lieu 3 - Pantin,8
-2024-01-15,slot2,13:00,16:00,lieu3,Lieu 3 - Pantin,15
-2024-01-15,slot3,16:00,19:00,lieu3,Lieu 3 - Pantin,15
-2024-01-16,slot1,09:00,12:00,lieu3,Lieu 3 - Pantin,8
-2024-01-16,slot2,13:00,16:00,lieu3,Lieu 3 - Pantin,15
-2024-01-16,slot3,16:00,19:00,lieu3,Lieu 3 - Pantin,15`;
-            
-            parseCSV(defaultCSV);
-            console.log('Créneaux par défaut chargés');
+            // Utiliser directement les données du fichier creneaux_disponibles.js si disponible
+            if (typeof CRENEAUX_DISPONIBLES !== 'undefined' && typeof LIEUX_DISPONIBLES !== 'undefined') {
+                CRENEAUX_DATA = CRENEAUX_DISPONIBLES;
+                LOCATIONS = LIEUX_DISPONIBLES;
+                console.log('Créneaux par défaut chargés depuis les constantes JS');
+            } else {
+                console.warn('Aucune donnée de créneaux disponible - vérifiez que creneaux_disponibles.js est chargé');
+                LOCATIONS = [];
+                CRENEAUX_DATA = {};
+            }
         }
 
         // Générer les jours à partir des dates disponibles dans le CSV
@@ -470,12 +470,21 @@
             const dateKeys = Object.keys(CRENEAUX_DATA).sort();
             
             dateKeys.forEach(dateKey => {
-                const date = new Date(dateKey + 'T00:00:00');
-                days.push({
-                    date: date,
-                    dateStr: date.toLocaleDateString('fr-FR', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }),
-                    dateKey: dateKey
-                });
+                try {
+                    const date = new Date(dateKey + 'T00:00:00');
+                    // Vérifier que la date est valide
+                    if (isNaN(date.getTime())) {
+                        console.warn(`Date invalide: ${dateKey}`);
+                        return;
+                    }
+                    days.push({
+                        date: date,
+                        dateStr: date.toLocaleDateString('fr-FR', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }),
+                        dateKey: dateKey
+                    });
+                } catch (e) {
+                    console.warn(`Erreur lors du parsing de la date ${dateKey}:`, e);
+                }
             });
             
             return days;
@@ -483,7 +492,8 @@
 
         // Mettre à jour le numéro de téléphone de l'utilisateur
         function updateUserPhone() {
-            userPhone = document.getElementById('userPhoneInput').value.trim();
+            const phoneRaw = document.getElementById('userPhoneInput').value.trim();
+            userPhone = normalizePhone(phoneRaw);
             displayMyRegistrations();
         }
 
@@ -508,12 +518,22 @@
                     const response = await fetch('/api/inscriptions');
                     if (response.ok) {
                         console.log('✅ Serveur Python détecté - sauvegarde automatique activée');
+                    } else {
+                        console.warn('⚠️ Serveur Python accessible mais erreur de réponse');
                     }
                 } catch (error) {
-                    console.log('Serveur Python non disponible');
+                    console.warn('⚠️ Serveur Python non disponible - les inscriptions ne seront pas sauvegardées');
+                    console.log('💡 Pour activer la sauvegarde :');
+                    console.log('   1. Ouvrez un terminal dans le dossier MaMaCollecte');
+                    console.log('   2. Lancez : python server.py');
+                    console.log('   3. Rechargez cette page');
                 }
             } else {
-                console.log('Mode file:// - utilisez le serveur Python (python server.py) pour la sauvegarde automatique');
+                console.log('ℹ️ Mode file:// détecté');
+                console.log('💡 Pour activer la sauvegarde automatique :');
+                console.log('   1. Ouvrez un terminal dans le dossier MaMaCollecte');
+                console.log('   2. Lancez : python server.py');
+                console.log('   3. Ouvrez : http://localhost:5000');
             }
         }
 
@@ -521,13 +541,18 @@
         async function loadRegistrations() {
             // Si on est en mode file://, ne pas essayer de contacter le serveur
             if (window.location.protocol === 'file:') {
-                console.log('Mode file:// détecté, chargement depuis le fichier JS');
+                console.log('ℹ️ Mode file:// détecté - lecture seule depuis inscriptions.js');
+                console.log('💡 Pour activer la sauvegarde automatique, utilisez le serveur Python :');
+                console.log('   1. Ouvrez un terminal dans le dossier MaMaCollecte');
+                console.log('   2. Lancez : python server.py');
+                console.log('   3. Ouvrez : http://localhost:5000');
+                
                 if (typeof INSCRIPTIONS !== 'undefined' && Array.isArray(INSCRIPTIONS)) {
                     registrations = INSCRIPTIONS;
-                    console.log('Inscriptions chargées depuis inscriptions.js:', registrations.length);
+                    console.log(`✓ ${registrations.length} inscription(s) chargée(s) depuis inscriptions.js`);
                 } else {
                     registrations = [];
-                    console.log('Aucune inscription trouvée');
+                    console.log('ℹ️ Aucune inscription trouvée dans inscriptions.js');
                 }
                 return;
             }
@@ -539,21 +564,21 @@
                     const data = await response.json();
                     if (Array.isArray(data)) {
                         registrations = data;
-                        console.log('Inscriptions chargées depuis le serveur:', registrations.length);
+                        console.log(`✓ ${registrations.length} inscription(s) chargée(s) depuis le serveur`);
                         return;
                     }
                 }
             } catch (error) {
-                console.log('Serveur Python non disponible, chargement depuis le fichier JS');
+                console.warn('⚠️ Serveur Python non disponible, chargement depuis le fichier JS');
             }
             
             // Fallback: charger depuis le fichier JS
             if (typeof INSCRIPTIONS !== 'undefined' && Array.isArray(INSCRIPTIONS)) {
                 registrations = INSCRIPTIONS;
-                console.log('Inscriptions chargées depuis inscriptions.js:', registrations.length);
+                console.log(`✓ ${registrations.length} inscription(s) chargée(s) depuis inscriptions.js`);
             } else {
                 registrations = [];
-                console.log('Aucune inscription trouvée');
+                console.log('ℹ️ Aucune inscription trouvée');
             }
         }
 
@@ -562,7 +587,11 @@
         async function saveRegistrationsToJS() {
             // Si on est en mode file://, ne rien faire (pas de téléchargement)
             if (window.location.protocol === 'file:') {
-                console.log('Mode file:// détecté - utilisez le serveur Python pour la sauvegarde automatique');
+                console.warn('⚠️ Mode file:// - la sauvegarde n\'est pas disponible');
+                console.log('💡 Pour sauvegarder vos inscriptions, utilisez le serveur Python :');
+                console.log('   1. Ouvrez un terminal dans le dossier MaMaCollecte');
+                console.log('   2. Lancez : python server.py');
+                console.log('   3. Rechargez cette page via : http://localhost:5000');
                 return false;
             }
             
@@ -580,14 +609,15 @@
                 
                 if (response.ok) {
                     const result = await response.json();
-                    console.log('Inscriptions sauvegardées via le serveur:', result);
+                    console.log(`✓ ${result.count} inscription(s) sauvegardée(s) via le serveur`);
                     return true;
                 } else {
-                    throw new Error('Erreur serveur');
+                    const errorData = await response.json().catch(() => ({ error: 'Erreur serveur' }));
+                    throw new Error(errorData.error || 'Erreur serveur');
                 }
             } catch (error) {
-                console.warn('Serveur Python non disponible:', error);
-                // Ne pas télécharger le fichier - l'utilisateur n'en a pas besoin
+                console.error('❌ Erreur lors de la sauvegarde:', error.message);
+                console.log('💡 Assurez-vous que le serveur Python est lancé (python server.py)');
                 return false;
             }
         }
@@ -595,11 +625,21 @@
         // Peupler la liste des lieux
         function populateLocationSelect() {
             const select = document.getElementById('locationSelect');
+            if (!select) {
+                console.error('Element locationSelect non trouvé');
+                return;
+            }
+            
             // Vider le select (garder seulement l'option par défaut)
             select.innerHTML = '<option value="">-- Choisir un lieu --</option>';
             
             if (LOCATIONS.length === 0) {
                 console.warn('Aucun lieu trouvé dans LOCATIONS');
+                const option = document.createElement('option');
+                option.value = '';
+                option.textContent = 'Aucun lieu disponible';
+                option.disabled = true;
+                select.appendChild(option);
                 return;
             }
             
@@ -614,10 +654,13 @@
             const newSelect = select.cloneNode(true);
             select.parentNode.replaceChild(newSelect, select);
             
-            document.getElementById('locationSelect').addEventListener('change', function() {
-                currentSelectedLocation = this.value;
-                displayCalendar();
-            });
+            const locationSelect = document.getElementById('locationSelect');
+            if (locationSelect) {
+                locationSelect.addEventListener('change', function() {
+                    currentSelectedLocation = this.value;
+                    displayCalendar();
+                });
+            }
         }
 
         // Afficher le calendrier
@@ -670,15 +713,21 @@
                         slotDiv.classList.add('full');
                     }
                     
+                    // Échapper les valeurs pour éviter les problèmes avec les guillemets et XSS
+                    const escapedSlotTime = escapeForJS(slot.time);
+                    const escapedDateKey = escapeForJS(day.dateKey);
+                    const escapedSlotId = escapeForJS(slotId);
+                    const safeSlotTime = escapeForHTML(slot.time);
+                    
                     slotDiv.innerHTML = `
                         <div class="time-slot-header">
-                            <span class="time-slot-title">${slot.time}</span>
+                            <span class="time-slot-title">${safeSlotTime}</span>
                             <span class="time-slot-availability ${isFull ? 'full' : 'available'}">
                                 ${available} / ${slot.capacity} places
                             </span>
                         </div>
                         <button class="book-button" 
-                                onclick="openRegistrationForm('${day.dateKey}', '${slotId}', '${slot.time}')"
+                                onclick="openRegistrationForm('${escapedDateKey}', '${escapedSlotId}', '${escapedSlotTime}')"
                                 ${isFull ? 'disabled' : ''}>
                             ${isFull ? 'Complet' : 'Réserver'}
                         </button>
@@ -714,31 +763,52 @@
                 location: currentSelectedLocation
             };
             
-            document.getElementById('registrationForm').classList.add('active');
-            document.getElementById('phoneInput').value = userPhone;
-            document.getElementById('emailInput').value = '';
-            document.getElementById('emailInput').focus();
+            const form = document.getElementById('registrationForm');
+            const phoneInput = document.getElementById('phoneInput');
+            const emailInput = document.getElementById('emailInput');
+            
+            if (!form || !phoneInput || !emailInput) {
+                showMessage('Erreur : éléments du formulaire non trouvés', 'error');
+                return;
+            }
+            
+            form.classList.add('active');
+            phoneInput.value = userPhone;
+            emailInput.value = '';
+            emailInput.focus();
         }
 
         // Annuler l'inscription
         function cancelRegistration() {
-            document.getElementById('registrationForm').classList.remove('active');
+            const form = document.getElementById('registrationForm');
+            if (form) {
+                form.classList.remove('active');
+            }
             currentSelectedSlot = null;
         }
 
         // Confirmer l'inscription
         async function confirmRegistration() {
-            const phone = document.getElementById('phoneInput').value.trim();
+            // Vérifier que currentSelectedSlot est défini
+            if (!currentSelectedSlot) {
+                showMessage('Erreur : créneau non sélectionné', 'error');
+                return;
+            }
+            
+            const phoneRaw = document.getElementById('phoneInput').value.trim();
             const email = document.getElementById('emailInput').value.trim();
             
             // Validation
-            if (!phone || !email) {
+            if (!phoneRaw || !email) {
                 showMessage('Veuillez remplir tous les champs', 'error');
                 return;
             }
             
+            // Normaliser le numéro de téléphone
+            const phone = normalizePhone(phoneRaw);
+            
             if (!isValidPhone(phone)) {
-                showMessage('Numéro de téléphone invalide', 'error');
+                showMessage('Numéro de téléphone invalide. Format attendu : 10 chiffres (ex: 0612345678)', 'error');
                 return;
             }
             
@@ -779,15 +849,22 @@
                 return;
             }
             
+            // Calculer dateStr pour l'inscription
+            const day = getDays().find(d => d.dateKey === currentSelectedSlot.dateKey);
+            const dateStr = day ? day.dateStr : currentSelectedSlot.dateKey;
+            const locationName = LOCATIONS.find(l => l.id === currentSelectedSlot.location)?.name || currentSelectedSlot.location;
+            
             // Créer l'inscription
             const registration = {
                 id: Date.now().toString(),
                 phone: phone,
                 email: email,
                 dateKey: currentSelectedSlot.dateKey,
+                dateStr: dateStr,
                 slotId: currentSelectedSlot.slotId,
                 slotTime: currentSelectedSlot.slotTime,
                 location: currentSelectedSlot.location,
+                locationName: locationName,
                 slotKey: slotKey,
                 timestamp: new Date().toISOString()
             };
@@ -797,6 +874,7 @@
             // Mettre à jour le numéro de téléphone de l'utilisateur si différent
             if (phone !== userPhone) {
                 userPhone = phone;
+                // Afficher le numéro normalisé dans le champ (format: 0612345678)
                 document.getElementById('userPhoneInput').value = phone;
             }
             
@@ -806,9 +884,13 @@
             if (saved) {
                 showMessage('Inscription confirmée ! Le fichier inscriptions.js a été mis à jour.', 'success');
             } else {
-                showMessage('Inscription confirmée !', 'success');
+                showMessage('Inscription enregistrée localement. Pour la sauvegarder définitivement, utilisez le serveur Python (voir la console).', 'success');
             }
-            document.getElementById('registrationForm').classList.remove('active');
+            
+            const form = document.getElementById('registrationForm');
+            if (form) {
+                form.classList.remove('active');
+            }
             currentSelectedSlot = null;
             
             displayCalendar();
@@ -836,18 +918,26 @@
             content.innerHTML = '';
             myRegistrations.forEach(reg => {
                 const day = getDays().find(d => d.dateKey === reg.dateKey);
-                const locationName = LOCATIONS.find(l => l.id === reg.location)?.name || reg.location;
+                const dateStr = reg.dateStr || (day ? day.dateStr : reg.dateKey);
+                const locationName = reg.locationName || LOCATIONS.find(l => l.id === reg.location)?.name || reg.location;
+                
+                // Échapper les valeurs pour éviter les problèmes XSS
+                const escapedId = escapeForJS(reg.id);
+                const escapedDateStr = escapeForHTML(dateStr);
+                const escapedSlotTime = escapeForHTML(reg.slotTime);
+                const escapedLocationName = escapeForHTML(locationName);
+                const escapedEmail = escapeForHTML(reg.email);
                 
                 const item = document.createElement('div');
                 item.className = 'registration-item';
                 item.innerHTML = `
                     <div class="registration-info">
-                        <strong>${day ? day.dateStr : reg.dateKey}</strong><br>
-                        ${reg.slotTime} - ${locationName}<br>
-                        <small>${reg.email}</small>
+                        <strong>${escapedDateStr}</strong><br>
+                        ${escapedSlotTime} - ${escapedLocationName}<br>
+                        <small>${escapedEmail}</small>
                     </div>
                     <div class="registration-actions">
-                        <button class="btn btn-danger btn-small" onclick="cancelRegistrationById('${reg.id}')">Annuler</button>
+                        <button class="btn btn-danger btn-small" onclick="cancelRegistrationById('${escapedId}')">Annuler</button>
                     </div>
                 `;
                 content.appendChild(item);
@@ -870,10 +960,19 @@
 
         // Validation du téléphone
         function isValidPhone(phone) {
-            // Format français : 10 chiffres, peut commencer par 0
-            const phoneRegex = /^(?:(?:\+|00)33|0)[1-9](?:[0-9]{8})$/;
-            const cleaned = phone.replace(/\s/g, '');
-            return phoneRegex.test(cleaned) || /^0[1-9][0-9]{8}$/.test(cleaned);
+            if (!phone) return false;
+            // Nettoyer le numéro (supprimer espaces, tirets, points)
+            const cleaned = phone.replace(/[\s.\-]/g, '');
+            // Format français : 10 chiffres commençant par 0, ou format international +33/0033
+            // Accepter : 0612345678, +33612345678, 0033612345678
+            const phoneRegex = /^(?:(?:\+|00)33[1-9][0-9]{8}|0[1-9][0-9]{8})$/;
+            return phoneRegex.test(cleaned);
+        }
+
+        // Normaliser le numéro de téléphone (supprimer espaces, tirets, points)
+        function normalizePhone(phone) {
+            if (!phone) return '';
+            return phone.replace(/[\s.\-]/g, '');
         }
 
         // Validation de l'email
@@ -885,6 +984,10 @@
         // Afficher un message
         function showMessage(text, type) {
             const messageDiv = document.getElementById('message');
+            if (!messageDiv) {
+                console.error('Element message non trouvé');
+                return;
+            }
             messageDiv.textContent = text;
             messageDiv.className = `message ${type} active`;
             setTimeout(() => {
@@ -902,22 +1005,47 @@
             jsContent += '// Généré le ' + new Date().toLocaleString('fr-FR') + '\n';
             jsContent += 'const INSCRIPTIONS = [\n';
             
+            // Échapper les guillemets dans les chaînes de manière sécurisée
+            const escapeString = (str) => {
+                if (str === null || str === undefined) return '""';
+                const s = String(str);
+                // Échapper dans l'ordre : d'abord les backslashes, puis les autres
+                return '"' + s
+                    .replace(/\\/g, '\\\\')  // Backslash en premier
+                    .replace(/"/g, '\\"')    // Guillemets doubles
+                    .replace(/'/g, "\\'")    // Guillemets simples
+                    .replace(/\n/g, '\\n')   // Retours à la ligne
+                    .replace(/\r/g, '\\r')   // Retours chariot
+                    .replace(/\t/g, '\\t')   // Tabulations
+                    + '"';
+            };
+            
             registrations.forEach((reg, index) => {
-                const day = getDays().find(d => d.dateKey === reg.dateKey);
-                const locationName = LOCATIONS.find(l => l.id === reg.location)?.name || reg.location;
+                // Calculer dateStr si pas déjà présent
+                let dateStr = reg.dateStr;
+                if (!dateStr) {
+                    const day = getDays().find(d => d.dateKey === reg.dateKey);
+                    if (day) {
+                        dateStr = day.dateStr;
+                    } else {
+                        // Fallback: formater la date depuis dateKey
+                        try {
+                            const date = new Date(reg.dateKey + 'T00:00:00');
+                            dateStr = date.toLocaleDateString('fr-FR', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+                        } catch (e) {
+                            dateStr = reg.dateKey;
+                        }
+                    }
+                }
                 
-                // Échapper les guillemets dans les chaînes
-                const escapeString = (str) => {
-                    if (!str) return '""';
-                    return '"' + String(str).replace(/"/g, '\\"').replace(/\n/g, '\\n') + '"';
-                };
+                const locationName = LOCATIONS.find(l => l.id === reg.location)?.name || reg.location || reg.locationName || '';
                 
                 jsContent += '    {\n';
                 jsContent += `        id: ${escapeString(reg.id)},\n`;
                 jsContent += `        phone: ${escapeString(reg.phone)},\n`;
                 jsContent += `        email: ${escapeString(reg.email)},\n`;
                 jsContent += `        dateKey: ${escapeString(reg.dateKey)},\n`;
-                jsContent += `        dateStr: ${escapeString(day ? day.dateStr : reg.dateKey)},\n`;
+                jsContent += `        dateStr: ${escapeString(dateStr)},\n`;
                 jsContent += `        slotId: ${escapeString(reg.slotId)},\n`;
                 jsContent += `        slotTime: ${escapeString(reg.slotTime)},\n`;
                 jsContent += `        location: ${escapeString(reg.location)},\n`;
