@@ -3,272 +3,188 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Cartographie interactive et analyse de données pour associations, entreprises engagées et institutions publiques. Transformez vos données en décisions éclairées.">
+    <meta name="description" content="Cartographie interactive et analyse de données pour managers techniques (chimie, BTP, environnement, dépollution). Mettez vos données sur la carte pour décider plus intelligemment.">
     <meta name="keywords" content="cartographie interactive, analyse de données, visualisation de données, carte interactive, consultant data">
     <title>Natacha Aviat - Cartographie Interactive & Analyse de Données</title>
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/components.css">
 </head>
 <body>
     <!-- Header -->
-    <header>
+    <header data-include="partials/header.html">
         <div class="container">
             <a href="index.html" class="logo">Natacha Aviat</a>
             <nav>
                 <ul>
-                    <li><a href="index.html" class="active">Accueil</a></li>
-                    <li><a href="services.html">Services</a></li>
-                    <li><a href="realisations.html">Réalisations</a></li>
-                    <li><a href="a-propos.html">À propos</a></li>
-                    <li><a href="contact.html">Contact</a></li>
-                    <li><a href="blog/index.html">Blog</a></li>
+                    <li><a href="index.html" data-nav="index">Accueil</a></li>
+                    <li><a href="cartes-disponibles.html" data-nav="cartes">Cartes</a></li>
+                    <li><a href="services.html" data-nav="services">Services</a></li>
                 </ul>
             </nav>
         </div>
     </header>
 
-    <!-- Hero Section -->
+    <!-- Mission -->
+    <section class="hero">
+        <div class="container container-narrow">
+            <h1>Visualisez vos données</br> sur une carte</h1>
+        </div>
+    </section>
+
+    <!-- Boutique - Cartes sur étagère -->
+    <section class="section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Mon objectif :</br>Vous aider à mieux comprendre</br>votre monde</h2>
+            </div>
+            <div class="grid grid-3" style="gap: 2rem;">
+                <a href="cartes-disponibles.html" class="card-link">
+                    <div class="card">
+                        <div class="card-image-container">
+                            <img src="../assets/images/image_lycees.png" alt="Carte de la valeur ajoutée des lycées français">
+                        </div>
+                        <h3>Valeur ajoutée des lycées français</h3>
+                    </div>
+                </a>
+                <a href="cartes-disponibles.html" class="card-link">
+                    <div class="card">
+                        <div class="card-image-container">
+                            <img src="../assets/images/image_carte_pollution.png" alt="Carte de la pollution des eaux en France">
+                        </div>
+                        <h3>Pollution des eaux en France</h3>
+                    </div>
+                </a>
+                <a href="services.html#carte-etagere" class="card-link">
+                    <div class="card card-dashed">
+                        <div class="card-dashed-icon">➕</div>
+                        <h3>Voir toutes les cartes</h3>
+                    </div>
+                </a>
+            </div>
+            
+        </div>
+    </section>
+
+    <!-- Les offres -->
+    <section class="section section-alt">
+        <div class="container">
+            <div class="section-title">
+                <h2>On travaille ensemble</h2>
+            </div>
+            
+            <div class="grid grid-3" style="gap: 2rem; align-items: stretch;">
+                <div class="card offer-card">
+                    <div class="offer-card-header">
+                        <div class="offer-card-icon">🗺️</div>
+                        <h3 class="offer-card-title">Achetez une carte</h3>
+                    </div>
+                    <p class="offer-card-description">
+                        Choisissez une carte déjà créée, testée et éprouvée. Idéal pour démarrer rapidement.
+                    </p>
+                </div>
+                
+                <div class="card offer-card">
+                    <div class="offer-card-header">
+                        <div class="offer-card-icon">✂️</div>
+                        <h3 class="offer-card-title">Adaptez une carte</h3>
+                    </div>
+                    <p class="offer-card-description">
+                        Vous choisissez une carte existante, je l'adapte à vos besoins spécifiques.
+                    </p>
+                </div>
+                
+                <div class="card offer-card">
+                    <div class="offer-card-header">
+                        <div class="offer-card-icon">🎯</div>
+                        <h3 class="offer-card-title">Créez une carte</h3>
+                    </div>
+                    <p class="offer-card-description">
+                        Je crée une carte entièrement adaptée à votre contexte, vos données, vos besoins.
+                    </p>
+                </div>
+            </div>
+            <div class="text-center mt-2">
+                <a href="services.html" class="btn btn-outline">En savoir plus</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Témoignages -->
+    <section class="section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Les plus stratèges sont passés par là</h2>
+            </div>
+            <div class="grid grid-3" style="gap: 2rem; align-items: stretch;">
+                <div class="card testimonial-card">
+                    <div class="testimonial-header">
+                        <img src="../assets/images/Logo-OSEIDO.svg" alt="Logo OSEIDO" class="testimonial-logo">
+                        <div>
+                            <p class="testimonial-company">OSEIDO</p>
+                        </div>
+                    </div>
+                    <p>"La carte a fait une vraie différence pour mon client. Les données c'était ce qui était prévu, la carte a permi de faire l'effet Wahou !"</p>
+                    <p class="testimonial-text">Ghilaine Charrade</p>
+                </div>
+                <div class="card testimonial-card">
+                    <div class="testimonial-header">
+                        <img src="../assets/images/logo-veolia.webp" alt="Logo Veolia" class="testimonial-logo">
+                        <div>
+                            <p class="testimonial-company">VEOLIA</p>
+                        </div>
+                    </div>
+                    <p>"J'ai réduit mon budget prospection de 60% grâce à la visualisation de mes prospects sur une carte."</p>
+                    <p class="testimonial-text">Maxime</p>
+                </div>
+                <div class="card testimonial-card">
+                    <div class="testimonial-header">
+                        <div class="testimonial-placeholder">CL</div>
+                        <div>
+                            <p class="testimonial-company">Client industriel</p>
+                        </div>
+                    </div>
+                    <p>"On a enfin une vision d'ensemble claire. Les décisions sont prises plus vite, avec moins de débats inutiles."</p>
+                    <p class="testimonial-text">Responsable d'équipe terrain</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Présentation -->
     <section class="hero">
         <div class="container">
-            <h1>Prenez des décisions objectives</br>en toute confiance</h1>
-            <p class="subtitle">Je fais parler vos données pour les rendre claires et utiles</p>
-            <div class="cta-group">
-                <a href="contact.html" class="btn btn-primary">Clarifier mon besoin</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Section 1 : Vos problèmes, mes solutions -->
-    <section class="section">
-        <div class="container">
-            <div class="section-title">
-                <h2>Comment voir ce qui se passe vraiment</br>quand Excel ne suffit plus ?</h2>
-            </div>
-            
-            <p style="text-align: center; font-size: 1.1rem; color: var(--text-light); margin-top: -1rem; margin-bottom: 2rem;">
-                Cartographie interactive et analyse de données</br>pour associations, entreprises engagées et institutions publiques
-            </p>
-            
-            <div class="grid grid-4" style="margin-top: 2rem;">
-                <div class="card" style="text-align: center;">
-                    <div class="card-icon" style="font-size: 2.5rem; margin-bottom: 1rem;">📋</div>
-                    <h3 style="font-size: 1.1rem; margin-bottom: 0.5rem;">Des données propres, structurées, rassemblées au même endroit</h3>
-                </div>
-                
-                <div class="card" style="text-align: center;">
-                    <div class="card-icon" style="font-size: 2.5rem; margin-bottom: 1rem;">🗺️</div>
-                    <h3 style="font-size: 1.1rem; margin-bottom: 0.5rem;">Cartes interactives qui accélèrent la compréhension</h3>
-                </div>
-                
-                <div class="card" style="text-align: center;">
-                    <div class="card-icon" style="font-size: 2.5rem; margin-bottom: 1rem;">📈</div>
-                    <h3 style="font-size: 1.1rem; margin-bottom: 0.5rem;">Graphiques percutants qui révèlent les tendances et les points d'attention</h3>
-                </div>
-                
-                <div class="card" style="text-align: center;">
-                    <div class="card-icon" style="font-size: 2.5rem; margin-bottom: 1rem;">💡</div>
-                    <h3 style="font-size: 1.1rem; margin-bottom: 0.5rem;">Analyses éclairantes</h3>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Section 2 : Mes services en bref -->
-    <section class="section section-alt">
-        <div class="container">
-            <div class="section-title">
-                <h2>Trois services</br>pour transformer vos données</br>en décisions</h2>
-            </div>
-            
-            <div class="grid grid-3">
-                <div class="card">
-                    <div class="card-icon">🗺️</div>
-                    <h3>Cartes interactives sur mesure</h3>
-                    <p>Visualisez vos données sur une carte. Géolocalisez vos actions, analysez des territoires, communiquez votre impact géographique.</p>
-                    <p style="color: var(--text-light); font-size: 0.9rem; margin-top: 1rem;">
-                        <strong>Exemples :</strong> Cartes de performance, cartes d'impact, cartes de ressources, cartes de diagnostic territorial
-                    </p>
-                    <div class="card-footer">
-                        <a href="services.html#cartographie" class="btn btn-outline">En savoir plus</a>
+            <div class="grid grid-3" style="gap: 2rem; align-items: stretch;">
+                <div class="card presentation-card">
+                    <div class="presentation-photo">
+                        <img src="../assets/images/Natacha_Aviat.jpeg" alt="Natacha Aviat">
                     </div>
+                    <h3>Un peu artiste et <strong>passionnée par la data</strong></h3>
                 </div>
-                
-                <div class="card">
-                    <div class="card-icon">📊</div>
-                    <h3>Exploration et visualisation de données</h3>
-                    <p>J'explore vos données pour identifier les tendances, les corrélations, les points d'attention. Je crée des visualisations qui révèlent l'essentiel.</p>
-                    <p style="color: var(--text-light); font-size: 0.9rem; margin-top: 1rem;">
-                        <strong>Exemples :</strong> Analyses de performance, études d'impact, diagnostics, tableaux de bord
-                    </p>
-                    <div class="card-footer">
-                        <a href="services.html#analyse" class="btn btn-outline">En savoir plus</a>
-                    </div>
+                <div class="card presentation-text-card">
+                    <div class="presentation-icon">🗺️</div>
+                    <p>Je passe une bonne partie de mon temps à développer des cartes interactives pour qu'un maximum de gens travaillent efficacement.</p>
                 </div>
-                
-                <div class="card">
-                    <div class="card-icon">🛠️</div>
-                    <h3>Applications web opérationnelles</h3>
-                    <p>Je développe des outils adaptés à vos besoins : optimisation de tournées, gestion de données, consultation publique.</p>
-                    <p style="color: var(--text-light); font-size: 0.9rem; margin-top: 1rem;">
-                        <strong>Exemples :</strong> Outils de logistique, scanners de données, gestionnaires de contenu
-                    </p>
-                    <div class="card-footer">
-                        <a href="services.html#outils" class="btn btn-outline">En savoir plus</a>
-                    </div>
+                <div class="card presentation-text-card">
+                    <div class="presentation-icon">🤝</div>
+                    <p>Mes outils aident aussi une association française, MaMaMa, à optimiser ses tournées logistiques, et à recruter ses bénévoles efficacement.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Section 3 : Pour qui je travaille -->
-    <section class="section">
-        <div class="container">
-            <div class="section-title">
-                <h2>J'accompagne des organisations</br>qui ont des données à valoriser</h2>
-            </div>
-            
-            <div class="grid grid-3">
-                <div class="card">
-                    <h3>Associations et ONG</h3>
-                    <p>Cartographier votre impact, convaincre vos financeurs, piloter vos actions</p>
-                    <p style="margin-top: 1rem; font-size: 0.9rem; color: var(--text-light);">
-                        <em>Outils déployés sur le terrain par des équipes non techniques</em>
-                    </p>
-                </div>
-                
-                <div class="card">
-                    <h3>Entreprises</h3>
-                    <p>Visualiser vos données RSE, analyser votre territoire d'activité, communiquer sur vos performances</p>
-                    <p style="margin-top: 1rem; font-size: 0.9rem; color: var(--text-light);">
-                        <em>Données issues de sources fiables (data.gouv.fr, APIs publiques)</em>
-                    </p>
-                </div>
-                
-                <div class="card">
-                    <h3>Institutions publiques</h3>
-                    <p>Exploiter les open data, créer des outils de consultation citoyenne, analyser des données territoriales</p>
-                    <p style="margin-top: 1rem; font-size: 0.9rem; color: var(--text-light);">
-                        <em>Outils de consultation publique accessibles et maintenables</em>
-                    </p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Section 4 : Aperçu réalisations -->
-    <section class="section section-alt">
-        <div class="container">
-            <div class="section-title">
-                <h2>Des projets concrets</br>des résultats mesurables</h2>
-            </div>
-            
-            <div class="grid grid-3">
-                <div class="card">
-                    <h3>Carte de performance des lycées</h3>
-                    <p><span class="badge badge-primary">Secteur public</span></p>
-                    <p><strong>Résultat :</strong> Vision claire des performances par établissement, décisions d'orientation facilitées</p>
-                    <p style="margin-top: 0.5rem; font-size: 0.9rem; color: var(--text-light);">
-                        <em>Données issues de data.gouv.fr</em>
-                    </p>
-                    <div class="card-footer">
-                        <a href="realisations.html#lycees" class="btn btn-outline">Voir le projet</a>
-                    </div>
-                </div>
-                
-                <div class="card">
-                    <h3>Carte OSEIDO</h3>
-                    <p><span class="badge badge-secondary">Entreprise</span></p>
-                    <p><strong>Résultat :</strong> Présence géographique claire, communication facilitée auprès des partenaires</p>
-                    <div class="card-footer">
-                        <a href="realisations.html#oseido" class="btn btn-outline">Voir le projet</a>
-                    </div>
-                </div>
-                
-                <div class="card">
-                    <h3>MaMaExpress</h3>
-                    <p><span class="badge badge-light">Association</span></p>
-                    <p><strong>Résultat :</strong> Temps de trajet réduit, coûts logistiques optimisés, outil utilisé quotidiennement</p>
-                    <p style="margin-top: 0.5rem; font-size: 0.9rem; color: var(--text-light);">
-                        <em>Utilisé par une association logistique en Île-de-France</em>
-                    </p>
-                    <div class="card-footer">
-                        <a href="realisations.html#mamaexpress" class="btn btn-outline">Voir le projet</a>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="text-center" style="margin-top: 2rem;">
-                <a href="realisations.html" class="btn btn-primary">Voir tous les résultats obtenus</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Section 5 : Pourquoi me faire confiance -->
-    <section class="section">
-        <div class="container">
-            <div class="section-title">
-                <h2>Expertise et expérience</h2>
-            </div>
-            
-            <div class="grid grid-2">
-                <div class="card">
-                    <h3>Expérience terrain</h3>
-                    <p>16 ans d'expérience en entreprise publique</p>
-                    <p>Projets en indépendante pour des associations et entreprises depuis 5 ans</p>
-                    <p style="margin-top: 0.5rem; font-size: 0.9rem; color: var(--text-light);">
-                        <em>Outils déployés et utilisés en production</em>
-                    </p>
-                </div>
-                
-                <div class="card">
-                    <h3>Compétences techniques</h3>
-                    <p>Ecole d'ingénieur en informatique et Master 2 en optimisation et intelligence artificielle.</p>
-                    <p>Maîtrise des outils de cartographie (Leaflet), d'analyse (Python, Pandas), d'optimisation et de visualisation.</p>
-                    <p style="margin-top: 0.5rem; font-size: 0.9rem; color: var(--text-light);">
-                        <em>Intégration avec data.gouv.fr, MTA, Open Food Facts</em>
-                    </p>
-                </div>
-                
-                <div class="card">
-                    <h3>Approche pragmatique et agile</h3>
-                    <p>Je commence toujours par comprendre votre problème avant de proposer une solution.</p>
-                    <p>Des livrables que vous pouvez utiliser immédiatement. </p>
-                    <p>Formation incluse pour être autonome rapidement.</p>
-                    <p style="margin-top: 0.5rem; font-size: 0.9rem; color: var(--text-light);">
-                        <em>Premier échange gratuit pour clarifier votre besoin</em>
-                    </p>
-                </div>
-
-            </div>
-        </div>
-    </section>
-
-    <!-- Section 6 : Prochaine étape -->
-    <section class="section section-alt">
-        <div class="container container-narrow">
-            <div class="section-title">
-                <h2>Prêt à découvrir l'histoire</br>que contiennent vos données ?</h2>
-            </div>
-            
-            <p class="text-center" style="font-size: 1.1rem; margin-top: -1rem; margin-bottom: 2rem; color: var(--text-light);">
-                Contactez-moi et accédez à des visualisations</br>qui ont aidé des centaines de décideurs à réussir.
-            </p>
-            
-            <div class="text-center">
-                <a href="contact.html" class="btn btn-primary">Obtenir un premier avis sur mes données (gratuit)</a>
-            </div>
-        </div>
-    </section>
+    <!-- CTA final -->
+    <div data-include="partials/contact-form.html"></div>
 
     <!-- Footer -->
-    <footer>
+    <footer data-include="partials/footer.html">
         <div class="container">
-            <div style="text-align: center; padding: 2rem 0;">
-                <p style="color: var(--bg-white); margin-bottom: 1rem; font-size: 1.1rem;">
+            <div class="footer-content-wrapper">
+                <p class="footer-brand">
                     <strong>Natacha Aviat</strong> - Cartographie interactive et analyse de données
                 </p>
-                <div style="display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap;">
-                    <a href="cgv.html" style="color: var(--bg-white); opacity: 0.9;">CGV</a>
-                    <a href="contact.html" style="color: var(--bg-white); opacity: 0.9;">Contact</a>
+                <div class="footer-links">
+                    <a href="cgv.html">CGV</a>
+                    <a href="#contact">Contact</a>
                 </div>
             </div>
             <div class="footer-bottom">
@@ -276,5 +192,8 @@
             </div>
         </div>
     </footer>
+
+    <script src="js/main.js"></script>
+    <script src="js/components.js"></script>
 </body>
 </html>

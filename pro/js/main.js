@@ -1,3 +1,117 @@
+const CONTACT_FORM_FALLBACK = `
+<section class="section" id="contact">
+    <div class="container">
+        <div class="contact-section">
+            <h2 class="text-center mb-2">Hâte de connaître votre projet</h2>
+            <form id="contact-form" class="grid grid-3 contact-form-grid">
+                <div class="card contact-form-card">
+                    <div class="form-group contact-form-group">
+                        <input type="text" id="contact-info" name="contact-info" placeholder="Email, LinkedIn, téléphone..." required>
+                    </div>
+                </div>
+                <div class="card contact-form-card-message">
+                    <div class="form-group contact-form-group">
+                        <textarea id="project-summary" name="project-summary" rows="6" placeholder="Votre projet en quelques lignes" required></textarea>
+                    </div>
+                </div>
+                <div class="card contact-form-card-submit">
+                    <button type="submit" class="btn btn-primary">Envoyer</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
+`;
+
+/**
+ * Charge les partials HTML (header, footer, contact-form)
+ */
+function loadIncludes() {
+    const includeTargets = document.querySelectorAll('[data-include]');
+    const requests = Array.from(includeTargets).map((target) => {
+        const path = target.getAttribute('data-include');
+        if (!path) {
+            return Promise.resolve();
+        }
+        return fetch(path)
+            .then((response) => response.text())
+            .then((html) => {
+                target.innerHTML = html;
+            })
+            .catch(() => {
+                // Fallback pour le formulaire de contact
+                if (path.endsWith('partials/contact-form.html')) {
+                    target.innerHTML = CONTACT_FORM_FALLBACK;
+                } else {
+                    target.innerHTML = '';
+                }
+            });
+    });
+
+    return Promise.all(requests);
+}
+
+/**
+ * Charge automatiquement header et footer si présents dans le DOM
+ */
+function loadHeaderFooter() {
+    // Détecter le chemin relatif selon la profondeur
+    const isFiche = window.location.pathname.includes('/fiches/');
+    const headerPath = isFiche ? '../partials/header.html' : 'partials/header.html';
+    const footerPath = isFiche ? '../partials/footer.html' : 'partials/footer.html';
+    
+    // Charger le header
+    const headerElement = document.querySelector('header[data-include]');
+    if (headerElement && !headerElement.hasAttribute('data-loaded')) {
+        const includePath = headerElement.getAttribute('data-include');
+        const pathToLoad = includePath || headerPath;
+        fetch(pathToLoad)
+            .then(response => response.text())
+            .then(html => {
+                headerElement.outerHTML = html;
+            })
+            .catch(() => {
+                // Si échec, garder le header existant
+            });
+    }
+    
+    // Charger le footer
+    const footerElement = document.querySelector('footer[data-include]');
+    if (footerElement && !footerElement.hasAttribute('data-loaded')) {
+        const includePath = footerElement.getAttribute('data-include');
+        const pathToLoad = includePath || footerPath;
+        fetch(pathToLoad)
+            .then(response => response.text())
+            .then(html => {
+                footerElement.outerHTML = html;
+            })
+            .catch(() => {
+                // Si échec, garder le footer existant
+            });
+    }
+}
+
+function initContactForm() {
+    const contactForm = document.getElementById('contact-form');
+    if (!contactForm) {
+        return;
+    }
+
+    contactForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        const formData = new FormData(contactForm);
+        const data = Object.fromEntries(formData);
+
+        if (!data['contact-info'] || !data['project-summary']) {
+            showMessage('Veuillez remplir les deux champs.', 'error');
+            return;
+        }
+
+        showMessage('Merci pour votre message ! Je vous répondrai sous 48h (hors week-end).', 'success');
+        contactForm.reset();
+    });
+}
+
 // Filtres pour la page réalisations
 document.addEventListener('DOMContentLoaded', function() {
     const filterButtons = document.querySelectorAll('.filter-btn[data-filter]');
@@ -80,44 +194,24 @@ document.addEventListener('DOMContentLoaded', function() {
             }, 100);
         }
     }
-});
-
-// Gestion du formulaire de contact
-document.addEventListener('DOMContentLoaded', function() {
-    const contactForm = document.getElementById('contact-form');
     
-    if (contactForm) {
-        contactForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            // Récupérer les données du formulaire
-            const formData = new FormData(contactForm);
-            const data = Object.fromEntries(formData);
-            
-            // Validation basique
-            if (!data.nom || !data.prenom || !data.email || !data.message) {
-                showMessage('Veuillez remplir tous les champs obligatoires.', 'error');
-                return;
-            }
-            
-            // Validation email
-            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            if (!emailRegex.test(data.email)) {
-                showMessage('Veuillez entrer une adresse email valide.', 'error');
-                return;
-            }
-            
-            // Simuler l'envoi (à remplacer par un vrai envoi)
-            showMessage('Merci pour votre message ! Je vous répondrai sous 48h (hors week-end).', 'success');
-            contactForm.reset();
-            
-            // Ici, vous pourriez ajouter un appel à une API ou un service d'envoi d'email
-            // Par exemple : sendEmail(data);
-        });
-    }
+    // Charger tous les partials
+    loadHeaderFooter();
+    loadIncludes().then(() => {
+        initContactForm();
+        // Initialiser les composants si le fichier est chargé
+        if (typeof initFicheForms === 'function') {
+            initFicheForms();
+        }
+        if (typeof initNavigation === 'function') {
+            initNavigation();
+        }
+    });
 });
 
-// Fonction pour afficher les messages
+/**
+ * Affiche un message de succès ou d'erreur
+ */
 function showMessage(message, type) {
     // Supprimer les messages existants
     const existingMessages = document.querySelectorAll('.message');

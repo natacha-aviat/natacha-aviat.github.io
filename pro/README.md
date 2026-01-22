@@ -7,10 +7,8 @@ Site web professionnel pour les services de cartographie interactive et d'analys
 ```
 pro/
 ├── index.html          # Page d'accueil
-├── services.html       # Page des services détaillés
-├── realisations.html    # Portfolio avec filtres
-├── a-propos.html       # Présentation et crédibilité
-├── contact.html        # Formulaire de contact
+├── services.html       # Page des offres
+├── cartes-disponibles.html   # Cartes / réalisations
 ├── css/
 │   └── style.css       # Styles CSS sobre et professionnel
 ├── js/
@@ -21,40 +19,26 @@ pro/
 ## Pages
 
 ### 1. Accueil (index.html)
-- Hero section avec phrase d'accroche
-- Section "Vos problèmes, mes solutions"
-- Présentation des 3 services en bref
-- Pour qui je travaille
-- Aperçu des réalisations
-- Pourquoi me faire confiance
-- CTA final
+- Hero section
+- Boutique (cartes)
+- Offres
+- Témoignages
+- Présentation
+- Formulaire de contact
 
-### 2. Services (services.html)
-- Détail des 3 services :
-  - Cartographie interactive
-  - Analyse de données
-  - Outils sur mesure
+### 2. Offres (services.html)
+- Détail des 3 offres :
+  - Carte sur étagère
+  - Adaptation d'une carte existante
+  - Carte sur-mesure
 - Processus en 4 étapes
 - Questions fréquentes
 
-### 3. Réalisations (realisations.html)
+### 3. Cartes (cartes-disponibles.html)
 - Filtres par type (cartes, analyses, outils)
 - Filtres par secteur (associations, entreprises, public)
 - Projets détaillés avec contexte, problème résolu, solution
 - Liens vers les projets existants
-
-### 4. À propos (a-propos.html)
-- Mon parcours
-- Mon expertise (technique + métier)
-- Mes valeurs
-- Ce qui me différencie
-- Quelques mots personnels
-
-### 6. Contact (contact.html)
-- Formulaire de contact complet
-- Autres moyens de contact
-- Ce qui se passe après le contact
-- Questions fréquentes
 
 ## Fonctionnalités JavaScript
 
@@ -64,7 +48,7 @@ pro/
 - Combinaison des deux filtres
 - Gestion des paramètres URL pour les liens depuis services.html
 
-### Formulaire de contact
+### Formulaire de contact (index.html)
 - Validation des champs
 - Validation de l'email
 - Messages de confirmation/erreur
@@ -102,7 +86,7 @@ pro/
 ```
 
 ### Ajouter un projet
-Dans `realisations.html`, ajouter une nouvelle carte avec les attributs `data-type` et `data-sector` :
+Dans `cartes-disponibles.html`, ajouter une nouvelle carte avec les attributs `data-type` et `data-sector` :
 ```html
 <div class="card project-item" data-type="cartes" data-sector="public">
     <!-- Contenu du projet -->

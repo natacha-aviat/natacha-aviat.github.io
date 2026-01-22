@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Réalisations en cartographie interactive et analyse de données. Projets concrets pour des organisations variées.">
+    <title>Réalisations - Cartographie Interactive & Analyse de Données</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/components.css">
+</head>
+<body>
+    <!-- Header -->
+    <header data-include="partials/header.html">
+        <div class="container">
+            <a href="index.html" class="logo">Natacha Aviat</a>
+            <nav>
+                <ul>
+                    <li><a href="index.html" data-nav="index">Accueil</a></li>
+                    <li><a href="cartes-disponibles.html" data-nav="cartes">Cartes</a></li>
+                    <li><a href="services.html" data-nav="services">Services</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container container-narrow">
+            <h1>Explorez mes cartes</h1>
+            <div class="filters hero-filters">
+                <button class="filter-btn active" data-filter="all">Tout</button>
+                <button class="filter-btn" data-filter="cartes">Cartes interactives</button>
+                <button class="filter-btn" data-filter="outils">Outils opérationnels</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projets -->
+    <section class="section">
+        <div class="container">
+            <div class="grid grid-3" id="projects-grid">
+                <!-- Projet 1 : Carte de performance des lycées -->
+                <div class="card project-item project-card" data-type="cartes" data-sector="public" id="lycees">
+                    <div class="project-image-container">
+                        <img src="../assets/images/image_lycees.png" alt="Carte de performance des lycées">
+                    </div>
+                    <h3 class="project-title">Valeur ajoutée des lycées français</h3>
+                    <p class="project-price">0€</p>
+                    <a href="fiches/fiche-lycees.html" class="btn btn-primary project-cta">Voir</a>
+                </div>
+
+                <!-- Projet 2 : Pollution des eaux en France -->
+                <div class="card project-item project-card" data-type="cartes" data-sector="entreprise" id="oseido">
+                    <div class="project-image-container">
+                        <img src="../assets/images/image_carte_pollution.png" alt="Pollution des eaux en France">
+                    </div>
+                    <h3 class="project-title">Pollution des eaux en France</h3>
+                    <p class="project-price">600€</p>
+                    <a href="fiches/fiche-pollution.html" class="btn btn-primary project-cta">Voir</a>
+                </div>
+
+                <!-- Projet 3 : MaMaExpress -->
+                <div class="card project-item project-card" data-type="outils" data-sector="association" id="mamaexpress">
+                    <div class="project-emoji-container project-emoji-gradient-1">
+                        🚚
+                    </div>
+                    <h3 class="project-title">Outil d'optimisation de tournées</h3>
+                    <p class="project-price">0€</p>
+                    <a href="fiches/fiche-optimisation-tournees.html" class="btn btn-primary project-cta">Voir</a>
+                </div>
+
+                <!-- Projet 4 : MaMaFoodScan -->
+                <div class="card project-item project-card" data-type="outils" data-sector="association">
+                    <div class="project-emoji-container project-emoji-gradient-2">
+                        📱
+                    </div>
+                    <h3 class="project-title">Outil d'inventaire</h3>
+                    <p class="project-price">0€</p>
+                    <a href="fiches/fiche-inventaire.html" class="btn btn-primary project-cta">Voir</a>
+                </div>
+
+                <!-- Projet 5 : NYC Metro Art Map -->
+                <div class="card project-item project-card" data-type="cartes" data-sector="public">
+                    <div class="project-emoji-container project-emoji-gradient-1">
+                        🗺️
+                    </div>
+                    <h3 class="project-title">Œuvres d'art des stations de métro de NYC</h3>
+                    <p class="project-price">0€</p>
+                    <a href="fiches/fiche-nyc-art.html" class="btn btn-primary project-cta">Voir</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div data-include="partials/contact-form.html"></div>
+
+    <!-- Footer -->
+    <footer data-include="partials/footer.html">
+        <div class="container">
+            <div class="footer-content-wrapper">
+                <p class="footer-brand">
+                    <strong>Natacha Aviat</strong> - Cartographie interactive et analyse de données
+                </p>
+                <div class="footer-links">
+                    <a href="cgv.html">CGV</a>
+                    <a href="index.html#contact">Contact</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Natacha Aviat - Tous droits réservés</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script src="js/components.js"></script>
+</body>
+</html>

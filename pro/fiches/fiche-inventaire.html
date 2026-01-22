@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Fiche détaillée - Outil d'inventaire">
+    <title>Outil d'inventaire - Natacha Aviat</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <a href="../index.html" class="logo">Natacha Aviat</a>
+            <nav>
+                <ul>
+                    <li><a href="../index.html">Accueil</a></li>
+                    <li><a href="../cartes-disponibles.html">Cartes</a></li>
+                    <li><a href="../services.html">Services</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Fiche détaillée -->
+    <section class="section">
+        <style>
+            @media (max-width: 768px) {
+                .fiche-container {
+                    grid-template-columns: 1fr !important;
+                }
+            }
+        </style>
+        <div class="container">
+            <div class="fiche-container" style="display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: start;">
+                <!-- Image à gauche -->
+                <div>
+                    <div style="height: 400px; border-radius: 8px; overflow: hidden; box-shadow: var(--shadow-md); display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); font-size: 8rem;">
+                        📱
+                    </div>
+                </div>
+
+                <!-- Contenu à droite -->
+                <div>
+                    <h1 style="margin-bottom: 2rem;">Outil d'inventaire</h1>
+                    
+                    <div style="margin-bottom: 2rem;">
+                        <p>Scanner de produits alimentaires pour l'association MaMaMa</p>
+                    </div>
+
+                    <div style="margin-bottom: 2rem; display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; padding: 1.5rem; background-color: var(--bg-light); border-radius: 8px;">
+                        <div>
+                            <h4 style="color: var(--accent-color); margin-bottom: 0.5rem;">❌ Avant</h4>
+                            <ul style="font-size: 0.9rem; color: var(--text-light);">
+                                <li>Analyse nutritionnelle manuelle</li>
+                                <li>Recherche d'infos chronophage</li>
+                                <li>Données non centralisées</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 style="color: var(--success-color); margin-bottom: 0.5rem;">✅ Après</h4>
+                            <ul style="font-size: 0.9rem; color: var(--text-light);">
+                                <li>Scan instantané du code-barres</li>
+                                <li>Données nutritionnelles immédiates</li>
+                                <li>Export vers Google Sheets</li>
+                                <li>Outil mobile utilisé sur le terrain</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div style="margin-bottom: 2rem;">
+                        <p>Application mobile-friendly permettant de scanner des codes-barres, récupérer les données nutritionnelles, afficher le Nutri-Score, exporter vers Google Sheets</p>
+                    </div>
+
+                    <div style="margin-bottom: 2rem;">
+                        <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+                            <span class="badge badge-secondary">JavaScript</span>
+                            <span class="badge badge-secondary">QuaggaJS</span>
+                            <span class="badge badge-secondary">Open Food Facts API</span>
+                        </div>
+                    </div>
+
+                    <div style="margin-bottom: 2rem;">
+                        <p style="font-size: 0.9rem; color: var(--text-light);">Données issues de l'API Open Food Facts</p>
+                    </div>
+
+                    <div style="margin-bottom: 2rem; padding: 1.5rem; background-color: var(--bg-light); border-radius: 8px;">
+                        <p style="font-size: 2rem; font-weight: 700; color: var(--accent-color);">0€</p>
+                    </div>
+
+                    <form id="access-form" style="margin-bottom: 2rem;">
+                        <div class="form-group">
+                            <label for="email">Email *</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-group" style="margin-top: 1rem;">
+                            <label for="message">Votre message</label>
+                            <textarea id="message" name="message" rows="4"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 1rem;">Accéder à l'outil</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div style="text-align: center; padding: 2rem 0;">
+                <p style="color: var(--bg-white); margin-bottom: 1rem; font-size: 1.1rem;">
+                    <strong>Natacha Aviat</strong> - Cartographie interactive et analyse de données
+                </p>
+                <div style="display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap;">
+                    <a href="../cgv.html" style="color: var(--bg-white); opacity: 0.9;">CGV</a>
+                    <a href="../index.html#contact" style="color: var(--bg-white); opacity: 0.9;">Contact</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Natacha Aviat - Tous droits réservés</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/main.js"></script>
+    <script>
+        document.getElementById('access-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const email = document.getElementById('email').value;
+            if (email) {
+                window.location.href = '../../projets/outils/MaMaFoodScan.html';
+            }
+        });
+    </script>
+</body>
+</html>

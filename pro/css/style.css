@@ -293,7 +293,6 @@ nav a.active {
 
 .card p {
     color: var(--text-light);
-    flex-grow: 1;
 }
 
 .card-footer {

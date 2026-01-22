@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Fiche détaillée - Pollution des eaux en France">
+    <title>Pollution des eaux en France - Natacha Aviat</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/components.css">
+</head>
+<body>
+    <!-- Header -->
+    <header data-include="../partials/header.html">
+        <div class="container">
+            <a href="../index.html" class="logo">Natacha Aviat</a>
+            <nav>
+                <ul>
+                    <li><a href="../index.html" data-nav="index">Accueil</a></li>
+                    <li><a href="../cartes-disponibles.html" data-nav="cartes">Cartes</a></li>
+                    <li><a href="../services.html" data-nav="services">Services</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Fiche détaillée -->
+    <section class="section">
+        <div class="container">
+            <div class="fiche-container">
+                <!-- Image à gauche -->
+                <div>
+                    <div class="fiche-image-container">
+                        <img src="../../assets/images/image_carte_pollution.png" alt="Pollution des eaux en France">
+                    </div>
+                </div>
+
+                <!-- Contenu à droite -->
+                <div>
+                    <h1 class="mb-2">Pollution des eaux en France</h1>
+                    
+                    <div class="fiche-content-section">
+                        <p>Visualisation géographique de la pollution des eaux en France</p>
+                    </div>
+
+                    <div class="fiche-before-after">
+                        <div>
+                            <h4 class="fiche-before-title">❌ Avant</h4>
+                            <ul>
+                                <li>Données de pollution dispersées</li>
+                                <li>Vision géographique peu claire</li>
+                                <li>Difficulté à identifier les zones à risque</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 class="fiche-after-title">✅ Après</h4>
+                            <ul>
+                                <li>Vision claire de la présence géographique</li>
+                                <li>Identification rapide des zones critiques</li>
+                                <li>Outil de visualisation professionnel</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="fiche-content-section">
+                        <p>Carte interactive avec géolocalisation des points de pollution, informations détaillées au clic</p>
+                    </div>
+
+                    <div class="fiche-content-section">
+                        <div class="fiche-badges">
+                            <span class="badge badge-secondary">Leaflet</span>
+                        </div>
+                    </div>
+
+                    <div class="fiche-content-section">
+                        <p class="fiche-data-source">Données issues de sources publiques</p>
+                    </div>
+
+                    <div class="fiche-price-box">
+                        <p class="fiche-price">600€</p>
+                    </div>
+
+                    <form id="access-form" class="fiche-form" data-redirect="../../projets/cartes/carte_OSEIDO.html">
+                        <div class="form-group">
+                            <label for="email">Email *</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-group fiche-form-group-spaced">
+                            <label for="message">Votre message</label>
+                            <textarea id="message" name="message" rows="4"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary fiche-form-submit">Accéder à la carte</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer data-include="../partials/footer.html">
+        <div class="container">
+            <div class="footer-content-wrapper">
+                <p class="footer-brand">
+                    <strong>Natacha Aviat</strong> - Cartographie interactive et analyse de données
+                </p>
+                <div class="footer-links">
+                    <a href="../cgv.html">CGV</a>
+                    <a href="../index.html#contact">Contact</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Natacha Aviat - Tous droits réservés</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/main.js"></script>
+    <script src="../js/components.js"></script>
+</body>
+</html>

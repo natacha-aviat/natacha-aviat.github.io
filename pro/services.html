@@ -3,23 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Services de cartographie interactive et d'analyse de données. Solutions sur mesure pour transformer vos données en décisions éclairées.">
+    <meta name="description" content="Trois offres pour mettre vos données sur la carte : carte sur étagère, adaptation d'une carte existante, ou création sur-mesure. Pour managers techniques.">
     <title>Services - Cartographie Interactive & Analyse de Données</title>
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/components.css">
 </head>
 <body>
     <!-- Header -->
-    <header>
+    <header data-include="partials/header.html">
         <div class="container">
             <a href="index.html" class="logo">Natacha Aviat</a>
             <nav>
                 <ul>
-                    <li><a href="index.html">Accueil</a></li>
-                    <li><a href="services.html" class="active">Services</a></li>
-                    <li><a href="realisations.html">Réalisations</a></li>
-                    <li><a href="a-propos.html">À propos</a></li>
-                    <li><a href="contact.html">Contact</a></li>
-                    <li><a href="blog/index.html">Blog</a></li>
+                    <li><a href="index.html" data-nav="index">Accueil</a></li>
+                    <li><a href="cartes-disponibles.html" data-nav="cartes">Cartes</a></li>
+                    <li><a href="services.html" data-nav="services">Services</a></li>
                 </ul>
             </nav>
         </div>
@@ -28,20 +26,7 @@
     <!-- Hero Section -->
     <section class="hero">
         <div class="container container-narrow">
-            <h1>Services de cartographie interactive et d'analyse de données</h1>
-            <p class="subtitle">Des solutions sur mesure pour transformer vos données en décisions éclairées</p>
-        </div>
-    </section>
-
-    <!-- Introduction -->
-    <section class="section">
-        <div class="container container-narrow">
-            <div class="section-title">
-                <h2>Choisissez votre service</h2>
-            </div>
-            <p style="font-size: 1.1rem; text-align: center; color: var(--text-light);">
-                De la cartographie interactive à l'outil sur mesure, trouvez la solution qui correspond à vos besoins. Chaque service peut être combiné selon votre projet.
-            </p>
+            <h1>Trois niveaux d'adaptation à vos besoins</h1>
         </div>
     </section>
 
@@ -49,164 +34,86 @@
     <section class="section section-alt">
         <div class="container">
             <div class="grid grid-3" style="gap: 2rem; align-items: stretch;">
-                <!-- Service 1 : Cartographie interactive -->
-                <div class="card" id="cartographie" style="display: flex; flex-direction: column; height: 100%;">
-                    <div style="text-align: center; margin-bottom: 1.5rem;">
-                        <div class="card-icon" style="font-size: 3rem; margin-bottom: 1rem;">🗺️</div>
-                        <h2 style="font-size: 1.75rem; margin-bottom: 0.5rem;">Cartes interactives</h2>
-                        <p style="color: var(--text-light); font-size: 1rem; font-weight: 500;">Visualiser vos données sur une carte</p>
+                <!-- Offre 1 : Carte sur étagère -->
+                <div class="card service-card" id="carte-etagere">
+                    <div class="service-card-header">
+                        <div class="service-card-icon">🗺️</div>
+                        <h2 class="service-card-title">Je consulte une carte sur étagère</h2>
+                        <p class="service-card-subtitle">Solution prête à l'emploi</p>
                     </div>
                     
-                    <p style="margin-bottom: 1.5rem; flex-grow: 1;">
-                        Transformez vos données géolocalisées en cartes interactives claires et impactantes. Montrez où se passent les choses, identifiez des zones prioritaires, communiquez votre présence géographique.
+                    <p class="service-card-description">
+                        Choisissez une carte déjà créée, testée et éprouvée. Idéal pour démarrer rapidement avec une solution qui fonctionne, sans attendre un développement sur mesure.
                     </p>
                     
-                    <div style="margin-bottom: 1.5rem;">
-                        <ul class="list-icon" style="list-style: none; padding: 0;">
-                            <li>Cartes interactives avec zoom et filtres</li>
-                            <li>Intégration de vos données + open data</li>
-                            <li>Personnalisation selon votre charte</li>
-                            <li>Accessible sur tous les appareils</li>
-                            <li>Cartes de performance et d'impact</li>
-                            <li>Outils de consultation publique</li>
-                            <li>Code source et documentation inclus</li>
-                            <li>Formation à l'utilisation</li>
+                    <div class="service-card-features">
+                        <ul class="list-icon">
+                            <li>Carte interactive prête à l'emploi</li>
                         </ul>
                     </div>
                     
-                    <div style="margin-top: auto; padding-top: 1.5rem; border-top: 1px solid var(--border-color);">
-                        <div style="margin-bottom: 1rem;">
-                            <strong>Technologies :</strong>
-                            <div style="display: flex; gap: 0.5rem; flex-wrap: wrap; margin-top: 0.5rem;">
-                                <span class="badge badge-secondary">Leaflet</span>
-                                <span class="badge badge-secondary">Python</span>
-                                <span class="badge badge-secondary">Open Data</span>
-                            </div>
-                        </div>
-                        <a href="realisations.html?type=cartes" class="btn btn-primary" style="width: 100%;">Voir si une carte est adaptée à mon cas</a>
+                    <div class="service-card-cta">
+                        <a href="cartes-disponibles.html?type=cartes" class="btn btn-primary">Voir les cartes disponibles immédiatement</a>
                     </div>
                 </div>
 
-                <!-- Service 2 : Analyse de données -->
-                <div class="card" id="analyse" style="display: flex; flex-direction: column; height: 100%; border: 2px solid var(--accent-color); position: relative;">
-                    <div style="position: absolute; top: -12px; left: 50%; transform: translateX(-50%); background-color: var(--accent-color); color: var(--bg-white); padding: 0.25rem 1rem; border-radius: 20px; font-size: 0.85rem; font-weight: 600;">
-                        LE PLUS DEMANDÉ
+                <!-- Offre 2 : J'adapte une carte -->
+                <div class="card service-card" id="carte-adaptee">
+                    <div class="service-card-header">
+                        <div class="service-card-icon">✂️</div>
+                        <h2 class="service-card-title">J'adapte une carte déjà créée</h2>
+                        <p class="service-card-subtitle">Semi-mesure intelligent</p>
                     </div>
                     
-                    <div style="text-align: center; margin-bottom: 1.5rem; margin-top: 1rem;">
-                        <div class="card-icon" style="font-size: 3rem; margin-bottom: 1rem;">📊</div>
-                        <h2 style="font-size: 1.75rem; margin-bottom: 0.5rem;">Analyse de données</h2>
-                        <p style="color: var(--text-light); font-size: 1rem; font-weight: 500;">Explorer et visualiser vos données</p>
-                    </div>
-                    
-                    <p style="margin-bottom: 1.5rem; flex-grow: 1;">
-                        Exploitez vos données pour répondre à vos questions métier. J'explore, nettoie et visualise vos données pour révéler les tendances, corrélations et points d'attention qui éclairent vos décisions.
+                    <p class="service-card-description">
+                        Vous choisissez une carte existante, je la personnalise sans toucher aux données. </br>Un bon équilibre entre rapidité, coût et personnalisation.
                     </p>
                     
-                    <div style="margin-bottom: 1.5rem;">
-                        <ul class="list-icon" style="list-style: none; padding: 0;">
-                            <li>Exploration complète de vos données</li>
-                            <li>Nettoyage et structuration</li>
-                            <li>Visualisations claires (graphiques, tableaux de bord)</li>
-                            <li>Réponses à vos questions métier</li>
-                            <li>Recommandations actionnables</li>
-                            <li>Analyses de performance et d'impact</li>
-                            <li>Diagnostics de situation</li>
-                            <li>Données nettoyées et structurées</li>
+                    <div class="service-card-features">
+                        <ul class="list-icon">
+                            <li>Carte interactive prête à l'emploi</li>
+                            <li>Personnalisation de la charte graphique</li>
+                            <li>Ajout de layers spécifiques</li>
+                            <li>Adaptation du type de marqueur</li>
                         </ul>
                     </div>
                     
-                    <div style="margin-top: auto; padding-top: 1.5rem; border-top: 1px solid var(--border-color);">
-                        <div style="margin-bottom: 1rem;">
-                            <strong>Technologies :</strong>
-                            <div style="display: flex; gap: 0.5rem; flex-wrap: wrap; margin-top: 0.5rem;">
-                                <span class="badge badge-secondary">Python / Pandas</span>
-                                <span class="badge badge-secondary">Visualisation</span>
-                                <span class="badge badge-secondary">Open Data</span>
-                            </div>
-                        </div>
-                        <a href="realisations.html?type=analyses" class="btn btn-primary" style="width: 100%;">Voir comment exploiter mes données</a>
+                    <div class="service-card-cta">
+                        <a href="cartes-disponibles.html?type=cartes" class="btn btn-primary">Voir les cartes disponibles à l'adaptation</a>
                     </div>
                 </div>
 
-                <!-- Service 3 : Outils sur mesure -->
-                <div class="card" id="outils" style="display: flex; flex-direction: column; height: 100%;">
-                    <div style="text-align: center; margin-bottom: 1.5rem;">
-                        <div class="card-icon" style="font-size: 3rem; margin-bottom: 1rem;">🛠️</div>
-                        <h2 style="font-size: 1.75rem; margin-bottom: 0.5rem;">Outils sur mesure</h2>
-                        <p style="color: var(--text-light); font-size: 1rem; font-weight: 500;">Applications web opérationnelles</p>
+                <!-- Offre 3 : Sur-mesure -->
+                <div class="card service-card service-card-featured" id="sur-mesure">
+                    <div class="service-card-badge">LE PLUS DEMANDÉ</div>
+                    
+                    <div class="service-card-header">
+                        <div class="service-card-icon">🎯</div>
+                        <h2 class="service-card-title">Je fais une carte à partir de vos données</h2>
+                        <p class="service-card-subtitle">Sur-mesure complet</p>
                     </div>
                     
-                    <p style="margin-bottom: 1.5rem; flex-grow: 1;">
-                        Développez des outils adaptés à vos besoins spécifiques. Automatisez vos processus répétitifs, créez des interfaces simples que votre équipe peut utiliser sans formation technique.
+                    <p class="service-card-description">
+                        Je crée une carte entièrement adaptée à votre contexte, vos données, vos besoins. Cela demande souvent de travailler les données en amont (nettoyage, structuration).
                     </p>
                     
-                    <div style="margin-bottom: 1.5rem;">
-                        <ul class="list-icon" style="list-style: none; padding: 0;">
-                            <li>Applications web sur mesure</li>
-                            <li>Interfaces simples et intuitives</li>
-                            <li>Automatisation de processus</li>
-                            <li>Optimisation de tournées logistiques</li>
-                            <li>Scanners et gestionnaires de données</li>
-                            <li>Outils de consultation publique</li>
-                            <li>Application hébergée et fonctionnelle</li>
-                            <li>Formation et maintenance incluses</li>
+                    <div class="service-card-features">
+                        <ul class="list-icon">
+                            <li>Carte interactive prête à l'emploi</li>
+                            <li>Personnalisation de la charte graphique</li>
+                            <li>Ajout de layers spécifiques</li>
+                            <li>Adaptation du type de marqueur</li>
+                            <li>Travail sur vos données (nettoyage, structuration)</li>
+                            <li>Fonctionnalités spécifiques à votre usage</li>
+                            <li>Option : analyses complémentaires</li>
+                            <li>Option : outils opérationnels</li>
+                            <li>Formation et accompagnement</li>
                         </ul>
                     </div>
                     
-                    <div style="margin-top: auto; padding-top: 1.5rem; border-top: 1px solid var(--border-color);">
-                        <div style="margin-bottom: 1rem;">
-                            <strong>Technologies :</strong>
-                            <div style="display: flex; gap: 0.5rem; flex-wrap: wrap; margin-top: 0.5rem;">
-                                <span class="badge badge-secondary">JavaScript</span>
-                                <span class="badge badge-secondary">Python</span>
-                                <span class="badge badge-secondary">APIs</span>
-                            </div>
-                        </div>
-                        <a href="realisations.html?type=outils" class="btn btn-primary" style="width: 100%;">Voir des outils qui ont fait leurs preuves</a>
+                    <div class="service-card-cta">
+                        <a href="#contact" class="btn btn-primary">Discuter de mon projet sur-mesure</a>
                     </div>
-                </div>
-            </div>
-            
-            <div style="text-align: center; margin-top: 3rem; padding: 2rem; background-color: var(--bg-light); border-radius: 8px;">
-                <p style="font-size: 1.1rem; margin-bottom: 1rem;">
-                    Vous hésitez entre plusieurs services ? Réservez une session de consulting pour en discuter avec moi.
-                </p>
-                <a href="contact.html" class="btn btn-outline">Clarifier mon besoin en 30 minutes (gratuit)</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Section : Comment je travaille -->
-    <section class="section">
-        <div class="container">
-            <div class="section-title">
-                <h2>Un processus en 4 étapes</h2>
-            </div>
-            
-            <div class="process">
-                <div class="process-step">
-                    <div class="process-number">1</div>
-                    <h3>Comprendre votre besoin</h3>
-                    <p>On échange (téléphone, visio ou rencontre) pour que je comprenne votre contexte, vos objectifs, vos contraintes. Je pose des questions, j'écoute. Pas de jargon, pas de vente. Juste comprendre.</p>
-                </div>
-                
-                <div class="process-step">
-                    <div class="process-number">2</div>
-                    <h3>Proposer une solution</h3>
-                    <p>Je vous propose une solution adaptée, avec un devis détaillé, un planning, des livrables clairs. On ajuste ensemble si besoin.</p>
-                </div>
-                
-                <div class="process-step">
-                    <div class="process-number">3</div>
-                    <h3>Développer</h3>
-                    <p>Je travaille sur votre projet. Je vous tiens informé de l'avancement. On échange régulièrement pour valider les étapes clés.</p>
-                </div>
-                
-                <div class="process-step">
-                    <div class="process-number">4</div>
-                    <h3>Livrer et accompagner</h3>
-                    <p>Je vous livre le résultat final, je vous forme à l'utilisation si nécessaire, je réponds à vos questions. L'objectif : que vous soyez autonome.</p>
                 </div>
             </div>
             
@@ -245,22 +152,21 @@
                 <div class="faq-answer">Oui, je peux héberger vos outils. On discute ensemble de la meilleure solution selon vos besoins et votre budget.</div>
             </div>
             
-            <div class="text-center" style="margin-top: 2rem;">
-                <a href="contact.html" class="btn btn-primary">Clarifier mon besoin en 30 minutes (gratuit)</a>
-            </div>
         </div>
     </section>
 
+    <div data-include="partials/contact-form.html"></div>
+
     <!-- Footer -->
-    <footer>
+    <footer data-include="partials/footer.html">
         <div class="container">
-            <div style="text-align: center; padding: 2rem 0;">
-                <p style="color: var(--bg-white); margin-bottom: 1rem; font-size: 1.1rem;">
+            <div class="footer-content-wrapper">
+                <p class="footer-brand">
                     <strong>Natacha Aviat</strong> - Cartographie interactive et analyse de données
                 </p>
-                <div style="display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap;">
-                    <a href="cgv.html" style="color: var(--bg-white); opacity: 0.9;">CGV</a>
-                    <a href="contact.html" style="color: var(--bg-white); opacity: 0.9;">Contact</a>
+                <div class="footer-links">
+                    <a href="cgv.html">CGV</a>
+                    <a href="index.html#contact">Contact</a>
                 </div>
             </div>
             <div class="footer-bottom">
@@ -268,5 +174,8 @@
             </div>
         </div>
     </footer>
+
+    <script src="js/main.js"></script>
+    <script src="js/components.js"></script>
 </body>
 </html>
