@@ -193,14 +193,16 @@ function initHashScroll() {
 
 /**
  * Génère le lien de changement de langue vers la page équivalente
+ * Utilise les mappings centralisés depuis seo-config.js
  */
 function getLanguageSwitchUrl(targetLang) {
     const currentPath = window.location.pathname;
     const isEn = currentPath.includes('/en/');
     const isFiche = currentPath.includes('/fiches/');
+    const fileName = currentPath.split('/').pop();
     
-    // Mapping des pages équivalentes
-    const pageMapping = {
+    // Utiliser les mappings centralisés (définis dans seo-config.js ou ici en fallback)
+    const pageMapping = typeof PAGE_MAPPING !== 'undefined' ? PAGE_MAPPING : {
         'index.html': { fr: 'index.html', en: 'en/index.html' },
         'cartes-disponibles.html': { fr: 'cartes-disponibles.html', en: 'en/maps-available.html' },
         'maps-available.html': { fr: 'cartes-disponibles.html', en: 'en/maps-available.html' },
@@ -209,8 +211,7 @@ function getLanguageSwitchUrl(targetLang) {
         'terms.html': { fr: 'cgv.html', en: 'en/terms.html' }
     };
     
-    // Mapping des fiches
-    const ficheMapping = {
+    const ficheMapping = typeof FICHE_MAPPING !== 'undefined' ? FICHE_MAPPING : {
         'fiche-lycees.html': { fr: 'fiches/fiche-lycees.html', en: 'en/fiches/sheet-high-schools.html' },
         'sheet-high-schools.html': { fr: 'fiches/fiche-lycees.html', en: 'en/fiches/sheet-high-schools.html' },
         'fiche-rejets.html': { fr: 'fiches/fiche-rejets.html', en: 'en/fiches/sheet-discharges.html' },
@@ -226,7 +227,6 @@ function getLanguageSwitchUrl(targetLang) {
     };
     
     let targetPage = '';
-    const fileName = currentPath.split('/').pop();
     
     if (isFiche) {
         // C'est une fiche

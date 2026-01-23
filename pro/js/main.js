@@ -84,45 +84,47 @@ function loadIncludes() {
     return Promise.all(requests);
 }
 
-// Détecter le chemin relatif selon la profondeur pour les fallbacks
-function getHeaderFallback() {
+/**
+ * Utilise getLanguageSwitchUrl pour obtenir les chemins de langue
+ * (réutilise la logique centralisée)
+ */
+function getLanguagePaths() {
     const isFiche = window.location.pathname.includes('/fiches/');
     const isEn = window.location.pathname.includes('/en/');
     const currentPath = window.location.pathname;
     const fileName = currentPath.split('/').pop();
     
-    // Déterminer la page équivalente pour le changement de langue
-    let enPath = 'en/index.html';
-    let frPath = 'index.html';
-    
-    if (fileName === 'cartes-disponibles.html') {
-        enPath = 'en/maps-available.html';
-        frPath = 'cartes-disponibles.html';
-    } else if (fileName === 'maps-available.html') {
-        enPath = 'maps-available.html';
-        frPath = '../cartes-disponibles.html';
-    } else if (fileName === 'services.html') {
-        enPath = isEn ? 'services.html' : 'en/services.html';
-        frPath = isEn ? '../services.html' : 'services.html';
-    } else if (fileName === 'cgv.html') {
-        enPath = 'en/terms.html';
-        frPath = 'cgv.html';
-    } else if (fileName === 'terms.html') {
-        enPath = 'terms.html';
-        frPath = '../cgv.html';
-    }
-    
-    // Ajuster les chemins selon la profondeur
-    if (isFiche) {
-        enPath = '../' + enPath;
-        frPath = '../' + frPath;
-    } else if (isEn && !isFiche) {
-        frPath = '../' + frPath;
+    // Utiliser la fonction centralisée si disponible, sinon fallback
+    let enPath, frPath;
+    if (typeof getLanguageSwitchUrl === 'function') {
+        enPath = getLanguageSwitchUrl('en');
+        frPath = getLanguageSwitchUrl('fr');
+    } else {
+        // Fallback si la fonction n'est pas encore chargée
+        const pageMapping = {
+            'index.html': { fr: 'index.html', en: 'en/index.html' },
+            'cartes-disponibles.html': { fr: 'cartes-disponibles.html', en: 'en/maps-available.html' },
+            'maps-available.html': { fr: 'cartes-disponibles.html', en: 'en/maps-available.html' },
+            'services.html': { fr: 'services.html', en: 'en/services.html' },
+            'cgv.html': { fr: 'cgv.html', en: 'en/terms.html' },
+            'terms.html': { fr: 'cgv.html', en: 'en/terms.html' }
+        };
+        const mapping = pageMapping[fileName] || { fr: 'index.html', en: 'en/index.html' };
+        enPath = isEn ? mapping.en : (isFiche ? '../' + mapping.en : mapping.en);
+        frPath = isEn ? (isFiche ? '../../' + mapping.fr : '../' + mapping.fr) : (isFiche ? '../' + mapping.fr : mapping.fr);
     }
     
     const indexPath = isFiche ? '../index.html' : (isEn ? '../index.html' : 'index.html');
     const cartesPath = isFiche ? '../cartes-disponibles.html' : (isEn ? 'maps-available.html' : 'cartes-disponibles.html');
     const servicesPath = isFiche ? '../services.html' : (isEn ? 'services.html' : 'services.html');
+    
+    return { indexPath, cartesPath, servicesPath, enPath, frPath };
+}
+
+// Détecter le chemin relatif selon la profondeur pour les fallbacks
+function getHeaderFallback() {
+    const isEn = window.location.pathname.includes('/en/');
+    const { indexPath, cartesPath, servicesPath, enPath, frPath } = getLanguagePaths();
     
     if (isEn) {
         return `
@@ -170,40 +172,10 @@ function getHeaderFallback() {
 function getFooterFallback() {
     const isFiche = window.location.pathname.includes('/fiches/');
     const isEn = window.location.pathname.includes('/en/');
-    const currentPath = window.location.pathname;
-    const fileName = currentPath.split('/').pop();
+    const { enPath, frPath } = getLanguagePaths();
     
     const cgvPath = isFiche ? '../cgv.html' : (isEn ? 'terms.html' : 'cgv.html');
     const contactPath = isFiche ? '../index.html#contact' : (isEn ? 'index.html#contact' : 'index.html#contact');
-    
-    // Déterminer la page équivalente pour le changement de langue
-    let enPath = 'en/index.html';
-    let frPath = 'index.html';
-    
-    if (fileName === 'cartes-disponibles.html') {
-        enPath = 'en/maps-available.html';
-        frPath = 'cartes-disponibles.html';
-    } else if (fileName === 'maps-available.html') {
-        enPath = 'maps-available.html';
-        frPath = '../cartes-disponibles.html';
-    } else if (fileName === 'services.html') {
-        enPath = isEn ? 'services.html' : 'en/services.html';
-        frPath = isEn ? '../services.html' : 'services.html';
-    } else if (fileName === 'cgv.html') {
-        enPath = 'en/terms.html';
-        frPath = 'cgv.html';
-    } else if (fileName === 'terms.html') {
-        enPath = 'terms.html';
-        frPath = '../cgv.html';
-    }
-    
-    // Ajuster les chemins selon la profondeur
-    if (isFiche) {
-        enPath = '../' + enPath;
-        frPath = '../' + frPath;
-    } else if (isEn && !isFiche) {
-        frPath = '../' + frPath;
-    }
     
     if (isEn) {
         return `
