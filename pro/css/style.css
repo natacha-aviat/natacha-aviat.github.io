@@ -133,11 +133,20 @@ header .container {
 }
 
 /* Navigation */
+nav {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+    flex-wrap: wrap;
+}
+
 nav ul {
     list-style: none;
     display: flex;
     gap: var(--spacing-md);
     flex-wrap: wrap;
+    margin: 0;
+    padding: 0;
 }
 
 nav a {
@@ -155,6 +164,60 @@ nav a:hover {
 
 nav a.active {
     background-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Language Switcher */
+.language-switcher {
+    display: flex !important;
+    align-items: center;
+    gap: 0.5rem;
+    margin-left: var(--spacing-md);
+    padding: 0.5rem 1rem;
+    background-color: rgba(255, 255, 255, 0.15);
+    border-radius: 6px;
+    font-size: 0.95rem;
+    transition: var(--transition);
+    visibility: visible !important;
+    opacity: 1 !important;
+}
+
+.language-switcher:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.language-switcher::before {
+    content: "🌐";
+    font-size: 1rem;
+    margin-right: 0.25rem;
+}
+
+.lang-link {
+    color: var(--bg-white);
+    opacity: 0.85;
+    transition: var(--transition);
+    text-decoration: none;
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+}
+
+.lang-link:hover {
+    opacity: 1;
+    color: var(--bg-white);
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.lang-current {
+    color: var(--bg-white);
+    font-weight: 700;
+    padding: 0.25rem 0.5rem;
+    background-color: rgba(255, 255, 255, 0.25);
+    border-radius: 4px;
+}
+
+.lang-separator {
+    color: var(--bg-white);
+    opacity: 0.4;
+    margin: 0 0.25rem;
 }
 
 /* Hero Section */
@@ -197,6 +260,7 @@ nav a.active {
     padding: 0.875rem 2rem;
     font-weight: 500;
     border-radius: 4px;
+    text-decoration: none;
     transition: var(--transition);
     cursor: pointer;
     border: none;
@@ -204,16 +268,31 @@ nav a.active {
     text-align: center;
 }
 
+.btn-large {
+    padding: 1.25rem 3rem;
+    font-size: 1.1rem;
+}
+
 .btn-primary {
     background-color: var(--accent-color);
-    color: var(--bg-white);
+    color: var(--bg-white) !important;
+    border: 2px solid var(--accent-color);
 }
 
 .btn-primary:hover {
     background-color: var(--accent-hover);
-    color: var(--bg-white);
+    color: var(--bg-white) !important;
     transform: translateY(-2px);
     box-shadow: var(--shadow-md);
+    border-color: var(--accent-hover);
+}
+
+.btn-primary:visited {
+    color: var(--bg-white) !important;
+}
+
+.btn-primary:link {
+    color: var(--bg-white) !important;
 }
 
 .btn-secondary {
@@ -636,6 +715,12 @@ footer a:hover {
     nav ul {
         flex-direction: column;
         gap: var(--spacing-xs);
+    }
+    
+    .language-switcher {
+        margin-left: 0;
+        margin-top: var(--spacing-sm);
+        width: fit-content;
     }
     
     .grid-2,

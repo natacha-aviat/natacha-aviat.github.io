@@ -1,28 +1,36 @@
-const CONTACT_FORM_FALLBACK = `
+function getContactFormFallback() {
+    // Détecter la langue depuis l'URL, le chemin ou l'attribut lang du HTML
+    const path = window.location.pathname;
+    const htmlLang = document.documentElement.getAttribute('lang');
+    const isEn = path.includes('/en/') || htmlLang === 'en';
+    if (isEn) {
+        return `
 <section class="section" id="contact">
     <div class="container">
         <div class="contact-section">
-            <h2 class="text-center mb-2">Hâte de connaître votre projet</h2>
-            <form id="contact-form" class="grid grid-3 contact-form-grid">
-                <div class="card contact-form-card">
-                    <p class="contact-form-label">Votre moyen de contact préféré</p>
-                    <div class="form-group contact-form-group">
-                        <input type="text" id="contact-info" name="contact-info" placeholder="Email, LinkedIn, téléphone..." required>
-                    </div>
-                </div>
-                <div class="card contact-form-card-message">
-                    <div class="form-group contact-form-group">
-                        <textarea id="project-summary" name="project-summary" rows="6" placeholder="Votre projet en quelques lignes" required></textarea>
-                    </div>
-                </div>
-                <div class="card contact-form-card-submit">
-                    <button type="submit" class="btn btn-primary">Envoyer</button>
-                </div>
-            </form>
+            <h2 class="text-center mb-2">Eager to learn about your project</h2>
+            <div class="text-center">
+                <a href="mailto:natacha.aviat+map@gmail.com?subject=Contact request&body=Hello,%0D%0A%0D%0AI would like to discuss my project.%0D%0A%0D%0AMy email:%0D%0A%0D%0AMy project in a few lines:%0D%0A%0D%0AThank you!" class="btn btn-primary btn-large" style="background-color: #3498DB; color: #FFFFFF; border: 2px solid #3498DB;">Contact me</a>
+            </div>
         </div>
     </div>
 </section>
 `;
+    } else {
+        return `
+<section class="section" id="contact">
+    <div class="container">
+        <div class="contact-section">
+            <h2 class="text-center mb-2">Hâte de connaître votre projet</h2>
+            <div class="text-center">
+                <a href="mailto:natacha.aviat+map@gmail.com?subject=Demande de contact&body=Bonjour,%0D%0A%0D%0AJe souhaite discuter de mon projet.%0D%0A%0D%0AMon email :%0D%0A%0D%0AMon projet en quelques lignes :%0D%0A%0D%0AMerci !" class="btn btn-primary btn-large" style="background-color: #3498DB; color: #FFFFFF; border: 2px solid #3498DB;">Contactez-moi</a>
+            </div>
+        </div>
+    </div>
+</section>
+`;
+    }
+}
 
 /**
  * ============================================================================
@@ -55,13 +63,18 @@ function loadIncludes() {
             .catch(() => {
                 // Fallback pour les partials
                 if (path.endsWith('partials/contact-form.html')) {
-                    target.innerHTML = CONTACT_FORM_FALLBACK;
+                    target.innerHTML = getContactFormFallback();
                 } else if (path.includes('header.html')) {
                     target.outerHTML = getHeaderFallback();
                 } else if (path.includes('footer.html')) {
                     target.outerHTML = getFooterFallback();
                 } else if (path.includes('fiche-back-link.html')) {
-                    target.innerHTML = '<div class="fiche-back-link"><a href="../cartes-disponibles.html"><span>←</span><span>Retour aux cartes</span></a></div>';
+                    const isEn = window.location.pathname.includes('/en/');
+                    if (isEn) {
+                        target.innerHTML = '<div class="fiche-back-link"><a href="../maps-available.html"><span>←</span><span>Back to maps</span></a></div>';
+                    } else {
+                        target.innerHTML = '<div class="fiche-back-link"><a href="../cartes-disponibles.html"><span>←</span><span>Retour aux cartes</span></a></div>';
+                    }
                 } else {
                     target.innerHTML = '';
                 }
@@ -74,13 +87,35 @@ function loadIncludes() {
 // Détecter le chemin relatif selon la profondeur pour les fallbacks
 function getHeaderFallback() {
     const isFiche = window.location.pathname.includes('/fiches/');
-    const indexPath = isFiche ? '../index.html' : 'index.html';
-    const cartesPath = isFiche ? '../cartes-disponibles.html' : 'cartes-disponibles.html';
-    const servicesPath = isFiche ? '../services.html' : 'services.html';
-    const cgvPath = isFiche ? '../cgv.html' : 'cgv.html';
-    const contactPath = isFiche ? '../index.html#contact' : 'index.html#contact';
+    const isEn = window.location.pathname.includes('/en/');
+    const indexPath = isFiche ? '../index.html' : (isEn ? '../index.html' : 'index.html');
+    const cartesPath = isFiche ? '../cartes-disponibles.html' : (isEn ? 'maps-available.html' : 'cartes-disponibles.html');
+    const servicesPath = isFiche ? '../services.html' : (isEn ? 'services.html' : 'services.html');
+    const enPath = isFiche ? '../en/index.html' : (isEn ? 'index.html' : 'en/index.html');
+    const frPath = isFiche ? '../index.html' : (isEn ? '../index.html' : 'index.html');
     
-    return `
+    if (isEn) {
+        return `
+<header>
+    <div class="container">
+        <a href="${indexPath}" class="logo">Natacha Aviat</a>
+        <nav>
+            <ul>
+                <li><a href="${indexPath}" data-nav="index">Home</a></li>
+                <li><a href="${cartesPath}" data-nav="cartes">Maps</a></li>
+                <li><a href="${servicesPath}" data-nav="services">Services</a></li>
+            </ul>
+            <div class="language-switcher" title="Switch to French version">
+                <a href="${frPath}" class="lang-link" title="Switch to French version">FR</a>
+                <span class="lang-separator">|</span>
+                <span class="lang-current">EN</span>
+            </div>
+        </nav>
+    </div>
+</header>
+`;
+    } else {
+        return `
 <header>
     <div class="container">
         <a href="${indexPath}" class="logo">Natacha Aviat</a>
@@ -90,18 +125,49 @@ function getHeaderFallback() {
                 <li><a href="${cartesPath}" data-nav="cartes">Cartes</a></li>
                 <li><a href="${servicesPath}" data-nav="services">Services</a></li>
             </ul>
+            <div class="language-switcher" title="Switch to English version">
+                <span class="lang-current">FR</span>
+                <span class="lang-separator">|</span>
+                <a href="${enPath}" class="lang-link" title="Switch to English version">EN</a>
+            </div>
         </nav>
     </div>
 </header>
 `;
+    }
 }
 
 function getFooterFallback() {
     const isFiche = window.location.pathname.includes('/fiches/');
-    const cgvPath = isFiche ? '../cgv.html' : 'cgv.html';
-    const contactPath = isFiche ? '../index.html#contact' : 'index.html#contact';
+    const isEn = window.location.pathname.includes('/en/');
+    const cgvPath = isFiche ? '../cgv.html' : (isEn ? 'terms.html' : 'cgv.html');
+    const contactPath = isFiche ? '../index.html#contact' : (isEn ? 'index.html#contact' : 'index.html#contact');
+    const enPath = isFiche ? '../en/index.html' : (isEn ? 'index.html' : 'en/index.html');
+    const frPath = isFiche ? '../index.html' : (isEn ? '../index.html' : 'index.html');
     
-    return `
+    if (isEn) {
+        return `
+<footer>
+    <div class="container">
+        <div class="footer-content-wrapper">
+            <p class="footer-brand">
+                <strong>Natacha Aviat</strong> - Interactive mapping and data analysis
+            </p>
+            <div class="footer-links">
+                <a href="${cgvPath}">Terms</a>
+                <a href="${contactPath}">Contact</a>
+                <span class="footer-lang-separator">|</span>
+                <a href="${frPath}" class="footer-lang-link" title="Version française">🇫🇷 Français</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Natacha Aviat - All rights reserved</p>
+        </div>
+    </div>
+</footer>
+`;
+    } else {
+        return `
 <footer>
     <div class="container">
         <div class="footer-content-wrapper">
@@ -111,6 +177,8 @@ function getFooterFallback() {
             <div class="footer-links">
                 <a href="${cgvPath}">CGV</a>
                 <a href="${contactPath}">Contact</a>
+                <span class="footer-lang-separator">|</span>
+                <a href="${enPath}" class="footer-lang-link" title="English version">🇬🇧 English</a>
             </div>
         </div>
         <div class="footer-bottom">
@@ -119,38 +187,17 @@ function getFooterFallback() {
     </div>
 </footer>
 `;
-}
-
-
-/**
- * ============================================================================
- * FORMULAIRES
- * ============================================================================
- */
-
-/**
- * Initialise le formulaire de contact
- */
-function initContactForm() {
-    const contactForm = document.getElementById('contact-form');
-    if (!contactForm) {
-        return;
     }
-
-    contactForm.addEventListener('submit', function(e) {
-        e.preventDefault();
-        const formData = new FormData(contactForm);
-        const data = Object.fromEntries(formData);
-
-        if (!data['contact-info'] || !data['project-summary']) {
-            showMessage('Veuillez remplir les deux champs.', 'error');
-            return;
-        }
-
-        showMessage('Merci pour votre message ! Je vous répondrai sous 48h (hors week-end).', 'success');
-        contactForm.reset();
-    });
 }
+
+
+/**
+ * ============================================================================
+ * CONTACT
+ * ============================================================================
+ * Le contact se fait maintenant via un simple bouton mailto
+ * Plus besoin d'initialiser un formulaire
+ */
 
 /**
  * Initialisation principale au chargement de la page
@@ -158,9 +205,6 @@ function initContactForm() {
 document.addEventListener('DOMContentLoaded', function() {
     // Charger tous les partials HTML (header, footer, contact-form, etc.)
     loadIncludes().then(() => {
-        // Initialiser le formulaire de contact
-        initContactForm();
-        
         // Initialiser la navigation active
         if (typeof initNavigation === 'function') {
             initNavigation();

@@ -291,6 +291,25 @@
     opacity: 1;
 }
 
+.footer-lang-separator {
+    color: var(--bg-white);
+    opacity: 0.4;
+    margin: 0 0.5rem;
+}
+
+.footer-lang-link {
+    color: var(--bg-white);
+    opacity: 0.9;
+    font-weight: 500;
+    text-decoration: none;
+    transition: var(--transition);
+}
+
+.footer-lang-link:hover {
+    opacity: 1;
+    text-decoration: underline;
+}
+
 /* ===== FICHES DÉTAILLÉES ===== */
 .fiche-container {
     display: grid;
