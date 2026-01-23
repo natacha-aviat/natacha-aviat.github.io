@@ -497,23 +497,36 @@
          * Charge les inscriptions depuis l'API ou le fichier JS
          */
         async function loadRegistrations() {
+            // Déterminer le chemin de l'API selon l'URL actuelle
+            const currentPath = window.location.pathname;
+            let apiPath = '/api/inscriptions';
+            
+            // Si on est dans un sous-dossier, ajuster le chemin
+            if (currentPath.includes('/projets/outils/MaMaCollecte/')) {
+                apiPath = '/projets/outils/MaMaCollecte/api/inscriptions';
+            } else if (currentPath.includes('/MaMaCollecte/')) {
+                apiPath = '/MaMaCollecte/api/inscriptions';
+            }
+            
             // Essayer de charger depuis l'API Vercel
             try {
-                const response = await fetch('/api/inscriptions');
+                const response = await fetch(apiPath);
                 if (response.ok) {
                     const data = await response.json();
                     if (Array.isArray(data)) {
                         registrations = data;
+                        console.log(`✓ ${registrations.length} inscription(s) chargée(s) depuis l'API`);
                         return;
                     }
                 }
             } catch (error) {
-                console.warn('API non disponible, chargement depuis le fichier JS local');
+                console.warn('API non disponible, chargement depuis le fichier JS local:', error);
             }
             
             // Fallback : charger depuis le fichier JS local
             if (typeof INSCRIPTIONS !== 'undefined' && Array.isArray(INSCRIPTIONS)) {
                 registrations = INSCRIPTIONS;
+                console.log(`✓ ${registrations.length} inscription(s) chargée(s) depuis le fichier JS local`);
             } else {
                 registrations = [];
             }
@@ -588,7 +601,22 @@
          */
         async function saveInscriptionsToFile() {
             try {
-                const response = await fetch('/api/inscriptions', {
+                // Déterminer le chemin de l'API selon l'URL actuelle
+                const currentPath = window.location.pathname;
+                let apiPath = '/api/inscriptions';
+                
+                // Si on est dans un sous-dossier, ajuster le chemin
+                if (currentPath.includes('/projets/outils/MaMaCollecte/')) {
+                    // Depuis /projets/outils/MaMaCollecte/MaMaCollecte.html
+                    apiPath = '/projets/outils/MaMaCollecte/api/inscriptions';
+                } else if (currentPath.includes('/MaMaCollecte/')) {
+                    // Depuis /MaMaCollecte/MaMaCollecte.html (si Root Directory configuré)
+                    apiPath = '/MaMaCollecte/api/inscriptions';
+                }
+                
+                console.log('Tentative de sauvegarde via:', apiPath);
+                
+                const response = await fetch(apiPath, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -599,8 +627,15 @@
                 });
 
                 if (!response.ok) {
-                    const errorData = await response.json().catch(() => ({ error: 'Erreur serveur' }));
-                    throw new Error(errorData.error || 'Erreur lors de la sauvegarde');
+                    const errorText = await response.text();
+                    console.error('Erreur API:', response.status, errorText);
+                    let errorData;
+                    try {
+                        errorData = JSON.parse(errorText);
+                    } catch (e) {
+                        errorData = { error: errorText || 'Erreur serveur' };
+                    }
+                    throw new Error(errorData.error || `Erreur ${response.status} lors de la sauvegarde`);
                 }
 
                 const result = await response.json();
@@ -608,7 +643,7 @@
                 return true;
             } catch (error) {
                 console.error('Erreur lors de la sauvegarde:', error);
-                showMessage('Erreur lors de la sauvegarde. Veuillez réessayer.', 'error');
+                showMessage(`Erreur lors de la sauvegarde: ${error.message}. Vérifiez la console pour plus de détails.`, 'error');
                 return false;
             }
         }

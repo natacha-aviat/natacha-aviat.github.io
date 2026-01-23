@@ -3,6 +3,10 @@
     {
       "source": "/api/:path*",
       "destination": "/api/:path*"
+    },
+    {
+      "source": "/projets/outils/MaMaCollecte/api/:path*",
+      "destination": "/api/:path*"
     }
   ]
 }
