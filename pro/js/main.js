@@ -10,7 +10,7 @@ function getContactFormFallback() {
         <div class="contact-section">
             <h2 class="text-center mb-2">Eager to learn about your project</h2>
             <div class="text-center">
-                <a href="mailto:natacha.aviat+map@gmail.com?subject=Contact request&body=Hello,%0D%0A%0D%0AI would like to discuss my project.%0D%0A%0D%0AMy email:%0D%0A%0D%0AMy project in a few lines:%0D%0A%0D%0AThank you!" class="btn btn-primary btn-large" style="background-color: #3498DB; color: #FFFFFF; border: 2px solid #3498DB;">Contact me</a>
+                <a href="mailto:natacha.aviat+map@gmail.com?subject=Contact request&body=Hello,%0D%0A%0D%0AI would like to discuss my project.%0D%0A%0D%0AMy project in a few lines:%0D%0A%0D%0AThank you!" class="btn btn-primary btn-large" style="background-color: #3498DB; color: #FFFFFF; border: 2px solid #3498DB;">Contact me</a>
             </div>
         </div>
     </div>
@@ -23,7 +23,7 @@ function getContactFormFallback() {
         <div class="contact-section">
             <h2 class="text-center mb-2">Hâte de connaître votre projet</h2>
             <div class="text-center">
-                <a href="mailto:natacha.aviat+map@gmail.com?subject=Demande de contact&body=Bonjour,%0D%0A%0D%0AJe souhaite discuter de mon projet.%0D%0A%0D%0AMon email :%0D%0A%0D%0AMon projet en quelques lignes :%0D%0A%0D%0AMerci !" class="btn btn-primary btn-large" style="background-color: #3498DB; color: #FFFFFF; border: 2px solid #3498DB;">Contactez-moi</a>
+                <a href="mailto:natacha.aviat+map@gmail.com?subject=Demande de contact&body=Bonjour,%0D%0A%0D%0AJe souhaite discuter de mon projet.%0D%0A%0D%0AMon projet en quelques lignes :%0D%0A%0D%0AMerci !" class="btn btn-primary btn-large" style="background-color: #3498DB; color: #FFFFFF; border: 2px solid #3498DB;">Contactez-moi</a>
             </div>
         </div>
     </div>
@@ -88,11 +88,41 @@ function loadIncludes() {
 function getHeaderFallback() {
     const isFiche = window.location.pathname.includes('/fiches/');
     const isEn = window.location.pathname.includes('/en/');
+    const currentPath = window.location.pathname;
+    const fileName = currentPath.split('/').pop();
+    
+    // Déterminer la page équivalente pour le changement de langue
+    let enPath = 'en/index.html';
+    let frPath = 'index.html';
+    
+    if (fileName === 'cartes-disponibles.html') {
+        enPath = 'en/maps-available.html';
+        frPath = 'cartes-disponibles.html';
+    } else if (fileName === 'maps-available.html') {
+        enPath = 'maps-available.html';
+        frPath = '../cartes-disponibles.html';
+    } else if (fileName === 'services.html') {
+        enPath = isEn ? 'services.html' : 'en/services.html';
+        frPath = isEn ? '../services.html' : 'services.html';
+    } else if (fileName === 'cgv.html') {
+        enPath = 'en/terms.html';
+        frPath = 'cgv.html';
+    } else if (fileName === 'terms.html') {
+        enPath = 'terms.html';
+        frPath = '../cgv.html';
+    }
+    
+    // Ajuster les chemins selon la profondeur
+    if (isFiche) {
+        enPath = '../' + enPath;
+        frPath = '../' + frPath;
+    } else if (isEn && !isFiche) {
+        frPath = '../' + frPath;
+    }
+    
     const indexPath = isFiche ? '../index.html' : (isEn ? '../index.html' : 'index.html');
     const cartesPath = isFiche ? '../cartes-disponibles.html' : (isEn ? 'maps-available.html' : 'cartes-disponibles.html');
     const servicesPath = isFiche ? '../services.html' : (isEn ? 'services.html' : 'services.html');
-    const enPath = isFiche ? '../en/index.html' : (isEn ? 'index.html' : 'en/index.html');
-    const frPath = isFiche ? '../index.html' : (isEn ? '../index.html' : 'index.html');
     
     if (isEn) {
         return `
@@ -140,10 +170,40 @@ function getHeaderFallback() {
 function getFooterFallback() {
     const isFiche = window.location.pathname.includes('/fiches/');
     const isEn = window.location.pathname.includes('/en/');
+    const currentPath = window.location.pathname;
+    const fileName = currentPath.split('/').pop();
+    
     const cgvPath = isFiche ? '../cgv.html' : (isEn ? 'terms.html' : 'cgv.html');
     const contactPath = isFiche ? '../index.html#contact' : (isEn ? 'index.html#contact' : 'index.html#contact');
-    const enPath = isFiche ? '../en/index.html' : (isEn ? 'index.html' : 'en/index.html');
-    const frPath = isFiche ? '../index.html' : (isEn ? '../index.html' : 'index.html');
+    
+    // Déterminer la page équivalente pour le changement de langue
+    let enPath = 'en/index.html';
+    let frPath = 'index.html';
+    
+    if (fileName === 'cartes-disponibles.html') {
+        enPath = 'en/maps-available.html';
+        frPath = 'cartes-disponibles.html';
+    } else if (fileName === 'maps-available.html') {
+        enPath = 'maps-available.html';
+        frPath = '../cartes-disponibles.html';
+    } else if (fileName === 'services.html') {
+        enPath = isEn ? 'services.html' : 'en/services.html';
+        frPath = isEn ? '../services.html' : 'services.html';
+    } else if (fileName === 'cgv.html') {
+        enPath = 'en/terms.html';
+        frPath = 'cgv.html';
+    } else if (fileName === 'terms.html') {
+        enPath = 'terms.html';
+        frPath = '../cgv.html';
+    }
+    
+    // Ajuster les chemins selon la profondeur
+    if (isFiche) {
+        enPath = '../' + enPath;
+        frPath = '../' + frPath;
+    } else if (isEn && !isFiche) {
+        frPath = '../' + frPath;
+    }
     
     if (isEn) {
         return `
@@ -213,6 +273,11 @@ document.addEventListener('DOMContentLoaded', function() {
         // Initialiser les filtres (si sur la page cartes-disponibles.html)
         if (typeof initFilters === 'function') {
             initFilters();
+        }
+        
+        // Initialiser les liens de changement de langue
+        if (typeof initLanguageSwitcher === 'function') {
+            initLanguageSwitcher();
         }
     });
     

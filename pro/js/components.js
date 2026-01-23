@@ -68,9 +68,9 @@ function initFilters() {
             const itemData = item.getAttribute('data-data') || '';
             
             const typeMatch = currentFilter === 'all' || itemType === currentFilter;
-            const sectorMatch = currentSector === 'all' || itemSector === currentSector;
-            const techMatch = currentTech === 'all' || itemTechs.includes(currentTech);
-            const dataMatch = currentData === 'all' || itemData.includes(currentData);
+            const sectorMatch = currentSector === 'all' || itemSector === currentSector || itemSector === 'all';
+            const techMatch = currentTech === 'all' || itemTechs === 'all' || itemTechs.includes(currentTech);
+            const dataMatch = currentData === 'all' || itemData === 'all' || itemData.includes(currentData);
             
             if (typeMatch && sectorMatch && techMatch && dataMatch) {
                 item.style.display = 'block';
@@ -189,4 +189,104 @@ function initHashScroll() {
             }, 100);
         }
     }
+}
+
+/**
+ * Génère le lien de changement de langue vers la page équivalente
+ */
+function getLanguageSwitchUrl(targetLang) {
+    const currentPath = window.location.pathname;
+    const isEn = currentPath.includes('/en/');
+    const isFiche = currentPath.includes('/fiches/');
+    
+    // Mapping des pages équivalentes
+    const pageMapping = {
+        'index.html': { fr: 'index.html', en: 'en/index.html' },
+        'cartes-disponibles.html': { fr: 'cartes-disponibles.html', en: 'en/maps-available.html' },
+        'maps-available.html': { fr: 'cartes-disponibles.html', en: 'en/maps-available.html' },
+        'services.html': { fr: 'services.html', en: 'en/services.html' },
+        'cgv.html': { fr: 'cgv.html', en: 'en/terms.html' },
+        'terms.html': { fr: 'cgv.html', en: 'en/terms.html' }
+    };
+    
+    // Mapping des fiches
+    const ficheMapping = {
+        'fiche-lycees.html': { fr: 'fiches/fiche-lycees.html', en: 'en/fiches/sheet-high-schools.html' },
+        'sheet-high-schools.html': { fr: 'fiches/fiche-lycees.html', en: 'en/fiches/sheet-high-schools.html' },
+        'fiche-rejets.html': { fr: 'fiches/fiche-rejets.html', en: 'en/fiches/sheet-discharges.html' },
+        'sheet-discharges.html': { fr: 'fiches/fiche-rejets.html', en: 'en/fiches/sheet-discharges.html' },
+        'fiche-prelevements.html': { fr: 'fiches/fiche-prelevements.html', en: 'en/fiches/sheet-withdrawals.html' },
+        'sheet-withdrawals.html': { fr: 'fiches/fiche-prelevements.html', en: 'en/fiches/sheet-withdrawals.html' },
+        'fiche-optimisation-tournees.html': { fr: 'fiches/fiche-optimisation-tournees.html', en: 'en/fiches/sheet-route-optimization.html' },
+        'sheet-route-optimization.html': { fr: 'fiches/fiche-optimisation-tournees.html', en: 'en/fiches/sheet-route-optimization.html' },
+        'fiche-inventaire.html': { fr: 'fiches/fiche-inventaire.html', en: 'en/fiches/sheet-inventory.html' },
+        'sheet-inventory.html': { fr: 'fiches/fiche-inventaire.html', en: 'en/fiches/sheet-inventory.html' },
+        'fiche-nyc-art.html': { fr: 'fiches/fiche-nyc-art.html', en: 'en/fiches/sheet-nyc-art.html' },
+        'sheet-nyc-art.html': { fr: 'fiches/fiche-nyc-art.html', en: 'en/fiches/sheet-nyc-art.html' }
+    };
+    
+    let targetPage = '';
+    const fileName = currentPath.split('/').pop();
+    
+    if (isFiche) {
+        // C'est une fiche
+        const mapping = ficheMapping[fileName];
+        if (mapping) {
+            targetPage = targetLang === 'en' ? mapping.en : mapping.fr;
+            // Ajouter le bon préfixe selon la profondeur
+            if (isEn && targetLang === 'fr') {
+                // De /en/fiches/ vers /fiches/ : deux niveaux en arrière
+                return '../../' + targetPage;
+            } else if (!isEn && targetLang === 'en') {
+                // De /fiches/ vers /en/fiches/ : un niveau en arrière puis en/
+                return '../' + targetPage;
+            } else {
+                return targetPage;
+            }
+        }
+    } else {
+        // C'est une page principale
+        const mapping = pageMapping[fileName];
+        if (mapping) {
+            targetPage = targetLang === 'en' ? mapping.en : mapping.fr;
+            if (isEn && targetLang === 'fr') {
+                // De /en/ vers / : un niveau en arrière
+                return '../' + targetPage;
+            } else if (!isEn && targetLang === 'en') {
+                // De / vers /en/ : pas de préfixe, juste le chemin
+                return targetPage;
+            } else {
+                return targetPage;
+            }
+        }
+    }
+    
+    // Fallback : page d'accueil
+    if (targetLang === 'en') {
+        return isEn ? 'index.html' : 'en/index.html';
+    } else {
+        return isEn ? '../index.html' : 'index.html';
+    }
+}
+
+/**
+ * Initialise les liens de changement de langue
+ */
+function initLanguageSwitcher() {
+    const langLinks = document.querySelectorAll('.lang-link');
+    const footerLangLinks = document.querySelectorAll('.footer-lang-link');
+    
+    const currentPath = window.location.pathname;
+    const isEn = currentPath.includes('/en/');
+    const targetLang = isEn ? 'fr' : 'en';
+    
+    langLinks.forEach(link => {
+        const newUrl = getLanguageSwitchUrl(targetLang);
+        link.setAttribute('href', newUrl);
+    });
+    
+    footerLangLinks.forEach(link => {
+        const newUrl = getLanguageSwitchUrl(targetLang);
+        link.setAttribute('href', newUrl);
+    });
 }
