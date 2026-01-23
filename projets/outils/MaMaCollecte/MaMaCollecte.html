@@ -494,9 +494,24 @@
         }
 
         /**
-         * Charge les inscriptions depuis le fichier JS
+         * Charge les inscriptions depuis l'API ou le fichier JS
          */
-        function loadRegistrations() {
+        async function loadRegistrations() {
+            // Essayer de charger depuis l'API Vercel
+            try {
+                const response = await fetch('/api/inscriptions');
+                if (response.ok) {
+                    const data = await response.json();
+                    if (Array.isArray(data)) {
+                        registrations = data;
+                        return;
+                    }
+                }
+            } catch (error) {
+                console.warn('API non disponible, chargement depuis le fichier JS local');
+            }
+            
+            // Fallback : charger depuis le fichier JS local
             if (typeof INSCRIPTIONS !== 'undefined' && Array.isArray(INSCRIPTIONS)) {
                 registrations = INSCRIPTIONS;
             } else {
@@ -569,49 +584,33 @@
         }
 
         /**
-         * Sauvegarde les inscriptions dans un fichier
+         * Sauvegarde les inscriptions via l'API Vercel
          */
         async function saveInscriptionsToFile() {
-            const jsContent = generateInscriptionsJS();
-            
-            // Essayer d'utiliser l'API File System Access (Chrome/Edge)
-            if ('showSaveFilePicker' in window) {
-                try {
-                    const fileHandle = await window.showSaveFilePicker({
-                        suggestedName: 'inscriptions.js',
-                        types: [{
-                            description: 'JavaScript files',
-                            accept: { 'text/javascript': ['.js'] }
-                        }]
-                    });
-                    
-                    const writable = await fileHandle.createWritable();
-                    await writable.write(jsContent);
-                    await writable.close();
-                    
-                    showMessage('Fichier inscriptions.js sauvegardé avec succès !', 'success');
-                    return true;
-                } catch (error) {
-                    if (error.name !== 'AbortError') {
-                        console.error('Erreur avec File System Access API:', error);
-                    }
-                    // Fallback vers le téléchargement
+            try {
+                const response = await fetch('/api/inscriptions', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        inscriptions: registrations
+                    })
+                });
+
+                if (!response.ok) {
+                    const errorData = await response.json().catch(() => ({ error: 'Erreur serveur' }));
+                    throw new Error(errorData.error || 'Erreur lors de la sauvegarde');
                 }
+
+                const result = await response.json();
+                showMessage(`Inscription confirmée ! ${result.count} inscription(s) sauvegardée(s) sur le serveur.`, 'success');
+                return true;
+            } catch (error) {
+                console.error('Erreur lors de la sauvegarde:', error);
+                showMessage('Erreur lors de la sauvegarde. Veuillez réessayer.', 'error');
+                return false;
             }
-            
-            // Fallback : télécharger le fichier
-            const blob = new Blob([jsContent], { type: 'text/javascript' });
-            const url = URL.createObjectURL(blob);
-            const link = document.createElement('a');
-            link.href = url;
-            link.download = 'inscriptions.js';
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
-            URL.revokeObjectURL(url);
-            
-            showMessage('Fichier inscriptions.js téléchargé. Remplacez le fichier inscriptions.js dans le dossier MaMaCollecte.', 'success');
-            return true;
         }
 
         /**
@@ -1279,9 +1278,9 @@
         /**
          * Initialise l'application
          */
-        function init() {
+        async function init() {
             loadCreneauxFromJS();
-            loadRegistrations();
+            await loadRegistrations();
             populateLocationButtons();
             displayCalendar();
             
