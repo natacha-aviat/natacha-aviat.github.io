@@ -3,34 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Fiche détaillée - Pollution des eaux en France">
-    <title>Pollution des eaux en France - Natacha Aviat</title>
+    
+    <!-- SEO Meta Tags -->
+    <title>Carte de la Pollution des Eaux en France | 600€ - Natacha Aviat</title>
+    <meta name="description" content="Carte interactive de la pollution des eaux en France. Visualisation géographique des points de pollution avec informations détaillées. Données publiques. Prix : 600€.">
+    <meta name="keywords" content="carte pollution eau France, visualisation pollution, carte interactive pollution, données environnementales">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://natacha-aviat.github.io/pro/fiches/fiche-pollution.html">
+    
+    <!-- Open Graph -->
+    <meta property="og:type" content="product">
+    <meta property="og:url" content="https://natacha-aviat.github.io/pro/fiches/fiche-pollution.html">
+    <meta property="og:title" content="Carte de la Pollution des Eaux en France | 600€">
+    <meta property="og:description" content="Carte interactive de la pollution des eaux en France. Visualisation géographique des points de pollution.">
+    <meta property="og:image" content="https://natacha-aviat.github.io/assets/images/image_carte_pollution.png">
+    <meta property="product:price:amount" content="600">
+    <meta property="product:price:currency" content="EUR">
+    
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/components.css">
 </head>
 <body>
     <!-- Header -->
-    <header data-include="../partials/header.html">
-        <div class="container">
-            <a href="../index.html" class="logo">Natacha Aviat</a>
-            <nav>
-                <ul>
-                    <li><a href="../index.html" data-nav="index">Accueil</a></li>
-                    <li><a href="../cartes-disponibles.html" data-nav="cartes">Cartes</a></li>
-                    <li><a href="../services.html" data-nav="services">Services</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
+    <header data-include="../partials/header.html"></header>
 
     <!-- Fiche détaillée -->
     <section class="section">
         <div class="container">
+            <div data-include="../partials/fiche-back-link.html"></div>
             <div class="fiche-container">
                 <!-- Image à gauche -->
                 <div>
                     <div class="fiche-image-container">
-                        <img src="../../assets/images/image_carte_pollution.png" alt="Pollution des eaux en France">
+                        <img src="../../assets/images/image_carte_pollution.png" alt="Carte interactive de la pollution des eaux en France avec géolocalisation des points de pollution" loading="lazy">
                     </div>
                 </div>
 
@@ -79,39 +84,17 @@
                         <p class="fiche-price">600€</p>
                     </div>
 
-                    <form id="access-form" class="fiche-form" data-redirect="../../projets/cartes/carte_OSEIDO.html">
-                        <div class="form-group">
-                            <label for="email">Email *</label>
-                            <input type="email" id="email" name="email" required>
-                        </div>
-                        <div class="form-group fiche-form-group-spaced">
-                            <label for="message">Votre message</label>
-                            <textarea id="message" name="message" rows="4"></textarea>
-                        </div>
-                        <button type="submit" class="btn btn-primary fiche-form-submit">Accéder à la carte</button>
-                    </form>
+                    <div class="fiche-form">
+                        <p class="mb-2">Pour accéder à cette carte, envoyez-moi un email :</p>
+                        <a href="mailto:natacha.aviat+map@gmail.com?subject=Accès à la carte : Pollution des eaux en France&body=Bonjour,%0D%0A%0D%0AJe souhaite accéder à la carte interactive de la pollution des eaux en France.%0D%0A%0D%0AMon email :%0D%0A%0D%0AMessage (optionnel) :%0D%0A%0D%0AMerci !" class="btn btn-primary fiche-form-submit">Demander l'accès par email</a>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer data-include="../partials/footer.html">
-        <div class="container">
-            <div class="footer-content-wrapper">
-                <p class="footer-brand">
-                    <strong>Natacha Aviat</strong> - Cartographie interactive et analyse de données
-                </p>
-                <div class="footer-links">
-                    <a href="../cgv.html">CGV</a>
-                    <a href="../index.html#contact">Contact</a>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2025 Natacha Aviat - Tous droits réservés</p>
-            </div>
-        </div>
-    </footer>
+    <footer data-include="../partials/footer.html"></footer>
 
     <script src="../js/main.js"></script>
     <script src="../js/components.js"></script>

@@ -3,25 +3,89 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Trois offres pour mettre vos données sur la carte : carte sur étagère, adaptation d'une carte existante, ou création sur-mesure. Pour managers techniques.">
-    <title>Services - Cartographie Interactive & Analyse de Données</title>
+    
+    <!-- SEO Meta Tags -->
+    <title>Services de Cartographie Interactive | Trois Niveaux d'Adaptation - Natacha Aviat</title>
+    <meta name="description" content="Trois offres pour mettre vos données sur la carte et obtenir des insights actionnables : carte sur étagère (démarrage rapide), adaptation d'une carte existante, ou création sur-mesure. Pour managers techniques, associations et institutions publiques.">
+    <meta name="keywords" content="services cartographie interactive, carte sur étagère, carte sur-mesure, adaptation carte, consultant data, visualisation données, insights actionnables">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://natacha-aviat.github.io/pro/services.html">
+    
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://natacha-aviat.github.io/pro/services.html">
+    <meta property="og:title" content="Services de Cartographie Interactive | Natacha Aviat">
+    <meta property="og:description" content="Trois offres pour mettre vos données sur la carte : carte sur étagère, adaptation d'une carte existante, ou création sur-mesure.">
+    <meta property="og:locale" content="fr_FR">
+    
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Services de Cartographie Interactive | Natacha Aviat">
+    <meta name="twitter:description" content="Trois offres pour mettre vos données sur la carte : carte sur étagère, adaptation d'une carte existante, ou création sur-mesure.">
+    
+    <!-- Schema.org JSON-LD pour Services -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Service",
+        "name": "Services de Cartographie Interactive",
+        "description": "Trois niveaux d'adaptation pour mettre vos données sur une carte et obtenir des insights actionnables pour vos équipes : carte sur étagère (0-600€), adaptation d'une carte existante (600-1500€), ou création sur-mesure (1500€+)",
+        "provider": {
+            "@type": "Person",
+            "name": "Natacha Aviat"
+        },
+        "serviceType": "Cartographie interactive et analyse de données",
+        "areaServed": "FR",
+        "hasOfferCatalog": {
+            "@type": "OfferCatalog",
+            "name": "Services de cartographie",
+            "itemListElement": [
+                {
+                    "@type": "Offer",
+                    "itemOffered": {
+                        "@type": "Service",
+                        "name": "Carte sur étagère",
+                        "description": "Carte interactive déjà créée, testée et éprouvée. Solution prête à l'emploi pour démarrer rapidement.",
+                        "price": "0-600",
+                        "priceCurrency": "EUR"
+                    }
+                },
+                {
+                    "@type": "Offer",
+                    "itemOffered": {
+                        "@type": "Service",
+                        "name": "Adaptation d'une carte existante",
+                        "description": "Personnalisation d'une carte existante sans toucher aux données : charte graphique, layers spécifiques, type de marqueur.",
+                        "price": "600-1500",
+                        "priceCurrency": "EUR"
+                    }
+                },
+                {
+                    "@type": "Offer",
+                    "itemOffered": {
+                        "@type": "Service",
+                        "name": "Carte sur-mesure",
+                        "description": "Création d'une carte entièrement adaptée au contexte, aux données et aux besoins du client. Analyse de données, nettoyage, structuration, visualisation.",
+                        "price": "1500+",
+                        "priceCurrency": "EUR"
+                    }
+                }
+            ]
+        }
+    }
+    </script>
+    
+    <!-- Meta tags pour indexation IA -->
+    <meta name="AI:ServiceType" content="Cartographie interactive, Analyse de données, Visualisation de données, Insights actionnables pour équipes">
+    <meta name="AI:PricingRange" content="0-600€ (étagère), 600-1500€ (adaptation), 1500€+ (sur-mesure)">
+    <meta name="AI:TargetAudience" content="Managers techniques, associations, entreprises engagées, institutions publiques">
+    
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/components.css">
 </head>
 <body>
     <!-- Header -->
-    <header data-include="partials/header.html">
-        <div class="container">
-            <a href="index.html" class="logo">Natacha Aviat</a>
-            <nav>
-                <ul>
-                    <li><a href="index.html" data-nav="index">Accueil</a></li>
-                    <li><a href="cartes-disponibles.html" data-nav="cartes">Cartes</a></li>
-                    <li><a href="services.html" data-nav="services">Services</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
+    <header data-include="partials/header.html"></header>
 
     <!-- Hero Section -->
     <section class="hero">
@@ -33,7 +97,7 @@
     <!-- Services en 3 colonnes -->
     <section class="section section-alt">
         <div class="container">
-            <div class="grid grid-3" style="gap: 2rem; align-items: stretch;">
+            <div class="grid grid-3 grid-gap-lg grid-align-stretch">
                 <!-- Offre 1 : Carte sur étagère -->
                 <div class="card service-card" id="carte-etagere">
                     <div class="service-card-header">
@@ -158,22 +222,7 @@
     <div data-include="partials/contact-form.html"></div>
 
     <!-- Footer -->
-    <footer data-include="partials/footer.html">
-        <div class="container">
-            <div class="footer-content-wrapper">
-                <p class="footer-brand">
-                    <strong>Natacha Aviat</strong> - Cartographie interactive et analyse de données
-                </p>
-                <div class="footer-links">
-                    <a href="cgv.html">CGV</a>
-                    <a href="index.html#contact">Contact</a>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2025 Natacha Aviat - Tous droits réservés</p>
-            </div>
-        </div>
-    </footer>
+    <footer data-include="partials/footer.html"></footer>
 
     <script src="js/main.js"></script>
     <script src="js/components.js"></script>

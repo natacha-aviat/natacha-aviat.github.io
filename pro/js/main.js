@@ -5,6 +5,7 @@ const CONTACT_FORM_FALLBACK = `
             <h2 class="text-center mb-2">Hâte de connaître votre projet</h2>
             <form id="contact-form" class="grid grid-3 contact-form-grid">
                 <div class="card contact-form-card">
+                    <p class="contact-form-label">Votre moyen de contact préféré</p>
                     <div class="form-group contact-form-group">
                         <input type="text" id="contact-info" name="contact-info" placeholder="Email, LinkedIn, téléphone..." required>
                     </div>
@@ -24,6 +25,14 @@ const CONTACT_FORM_FALLBACK = `
 `;
 
 /**
+ * ============================================================================
+ * GESTION DES PARTIALS HTML
+ * ============================================================================
+ * Charge dynamiquement les fichiers HTML partiels (header, footer, etc.)
+ * avec fallback en cas d'échec (pour fonctionnement local sans serveur)
+ */
+
+/**
  * Charge les partials HTML (header, footer, contact-form)
  */
 function loadIncludes() {
@@ -36,12 +45,23 @@ function loadIncludes() {
         return fetch(path)
             .then((response) => response.text())
             .then((html) => {
-                target.innerHTML = html;
+                // Pour header et footer, utiliser outerHTML pour remplacer complètement
+                if (path.includes('header.html') || path.includes('footer.html')) {
+                    target.outerHTML = html;
+                } else {
+                    target.innerHTML = html;
+                }
             })
             .catch(() => {
-                // Fallback pour le formulaire de contact
+                // Fallback pour les partials
                 if (path.endsWith('partials/contact-form.html')) {
                     target.innerHTML = CONTACT_FORM_FALLBACK;
+                } else if (path.includes('header.html')) {
+                    target.outerHTML = getHeaderFallback();
+                } else if (path.includes('footer.html')) {
+                    target.outerHTML = getFooterFallback();
+                } else if (path.includes('fiche-back-link.html')) {
+                    target.innerHTML = '<div class="fiche-back-link"><a href="../cartes-disponibles.html"><span>←</span><span>Retour aux cartes</span></a></div>';
                 } else {
                     target.innerHTML = '';
                 }
@@ -51,46 +71,66 @@ function loadIncludes() {
     return Promise.all(requests);
 }
 
-/**
- * Charge automatiquement header et footer si présents dans le DOM
- */
-function loadHeaderFooter() {
-    // Détecter le chemin relatif selon la profondeur
+// Détecter le chemin relatif selon la profondeur pour les fallbacks
+function getHeaderFallback() {
     const isFiche = window.location.pathname.includes('/fiches/');
-    const headerPath = isFiche ? '../partials/header.html' : 'partials/header.html';
-    const footerPath = isFiche ? '../partials/footer.html' : 'partials/footer.html';
+    const indexPath = isFiche ? '../index.html' : 'index.html';
+    const cartesPath = isFiche ? '../cartes-disponibles.html' : 'cartes-disponibles.html';
+    const servicesPath = isFiche ? '../services.html' : 'services.html';
+    const cgvPath = isFiche ? '../cgv.html' : 'cgv.html';
+    const contactPath = isFiche ? '../index.html#contact' : 'index.html#contact';
     
-    // Charger le header
-    const headerElement = document.querySelector('header[data-include]');
-    if (headerElement && !headerElement.hasAttribute('data-loaded')) {
-        const includePath = headerElement.getAttribute('data-include');
-        const pathToLoad = includePath || headerPath;
-        fetch(pathToLoad)
-            .then(response => response.text())
-            .then(html => {
-                headerElement.outerHTML = html;
-            })
-            .catch(() => {
-                // Si échec, garder le header existant
-            });
-    }
-    
-    // Charger le footer
-    const footerElement = document.querySelector('footer[data-include]');
-    if (footerElement && !footerElement.hasAttribute('data-loaded')) {
-        const includePath = footerElement.getAttribute('data-include');
-        const pathToLoad = includePath || footerPath;
-        fetch(pathToLoad)
-            .then(response => response.text())
-            .then(html => {
-                footerElement.outerHTML = html;
-            })
-            .catch(() => {
-                // Si échec, garder le footer existant
-            });
-    }
+    return `
+<header>
+    <div class="container">
+        <a href="${indexPath}" class="logo">Natacha Aviat</a>
+        <nav>
+            <ul>
+                <li><a href="${indexPath}" data-nav="index">Accueil</a></li>
+                <li><a href="${cartesPath}" data-nav="cartes">Cartes</a></li>
+                <li><a href="${servicesPath}" data-nav="services">Services</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+`;
 }
 
+function getFooterFallback() {
+    const isFiche = window.location.pathname.includes('/fiches/');
+    const cgvPath = isFiche ? '../cgv.html' : 'cgv.html';
+    const contactPath = isFiche ? '../index.html#contact' : 'index.html#contact';
+    
+    return `
+<footer>
+    <div class="container">
+        <div class="footer-content-wrapper">
+            <p class="footer-brand">
+                <strong>Natacha Aviat</strong> - Cartographie interactive et analyse de données
+            </p>
+            <div class="footer-links">
+                <a href="${cgvPath}">CGV</a>
+                <a href="${contactPath}">Contact</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Natacha Aviat - Tous droits réservés</p>
+        </div>
+    </div>
+</footer>
+`;
+}
+
+
+/**
+ * ============================================================================
+ * FORMULAIRES
+ * ============================================================================
+ */
+
+/**
+ * Initialise le formulaire de contact
+ */
 function initContactForm() {
     const contactForm = document.getElementById('contact-form');
     if (!contactForm) {
@@ -112,102 +152,37 @@ function initContactForm() {
     });
 }
 
-// Filtres pour la page réalisations
+/**
+ * Initialisation principale au chargement de la page
+ */
 document.addEventListener('DOMContentLoaded', function() {
-    const filterButtons = document.querySelectorAll('.filter-btn[data-filter]');
-    const sectorButtons = document.querySelectorAll('.filter-btn[data-sector]');
-    const projectItems = document.querySelectorAll('.project-item');
-    
-    let currentFilter = 'all';
-    let currentSector = 'all';
-    
-    // Gestion des filtres par type
-    filterButtons.forEach(button => {
-        button.addEventListener('click', function() {
-            // Mettre à jour l'état actif
-            filterButtons.forEach(btn => btn.classList.remove('active'));
-            this.classList.add('active');
-            
-            currentFilter = this.getAttribute('data-filter');
-            filterProjects();
-        });
-    });
-    
-    // Gestion des filtres par secteur
-    sectorButtons.forEach(button => {
-        button.addEventListener('click', function() {
-            // Mettre à jour l'état actif
-            sectorButtons.forEach(btn => btn.classList.remove('active'));
-            this.classList.add('active');
-            
-            currentSector = this.getAttribute('data-sector');
-            filterProjects();
-        });
-    });
-    
-    // Fonction de filtrage
-    function filterProjects() {
-        projectItems.forEach(item => {
-            const itemType = item.getAttribute('data-type');
-            const itemSector = item.getAttribute('data-sector');
-            
-            const typeMatch = currentFilter === 'all' || itemType === currentFilter;
-            const sectorMatch = currentSector === 'all' || itemSector === currentSector;
-            
-            if (typeMatch && sectorMatch) {
-                item.style.display = 'block';
-                item.classList.add('fade-in');
-            } else {
-                item.style.display = 'none';
-            }
-        });
-    }
-    
-    // Gestion des paramètres URL pour les liens depuis services.html
-    const urlParams = new URLSearchParams(window.location.search);
-    const typeParam = urlParams.get('type');
-    
-    if (typeParam) {
-        // Trouver et activer le bon filtre
-        const targetButton = Array.from(filterButtons).find(btn => {
-            const filter = btn.getAttribute('data-filter');
-            return (typeParam === 'cartes' && filter === 'cartes') ||
-                   (typeParam === 'analyses' && filter === 'analyses') ||
-                   (typeParam === 'outils' && filter === 'outils');
-        });
-        
-        if (targetButton) {
-            filterButtons.forEach(btn => btn.classList.remove('active'));
-            targetButton.classList.add('active');
-            currentFilter = targetButton.getAttribute('data-filter');
-            filterProjects();
-        }
-    }
-    
-    // Scroll vers l'ancre si présente dans l'URL
-    const hash = window.location.hash;
-    if (hash) {
-        const targetElement = document.querySelector(hash);
-        if (targetElement) {
-            setTimeout(() => {
-                targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
-            }, 100);
-        }
-    }
-    
-    // Charger tous les partials
-    loadHeaderFooter();
+    // Charger tous les partials HTML (header, footer, contact-form, etc.)
     loadIncludes().then(() => {
+        // Initialiser le formulaire de contact
         initContactForm();
-        // Initialiser les composants si le fichier est chargé
-        if (typeof initFicheForms === 'function') {
-            initFicheForms();
-        }
+        
+        // Initialiser la navigation active
         if (typeof initNavigation === 'function') {
             initNavigation();
         }
+        
+        // Initialiser les filtres (si sur la page cartes-disponibles.html)
+        if (typeof initFilters === 'function') {
+            initFilters();
+        }
     });
+    
+    // Gérer le scroll vers une ancre dans l'URL
+    if (typeof initHashScroll === 'function') {
+        initHashScroll();
+    }
 });
+
+/**
+ * ============================================================================
+ * UTILITAIRES
+ * ============================================================================
+ */
 
 /**
  * Affiche un message de succès ou d'erreur

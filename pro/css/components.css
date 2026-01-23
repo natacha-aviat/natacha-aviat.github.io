@@ -208,14 +208,36 @@
 
 .contact-form-grid {
     gap: 2rem;
+    grid-template-columns: 1fr 1fr 1fr;
 }
 
 .contact-form-card {
-    padding: 1.5rem;
-    margin: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    padding: 1.5rem !important;
+    margin: 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    justify-content: flex-start !important;
+    min-width: 0;
+    height: auto !important;
+    overflow: visible !important;
+}
+
+.contact-form-label {
+    display: block !important;
+    margin: 0 0 0.75rem 0 !important;
+    padding: 0 !important;
+    font-weight: 500 !important;
+    color: var(--text-color) !important;
+    width: 100% !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    position: relative !important;
+    z-index: 10 !important;
+    font-size: 1rem !important;
+    line-height: 1.5 !important;
+    background: transparent !important;
+    border: none !important;
 }
 
 .contact-form-card-message {
@@ -223,6 +245,7 @@
     margin: 0;
     display: flex;
     align-items: center;
+    min-width: 0;
 }
 
 .contact-form-card-submit {
@@ -232,6 +255,7 @@
     flex-direction: column;
     justify-content: center;
     text-align: center;
+    min-width: 0;
 }
 
 .contact-form-group {
@@ -288,6 +312,20 @@
     object-fit: cover;
 }
 
+.fiche-image-container-tool {
+    height: 600px;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: var(--shadow-md);
+}
+
+.fiche-image-container-tool img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    background-color: var(--bg-light);
+}
+
 .fiche-content-section {
     margin-bottom: 2rem;
 }
@@ -330,9 +368,6 @@
 
 .fiche-price-box {
     margin-bottom: 2rem;
-    padding: 1.5rem;
-    background-color: var(--bg-light);
-    border-radius: 8px;
 }
 
 .fiche-price {
@@ -356,7 +391,12 @@
 
 /* ===== FILTRES HERO ===== */
 .hero-filters {
-    margin-top: 2rem;
+    margin-top: 0.125rem !important;
+    margin-bottom: 0 !important;
+}
+
+.hero-filters:not(:first-of-type) {
+    margin-top: 1mm !important;
 }
 
 .hero .filter-btn {
@@ -431,11 +471,11 @@
     padding: 3rem;
 }
 
-.cgv-section {
+.cgv-section-title {
     margin-top: 2rem;
 }
 
-.cgv-section p {
+.cgv-section-text {
     margin-top: 1rem;
 }
 
@@ -462,6 +502,66 @@
     text-decoration: none;
     color: inherit;
     display: block;
+}
+
+/* ===== GRID UTILITAIRES ===== */
+.grid-gap-lg {
+    gap: 2rem;
+}
+
+.grid-align-stretch {
+    align-items: stretch;
+}
+
+/* ===== FICHES - LIEN RETOUR ===== */
+.fiche-back-link {
+    margin-bottom: 1.5rem;
+}
+
+.fiche-back-link a {
+    color: var(--accent-color);
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+/* ===== FICHES - CONTENU ===== */
+.fiche-content-spaced {
+    margin-top: 1rem;
+}
+
+.fiche-list-indented {
+    margin-left: 1.5rem;
+    margin-top: 0.5rem;
+}
+
+.fiche-methodology-section {
+    margin-bottom: 1.5rem;
+}
+
+.fiche-methodology-title {
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+    font-size: 1.25rem;
+}
+
+.fiche-methodology-subtitle {
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.fiche-methodology-text {
+    margin-bottom: 1rem;
+}
+
+.fiche-methodology-text-small {
+    margin-bottom: 0.5rem;
+}
+
+.fiche-link-external {
+    color: var(--accent-color);
 }
 
 /* ===== RESPONSIVE ===== */

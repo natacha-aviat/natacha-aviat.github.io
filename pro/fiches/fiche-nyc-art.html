@@ -3,118 +3,161 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Fiche détaillée - Œuvre d'art des stations de métro de NYC">
-    <title>Œuvres d'art des stations de métro de NYC - Natacha Aviat</title>
+    
+    <!-- SEO Meta Tags -->
+    <title>Carte Interactive des Œuvres d'Art du Métro de NYC | Gratuit - Natacha Aviat</title>
+    <meta name="description" content="Carte interactive de toutes les œuvres d'art du métro de New York depuis 1980. Explorez par décennie et genre. Données MTA. Gratuit.">
+    <meta name="keywords" content="carte art métro NYC, œuvres d'art New York, MTA art, carte interactive NYC, art public métro">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://natacha-aviat.github.io/pro/fiches/fiche-nyc-art.html">
+    
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://natacha-aviat.github.io/pro/fiches/fiche-nyc-art.html">
+    <meta property="og:title" content="Carte Interactive des Œuvres d'Art du Métro de NYC | Gratuit">
+    <meta property="og:description" content="Carte interactive de toutes les œuvres d'art du métro de New York depuis 1980. Explorez par décennie et genre.">
+    <meta property="og:image" content="https://natacha-aviat.github.io/assets/images/art_NYC.png">
+    
+    <!-- Schema.org Product pour indexation IA -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Product",
+        "name": "Carte Interactive des Œuvres d'Art du Métro de NYC",
+        "description": "Carte interactive de toutes les œuvres d'art du métro de New York depuis 1980. Explorez par décennie et genre d'artiste. Données MTA.",
+        "image": "https://natacha-aviat.github.io/assets/images/art_NYC.png",
+        "brand": {
+            "@type": "Person",
+            "name": "Natacha Aviat"
+        },
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "EUR",
+            "availability": "https://schema.org/InStock",
+            "url": "https://natacha-aviat.github.io/pro/fiches/fiche-nyc-art.html"
+        },
+        "category": "Cartographie interactive",
+        "keywords": "art métro NYC, œuvres d'art New York, MTA art, carte interactive",
+        "additionalProperty": [
+            {
+                "@type": "PropertyValue",
+                "name": "Technologies",
+                "value": "Python, Pandas, Folium"
+            },
+            {
+                "@type": "PropertyValue",
+                "name": "Source de données",
+                "value": "MTA - Metropolitan Transportation Authority"
+            },
+            {
+                "@type": "PropertyValue",
+                "name": "Date de mise à jour",
+                "value": "2024-10-09"
+            }
+        ]
+    }
+    </script>
+    
+    <!-- Meta tags pour indexation IA -->
+    <meta name="AI:ProductType" content="Carte interactive">
+    <meta name="AI:Price" content="Gratuit">
+    <meta name="AI:DataSource" content="MTA">
+    <meta name="AI:Technologies" content="Python, Pandas, Folium">
+    <meta name="AI:UseCase" content="Exploration du catalogue d'art public du métro de New York">
+    
     <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/components.css">
 </head>
 <body>
     <!-- Header -->
-    <header>
-        <div class="container">
-            <a href="../index.html" class="logo">Natacha Aviat</a>
-            <nav>
-                <ul>
-                    <li><a href="../index.html">Accueil</a></li>
-                    <li><a href="../cartes-disponibles.html">Cartes</a></li>
-                    <li><a href="../services.html">Services</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
+    <header data-include="../partials/header.html"></header>
 
     <!-- Fiche détaillée -->
     <section class="section">
-        <style>
-            @media (max-width: 768px) {
-                .fiche-container {
-                    grid-template-columns: 1fr !important;
-                }
-            }
-        </style>
         <div class="container">
-            <div class="fiche-container" style="display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: start;">
+            <div data-include="../partials/fiche-back-link.html"></div>
+            <div class="fiche-container">
                 <!-- Image à gauche -->
                 <div>
-                    <div style="height: 400px; border-radius: 8px; overflow: hidden; box-shadow: var(--shadow-md); display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); font-size: 8rem;">
-                        🗺️
+                    <div class="fiche-image-container">
+                        <img src="../../assets/images/art_NYC.png" alt="Carte interactive des œuvres d'art des stations de métro de New York avec filtrage par décennie" loading="lazy">
                     </div>
                 </div>
 
                 <!-- Contenu à droite -->
                 <div>
-                    <h1 style="margin-bottom: 2rem;">Œuvres d'art des stations de métro de NYC</h1>
+                    <h1 class="mb-2">Œuvres d'art des stations de métro de NYC</h1>
                     
-                    <div style="margin-bottom: 2rem;">
-                        <p>Cartographie de toutes les œuvres d'art du métro de New York</p>
+                    <div class="fiche-content-section">
+                        <p>Cartographie interactive de toutes les œuvres d'art du métro de New York, permettant d'explorer le catalogue permanent d'art depuis 1980.</p>
                     </div>
 
-                    <div style="margin-bottom: 2rem;">
-                        <p>Rendre accessible et explorable le catalogue des œuvres d'art du métro</p>
+                    <div class="fiche-before-after">
+                        <div>
+                            <h4 class="fiche-before-title">❌ Avant</h4>
+                            <ul>
+                                <li>Catalogue d'œuvres sous forme de tableur</li>
+                                <li>Pas de vision géographique des œuvres</li>
+                                <li>Difficulté à explorer les œuvres par période</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 class="fiche-after-title">✅ Après</h4>
+                            <ul>
+                                <li>Carte interactive avec toutes les œuvres géolocalisées</li>
+                                <li>Filtrage par décennie pour voir l'évolution</li>
+                                <li>Informations détaillées au clic (artiste, titre, date)</li>
+                                <li>Liens directs vers les pages des œuvres</li>
+                            </ul>
+                        </div>
                     </div>
 
-                    <div style="margin-bottom: 2rem;">
-                        <p>Carte interactive combinant les données MTA et le catalogue des œuvres, permettant d'explorer les stations et leurs œuvres</p>
+                    <div class="fiche-content-section">
+                        <h3 class="fiche-methodology-title">Méthodologie</h3>
+                        <div class="fiche-methodology-section">
+                            <h4 class="fiche-methodology-subtitle">1. Préparation des données :</h4>
+                            <p class="fiche-methodology-text">En utilisant Python et la bibliothèque <strong>Pandas</strong>, j'ai apparié chaque œuvre du "Catalogue Permanent d'Art" avec les coordonnées de sa station respective (latitude et longitude) à partir du jeu de données "Stations de métro". Ce processus a permis de lier chaque œuvre à l'emplacement géographique précis de sa station.</p>
+                        </div>
+                        <div class="fiche-methodology-section">
+                            <h4 class="fiche-methodology-subtitle">2. Création de la carte interactive :</h4>
+                            <p class="fiche-methodology-text-small">En utilisant la bibliothèque <strong>Folium</strong> de Python, une carte interactive a été générée pour afficher les œuvres disponibles dans le réseau de métro de New York.</p>
+                            <ul class="fiche-list-indented">
+                                <li>Pour chaque station, une fenêtre pop-up fournit le nom de la station, un lien vers la page de l'œuvre, le titre de l'œuvre, l'artiste et la date.</li>
+                                <li>Des couches filtrables permettent aux utilisateurs de visualiser les œuvres par décennie et par genre des artistes, offrant une perspective chronologique sur l'évolution de l'art public dans le réseau de métro.</li>
+                            </ul>
+                        </div>
                     </div>
 
-                    <div style="margin-bottom: 2rem;">
-                        <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+                    <div class="fiche-content-section">
+                        <div class="fiche-badges">
                             <span class="badge badge-secondary">Python</span>
                             <span class="badge badge-secondary">Pandas</span>
                             <span class="badge badge-secondary">Folium</span>
                         </div>
                     </div>
 
-                    <div style="margin-bottom: 2rem;">
-                        <p style="font-size: 0.9rem; color: var(--text-light);">Données issues de la MTA (Metropolitan Transportation Authority) - Catalogue Permanent d'Art depuis 1980</p>
+                    <div class="fiche-content-section">
+                        <p class="fiche-data-source">Données issues de la MTA (Metropolitan Transportation Authority) - <a href="https://data.ny.gov/Transportation/MTA-Permanent-Art-Catalog-Beginning-1980/4y8j-9pkd/about_data" target="_blank" class="fiche-link-external">Catalogue Permanent d'Art depuis 1980</a> et <a href="https://data.ny.gov/Transportation/MTA-Subway-Stations/39hk-dx4f/about_data" target="_blank" class="fiche-link-external">Stations de métro MTA</a> (9 octobre 2024)</p>
                     </div>
 
-                    <div style="margin-bottom: 2rem; padding: 1.5rem; background-color: var(--bg-light); border-radius: 8px;">
-                        <p style="font-size: 2rem; font-weight: 700; color: var(--accent-color);">0€</p>
+                    <div class="fiche-price-box">
+                        <p class="fiche-price">Gratuit</p>
                     </div>
 
-                    <form id="access-form" style="margin-bottom: 2rem;">
-                        <div class="form-group">
-                            <label for="email">Email *</label>
-                            <input type="email" id="email" name="email" required>
-                        </div>
-                        <div class="form-group" style="margin-top: 1rem;">
-                            <label for="message">Votre message</label>
-                            <textarea id="message" name="message" rows="4"></textarea>
-                        </div>
-                        <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 1rem;">Accéder à la carte</button>
-                    </form>
+                    <div class="fiche-form">
+                        <p class="mb-2">Pour accéder à cette carte, envoyez-moi un email :</p>
+                        <a href="mailto:natacha.aviat+map@gmail.com?subject=Accès à la carte : Œuvres d'art des stations de métro de NYC&body=Bonjour,%0D%0A%0D%0AJe souhaite accéder à la carte interactive des œuvres d'art des stations de métro de NYC.%0D%0A%0D%0AMon email :%0D%0A%0D%0AMessage (optionnel) :%0D%0A%0D%0AMerci !" class="btn btn-primary fiche-form-submit">Demander l'accès par email</a>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer>
-        <div class="container">
-            <div style="text-align: center; padding: 2rem 0;">
-                <p style="color: var(--bg-white); margin-bottom: 1rem; font-size: 1.1rem;">
-                    <strong>Natacha Aviat</strong> - Cartographie interactive et analyse de données
-                </p>
-                <div style="display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap;">
-                    <a href="../cgv.html" style="color: var(--bg-white); opacity: 0.9;">CGV</a>
-                    <a href="../index.html#contact" style="color: var(--bg-white); opacity: 0.9;">Contact</a>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2025 Natacha Aviat - Tous droits réservés</p>
-            </div>
-        </div>
-    </footer>
+    <footer data-include="../partials/footer.html"></footer>
 
     <script src="../js/main.js"></script>
-    <script>
-        document.getElementById('access-form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            const email = document.getElementById('email').value;
-            if (email) {
-                window.location.href = '../../projets/visualisations/NYC_Metro_Art_Map.html';
-            }
-        });
-    </script>
+    <script src="../js/components.js"></script>
 </body>
 </html>

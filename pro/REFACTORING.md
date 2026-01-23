@@ -3,6 +3,29 @@
 ## Objectif
 Rendre le code plus propre, maintenable et évolutif, même pour des humains.
 
+## Historique des refactorisations
+
+### Version 2 - Janvier 2025
+**Objectif** : Optimisation de la structure et factorisation du code
+
+#### Améliorations majeures
+- ✅ **Suppression du dossier blog vide** : Nettoyage des fichiers inutilisés
+- ✅ **Factorisation du code de filtrage** : Déplacement de `main.js` vers `components.js`
+- ✅ **Unification des DOMContentLoaded** : Suppression des conflits entre fichiers
+- ✅ **Réorganisation de main.js** : Structure claire avec sections commentées
+- ✅ **Amélioration de components.js** : Fonctions bien documentées et réutilisables
+- ✅ **Création de STRUCTURE.md** : Documentation complète de l'architecture
+
+#### Détails techniques
+- Code de filtrage extrait dans `initFilters()` dans `components.js`
+- Fonction `activateFilter()` créée pour éviter la duplication
+- `initHashScroll()` extraite pour la réutilisabilité
+- Suppression du `DOMContentLoaded` dupliqué dans `components.js`
+- Documentation améliorée avec sections claires
+
+### Version 1 - Décembre 2024
+**Objectif** : Élimination de la duplication et extraction des styles inline
+
 ## Améliorations apportées
 
 ### 1. Élimination de la duplication de code
@@ -18,7 +41,9 @@ Rendre le code plus propre, maintenable et évolutif, même pour des humains.
 ### 3. Organisation du JavaScript
 - ✅ Création de `js/components.js` pour les composants réutilisables
 - ✅ Amélioration de `js/main.js` avec documentation et organisation
-- ✅ Gestion automatique des formulaires de fiches
+- ✅ Factorisation du code de filtrage dans `components.js`
+- ✅ Unification de l'initialisation (un seul `DOMContentLoaded`)
+- ✅ Suppression du code obsolète (formulaires de fiches remplacés par mailto)
 
 ### 4. Structure des fichiers
 
@@ -97,8 +122,40 @@ Rendre le code plus propre, maintenable et évolutif, même pour des humains.
 - `fiches/fiche-pollution.html`
 - `js/main.js`
 
-### À refactoriser
-- `fiches/fiche-optimisation-tournees.html`
-- `fiches/fiche-inventaire.html`
-- `fiches/fiche-nyc-art.html`
-- `cgv.html`
+### Refactorisés (Phase 2 - Nettoyage complet)
+- ✅ `fiches/fiche-optimisation-tournees.html`
+- ✅ `fiches/fiche-inventaire.html`
+- ✅ `fiches/fiche-nyc-art.html`
+- ✅ `fiches/fiche-rejets.html`
+- ✅ `fiches/fiche-prelevements.html`
+- ✅ `fiches/fiche-lycees.html`
+- ✅ `fiches/fiche-pollution.html`
+- ✅ `cgv.html`
+- ✅ `index.html`
+- ✅ `services.html`
+
+### Nouvelles classes CSS ajoutées (Phase 2)
+
+#### Utilitaires de grille
+- `.grid-gap-lg` - Espacement de 2rem entre les éléments de grille
+- `.grid-align-stretch` - Alignement stretch pour les éléments de grille
+
+#### Fiches
+- `.fiche-back-link` - Conteneur pour le lien retour
+- `.fiche-content-spaced` - Paragraphe avec espacement supérieur
+- `.fiche-list-indented` - Liste avec indentation et espacement
+- `.fiche-methodology-section` - Section de méthodologie
+- `.fiche-methodology-title` - Titre de méthodologie
+- `.fiche-methodology-subtitle` - Sous-titre de méthodologie
+- `.fiche-methodology-text` - Texte de méthodologie
+- `.fiche-methodology-text-small` - Texte de méthodologie (petit)
+- `.fiche-link-external` - Lien externe dans les fiches
+
+#### CGV
+- `.cgv-card` - Carte principale CGV
+- `.cgv-section-title` - Titre de section CGV
+- `.cgv-section-text` - Texte de section CGV
+- `.cgv-footer` - Footer de la section CGV
+
+### Nouveaux partials créés
+- `partials/fiche-back-link.html` - Lien retour réutilisable pour toutes les fiches
