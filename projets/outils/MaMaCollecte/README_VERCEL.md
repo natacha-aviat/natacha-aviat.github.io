@@ -24,14 +24,17 @@ Ce guide explique comment déployer MaMaCollecte sur Vercel avec sauvegarde auto
 
 1. Allez sur https://vercel.com/new
 2. Importez votre repository GitHub `natacha-aviat.github.io`
-3. Dans les paramètres de déploiement :
-   - **Root Directory** : `projets/outils/MaMaCollecte`
-   - **Framework Preset** : Other
+3. **IMPORTANT** : Ne configurez PAS de Root Directory (laissez vide)
+   - Vercel servira les fichiers depuis la racine du repository
+   - Le fichier `vercel.json` gère les routes
 4. Cliquez sur "Environment Variables" et ajoutez :
    - `GITHUB_TOKEN` : votre token GitHub
    - `GITHUB_OWNER` : `natacha-aviat` (optionnel, par défaut)
    - `GITHUB_REPO` : `natacha-aviat.github.io` (optionnel, par défaut)
 5. Cliquez sur "Deploy"
+
+**Note** : Après le déploiement, votre application sera accessible à :
+- `https://[votre-projet].vercel.app/projets/outils/MaMaCollecte/MaMaCollecte.html`
 
 #### Option B : Via Vercel CLI
 
