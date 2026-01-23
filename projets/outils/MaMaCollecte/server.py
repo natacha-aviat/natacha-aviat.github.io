@@ -75,6 +75,8 @@ def generate_js_content(inscriptions):
         
         js_content += '    {\n'
         js_content += f'        id: {escape_js_string(reg.get("id", ""))},\n'
+        js_content += f'        firstName: {escape_js_string(reg.get("firstName", ""))},\n'
+        js_content += f'        lastName: {escape_js_string(reg.get("lastName", ""))},\n'
         js_content += f'        phone: {escape_js_string(reg.get("phone", ""))},\n'
         js_content += f'        email: {escape_js_string(reg.get("email", ""))},\n'
         js_content += f'        dateKey: {escape_js_string(reg.get("dateKey", ""))},\n'
