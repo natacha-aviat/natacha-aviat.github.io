@@ -1,5 +1,0 @@
-pandas>=2.0.0
-matplotlib>=3.7.0
-branca>=0.6.0
-folium>=0.15.0
-
