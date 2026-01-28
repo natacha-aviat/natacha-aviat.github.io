@@ -364,14 +364,12 @@
         // ============================================
         function initializeFromJS() {
             if (typeof PMI_ADDRESSES === 'undefined') {
-                console.error('PMI_ADDRESSES non défini');
                 document.getElementById('pmiList').innerHTML = 
                     '<p style="color: red;">❌ Erreur : Fichier pmi_addresses.js non chargé</p>';
                 return;
             }
             
             if (typeof PMI_DUREES === 'undefined') {
-                console.error('PMI_DUREES non défini');
                 return;
             }
             
@@ -674,8 +672,7 @@
                 displayRoute(orderedWaypoints);
                 
             } catch (error) {
-                console.error('Erreur complète:', error);
-                alert(`Erreur lors du calcul: ${error.message}\n\nVérifiez la console pour plus de détails.`);
+                alert(`Erreur lors du calcul: ${error.message}`);
             }
         }
 
@@ -792,7 +789,6 @@
             try {
                 const mapContainer = document.getElementById('mapContainer');
                 if (!mapContainer) {
-                    console.warn('mapContainer non trouvé');
                     isMapInitializing = false;
                     return;
                 }
@@ -827,7 +823,6 @@
                 setTimeout(() => {
                     const container = document.getElementById('mapContainer');
                     if (!container || container.offsetParent === null) {
-                        console.warn('mapContainer non visible');
                         isMapInitializing = false;
                         return;
                     }
@@ -945,12 +940,11 @@
                                             currentMap.setView(markers[0].getLatLng(), DETAILED_ZOOM);
                                         }
                                     } catch (e) {
-                                        console.warn('Erreur lors de l\'ajustement de la vue:', e);
+                                        // Erreur silencieuse
                                     }
                                     isMapInitializing = false;
                                 }, 150);
                             } catch (e) {
-                                console.warn('Erreur lors de la récupération des bounds:', e);
                                 isMapInitializing = false;
                             }
                         } else {
@@ -959,7 +953,6 @@
                     });
                 }, 50);
             } catch (error) {
-                console.error('Erreur dans displayMap:', error);
                 const mapContainer = document.getElementById('mapContainer');
                 if (mapContainer) {
                     mapContainer.innerHTML = `<p style="padding: 20px; text-align: center; color: red;">Erreur d'affichage: ${error.message}</p>`;
@@ -1004,7 +997,7 @@
                         }
                     }
                 } catch (photonError) {
-                    console.warn('Erreur avec Photon:', photonError);
+                    // Erreur silencieuse avec Photon
                 }
                 
                 // Fallback: utiliser des proxies CORS pour Nominatim
@@ -1052,7 +1045,7 @@
                             }
                         }
                     } catch (proxyError) {
-                        console.warn(`Erreur avec proxy:`, proxyError);
+                        // Erreur silencieuse avec proxy
                         continue;
                     }
                 }
@@ -1060,7 +1053,6 @@
                 throw new Error('Adresse non trouvée. Veuillez être plus précis (ex: "10 rue de la Paix, 75002 Paris")');
                 
             } catch (error) {
-                console.error('Erreur de géocodage:', error);
                 if (error.message.includes('Failed to fetch') || 
                     error.message.includes('NetworkError') || 
                     error.message.includes('fetch') ||
@@ -1202,7 +1194,6 @@
                         if (typeof PMI_ADDRESSES !== 'undefined' && typeof PMI_DUREES !== 'undefined') {
                             initializeFromJS();
                         } else {
-                            console.error('Données non disponibles après chargement');
                             document.getElementById('pmiList').innerHTML = 
                                 '<p style="color: red;">❌ Erreur : Les fichiers de données JavaScript ne sont pas chargés.</p>';
                         }
