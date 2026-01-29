@@ -1,0 +1,768 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Graphique APE - Rejets</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+        }
+        .chart-container {
+            position: relative;
+            height: 600px;
+            margin-top: 20px;
+        }
+        .info {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #e8f4f8;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        .legend-ape {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        .legend-ape h3 {
+            margin: 0 0 15px 0;
+            color: #333;
+        }
+        .legend-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 8px;
+        }
+        .legend-item {
+            display: flex;
+            align-items: center;
+            font-size: 12px;
+            cursor: pointer;
+            padding: 4px 8px;
+            border-radius: 4px;
+            transition: background-color 0.2s;
+        }
+        .legend-item:hover {
+            background-color: #f0f0f0;
+        }
+        .legend-item input[type="checkbox"] {
+            margin-right: 8px;
+            cursor: pointer;
+        }
+        .legend-color {
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            margin-right: 8px;
+            flex-shrink: 0;
+        }
+        .legend-controls {
+            margin-bottom: 10px;
+            display: flex;
+            gap: 10px;
+        }
+        .legend-controls button {
+            padding: 5px 12px;
+            font-size: 12px;
+            cursor: pointer;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            background: #f5f5f5;
+        }
+        .legend-controls button:hover {
+            background: #e0e0e0;
+        }
+    </style>
+</head>
+<body>
+    <!-- Bouton Retour -->
+    <a href="../index.html" style="
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        z-index: 1001;
+        background: #01665E;
+        color: white;
+        padding: 10px 20px;
+        border-radius: 8px;
+        text-decoration: none;
+        font-family: 'Segoe UI', Arial, sans-serif;
+        font-weight: 500;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        transition: background 0.2s;
+    " onmouseover="this.style.background='#014d47';" onmouseout="this.style.background='#01665E';">
+        ← Retour
+    </a>
+    
+    <div class="container">
+        <h2 style="text-align: center; color: #333;">Analyse des Rejets par Code APE</h2>
+        <p style="text-align: center; color: #666;">
+            Nombre de sites (abscisse) vs Volume médian des rejets en m³ (ordonnée)
+        </p>
+        <div class="chart-container">
+            <canvas id="apeChartRejets"></canvas>
+        </div>
+        <h2 style="text-align: center; margin-top: 40px; color: #333;">Analyse des Prélèvements par Code APE</h2>
+        <p style="text-align: center; color: #666;">
+            Nombre de sites (abscisse) vs Volume médian des prélèvements en m³ (ordonnée)
+        </p>
+        <div class="chart-container">
+            <canvas id="apeChartPrelevements"></canvas>
+        </div>
+        <div class="legend-ape">
+            <h3>🎨 Filtrer par section APE</h3>
+            <div class="legend-controls">
+                <button onclick="selectAllSections()">✓ Tout cocher</button>
+                <button onclick="deselectAllSections()">✗ Tout décocher</button>
+            </div>
+            <div class="legend-grid" id="legendGrid"></div>
+        </div>
+        <div class="info">
+            <strong>Lecture :</strong> Chaque point représente un code APE. 
+            La position horizontale indique le nombre de sites ayant ce code APE, 
+            et la position verticale indique le volume médian (en m³) pour ces sites.
+            La couleur correspond à la section APE (première lettre du code).
+        </div>
+        <div id="excludedInfo" class="info" style="background-color: #fff3cd; border-left: 4px solid #ffc107; margin-top: 15px;">
+            <strong>⚠️ Codes APE exclus :</strong> <span id="excludedDetails"></span>
+        </div>
+    </div>
+
+    <script>
+        // Sections APE avec leurs couleurs et libellés (basées sur les 2 premiers chiffres du code APE)
+        const sectionsAPE = {
+            'A': { color: 'rgba(76, 175, 80, 0.7)', border: 'rgba(76, 175, 80, 1)', label: 'Agriculture, sylviculture et pêche' },
+            'B': { color: 'rgba(121, 85, 72, 0.7)', border: 'rgba(121, 85, 72, 1)', label: 'Industries extractives' },
+            'C': { color: 'rgba(33, 150, 243, 0.7)', border: 'rgba(33, 150, 243, 1)', label: 'Industrie manufacturière' },
+            'D': { color: 'rgba(255, 193, 7, 0.7)', border: 'rgba(255, 193, 7, 1)', label: 'Électricité, gaz, vapeur' },
+            'E': { color: 'rgba(0, 188, 212, 0.7)', border: 'rgba(0, 188, 212, 1)', label: 'Eau, assainissement, déchets' },
+            'F': { color: 'rgba(255, 152, 0, 0.7)', border: 'rgba(255, 152, 0, 1)', label: 'Construction' },
+            'G': { color: 'rgba(156, 39, 176, 0.7)', border: 'rgba(156, 39, 176, 1)', label: 'Commerce, réparation auto' },
+            'H': { color: 'rgba(63, 81, 181, 0.7)', border: 'rgba(63, 81, 181, 1)', label: 'Transports et entreposage' },
+            'I': { color: 'rgba(233, 30, 99, 0.7)', border: 'rgba(233, 30, 99, 1)', label: 'Hébergement et restauration' },
+            'J': { color: 'rgba(103, 58, 183, 0.7)', border: 'rgba(103, 58, 183, 1)', label: 'Information et communication' },
+            'K': { color: 'rgba(0, 150, 136, 0.7)', border: 'rgba(0, 150, 136, 1)', label: 'Activités financières' },
+            'L': { color: 'rgba(205, 220, 57, 0.7)', border: 'rgba(205, 220, 57, 1)', label: 'Activités immobilières' },
+            'M': { color: 'rgba(255, 87, 34, 0.7)', border: 'rgba(255, 87, 34, 1)', label: 'Activités scientifiques et techniques' },
+            'N': { color: 'rgba(96, 125, 139, 0.7)', border: 'rgba(96, 125, 139, 1)', label: 'Services administratifs' },
+            'O': { color: 'rgba(244, 67, 54, 0.7)', border: 'rgba(244, 67, 54, 1)', label: 'Administration publique' },
+            'P': { color: 'rgba(139, 195, 74, 0.7)', border: 'rgba(139, 195, 74, 1)', label: 'Enseignement' },
+            'Q': { color: 'rgba(255, 235, 59, 0.7)', border: 'rgba(255, 235, 59, 1)', label: 'Santé et action sociale' },
+            'R': { color: 'rgba(158, 158, 158, 0.7)', border: 'rgba(158, 158, 158, 1)', label: 'Arts, spectacles, loisirs' },
+            'S': { color: 'rgba(183, 28, 28, 0.7)', border: 'rgba(183, 28, 28, 1)', label: 'Autres services' },
+            'T': { color: 'rgba(27, 94, 32, 0.7)', border: 'rgba(27, 94, 32, 1)', label: 'Activités des ménages' },
+            'U': { color: 'rgba(74, 20, 140, 0.7)', border: 'rgba(74, 20, 140, 1)', label: 'Organisations extraterritoriales' }
+        };
+        const defaultColor = { color: 'rgba(128, 128, 128, 0.7)', border: 'rgba(128, 128, 128, 1)', label: 'Autre' };
+
+        // Convertir les 2 premiers chiffres du code APE en section (lettre A-U)
+        function getSectionFromCode(codeAPE) {
+            if (!codeAPE || codeAPE.length < 2) return null;
+            const div = parseInt(codeAPE.substring(0, 2), 10);
+            if (isNaN(div)) return null;
+            
+            // Correspondance division -> section selon nomenclature NAF
+            if (div >= 1 && div <= 3) return 'A';   // Agriculture
+            if (div >= 5 && div <= 9) return 'B';   // Industries extractives
+            if (div >= 10 && div <= 33) return 'C'; // Industrie manufacturière
+            if (div === 35) return 'D';              // Électricité, gaz
+            if (div >= 36 && div <= 39) return 'E'; // Eau, assainissement
+            if (div >= 41 && div <= 43) return 'F'; // Construction
+            if (div >= 45 && div <= 47) return 'G'; // Commerce
+            if (div >= 49 && div <= 53) return 'H'; // Transports
+            if (div >= 55 && div <= 56) return 'I'; // Hébergement, restauration
+            if (div >= 58 && div <= 63) return 'J'; // Information, communication
+            if (div >= 64 && div <= 66) return 'K'; // Activités financières
+            if (div === 68) return 'L';              // Activités immobilières
+            if (div >= 69 && div <= 75) return 'M'; // Activités scientifiques
+            if (div >= 77 && div <= 82) return 'N'; // Services administratifs
+            if (div === 84) return 'O';              // Administration publique
+            if (div === 85) return 'P';              // Enseignement
+            if (div >= 86 && div <= 88) return 'Q'; // Santé
+            if (div >= 90 && div <= 93) return 'R'; // Arts, spectacles
+            if (div >= 94 && div <= 96) return 'S'; // Autres services
+            if (div >= 97 && div <= 98) return 'T'; // Activités des ménages
+            if (div === 99) return 'U';              // Organisations extraterritoriales
+            return null;
+        }
+
+        function getColorForAPE(codeAPE) {
+            const section = getSectionFromCode(codeAPE);
+            return section ? (sectionsAPE[section] || defaultColor) : defaultColor;
+        }
+        
+        function getSectionLetter(codeAPE) {
+            return getSectionFromCode(codeAPE) || '?';
+        }
+        
+        // Variables globales pour les graphiques et données
+        let chartRejets = null;
+        let chartPrelevements = null;
+        let allChartDataRejets = [];
+        let allChartDataPrelevements = [];
+        let selectedSections = new Set();
+
+        // Fonctions utilitaires
+        function cleanNumber(val) {
+            if (val === null || val === undefined || val === "") return 0;
+            const str = String(val).trim();
+            if (str === "" || str === " " || str === "\u00A0") return 0;
+            const cleaned = str.replace(/\s/g, '').replace(/\u00A0/g, '');
+            if (cleaned === "") return 0;
+            const num = parseFloat(cleaned);
+            return isNaN(num) || num < 0 ? 0 : num;
+        }
+
+        function median(values) {
+            if (values.length === 0) return 0;
+            const sorted = [...values].sort((a, b) => a - b);
+            const mid = Math.floor(sorted.length / 2);
+            return sorted.length % 2 === 0 
+                ? (sorted[mid - 1] + sorted[mid]) / 2 
+                : sorted[mid];
+        }
+        
+        // Générer la légende avec checkboxes
+        function buildLegend(usedSections) {
+            const legendGrid = document.getElementById('legendGrid');
+            legendGrid.innerHTML = '';
+            
+            // Initialiser les sections sélectionnées (toutes par défaut)
+            selectedSections = new Set(usedSections);
+            
+            // Trier les sections par lettre
+            const sortedSections = [...usedSections].sort();
+            
+            sortedSections.forEach(letter => {
+                const section = sectionsAPE[letter] || defaultColor;
+                const item = document.createElement('label');
+                item.className = 'legend-item';
+                item.innerHTML = `
+                    <input type="checkbox" class="section-checkbox" data-section="${letter}" checked>
+                    <span class="legend-color" style="background-color: ${section.color}; border: 2px solid ${section.border};"></span>
+                    <span><strong>${letter}</strong> - ${section.label}</span>
+                `;
+                legendGrid.appendChild(item);
+            });
+            
+            // Ajouter les événements aux checkboxes
+            document.querySelectorAll('.section-checkbox').forEach(checkbox => {
+                checkbox.addEventListener('change', function() {
+                    const section = this.dataset.section;
+                    if (this.checked) {
+                        selectedSections.add(section);
+                    } else {
+                        selectedSections.delete(section);
+                    }
+                    updateCharts();
+                });
+            });
+        }
+        
+        // Tout cocher
+        function selectAllSections() {
+            document.querySelectorAll('.section-checkbox').forEach(checkbox => {
+                checkbox.checked = true;
+                selectedSections.add(checkbox.dataset.section);
+            });
+            updateCharts();
+        }
+        
+        // Tout décocher
+        function deselectAllSections() {
+            document.querySelectorAll('.section-checkbox').forEach(checkbox => {
+                checkbox.checked = false;
+                selectedSections.delete(checkbox.dataset.section);
+            });
+            updateCharts();
+        }
+        
+        // Mettre à jour les graphiques
+        function updateCharts() {
+            // Filtrer les données rejets
+            const filteredRejets = allChartDataRejets.filter(point => 
+                selectedSections.has(getSectionLetter(point.codeAPE))
+            );
+            
+            // Mettre à jour graphique rejets
+            if (chartRejets) {
+                chartRejets.data.datasets[0].data = filteredRejets.map(p => ({ x: p.x, y: p.y }));
+                chartRejets.data.datasets[0].backgroundColor = filteredRejets.map(p => getColorForAPE(p.codeAPE).color);
+                chartRejets.data.datasets[0].borderColor = filteredRejets.map(p => getColorForAPE(p.codeAPE).border);
+                // Stocker les données filtrées pour les tooltips
+                chartRejets.options.plugins.tooltip.callbacks.label = function(context) {
+                    const point = filteredRejets[context.dataIndex];
+                    const sectionLetter = getSectionLetter(point.codeAPE);
+                    const section = sectionsAPE[sectionLetter] || defaultColor;
+                    return [
+                        `Code APE: ${point.codeAPE}`,
+                        `Section ${sectionLetter}: ${section.label}`,
+                        `Libellé: ${point.libelleAPE}`,
+                        `Nombre de sites: ${point.nbSites}`,
+                        `Volume médian: ${point.volumeMedian.toLocaleString('fr-FR')} m³`
+                    ];
+                };
+                chartRejets.update();
+            }
+            
+            // Filtrer les données prélèvements
+            const filteredPrelevements = allChartDataPrelevements.filter(point => 
+                selectedSections.has(getSectionLetter(point.codeAPE))
+            );
+            
+            // Mettre à jour graphique prélèvements
+            if (chartPrelevements) {
+                chartPrelevements.data.datasets[0].data = filteredPrelevements.map(p => ({ x: p.x, y: p.y }));
+                chartPrelevements.data.datasets[0].backgroundColor = filteredPrelevements.map(p => getColorForAPE(p.codeAPE).color);
+                chartPrelevements.data.datasets[0].borderColor = filteredPrelevements.map(p => getColorForAPE(p.codeAPE).border);
+                chartPrelevements.options.plugins.tooltip.callbacks.label = function(context) {
+                    const point = filteredPrelevements[context.dataIndex];
+                    const sectionLetter = getSectionLetter(point.codeAPE);
+                    const section = sectionsAPE[sectionLetter] || defaultColor;
+                    return [
+                        `Code APE: ${point.codeAPE}`,
+                        `Section ${sectionLetter}: ${section.label}`,
+                        `Libellé: ${point.libelleAPE}`,
+                        `Nombre de sites: ${point.nbSites}`,
+                        `Volume médian: ${point.volumeMedian.toLocaleString('fr-FR')} m³`
+                    ];
+                };
+                chartPrelevements.update();
+            }
+        }
+        
+        // Fonction principale qui sera appelée après le chargement des données
+        function initCharts() {
+            // Sauvegarder les données de rejets avant de charger les prélèvements
+            // Les deux fichiers JS utilisent la même variable 'etablissements', donc on doit sauvegarder
+            let etablissementsRejets = null;
+            if (typeof etablissements !== 'undefined') {
+                // Créer une copie profonde des données
+                etablissementsRejets = JSON.parse(JSON.stringify(etablissements));
+            }
+            
+            // Vérifier que les données sont chargées
+            if (typeof etablissements === 'undefined' || !etablissementsRejets) {
+                console.error('Les données ne sont pas chargées. Vérifiez le chemin du fichier JS.');
+                document.body.innerHTML = '<div class="container"><h1>Erreur</h1><p>Les données n\'ont pas pu être chargées. Vérifiez que le fichier ../data/donnees_VEOLIA_rejet.js existe.</p></div>';
+                return;
+            }
+
+            // Grouper les établissements par code APE
+            const apeGroups = {};
+            const excludedCodesAPE = ['3513Z', '3511Z'];
+            const excludedDataList = {};
+            
+            etablissementsRejets.etablissements.forEach(etablissement => {
+                const codeAPE = etablissement.code_ape || '';
+                const totalRejets = cleanNumber(etablissement.somme_rejets_m3);
+                
+                // Ignorer les établissements sans code APE ou sans rejets
+                if (!codeAPE || totalRejets === 0) return;
+                
+                // Séparer les codes APE exclus
+                if (excludedCodesAPE.includes(codeAPE)) {
+                    if (!excludedDataList[codeAPE]) {
+                        excludedDataList[codeAPE] = {
+                            codeAPE: codeAPE,
+                            libelleAPE: etablissement.libelle_ape || '',
+                            volumes: []
+                        };
+                    }
+                    excludedDataList[codeAPE].volumes.push(totalRejets);
+                    return; // Ne pas l'ajouter au graphique
+                }
+                
+                if (!apeGroups[codeAPE]) {
+                    apeGroups[codeAPE] = {
+                        codeAPE: codeAPE,
+                        libelleAPE: etablissement.libelle_ape || '',
+                        volumes: []
+                    };
+                }
+                
+                apeGroups[codeAPE].volumes.push(totalRejets);
+            });
+
+            // Calculer les statistiques pour chaque code APE
+            const chartData = [];
+            
+            Object.values(apeGroups).forEach(group => {
+            const nbSites = group.volumes.length;
+            const volumeMedian = median(group.volumes);
+            
+            chartData.push({
+                x: nbSites,
+                y: volumeMedian,
+                codeAPE: group.codeAPE,
+                libelleAPE: group.libelleAPE,
+                nbSites: nbSites,
+                volumeMedian: volumeMedian
+            });
+            });
+
+            // Trier par nombre de sites pour un meilleur affichage
+            chartData.sort((a, b) => a.x - b.x);
+            
+            // Stocker les données globalement
+            allChartDataRejets = chartData;
+
+            // Préparer les données pour Chart.js avec couleurs par section APE
+            const scatterData = chartData.map(point => ({
+                x: point.x,
+                y: point.y
+            }));
+
+            // Couleurs pour chaque point basées sur la première lettre du code APE
+            const backgroundColors = chartData.map(point => getColorForAPE(point.codeAPE).color);
+            const borderColors = chartData.map(point => getColorForAPE(point.codeAPE).border);
+            
+            // Collecter les sections utilisées pour la légende
+            const usedSections = new Set(chartData.map(point => getSectionLetter(point.codeAPE)).filter(s => s !== '?'));
+            buildLegend(usedSections);
+
+            // Créer le graphique des rejets
+            const ctxRejetsElement = document.getElementById('apeChartRejets');
+            if (!ctxRejetsElement) {
+                console.error('L\'élément apeChartRejets n\'existe pas');
+                return;
+            }
+            const ctxRejetsCanvas = ctxRejetsElement.getContext('2d');
+            chartRejets = new Chart(ctxRejetsCanvas, {
+            type: 'scatter',
+            data: {
+                datasets: [{
+                    label: 'Code APE',
+                    data: scatterData,
+                    backgroundColor: backgroundColors,
+                    borderColor: borderColors,
+                    pointRadius: 6,
+                    pointHoverRadius: 9
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    title: {
+                        display: true,
+                        text: 'Volume médian des rejets par code APE selon le nombre de sites'
+                    },
+                    legend: {
+                        display: false
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                const index = context.dataIndex;
+                                const point = chartData[index];
+                                const sectionLetter = getSectionLetter(point.codeAPE);
+                                const section = sectionsAPE[sectionLetter] || defaultColor;
+                                return [
+                                    `Code APE: ${point.codeAPE}`,
+                                    `Section ${sectionLetter}: ${section.label}`,
+                                    `Libellé: ${point.libelleAPE}`,
+                                    `Nombre de sites: ${point.nbSites}`,
+                                    `Volume médian: ${point.volumeMedian.toLocaleString('fr-FR')} m³`
+                                ];
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    x: {
+                        type: 'logarithmic',
+                        title: {
+                            display: true,
+                            text: 'Nombre de sites ayant ce code APE - Échelle logarithmique'
+                        },
+                        ticks: {
+                            callback: function(value) {
+                                return value.toLocaleString('fr-FR');
+                            }
+                        }
+                    },
+                    y: {
+                        type: 'logarithmic',
+                        title: {
+                            display: true,
+                            text: 'Volume médian des rejets (m³) - Échelle logarithmique'
+                        },
+                        ticks: {
+                            callback: function(value) {
+                                return value.toLocaleString('fr-FR');
+                            }
+                        }
+                    }
+                }
+            }
+            });
+
+            // Afficher quelques statistiques
+            console.log(`Nombre total de codes APE: ${chartData.length}`);
+            console.log(`Nombre total de sites: ${chartData.reduce((sum, p) => sum + p.nbSites, 0)}`);
+            
+            const maxSites = Math.max(...chartData.map(p => p.nbSites));
+            const maxMedian = Math.max(...chartData.map(p => p.volumeMedian));
+            
+            console.log(`Code APE avec le plus de sites: ${chartData.find(p => p.nbSites === maxSites)?.codeAPE} (${maxSites} sites)`);
+            console.log(`Volume médian maximum: ${maxMedian.toLocaleString('fr-FR')} m³`);
+            
+            // Afficher les informations sur les codes APE exclus
+            const excludedDetails = document.getElementById('excludedDetails');
+            const excludedCodes = Object.keys(excludedDataList);
+            
+            if (excludedCodes.length > 0) {
+                let htmlContent = '<br>';
+                
+                excludedCodes.forEach(codeAPE => {
+                    const excludedData = excludedDataList[codeAPE];
+                    const excludedMedian = median(excludedData.volumes);
+                    const excludedMin = Math.min(...excludedData.volumes);
+                    const excludedMax = Math.max(...excludedData.volumes);
+                    const excludedSum = excludedData.volumes.reduce((a, b) => a + b, 0);
+                    const excludedMean = excludedSum / excludedData.volumes.length;
+                    
+                    htmlContent += `
+                        <div style="margin-bottom: 20px;">
+                            <strong>Code APE ${excludedData.codeAPE}</strong> - ${excludedData.libelleAPE}
+                            <br><br>
+                            <strong>Statistiques :</strong>
+                            <ul style="margin: 10px 0; padding-left: 20px;">
+                                <li>Nombre de sites : ${excludedData.volumes.length}</li>
+                                <li>Volume total : ${excludedSum.toLocaleString('fr-FR')} m³</li>
+                                <li>Volume moyen : ${excludedMean.toLocaleString('fr-FR')} m³</li>
+                                <li>Volume médian : ${excludedMedian.toLocaleString('fr-FR')} m³</li>
+                                <li>Volume minimum : ${excludedMin.toLocaleString('fr-FR')} m³</li>
+                                <li>Volume maximum : ${excludedMax.toLocaleString('fr-FR')} m³</li>
+                            </ul>
+                        </div>
+                    `;
+                    
+                    console.log(`\nCode APE exclu (${codeAPE}):`, excludedData);
+                });
+                
+                htmlContent += '<em>Ces codes APE ont été exclus du graphique car ils sont considérés comme hors norme.</em>';
+                excludedDetails.innerHTML = htmlContent;
+            } else {
+                document.getElementById('excludedInfo').style.display = 'none';
+            }
+            
+            // ============================================
+            // GRAPHIQUE DES PRÉLÈVEMENTS
+            // ============================================
+            
+            // Charger les données de prélèvement de manière asynchrone
+            // Le fichier utilise maintenant 'etablissementsPrelevements' au lieu de 'etablissements'
+            const scriptPrelevements = document.createElement('script');
+            scriptPrelevements.src = '../data/donnees_VEOLIA_prelevement.js';
+            scriptPrelevements.onload = function() {
+                // Vérifier que les données sont disponibles
+                if (typeof etablissementsPrelevements === 'undefined') {
+                    console.error('Les données de prélèvement ne sont pas disponibles');
+                    document.getElementById('apeChartPrelevements').parentElement.innerHTML = 
+                        '<p style="text-align: center; color: red;">Erreur : Impossible de charger les données de prélèvement</p>';
+                    return;
+                }
+                // Créer le graphique des prélèvements
+                createPrelevementsChart();
+            };
+            scriptPrelevements.onerror = function() {
+                console.error('Erreur lors du chargement des données de prélèvement');
+                document.getElementById('apeChartPrelevements').parentElement.innerHTML = 
+                    '<p style="text-align: center; color: red;">Erreur : Impossible de charger les données de prélèvement</p>';
+            };
+            document.head.appendChild(scriptPrelevements);
+            
+            function createPrelevementsChart() {
+                // Vérifier que les données sont disponibles
+                if (typeof etablissementsPrelevements === 'undefined') {
+                    console.error('Les données de prélèvement ne sont pas disponibles');
+                    return;
+                }
+                
+                // Les données de prélèvement sont dans 'etablissementsPrelevements'
+                const etablissementsData = etablissementsPrelevements;
+                
+                // Grouper les établissements par code APE pour les prélèvements
+                const apeGroupsPrelevements = {};
+                const excludedCodesAPE = ['3513Z', '3511Z'];
+                const excludedDataListPrelevements = {};
+                
+                etablissementsData.etablissements.forEach(etablissement => {
+                    const codeAPE = etablissement.code_ape || '';
+                    const totalPrelevements = cleanNumber(etablissement.somme_prelevements_m3);
+                    
+                    // Ignorer les établissements sans code APE ou sans prélèvements
+                    if (!codeAPE || totalPrelevements === 0) return;
+                    
+                    // Séparer les codes APE exclus
+                    if (excludedCodesAPE.includes(codeAPE)) {
+                        if (!excludedDataListPrelevements[codeAPE]) {
+                            excludedDataListPrelevements[codeAPE] = {
+                                codeAPE: codeAPE,
+                                libelleAPE: etablissement.libelle_ape || '',
+                                volumes: []
+                            };
+                        }
+                        excludedDataListPrelevements[codeAPE].volumes.push(totalPrelevements);
+                        return;
+                    }
+                    
+                    if (!apeGroupsPrelevements[codeAPE]) {
+                        apeGroupsPrelevements[codeAPE] = {
+                            codeAPE: codeAPE,
+                            libelleAPE: etablissement.libelle_ape || '',
+                            volumes: []
+                        };
+                    }
+                    
+                    apeGroupsPrelevements[codeAPE].volumes.push(totalPrelevements);
+                });
+
+                // Calculer les statistiques pour chaque code APE
+                const chartDataPrelevements = [];
+                
+                Object.values(apeGroupsPrelevements).forEach(group => {
+                    const nbSites = group.volumes.length;
+                    const volumeMedian = median(group.volumes);
+                    
+                    chartDataPrelevements.push({
+                        x: nbSites,
+                        y: volumeMedian,
+                        codeAPE: group.codeAPE,
+                        libelleAPE: group.libelleAPE,
+                        nbSites: nbSites,
+                        volumeMedian: volumeMedian
+                    });
+                });
+
+                // Trier par nombre de sites
+                chartDataPrelevements.sort((a, b) => a.x - b.x);
+                
+                // Stocker les données globalement
+                allChartDataPrelevements = chartDataPrelevements;
+
+                // Préparer les données pour Chart.js avec couleurs par section APE
+                const scatterDataPrelevements = chartDataPrelevements.map(point => ({
+                    x: point.x,
+                    y: point.y
+                }));
+
+                // Couleurs pour chaque point basées sur la première lettre du code APE
+                const backgroundColorsP = chartDataPrelevements.map(point => getColorForAPE(point.codeAPE).color);
+                const borderColorsP = chartDataPrelevements.map(point => getColorForAPE(point.codeAPE).border);
+
+                // Créer le graphique des prélèvements
+                const ctxPrelevements = document.getElementById('apeChartPrelevements').getContext('2d');
+                chartPrelevements = new Chart(ctxPrelevements, {
+                    type: 'scatter',
+                    data: {
+                        datasets: [{
+                            label: 'Code APE',
+                            data: scatterDataPrelevements,
+                            backgroundColor: backgroundColorsP,
+                            borderColor: borderColorsP,
+                            pointRadius: 6,
+                            pointHoverRadius: 9
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            title: {
+                                display: true,
+                                text: 'Volume médian des prélèvements par code APE selon le nombre de sites'
+                            },
+                            legend: {
+                                display: false
+                            },
+                            tooltip: {
+                                callbacks: {
+                                    label: function(context) {
+                                        const index = context.dataIndex;
+                                        const point = chartDataPrelevements[index];
+                                        const sectionLetter = getSectionLetter(point.codeAPE);
+                                        const section = sectionsAPE[sectionLetter] || defaultColor;
+                                        return [
+                                            `Code APE: ${point.codeAPE}`,
+                                            `Section ${sectionLetter}: ${section.label}`,
+                                            `Libellé: ${point.libelleAPE}`,
+                                            `Nombre de sites: ${point.nbSites}`,
+                                            `Volume médian: ${point.volumeMedian.toLocaleString('fr-FR')} m³`
+                                        ];
+                                    }
+                                }
+                            }
+                        },
+                        scales: {
+                            x: {
+                                type: 'logarithmic',
+                                title: {
+                                    display: true,
+                                    text: 'Nombre de sites ayant ce code APE - Échelle logarithmique'
+                                },
+                                ticks: {
+                                    callback: function(value) {
+                                        return value.toLocaleString('fr-FR');
+                                    }
+                                }
+                            },
+                            y: {
+                                type: 'logarithmic',
+                                title: {
+                                    display: true,
+                                    text: 'Volume médian des prélèvements (m³) - Échelle logarithmique'
+                                },
+                                ticks: {
+                                    callback: function(value) {
+                                        return value.toLocaleString('fr-FR');
+                                    }
+                                }
+                            }
+                        }
+                    }
+                });
+                
+                console.log(`\nPrélèvements - Nombre total de codes APE: ${chartDataPrelevements.length}`);
+            }
+        }
+        
+        // Charger les données de rejets de manière asynchrone
+        const scriptRejets = document.createElement('script');
+        scriptRejets.src = '../data/donnees_VEOLIA_rejet.js';
+        scriptRejets.onload = function() {
+            // Attendre que le DOM soit prêt
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', initCharts);
+            } else {
+                initCharts();
+            }
+        };
+        scriptRejets.onerror = function() {
+            console.error('Erreur lors du chargement des données de rejets');
+            document.body.innerHTML = '<div class="container"><h1>Erreur</h1><p>Les données n\'ont pas pu être chargées. Vérifiez que le fichier ../data/donnees_VEOLIA_rejet.js existe.</p></div>';
+        };
+        document.head.appendChild(scriptRejets);
+    </script>
+</body>
+</html>

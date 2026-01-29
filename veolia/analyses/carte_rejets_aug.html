@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carte des Rejets - Avec Filtres</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <style>
+        html, body {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Arial, sans-serif;
+        }
+        #map {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            right: 0;
+            left: 320px;
+            width: calc(100% - 320px);
+            height: 100%;
+        }
+        #filters {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 320px;
+            height: 100%;
+            background: white;
+            box-shadow: 2px 0 10px rgba(0,0,0,0.1);
+            overflow-y: auto;
+            z-index: 1000;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        #filters h2 {
+            margin: 0 0 20px 0;
+            color: #01665E;
+            font-size: 1.3em;
+            border-bottom: 2px solid #01665E;
+            padding-bottom: 10px;
+        }
+        .filter-section {
+            margin-bottom: 20px;
+        }
+        .filter-section h3 {
+            margin: 0 0 10px 0;
+            font-size: 0.95em;
+            color: #333;
+        }
+        .filter-section input[type="text"],
+        .filter-section select {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 0.9em;
+            box-sizing: border-box;
+        }
+        .filter-section input[type="checkbox"] {
+            margin-right: 8px;
+        }
+        .filter-section label {
+            display: block;
+            margin: 5px 0;
+            font-size: 0.9em;
+            cursor: pointer;
+        }
+        .checkbox-group {
+            max-height: 150px;
+            overflow-y: auto;
+            border: 1px solid #eee;
+            padding: 10px;
+            border-radius: 4px;
+        }
+        #applyFilters {
+            width: 100%;
+            padding: 12px;
+            background: #01665E;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1em;
+            margin-top: 10px;
+        }
+        #applyFilters:hover {
+            background: #014d47;
+        }
+        #resetFilters {
+            width: 100%;
+            padding: 10px;
+            background: #f0f0f0;
+            color: #333;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.9em;
+            margin-top: 8px;
+        }
+        #stats {
+            background: #e8f4f8;
+            padding: 10px;
+            border-radius: 4px;
+            margin-bottom: 20px;
+            font-size: 0.9em;
+        }
+        #stats span {
+            font-weight: bold;
+            color: #01665E;
+        }
+        .legend {
+            margin-top: 20px;
+            padding-top: 15px;
+            border-top: 1px solid #eee;
+        }
+        .legend p {
+            margin: 5px 0;
+            font-size: 0.9em;
+        }
+        .legend-color {
+            display: inline-block;
+            width: 15px;
+            height: 15px;
+            margin-right: 8px;
+            vertical-align: middle;
+        }
+        .info-window {
+            padding: 10px;
+            font-family: Arial, sans-serif;
+        }
+        .info-window p {
+            margin: 5px 0;
+        }
+    </style>
+</head>
+<body>
+    <div id="filters">
+        <h2>🔍 Filtres - Rejets</h2>
+        
+        <div id="stats">
+            Sites affichés : <span id="countVisible">0</span> / <span id="countTotal">0</span>
+        </div>
+        
+        <div class="filter-section">
+            <h3>🔎 Recherche</h3>
+            <input type="text" id="searchName" placeholder="Nom d'établissement...">
+        </div>
+        
+        <div class="filter-section">
+            <h3>📊 Volume total (m³/an)</h3>
+            <label><input type="checkbox" class="volume-filter" value="small" checked> &lt; 10 000</label>
+            <label><input type="checkbox" class="volume-filter" value="medium" checked> 10 000 - 100 000</label>
+            <label><input type="checkbox" class="volume-filter" value="large" checked> 100 000 - 1 000 000</label>
+            <label><input type="checkbox" class="volume-filter" value="xlarge" checked> &gt; 1 000 000</label>
+        </div>
+        
+        <div class="filter-section">
+            <h3>🏭 Type de rejet</h3>
+            <label><input type="checkbox" class="type-filter" value="raccorde" checked> Rejets raccordés uniquement</label>
+            <label><input type="checkbox" class="type-filter" value="isole" checked> Rejets isolés uniquement</label>
+            <label><input type="checkbox" class="type-filter" value="both" checked> Les deux types</label>
+        </div>
+        
+        <div class="filter-section">
+            <h3>🗺️ Région</h3>
+            <select id="regionFilter">
+                <option value="">Toutes les régions</option>
+            </select>
+        </div>
+        
+        <div class="filter-section">
+            <h3>🏢 Section APE</h3>
+            <div class="checkbox-group" id="sectionList">
+                <label><input type="checkbox" class="section-filter" value="A" checked> A - Agriculture, sylviculture, pêche</label>
+                <label><input type="checkbox" class="section-filter" value="B" checked> B - Industries extractives</label>
+                <label><input type="checkbox" class="section-filter" value="C" checked> C - Industrie manufacturière</label>
+                <label><input type="checkbox" class="section-filter" value="D" checked> D - Électricité, gaz, vapeur</label>
+                <label><input type="checkbox" class="section-filter" value="E" checked> E - Eau, assainissement, déchets</label>
+                <label><input type="checkbox" class="section-filter" value="F" checked> F - Construction</label>
+                <label><input type="checkbox" class="section-filter" value="G" checked> G - Commerce, réparation auto</label>
+                <label><input type="checkbox" class="section-filter" value="H" checked> H - Transports et entreposage</label>
+                <label><input type="checkbox" class="section-filter" value="I" checked> I - Hébergement et restauration</label>
+                <label><input type="checkbox" class="section-filter" value="J" checked> J - Information et communication</label>
+                <label><input type="checkbox" class="section-filter" value="K" checked> K - Activités financières</label>
+                <label><input type="checkbox" class="section-filter" value="L" checked> L - Activités immobilières</label>
+                <label><input type="checkbox" class="section-filter" value="M" checked> M - Activités scientifiques</label>
+                <label><input type="checkbox" class="section-filter" value="N" checked> N - Services administratifs</label>
+                <label><input type="checkbox" class="section-filter" value="O" checked> O - Administration publique</label>
+                <label><input type="checkbox" class="section-filter" value="P" checked> P - Enseignement</label>
+                <label><input type="checkbox" class="section-filter" value="Q" checked> Q - Santé et action sociale</label>
+                <label><input type="checkbox" class="section-filter" value="R" checked> R - Arts, spectacles, loisirs</label>
+                <label><input type="checkbox" class="section-filter" value="S" checked> S - Autres services</label>
+            </div>
+        </div>
+        
+        <button id="resetFilters">Réinitialiser tous les filtres</button>
+        
+        <div class="legend">
+            <h3>Légende</h3>
+            <p><span class="legend-color" style="background:#01665E;"></span> Rejets raccordés</p>
+            <p><span class="legend-color" style="background:#A63603;"></span> Rejets isolés</p>
+        </div>
+    </div>
+    
+    <div id="map"></div>
+    
+    <!-- Bouton Retour -->
+    <a href="../index.html" style="
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        z-index: 1001;
+        background: white;
+        color: #01665E;
+        padding: 10px 20px;
+        border-radius: 8px;
+        text-decoration: none;
+        font-family: 'Segoe UI', Arial, sans-serif;
+        font-weight: 500;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        transition: background 0.2s, transform 0.2s;
+    " onmouseover="this.style.background='#01665E'; this.style.color='white';" onmouseout="this.style.background='white'; this.style.color='#01665E';">
+        ← Retour
+    </a>
+    
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="../data/donnees_VEOLIA_rejet.js"></script>
+    <script>
+        // Initialisation de la carte
+        const map = L.map('map').setView([46.603354, 1.888334], 6);
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '© OpenStreetMap contributors'
+        }).addTo(map);
+
+        // Couleurs
+        const rejetColors = {
+            'Raccordes': 'rgba(1, 102, 94, 0.7)',
+            'Isoles': 'rgba(166, 54, 3, 0.7)',
+        };
+        
+        // Convertir les 2 premiers chiffres du code APE en section (lettre A-U)
+        function getSectionFromCode(codeAPE) {
+            if (!codeAPE || codeAPE.length < 2) return null;
+            const div = parseInt(codeAPE.substring(0, 2), 10);
+            if (isNaN(div)) return null;
+            
+            if (div >= 1 && div <= 3) return 'A';
+            if (div >= 5 && div <= 9) return 'B';
+            if (div >= 10 && div <= 33) return 'C';
+            if (div === 35) return 'D';
+            if (div >= 36 && div <= 39) return 'E';
+            if (div >= 41 && div <= 43) return 'F';
+            if (div >= 45 && div <= 47) return 'G';
+            if (div >= 49 && div <= 53) return 'H';
+            if (div >= 55 && div <= 56) return 'I';
+            if (div >= 58 && div <= 63) return 'J';
+            if (div >= 64 && div <= 66) return 'K';
+            if (div === 68) return 'L';
+            if (div >= 69 && div <= 75) return 'M';
+            if (div >= 77 && div <= 82) return 'N';
+            if (div === 84) return 'O';
+            if (div === 85) return 'P';
+            if (div >= 86 && div <= 88) return 'Q';
+            if (div >= 90 && div <= 93) return 'R';
+            if (div >= 94 && div <= 96) return 'S';
+            if (div >= 97 && div <= 98) return 'T';
+            if (div === 99) return 'U';
+            return null;
+        }
+
+        // Stockage des marqueurs
+        let allMarkers = [];
+        let visibleMarkers = [];
+        
+        // Fonction de nettoyage des nombres
+        function cleanNumber(val) {
+            if (val === null || val === undefined || val === "") return 0;
+            const str = String(val).trim();
+            if (str === "" || str === " " || str === "\u00A0") return 0;
+            const cleaned = str.replace(/\s/g, '').replace(/\u00A0/g, '').replace(/\u202f/g, '');
+            if (cleaned === "") return 0;
+            const num = parseFloat(cleaned);
+            return isNaN(num) || num < 0 ? 0 : num;
+        }
+
+        // Fonction pour créer le SVG du piechart
+        function createPieChartSVG(raccorde, isole, size) {
+            const radius = size / 2;
+            const center = size / 2;
+            const total = raccorde + isole;
+            
+            if (total === 0) {
+                return `<svg width="${size}" height="${size}" viewBox="0 0 ${size} ${size}">
+                    <circle cx="${center}" cy="${center}" r="${radius}" fill="#ccc"/>
+                </svg>`;
+            }
+
+            let svg = `<svg width="${size}" height="${size}" viewBox="0 0 ${size} ${size}">`;
+            let startAngle = -90;
+            
+            const segments = [
+                { value: raccorde, color: rejetColors['Raccordes'] },
+                { value: isole, color: rejetColors['Isoles'] }
+            ];
+
+            segments.forEach(segment => {
+                if (segment.value > 0) {
+                    const angle = (segment.value / total) * 360;
+                    const endAngle = startAngle + angle;
+                    const largeArc = angle > 180 ? 1 : 0;
+                    
+                    const x1 = center + radius * Math.cos(startAngle * Math.PI / 180);
+                    const y1 = center + radius * Math.sin(startAngle * Math.PI / 180);
+                    const x2 = center + radius * Math.cos(endAngle * Math.PI / 180);
+                    const y2 = center + radius * Math.sin(endAngle * Math.PI / 180);
+                    
+                    if (angle >= 360) {
+                        svg += `<circle cx="${center}" cy="${center}" r="${radius}" fill="${segment.color}"/>`;
+                    } else {
+                        svg += `<path d="M ${center} ${center} L ${x1} ${y1} A ${radius} ${radius} 0 ${largeArc} 1 ${x2} ${y2} Z" fill="${segment.color}"/>`;
+                    }
+                    startAngle = endAngle;
+                }
+            });
+            
+            svg += `</svg>`;
+            return svg;
+        }
+
+        // Fonction pour créer une icône
+        function createCustomIcon(raccorde, isole, total) {
+            const minSize = 10;
+            const maxSize = 60;
+            let size = minSize;
+            
+            if (total > 0) {
+                const minValueGlobal = 15;
+                const maxValueGlobal = 5e9;
+                const logMin = Math.log10(minValueGlobal);
+                const logMax = Math.log10(maxValueGlobal);
+                const t = (Math.log10(total) - logMin) / (logMax - logMin);
+                size = Math.max(minSize, Math.min(maxSize, minSize + t * (maxSize - minSize)));
+            }
+            
+            const pieChartSVG = createPieChartSVG(raccorde, isole, size);
+            
+            return L.divIcon({
+                className: 'custom-icon',
+                html: pieChartSVG,
+                iconSize: [size, size],
+                iconAnchor: [size/2, size/2]
+            });
+        }
+
+        // Extraire les régions uniques
+        const regions = new Set();
+        
+        etablissements.etablissements.forEach(etab => {
+            if (etab.region) regions.add(etab.region);
+        });
+
+        // Remplir le select des régions
+        const regionSelect = document.getElementById('regionFilter');
+        [...regions].sort().forEach(region => {
+            const option = document.createElement('option');
+            option.value = region;
+            option.textContent = region;
+            regionSelect.appendChild(option);
+        });
+
+        // Créer les marqueurs
+        function initMarkers() {
+            document.getElementById('countTotal').textContent = etablissements.etablissements.length;
+            
+            etablissements.etablissements.forEach(etab => {
+                const raccordeVal = cleanNumber(etab.somme_rejet_raccorde_m3_par_an);
+                const isoleVal = cleanNumber(etab.somme_rejet_isole_m3_par_an);
+                const totalVal = cleanNumber(etab.somme_rejets_m3);
+                
+                if (totalVal === 0) return;
+                
+                const marker = L.marker(
+                    [etab.latitude, etab.longitude],
+                    { icon: createCustomIcon(raccordeVal, isoleVal, totalVal) }
+                );
+                
+                const formatValue = (val) => val === 0 ? "0" : val.toLocaleString('fr-FR');
+                
+                const popupContent = `
+                    <div class="info-window">
+                    <p><strong>Établissement :</strong> ${etab.nom_etablissement}</p>
+                    <p><strong>Région :</strong> ${etab.region || 'N/A'}</p>
+                    <p><strong>Code APE :</strong> ${etab.code_ape || 'N/A'}</p>
+                    <p><strong>Libellé APE :</strong> ${etab.libelle_ape || 'N/A'}</p>
+                    <p><strong>Rejet raccordé :</strong> ${formatValue(raccordeVal)} m³</p>
+                    <p><strong>Rejet isolé :</strong> ${formatValue(isoleVal)} m³</p>
+                    <p><strong>Total rejets :</strong> ${formatValue(totalVal)} m³</p>
+                    </div>
+                `;
+                marker.bindPopup(popupContent);
+                
+                allMarkers.push({
+                    marker: marker,
+                    data: etab,
+                    raccordeVal: raccordeVal,
+                    isoleVal: isoleVal,
+                    totalVal: totalVal
+                });
+            });
+            
+            applyFilters();
+        }
+
+        // Appliquer les filtres
+        function applyFilters() {
+            // Retirer les marqueurs actuels
+            visibleMarkers.forEach(m => map.removeLayer(m.marker));
+            visibleMarkers = [];
+            
+            // Récupérer les filtres
+            const searchName = document.getElementById('searchName').value.toLowerCase();
+            const selectedRegion = document.getElementById('regionFilter').value;
+            
+            const volumeFilters = [...document.querySelectorAll('.volume-filter:checked')].map(cb => cb.value);
+            const typeFilters = [...document.querySelectorAll('.type-filter:checked')].map(cb => cb.value);
+            const sectionFilters = [...document.querySelectorAll('.section-filter:checked')].map(cb => cb.value);
+            
+            allMarkers.forEach(m => {
+                const etab = m.data;
+                let visible = true;
+                
+                // Filtre par nom
+                if (searchName && !etab.nom_etablissement.toLowerCase().includes(searchName)) {
+                    visible = false;
+                }
+                
+                // Filtre par région
+                if (selectedRegion && etab.region !== selectedRegion) {
+                    visible = false;
+                }
+                
+                // Filtre par volume
+                if (volumeFilters.length > 0) {
+                    let volumeMatch = false;
+                    if (volumeFilters.includes('small') && m.totalVal < 10000) volumeMatch = true;
+                    if (volumeFilters.includes('medium') && m.totalVal >= 10000 && m.totalVal < 100000) volumeMatch = true;
+                    if (volumeFilters.includes('large') && m.totalVal >= 100000 && m.totalVal < 1000000) volumeMatch = true;
+                    if (volumeFilters.includes('xlarge') && m.totalVal >= 1000000) volumeMatch = true;
+                    if (!volumeMatch) visible = false;
+                }
+                
+                // Filtre par type
+                if (typeFilters.length > 0 && typeFilters.length < 3) {
+                    let typeMatch = false;
+                    const hasRaccorde = m.raccordeVal > 0;
+                    const hasIsole = m.isoleVal > 0;
+                    
+                    if (typeFilters.includes('raccorde') && hasRaccorde && !hasIsole) typeMatch = true;
+                    if (typeFilters.includes('isole') && hasIsole && !hasRaccorde) typeMatch = true;
+                    if (typeFilters.includes('both') && hasRaccorde && hasIsole) typeMatch = true;
+                    if (!typeMatch) visible = false;
+                }
+                
+                // Filtre par section APE
+                if (sectionFilters.length > 0 && sectionFilters.length < 19) {
+                    const section = getSectionFromCode(etab.code_ape);
+                    if (!section || !sectionFilters.includes(section)) {
+                        visible = false;
+                    }
+                }
+                
+                if (visible) {
+                    m.marker.addTo(map);
+                    visibleMarkers.push(m);
+                }
+            });
+            
+            document.getElementById('countVisible').textContent = visibleMarkers.length;
+        }
+
+        // Réinitialiser les filtres
+        function resetFilters() {
+            document.getElementById('searchName').value = '';
+            document.getElementById('regionFilter').value = '';
+            document.getElementById('apeSearch').value = '';
+            
+            document.querySelectorAll('.volume-filter, .type-filter, .section-filter').forEach(cb => {
+                cb.checked = true;
+            });
+            
+            applyFilters();
+        }
+
+        // Event listeners - filtrage automatique
+        document.getElementById('resetFilters').addEventListener('click', resetFilters);
+        document.getElementById('searchName').addEventListener('input', applyFilters);
+        document.getElementById('regionFilter').addEventListener('change', applyFilters);
+        
+        // Ajouter les listeners sur toutes les checkboxes
+        document.querySelectorAll('.volume-filter, .type-filter, .section-filter').forEach(cb => {
+            cb.addEventListener('change', applyFilters);
+        });
+
+        // Initialiser
+        initMarkers();
+    </script>
+</body>
+</html>
