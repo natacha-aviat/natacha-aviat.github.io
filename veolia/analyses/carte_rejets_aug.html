@@ -208,7 +208,7 @@
     <div id="map"></div>
     
     <!-- Bouton Retour -->
-    <a href="../index.html" style="
+    <a href="index.html" style="
         position: fixed;
         top: 20px;
         right: 20px;
@@ -229,8 +229,8 @@
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <script src="../data/donnees_VEOLIA_rejet.js"></script>
     <script>
-        // Initialisation de la carte
-        const map = L.map('map').setView([46.603354, 1.888334], 6);
+        // Initialisation de la carte centrée sur Paris
+        const map = L.map('map').setView([48.8566, 2.3522], 10);
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             attribution: '© OpenStreetMap contributors'
         }).addTo(map);
