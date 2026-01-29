@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- SEO Meta Tags -->
+    <title>NYC Metro Art Station Works Interactive Map | Free - Natacha Aviat</title>
+    <meta name="description" content="Interactive map of all NYC subway art works since 1980. Explore by decade and genre. MTA data. Free.">
+    <meta name="keywords" content="NYC metro art map, New York art works, MTA art, NYC interactive map, public art metro">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://natacha-aviat.github.io/pro/en/fiches/sheet-nyc-art.html">
+    <link rel="alternate" hreflang="fr" href="https://natacha-aviat.github.io/pro/fiches/fiche-nyc-art.html">
+    <link rel="alternate" hreflang="en" href="https://natacha-aviat.github.io/pro/en/fiches/sheet-nyc-art.html">
+    
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://natacha-aviat.github.io/pro/en/fiches/sheet-nyc-art.html">
+    <meta property="og:title" content="NYC Metro Art Station Works Interactive Map | Free">
+    <meta property="og:description" content="Interactive map of all NYC subway art works since 1980. Explore by decade and genre.">
+    <meta property="og:image" content="https://natacha-aviat.github.io/pro/images/art_NYC.png">
+    
+    <!-- Schema.org Product for AI indexing -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Product",
+        "name": "NYC Metro Art Station Works Interactive Map",
+        "description": "Interactive map of all NYC subway art works since 1980. Explore by decade and artist genre. MTA data.",
+        "image": "https://natacha-aviat.github.io/pro/images/art_NYC.png",
+        "brand": {
+            "@type": "Person",
+            "name": "Natacha Aviat"
+        },
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "EUR",
+            "availability": "https://schema.org/InStock",
+            "url": "https://natacha-aviat.github.io/pro/en/fiches/sheet-nyc-art.html"
+        },
+        "category": "Interactive mapping",
+        "keywords": "NYC metro art, New York art works, MTA art, interactive map",
+        "additionalProperty": [
+            {
+                "@type": "PropertyValue",
+                "name": "Technologies",
+                "value": "Python, Pandas, Folium"
+            },
+            {
+                "@type": "PropertyValue",
+                "name": "Data source",
+                "value": "MTA - Metropolitan Transportation Authority"
+            },
+            {
+                "@type": "PropertyValue",
+                "name": "Update date",
+                "value": "2024-10-09"
+            }
+        ]
+    }
+    </script>
+    
+    <!-- Meta tags for AI indexing -->
+    <meta name="AI:ProductType" content="Interactive map">
+    <meta name="AI:Price" content="Free">
+    <meta name="AI:DataSource" content="MTA">
+    <meta name="AI:Technologies" content="Python, Pandas, Folium">
+    <meta name="AI:UseCase" content="Exploration of NYC subway public art catalog">
+    
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="../../css/components.css">
+</head>
+<body>
+    <!-- Header -->
+    <header data-include="../partials/header.html"></header>
+
+    <!-- Detailed sheet -->
+    <section class="section">
+        <div class="container">
+            <div data-include="../partials/fiche-back-link.html"></div>
+            <div class="fiche-container">
+                <!-- Image on the left -->
+                <div>
+                    <div class="fiche-image-container">
+                        <img src="../../images/art_NYC.png" alt="Interactive map of NYC subway station art works with filtering by decade" loading="lazy">
+                    </div>
+                </div>
+
+                <!-- Content on the right -->
+                <div>
+                    <h1 class="mb-2">NYC Metro Art Station Works</h1>
+                    
+                    <div class="fiche-content-section">
+                        <p>Interactive mapping of all NYC subway art works, allowing to explore the permanent art catalog since 1980.</p>
+                    </div>
+
+                    <div class="fiche-before-after">
+                        <div>
+                            <h4 class="fiche-before-title">❌ Before</h4>
+                            <ul>
+                                <li>Art works catalog in spreadsheet format</li>
+                                <li>No geographical view of works</li>
+                                <li>Difficulty exploring works by period</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 class="fiche-after-title">✅ After</h4>
+                            <ul>
+                                <li>Interactive map with all geolocated works</li>
+                                <li>Filtering by decade to see evolution</li>
+                                <li>Detailed information on click (artist, title, date)</li>
+                                <li>Direct links to work pages</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="fiche-content-section">
+                        <h3 class="fiche-methodology-title">Methodology</h3>
+                        <div class="fiche-methodology-section">
+                            <h4 class="fiche-methodology-subtitle">1. Data preparation:</h4>
+                            <p class="fiche-methodology-text">Using Python and the <strong>Pandas</strong> library, I matched each work from the "Permanent Art Catalog" with the coordinates of its respective station (latitude and longitude) from the "Subway Stations" dataset. This process allowed linking each work to the precise geographical location of its station.</p>
+                        </div>
+                        <div class="fiche-methodology-section">
+                            <h4 class="fiche-methodology-subtitle">2. Interactive map creation:</h4>
+                            <p class="fiche-methodology-text-small">Using Python's <strong>Folium</strong> library, an interactive map was generated to display works available in the New York subway network.</p>
+                            <ul class="fiche-list-indented">
+                                <li>For each station, a pop-up window provides the station name, a link to the work page, the work title, artist and date.</li>
+                                <li>Filterable layers allow users to visualize works by decade and by artist genre, offering a chronological perspective on the evolution of public art in the subway network.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="fiche-content-section">
+                        <div class="fiche-badges">
+                            <span class="badge badge-secondary">Python</span>
+                            <span class="badge badge-secondary">Pandas</span>
+                            <span class="badge badge-secondary">Folium</span>
+                        </div>
+                    </div>
+
+                    <div class="fiche-content-section">
+                        <p class="fiche-data-source">Data from MTA (Metropolitan Transportation Authority) - <a href="https://data.ny.gov/Transportation/MTA-Permanent-Art-Catalog-Beginning-1980/4y8j-9pkd/about_data" target="_blank" class="fiche-link-external">Permanent Art Catalog since 1980</a> and <a href="https://data.ny.gov/Transportation/MTA-Subway-Stations/39hk-dx4f/about_data" target="_blank" class="fiche-link-external">MTA Subway Stations</a> (October 9, 2024)</p>
+                    </div>
+
+                    <div class="fiche-price-box">
+                        <p class="fiche-price">Free</p>
+                    </div>
+
+                    <div class="fiche-form">
+                        <p class="mb-2">To access this map, send me an email:</p>
+                        <a href="mailto:natacha.aviat+map@gmail.com?subject=Access to map: NYC Metro Art Station Works&body=Hello,%0D%0A%0D%0AI would like to access the interactive map of NYC subway station art works.%0D%0A%0D%0AMessage (optional):%0D%0A%0D%0AThank you!" class="btn btn-primary fiche-form-submit">Request access by email</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer data-include="../partials/footer.html"></footer>
+
+    <script src="../../js/main.js"></script>
+    <script src="../../js/components.js"></script>
+</body>
+</html>
