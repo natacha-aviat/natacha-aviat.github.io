@@ -94,7 +94,7 @@
 </head>
 <body>
     <!-- Bouton Retour -->
-    <a href="../index.html" style="
+    <a href="index.html" style="
         position: fixed;
         top: 20px;
         right: 20px;
@@ -113,6 +113,14 @@
     </a>
     
     <div class="container">
+        <div class="legend-ape">
+            <h3>🎨 Filtrer par section APE</h3>
+            <div class="legend-controls">
+                <button onclick="selectAllSections()">✓ Tout cocher</button>
+                <button onclick="deselectAllSections()">✗ Tout décocher</button>
+            </div>
+            <div class="legend-grid" id="legendGrid"></div>
+        </div>
         <h2 style="text-align: center; color: #333;">Analyse des Rejets par Code APE</h2>
         <p style="text-align: center; color: #666;">
             Nombre de sites (abscisse) vs Volume médian des rejets en m³ (ordonnée)
@@ -126,14 +134,6 @@
         </p>
         <div class="chart-container">
             <canvas id="apeChartPrelevements"></canvas>
-        </div>
-        <div class="legend-ape">
-            <h3>🎨 Filtrer par section APE</h3>
-            <div class="legend-controls">
-                <button onclick="selectAllSections()">✓ Tout cocher</button>
-                <button onclick="deselectAllSections()">✗ Tout décocher</button>
-            </div>
-            <div class="legend-grid" id="legendGrid"></div>
         </div>
         <div class="info">
             <strong>Lecture :</strong> Chaque point représente un code APE. 

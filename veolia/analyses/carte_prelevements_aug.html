@@ -197,7 +197,6 @@
             </div>
         </div>
         
-        <button id="resetFilters">Réinitialiser tous les filtres</button>
         
         <div class="legend">
             <h3>Légende</h3>
@@ -494,21 +493,7 @@
             document.getElementById('countVisible').textContent = visibleMarkers.length;
         }
 
-        // Réinitialiser les filtres
-        function resetFilters() {
-            document.getElementById('searchName').value = '';
-            document.getElementById('regionFilter').value = '';
-            document.getElementById('apeSearch').value = '';
-            
-            document.querySelectorAll('.volume-filter, .source-filter, .section-filter').forEach(cb => {
-                cb.checked = true;
-            });
-            
-            applyFilters();
-        }
-
         // Event listeners - filtrage automatique
-        document.getElementById('resetFilters').addEventListener('click', resetFilters);
         document.getElementById('searchName').addEventListener('input', applyFilters);
         document.getElementById('regionFilter').addEventListener('change', applyFilters);
         
