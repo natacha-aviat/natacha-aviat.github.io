@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rejets et Prélèvements en eaux des sites industriels</title>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
     <style>
         * {
             box-sizing: border-box;
@@ -38,15 +37,6 @@
             margin: 0;
             font-size: 1.1em;
         }
-        .section {
-            margin-bottom: 40px;
-        }
-        .section h2 {
-            color: #333;
-            border-bottom: 3px solid #01665E;
-            padding-bottom: 10px;
-            margin-bottom: 20px;
-        }
         .cards {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
@@ -70,7 +60,7 @@
         }
         .card-image {
             width: 100%;
-            height: 180px;
+            height: 200px;
             background-color: #e8f4f8;
             display: flex;
             align-items: center;
@@ -81,12 +71,6 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-        }
-        .card-image .placeholder {
-            color: #999;
-            font-size: 14px;
-            text-align: center;
-            padding: 20px;
         }
         .card-content {
             padding: 20px;
@@ -112,38 +96,6 @@
             font-size: 0.85em;
             font-weight: 500;
         }
-        .card-static {
-            background: white;
-            border-radius: 12px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            overflow: hidden;
-        }
-        .card-static .card-content {
-            padding: 20px;
-        }
-        .card-static .card-content h3 {
-            margin: 0 0 15px 0;
-            color: #d73027;
-            font-size: 1.3em;
-        }
-        .card-static ul {
-            margin: 0;
-            padding-left: 20px;
-            color: #666;
-            font-size: 0.95em;
-            line-height: 1.8;
-        }
-        .card-static li {
-            margin-bottom: 8px;
-        }
-        .card-static .warning {
-            color: #d73027;
-            font-weight: 500;
-        }
-        .card-static .info {
-            color: #4575b4;
-            font-weight: 500;
-        }
         footer {
             text-align: center;
             margin-top: 40px;
@@ -154,6 +106,98 @@
         footer a {
             color: #01665E;
         }
+
+        /* Graphique ventilation APE */
+        .chart-ape {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            padding: 24px;
+            margin-bottom: 40px;
+        }
+        .chart-ape h2 {
+            color: #01665E;
+            margin: 0 0 8px 0;
+            font-size: 1.5em;
+        }
+        .chart-ape .subtitle {
+            color: #666;
+            margin: 0 0 20px 0;
+            font-size: 0.95em;
+        }
+        .chart-ape-legend {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 16px;
+            font-size: 0.9em;
+        }
+        .chart-ape-legend span {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .chart-ape-legend .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 2px;
+        }
+        .chart-ape-legend .dot-rejets { background: #01665E; }
+        .chart-ape-legend .dot-prelevements { background: #4575b4; }
+        .chart-ape-wrap {
+            overflow-x: auto;
+        }
+        .chart-ape-bars {
+            min-width: 600px;
+        }
+        .chart-ape-row {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            margin-bottom: 8px;
+            font-size: 0.85em;
+        }
+        .chart-ape-label {
+            flex: 0 0 420px;
+            min-width: 420px;
+            max-width: 420px;
+            white-space: normal;
+            line-height: 1.35;
+            color: #333;
+        }
+        .chart-ape-label .code {
+            font-weight: 600;
+            color: #01665E;
+            margin-right: 6px;
+        }
+        .chart-ape-bars-row {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            min-width: 0;
+        }
+        .chart-ape-bar-wrap {
+            flex: 1;
+            max-width: 300px;
+            height: 20px;
+            background: #eee;
+            border-radius: 4px;
+            overflow: hidden;
+            display: flex;
+        }
+        .chart-ape-bar {
+            height: 100%;
+            border-radius: 4px;
+            min-width: 2px;
+        }
+        .chart-ape-bar.rejets { background: #01665E; }
+        .chart-ape-bar.prelevements { background: #4575b4; }
+        .chart-ape-value {
+            flex: 0 0 50px;
+            text-align: left;
+            color: #666;
+            font-variant-numeric: tabular-nums;
+        }
     </style>
 </head>
 <body>
@@ -163,220 +207,148 @@
             <p>Tableau de bord des visualisations de données</p>
         </header>
 
-        <!-- Section Cartes principales (en haut) -->
-        <div class="section">
-            <h2>🗺️ Cartes principales</h2>
-            <div class="cards">
-                <div class="card">
-                    <a href="carte_rejets.html">
-                        <div class="card-image">
-                            <img src="analyses/images/Carte_Rejets.png" alt="Carte des Rejets">
-                        </div>
-                        <div class="card-content">
-                            <h3>Carte des Rejets</h3>
-                            <p>Carte interactive avec camemberts montrant pour chaque établissement la répartition des rejets (raccordés vs isolés). Affiche les 4 844 sites ayant des rejets déclarés.</p>
-                            <span class="tag">Carte interactive</span>
-                        </div>
-                    </a>
-                </div>
-
-                <div class="card">
-                    <a href="carte_prelevements.html">
-                        <div class="card-image">
-                            <img src="analyses/images/Carte_Prelevements.png" alt="Carte des Prélèvements">
-                        </div>
-                        <div class="card-content">
-                            <h3>Carte des Prélèvements</h3>
-                            <p>Carte interactive avec camemberts montrant pour chaque établissement la répartition des prélèvements par source (souterraines, surfaces, distribution). Affiche les 2 374 sites ayant des prélèvements déclarés.</p>
-                            <span class="tag">Carte interactive</span>
-                        </div>
-                    </a>
-                </div>
-            </div>
-        </div>
-
-        <!-- Section Statistiques générales -->
-        <div class="section">
-            <h2>📊 Statistiques générales</h2>
-            <div class="cards">
-                <div class="card-static">
-                    <div class="card-content">
-                        <h3 style="color: #01665E;">Répartition des sites par type</h3>
-                        <div style="position: relative; height: 280px; margin: 10px 0;">
-                            <canvas id="pieChart"></canvas>
-                        </div>
-                        <p style="text-align: center; font-size: 0.9em; color: #888; margin-top: 10px;">Total : 12 830 sites</p>
+        <div class="cards">
+            <div class="card">
+                <a href="carte_rejets.html">
+                    <div class="card-image">
+                        <img src="images/carte_rejets.png" alt="Carte des Rejets">
                     </div>
-                </div>
-
-                <div class="card-static">
                     <div class="card-content">
-                        <h3>⚠️ Points d'attention</h3>
-                        
-                        <h4 style="color: #d73027; margin: 15px 0 10px 0; font-size: 1em;">Rejets suspects (volumes identiques multi-sites)</h4>
-                        <ul>
-                            <li><strong>AALBERTS SURFACE TECHNOLOGIES SAS</strong> : 6 sites → tous à 175 497 m³</li>
-                            <li><strong>ORANO MINING</strong> : 4 sites → tous à 1 692 767 m³</li>
-                            <li><strong>AUCHAN HYPERMARCHE</strong> : 5 sites → tous à 95 342 m³</li>
-                            <li><strong>CARRIERES & MATERIAUX NORD-EST</strong> : 10 sites → tous à 553 270 m³</li>
-                            <li><strong>LAFARGE GRANULATS</strong> : 3 sites → tous à 148 470 m³</li>
-                        </ul>
-                        
-                        <h4 style="color: #d73027; margin: 15px 0 10px 0; font-size: 1em;">Rejets identiques malgré prélèvements différents</h4>
-                        <ul>
-                            <li><strong>LAFARGE GRANULATS</strong> : 20+ sites, prélèvements de 8 120 à 272 520 m³, mais rejets tous à 148 470 m³</li>
-                            <li><strong>CARRIERES & MATERIAUX NORD-EST</strong> : 7+ sites, prélèvements de 16 400 à 296 306 m³, mais rejets tous à 553 270 m³</li>
-                            <li><strong>ORANO</strong> : Narbonne (262 291 m³) et Pierrelatte (2 811 615 m³) ont le même rejet : 1 877 549 m³</li>
-                        </ul>
+                        <h3>Carte des Rejets</h3>
+                        <p>Carte interactive avec camemberts montrant pour chaque établissement la répartition des rejets (raccordés vs isolés). Affiche les 4 844 sites ayant des rejets déclarés.</p>
+                        <span class="tag">Carte interactive</span>
                     </div>
-                </div>
+                </a>
+            </div>
+
+            <div class="card">
+                <a href="carte_prelevements.html">
+                    <div class="card-image">
+                        <img src="images/carte_prelevements.png" alt="Carte des Prélèvements">
+                    </div>
+                    <div class="card-content">
+                        <h3>Carte des Prélèvements</h3>
+                        <p>Carte interactive avec camemberts montrant pour chaque établissement la répartition des prélèvements par source (souterraines, surfaces, distribution). Affiche les 2 374 sites ayant des prélèvements déclarés.</p>
+                        <span class="tag">Carte interactive</span>
+                    </div>
+                </a>
             </div>
         </div>
 
-        <!-- Section Autres réflexions -->
-        <div class="section">
-            <h2>💡 Autres réflexions</h2>
-            <div class="cards">
-                <div class="card">
-                    <a href="analyses/carte_rejets_aug.html">
-                        <div class="card-image">
-                            <img src="analyses/images/carte_rejets_aug.png" alt="Carte Rejets avec filtres">
-                        </div>
-                        <div class="card-content">
-                            <h3>Carte des Rejets (avec filtres)</h3>
-                            <p>Carte interactive avec filtres par volume, type de rejet, région et section APE. Permet une exploration ciblée des données de rejets.</p>
-                            <span class="tag">Carte filtrable</span>
-                        </div>
-                    </a>
-                </div>
-
-                <div class="card">
-                    <a href="analyses/carte_prelevements_aug.html">
-                        <div class="card-image">
-                            <img src="analyses/images/carte_prelevements_aug.png" alt="Carte Prélèvements avec filtres">
-                        </div>
-                        <div class="card-content">
-                            <h3>Carte des Prélèvements (avec filtres)</h3>
-                            <p>Carte interactive avec filtres par volume, source de prélèvement, région et section APE. Permet une exploration ciblée des données de prélèvements.</p>
-                            <span class="tag">Carte filtrable</span>
-                        </div>
-                    </a>
-                </div>
-
-                <div class="card">
-                    <a href="analyses/graphique_ape_rejets.html">
-                        <div class="card-image">
-                            <img src="analyses/images/Analyse_APE.png" alt="Graphiques APE">
-                        </div>
-                        <div class="card-content">
-                            <h3>Analyse par code APE</h3>
-                            <p>Graphiques scatter montrant la relation entre le nombre de sites et le volume médian par code APE. Permet d'identifier les secteurs d'activité les plus consommateurs ou pollueurs.</p>
-                            <span class="tag">Scatter Plot</span>
-                        </div>
-                    </a>
-                </div>
-
-                <div class="card">
-                    <a href="analyses/heatmap_rejets.html">
-                        <div class="card-image">
-                            <img src="analyses/images/Heatmap_rejets.png" alt="Heatmap Rejets">
-                        </div>
-                        <div class="card-content">
-                            <h3>Heatmap Rejets</h3>
-                            <p>Concentration des rejets industriels sur le territoire français.</p>
-                            <span class="tag">Heatmap</span>
-                        </div>
-                    </a>
-                </div>
-
-                <div class="card">
-                    <a href="analyses/heatmap_prelevements.html">
-                        <div class="card-image">
-                            <img src="analyses/images/Heatmap_prelevements.png" alt="Heatmap Prélèvements">
-                        </div>
-                        <div class="card-content">
-                            <h3>Heatmap Prélèvements</h3>
-                            <p>Concentration des prélèvements d'eau sur le territoire français.</p>
-                            <span class="tag">Heatmap</span>
-                        </div>
-                    </a>
-                </div>
-
-                <div class="card">
-                    <a href="analyses/heatmap_diff.html">
-                        <div class="card-image">
-                            <img src="analyses/images/Heatmap_diff.png" alt="Heatmap Différence">
-                        </div>
-                        <div class="card-content">
-                            <h3>Heatmap Différence</h3>
-                            <p>Écart rejets - prélèvements. Vert = + prélèvements, Rouge = + rejets.</p>
-                            <span class="tag">Heatmap</span>
-                        </div>
-                    </a>
-                </div>
+        <section class="chart-ape" id="chartApe">
+            <h2>Ventilation par code APE</h2>
+            <p class="subtitle">Nombre de sites par section ou division NAF</p>
+            <div class="chart-ape-legend">
+                <span><span class="dot dot-rejets"></span> Rejets</span>
+                <span><span class="dot dot-prelevements"></span> Prélèvements</span>
             </div>
-        </div>
+            <div class="chart-ape-wrap">
+                <div class="chart-ape-bars" id="chartApeBars"></div>
+            </div>
+        </section>
 
         <footer>
             <p>Données issues de <a href="https://www.georisques.gouv.fr/" target="_blank">Géorisques</a> - Analyses industrielles</p>
             <p style="margin-top: 10px; font-size: 0.9em;">Made in NYC by Natacha Aviat - <a href="mailto:natacha.aviat@gmail.com">natacha.aviat@gmail.com</a></p>
         </footer>
     </div>
-    <script>
-        const ctx = document.getElementById('pieChart').getContext('2d');
-        
-        const data = {
-            labels: [
-                'Prélèvement seulement (654)',
-                'Prélèvement et Rejet (1 720)',
-                'Rejet seulement (3 124)',
-                'Ni prélèvement ni rejet (7 332)'
-            ],
-            datasets: [{
-                data: [654, 1720, 3124, 7332],
-                backgroundColor: [
-                    'rgba(140, 228, 255, 0.8)',
-                    'rgba(102, 178, 102, 0.8)',
-                    'rgba(1, 102, 94, 0.8)',
-                    'rgba(200, 200, 200, 0.8)'
-                ],
-                borderColor: [
-                    'rgba(140, 228, 255, 1)',
-                    'rgba(102, 178, 102, 1)',
-                    'rgba(1, 102, 94, 1)',
-                    'rgba(150, 150, 150, 1)'
-                ],
-                borderWidth: 2
-            }]
-        };
 
-        const chart = new Chart(ctx, {
-            type: 'pie',
-            data: data,
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                plugins: {
-                    legend: {
-                        position: 'bottom',
-                        labels: {
-                            padding: 15,
-                            font: { size: 11 }
-                        }
-                    },
-                    tooltip: {
-                        callbacks: {
-                            label: function(context) {
-                                const value = context.parsed;
-                                const total = context.dataset.data.reduce((a, b) => a + b, 0);
-                                const percentage = ((value / total) * 100).toFixed(1);
-                                return `${value.toLocaleString('fr-FR')} sites (${percentage}%)`;
-                            }
-                        }
-                    }
-                }
+    <script>
+        // Données intégrées (même ordre que data/sites_par_code_ape.csv) — évite CORS en file://
+        var APE_DATA = [
+            { code: "A", libelle: "Agriculture, sylviculture, pêche", rejets: 13, prelevements: 337 },
+            { code: "B", libelle: "Industries extractives", rejets: 122, prelevements: 289 },
+            { code: "101", libelle: "Transformation et conservation de la viande et préparation de produits à base de viande", rejets: 234, prelevements: 153 },
+            { code: "102", libelle: "Transformation et conservation de poissons, crustacés et mollusques", rejets: 37, prelevements: 18 },
+            { code: "103", libelle: "Transformation et conservation de fruits et légumes", rejets: 65, prelevements: 68 },
+            { code: "104", libelle: "Fabrication d'huiles et graisses végétales et animales", rejets: 15, prelevements: 12 },
+            { code: "105", libelle: "Fabrication de produits laitiers", rejets: 188, prelevements: 181 },
+            { code: "106", libelle: "Travail des grains, fabrication de produits amylacés", rejets: 16, prelevements: 13 },
+            { code: "107", libelle: "Fabrication de produits de boulangerie-pâtisserie et de pâtes alimentaires", rejets: 80, prelevements: 17 },
+            { code: "108", libelle: "Fabrication d'autres produits alimentaires", rejets: 152, prelevements: 118 },
+            { code: "109", libelle: "Fabrication d'aliments pour animaux", rejets: 25, prelevements: 20 },
+            { code: "11", libelle: "Fabrication de boissons", rejets: 113, prelevements: 95 },
+            { code: "12", libelle: "Fabrication de produits à base de tabac", rejets: 2, prelevements: 1 },
+            { code: "13", libelle: "Fabrication de textiles", rejets: 51, prelevements: 33 },
+            { code: "14", libelle: "Industrie de l'habillement", rejets: 3, prelevements: 2 },
+            { code: "15", libelle: "Industrie du cuir et de la chaussure", rejets: 12, prelevements: 6 },
+            { code: "16", libelle: "Travail du bois et fabrication d'articles en bois", rejets: 12, prelevements: 15 },
+            { code: "17", libelle: "Industrie du papier et du carton", rejets: 116, prelevements: 84 },
+            { code: "18", libelle: "Imprimerie et reproduction d'enregistrements", rejets: 14, prelevements: 2 },
+            { code: "20", libelle: "Industrie chimique", rejets: 385, prelevements: 233 },
+            { code: "21", libelle: "Fabrication de produits pharmaceutiques", rejets: 76, prelevements: 48 },
+            { code: "22", libelle: "Fabrication de produits en caoutchouc et en plastique", rejets: 94, prelevements: 51 },
+            { code: "23", libelle: "Fabrication de produits minéraux non métalliques", rejets: 128, prelevements: 131 },
+            { code: "24", libelle: "Métallurgie", rejets: 152, prelevements: 103 },
+            { code: "25", libelle: "Fabrication de produits métalliques", rejets: 247, prelevements: 57 },
+            { code: "26", libelle: "Fabrication de produits informatiques, électroniques et optiques", rejets: 31, prelevements: 13 },
+            { code: "27", libelle: "Fabrication d'équipements électriques", rejets: 52, prelevements: 21 },
+            { code: "28", libelle: "Fabrication de machines et équipements n.c.a.", rejets: 64, prelevements: 16 },
+            { code: "29", libelle: "Industrie automobile", rejets: 76, prelevements: 34 },
+            { code: "30", libelle: "Fabrication d'autres matériels de transport", rejets: 39, prelevements: 22 },
+            { code: "31", libelle: "Fabrication de meubles", rejets: 3, prelevements: 0 },
+            { code: "32", libelle: "Autres industries manufacturières", rejets: 19, prelevements: 4 },
+            { code: "33", libelle: "Réparation et installation de machines et d'équipements", rejets: 16, prelevements: 5 },
+            { code: "D", libelle: "Électricité, gaz, vapeur", rejets: 98, prelevements: 78 },
+            { code: "E", libelle: "Eau, assainissement, déchets", rejets: 403, prelevements: 106 },
+            { code: "F", libelle: "Construction", rejets: 14, prelevements: 9 },
+            { code: "G", libelle: "Commerce, réparation auto", rejets: 89, prelevements: 33 },
+            { code: "H", libelle: "Transports et entreposage", rejets: 102, prelevements: 27 },
+            { code: "I", libelle: "Hébergement et restauration", rejets: 1, prelevements: 0 },
+            { code: "J", libelle: "Information et communication", rejets: 5, prelevements: 3 },
+            { code: "K", libelle: "Activités financières", rejets: 3, prelevements: 2 },
+            { code: "L", libelle: "Activités immobilières", rejets: 8, prelevements: 9 },
+            { code: "M", libelle: "Activités scientifiques", rejets: 58, prelevements: 34 },
+            { code: "N", libelle: "Services administratifs", rejets: 80, prelevements: 56 },
+            { code: "O", libelle: "Administration publique", rejets: 67, prelevements: 21 },
+            { code: "P", libelle: "Enseignement", rejets: 0, prelevements: 0 },
+            { code: "Q", libelle: "Santé et action sociale", rejets: 31, prelevements: 23 },
+            { code: "R", libelle: "Arts, spectacles, loisirs", rejets: 2, prelevements: 2 },
+            { code: "S", libelle: "Autres services", rejets: 44, prelevements: 36 }
+        ];
+
+        (function () {
+            function escapeHtml(s) {
+                var div = document.createElement('div');
+                div.textContent = s;
+                return div.innerHTML;
             }
-        });
+            function escapeAttr(s) {
+                return escapeHtml(s).replace(/"/g, '&quot;');
+            }
+
+            function renderChart(data) {
+                if (!data.length) return;
+                var maxVal = 0;
+                data.forEach(function (r) {
+                    if (r.rejets > maxVal) maxVal = r.rejets;
+                    if (r.prelevements > maxVal) maxVal = r.prelevements;
+                });
+                if (maxVal === 0) maxVal = 1;
+
+                var container = document.getElementById('chartApeBars');
+                container.innerHTML = '';
+                data.forEach(function (row) {
+                    var pctRejets = (row.rejets / maxVal) * 100;
+                    var pctPrelevements = (row.prelevements / maxVal) * 100;
+                    var rowEl = document.createElement('div');
+                    rowEl.className = 'chart-ape-row';
+                    rowEl.innerHTML =
+                        '<div class="chart-ape-label" title="' + escapeAttr(row.libelle) + '"><span class="code">' + escapeHtml(row.code) + '</span>' + escapeHtml(row.libelle) + '</div>' +
+                        '<div class="chart-ape-bars-row">' +
+                        '<div class="chart-ape-bar-wrap" title="Rejets: ' + row.rejets + '">' +
+                        '<div class="chart-ape-bar rejets" style="width:' + pctRejets + '%"></div></div>' +
+                        '<span class="chart-ape-value">' + row.rejets + '</span>' +
+                        '<div class="chart-ape-bar-wrap" title="Prélèvements: ' + row.prelevements + '">' +
+                        '<div class="chart-ape-bar prelevements" style="width:' + pctPrelevements + '%"></div></div>' +
+                        '<span class="chart-ape-value">' + row.prelevements + '</span>' +
+                        '</div>';
+                    container.appendChild(rowEl);
+                });
+            }
+
+            renderChart(APE_DATA);
+        })();
     </script>
 </body>
 </html>

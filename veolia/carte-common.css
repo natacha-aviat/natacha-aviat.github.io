@@ -1,0 +1,264 @@
+/**
+ * Styles communs aux cartes Rejets et Prélèvements.
+ * Chaque page définit dans :root :
+ *   --carte-theme    : couleur principale (titres, boutons, accents)
+ *   --carte-theme-bg : fond des blocs (stats, bouton "Tout" section APE)
+ */
+
+/* ========== Layout ========== */
+html, body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Arial, sans-serif;
+}
+
+#map {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 320px;
+    width: calc(100% - 320px);
+    height: 100%;
+}
+
+#filters {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 320px;
+    height: 100%;
+    background: white;
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+    overflow-y: auto;
+    z-index: 1000;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+#filters h2 {
+    margin: 0 0 20px 0;
+    font-size: 1.3em;
+    border-bottom: 2px solid var(--carte-theme, #333);
+    padding-bottom: 10px;
+    color: var(--carte-theme, #333);
+}
+
+/* ========== Filtres ========== */
+.filter-section {
+    margin-bottom: 20px;
+}
+
+.filter-section h3 {
+    margin: 0 0 10px 0;
+    font-size: 0.95em;
+    color: #333;
+}
+
+.filter-section input[type="text"],
+.filter-section select {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 0.9em;
+    box-sizing: border-box;
+}
+
+.filter-section input[type="checkbox"] {
+    margin-right: 8px;
+}
+
+.filter-section label {
+    display: block;
+    margin: 5px 0;
+    font-size: 0.9em;
+    cursor: pointer;
+}
+
+.checkbox-group {
+    max-height: 150px;
+    overflow-y: auto;
+    border: 1px solid #eee;
+    padding: 10px;
+    border-radius: 4px;
+}
+
+/* ========== Stats ========== */
+#stats {
+    padding: 10px;
+    border-radius: 4px;
+    margin-bottom: 20px;
+    font-size: 0.9em;
+    background: var(--carte-theme-bg, #eee);
+}
+
+#stats span {
+    font-weight: bold;
+    color: var(--carte-theme, #333);
+}
+
+/* ========== Bouton Zoom sur... ========== */
+.btn-zoom {
+    width: 100%;
+    padding: 8px;
+    margin-top: 8px;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1em;
+    background: var(--carte-theme, #333);
+}
+
+.btn-zoom:hover {
+    opacity: 0.9;
+}
+
+/* ========== Boutons Section APE (Tout / Aucun) ========== */
+.section-ape-buttons {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 8px;
+}
+
+.btn-section-all {
+    flex: 1;
+    padding: 6px;
+    font-size: 0.85em;
+    border-radius: 4px;
+    cursor: pointer;
+    background: var(--carte-theme-bg, #eee);
+    color: var(--carte-theme, #333);
+    border: 1px solid var(--carte-theme, #333);
+}
+
+.btn-section-none {
+    flex: 1;
+    padding: 6px;
+    font-size: 0.85em;
+    border-radius: 4px;
+    cursor: pointer;
+    background: #fff;
+    color: #666;
+    border: 1px solid #ccc;
+}
+
+/* ========== Bouton Exporter CSV ========== */
+.btn-export {
+    width: 100%;
+    padding: 8px 12px;
+    margin-top: 8px;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.95em;
+    background: var(--carte-theme, #333);
+}
+
+.btn-export:hover {
+    opacity: 0.9;
+}
+
+.btn-export:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+/* ========== Message "Aucun établissement trouvé" ========== */
+.zoom-message {
+    margin-top: 8px;
+    padding: 8px;
+    font-size: 0.9em;
+    color: #c00;
+    background: #fff0f0;
+    border-radius: 4px;
+}
+
+.zoom-message[hidden] {
+    display: none;
+}
+
+/* ========== Légende ========== */
+.legend {
+    margin-top: 20px;
+    padding-top: 15px;
+    border-top: 1px solid #eee;
+}
+
+.legend h3 {
+    margin: 0 0 10px 0;
+    font-size: 0.95em;
+    color: #333;
+}
+
+.legend p {
+    margin: 5px 0;
+    font-size: 0.9em;
+}
+
+.legend-color {
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    margin-right: 8px;
+    vertical-align: middle;
+}
+
+/* ========== Popup / Info-bulle ========== */
+.info-window {
+    padding: 10px;
+    font-family: Arial, sans-serif;
+}
+
+.info-window p {
+    margin: 5px 0;
+}
+
+.info-window__header {
+    position: relative;
+    padding-right: 30px;
+}
+
+.btn-copy {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    padding: 4px;
+    background: transparent;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-copy:hover {
+    background: #f5f5f5;
+}
+
+/* ========== Bouton Retour ========== */
+.btn-back {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1001;
+    padding: 10px 20px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    font-weight: 500;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    transition: background 0.2s, color 0.2s;
+    background: white;
+    color: var(--carte-theme, #333);
+}
+
+.btn-back:hover {
+    background: var(--carte-theme, #333);
+    color: white;
+}
