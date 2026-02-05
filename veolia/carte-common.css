@@ -146,6 +146,22 @@ html, body {
     border: 1px solid #ccc;
 }
 
+/* ========== Recherche Code APE ========== */
+.search-ape {
+    width: 100%;
+    padding: 6px 8px;
+    margin-bottom: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 0.9em;
+    box-sizing: border-box;
+}
+
+.search-ape:focus {
+    outline: none;
+    border-color: var(--carte-theme, #333);
+}
+
 /* ========== Bouton Exporter CSV ========== */
 .btn-export {
     width: 100%;
