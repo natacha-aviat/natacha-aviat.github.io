@@ -220,6 +220,31 @@
             margin-left: 10px;
         }
 
+        /* Contraintes début/fin de tournée */
+        .constraint-tags {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+            flex-shrink: 0;
+            margin-left: 8px;
+        }
+        .constraint-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            font-size: 0.75em;
+            color: #555;
+            cursor: pointer;
+            white-space: nowrap;
+        }
+        .constraint-tag input {
+            margin: 0;
+            cursor: pointer;
+        }
+        .constraint-tag.active-start { color: #1976d2; font-weight: 600; }
+        .constraint-tag.active-end { color: #388e3c; font-weight: 600; }
+        .pmi-item .pmi-label-wrap { flex: 1; min-width: 0; }
+
         /* Google Maps Button */
         #googleMapsButton {
             margin: 0;
@@ -248,6 +273,7 @@
             <div class="input-section">
                 <div class="address-input">
                     <h3>Sélectionner les adresses à livrer</h3>
+                    <p style="margin: 0 0 10px 0; font-size: 0.9em; color: #666;">Indiquez éventuellement <strong>Début</strong> ou <strong>Fin</strong> pour des adresses à visiter en premier ou en dernier.</p>
                     <div class="pmi-controls">
                         <input type="text" id="searchPmi" placeholder="Rechercher une PMI..." class="search-input">
                         <div class="select-buttons">
@@ -323,6 +349,8 @@
         let currentMap = null;
         let isMapInitializing = false;
         let customAddresses = [];
+        /** Contraintes de passage : 'start' = à visiter au début, 'end' = à la fin, null = ordre libre */
+        let addressConstraint = {};
 
         // ============================================
         // FONCTIONS UTILITAIRES
@@ -413,6 +441,7 @@
             filteredPmis.forEach((pmi, index) => {
                 const pmiIndex = allPmis.indexOf(pmi);
                 const isChecked = selectedPmiIndices.has(pmiIndex);
+                const constraint = addressConstraint[pmi.address] || null;
                 
                 const checkboxDiv = document.createElement('div');
                 checkboxDiv.className = 'pmi-item';
@@ -424,18 +453,67 @@
                 checkbox.className = 'pmi-checkbox';
                 checkbox.checked = isChecked;
                 
+                const labelWrap = document.createElement('div');
+                labelWrap.className = 'pmi-label-wrap';
                 const label = document.createElement('label');
                 label.htmlFor = `pmi-${index}`;
                 label.innerHTML = `<strong>${pmi.nom}</strong><br><span class="pmi-address">${pmi.address}</span>`;
+                labelWrap.appendChild(label);
+                
+                const tagsDiv = document.createElement('div');
+                tagsDiv.className = 'constraint-tags';
+                const startTag = document.createElement('label');
+                startTag.className = 'constraint-tag' + (constraint === 'start' ? ' active-start' : '');
+                startTag.innerHTML = '<input type="checkbox" class="constraint-start" data-address="' + pmi.address.replace(/"/g, '&quot;') + '"> Début';
+                const endTag = document.createElement('label');
+                endTag.className = 'constraint-tag' + (constraint === 'end' ? ' active-end' : '');
+                endTag.innerHTML = '<input type="checkbox" class="constraint-end" data-address="' + pmi.address.replace(/"/g, '&quot;') + '"> Fin';
+                if (constraint === 'start') startTag.querySelector('input').checked = true;
+                if (constraint === 'end') endTag.querySelector('input').checked = true;
+                tagsDiv.appendChild(startTag);
+                tagsDiv.appendChild(endTag);
                 
                 checkboxDiv.appendChild(checkbox);
-                checkboxDiv.appendChild(label);
+                checkboxDiv.appendChild(labelWrap);
+                checkboxDiv.appendChild(tagsDiv);
                 pmiListDiv.appendChild(checkboxDiv);
             });
             
             pmiListDiv.addEventListener('change', (e) => {
                 if (e.target?.classList.contains('pmi-checkbox')) {
                     handlePmiToggle(e.target);
+                } else if (e.target?.classList.contains('constraint-start')) {
+                    const addr = e.target.dataset.address;
+                    const row = e.target.closest('.pmi-item');
+                    if (e.target.checked) {
+                        addressConstraint[addr] = 'start';
+                        const other = row?.querySelector('.constraint-end');
+                        if (other) other.checked = false;
+                        const pmiCheckbox = row?.querySelector('.pmi-checkbox');
+                        if (pmiCheckbox && !pmiCheckbox.checked) {
+                            pmiCheckbox.checked = true;
+                            selectedPmiIndices.add(parseInt(pmiCheckbox.dataset.index, 10));
+                        }
+                    } else {
+                        addressConstraint[addr] = null;
+                    }
+                    updateSelectedCount();
+                } else if (e.target?.classList.contains('constraint-end')) {
+                    const addr = e.target.dataset.address;
+                    const row = e.target.closest('.pmi-item');
+                    if (e.target.checked) {
+                        addressConstraint[addr] = 'end';
+                        const other = row?.querySelector('.constraint-start');
+                        if (other) other.checked = false;
+                        const pmiCheckbox = row?.querySelector('.pmi-checkbox');
+                        if (pmiCheckbox && !pmiCheckbox.checked) {
+                            pmiCheckbox.checked = true;
+                            selectedPmiIndices.add(parseInt(pmiCheckbox.dataset.index, 10));
+                        }
+                    } else {
+                        addressConstraint[addr] = null;
+                    }
+                    updateSelectedCount();
                 }
             });
             
@@ -537,7 +615,33 @@
         // ============================================
         // OPTIMISATION DE LA TOURNÉE
         // ============================================
-        async function calculateOptimalOrder(waypoints) {
+        /** Plus proche voisin sur un sous-ensemble d'indices à partir d'un point de départ. Retourne la liste ordonnée des indices visités (sans le départ). */
+        function nearestNeighborSegment(startIndex, indexSet, dureesMatrix) {
+            const available = new Set(indexSet);
+            const order = [];
+            let current = startIndex;
+            while (available.size > 0) {
+                let minDuree = Infinity;
+                let nextPoint = -1;
+                for (const i of available) {
+                    const d = dureesMatrix[current][i];
+                    if (d < minDuree) {
+                        minDuree = d;
+                        nextPoint = i;
+                    }
+                }
+                if (nextPoint === -1 || minDuree === Infinity) {
+                    nextPoint = available.values().next().value;
+                    if (nextPoint === undefined) break;
+                }
+                available.delete(nextPoint);
+                order.push(nextPoint);
+                current = nextPoint;
+            }
+            return order;
+        }
+
+        async function calculateOptimalOrder(waypoints, atStartIndices, atEndIndices) {
             if (dureesMap.size === 0) {
                 throw new Error('Les durées de trajet n\'ont pas été chargées. Veuillez recharger la page.');
             }
@@ -549,7 +653,44 @@
                 )
             );
 
-            // Algorithme du plus proche voisin
+            const hasStart = Array.isArray(atStartIndices) && atStartIndices.length > 0;
+            const hasEnd = Array.isArray(atEndIndices) && atEndIndices.length > 0;
+
+            if (hasStart || hasEnd) {
+                const atStartSet = new Set(hasStart ? atStartIndices : []);
+                const atEndSet = new Set(hasEnd ? atEndIndices : []);
+                const middleSet = [];
+                for (let i = 1; i < n; i++) {
+                    if (!atStartSet.has(i) && !atEndSet.has(i)) middleSet.push(i);
+                }
+
+                let orderStart = nearestNeighborSegment(0, atStartSet, dureesMatrix);
+                const lastAfterStart = orderStart.length > 0 ? orderStart[orderStart.length - 1] : 0;
+                let orderMiddle = nearestNeighborSegment(lastAfterStart, middleSet, dureesMatrix);
+                const lastAfterMiddle = orderMiddle.length > 0 ? orderMiddle[orderMiddle.length - 1] : lastAfterStart;
+                let orderEnd = nearestNeighborSegment(lastAfterMiddle, atEndSet, dureesMatrix);
+
+                if (orderStart.length <= MAX_OPTIMIZATION_WAYPOINTS) {
+                    const startOrder = [0, ...orderStart];
+                    optimize2Opt(startOrder, dureesMatrix);
+                    orderStart = startOrder.slice(1);
+                }
+                if (orderMiddle.length <= MAX_OPTIMIZATION_WAYPOINTS && orderMiddle.length >= 2) {
+                    const midOrder = [lastAfterStart, ...orderMiddle];
+                    optimize2Opt(midOrder, dureesMatrix);
+                    orderMiddle = midOrder.slice(1);
+                }
+                if (orderEnd.length <= MAX_OPTIMIZATION_WAYPOINTS && orderEnd.length >= 2) {
+                    const endOrder = [lastAfterMiddle, ...orderEnd];
+                    optimize2Opt(endOrder, dureesMatrix);
+                    orderEnd = endOrder.slice(1);
+                }
+
+                const order = [0, ...orderStart, ...orderMiddle, ...orderEnd];
+                return order;
+            }
+
+            // Sans contrainte : algorithme du plus proche voisin sur tous les points
             const visited = new Set([0]);
             const order = [0];
             
@@ -582,7 +723,6 @@
                 order.push(nextPoint);
             }
             
-            // Amélioration 2-opt si le nombre de points est raisonnable
             if (order.length <= MAX_OPTIMIZATION_WAYPOINTS) {
                 optimize2Opt(order, dureesMatrix);
             }
@@ -666,7 +806,15 @@
                     return;
                 }
 
-                const optimalOrder = await calculateOptimalOrder(locations);
+                const atStartIndices = [];
+                const atEndIndices = [];
+                for (let i = 1; i < locations.length; i++) {
+                    const c = addressConstraint[locations[i].address];
+                    if (c === 'start') atStartIndices.push(i);
+                    else if (c === 'end') atEndIndices.push(i);
+                }
+
+                const optimalOrder = await calculateOptimalOrder(locations, atStartIndices, atEndIndices);
                 const orderedWaypoints = optimalOrder.map(index => locations[index]);
                 
                 displayRoute(orderedWaypoints);
@@ -1082,11 +1230,36 @@
                 const addressText = document.createElement('span');
                 addressText.textContent = `${addr.nom || 'Adresse personnalisée'} - ${addr.address}`;
                 
+                const tagsDiv = document.createElement('div');
+                tagsDiv.className = 'constraint-tags';
+                const constraint = addressConstraint[addr.address] || null;
+                const startTag = document.createElement('label');
+                startTag.className = 'constraint-tag' + (constraint === 'start' ? ' active-start' : '');
+                const startInput = document.createElement('input');
+                startInput.type = 'checkbox';
+                startInput.className = 'constraint-start';
+                startInput.dataset.address = addr.address;
+                if (constraint === 'start') startInput.checked = true;
+                startTag.appendChild(startInput);
+                startTag.appendChild(document.createTextNode(' Début'));
+                const endTag = document.createElement('label');
+                endTag.className = 'constraint-tag' + (constraint === 'end' ? ' active-end' : '');
+                const endInput = document.createElement('input');
+                endInput.type = 'checkbox';
+                endInput.className = 'constraint-end';
+                endInput.dataset.address = addr.address;
+                if (constraint === 'end') endInput.checked = true;
+                endTag.appendChild(endInput);
+                endTag.appendChild(document.createTextNode(' Fin'));
+                tagsDiv.appendChild(startTag);
+                tagsDiv.appendChild(endTag);
+                
                 const removeButton = document.createElement('button');
                 removeButton.textContent = '✕';
                 removeButton.className = 'custom-address-remove';
                 removeButton.title = 'Supprimer cette adresse';
                 removeButton.addEventListener('click', () => {
+                    delete addressConstraint[addr.address];
                     customAddresses.splice(index, 1);
                     updateCustomAddressesList();
                     const statusDiv = document.getElementById('customAddressStatus');
@@ -1095,6 +1268,7 @@
                 });
                 
                 itemDiv.appendChild(addressText);
+                itemDiv.appendChild(tagsDiv);
                 itemDiv.appendChild(removeButton);
                 itemsContainer.appendChild(itemDiv);
             });
@@ -1183,6 +1357,30 @@
             if (customAddressInput) {
                 customAddressInput.addEventListener('keypress', (e) => {
                     if (e.key === 'Enter') handleCustomAddress();
+                });
+            }
+            const customItemsContainer = document.getElementById('customAddressesItems');
+            if (customItemsContainer) {
+                customItemsContainer.addEventListener('change', (e) => {
+                    if (e.target?.classList.contains('constraint-start')) {
+                        const addr = e.target.dataset.address;
+                        if (e.target.checked) {
+                            addressConstraint[addr] = 'start';
+                            const row = e.target.closest('.custom-address-item');
+                            const other = row?.querySelector('.constraint-end');
+                            if (other) other.checked = false;
+                        } else addressConstraint[addr] = null;
+                        calculateRoutes();
+                    } else if (e.target?.classList.contains('constraint-end')) {
+                        const addr = e.target.dataset.address;
+                        if (e.target.checked) {
+                            addressConstraint[addr] = 'end';
+                            const row = e.target.closest('.custom-address-item');
+                            const other = row?.querySelector('.constraint-start');
+                            if (other) other.checked = false;
+                        } else addressConstraint[addr] = null;
+                        calculateRoutes();
+                    }
                 });
             }
             
