@@ -1,0 +1,1338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emily in Paris – Beauty & Art</title>
+
+    <link
+        rel="stylesheet"
+        href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+        crossorigin=""
+    />
+
+    <style>
+        :root {
+            --bg: #f8f6fb;
+            --card: #ffffff;
+            --accent: #ec407a;
+            --accent-soft: #fde4ee;
+            --accent-dark: #c2185b;
+            --text-main: #263238;
+            --text-muted: #607d8b;
+            --border-soft: #e0e0e0;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            background: radial-gradient(circle at top left, #ffe3f2 0, #f8f6fb 45%, #ffe0b2 100%);
+            color: var(--text-main);
+        }
+
+        .page {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        header {
+            padding: 20px 24px 8px;
+        }
+
+        .header-inner {
+            max-width: 1120px;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: flex-start;
+            gap: 16px;
+        }
+
+        .title-block h1 {
+            margin: 0;
+            font-size: 2rem;
+            letter-spacing: 0.03em;
+        }
+
+        .title-block span {
+            display: inline-block;
+            margin-top: 4px;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 4px 10px;
+            border-radius: 999px;
+            background: rgba(236, 64, 122, 0.08);
+            color: var(--accent-dark);
+            font-size: 0.8rem;
+            margin-left: 6px;
+        }
+
+        main {
+            flex: 1;
+            padding: 8px 24px 24px;
+        }
+
+        .layout {
+            max-width: 760px;
+            margin: 0 auto;
+        }
+
+        .card {
+            background: var(--card);
+            border-radius: 14px;
+            box-shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.7);
+        }
+
+        .left-panel {
+            display: flex;
+            flex-direction: column;
+            padding: 16px 16px 12px;
+            gap: 12px;
+        }
+
+        .panel-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 8px;
+        }
+
+        .panel-subtitle {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        .filters {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 4px;
+        }
+
+        .filter-chip {
+            padding: 6px 10px;
+            border-radius: 999px;
+            border: 1px solid var(--border-soft);
+            background: #fafafa;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: all 0.15s ease;
+        }
+
+        /* Filtres principaux (Beauty / Art) : couleur selon le type quand actifs */
+        .filter-chip.filter-chip-type.active[data-category="beaute"] {
+            border-color: #db8fba;
+            background: #db8fba;
+            color: #fff;
+        }
+
+        .filter-chip.filter-chip-type.active[data-category="art"] {
+            border-color: #ff9800;
+            background: #ff9800;
+            color: #fff;
+        }
+
+        .filter-chip.filter-chip-art-all.active {
+            border-color: #37474f;
+            background: #37474f;
+            color: #fff;
+        }
+
+        /* Couleur des tags de filtre (boutons) selon le type d'adresses qui portent ce tag,
+           uniquement lorsqu'ils sont sélectionnés */
+        .filter-chip-art-kind.active[data-tag-type="beaute"] {
+            border-color: #db8fba; /* rose (beauty) */
+            background: #db8fba;
+            color: #fff;
+        }
+
+        .filter-chip-art-kind.active[data-tag-type="art"] {
+            border-color: #ff9800;
+            background: #ff9800;
+            color: #fff;
+        }
+
+        .filter-chip-art-kind.active[data-tag-type="mixed"] {
+            border-color: #e61c8e; /* mixed */
+            background: #e61c8e;
+            color: #fff;
+        }
+
+        .filter-chip-art-kind.disabled {
+            opacity: 0.35;
+            cursor: default;
+            pointer-events: none;
+        }
+
+        .search-input {
+            margin-top: 4px;
+            width: 100%;
+            border-radius: 999px;
+            border: 1px solid var(--border-soft);
+            padding: 7px 12px;
+            font-size: 0.9rem;
+            outline: none;
+            transition: border-color 0.15s ease, box-shadow 0.15s ease;
+        }
+
+        .search-input:focus {
+            border-color: var(--accent);
+            box-shadow: 0 0 0 2px rgba(236, 64, 122, 0.2);
+        }
+
+        .list-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-top: 14px;
+        }
+
+        .map-container {
+            margin-top: 10px;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid var(--border-soft);
+        }
+
+        #placesMap {
+            width: 100%;
+            height: 260px;
+        }
+
+        @media (max-width: 600px) {
+            #placesMap {
+                height: 220px;
+            }
+        }
+
+        .toggle-group {
+            display: inline-flex;
+            border-radius: 999px;
+            border: 1px solid var(--border-soft);
+            overflow: hidden;
+        }
+
+        .toggle-group button {
+            background: transparent;
+            border: none;
+            padding: 4px 10px;
+            font-size: 0.8rem;
+            cursor: pointer;
+            color: var(--text-muted);
+        }
+
+        .toggle-group button.active {
+            background: #37474f;
+            color: #fff;
+        }
+
+        .places-list {
+            margin: 4px -4px 0;
+            padding: 0;
+            list-style: none;
+            max-height: 460px;
+            overflow-y: auto;
+        }
+
+        .place-item {
+            padding: 8px 10px;
+            border-radius: 10px;
+            margin: 2px 4px;
+            cursor: pointer;
+            display: flex;
+            flex-direction: row;
+            align-items: flex-start;
+            gap: 8px;
+            border: 1px solid transparent;
+            transition: background 0.12s ease, border-color 0.12s ease, transform 0.06s ease;
+        }
+
+        .place-item:hover {
+            background: #fafafa;
+            border-color: #eceff1;
+            transform: translateY(-1px);
+        }
+
+        .place-item.active {
+            background: var(--accent-soft);
+            border-color: var(--accent);
+        }
+
+        .place-thumb {
+            width: 112px;
+            height: 112px;
+            border-radius: 10px;
+            overflow: hidden;
+            background: #eceff1;
+            flex-shrink: 0;
+        }
+
+        .place-thumb img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .place-main {
+            flex: 1;
+            min-width: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .map-popup {
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+        }
+
+        .map-popup-thumb {
+            width: 72px;
+            height: 72px;
+            border-radius: 8px;
+            overflow: hidden;
+            background: #eceff1;
+            flex-shrink: 0;
+        }
+
+        .map-popup-thumb img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .map-popup-main {
+            font-size: 0.8rem;
+            line-height: 1.4;
+        }
+
+        .place-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            gap: 8px;
+        }
+
+        .place-name {
+            font-size: 0.95rem;
+            font-weight: 600;
+        }
+
+        .place-rating {
+            font-size: 0.8rem;
+            color: #f9a825;
+            margin-left: 6px;
+            white-space: nowrap;
+        }
+
+        .place-tags {
+            display: inline-flex;
+            gap: 4px;
+            flex-wrap: wrap;
+            font-size: 0.7rem;
+        }
+
+        .tag {
+            padding: 2px 6px;
+            border-radius: 999px;
+            background: #eceff1;
+            color: #455a64;
+        }
+
+        .tag.beaute {
+            background: #db8fba;
+            color: #5d2240;
+        }
+
+        .tag.art {
+            background: #fff3e0;
+            color: #e65100;
+        }
+
+        .place-address {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        .place-notes {
+            font-size: 0.9rem;
+            color: #546e7a;
+        }
+
+        .place-actions {
+            display: flex;
+            gap: 8px;
+            margin-top: 2px;
+        }
+
+        .btn-ghost {
+            border-radius: 999px;
+            border: 1px solid #eceff1;
+            background: #ffffff;
+            padding: 3px 10px;
+            font-size: 0.78rem;
+            color: #546e7a;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            text-decoration: none;
+        }
+
+        .btn-ghost:hover {
+            border-color: var(--accent);
+            color: var(--accent-dark);
+        }
+
+        footer {
+            padding: 8px 24px 18px;
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            text-align: center;
+        }
+
+        /* Mobile-first tweaks */
+        @media (max-width: 600px) {
+            header {
+                padding: 16px 16px 4px;
+            }
+
+            main {
+                padding: 4px 12px 16px;
+            }
+
+            .layout {
+                max-width: 100%;
+            }
+
+            .left-panel {
+                padding: 12px 12px 10px;
+                gap: 10px;
+            }
+
+            .title-block h1 {
+                font-size: 1.4rem;
+            }
+
+            .title-block span {
+                font-size: 0.8rem;
+            }
+
+            .panel-subtitle {
+                font-size: 0.8rem;
+            }
+
+            .filters {
+                gap: 6px;
+            }
+
+            .filter-chip {
+                font-size: 0.75rem;
+                padding: 5px 8px;
+            }
+
+            .search-input {
+                font-size: 0.85rem;
+                padding: 6px 10px;
+            }
+
+            .places-list {
+                max-height: 70vh;
+            }
+
+            .place-item {
+                padding: 8px 8px;
+                margin: 2px 0;
+            }
+
+            .place-name {
+                font-size: 0.9rem;
+            }
+
+            .place-address,
+            .place-notes {
+                font-size: 0.8rem;
+            }
+
+            .btn-ghost {
+                font-size: 0.75rem;
+                padding: 3px 8px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="page">
+        <header>
+            <div class="header-inner">
+                <div class="title-block">
+                    <h1>Emily in Paris – Beauty & Art Map</h1>
+                    <span>
+                        Planning your April trip ✨
+                        <span class="badge">Curated by Natacha</span>
+                    </span>
+                </div>
+            </div>
+        </header>
+
+        <main>
+            <div class="layout">
+                <section class="card left-panel">
+                    <div>
+                        <div class="panel-title">
+                            <span>Recommended spots</span>
+                        </div>
+                        <p class="panel-subtitle">
+                            
+                        </p>
+                    </div>
+
+                    <div>
+                        <div class="filters">
+                            <button class="filter-chip filter-chip-type active" data-filter="beaute" data-category="beaute">
+                                Beauty
+                            </button>
+                            <button class="filter-chip filter-chip-type active" data-filter="art" data-category="art">
+                                Art
+                            </button>
+                        </div>
+                        <div class="filters" aria-label="Art type filters">
+                            <button class="filter-chip filter-chip-art-all">
+                                Select all tags
+                            </button>
+                            <button class="filter-chip filter-chip-art-none">
+                                Clear tags
+                            </button>
+                        </div>
+                        <div id="artTagsContainer" class="filters" aria-label="Art type filters list">
+                            <!-- Tags des musées générés dynamiquement -->
+                        </div>
+                        <input
+                            id="searchInput"
+                            class="search-input"
+                            type="text"
+                                placeholder="Search"
+                        />
+
+                        <div class="map-container" aria-label="Map of places">
+                            <div id="placesMap"></div>
+                        </div>
+
+                        <div class="list-meta">
+                            <span id="countLabel">0 places</span>
+                            <div class="toggle-group" aria-label="Sort">
+                                <button type="button" id="sortDefaultBtn" class="active">By favourites</button>
+                                <button type="button" id="sortNameBtn">Alphabetical</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <ul id="placesList" class="places-list" aria-label="List of places"></ul>
+                </section>
+            </div>
+        </main>
+
+    </div>
+
+    <script
+        src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+        integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+        crossorigin=""
+    ></script>
+
+    <script>
+        const places = [
+            // Beauty / shopping
+            {
+                id: "citypharma",
+                name: "Citypharma",
+                address: "26 Rue du Four, 75006 Paris",
+                lat: 48.8529,
+                lng: 2.3337,
+                categories: ["beaute"],
+                displayTags: ["Crowded & High Energy"],
+                area: "Saint‑Germain‑des‑Prés (6ᵉ)",
+                rating: 1,
+                notes: "Amazing prices, yes – but extremely crowded and not glamorous. Fun if you love hunting for French pharmacy deals and already know the brands; otherwise it can feel like a caffeinated beehive.",
+                weight: 1
+            },
+            {
+                id: "sephora-champs",
+                name: "Sephora Champs‑Élysées",
+                address: "70-72 Av. des Champs-Élysées, 75008 Paris",
+                lat: 48.8701,
+                lng: 2.3045,
+                categories: ["beaute"],
+                displayTags: ["Iconic Landmark", "Crowded & High Energy"],
+                area: "Champs‑Élysées (8ᵉ)",
+                rating: 2,
+                notes: "Huge, spectacular and very postcard‑Paris. But you can find almost all the same brands in the US – the real interest is the Champs‑Élysées vibe.",
+                weight: 2
+            },
+            {
+                id: "le-bon-marche",
+                name: "Le Bon Marché – Beauté",
+                address: "24 Rue de Sèvres, 75007 Paris",
+                lat: 48.8519,
+                lng: 2.3245,
+                categories: ["beaute"],
+                displayTags: ["Luxury Experience", "Romantic / Intimate", "Compact & Calm"],
+                area: "Rive gauche (7ᵉ)",
+                rating: 3,
+                notes: "Soft lighting, elegant Parisian atmosphere, attentive staff, a mix of niche and classic brands. You can stroll, test products, have tea or lunch – a full experience, not just a purchase.",
+                weight: 4
+            },
+            {
+                id: "printemps-beaute",
+                name: "Printemps Haussmann – Beauté",
+                address: "64 Bd Haussmann, 75009 Paris",
+                lat: 48.8738,
+                lng: 2.3265,
+                categories: ["beaute"],
+                displayTags: ["Department Store", "Iconic Landmark"],
+                area: "Opéra / Haussmann (9ᵉ)",
+                rating: 2,
+                notes: "Very beautiful, huge choice, and a splendid rooftop. But a bit louder and more like an international department store than a hidden Parisian gem. Great if you want to combine shopping with a spectacular view.",
+                weight: 5
+            },
+
+            // Art / museums
+            {
+                id: "louvre",
+                name: "Louvre Museum",
+                address: "Rue de Rivoli, 75001 Paris",
+                lat: 48.8606,
+                lng: 2.3376,
+                categories: ["art"],
+                artKinds: ["painting", "sculpture", "mixed", "ancient"],
+                displayTags: ["Iconic Landmark", "Ancient & Classical"],
+                area: "Louvre (1ᵉʳ)",
+                rating: 2,
+                notes: "Unmissable, yes. But huge, dense, energy‑intensive. Do it if you love major cultural temples; otherwise it can feel like a marathon under a Renaissance ceiling.",
+                weight: 1
+            },
+            {
+                id: "orsay",
+                name: "Musée d’Orsay (Orsay Museum)",
+                address: "1 Rue de la Légion d'Honneur, 75007 Paris",
+                lat: 48.8600,
+                lng: 2.3266,
+                categories: ["art"],
+                artKinds: ["painting", "sculpture", "mixed"],
+                displayTags: ["Impressionism", "Iconic Landmark"],
+                area: "Rive gauche (7ᵉ)",
+                rating: 3,
+                notes: "Impressionists, former train station, huge clock, views over the Seine. Romantic without being overwhelming. You leave feeling you've lived Paris, not just visited a museum.",
+                weight: 2
+            },
+            {
+                id: "bourse-commerce",
+                name: "Bourse de Commerce – Pinault Collection",
+                address: "2 Rue de Viarmes, 75001 Paris",
+                lat: 48.8642,
+                lng: 2.3430,
+                categories: ["art"],
+                artKinds: ["mixed"],
+                displayTags: ["Modern", "Iconic Landmark", "Compact & Calm"],
+                area: "Les Halles (1ᵉʳ)",
+                rating: 2,
+                notes: "Contemporary art in a striking architectural setting redesigned by Tadao Ando. Intellectually stimulating but sometimes demanding, better for curious minds than for a soft, romantic visit.",
+                weight: 4
+            },
+            {
+                id: "fondation-lv",
+                name: "Fondation Louis Vuitton",
+                address: "8 Av. du Mahatma Gandhi, 75116 Paris",
+                lat: 48.8760,
+                lng: 2.2634,
+                categories: ["art"],
+                artKinds: ["mixed"],
+                displayTags: ["Modern", "Luxury Experience"],
+                area: "Bois de Boulogne (16ᵉ)",
+                rating: 3,
+                notes: "Terraces with views over the Bois de Boulogne, spectacular light, and large temporary exhibitions that are often very high quality. You can easily spend 2 hours here without feeling saturated.",
+                weight: 5
+            },
+            {
+                id: "jeu-de-paume",
+                name: "Jeu de Paume",
+                address: "1 Pl. de la Concorde, 75008 Paris",
+                lat: 48.8650,
+                lng: 2.3211,
+                categories: ["art"],
+                artKinds: ["photography"],
+                displayTags: ["Photography", "Modern"],
+                area: "Concorde / Tuileries (8ᵉ)",
+                rating: 2,
+                notes: "Contemporary photography in a beautiful venue. More specialized. Great if you like image and engaged art.",
+                weight: 6
+            },
+            {
+                id: "orangerie",
+                name: "Musée de l'Orangerie",
+                address: "Jardin des Tuileries, 75001 Paris",
+                lat: 48.8638,
+                lng: 2.3227,
+                categories: ["art"],
+                artKinds: ["painting", "mixed"],
+                displayTags: ["Impressionism", "Compact & Calm"],
+                area: "Tuileries (1ᵉʳ)",
+                rating: 3,
+                notes: "The Water Lilies. Immersive, calming, almost meditative. Compact, bright, elegant. Perfect if you prefer quality over cultural exhaustion.",
+                weight: 7
+            },
+            {
+                id: "mad-paris",
+                name: "Musée des Arts Décoratifs",
+                address: "107 Rue de Rivoli, 75001 Paris",
+                lat: 48.8634,
+                lng: 2.3322,
+                categories: ["art"],
+                artKinds: ["mixed"],
+                displayTags: ["Ancient & Classical", "Medieval", "Compact & Calm"],
+                area: "Louvre / Rivoli (1ᵉʳ)",
+                rating: 2,
+                notes: "Rich collections of design, furniture, fashion, and decorative arts from the Middle Ages to today. Elegant and fascinating, but more niche than the major painting museums.",
+                weight: 8
+            },
+            {
+                id: "rodin",
+                name: "Musée Rodin",
+                address: "77 Rue de Varenne, 75007 Paris",
+                lat: 48.8555,
+                lng: 2.3151,
+                categories: ["art"],
+                artKinds: ["sculpture"],
+                displayTags: ["Sculpture", "Romantic / Intimate"],
+                area: "Invalides / 7ᵉ",
+                rating: 3,
+                notes: "The garden is a dream. Sculptures among the roses, elegant mansion. Even if Rodin was complicated, the experience is beautiful and human.",
+                weight: 9
+            },
+            {
+                id: "picasso",
+                name: "Musée Picasso",
+                address: "5 Rue de Thorigny, 75003 Paris",
+                lat: 48.8599,
+                lng: 2.3622,
+                categories: ["art"],
+                artKinds: ["painting", "sculpture", "mixed"],
+                displayTags: ["Modern"],
+                area: "Le Marais (3ᵉ)",
+                rating: 2,
+                notes: "Beautiful setting, powerful work. But Picasso divides. Recommend if you like bold, unapologetic modern art.",
+                weight: 10
+            },
+            {
+                id: "vie-romantique",
+                name: "Musée de la Vie Romantique",
+                address: "16 Rue Chaptal, 75009 Paris",
+                lat: 48.8821,
+                lng: 2.3347,
+                categories: ["art"],
+                artKinds: ["painting", "mixed"],
+                displayTags: ["Romantic / Intimate", "Compact & Calm"],
+                area: "Pigalle / Nouvelle Athènes (9ᵉ)",
+                rating: 2,
+                notes: "Small, charming, peaceful garden. Less spectacular, but very delicate. Perfect for a literary afternoon.",
+                weight: 11
+            },
+            {
+                id: "guimet",
+                name: "Musée National des Arts Asiatiques – Guimet",
+                address: "6 Pl. d'Iéna, 75116 Paris",
+                lat: 48.8651,
+                lng: 2.2936,
+                categories: ["art"],
+                artKinds: ["mixed", "primitive"],
+                displayTags: ["Non-European Cultures", "Ancient & Classical"],
+                area: "Trocadéro / 16ᵉ",
+                rating: 2,
+                notes: "Impressive collection. Less emotionally 'wow Paris', more academic. Choose if you have a specific interest in Asia.",
+                weight: 12
+            },
+            {
+                id: "grand-palais",
+                name: "Grand Palais",
+                address: "3 Av. du Général Eisenhower, 75008 Paris",
+                lat: 48.8660,
+                lng: 2.3125,
+                categories: ["art"],
+                artKinds: ["mixed"],
+                displayTags: ["Iconic Landmark", "Crowded & High Energy", "Modern"],
+                area: "Champs‑Élysées (8ᵉ)",
+                rating: 3,
+                notes: "A spectacular Beaux-Arts monument with a breathtaking glass roof and major exhibitions or cultural events. Even when the show changes, the architecture alone makes it a memorable Paris experience.",
+                weight: 13
+            },
+            {
+                id: "petit-palais",
+                name: "Petit Palais",
+                address: "Av. Winston Churchill, 75008 Paris",
+                lat: 48.8662,
+                lng: 2.3130,
+                categories: ["art"],
+                artKinds: ["painting", "sculpture", "mixed"],
+                displayTags: ["Romantic / Intimate", "Compact & Calm"],
+                area: "Champs‑Élysées (8ᵉ)",
+                rating: 3,
+                notes: "Free, splendid, calm. The café in the inner courtyard is a golden pause. You can enjoy without feeling rushed.",
+                weight: 14
+            },
+            {
+                id: "quai-branly",
+                name: "Musée du Quai Branly – Jacques Chirac",
+                address: "37 Quai Jacques Chirac, 75007 Paris",
+                lat: 48.8600,
+                lng: 2.2978,
+                categories: ["art"],
+                artKinds: ["mixed", "primitive"],
+                displayTags: ["Non-European Cultures"],
+                area: "Near Eiffel Tower (7ᵉ)",
+                rating: 2,
+                notes: "Stunning architecture, strong collection. But dark, dense museography. Interesting if you like non‑European cultures.",
+                weight: 15
+            },
+            {
+                id: "cluny",
+                name: "Musée de Cluny – Musée National du Moyen Âge",
+                address: "28 Rue du Sommerard, 75005 Paris",
+                lat: 48.8500,
+                lng: 2.3440,
+                categories: ["art"],
+                artKinds: ["medieval", "mixed"],
+                displayTags: ["Medieval"],
+                area: "Latin Quarter (5ᵉ)",
+                rating: 2,
+                notes: "The Lady and the Unicorn is magical. Dense medieval atmosphere. Less universal than Orsay, but fascinating if you love history.",
+                weight: 16
+            },
+            {
+                id: "palais-tokyo",
+                name: "Palais de Tokyo",
+                address: "13 Av. du Président Wilson, 75116 Paris",
+                lat: 48.8645,
+                lng: 2.2963,
+                categories: ["art"],
+                artKinds: ["mixed"],
+                displayTags: ["Modern", "Crowded & High Energy"],
+                area: "Trocadéro / 16ᵉ",
+                rating: 2,
+                notes: "One of Europe’s biggest contemporary art spaces, known for bold and experimental exhibitions. Exciting but sometimes challenging, best for visitors curious about cutting-edge art.",
+                weight: 17
+            },
+            {
+                id: "mep",
+                name: "Maison Européenne de la Photographie (MEP)",
+                address: "5/7 Rue de Fourcy, 75004 Paris",
+                lat: 48.8547,
+                lng: 2.3572,
+                categories: ["art"],
+                artKinds: ["photography"],
+                displayTags: ["Photography"],
+                area: "Le Marais (4ᵉ)",
+                rating: 2,
+                notes: "Exhibitions are often excellent. Less iconic, more niche. Recommend if you follow contemporary photography.",
+                weight: 18
+            },
+
+            // A bit of both / wandering
+            {
+                id: "marais-flâner",
+                name: "Wandering in Le Marais",
+                address: "Rue des Francs-Bourgeois, 75003 Paris",
+                lat: 48.8575,
+                lng: 2.3601,
+                categories: ["beaute", "art"],
+                artKinds: ["mixed"],
+                displayTags: ["Romantic / Intimate", "Modern"],
+                area: "Marais (3ᵉ / 4ᵉ)",
+                rating: 3,
+                notes: "Not just one shop, but a whole cinematic set. Tiny niche perfumeries, galleries, concept stores, charming cafés. You feel like an urban explorer wandering through beautiful streets.",
+                weight: 6
+            }
+        ];
+
+        // Tags des filtres = ceux de la liste des musées (liste fixe)
+        const ALL_DISPLAY_TAGS = [
+            "Ancient & Classical",
+            "Compact & Calm",
+            "Crowded & High Energy",
+            "Department Store",
+            "Iconic Landmark",
+            "Impressionism",
+            "Luxury Experience",
+            "Medieval",
+            "Modern",
+            "Non-European Cultures",
+            "Photography",
+            "Romantic / Intimate",
+            "Sculpture"
+        ];
+
+        // Extensions d'images essayées pour les miniatures (liste et carte)
+        const THUMB_EXTENSIONS = ["jpg", "jpeg", "png", "webp"];
+
+        // Pour chaque tag, détermination des types d'adresses qui l'utilisent (art / beauté / les deux)
+        const TAG_USAGE = {};
+        places.forEach(place => {
+            const hasArt = place.categories.includes("art");
+            const hasBeauty = place.categories.includes("beaute");
+            const tags = place.displayTags || [];
+            tags.forEach(tag => {
+                if (!TAG_USAGE[tag]) {
+                    TAG_USAGE[tag] = { art: false, beaute: false };
+                }
+                if (hasArt) TAG_USAGE[tag].art = true;
+                if (hasBeauty) TAG_USAGE[tag].beaute = true;
+            });
+        });
+
+        // Catégories sélectionnées : peut contenir "beaute" et/ou "art" (les deux peuvent être actifs)
+        let selectedCategories = new Set(["beaute", "art"]);
+        // Tags sélectionnés pour le filtre. Vide = tous acceptés.
+        let selectedArtTags = new Set(ALL_DISPLAY_TAGS);
+        let currentSort = "default"; // "default" ou "name"
+        let currentSearch = "";
+        let activePlaceId = null;
+
+        // Quand false, aucun filtre par tags n'est appliqué (même si selectedArtTags est non vide)
+        let useTagFilter = true;
+
+        let map = null;
+        let mapMarkersLayer = null;
+
+        function loadPlaceThumbnail(place, imgElement) {
+            let extIndex = 0;
+            const tryNextSrc = () => {
+                if (extIndex >= THUMB_EXTENSIONS.length) {
+                    imgElement.style.display = "none";
+                    return;
+                }
+                imgElement.src = "images/" + place.id + "." + THUMB_EXTENSIONS[extIndex++];
+            };
+            imgElement.onload = () => {
+                // Mémorise la miniature trouvée pour la réutiliser dans le popup de la carte
+                place._thumbSrc = imgElement.src;
+            };
+            imgElement.onerror = tryNextSrc;
+            tryNextSrc();
+        }
+
+        function init() {
+            initFilters();
+            initArtFilters();
+            initSorting();
+            initSearch();
+            renderList();
+        }
+
+        function initMap() {
+            if (typeof L === "undefined") return;
+            if (map) return;
+
+            const mapElement = document.getElementById("placesMap");
+            if (!mapElement) return;
+
+            map = L.map("placesMap", {
+                zoomControl: true,
+                attributionControl: true
+            });
+
+            L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+                maxZoom: 19,
+                attribution: "&copy; OpenStreetMap contributors"
+            }).addTo(map);
+
+            mapMarkersLayer = L.layerGroup().addTo(map);
+        }
+
+        function syncTagChips() {
+            const tagChips = document.querySelectorAll(".filter-chip-art-kind");
+            const selectAllBtn = document.querySelector(".filter-chip-art-all");
+            tagChips.forEach(chip => {
+                const tag = chip.dataset.artTag;
+                if (!tag) return;
+                const usage = TAG_USAGE[tag] || { art: false, beaute: false };
+                const enabled = (selectedCategories.has("art") && usage.art) || (selectedCategories.has("beaute") && usage.beaute);
+
+                chip.classList.toggle("disabled", !enabled);
+                chip.disabled = !enabled;
+
+                if (!enabled) {
+                    chip.classList.remove("active");
+                } else {
+                    chip.classList.toggle("active", selectedArtTags.has(tag));
+                }
+            });
+
+            // "Select all" actif si tous les tags utilisables (pour les catégories sélectionnées) sont sélectionnés
+            let enabledCount = 0;
+            let enabledSelected = 0;
+            ALL_DISPLAY_TAGS.forEach(tag => {
+                const usage = TAG_USAGE[tag] || { art: false, beaute: false };
+                const enabled = (selectedCategories.has("art") && usage.art) || (selectedCategories.has("beaute") && usage.beaute);
+                if (enabled) {
+                    enabledCount++;
+                    if (selectedArtTags.has(tag)) enabledSelected++;
+                }
+            });
+
+            const allSelected = enabledCount > 0 && enabledSelected === enabledCount;
+            if (selectAllBtn) selectAllBtn.classList.toggle("active", allSelected);
+        }
+
+        function buildArtTagChips() {
+            const container = document.getElementById("artTagsContainer");
+            if (!container) return;
+            container.innerHTML = "";
+            ALL_DISPLAY_TAGS.forEach(tag => {
+                const btn = document.createElement("button");
+                btn.className = "filter-chip filter-chip-art-kind";
+                btn.dataset.artTag = tag;
+                const usage = TAG_USAGE[tag] || { art: false, beaute: false };
+                let type = "mixed";
+                if (usage.art && !usage.beaute) type = "art";
+                else if (usage.beaute && !usage.art) type = "beaute";
+                btn.dataset.tagType = type;
+                btn.textContent = tag;
+                container.appendChild(btn);
+            });
+        }
+
+        function initFilters() {
+            const chips = document.querySelectorAll(".filter-chip-type");
+            chips.forEach(chip => {
+                chip.addEventListener("click", () => {
+                    const cat = chip.dataset.filter;
+                    if (!cat) return;
+                    if (selectedCategories.has(cat)) {
+                        selectedCategories.delete(cat);
+                    } else {
+                        selectedCategories.add(cat);
+                    }
+                    chip.classList.toggle("active", selectedCategories.has(cat));
+                    useTagFilter = true;
+                    syncTagChips();
+                    renderList();
+                });
+            });
+        }
+
+        function initArtFilters() {
+            buildArtTagChips();
+            const selectAllBtn = document.querySelector(".filter-chip-art-all");
+            const clearBtn = document.querySelector(".filter-chip-art-none");
+
+            document.getElementById("artTagsContainer").addEventListener("click", (e) => {
+                const chip = e.target.closest(".filter-chip-art-kind");
+                if (!chip) return;
+                if (chip.classList.contains("disabled") || chip.disabled) return;
+                const tag = chip.dataset.artTag;
+                if (!tag) return;
+                useTagFilter = true;
+                if (selectedArtTags.has(tag)) {
+                    selectedArtTags.delete(tag);
+                } else {
+                    selectedArtTags.add(tag);
+                }
+                syncTagChips();
+                renderList();
+            });
+
+            if (selectAllBtn) {
+                selectAllBtn.addEventListener("click", () => {
+                    selectedArtTags = new Set(ALL_DISPLAY_TAGS);
+                    useTagFilter = true;
+                    syncTagChips();
+                    renderList();
+                });
+            }
+
+            if (clearBtn) {
+                clearBtn.addEventListener("click", () => {
+                    // Clear tags : aucun tag sélectionné et liste vide (aucun lieu ne matche)
+                    // On force un tag fictif que personne n'a, pour que le filtre par tags exclue tout.
+                    selectedArtTags = new Set(["__none__"]);
+                    useTagFilter = true;
+                    syncTagChips();
+                    renderList();
+                });
+            }
+
+            syncTagChips();
+        }
+
+        function initSorting() {
+            const defaultBtn = document.getElementById("sortDefaultBtn");
+            const nameBtn = document.getElementById("sortNameBtn");
+
+            defaultBtn.addEventListener("click", () => {
+                currentSort = "default";
+                defaultBtn.classList.add("active");
+                nameBtn.classList.remove("active");
+                renderList();
+            });
+
+            nameBtn.addEventListener("click", () => {
+                currentSort = "name";
+                nameBtn.classList.add("active");
+                defaultBtn.classList.remove("active");
+                renderList();
+            });
+        }
+
+        function initSearch() {
+            const input = document.getElementById("searchInput");
+            input.addEventListener("input", (e) => {
+                currentSearch = (e.target.value || "").toLowerCase().trim();
+                renderList();
+            });
+        }
+
+        function filterPlaces() {
+            return places
+                .filter(p => {
+                    if (selectedCategories.size === 0) return false;
+                    if (!p.categories.some(c => selectedCategories.has(c))) return false;
+
+                    // Filtres par tags : appliqués à tous les lieux qui ont des displayTags.
+                    // Cas particulier : après un "Clear tags", selectedArtTags contient un tag fictif
+                    // que personne n'a, donc la liste devient vide.
+                    if (useTagFilter && selectedArtTags.size > 0) {
+                        const tags = p.displayTags || [];
+                        if (!tags.some(t => selectedArtTags.has(t))) return false;
+                    }
+
+                    if (currentSearch) {
+                        const haystack = [
+                            p.name,
+                            p.address,
+                            p.area,
+                            p.notes,
+                            p.categories.join(" "),
+                            (p.displayTags || p.artKinds || []).join(" ")
+                        ]
+                            .filter(Boolean)
+                            .join(" ")
+                            .toLowerCase();
+                        if (!haystack.includes(currentSearch)) return false;
+                    }
+                    return true;
+                })
+                .sort((a, b) => {
+                    if (currentSort === "name") {
+                        return a.name.localeCompare(b.name, "fr");
+                    }
+                    // By favourites: 3 stars first, then 2, then 1, then no rating
+                    const ra = a.rating || 0;
+                    const rb = b.rating || 0;
+                    if (rb !== ra) return rb - ra;
+                    return (a.weight || 999) - (b.weight || 999);
+                });
+        }
+
+        function updateMap(items) {
+            if (!items || items.length === 0) {
+                if (map && mapMarkersLayer) {
+                    mapMarkersLayer.clearLayers();
+                }
+                return;
+            }
+
+            initMap();
+            if (!map || !mapMarkersLayer) return;
+
+            mapMarkersLayer.clearLayers();
+
+            const bounds = [];
+
+            items.forEach(place => {
+                if (typeof place.lat !== "number" || typeof place.lng !== "number") return;
+
+                const isBeauty = place.categories.includes("beaute");
+                const isArt = place.categories.includes("art");
+
+                let color = "#e61c8e"; // mixed (beauty + art)
+                if (isBeauty && !isArt) color = "#db8fba"; // beauty
+                if (isArt && !isBeauty) color = "#ff9800"; // art
+
+                const rating = typeof place.rating === "number" ? place.rating : 0;
+                const baseRadius = 6;
+                const radius = baseRadius + (rating > 0 ? rating * 2 : 1);
+
+                const marker = L.circleMarker([place.lat, place.lng], {
+                    radius,
+                    color,
+                    weight: 1,
+                    fillColor: color,
+                    fillOpacity: 0.85
+                });
+
+                marker.bindPopup(() => {
+                    let thumbHtml = "";
+                    if (place._thumbSrc) {
+                        const safeSrc = place._thumbSrc;
+                        thumbHtml = `<div class="map-popup-thumb"><img src="${safeSrc}" alt="${place.name}"></div>`;
+                    }
+                    return `
+                        <div class="map-popup">
+                            ${thumbHtml}
+                            <div class="map-popup-main">
+                                <strong>${place.name}</strong>
+                            </div>
+                        </div>
+                    `;
+                });
+
+                marker.addTo(mapMarkersLayer);
+                bounds.push([place.lat, place.lng]);
+            });
+
+            if (bounds.length > 0) {
+                map.fitBounds(bounds, { padding: [20, 20] });
+            }
+        }
+
+
+        function renderList() {
+            const list = document.getElementById("placesList");
+            const countLabel = document.getElementById("countLabel");
+            const items = filterPlaces();
+
+            list.innerHTML = "";
+
+            countLabel.textContent =
+                items.length === 0
+                    ? "No place"
+                    : items.length === 1
+                    ? "1 place"
+                    : items.length + " places";
+
+            items.forEach(place => {
+                const li = document.createElement("li");
+                li.className = "place-item" + (place.id === activePlaceId ? " active" : "");
+                li.dataset.id = place.id;
+
+                const thumb = document.createElement("div");
+                thumb.className = "place-thumb";
+                const img = document.createElement("img");
+                img.alt = place.name;
+                loadPlaceThumbnail(place, img);
+                thumb.appendChild(img);
+
+                const main = document.createElement("div");
+                main.className = "place-main";
+
+                const header = document.createElement("div");
+                header.className = "place-header";
+
+                const nameEl = document.createElement("div");
+                nameEl.className = "place-name";
+                nameEl.textContent = place.name;
+
+                if (typeof place.rating === "number" && place.rating > 0) {
+                    const ratingEl = document.createElement("span");
+                    ratingEl.className = "place-rating";
+                    ratingEl.textContent = "★".repeat(place.rating);
+                    nameEl.appendChild(ratingEl);
+                }
+
+                const tags = document.createElement("div");
+                tags.className = "place-tags";
+                if (place.categories.includes("beaute")) {
+                    const t = document.createElement("span");
+                    t.className = "tag beaute";
+                    t.textContent = "Beauty";
+                    tags.appendChild(t);
+                }
+                if (place.categories.includes("art")) {
+                    const t = document.createElement("span");
+                    t.className = "tag art";
+                    t.textContent = "Art";
+                    tags.appendChild(t);
+                }
+                const tagList = place.displayTags || [];
+                tagList.forEach(label => {
+                    const t = document.createElement("span");
+                    t.className = "tag art";
+                    t.textContent = label;
+                    tags.appendChild(t);
+                });
+
+                header.appendChild(nameEl);
+                header.appendChild(tags);
+
+                const address = document.createElement("div");
+                address.className = "place-address";
+                address.textContent = place.address;
+
+                const actions = document.createElement("div");
+                actions.className = "place-actions";
+
+                const openMaps = document.createElement("a");
+                openMaps.href = buildGoogleMapsUrl(place);
+                openMaps.target = "_blank";
+                openMaps.rel = "noopener noreferrer";
+                openMaps.className = "btn-ghost";
+                openMaps.textContent = "Open in Google Maps";
+
+                actions.appendChild(openMaps);
+
+                const notes = document.createElement("div");
+                notes.className = "place-notes";
+                notes.textContent = place.notes || "";
+
+                main.appendChild(header);
+                main.appendChild(address);
+                if (place.notes) main.appendChild(notes);
+                main.appendChild(actions);
+
+                li.appendChild(thumb);
+                li.appendChild(main);
+
+                li.addEventListener("click", (e) => {
+                    // If user clicks anywhere on the row (except the button), open Google Maps as well
+                    if (e.target.tagName.toLowerCase() === "a") return;
+                    openMaps.click();
+                });
+
+                list.appendChild(li);
+            });
+
+            updateMap(items);
+
+        }
+        function buildGoogleMapsUrl(place) {
+            const query = encodeURIComponent(place.name + " " + place.address);
+            return `https://www.google.com/maps/search/?api=1&query=${query}`;
+        }
+        window.addEventListener("load", init);
+    </script>
+</body>
+</html>
+
