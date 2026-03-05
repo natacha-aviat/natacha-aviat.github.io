@@ -259,6 +259,7 @@
                     color: white;
                     font-weight: 700;
                     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+                    text-shadow: 0 1px 2px rgba(0,0,0,0.5);
                 }
                 .station-marker-1 {
                     width: 28px;
@@ -11732,19 +11733,18 @@
                 var group = stationGroups[key];
                 var count = group.artworks.length;
                 
-                // Get the most recent decade for this station (for color)
+                // Get the most recent decade for this station (for filtering)
                 var decades = group.artworks.map(a => a.decade).filter(d => d);
-                var mostRecentDecade = decades.sort().reverse()[0];
-                var decadeClass = getDecadeClass(mostRecentDecade);
                 
-                // Create icon with count and decade color
+                // Create icon with count (colors will be updated after stationLines is defined)
                 var sizeClass = count === 1 ? 'station-marker-1' : 
                                count >= 4 ? 'station-marker-many' : 'station-marker-multi';
+                var size = count === 1 ? 28 : count >= 4 ? 36 : 32;
                 var icon = L.divIcon({
-                    className: 'station-marker ' + sizeClass + ' ' + decadeClass,
-                    html: count > 1 ? count.toString() : '●',
-                    iconSize: count === 1 ? [28, 28] : count >= 4 ? [36, 36] : [32, 32],
-                    iconAnchor: count === 1 ? [14, 14] : count >= 4 ? [18, 18] : [16, 16]
+                    className: 'station-marker ' + sizeClass,
+                    html: `<div style="background: #7F8C8D; width: 100%; height: 100%; border-radius: 50%; display: flex; align-items: center; justify-content: center;">${count > 1 ? count : '●'}</div>`,
+                    iconSize: [size, size],
+                    iconAnchor: [size/2, size/2]
                 });
                 
                 var marker = L.marker(group.latlng, { icon: icon });
@@ -12124,6 +12124,107 @@
                     }).join('') + 
                     '</div>';
             }
+            
+            // MTA line colors for marker styling
+            const mtaLineColors = {
+                '1': '#EE352E', '2': '#EE352E', '3': '#EE352E',
+                '4': '#00933C', '5': '#00933C', '6': '#00933C',
+                '7': '#B933AD',
+                'A': '#0039A6', 'C': '#0039A6', 'E': '#0039A6',
+                'B': '#FF6319', 'D': '#FF6319', 'F': '#FF6319', 'M': '#FF6319',
+                'G': '#6CBE45',
+                'J': '#996633', 'Z': '#996633',
+                'L': '#A7A9AC',
+                'N': '#FCCC0A', 'Q': '#FCCC0A', 'R': '#FCCC0A', 'W': '#FCCC0A',
+                'S': '#808183',
+                'SIR': '#0039A6',
+                'LIRR': '#0f4d92',
+                'MNR': '#0f4d92'
+            };
+            
+            // Get unique colors for a station's lines
+            function getLineColors(lines) {
+                if (!lines || lines.length === 0) return ['#7F8C8D']; // Default gray
+                
+                const colors = [];
+                const seenColors = new Set();
+                
+                for (const line of lines) {
+                    const color = mtaLineColors[line] || '#7F8C8D';
+                    if (!seenColors.has(color)) {
+                        seenColors.add(color);
+                        colors.push(color);
+                    }
+                }
+                
+                return colors.length > 0 ? colors : ['#7F8C8D'];
+            }
+            
+            // Generate CSS background style for multi-color markers
+            function generateMarkerBackground(colors) {
+                if (colors.length === 1) {
+                    return `background: ${colors[0]};`;
+                }
+                
+                // Create conic gradient for multi-color
+                const segments = colors.map((color, i) => {
+                    const start = (i / colors.length) * 360;
+                    const end = ((i + 1) / colors.length) * 360;
+                    return `${color} ${start}deg ${end}deg`;
+                }).join(', ');
+                
+                return `background: conic-gradient(${segments});`;
+            }
+            
+            // Light colors that need dark text
+            const lightColors = ['#FCCC0A', '#A7A9AC', '#808183', '#6CBE45'];
+            
+            // Check if all colors are light (need dark text)
+            function needsDarkText(colors) {
+                // If only one color and it's light, use dark text
+                if (colors.length === 1 && lightColors.includes(colors[0])) {
+                    return true;
+                }
+                // If multiple colors, check if majority are light
+                const lightCount = colors.filter(c => lightColors.includes(c)).length;
+                return lightCount > colors.length / 2;
+            }
+            
+            // Update all station markers with line colors
+            function updateMarkersWithLineColors() {
+                Object.values(stationMarkers).forEach(marker => {
+                    const stationData = marker._stationData;
+                    const station = stationData.station;
+                    const count = stationData.artworks.length;
+                    
+                    // Get lines for this station
+                    const lines = getStationLines(station);
+                    const colors = getLineColors(lines);
+                    const bgStyle = generateMarkerBackground(colors);
+                    
+                    // Determine text color based on background
+                    const textColor = needsDarkText(colors) ? '#000' : '#fff';
+                    const textShadow = needsDarkText(colors) ? 'none' : '0 1px 2px rgba(0,0,0,0.5)';
+                    
+                    // Determine size
+                    const sizeClass = count === 1 ? 'station-marker-1' : 
+                                     count >= 4 ? 'station-marker-many' : 'station-marker-multi';
+                    const size = count === 1 ? 28 : count >= 4 ? 36 : 32;
+                    
+                    // Create new icon with line colors
+                    const newIcon = L.divIcon({
+                        className: 'station-marker ' + sizeClass,
+                        html: `<div style="${bgStyle} width: 100%; height: 100%; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: ${textColor}; text-shadow: ${textShadow};">${count > 1 ? count : '●'}</div>`,
+                        iconSize: [size, size],
+                        iconAnchor: [size/2, size/2]
+                    });
+                    
+                    marker.setIcon(newIcon);
+                });
+            }
+            
+            // Call update after a short delay to ensure everything is loaded
+            setTimeout(updateMarkersWithLineColors, 100);
 
             // Medium type detection based on keywords in title, artist and URL
             function detectMediumType(title, artist, url) {
