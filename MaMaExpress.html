@@ -350,6 +350,53 @@
         let customAddresses = [];
         /** Contraintes de passage : 'start' = à visiter au début, 'end' = à la fin, null = ordre libre */
         let addressConstraint = {};
+        /** Indices allPmis : ordre de sélection (la plus ancienne en tête du tableau = en haut de la liste) */
+        let pmiSelectionOrder = [];
+        /** Indices allPmis dé-sélectionnés : la plus récente en index 0 (en haut du bloc « dé-sélectionnées ») */
+        let pmiDeselectedOrder = [];
+
+        function removeFromPmiSelectionOrder(idx) {
+            const i = pmiSelectionOrder.indexOf(idx);
+            if (i !== -1) pmiSelectionOrder.splice(i, 1);
+        }
+
+        function removeFromPmiDeselectedOrder(idx) {
+            const i = pmiDeselectedOrder.indexOf(idx);
+            if (i !== -1) pmiDeselectedOrder.splice(i, 1);
+        }
+
+        function recordPmiSelected(idx) {
+            removeFromPmiDeselectedOrder(idx);
+            if (!pmiSelectionOrder.includes(idx)) {
+                pmiSelectionOrder.push(idx);
+            }
+        }
+
+        function recordPmiDeselected(idx) {
+            removeFromPmiSelectionOrder(idx);
+            removeFromPmiDeselectedOrder(idx);
+            pmiDeselectedOrder.unshift(idx);
+        }
+
+        function sortFilteredPmisByInteractionOrder(pmis) {
+            return [...pmis].sort((a, b) => {
+                const ia = allPmis.indexOf(a);
+                const ib = allPmis.indexOf(b);
+                const aSel = selectedPmiIndices.has(ia);
+                const bSel = selectedPmiIndices.has(ib);
+                if (aSel !== bSel) return aSel ? -1 : 1;
+                if (aSel && bSel) {
+                    return pmiSelectionOrder.indexOf(ia) - pmiSelectionOrder.indexOf(ib);
+                }
+                const aDes = pmiDeselectedOrder.indexOf(ia);
+                const bDes = pmiDeselectedOrder.indexOf(ib);
+                const aHasDes = aDes !== -1;
+                const bHasDes = bDes !== -1;
+                if (aHasDes !== bHasDes) return aHasDes ? -1 : 1;
+                if (aHasDes && bHasDes) return aDes - bDes;
+                return ia - ib;
+            });
+        }
 
         // ============================================
         // FONCTIONS UTILITAIRES
@@ -437,7 +484,8 @@
                 return;
             }
 
-            filteredPmis.forEach((pmi, index) => {
+            const sortedPmis = sortFilteredPmisByInteractionOrder(filteredPmis);
+            sortedPmis.forEach((pmi, index) => {
                 const pmiIndex = allPmis.indexOf(pmi);
                 const isChecked = selectedPmiIndices.has(pmiIndex);
                 const constraint = addressConstraint[pmi.address] || null;
@@ -478,65 +526,20 @@
                 pmiListDiv.appendChild(checkboxDiv);
             });
             
-            pmiListDiv.addEventListener('change', (e) => {
-                if (e.target?.classList.contains('pmi-checkbox')) {
-                    handlePmiToggle(e.target);
-                } else if (e.target?.classList.contains('constraint-start')) {
-                    const addr = e.target.dataset.address;
-                    const row = e.target.closest('.pmi-item');
-                    if (e.target.checked) {
-                        addressConstraint[addr] = 'start';
-                        const other = row?.querySelector('.constraint-end');
-                        if (other) other.checked = false;
-                        const pmiCheckbox = row?.querySelector('.pmi-checkbox');
-                        if (pmiCheckbox && !pmiCheckbox.checked) {
-                            pmiCheckbox.checked = true;
-                            selectedPmiIndices.add(parseInt(pmiCheckbox.dataset.index, 10));
-                        }
-                    } else {
-                        addressConstraint[addr] = null;
-                    }
-                    updateSelectedCount();
-                } else if (e.target?.classList.contains('constraint-end')) {
-                    const addr = e.target.dataset.address;
-                    const row = e.target.closest('.pmi-item');
-                    if (e.target.checked) {
-                        addressConstraint[addr] = 'end';
-                        const other = row?.querySelector('.constraint-start');
-                        if (other) other.checked = false;
-                        const pmiCheckbox = row?.querySelector('.pmi-checkbox');
-                        if (pmiCheckbox && !pmiCheckbox.checked) {
-                            pmiCheckbox.checked = true;
-                            selectedPmiIndices.add(parseInt(pmiCheckbox.dataset.index, 10));
-                        }
-                    } else {
-                        addressConstraint[addr] = null;
-                    }
-                    updateSelectedCount();
-                }
-            });
-            
-            pmiListDiv.addEventListener('click', (e) => {
-                const label = e.target.closest('label');
-                if (label) {
-                    const checkbox = document.getElementById(label.getAttribute('for'));
-                    if (checkbox?.classList.contains('pmi-checkbox')) {
-                        setTimeout(() => handlePmiToggle(checkbox), 10);
-                    }
-                }
-            });
-            
             updateSelectedCount();
         }
 
         function handlePmiToggle(checkbox) {
-            const idx = parseInt(checkbox.dataset.index);
+            const idx = parseInt(checkbox.dataset.index, 10);
             if (checkbox.checked) {
                 selectedPmiIndices.add(idx);
+                recordPmiSelected(idx);
             } else {
                 selectedPmiIndices.delete(idx);
+                recordPmiDeselected(idx);
             }
             updateSelectedCount();
+            displayPmis();
         }
 
         function filterPmis(searchTerm) {
@@ -1320,24 +1323,74 @@
         // GESTION DES ÉVÉNEMENTS
         // ============================================
         function selectAllVisible() {
-            document.querySelectorAll('.pmi-checkbox').forEach(cb => {
-                const idx = parseInt(cb.dataset.index);
-                cb.checked = true;
+            const sorted = sortFilteredPmisByInteractionOrder(filteredPmis);
+            sorted.forEach(pmi => {
+                const idx = allPmis.indexOf(pmi);
                 selectedPmiIndices.add(idx);
+                recordPmiSelected(idx);
             });
-            updateSelectedCount();
+            displayPmis();
         }
 
         function deselectAllVisible() {
-            document.querySelectorAll('.pmi-checkbox').forEach(cb => {
-                const idx = parseInt(cb.dataset.index);
-                cb.checked = false;
+            const visibleSet = new Set(filteredPmis.map(pmi => allPmis.indexOf(pmi)));
+            const ordered = pmiSelectionOrder.filter(idx => visibleSet.has(idx));
+            for (let i = ordered.length - 1; i >= 0; i--) {
+                const idx = ordered[i];
                 selectedPmiIndices.delete(idx);
-            });
-            updateSelectedCount();
+                recordPmiDeselected(idx);
+            }
+            displayPmis();
         }
 
         function attachEventListeners() {
+            const pmiListDiv = document.getElementById('pmiList');
+            if (pmiListDiv) {
+                pmiListDiv.addEventListener('change', (e) => {
+                    if (e.target?.classList.contains('pmi-checkbox')) {
+                        handlePmiToggle(e.target);
+                    } else if (e.target?.classList.contains('constraint-start')) {
+                        const addr = e.target.dataset.address;
+                        const row = e.target.closest('.pmi-item');
+                        if (e.target.checked) {
+                            addressConstraint[addr] = 'start';
+                            const other = row?.querySelector('.constraint-end');
+                            if (other) other.checked = false;
+                            const pmiCheckbox = row?.querySelector('.pmi-checkbox');
+                            if (pmiCheckbox && !pmiCheckbox.checked) {
+                                pmiCheckbox.checked = true;
+                                const idx = parseInt(pmiCheckbox.dataset.index, 10);
+                                selectedPmiIndices.add(idx);
+                                recordPmiSelected(idx);
+                            }
+                        } else {
+                            addressConstraint[addr] = null;
+                        }
+                        updateSelectedCount();
+                        displayPmis();
+                    } else if (e.target?.classList.contains('constraint-end')) {
+                        const addr = e.target.dataset.address;
+                        const row = e.target.closest('.pmi-item');
+                        if (e.target.checked) {
+                            addressConstraint[addr] = 'end';
+                            const other = row?.querySelector('.constraint-start');
+                            if (other) other.checked = false;
+                            const pmiCheckbox = row?.querySelector('.pmi-checkbox');
+                            if (pmiCheckbox && !pmiCheckbox.checked) {
+                                pmiCheckbox.checked = true;
+                                const idx = parseInt(pmiCheckbox.dataset.index, 10);
+                                selectedPmiIndices.add(idx);
+                                recordPmiSelected(idx);
+                            }
+                        } else {
+                            addressConstraint[addr] = null;
+                        }
+                        updateSelectedCount();
+                        displayPmis();
+                    }
+                });
+            }
+
             const searchPmi = document.getElementById('searchPmi');
             const selectAll = document.getElementById('selectAll');
             const deselectAll = document.getElementById('deselectAll');
