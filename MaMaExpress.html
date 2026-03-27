@@ -67,6 +67,22 @@
         .routes-header h3 {
             flex: 1;
         }
+        .routes-print-banner {
+            display: none;
+        }
+        .routes-print-logo {
+            height: 72px;
+            width: auto;
+            max-width: 100%;
+            object-fit: contain;
+        }
+        .routes-print-title {
+            margin: 12px 0 0 0;
+            font-size: 1.25em;
+            font-weight: 600;
+            color: #2C3E50;
+            text-align: center;
+        }
         #routes {
             overflow-y: auto;
             padding-right: 10px;
@@ -366,6 +382,19 @@
             .routes-print-empty {
                 background: #fff !important;
             }
+            .routes-screen-title {
+                display: none !important;
+            }
+            .routes-print-banner {
+                display: flex !important;
+                flex-direction: column;
+                align-items: center;
+                width: 100%;
+                margin-bottom: 16px;
+            }
+            .routes-header {
+                display: block !important;
+            }
             .container,
             #results,
             .routes-list,
@@ -426,7 +455,11 @@
             <div id="results" class="results-section">
                 <div id="routesListContainer" class="routes-list">
                     <div class="routes-header">
-                        <h3>Itinéraire optimisé</h3>
+                        <div class="routes-print-banner">
+                            <img src="images/mamama_logo.webp" alt="Association MaMaMa" class="routes-print-logo" width="160" height="80">
+                            <h2 id="routesPrintHeading" class="routes-print-title">Itinéraire Optimisé du</h2>
+                        </div>
+                        <h3 class="routes-screen-title">Itinéraire optimisé</h3>
                         <div id="googleMapsButton"></div>
                     </div>
                     <div id="routes"></div>
@@ -584,7 +617,8 @@
                 nom: pmi.nom,
                 address: pmi.address,
                 lat: pmi.lat,
-                lng: pmi.lng
+                lng: pmi.lng,
+                telephone: pmi.telephone != null ? pmi.telephone : ''
             }));
             
             filteredPmis = [...allPmis];
@@ -919,7 +953,8 @@
                         nom: pmi.nom,
                         address: pmi.address,
                         lat: pmi.lat,
-                        lng: pmi.lng
+                        lng: pmi.lng,
+                        telephone: pmi.telephone || ''
                     });
                 });
                 
@@ -929,7 +964,8 @@
                         nom: customAddr.nom || 'Adresse personnalisée',
                         address: customAddr.address,
                         lat: customAddr.lat,
-                        lng: customAddr.lng
+                        lng: customAddr.lng,
+                        telephone: customAddr.telephone || ''
                     });
                 });
 
@@ -1040,10 +1076,15 @@
                 for (let i = 1; i < waypoints.length; i++) {
                     const wp = waypoints[i];
                     const displayName = wp.nom ? `${wp.nom} - ${wp.address}` : wp.address;
+                    const tel = (wp.telephone || '').trim();
                     html += '<tr>';
                     html += `<td>${escapeHtml(displayName)}</td>`;
                     html += '<td class="routes-print-empty">&nbsp;</td>';
-                    html += '<td class="routes-print-empty">&nbsp;</td>';
+                    if (tel) {
+                        html += `<td>${escapeHtml(tel)}</td>`;
+                    } else {
+                        html += '<td class="routes-print-empty">&nbsp;</td>';
+                    }
                     html += '</tr>';
                 }
                 html += '</tbody></table></div>';
@@ -1522,6 +1563,20 @@
             if (printItineraryBtn) {
                 printItineraryBtn.addEventListener('click', () => window.print());
             }
+
+            function updateRoutesPrintHeading() {
+                const el = document.getElementById('routesPrintHeading');
+                if (!el) return;
+                const d = new Date();
+                const dateStr = d.toLocaleDateString('fr-FR', {
+                    weekday: 'long',
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric'
+                });
+                el.textContent = 'Itinéraire Optimisé du ' + dateStr;
+            }
+            window.addEventListener('beforeprint', updateRoutesPrintHeading);
 
             const pmiListDiv = document.getElementById('pmiList');
             if (pmiListDiv) {
