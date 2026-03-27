@@ -279,6 +279,109 @@
             font-weight: bold;
             vertical-align: top;
         }
+        .routes-print-footer {
+            margin-top: 16px;
+            padding-top: 12px;
+            border-top: 1px solid #e0e0e0;
+            text-align: center;
+        }
+        .print-itinerary-btn {
+            padding: 10px 20px;
+            background-color: #f5f5f5;
+            color: #333;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background-color 0.3s;
+        }
+        .print-itinerary-btn:hover {
+            background-color: #e0e0e0;
+        }
+        .routes-print-table-wrap {
+            display: none;
+        }
+        .routes-print-duration {
+            margin: 0 0 12px 0;
+            font-size: 11pt;
+        }
+        .routes-print-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 10pt;
+            table-layout: fixed;
+        }
+        .routes-print-table th,
+        .routes-print-table td {
+            border: 1px solid #333;
+            padding: 10px 8px;
+            text-align: left;
+            vertical-align: top;
+            word-wrap: break-word;
+        }
+        .routes-print-table th {
+            background: #eee;
+            font-weight: 600;
+        }
+        .routes-print-table th:nth-child(1),
+        .routes-print-table td:nth-child(1) {
+            width: 52%;
+        }
+        .routes-print-table th:nth-child(2),
+        .routes-print-table td:nth-child(2) {
+            width: 24%;
+        }
+        .routes-print-table th:nth-child(3),
+        .routes-print-table td:nth-child(3) {
+            width: 24%;
+        }
+        .routes-print-empty {
+            min-height: 2.5em;
+            background: #fafafa;
+        }
+        @media print {
+            /* #topSection contient aussi #results : ne pas masquer tout le bloc */
+            .header-container,
+            #topSection .input-section,
+            #mapContainer,
+            .footer,
+            .routes-print-footer,
+            #googleMapsButton {
+                display: none !important;
+            }
+            #topSection.top-section {
+                display: block !important;
+            }
+            #results.results-section {
+                display: block !important;
+                width: 100% !important;
+                margin-top: 0 !important;
+            }
+            .route-screen-only {
+                display: none !important;
+            }
+            .routes-print-table-wrap {
+                display: block !important;
+            }
+            .routes-print-empty {
+                background: #fff !important;
+            }
+            .container,
+            #results,
+            .routes-list,
+            #routesListContainer {
+                max-width: 100% !important;
+                width: 100% !important;
+                box-shadow: none !important;
+            }
+            .routes-list {
+                max-height: none !important;
+                overflow: visible !important;
+            }
+            body {
+                background: #fff !important;
+            }
+        }
     </style>
 </head>
 <body>
@@ -327,6 +430,9 @@
                         <div id="googleMapsButton"></div>
                     </div>
                     <div id="routes"></div>
+                    <div class="routes-print-footer">
+                        <button type="button" id="printItineraryBtn" class="print-itinerary-btn">Imprimer l'itinéraire</button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -850,6 +956,13 @@
             }
         }
 
+        function escapeHtml(text) {
+            if (text == null) return '';
+            const el = document.createElement('div');
+            el.textContent = text;
+            return el.innerHTML;
+        }
+
         function displayRoute(waypoints) {
             const routesDiv = document.getElementById('routes');
             routesDiv.innerHTML = '';
@@ -884,8 +997,8 @@
             const dureeRetour = getDuree(waypoints[waypoints.length - 1].address, waypoints[0].address);
             if (dureeRetour !== Infinity) dureeTotale += dureeRetour;
             
-            // Générer le HTML
-            let html = '';
+            // Générer le HTML (écran)
+            let html = '<div class="route-screen-only">';
             if (dureeTotale > 0) {
                 const minutesArrondies = Math.round(dureeTotale);
                 html += `<p><strong>Durée totale estimée : ${minutesArrondies} minutes (${formatDuration(dureeTotale)})</strong></p>`;
@@ -897,19 +1010,45 @@
             if (waypoints.length === 1) {
                 html += `<p style="color: #666; font-style: italic;">Sélectionnez des PMI pour voir l'itinéraire optimisé.</p>`;
             } else {
-                html += `<ol start="0"><li><strong>${waypoints[0].address}</strong> (Départ)</li>`;
+                html += `<ol start="0"><li><strong>${escapeHtml(waypoints[0].address)}</strong> (Départ)</li>`;
                 for (let i = 1; i < waypoints.length; i++) {
                     const displayName = waypoints[i].nom 
                         ? `${waypoints[i].nom} - ${waypoints[i].address}` 
                         : waypoints[i].address;
-                    html += `<li>${displayName}</li>`;
+                    html += `<li>${escapeHtml(displayName)}</li>`;
                 }
                 if (waypoints.length > 1) {
-                    html += `<li><strong>${waypoints[0].address}</strong> (Retour)</li>`;
+                    html += `<li><strong>${escapeHtml(waypoints[0].address)}</strong> (Retour)</li>`;
                 }
                 html += `</ol>`;
             }
-            
+            html += '</div>';
+
+            // Tableau réservé à l'impression (une ligne par arrêt livraison, sans départ ni retour)
+            if (waypoints.length > 1) {
+                html += '<div class="routes-print-table-wrap">';
+                if (dureeTotale > 0) {
+                    const minutesArrondies = Math.round(dureeTotale);
+                    html += `<p class="routes-print-duration"><strong>Durée totale estimée : ${minutesArrondies} minutes (${formatDuration(dureeTotale)})</strong></p>`;
+                }
+                html += '<table class="routes-print-table">';
+                html += '<thead><tr>';
+                html += '<th scope="col">Adresse</th>';
+                html += '<th scope="col">Nombre de colis</th>';
+                html += '<th scope="col">Téléphone</th>';
+                html += '</tr></thead><tbody>';
+                for (let i = 1; i < waypoints.length; i++) {
+                    const wp = waypoints[i];
+                    const displayName = wp.nom ? `${wp.nom} - ${wp.address}` : wp.address;
+                    html += '<tr>';
+                    html += `<td>${escapeHtml(displayName)}</td>`;
+                    html += '<td class="routes-print-empty">&nbsp;</td>';
+                    html += '<td class="routes-print-empty">&nbsp;</td>';
+                    html += '</tr>';
+                }
+                html += '</tbody></table></div>';
+            }
+
             routeDiv.innerHTML = html;
             routesDiv.appendChild(routeDiv);
             
@@ -1379,6 +1518,11 @@
         }
 
         function attachEventListeners() {
+            const printItineraryBtn = document.getElementById('printItineraryBtn');
+            if (printItineraryBtn) {
+                printItineraryBtn.addEventListener('click', () => window.print());
+            }
+
             const pmiListDiv = document.getElementById('pmiList');
             if (pmiListDiv) {
                 pmiListDiv.addEventListener('change', (e) => {
