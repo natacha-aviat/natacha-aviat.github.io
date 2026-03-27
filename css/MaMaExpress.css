@@ -1,0 +1,482 @@
+/**
+ * Styles spécifiques à MaMaExpress (complète MaMaStyle.css).
+ */
+
+/* ----- Layout principal ----- */
+.top-section {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+    margin-bottom: 20px;
+}
+
+.top-section .input-section,
+.top-section .results-section {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+.top-section .input-section {
+    min-height: 600px;
+    background-color: transparent !important;
+    box-shadow: none !important;
+}
+
+.address-input,
+.routes-list {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin: 0 !important;
+}
+
+.address-input {
+    height: 100%;
+}
+
+.address-input h3,
+.routes-header h3 {
+    margin: 0 0 15px 0 !important;
+    padding: 0 !important;
+    line-height: 1.2 !important;
+    font-size: 1.3em;
+}
+
+.routes-header h3 {
+    flex: 1;
+}
+
+.pmi-controls {
+    flex-shrink: 0;
+    margin-bottom: 15px;
+}
+
+.pmi-list {
+    flex: 1;
+    overflow-y: auto;
+    min-height: 0;
+}
+
+.routes-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin: 0 0 15px 0;
+    padding: 0;
+}
+
+.routes-print-banner {
+    display: none;
+}
+
+.routes-print-logo {
+    height: 72px;
+    width: auto;
+    max-width: 100%;
+    object-fit: contain;
+}
+
+.routes-print-title {
+    margin: 12px 0 0 0;
+    font-size: 1.25em;
+    font-weight: 600;
+    color: #2c3e50;
+    text-align: center;
+}
+
+#routes {
+    overflow-y: auto;
+    padding-right: 10px;
+}
+
+#mapContainer {
+    width: 100%;
+    height: 600px;
+    border-radius: 5px;
+    overflow: hidden;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* ----- En-tête page ----- */
+.header-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.header-container img {
+    height: 80px;
+    width: auto;
+    max-width: 160px;
+}
+
+.header-container h1 {
+    margin: 0;
+}
+
+/* ----- Adresses personnalisées ----- */
+.custom-address-section {
+    margin-top: 25px;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 5px;
+    border-left: 4px solid #ffc107;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    border-top: 1px solid #e0e0e0;
+    border-right: 1px solid #e0e0e0;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.custom-address-section h4 {
+    margin: 0 0 15px 0;
+    font-size: 1.15em;
+    color: #2c3e50;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.custom-address-icon {
+    width: 28px;
+    height: 28px;
+    background-color: #ffc107;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    flex-shrink: 0;
+}
+
+.custom-address-input-group {
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+}
+
+#customAddress {
+    flex: 1;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+    transition: border-color 0.3s;
+}
+
+#customAddress:focus {
+    outline: none;
+    border-color: #ffc107;
+    box-shadow: 0 0 0 2px rgba(255, 193, 7, 0.2);
+}
+
+#calculateCustomAddress {
+    white-space: nowrap;
+    padding: 12px 24px;
+    background-color: #ffc107;
+    color: #2c3e50;
+    font-weight: bold;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#calculateCustomAddress:hover {
+    background-color: #ffb300 !important;
+    transform: translateY(-1px);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+}
+
+#calculateCustomAddress:active {
+    transform: translateY(0);
+}
+
+#calculateCustomAddress:disabled {
+    background-color: #ccc !important;
+    color: #666 !important;
+    cursor: not-allowed;
+    transform: none;
+}
+
+#customAddressStatus {
+    margin-top: 12px;
+    font-size: 0.9em;
+    color: #666;
+    min-height: 20px;
+}
+
+#customAddressesList {
+    margin-top: 18px;
+    display: none;
+    padding-top: 15px;
+    border-top: 1px solid #e8e8e8;
+}
+
+.custom-addresses-title {
+    font-weight: bold;
+    margin-bottom: 10px;
+    font-size: 0.95em;
+    color: #2c3e50;
+}
+
+#customAddressesItems {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.custom-address-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px;
+    background-color: #fff;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+}
+
+.custom-address-item span {
+    flex: 1;
+    font-size: 0.9em;
+    color: #555;
+}
+
+.custom-address-include-wrap {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    flex-shrink: 0;
+    margin-right: 10px;
+}
+
+.custom-address-item--inactive {
+    opacity: 0.65;
+}
+
+.custom-address-catalog-link {
+    flex: 0 0 auto;
+    display: inline-block;
+    padding: 6px 10px;
+    margin-left: 8px;
+    font-size: 12px;
+    line-height: 1.3;
+    text-align: center;
+    text-decoration: none;
+    color: #333;
+    background-color: #f5f5f5;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    white-space: nowrap;
+}
+
+.custom-address-catalog-link:hover {
+    background-color: #e0e0e0;
+    color: #333;
+}
+
+/* ----- Contraintes début / fin de tournée ----- */
+.constraint-tags {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    flex-shrink: 0;
+    margin-left: 8px;
+}
+
+.constraint-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 0.75em;
+    color: #555;
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+.constraint-tag input {
+    margin: 0;
+    cursor: pointer;
+}
+
+.constraint-tag.active-start {
+    color: #1976d2;
+    font-weight: 600;
+}
+
+.constraint-tag.active-end {
+    color: #388e3c;
+    font-weight: 600;
+}
+
+.pmi-item .pmi-label-wrap {
+    flex: 1;
+    min-width: 0;
+}
+
+/* ----- Google Maps ----- */
+#googleMapsButton {
+    margin: 0;
+    padding: 0;
+}
+
+.google-maps-btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #ffc107;
+    color: #2c3e50;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    vertical-align: top;
+}
+
+/* ----- Impression ----- */
+.routes-print-footer {
+    margin-top: 16px;
+    padding-top: 12px;
+    border-top: 1px solid #e0e0e0;
+    text-align: center;
+}
+
+.print-itinerary-btn {
+    padding: 10px 20px;
+    background-color: #f5f5f5;
+    color: #333;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s;
+}
+
+.print-itinerary-btn:hover {
+    background-color: #e0e0e0;
+}
+
+.routes-print-table-wrap {
+    display: none;
+}
+
+.routes-print-duration {
+    margin: 0 0 12px 0;
+    font-size: 11pt;
+}
+
+.routes-print-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 10pt;
+    table-layout: fixed;
+}
+
+.routes-print-table th,
+.routes-print-table td {
+    border: 1px solid #333;
+    padding: 10px 8px;
+    text-align: left;
+    vertical-align: top;
+    word-wrap: break-word;
+}
+
+.routes-print-table th {
+    background: #eee;
+    font-weight: 600;
+}
+
+.routes-print-table th:nth-child(1),
+.routes-print-table td:nth-child(1) {
+    width: 52%;
+}
+
+.routes-print-table th:nth-child(2),
+.routes-print-table td:nth-child(2) {
+    width: 24%;
+}
+
+.routes-print-table th:nth-child(3),
+.routes-print-table td:nth-child(3) {
+    width: 24%;
+}
+
+.routes-print-empty {
+    min-height: 2.5em;
+    background: #fafafa;
+}
+
+@media print {
+    /* #topSection contient aussi #results : ne pas masquer tout le bloc */
+    .header-container,
+    #topSection .input-section,
+    #mapContainer,
+    .footer,
+    .routes-print-footer,
+    #googleMapsButton {
+        display: none !important;
+    }
+
+    #topSection.top-section {
+        display: block !important;
+    }
+
+    #results.results-section {
+        display: block !important;
+        width: 100% !important;
+        margin-top: 0 !important;
+    }
+
+    .route-screen-only {
+        display: none !important;
+    }
+
+    .routes-print-table-wrap {
+        display: block !important;
+    }
+
+    .routes-print-empty {
+        background: #fff !important;
+    }
+
+    .routes-screen-title {
+        display: none !important;
+    }
+
+    .routes-print-banner {
+        display: flex !important;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        margin-bottom: 16px;
+    }
+
+    .routes-header {
+        display: block !important;
+    }
+
+    .container,
+    #results,
+    .routes-list,
+    #routesListContainer {
+        max-width: 100% !important;
+        width: 100% !important;
+        box-shadow: none !important;
+    }
+
+    .routes-list {
+        max-height: none !important;
+        overflow: visible !important;
+    }
+
+    body {
+        background: #fff !important;
+    }
+}
