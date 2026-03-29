@@ -119,9 +119,50 @@ function calculateDistance(lat1, lng1, lat2, lng2) {
 function formatDuration(minutes) {
     const heures = Math.floor(minutes / 60);
     const minutesRestantes = Math.round(minutes % 60);
-    return minutesRestantes > 0 
-        ? `${heures}h${minutesRestantes.toString().padStart(2, '0')}` 
+    return minutesRestantes > 0
+        ? `${heures}h${minutesRestantes.toString().padStart(2, '0')}`
         : `${heures}h`;
+}
+
+function escapeHtml(text) {
+    if (text == null) return '';
+    const el = document.createElement('div');
+    el.textContent = text;
+    return el.innerHTML;
+}
+
+/** Attribut HTML entre guillemets doubles (data-address, etc.). */
+function escapeHtmlAttr(str) {
+    if (str == null) return '';
+    return String(str)
+        .replace(/&/g, '&amp;')
+        .replace(/"/g, '&quot;')
+        .replace(/</g, '&lt;');
+}
+
+/** Libellé affiché pour un point de l’itinéraire. */
+function waypointLabel(wp) {
+    return wp.nom ? `${wp.nom} - ${wp.address}` : wp.address;
+}
+
+function locationFromPmi(pmi) {
+    return {
+        nom: pmi.nom,
+        address: pmi.address,
+        lat: pmi.lat,
+        lng: pmi.lng,
+        telephone: pmi.telephone || ''
+    };
+}
+
+function locationFromCustom(customAddr) {
+    return {
+        nom: customAddr.nom || 'Adresse personnalisée',
+        address: customAddr.address,
+        lat: customAddr.lat,
+        lng: customAddr.lng,
+        telephone: customAddr.telephone || ''
+    };
 }
 
 // -----------------------------------------------------------------------------
@@ -130,13 +171,13 @@ function formatDuration(minutes) {
 function initializeFromJS() {
     if (typeof PMI_ADDRESSES === 'undefined') {
         byId('pmiList').innerHTML =
-            '<p style="color: red;">❌ Erreur : Fichier pmi_addresses.js non chargé</p>';
+            '<p class="pmi-list-message pmi-list-message--error">❌ Erreur : fichier pmi_addresses.js non chargé</p>';
         return;
     }
 
     if (typeof PMI_DUREES === 'undefined') {
         byId('pmiList').innerHTML =
-            '<p style="color: red;">❌ Erreur : Fichier pmi_durees.js non chargé</p>';
+            '<p class="pmi-list-message pmi-list-message--error">❌ Erreur : fichier pmi_durees.js non chargé</p>';
         return;
     }
     
@@ -165,15 +206,12 @@ function initializeFromJS() {
 
 function displayPmis() {
     const pmiListDiv = byId('pmiList');
-    
-    document.querySelectorAll('.pmi-checkbox:checked').forEach(cb => {
-        selectedPmiIndices.add(parseInt(cb.dataset.index));
-    });
-    
+    /* selectedPmiIndices est la source de vérité (pas une relecture des cases du DOM). */
     pmiListDiv.innerHTML = '';
     
     if (filteredPmis.length === 0) {
-        pmiListDiv.innerHTML = '<p>Aucune PMI trouvée</p>';
+        pmiListDiv.innerHTML =
+            '<p class="pmi-list-message pmi-list-message--muted">Aucune PMI trouvée</p>';
         updateSelectedCount();
         return;
     }
@@ -198,17 +236,18 @@ function displayPmis() {
         labelWrap.className = 'pmi-label-wrap';
         const label = document.createElement('label');
         label.htmlFor = `pmi-${index}`;
-        label.innerHTML = `<strong>${pmi.nom}</strong><br><span class="pmi-address">${pmi.address}</span>`;
+        label.innerHTML = `<strong>${escapeHtml(pmi.nom)}</strong><br><span class="pmi-address">${escapeHtml(pmi.address)}</span>`;
         labelWrap.appendChild(label);
-        
+
+        const addrAttr = escapeHtmlAttr(pmi.address);
         const tagsDiv = document.createElement('div');
         tagsDiv.className = 'constraint-tags';
         const startTag = document.createElement('label');
         startTag.className = 'constraint-tag' + (constraint === 'start' ? ' active-start' : '');
-        startTag.innerHTML = '<input type="checkbox" class="constraint-start" data-address="' + pmi.address.replace(/"/g, '&quot;') + '"> Début';
+        startTag.innerHTML = '<input type="checkbox" class="constraint-start" data-address="' + addrAttr + '"> Début';
         const endTag = document.createElement('label');
         endTag.className = 'constraint-tag' + (constraint === 'end' ? ' active-end' : '');
-        endTag.innerHTML = '<input type="checkbox" class="constraint-end" data-address="' + pmi.address.replace(/"/g, '&quot;') + '"> Fin';
+        endTag.innerHTML = '<input type="checkbox" class="constraint-end" data-address="' + addrAttr + '"> Fin';
         if (constraint === 'start') startTag.querySelector('input').checked = true;
         if (constraint === 'end') endTag.querySelector('input').checked = true;
         tagsDiv.appendChild(startTag);
@@ -493,25 +532,11 @@ async function calculateRoutes() {
             lng: MAMAMA_COORDS.lng
         }];
         
-        selectedPmis.forEach(pmi => {
-            locations.push({
-                nom: pmi.nom,
-                address: pmi.address,
-                lat: pmi.lat,
-                lng: pmi.lng,
-                telephone: pmi.telephone || ''
-            });
-        });
-        
+        selectedPmis.forEach(pmi => locations.push(locationFromPmi(pmi)));
+
         customAddresses.forEach(customAddr => {
             if (!isCustomAddressInRoute(customAddr)) return;
-            locations.push({
-                nom: customAddr.nom || 'Adresse personnalisée',
-                address: customAddr.address,
-                lat: customAddr.lat,
-                lng: customAddr.lng,
-                telephone: customAddr.telephone || ''
-            });
+            locations.push(locationFromCustom(customAddr));
         });
 
         if (selectedPmis.length === 0 && !customAddresses.some(isCustomAddressInRoute)) {
@@ -537,11 +562,36 @@ async function calculateRoutes() {
     }
 }
 
-function escapeHtml(text) {
-    if (text == null) return '';
-    const el = document.createElement('div');
-    el.textContent = text;
-    return el.innerHTML;
+/**
+ * Case « inclure dans la tournée » dans la liste d'itinéraire (à droite).
+ * Cochée = dans la sélection ; décochée = retirer (PMI ou adresse perso).
+ */
+function handleRouteStopIncludeToggle(checkbox) {
+    const addr = checkbox.dataset.address;
+    if (!addr) return;
+
+    const pmiIdx = allPmis.findIndex(p => p.address === addr);
+    if (pmiIdx !== -1) {
+        if (checkbox.checked) {
+            selectedPmiIndices.add(pmiIdx);
+            recordPmiSelected(pmiIdx);
+        } else {
+            selectedPmiIndices.delete(pmiIdx);
+            recordPmiDeselected(pmiIdx);
+            delete addressConstraint[addr];
+        }
+        displayPmis();
+        calculateRoutes();
+        return;
+    }
+
+    const custom = customAddresses.find(a => a.address === addr);
+    if (custom) {
+        custom.includedInRoute = checkbox.checked;
+        if (!checkbox.checked) delete addressConstraint[addr];
+        updateCustomAddressesList();
+        calculateRoutes();
+    }
 }
 
 function displayRoute(waypoints) {
@@ -584,15 +634,21 @@ function displayRoute(waypoints) {
     if (waypoints.length === 1) {
         html += `<p style="color: #666; font-style: italic;">Sélectionnez des PMI pour voir l'itinéraire optimisé.</p>`;
     } else {
-        html += `<ol start="0"><li><strong>${escapeHtml(waypoints[0].address)}</strong> (Départ)</li>`;
+        html += '<ol class="route-itinerary-list" start="0">';
+        html += `<li class="route-stop-li route-stop-li--fixed"><span class="route-stop-check-slot" aria-hidden="true"></span><span class="route-stop-body"><strong>${escapeHtml(waypoints[0].address)}</strong> (Départ)</span></li>`;
         for (let i = 1; i < waypoints.length; i++) {
-            const displayName = waypoints[i].nom
-                ? `${waypoints[i].nom} - ${waypoints[i].address}`
-                : waypoints[i].address;
-            html += `<li>${escapeHtml(displayName)}</li>`;
+            const wp = waypoints[i];
+            const displayName = waypointLabel(wp);
+            const addrAttr = escapeHtmlAttr(wp.address);
+            const cbId = `route-stop-include-${i}`;
+            html += `<li class="route-stop-li">`;
+            html += `<input type="checkbox" id="${cbId}" class="route-stop-include" data-address="${addrAttr}" checked `;
+            html += `title="Décocher pour retirer cette adresse de l'itinéraire" aria-label="Inclure cet arrêt dans la tournée">`;
+            html += `<label for="${cbId}" class="route-stop-body">${escapeHtml(displayName)}</label>`;
+            html += `</li>`;
         }
-        html += `<li><strong>${escapeHtml(waypoints[0].address)}</strong> (Retour)</li>`;
-        html += `</ol>`;
+        html += `<li class="route-stop-li route-stop-li--fixed"><span class="route-stop-check-slot" aria-hidden="true"></span><span class="route-stop-body"><strong>${escapeHtml(waypoints[0].address)}</strong> (Retour)</span></li>`;
+        html += '</ol>';
     }
     html += '</div>';
 
@@ -611,7 +667,7 @@ function displayRoute(waypoints) {
         html += '</tr></thead><tbody>';
         for (let i = 1; i < waypoints.length; i++) {
             const wp = waypoints[i];
-            const displayName = wp.nom ? `${wp.nom} - ${wp.address}` : wp.address;
+            const displayName = waypointLabel(wp);
             const tel = (wp.telephone || '').trim();
             html += '<tr>';
             html += `<td>${escapeHtml(displayName)}</td>`;
@@ -644,7 +700,6 @@ function displayRoute(waypoints) {
     }
     
     displayMap(waypoints);
-    byId('results').style.display = 'block';
 }
 
 function buildGoogleMapsUrl(waypoints) {
@@ -755,7 +810,9 @@ function displayMap(waypoints) {
                             iconAnchor: [10, 10]
                         })
                     }).addTo(map);
-                    startMarker.bindPopup(`<strong>MaMaMa (Départ/Arrivée)</strong><br>${waypoints[0].address}`);
+                    startMarker.bindPopup(
+                        `<strong>MaMaMa (Départ/Arrivée)</strong><br>${escapeHtml(waypoints[0].address)}`
+                    );
                     markers.push(startMarker);
                     latlngs.push([waypoints[0].lat, waypoints[0].lng]);
                 }
@@ -773,9 +830,9 @@ function displayMap(waypoints) {
                             })
                         }).addTo(map);
                         
-                        const popupText = waypoint.nom 
-                            ? `<strong>${i}. ${waypoint.nom}</strong><br>${waypoint.address}`
-                            : `<strong>${i}. ${waypoint.address}</strong>`;
+                        const popupText = waypoint.nom
+                            ? `<strong>${i}. ${escapeHtml(waypoint.nom)}</strong><br>${escapeHtml(waypoint.address)}`
+                            : `<strong>${i}. ${escapeHtml(waypoint.address)}</strong>`;
                         marker.bindPopup(popupText);
                         markers.push(marker);
                         latlngs.push([waypoint.lat, waypoint.lng]);
@@ -1161,6 +1218,16 @@ function attachEventListeners() {
 
     window.addEventListener('beforeprint', updateRoutesPrintHeading);
 
+    const routesContainer = byId('routes');
+    if (routesContainer) {
+        routesContainer.addEventListener('change', (e) => {
+            const t = e.target;
+            if (t?.classList.contains('route-stop-include')) {
+                handleRouteStopIncludeToggle(t);
+            }
+        });
+    }
+
     const pmiListDiv = byId('pmiList');
     if (pmiListDiv) {
         pmiListDiv.addEventListener('change', (e) => {
@@ -1225,7 +1292,7 @@ function attachEventListeners() {
                     initializeFromJS();
                 } else {
                     byId('pmiList').innerHTML =
-                        '<p style="color: red;">❌ Erreur : Les fichiers de données JavaScript ne sont pas chargés.</p>';
+                        '<p class="pmi-list-message pmi-list-message--error">❌ Erreur : les fichiers de données JavaScript ne sont pas chargés.</p>';
                 }
             }, 100);
         });

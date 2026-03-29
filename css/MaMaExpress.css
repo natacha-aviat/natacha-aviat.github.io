@@ -63,6 +63,18 @@
     min-height: 0;
 }
 
+.pmi-list-message {
+    margin: 0;
+}
+
+.pmi-list-message--muted {
+    color: #666;
+}
+
+.pmi-list-message--error {
+    color: #c62828;
+}
+
 .routes-header {
     display: flex;
     justify-content: space-between;
@@ -93,6 +105,45 @@
 #routes {
     overflow-y: auto;
     padding-right: 10px;
+}
+
+/* Liste d'itinéraire : case à cocher à côté de chaque numéro (arrêts modifiables) */
+.route-itinerary-list {
+    margin: 10px 0;
+    padding-left: 2.5em;
+}
+
+.route-stop-li {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    margin-bottom: 6px;
+}
+
+.route-stop-include {
+    flex-shrink: 0;
+    margin-top: 3px;
+    cursor: pointer;
+    width: 18px;
+    height: 18px;
+}
+
+.route-stop-check-slot {
+    flex-shrink: 0;
+    width: 18px;
+    height: 18px;
+    margin-top: 3px;
+}
+
+.route-stop-body {
+    flex: 1;
+    min-width: 0;
+    cursor: pointer;
+    line-height: 1.45;
+}
+
+.route-stop-body strong {
+    font-weight: 600;
 }
 
 #mapContainer {
