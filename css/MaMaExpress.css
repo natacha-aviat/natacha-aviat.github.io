@@ -444,19 +444,25 @@
     font-weight: 600;
 }
 
+/* Adresse 35 % | Nombre de colis 10 % | Numéros de colis 35 % | Téléphone 20 % */
 .routes-print-table th:nth-child(1),
 .routes-print-table td:nth-child(1) {
-    width: 52%;
+    width: 35%;
 }
 
 .routes-print-table th:nth-child(2),
 .routes-print-table td:nth-child(2) {
-    width: 24%;
+    width: 10%;
 }
 
 .routes-print-table th:nth-child(3),
 .routes-print-table td:nth-child(3) {
-    width: 24%;
+    width: 35%;
+}
+
+.routes-print-table th:nth-child(4),
+.routes-print-table td:nth-child(4) {
+    width: 20%;
 }
 
 .routes-print-empty {

@@ -663,6 +663,7 @@ function displayRoute(waypoints) {
         html += '<thead><tr>';
         html += '<th scope="col">Adresse</th>';
         html += '<th scope="col">Nombre de colis</th>';
+        html += '<th scope="col">Numéros des colis</th>';
         html += '<th scope="col">Téléphone</th>';
         html += '</tr></thead><tbody>';
         for (let i = 1; i < waypoints.length; i++) {
@@ -671,6 +672,7 @@ function displayRoute(waypoints) {
             const tel = (wp.telephone || '').trim();
             html += '<tr>';
             html += `<td>${escapeHtml(displayName)}</td>`;
+            html += '<td class="routes-print-empty">&nbsp;</td>';
             html += '<td class="routes-print-empty">&nbsp;</td>';
             if (tel) {
                 html += `<td>${escapeHtml(tel)}</td>`;
