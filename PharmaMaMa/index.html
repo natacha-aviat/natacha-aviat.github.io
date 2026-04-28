@@ -134,6 +134,19 @@
       document.getElementById("fab-pharmacie").style.display = view === "pharmacie" ? "inline-flex" : "none";
       document.getElementById("fab-association").style.display = view === "association" ? "inline-flex" : "none";
     }
+
+    document.querySelectorAll(".colis-row").forEach(function (row) {
+      row.tabIndex = 0;
+      row.addEventListener("click", function () {
+        window.location.href = "./colis-detail.html";
+      });
+      row.addEventListener("keydown", function (event) {
+        if (event.key === "Enter" || event.key === " ") {
+          event.preventDefault();
+          window.location.href = "./colis-detail.html";
+        }
+      });
+    });
   </script>
 </body>
 </html>

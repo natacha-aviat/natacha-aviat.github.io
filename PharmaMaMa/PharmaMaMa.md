@@ -199,3 +199,14 @@ Criteres d'acceptation :
 - Une seule version de l'interface doit être présente sur la page (pas de doublon de maquettes).
 - La présentation doit rester professionnelle (style propre / lisible), tout en conservant les informations de synthèse demandées.
 - Quand le statut d'un colis est **Validé**, afficher une action explicite **Télécharger le CERFA** sur la ligne du colis.
+
+## Ecran de détail au clic sur un colis
+- Le clic sur une ligne de colis ouvre une **deuxième page HTML** dédiée au détail (et non un dépliage dans la liste).
+- Cette page de détail reprend les informations clés du schéma :
+  - en-tête du colis (avatar initiale, nom association/pharmacie, statut, date, montant),
+  - liste des articles,
+  - quantité modifiable visuellement,
+  - valeur unitaire affichée,
+  - action de suppression par ligne.
+- En bas de page : barre d'actions claire avec **Nouvel article** et **Imprimer bordereau**.
+- Le rendu doit être plus propre/professionnel que le schéma tout en conservant ces informations.

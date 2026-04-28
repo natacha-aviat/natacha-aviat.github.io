@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>PharmaMaMa - Détail colis</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #f0f1f3;
+      --surface: #ffffff;
+      --border: #e3e5e8;
+      --text: #1d1f23;
+      --muted: #727780;
+      --accent: #f38e81;
+      --yellow: #e4c958;
+      --status-blue: #235f95;
+      --status-blue-bg: #e7f0f9;
+      --shadow: 0 2px 10px rgba(18, 22, 31, 0.06);
+    }
+    body { font-family: "DM Sans", sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; max-width: 390px; margin: 0 auto; }
+    .app-header { background: var(--surface); border-bottom: 1px solid var(--border); padding: 14px; position: sticky; top: 0; z-index: 10; }
+    .header-top { display: flex; align-items: center; gap: 10px; }
+    .back-btn { width: 34px; height: 34px; border-radius: 9px; border: 1px solid var(--border); background: #fff; color: var(--muted); text-decoration: none; display: inline-flex; align-items: center; justify-content: center; font-size: 18px; }
+    .brand { display: flex; align-items: center; gap: 8px; min-width: 0; }
+    .brand img { width: 22px; height: 22px; object-fit: contain; }
+    .brand-title { font-size: 17px; font-weight: 700; letter-spacing: -0.2px; }
+    .brand-title .accent { color: var(--accent); }
+
+    .main { padding: 12px; padding-bottom: 96px; }
+    .detail-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 12px;
+      box-shadow: var(--shadow);
+      min-height: calc(100vh - 200px);
+    }
+    .colis-head {
+      display: grid;
+      grid-template-columns: 40px minmax(0, 1fr) auto;
+      gap: 10px;
+      align-items: center;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 10px;
+    }
+    .avatar { width: 36px; height: 36px; border-radius: 999px; background: var(--yellow); color: #fff; display: flex; align-items: center; justify-content: center; font-size: 20px; font-weight: 700; }
+    .meta-title { font-size: 24px; line-height: 1; font-weight: 700; letter-spacing: -0.3px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .meta-amount { margin-top: 4px; font-size: 15px; font-weight: 600; color: #2b2f36; }
+    .meta-right { display: flex; align-items: center; gap: 8px; white-space: nowrap; }
+    .badge { font-size: 11px; font-weight: 700; border-radius: 999px; padding: 4px 9px; color: var(--status-blue); background: var(--status-blue-bg); }
+    .date { font-size: 12px; color: #4f545d; font-weight: 600; }
+
+    .article-list { display: flex; flex-direction: column; gap: 8px; }
+    .article-item {
+      background: #fafbfc;
+      border: 1px solid #dde1e6;
+      border-radius: 12px;
+      padding: 10px;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 56px auto 28px;
+      gap: 8px;
+      align-items: center;
+    }
+    .article-name { font-size: 18px; font-weight: 700; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .article-sub { margin-top: 2px; font-size: 12px; color: var(--muted); }
+    .qty-wrap { display: flex; flex-direction: column; align-items: center; gap: 2px; }
+    .qty-btn { border: 0; background: transparent; color: var(--accent); line-height: 1; font-size: 15px; cursor: pointer; }
+    .qty-box { width: 44px; text-align: center; border: 1px solid #cfd3d8; background: #fff; border-radius: 7px; padding: 4px 0; font-size: 22px; font-weight: 700; line-height: 1; }
+    .unit-price { text-align: right; min-width: 104px; }
+    .unit-price .label { font-size: 11px; color: var(--muted); margin-bottom: 2px; }
+    .unit-price .value { font-size: 22px; font-weight: 700; white-space: nowrap; }
+    .del-btn { width: 28px; height: 28px; border: 1px solid #ffcfd6; background: #fff3f5; color: #a33b4a; border-radius: 8px; cursor: pointer; font-size: 15px; }
+
+    .bottom-actions {
+      position: fixed; left: 50%; transform: translateX(-50%); bottom: 14px;
+      width: min(390px, 100%); padding: 0 12px; display: grid; grid-template-columns: 1fr 1fr; gap: 8px; z-index: 25;
+    }
+    .action-btn { border: 0; border-radius: 999px; box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2); padding: 12px 10px; font-size: 16px; font-weight: 700; cursor: pointer; }
+    .btn-new { background: var(--accent); color: #1f1a1a; }
+    .btn-print { background: #d9bf52; color: #1f1a1a; }
+  </style>
+</head>
+<body>
+  <header class="app-header">
+    <div class="header-top">
+      <a class="back-btn" href="./index.html" aria-label="Retour">‹</a>
+      <div class="brand">
+        <img src="../images/mamama_logo.webp" alt="MaMaMa">
+        <div class="brand-title">Pharma<span class="accent">MaMa</span></div>
+      </div>
+    </div>
+  </header>
+
+  <main class="main">
+    <section class="detail-card" aria-label="Détail du colis">
+      <header class="colis-head">
+        <div class="avatar">M</div>
+        <div>
+          <div class="meta-title">MaMaMa</div>
+          <div class="meta-amount">310,50 EUR</div>
+        </div>
+        <div class="meta-right">
+          <span class="badge">En préparation</span>
+          <span class="date">27 avr.</span>
+        </div>
+      </header>
+
+      <div class="article-list">
+        <article class="article-item">
+          <div>
+            <div class="article-name">Couches T2</div>
+            <div class="article-sub">Bébé</div>
+          </div>
+          <div class="qty-wrap">
+            <button class="qty-btn" aria-label="Augmenter quantité">▲</button>
+            <div class="qty-box">2</div>
+            <button class="qty-btn" aria-label="Diminuer quantité">▼</button>
+          </div>
+          <div class="unit-price">
+            <div class="label">Valeur unitaire</div>
+            <div class="value">12,50 EUR</div>
+          </div>
+          <button class="del-btn" aria-label="Supprimer l'article">🗑</button>
+        </article>
+
+        <article class="article-item">
+          <div>
+            <div class="article-name">Lait 1er âge</div>
+            <div class="article-sub">Nutrition</div>
+          </div>
+          <div class="qty-wrap">
+            <button class="qty-btn" aria-label="Augmenter quantité">▲</button>
+            <div class="qty-box">1</div>
+            <button class="qty-btn" aria-label="Diminuer quantité">▼</button>
+          </div>
+          <div class="unit-price">
+            <div class="label">Valeur unitaire</div>
+            <div class="value">32,50 EUR</div>
+          </div>
+          <button class="del-btn" aria-label="Supprimer l'article">🗑</button>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <div class="bottom-actions">
+    <button class="action-btn btn-new">＋ Nouvel article</button>
+    <button class="action-btn btn-print">🖨 Imprimer bordereau</button>
+  </div>
+</body>
+</html>
