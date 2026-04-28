@@ -173,3 +173,29 @@ Criteres d'acceptation :
 
 ## Maquette HTML (charte couleurs)
 - Le segment **MaMa** du titre **PharmaMaMa** et le bouton **Scanner un colis reçu** utilisent la même couleur que le titre **MaMaExpress** : `#F38E81` (corail / rose saumon).
+
+## Refonte mobile (cards accordéon)
+- La page mobile n'utilise plus de tableau principal : les colis sont affichés en **cards empilées** (une carte par colis).
+- Chaque carte a un **header tappable** : date, pharmacie/association, montant total, badge de statut, chevron rotatif.
+- Tap sur le header = ouverture / fermeture du détail.
+- Détail des articles en liste : nom + catégorie à gauche, `N x prix unitaire` et total à droite.
+- Statuts et badges : **En cours (amber)**, **En transit (bleu)**, **Reçu (bleu)**, **Validé (vert)**, **Partiellement validé (violet)**, **Invalidé (rouge)**.
+- Vue pharmacie (colis *En cours*) : bouton suppression par article + barre d'actions en bas de carte (**Ajouter**, **Imprimer bordereau**).
+- Vue association (colis *Reçu*) : bouton **Valider** par article + barre d'actions (**Valider tout**, **Invalider**).
+- Header global : actions CSV et CERFA sous forme d'icônes.
+- Navigation : segmented control pleine largeur pour switcher **Vue pharmacie** / **Vue association**.
+- FAB fixe en bas : **Créer un colis** (pharmacie) ou **Scanner un colis** (association).
+
+## Evolution liste des colis (mobile)
+- La vue **liste des colis** devient une liste de cartes compactes de synthese (sans ouverture inline par flèche).
+- Chaque ligne de colis affiche :
+  - un rond avec l'initiale de l'association/pharmacie (couleur variable selon l'entité),
+  - le nom de l'entité,
+  - le nombre d'articles dans le colis,
+  - le statut du colis (badge),
+  - la date,
+  - la valeur défiscalisable.
+- Le détail du colis sera affiché dans un second temps sur un écran dédié au clic (a spécifier ensuite).
+- Une seule version de l'interface doit être présente sur la page (pas de doublon de maquettes).
+- La présentation doit rester professionnelle (style propre / lisible), tout en conservant les informations de synthèse demandées.
+- Quand le statut d'un colis est **Validé**, afficher une action explicite **Télécharger le CERFA** sur la ligne du colis.

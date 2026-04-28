@@ -1,881 +1,139 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>PharmaMaMa — Maquette</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>PharmaMaMa - Liste des colis</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
   <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
-      --mama-yellow: #f5d547;
-      --mama-yellow-soft: #fff9e0;
-      /* Rose MaMaMa = même teinte que MaMaExpress (MaMaStyle.css h1–h3) */
-      /* Rose MaMa / bouton scan = même teinte que le titre MaMaExpress (#F38E81) */
-      --mama-pink: #f38e81;
-      --mama-pink-soft: #fef5f4;
-      --mama-gray: #6b7280;
-      --mama-gray-dark: #374151;
-      --mama-gray-bg: #f3f4f6;
-      --card: #ffffff;
-      --border: #e5e7eb;
-      --radius: 14px;
-      --shadow: 0 8px 24px rgba(55, 65, 81, 0.08);
-      --tap: 44px;
-      --l-date: 5.75rem;
-      --l-partner: minmax(7.25rem, 1.35fr);
-      --l-statut: 10.25rem;
-      --l-montant: 5.25rem;
-      --l-cerfa: 6.5rem;
-      --l-chev: 2.25rem; /* même largeur que la colonne flèche du <summary> */
+      --bg: #f0f1f3; --surface: #ffffff; --border: #e3e5e8; --text: #1d1f23; --muted: #727780;
+      --accent: #f38e81; --shadow: 0 2px 10px rgba(18, 22, 31, 0.06);
+      --status-amber: #a95d13; --status-amber-bg: #f8ebdf;
+      --status-blue: #235f95; --status-blue-bg: #e7f0f9;
+      --status-green: #2e7b5f; --status-green-bg: #e4f2ec;
+      --status-violet: #6f4aa3; --status-violet-bg: #efe8f8;
+      --status-red: #b33a3a; --status-red-bg: #fae8e8;
     }
-
-    * { box-sizing: border-box; }
-    body {
-      margin: 0;
-      font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
-      background: var(--mama-gray-bg);
-      color: var(--mama-gray-dark);
-      font-size: 15px;
-      line-height: 1.45;
-    }
-
-    .wrap {
-      max-width: 720px;
-      margin: 0 auto;
-      padding: 12px 14px 28px;
-    }
-
-    .top {
-      background: #fff;
+    body { font-family: "DM Sans", sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; max-width: 390px; margin: 0 auto; }
+    .app-header { position: sticky; top: 0; z-index: 20; background: var(--surface); border-bottom: 1px solid var(--border); padding: 14px 14px 10px; }
+    .header-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; }
+    .brand { display: flex; align-items: center; gap: 8px; }
+    .brand img { width: 24px; height: 24px; object-fit: contain; }
+    .brand-title { font-size: 18px; font-weight: 700; letter-spacing: -0.2px; }
+    .brand-title .accent { color: var(--accent); }
+    .header-actions { display: flex; gap: 8px; }
+    .icon-btn { width: 34px; height: 34px; border-radius: 9px; border: 1px solid var(--border); background: #fff; color: #727780; display: flex; align-items: center; justify-content: center; font-size: 14px; cursor: pointer; }
+    .seg { width: 100%; background: #f3f4f6; border-radius: 10px; padding: 3px; display: flex; gap: 4px; }
+    .seg-btn { flex: 1; border: 0; background: transparent; border-radius: 8px; font-size: 13px; font-weight: 600; color: var(--muted); padding: 8px 0; cursor: pointer; }
+    .seg-btn.active { background: #fff; color: var(--text); box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08); }
+    .main { display: flex; flex-direction: column; gap: 10px; padding: 12px; padding-bottom: 96px; }
+    .kpi-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+    .kpi-card {
       border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 16px 18px;
-      box-shadow: var(--shadow);
-      margin-bottom: 12px;
-    }
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      flex-wrap: wrap;
-    }
-    .brand-logo {
-      flex-shrink: 0;
-      width: 56px;
-      height: 56px;
       border-radius: 12px;
-      background: #fafafa;
-      border: 1px solid var(--border);
+      padding: 10px;
+      box-shadow: var(--shadow);
       display: flex;
       align-items: center;
       justify-content: center;
-      overflow: hidden;
+      text-align: center;
     }
-    .brand-logo img {
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
-      display: block;
+    .kpi-card.colis {
+      background: #f4eab5;
+      border-color: #e2d58f;
+      color: #5a4a1c;
     }
-    .app-title {
-      margin: 0;
-      font-family: "Plus Jakarta Sans", system-ui, sans-serif;
-      font-size: clamp(1.45rem, 4.2vw, 1.95rem);
-      font-weight: 800;
-      letter-spacing: -0.045em;
-      line-height: 1.1;
-    }
-    .app-title__pre {
-      color: #111827;
-    }
-    .app-title__accent {
-      color: var(--mama-pink);
-      font-weight: 800;
-    }
-    .app-title__tag {
-      display: block;
-      margin-top: 6px;
-      font-family: system-ui, sans-serif;
-      font-size: 0.72rem;
-      font-weight: 600;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      color: var(--mama-gray);
-    }
-
-    .tabs {
-      display: flex;
-      gap: 8px;
-      margin-bottom: 14px;
-    }
-    .tab {
-      flex: 1;
-      min-height: var(--tap);
-      border: 2px solid var(--border);
-      border-radius: 12px;
-      background: #fff;
-      color: var(--mama-gray);
-      font-size: 0.95rem;
-      font-weight: 600;
-      cursor: pointer;
-      padding: 10px 12px;
-    }
-    .tab:hover {
-      border-color: var(--mama-pink);
-      color: var(--mama-gray-dark);
-    }
-    .tab[aria-selected="true"] {
-      background: var(--mama-pink-soft);
-      border-color: var(--mama-pink);
-      color: #c53030;
-    }
-
-    .view { display: none; }
-    .view.is-active { display: block; }
-
-    .card {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      padding: 14px;
-      margin-bottom: 12px;
-    }
-
-    .btn-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin-bottom: 12px;
-    }
-    .btn {
-      min-height: var(--tap);
-      padding: 0 16px;
-      border-radius: 10px;
-      border: none;
-      font-size: 0.95rem;
-      font-weight: 600;
-      cursor: pointer;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 6px;
-    }
-    .btn-primary {
-      background: var(--mama-gray-dark);
+    .kpi-card.valeur {
+      background: var(--accent);
+      border-color: var(--accent);
       color: #fff;
     }
-    .btn-primary:active { opacity: 0.92; }
-    .btn-yellow {
-      background: var(--mama-yellow);
-      color: var(--mama-gray-dark);
-    }
-    .btn-pink {
-      background: var(--mama-pink);
-      color: #fff;
-    }
-    .btn-outline {
-      background: #fff;
-      border: 2px solid var(--border);
-      color: var(--mama-gray-dark);
-    }
-    .btn-danger {
-      background: #fee2e2;
-      color: #991b1b;
-      border: 2px solid #fecaca;
-    }
-    .btn-success {
-      background: #dcfce7;
-      color: #166534;
-      border: 2px solid #bbf7d0;
-    }
-
-    .scan-lone {
-      margin-bottom: 12px;
-    }
-    .scan-lone .btn {
-      width: 100%;
-    }
-
-    .table-scroll {
-      overflow-x: auto;
-      -webkit-overflow-scrolling: touch;
-      margin: 0 -4px;
-    }
-
-    .badge {
-      display: inline-block;
-      padding: 3px 8px;
-      border-radius: 999px;
-      font-size: 0.72rem;
-      font-weight: 700;
-      white-space: nowrap;
-    }
-    .st-en-cours { background: #e0e7ff; color: #3730a3; }
-    .st-transit { background: #fef3c7; color: #92400e; }
-    .st-recu { background: #dbeafe; color: #1e40af; }
-    .st-valide { background: #dcfce7; color: #166534; }
-    .st-invalide { background: #fee2e2; color: #991b1b; }
-    .st-partiel { background: #ffedd5; color: #9a3412; }
-
-    .cerfa-link {
-      color: #d64545;
-      font-weight: 600;
-      text-decoration: none;
-    }
-
-    .chk-row {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      padding: 4px;
-    }
-    .chk-row input {
-      width: 1.15rem;
-      height: 1.15rem;
-      accent-color: var(--mama-pink);
-      cursor: pointer;
-    }
-    .th-chk {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    .th-chk input {
-      width: 1.1rem;
-      height: 1.1rem;
-      accent-color: var(--mama-pink);
-      cursor: pointer;
-    }
-
-    details.row-expand {
-      border-bottom: 1px solid var(--border);
-    }
-    details.row-expand:last-of-type { border-bottom: none; }
-    details.row-expand > summary {
-      list-style: none;
-      cursor: pointer;
-      padding: 10px 8px;
-      display: grid;
-      grid-template-columns: 42px minmax(0, 1fr) var(--l-chev);
-      gap: 6px;
-      align-items: center;
-      font-size: 0.82rem;
-    }
-    details.row-expand > summary::-webkit-details-marker { display: none; }
-    details.row-expand > summary::after {
-      content: "▾";
-      color: var(--mama-gray-dark);
-      font-size: 1.35rem;
-      font-weight: 700;
-      line-height: 1;
-      text-align: center;
-      justify-self: center;
-    }
-    details.row-expand[open] > summary::after { content: "▴"; }
-
-    .summary-grid {
-      display: grid;
-      gap: 6px 8px;
-      align-items: center;
-      width: 100%;
-      min-width: 0;
-    }
-    /* Même gabarit que .table-head : colonnes alignées (fixe + flexible + fixes) */
-    .list-cols-pharma {
-      grid-template-columns:
-        42px
-        var(--l-date)
-        var(--l-partner)
-        var(--l-statut)
-        var(--l-montant)
-        var(--l-montant)
-        var(--l-cerfa)
-        var(--l-chev);
-    }
-    .summary-grid--pharma {
-      grid-template-columns:
-        var(--l-date)
-        var(--l-partner)
-        var(--l-statut)
-        var(--l-montant)
-        var(--l-montant)
-        var(--l-cerfa);
-      min-width: min(100%, 46rem);
-    }
-    .list-cols-asso {
-      grid-template-columns:
-        42px
-        var(--l-date)
-        var(--l-partner)
-        var(--l-statut)
-        var(--l-montant)
-        var(--l-cerfa)
-        var(--l-chev);
-    }
-    .summary-grid--asso {
-      grid-template-columns:
-        var(--l-date)
-        var(--l-partner)
-        var(--l-statut)
-        var(--l-montant)
-        var(--l-cerfa);
-      min-width: min(100%, 40rem);
-    }
-    .table-head.list-cols-pharma > span:nth-child(5),
-    .table-head.list-cols-pharma > span:nth-child(6),
-    .table-head.list-cols-pharma > span:nth-child(7),
-    .summary-grid--pharma > span:nth-child(4),
-    .summary-grid--pharma > span:nth-child(5),
-    .summary-grid--pharma > span:nth-child(6) {
-      text-align: end;
-      font-variant-numeric: tabular-nums;
-    }
-    .table-head.list-cols-asso > span:nth-child(5),
-    .table-head.list-cols-asso > span:nth-child(6),
-    .summary-grid--asso > span:nth-child(4),
-    .summary-grid--asso > span:nth-child(5) {
-      text-align: end;
-      font-variant-numeric: tabular-nums;
-    }
-    .summary-grid .badge {
-      vertical-align: middle;
-    }
-    .summary-grid--pharma > span:nth-child(3),
-    .summary-grid--asso > span:nth-child(3) {
-      justify-self: start;
-    }
-    .th-chevr-spacer {
-      /* réserve l'espace de la flèche ; pas de libellé */
-      pointer-events: none;
-    }
-
-    .detail-inner {
-      padding: 0 8px 12px 12px;
-      border-left: 3px solid var(--mama-yellow);
-      margin-left: 8px;
-      background: var(--mama-yellow-soft);
-      border-radius: 0 8px 8px 0;
-    }
-    .mini-table {
-      width: 100%;
-      min-width: 0;
-      font-size: 0.78rem;
-      margin-top: 8px;
-    }
-    .mini-table th, .mini-table td {
-      padding: 6px 4px;
-    }
-    /* Détail déplié : tout centré dans les colonnes (≠ liste principale) */
-    .detail-inner .mini-table th,
-    .detail-inner .mini-table td {
-      text-align: center;
-      vertical-align: middle;
-    }
-    .detail-inner .mini-table .col-actions {
-      text-align: center;
-    }
-    .detail-inner .row-actions {
-      justify-content: center;
-    }
-    .row-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin-top: 10px;
-    }
-    .row-actions .btn {
-      min-height: 40px;
-      font-size: 0.85rem;
-      padding: 0 12px;
-    }
-    .btn-sm {
-      min-height: 34px;
-      padding: 0 10px;
-      font-size: 0.78rem;
-      font-weight: 600;
-      border-radius: 8px;
-      cursor: pointer;
-      white-space: nowrap;
-    }
-    .btn-sm.btn-danger {
-      background: #fee2e2;
-      color: #991b1b;
-      border: 1px solid #fecaca;
-    }
-    .btn-sm.btn-success {
-      background: #dcfce7;
-      color: #166534;
-      border: 1px solid #bbf7d0;
-    }
-    .mini-table .col-actions {
-      width: 1%;
-      white-space: nowrap;
-    }
-
-    .table-head {
-      display: none;
-      gap: 6px 8px;
-      padding: 8px 8px 6px;
-      font-size: 0.72rem;
-      font-weight: 700;
-      color: var(--mama-gray);
-      border-bottom: 2px solid var(--border);
-      margin-bottom: 4px;
-      align-items: center;
-    }
-    @media (min-width: 640px) {
-      .table-head { display: grid; }
-    }
-
-    @media (min-width: 768px) {
-      .wrap { max-width: 960px; }
-    }
+    .kpi-value { font-size: 20px; font-weight: 700; letter-spacing: -0.2px; line-height: 1.2; }
+    .colis-row { display: grid; grid-template-columns: 44px minmax(0, 1fr); align-items: center; gap: 10px; background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 10px; box-shadow: var(--shadow); cursor: pointer; }
+    .asso-avatar { width: 36px; height: 36px; border-radius: 999px; display: flex; align-items: center; justify-content: center; color: #fff; font-weight: 700; font-size: 15px; }
+    .avatar-yellow { background: #e4c958; } .avatar-rose { background: #c06f9d; } .avatar-blue { background: #1a93ad; } .avatar-purple { background: #7663be; }
+    .row-top { display: grid; grid-template-columns: minmax(0, 1fr) auto auto; gap: 8px; align-items: center; margin-bottom: 3px; }
+    .asso-name { font-size: 20px; font-weight: 700; line-height: 1.05; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .article-count { font-size: 11px; font-weight: 600; color: var(--muted); white-space: nowrap; }
+    .colis-date { font-family: "DM Mono", monospace; font-size: 11px; color: #4f545d; white-space: nowrap; }
+    .row-bottom { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+    .defisc { font-size: 13px; font-weight: 600; color: #252931; }
+    .defisc .label { font-weight: 500; color: var(--muted); margin-right: 4px; }
+    .badge { font-size: 11px; font-weight: 700; border-radius: 999px; padding: 3px 9px; white-space: nowrap; }
+    .st-en-cours { color: var(--status-amber); background: var(--status-amber-bg); }
+    .st-transit { color: var(--status-blue); background: var(--status-blue-bg); }
+    .st-recu { color: var(--status-blue); background: var(--status-blue-bg); }
+    .st-valide { color: var(--status-green); background: var(--status-green-bg); }
+    .st-partiel { color: var(--status-violet); background: var(--status-violet-bg); }
+    .st-invalide { color: var(--status-red); background: var(--status-red-bg); }
+    .cerfa-wrap { margin-top: 7px; display: flex; justify-content: flex-end; }
+    .cerfa-btn { border: 1px solid #bddfce; background: #eef8f3; color: var(--status-green); font-size: 11px; font-weight: 700; border-radius: 8px; padding: 5px 8px; cursor: pointer; }
+    .fab { position: fixed; right: max(14px, calc((100vw - 390px) / 2 + 14px)); bottom: 18px; border: 0; border-radius: 999px; background: var(--accent); color: #fff; font-size: 16px; font-weight: 700; padding: 13px 20px; box-shadow: 0 6px 14px rgba(0, 0, 0, 0.22); cursor: pointer; max-width: calc(390px - 28px); }
   </style>
 </head>
 <body>
-  <div class="wrap">
-    <header class="top">
+  <header class="app-header">
+    <div class="header-top">
       <div class="brand">
-        <div class="brand-logo">
-          <img src="../images/mamama_logo.webp" alt="MaMaMa" width="112" height="112" decoding="async" />
-        </div>
-        <div>
-          <h1 class="app-title">
-            <span class="app-title__pre">Pharma</span><span class="app-title__accent">MaMa</span>
-          </h1>
-          <span class="app-title__tag">Micro-dons parapharmacie</span>
-        </div>
+        <img src="../images/mamama_logo.webp" alt="MaMaMa">
+        <div class="brand-title">Pharma<span class="accent">MaMa</span></div>
       </div>
-    </header>
-
-    <div class="tabs" role="tablist" aria-label="Changer de vue">
-      <button type="button" class="tab" role="tab" id="tab-pharma" aria-controls="view-pharma" aria-selected="true">Vue pharmacie</button>
-      <button type="button" class="tab" role="tab" id="tab-asso" aria-controls="view-asso" aria-selected="false">Vue association</button>
+      <div class="header-actions">
+        <button class="icon-btn" title="Télécharger CSV">⬇</button>
+        <button class="icon-btn" title="Télécharger CERFA">📄</button>
+      </div>
     </div>
+    <div class="seg">
+      <button class="seg-btn active" onclick="switchView('pharmacie', this)">Vue pharmacie</button>
+      <button class="seg-btn" onclick="switchView('association', this)">Vue association</button>
+    </div>
+  </header>
 
-    <section id="view-pharma" class="view is-active" role="tabpanel" aria-labelledby="tab-pharma">
-      <div class="card">
-        <div class="btn-row">
-          <button type="button" class="btn btn-primary">Créer un colis</button>
-          <button type="button" class="btn btn-outline">Télécharger au format .csv</button>
-          <button type="button" class="btn btn-outline">Télécharger les CERFA</button>
-        </div>
-
-        <div class="table-scroll">
-          <div class="table-head list-cols-pharma">
-            <span class="th-chk"><input type="checkbox" id="chk-all-pharma" aria-label="Tout sélectionner les colis" title="Tout sélectionner" /></span>
-            <span>Date</span>
-            <span>Association</span>
-            <span>Statut</span>
-            <span>Valeur totale</span>
-            <span>Valeur défiscalisable</span>
-            <span>CERFA</span>
-            <span class="th-chevr-spacer" aria-hidden="true"></span>
-          </div>
-          <details class="row-expand" open>
-            <summary>
-              <label class="chk-row" onclick="event.stopPropagation()">
-                <input type="checkbox" class="js-chk-pharma" aria-label="Sélectionner ce colis" />
-              </label>
-              <span class="summary-grid summary-grid--pharma">
-                <span><strong>27 avr. 2026</strong></span>
-                <span>MaMaMa</span>
-                <span><span class="badge st-en-cours">En cours</span></span>
-                <span>248 €</span>
-                <span>—</span>
-                <span></span>
-              </span>
-            </summary>
-            <div class="detail-inner">
-              <table class="mini-table">
-                <thead>
-                  <tr>
-                    <th>Article</th>
-                    <th>Catégorie</th>
-                    <th>Qté</th>
-                    <th>Valeur unit.</th>
-                    <th>Total</th>
-                    <th class="col-actions" aria-label="Actions"></th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>Couches T2</td>
-                    <td>Bébé</td>
-                    <td>6</td>
-                    <td>12 €</td>
-                    <td>72 €</td>
-                    <td class="col-actions"><button type="button" class="btn-sm btn-danger">Supprimer</button></td>
-                  </tr>
-                  <tr>
-                    <td>Lait 2ᵉ âge</td>
-                    <td>Nutrition</td>
-                    <td>4</td>
-                    <td>16 €</td>
-                    <td>64 €</td>
-                    <td class="col-actions"><button type="button" class="btn-sm btn-danger">Supprimer</button></td>
-                  </tr>
-                  <tr>
-                    <td>Chauffe-biberon</td>
-                    <td>Matériel</td>
-                    <td>1</td>
-                    <td>25 €</td>
-                    <td>25 €</td>
-                    <td class="col-actions"><button type="button" class="btn-sm btn-danger">Supprimer</button></td>
-                  </tr>
-                </tbody>
-              </table>
-              <div class="row-actions">
-                <button type="button" class="btn btn-yellow">Ajouter</button>
-                <button type="button" class="btn btn-outline">Imprimer le bordereau de livraison</button>
-              </div>
-            </div>
-          </details>
-
-          <details class="row-expand">
-            <summary>
-              <label class="chk-row" onclick="event.stopPropagation()">
-                <input type="checkbox" class="js-chk-pharma" aria-label="Sélectionner ce colis" />
-              </label>
-              <span class="summary-grid summary-grid--pharma">
-                <span><strong>24 avr. 2026</strong></span>
-                <span>MaMaMa</span>
-                <span><span class="badge st-transit">En transit</span></span>
-                <span>132 €</span>
-                <span>—</span>
-                <span></span>
-              </span>
-            </summary>
-            <div class="detail-inner">
-              <table class="mini-table">
-                <thead>
-                  <tr>
-                    <th>Article</th>
-                    <th>Catégorie</th>
-                    <th>Qté</th>
-                    <th>Valeur unit.</th>
-                    <th>Total</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>Bandages</td>
-                    <td>Soin</td>
-                    <td>8</td>
-                    <td>4 €</td>
-                    <td>32 €</td>
-                  </tr>
-                  <tr>
-                    <td>Liniment</td>
-                    <td>Bébé</td>
-                    <td>5</td>
-                    <td>20 €</td>
-                    <td>100 €</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </details>
-
-          <details class="row-expand">
-            <summary>
-              <label class="chk-row" onclick="event.stopPropagation()">
-                <input type="checkbox" class="js-chk-pharma" aria-label="Sélectionner ce colis" />
-              </label>
-              <span class="summary-grid summary-grid--pharma">
-                <span><strong>18 avr. 2026</strong></span>
-                <span>MaMaMa</span>
-                <span><span class="badge st-valide">Validé</span></span>
-                <span>310 €</span>
-                <span>310 €</span>
-                <span><a class="cerfa-link" href="#">Télécharger</a></span>
-              </span>
-            </summary>
-            <div class="detail-inner">
-              <table class="mini-table">
-                <thead>
-                  <tr>
-                    <th>Article</th>
-                    <th>Catégorie</th>
-                    <th>Qté</th>
-                    <th>Valeur unit.</th>
-                    <th>Total</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>Couches T3</td>
-                    <td>Bébé</td>
-                    <td>10</td>
-                    <td>11 €</td>
-                    <td>110 €</td>
-                  </tr>
-                  <tr>
-                    <td>Crème change</td>
-                    <td>Bébé</td>
-                    <td>4</td>
-                    <td>12,50 €</td>
-                    <td>50 €</td>
-                  </tr>
-                  <tr>
-                    <td>…</td>
-                    <td>…</td>
-                    <td>…</td>
-                    <td>…</td>
-                    <td>150 €</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </details>
-
-          <details class="row-expand">
-            <summary>
-              <label class="chk-row" onclick="event.stopPropagation()">
-                <input type="checkbox" class="js-chk-pharma" aria-label="Sélectionner ce colis" />
-              </label>
-              <span class="summary-grid summary-grid--pharma">
-                <span><strong>10 avr. 2026</strong></span>
-                <span>MaMaMa</span>
-                <span><span class="badge st-partiel">Partiellement validé</span></span>
-                <span>95 €</span>
-                <span>78 €</span>
-                <span><a class="cerfa-link" href="#">Télécharger</a></span>
-              </span>
-            </summary>
-            <div class="detail-inner">
-              <table class="mini-table">
-                <thead>
-                  <tr>
-                    <th>Article</th>
-                    <th>Catégorie</th>
-                    <th>Qté</th>
-                    <th>Valeur unit.</th>
-                    <th>Total</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>Boîtes lait</td>
-                    <td>Nutrition</td>
-                    <td>3</td>
-                    <td>25 €</td>
-                    <td>75 €</td>
-                  </tr>
-                  <tr>
-                    <td>Couches (refus partiel)</td>
-                    <td>Bébé</td>
-                    <td>1</td>
-                    <td>20 €</td>
-                    <td>20 €</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </details>
-        </div>
-      </div>
+  <main class="main" id="view-pharmacie">
+    <section class="kpi-grid" aria-label="Synthèse pharmacie">
+      <article class="kpi-card colis">
+        <div class="kpi-value">4 colis</div>
+      </article>
+      <article class="kpi-card valeur">
+        <div class="kpi-value">785 €</div>
+      </article>
     </section>
 
-    <section id="view-asso" class="view" role="tabpanel" aria-labelledby="tab-asso" hidden>
-      <div class="scan-lone">
-        <button type="button" class="btn btn-pink">Scanner un colis reçu</button>
-      </div>
+    <article class="colis-row" role="button"><div class="asso-avatar avatar-yellow">M</div><div><div class="row-top"><div class="asso-name">MaMaMa</div><div class="article-count">5 articles</div><div class="colis-date">27 avr.</div></div><div class="row-bottom"><div class="defisc"><span class="label">Défisc.</span>248 €</div><span class="badge st-en-cours">En cours</span></div></div></article>
+    <article class="colis-row" role="button"><div class="asso-avatar avatar-rose">R</div><div><div class="row-top"><div class="asso-name">Restos du Coeur</div><div class="article-count">3 articles</div><div class="colis-date">24 avr.</div></div><div class="row-bottom"><div class="defisc"><span class="label">Défisc.</span>132 €</div><span class="badge st-transit">En transit</span></div></div></article>
+    <article class="colis-row" role="button"><div class="asso-avatar avatar-blue">B</div><div><div class="row-top"><div class="asso-name">Banque Alimentaire</div><div class="article-count">2 articles</div><div class="colis-date">18 avr.</div></div><div class="row-bottom"><div class="defisc"><span class="label">Défisc.</span>310 €</div><span class="badge st-valide">Validé</span></div><div class="cerfa-wrap"><button class="cerfa-btn">⬇ Télécharger le CERFA</button></div></div></article>
+    <article class="colis-row" role="button"><div class="asso-avatar avatar-purple">M</div><div><div class="row-top"><div class="asso-name">MaMaMa</div><div class="article-count">4 articles</div><div class="colis-date">10 avr.</div></div><div class="row-bottom"><div class="defisc"><span class="label">Défisc.</span>78 €</div><span class="badge st-partiel">Partiellement validé</span></div></div></article>
+  </main>
 
-      <div class="card">
-        <div class="btn-row">
-          <button type="button" class="btn btn-outline">Télécharger au format .csv</button>
-          <button type="button" class="btn btn-outline">Télécharger les CERFA</button>
-        </div>
-
-        <div class="table-scroll">
-          <div class="table-head list-cols-asso">
-            <span class="th-chk"><input type="checkbox" id="chk-all-asso" aria-label="Tout sélectionner les colis" title="Tout sélectionner" /></span>
-            <span>Date</span>
-            <span>Pharmacie</span>
-            <span>Statut</span>
-            <span>Valeur totale</span>
-            <span>CERFA</span>
-            <span class="th-chevr-spacer" aria-hidden="true"></span>
-          </div>
-          <details class="row-expand" open>
-            <summary>
-              <label class="chk-row" onclick="event.stopPropagation()">
-                <input type="checkbox" class="js-chk-asso" aria-label="Sélectionner ce colis" />
-              </label>
-              <span class="summary-grid summary-grid--asso">
-                <span><strong>24 avr. 2026</strong></span>
-                <span>Pharmacie du Centre</span>
-                <span><span class="badge st-recu">Reçu</span></span>
-                <span>132 €</span>
-                <span></span>
-              </span>
-            </summary>
-            <div class="detail-inner">
-              <table class="mini-table">
-                <thead>
-                  <tr>
-                    <th>Article</th>
-                    <th>Catégorie</th>
-                    <th>Qté</th>
-                    <th>Valeur unit.</th>
-                    <th>Total</th>
-                    <th class="col-actions" aria-label="Validation ligne"></th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>Bandages</td>
-                    <td>Soin</td>
-                    <td>8</td>
-                    <td>4 €</td>
-                    <td>32 €</td>
-                    <td class="col-actions"><button type="button" class="btn-sm btn-success">Valider</button></td>
-                  </tr>
-                  <tr>
-                    <td>Liniment</td>
-                    <td>Bébé</td>
-                    <td>5</td>
-                    <td>20 €</td>
-                    <td>100 €</td>
-                    <td class="col-actions"><button type="button" class="btn-sm btn-success">Valider</button></td>
-                  </tr>
-                </tbody>
-              </table>
-              <div class="row-actions">
-                <button type="button" class="btn btn-success">Valider tout le colis</button>
-                <button type="button" class="btn btn-danger">Invalider tout le colis</button>
-              </div>
-            </div>
-          </details>
-
-          <details class="row-expand">
-            <summary>
-              <label class="chk-row" onclick="event.stopPropagation()">
-                <input type="checkbox" class="js-chk-asso" aria-label="Sélectionner ce colis" />
-              </label>
-              <span class="summary-grid summary-grid--asso">
-                <span><strong>24 avr. 2026</strong></span>
-                <span>Pharmacie des Lilas</span>
-                <span><span class="badge st-transit">En transit</span></span>
-                <span>89 €</span>
-                <span></span>
-              </span>
-            </summary>
-            <div class="detail-inner">
-            </div>
-          </details>
-
-          <details class="row-expand">
-            <summary>
-              <label class="chk-row" onclick="event.stopPropagation()">
-                <input type="checkbox" class="js-chk-asso" aria-label="Sélectionner ce colis" />
-              </label>
-              <span class="summary-grid summary-grid--asso">
-                <span><strong>18 avr. 2026</strong></span>
-                <span>Pharmacie du Parc</span>
-                <span><span class="badge st-valide">Validé</span></span>
-                <span>310 €</span>
-                <span><a class="cerfa-link" href="#">Télécharger</a></span>
-              </span>
-            </summary>
-            <div class="detail-inner">
-              <table class="mini-table">
-                <thead>
-                  <tr>
-                    <th>Article</th>
-                    <th>Catégorie</th>
-                    <th>Qté</th>
-                    <th>Valeur unit.</th>
-                    <th>Total</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>Couches T3</td>
-                    <td>Bébé</td>
-                    <td>10</td>
-                    <td>11 €</td>
-                    <td>110 €</td>
-                  </tr>
-                  <tr>
-                    <td>Autres lignes</td>
-                    <td>—</td>
-                    <td>—</td>
-                    <td>—</td>
-                    <td>200 €</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </details>
-
-          <details class="row-expand">
-            <summary>
-              <label class="chk-row" onclick="event.stopPropagation()">
-                <input type="checkbox" class="js-chk-asso" aria-label="Sélectionner ce colis" />
-              </label>
-              <span class="summary-grid summary-grid--asso">
-                <span><strong>8 avr. 2026</strong></span>
-                <span>Pharmacie Saint-Martin</span>
-                <span><span class="badge st-invalide">Invalidé</span></span>
-                <span>40 €</span>
-                <span></span>
-              </span>
-            </summary>
-            <div class="detail-inner">
-            </div>
-          </details>
-        </div>
-      </div>
+  <main class="main" id="view-association" style="display:none">
+    <section class="kpi-grid" aria-label="Synthèse association">
+      <article class="kpi-card colis">
+        <div class="kpi-value">3 colis</div>
+      </article>
+      <article class="kpi-card valeur">
+        <div class="kpi-value">531 €</div>
+      </article>
     </section>
-  </div>
+
+    <article class="colis-row" role="button"><div class="asso-avatar avatar-yellow">P</div><div><div class="row-top"><div class="asso-name">Pharmacie du Centre</div><div class="article-count">5 articles</div><div class="colis-date">24 avr.</div></div><div class="row-bottom"><div class="defisc"><span class="label">Total</span>132 €</div><span class="badge st-recu">Reçu</span></div></div></article>
+    <article class="colis-row" role="button"><div class="asso-avatar avatar-rose">L</div><div><div class="row-top"><div class="asso-name">Pharmacie des Lilas</div><div class="article-count">2 articles</div><div class="colis-date">24 avr.</div></div><div class="row-bottom"><div class="defisc"><span class="label">Total</span>89 €</div><span class="badge st-transit">En transit</span></div></div></article>
+    <article class="colis-row" role="button"><div class="asso-avatar avatar-blue">P</div><div><div class="row-top"><div class="asso-name">Pharmacie du Parc</div><div class="article-count">2 articles</div><div class="colis-date">18 avr.</div></div><div class="row-bottom"><div class="defisc"><span class="label">Total</span>310 €</div><span class="badge st-valide">Validé</span></div><div class="cerfa-wrap"><button class="cerfa-btn">⬇ Télécharger le CERFA</button></div></div></article>
+  </main>
+
+  <button class="fab" id="fab-pharmacie">+ Créer un colis</button>
+  <button class="fab" id="fab-association" style="display:none">📷 Scanner un colis</button>
 
   <script>
-    (function () {
-      var tabPharma = document.getElementById("tab-pharma");
-      var tabAsso = document.getElementById("tab-asso");
-      var viewPharma = document.getElementById("view-pharma");
-      var viewAsso = document.getElementById("view-asso");
-
-      function showView(which) {
-        var isPharma = which === "pharma";
-        viewPharma.classList.toggle("is-active", isPharma);
-        viewAsso.classList.toggle("is-active", !isPharma);
-        viewPharma.hidden = !isPharma;
-        viewAsso.hidden = isPharma;
-        tabPharma.setAttribute("aria-selected", isPharma ? "true" : "false");
-        tabAsso.setAttribute("aria-selected", !isPharma ? "true" : "false");
-      }
-
-      tabPharma.addEventListener("click", function () { showView("pharma"); });
-      tabAsso.addEventListener("click", function () { showView("asso"); });
-
-      function bindSelectAll(masterId, selector) {
-        var master = document.getElementById(masterId);
-        if (!master) return;
-        master.addEventListener("change", function () {
-          var nodes = document.querySelectorAll(selector);
-          for (var i = 0; i < nodes.length; i++) nodes[i].checked = master.checked;
-        });
-        document.querySelectorAll(selector).forEach(function (cb) {
-          cb.addEventListener("change", function () {
-            var all = document.querySelectorAll(selector);
-            var n = 0;
-            for (var j = 0; j < all.length; j++) if (all[j].checked) n++;
-            master.checked = n === all.length && all.length > 0;
-            master.indeterminate = n > 0 && n < all.length;
-          });
-        });
-      }
-
-      bindSelectAll("chk-all-pharma", "#view-pharma .js-chk-pharma");
-      bindSelectAll("chk-all-asso", "#view-asso .js-chk-asso");
-    })();
+    function switchView(view, btn) {
+      document.querySelectorAll(".seg-btn").forEach(function (b) { b.classList.remove("active"); });
+      btn.classList.add("active");
+      document.getElementById("view-pharmacie").style.display = view === "pharmacie" ? "flex" : "none";
+      document.getElementById("view-association").style.display = view === "association" ? "flex" : "none";
+      document.getElementById("fab-pharmacie").style.display = view === "pharmacie" ? "inline-flex" : "none";
+      document.getElementById("fab-association").style.display = view === "association" ? "inline-flex" : "none";
+    }
   </script>
 </body>
 </html>
