@@ -1,5 +1,6 @@
-// Fichier généré automatiquement - Ne pas modifier manuellement
-// Source: Adresses PMI_2025-07.csv
+// Fichier principal : catalogue PMI (maj. manuelle + script OSRM pour les durées).
+// Historique CSV : Adresses PMI_2025-07.csv ; ajouts 2026 : PMI Joliot Curie (95140),
+// PMI Jaurès Blanc-Mesnil, PMI Gros Saule — ids 198–200.
 
 const PMI_ADDRESSES = [
   {
@@ -1577,6 +1578,30 @@ const PMI_ADDRESSES = [
     "lat": 48.8872028,
     "lng": 2.3585282,
     "telephone": ""
+  },
+  {
+    "id": 198,
+    "nom": "PMI Joliot Curie",
+    "address": "36 AVENUE FRÉDÉRIC JOLIOT-CURIE, 95140 GARGES-LÈS-GONESSE",
+    "lat": 48.9761036,
+    "lng": 2.4090449,
+    "telephone": ""
+  },
+  {
+    "id": 199,
+    "nom": "PMI Jaurès",
+    "address": "2 BIS AVENUE JEAN JAURÈS, 93150 LE BLANC-MESNIL",
+    "lat": 48.9219098,
+    "lng": 2.4716667,
+    "telephone": ""
+  },
+  {
+    "id": 200,
+    "nom": "PMI Gros Saule",
+    "address": "4 RUE DU DOCTEUR JEAN PERLIS, 93600 AULNAY-SOUS-BOIS",
+    "lat": 48.953497,
+    "lng": 2.518502,
+    "telephone": ""
   }
 ];
 
@@ -1778,6 +1803,9 @@ const PMI_ADDRESS_TO_ID = {
   "14 BD SALVADOR ALLENDE, 95400 VILLIERS-LE-BEL": 193,
   "21 JULIEN MOCQUARD, 92230 GENNEVILLIERS": 194,
   "5 CITE DE LA CHAPELLE, 75018 PARIS": 196,
+  "36 AVENUE FRÉDÉRIC JOLIOT-CURIE, 95140 GARGES-LÈS-GONESSE": 198,
+  "2 BIS AVENUE JEAN JAURÈS, 93150 LE BLANC-MESNIL": 199,
+  "4 RUE DU DOCTEUR JEAN PERLIS, 93600 AULNAY-SOUS-BOIS": 200,
   "rue Louis Girard, Aubervilliers": 197
 };
 

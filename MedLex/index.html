@@ -1,0 +1,957 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MedLex | Accompagnement juridique des infirmières libérales</title>
+    <meta
+      name="description"
+      content="MedLex accompagne les infirmières libérales et les professionnels de santé dans leur structuration : passage en SELARL, immatriculation, contrats et formalités."
+    />
+    <style>
+      :root {
+        --bg: #f3f6fc;
+        --card: #ffffff;
+        --text: #0f1f3d;
+        --muted: #55637f;
+        --primary: #245fda;
+        --primary-dark: #1a47a5;
+        --accent: #e9f0ff;
+        --border: #d8e2f4;
+        --shadow-sm: 0 8px 20px rgba(15, 31, 61, 0.06);
+        --shadow-md: 0 14px 36px rgba(15, 31, 61, 0.1);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        font-family: "Inter", "Segoe UI", Roboto, Arial, sans-serif;
+        color: var(--text);
+        background: linear-gradient(180deg, #f7f9fe 0%, #f1f5fc 100%);
+        line-height: 1.55;
+        letter-spacing: 0.01em;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      .container {
+        width: min(1100px, 92%);
+        margin: 0 auto;
+      }
+
+      header {
+        position: sticky;
+        top: 0;
+        z-index: 20;
+        padding: 14px 0 10px;
+        background: rgba(243, 246, 252, 0.88);
+        backdrop-filter: blur(8px);
+      }
+
+      .topbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 18px;
+        padding: 12px 14px;
+        border: 1px solid var(--border);
+        border-radius: 14px;
+        background: rgba(255, 255, 255, 0.9);
+        box-shadow: var(--shadow-sm);
+      }
+
+      .logo {
+        font-weight: 800;
+        letter-spacing: 0.3px;
+        font-size: 1.35rem;
+        white-space: nowrap;
+      }
+
+      .logo span {
+        color: var(--primary);
+      }
+
+      .main-nav {
+        display: flex;
+        gap: 18px;
+        align-items: center;
+      }
+
+      .main-nav a {
+        text-decoration: none;
+        color: var(--text);
+        font-weight: 500;
+        font-size: 0.94rem;
+      }
+
+      .main-nav a:hover {
+        color: var(--primary-dark);
+      }
+
+      .header-actions {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .icon-btn {
+        width: 38px;
+        height: 38px;
+        border-radius: 999px;
+        border: 1px solid var(--border);
+        background: #f9fbff;
+        color: var(--primary-dark);
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        text-decoration: none;
+        font-size: 0.95rem;
+      }
+
+      .phone-btn {
+        padding: 11px 16px;
+        border-radius: 12px;
+        font-weight: 600;
+        text-decoration: none;
+        color: #fff;
+        background: var(--primary);
+        white-space: nowrap;
+        box-shadow: 0 8px 16px rgba(36, 95, 218, 0.22);
+      }
+
+      .phone-btn:hover {
+        background: var(--primary-dark);
+      }
+
+      .btn {
+        display: inline-block;
+        text-decoration: none;
+        border-radius: 12px;
+        padding: 11px 18px;
+        font-weight: 600;
+        transition: 0.2s ease;
+      }
+
+      .btn-primary {
+        color: #fff;
+        background: var(--primary);
+      }
+
+      .btn-primary:hover {
+        background: var(--primary-dark);
+      }
+
+      .btn-secondary {
+        color: var(--primary-dark);
+        background: #ffffff;
+        border: 1px solid #c9dbff;
+      }
+
+      .btn-secondary:hover {
+        background: #f3f7ff;
+      }
+
+      .hero {
+        display: grid;
+        grid-template-columns: 1.2fr 1fr;
+        gap: 28px;
+        padding: 28px 0 18px;
+        align-items: center;
+      }
+
+      .hero-image {
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: 18px;
+        padding: 12px;
+        box-shadow: var(--shadow-md);
+      }
+
+      .hero-image img {
+        width: 100%;
+        display: block;
+        border-radius: 14px;
+        object-fit: cover;
+      }
+
+      .hero h1 {
+        font-size: clamp(2rem, 3.2vw, 3.15rem);
+        line-height: 1.12;
+        margin: 0 0 16px;
+        letter-spacing: -0.02em;
+      }
+
+      .highlight-blue {
+        color: var(--primary);
+      }
+
+      .hero p {
+        color: var(--muted);
+        margin: 0 0 20px;
+      }
+
+      .hero-actions {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+      }
+
+      section {
+        padding: 46px 0;
+        margin-bottom: 18px;
+        border-radius: 16px;
+      }
+
+      .section-hero {
+        background: linear-gradient(135deg, #f3f8ff, #edf4ff);
+      }
+
+      .section-white {
+        background: #ffffff;
+        width: 100vw;
+        margin-left: calc(50% - 50vw);
+        border-radius: 0;
+      }
+
+      .section-white > * {
+        width: min(1100px, 92%);
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .section-soft {
+        background: #f7faff;
+      }
+
+      .section-accent {
+        background: #eef4ff;
+      }
+
+      h2 {
+        margin: 0 0 16px;
+        font-size: clamp(1.45rem, 2.2vw, 2rem);
+        letter-spacing: -0.01em;
+      }
+
+      .intro {
+        color: var(--muted);
+        margin: 0 0 20px;
+        max-width: 760px;
+      }
+
+      .grid-3 {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 16px;
+      }
+
+      .persona-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 16px;
+      }
+
+      .persona-card {
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: 16px;
+        padding: 20px;
+        box-shadow: var(--shadow-sm);
+      }
+
+      .persona-card h3 {
+        margin: 0 0 8px;
+      }
+
+      .persona-card p {
+        margin: 0 0 14px;
+        color: var(--muted);
+      }
+
+      .persona-card ul {
+        margin-top: 8px;
+      }
+
+      .mini-price {
+        display: inline-block;
+        margin-top: 6px;
+        font-weight: 700;
+        color: var(--primary-dark);
+      }
+
+      .card {
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: 16px;
+        padding: 18px;
+      }
+
+      .card h3 {
+        margin: 0 0 8px;
+        font-size: 1.1rem;
+      }
+
+      .card p {
+        margin: 0;
+        color: var(--muted);
+      }
+
+      .kpi {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 12px;
+      }
+
+      .kpi .card strong {
+        display: block;
+        font-size: 1.45rem;
+        color: var(--primary-dark);
+        margin-bottom: 4px;
+      }
+
+      .steps {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 14px;
+      }
+
+      .step-card {
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: 16px;
+        padding: 20px;
+        box-shadow: var(--shadow-sm);
+      }
+
+      .step-number {
+        display: inline-block;
+        min-width: 36px;
+        padding: 4px 10px;
+        border-radius: 999px;
+        background: #d9e7ff;
+        color: #1f57c2;
+        font-weight: 700;
+        margin-bottom: 8px;
+      }
+
+      .center-cta {
+        text-align: center;
+        margin-top: 18px;
+      }
+
+      .big-cta-btn {
+        display: inline-block;
+        margin-top: 10px;
+        padding: 14px 26px;
+        border-radius: 14px;
+        background: var(--primary);
+        color: #fff;
+        text-decoration: none;
+        font-size: 1.05rem;
+        font-weight: 700;
+        box-shadow: 0 10px 22px rgba(36, 95, 218, 0.25);
+      }
+
+      .big-cta-btn:hover {
+        background: var(--primary-dark);
+      }
+
+      .offers {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+      }
+
+      .offers-full {
+        display: grid;
+        gap: 16px;
+      }
+
+      .offer-block {
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: 16px;
+        padding: 18px;
+      }
+
+      .offer-block h3 {
+        margin: 0 0 10px;
+      }
+
+      .offer-item {
+        padding: 10px 0;
+        border-top: 1px solid #edf2ff;
+      }
+
+      .offer-item:first-of-type {
+        border-top: 0;
+        padding-top: 0;
+      }
+
+      .offer-item h4 {
+        margin: 0 0 6px;
+        font-size: 1rem;
+      }
+
+      .offer-item ul {
+        margin-top: 6px;
+      }
+
+      .offer-block.subscription {
+        background: linear-gradient(135deg, #eaf1ff, #ffffff);
+        border: 1px solid #cfe0ff;
+      }
+
+      .offer-badge {
+        display: inline-block;
+        margin-bottom: 8px;
+        padding: 5px 10px;
+        border-radius: 999px;
+        background: #d9e7ff;
+        color: #1f57c2;
+        font-size: 0.82rem;
+        font-weight: 700;
+        letter-spacing: 0.2px;
+      }
+
+      .offer-columns {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 14px;
+        margin-top: 12px;
+      }
+
+      .offer-column {
+        background: #fbfdff;
+        border: 1px solid #e5edff;
+        border-radius: 14px;
+        padding: 14px;
+      }
+
+      .offer-column h4 {
+        margin: 0 0 10px;
+        color: var(--primary-dark);
+        font-size: 1rem;
+      }
+
+      .service-card {
+        background: #fff;
+        border: 1px solid #e9efff;
+        border-radius: 12px;
+        padding: 12px;
+        margin-bottom: 10px;
+      }
+
+      .service-card:last-child {
+        margin-bottom: 0;
+      }
+
+      .service-title {
+        margin: 0 0 6px;
+        font-weight: 700;
+      }
+
+      .service-price {
+        display: inline-block;
+        margin-bottom: 6px;
+        font-weight: 700;
+        color: var(--primary-dark);
+      }
+
+      .service-card ul {
+        margin: 0;
+        padding-left: 17px;
+      }
+
+      .micro-cta {
+        margin-top: 18px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        padding: 14px;
+        border-radius: 14px;
+        background: #f2f7ff;
+        border: 1px solid #dce8ff;
+      }
+
+      .micro-cta p {
+        margin: 0;
+        color: var(--muted);
+      }
+
+      .trust-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 14px;
+      }
+
+      .trust-card {
+        background: #fff;
+        border: 1px solid #e6eeff;
+        border-radius: 14px;
+        padding: 16px;
+      }
+
+      .trust-card blockquote {
+        margin: 0 0 8px;
+        color: var(--text);
+        font-style: italic;
+      }
+
+      .legal-note {
+        margin-top: 14px;
+        font-size: 0.9rem;
+        color: var(--muted);
+      }
+
+      .price {
+        display: inline-block;
+        margin-top: 10px;
+        font-weight: 700;
+        color: var(--primary-dark);
+      }
+
+      .roadmap {
+        border-left: 4px solid var(--primary);
+        padding-left: 16px;
+      }
+
+      ul {
+        margin: 0;
+        padding-left: 18px;
+      }
+
+      .cta {
+        background: linear-gradient(135deg, #1f57c2, #2d74ff);
+        color: #fff;
+        border-radius: 20px;
+        padding: 26px;
+        display: flex;
+        justify-content: space-between;
+        gap: 18px;
+        align-items: center;
+      }
+
+      .cta p {
+        margin: 8px 0 0;
+        color: #eaf1ff;
+      }
+
+      .btn-light {
+        background: #fff;
+        color: var(--primary-dark);
+        font-weight: 700;
+      }
+
+      footer {
+        padding: 26px 0 34px;
+        color: var(--muted);
+        font-size: 0.95rem;
+      }
+
+      .footer-wrap {
+        background: #0e1d3a;
+        color: #dbe6ff;
+        border-radius: 16px;
+        padding: 28px;
+        box-shadow: var(--shadow-md);
+      }
+
+      .footer-top {
+        display: grid;
+        grid-template-columns: 1.4fr 1fr;
+        gap: 24px;
+        padding-bottom: 22px;
+        border-bottom: 1px solid rgba(219, 230, 255, 0.2);
+      }
+
+      .footer-brand {
+        font-size: 1.35rem;
+        font-weight: 800;
+        margin: 0 0 8px;
+        color: #ffffff;
+      }
+
+      .footer-top p {
+        margin: 6px 0;
+      }
+
+      .newsletter-form {
+        display: flex;
+        gap: 8px;
+        margin-top: 10px;
+        flex-wrap: wrap;
+      }
+
+      .newsletter-form input {
+        flex: 1;
+        min-width: 220px;
+        border: 1px solid #3a5388;
+        background: #0b1b3a;
+        color: #fff;
+        border-radius: 10px;
+        padding: 10px 12px;
+      }
+
+      .newsletter-form button {
+        border: 0;
+        border-radius: 10px;
+        background: var(--primary);
+        color: #fff;
+        padding: 10px 14px;
+        font-weight: 700;
+        cursor: pointer;
+      }
+
+      .footer-small {
+        font-size: 0.82rem;
+        color: #b8c9f0;
+      }
+
+      .footer-links a {
+        color: #dbe6ff;
+        text-decoration: none;
+      }
+
+      .footer-links a:hover {
+        text-decoration: underline;
+      }
+
+      .social-links {
+        display: flex;
+        gap: 10px;
+        margin-top: 10px;
+      }
+
+      .social-links a {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 34px;
+        height: 34px;
+        border-radius: 999px;
+        border: 1px solid #3a5388;
+        color: #dbe6ff;
+        text-decoration: none;
+        font-size: 0.9rem;
+      }
+
+      .footer-bottom {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 14px;
+        padding-top: 22px;
+      }
+
+      .footer-col h4 {
+        margin: 0 0 8px;
+        color: #fff;
+      }
+
+      .footer-col a {
+        display: block;
+        color: #dbe6ff;
+        text-decoration: none;
+        margin-bottom: 6px;
+      }
+
+      .footer-col a:hover {
+        text-decoration: underline;
+      }
+
+      @media (max-width: 930px) {
+        .hero,
+        .offers {
+          grid-template-columns: 1fr;
+        }
+
+        .topbar {
+          flex-wrap: wrap;
+        }
+
+        .main-nav {
+          order: 3;
+          width: 100%;
+          flex-wrap: wrap;
+          gap: 10px 14px;
+          padding-top: 6px;
+        }
+
+        .offer-columns {
+          grid-template-columns: 1fr;
+        }
+
+        .grid-3 {
+          grid-template-columns: 1fr 1fr;
+        }
+
+        .persona-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .steps {
+          grid-template-columns: 1fr;
+        }
+
+        .trust-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .kpi {
+          grid-template-columns: 1fr 1fr;
+        }
+
+        .footer-top,
+        .footer-bottom {
+          grid-template-columns: 1fr;
+        }
+
+        .cta {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+      }
+
+      @media (max-width: 620px) {
+        .grid-3,
+        .kpi {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="container">
+      <div class="topbar">
+        <div class="logo">Med<span>Lex</span></div>
+        <nav class="main-nav" aria-label="Navigation principale">
+          <a href="#creation">Installation</a>
+          <a href="#contrats">Modification et Cession</a>
+          <a href="#selarl">Tarifs</a>
+          <a href="#footer">Fiches pratiques</a>
+        </nav>
+        <div class="header-actions">
+          <a class="icon-btn" href="#footer" aria-label="Mon compte">👤</a>
+          <a class="icon-btn" href="#recherche" aria-label="Recherche">🔍</a>
+          <a class="phone-btn" href="tel:+33176390060">01 76 39 00 60</a>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <section class="container hero section-hero">
+        <div>
+          <h1>Donnez de l'envergure à votre <span class="highlight-blue">entreprise de soin</span></h1>
+          <p>
+            La vie juridique des soignants en libéral, en toute confiance.
+          </p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#selarl">Passez en SELARL</a>
+            <a class="btn btn-secondary" href="#creation">Tous nos services</a>
+          </div>
+        </div>
+        <div class="hero-image">
+          <img
+            src="./happy-dentistiry-coworkers-smiling-standing-line-portrait-stomatology-team-dental-reception-with-arms-crossed-looking-camera-wearing-uniform.jpg"
+            alt="Équipe soignante en tenue professionnelle"
+          />
+        </div>
+      </section>
+
+      <section class="container section-white">
+        <h2>La solution complète pour <span class="highlight-blue">s'installer et faire vivre votre cabinet</span></h2>
+        <div class="steps">
+          <article class="step-card">
+            <h3>Formalités juridiques</h3>
+            <p>Créez et modifiez votre cabinet en quelques clics.</p>
+          </article>
+          <article class="step-card">
+            <h3>Coordination</h3>
+            <p>
+              Déléguez l'alignement avec le comptable, l'administration, le
+              commissaire aux comptes.
+            </p>
+          </article>
+          <article class="step-card">
+            <h3>Accompagnement au quotidien</h3>
+            <p>
+              Une équipe d'avocats disponibles par téléphone et chat pour
+              répondre à toutes vos questions de soignant en libéral.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section class="container section-soft">
+        <h2>Passez <span class="highlight-blue">facilement</span> votre cabinet en SELARL <span class="highlight-blue">en 3 étapes</span></h2>
+        <div class="steps">
+          <article class="step-card">
+            <span class="step-number">01</span>
+            <h3>Vous répondez à quelques questions sur votre projet</h3>
+            <p>
+              En quelques minutes, vous décrivez votre situation actuelle, vos
+              objectifs de revenus et votre organisation de cabinet.
+            </p>
+          </article>
+          <article class="step-card">
+            <span class="step-number">02</span>
+            <h3>Nous constituons votre dossier et générons vos documents</h3>
+            <p>
+              Nos équipes préparent les actes nécessaires, vérifient les pièces
+              et coordonnent les échanges avec vos partenaires.
+            </p>
+          </article>
+          <article class="step-card">
+            <span class="step-number">03</span>
+            <h3>Nous immatriculons votre cabinet</h3>
+            <p>
+              Nous pilotons les formalités jusqu'à validation pour un passage en
+              SELARL sécurisé, sans blocage administratif.
+            </p>
+          </article>
+        </div>
+        <div class="center-cta">
+          <a class="btn btn-primary" href="#selarl">Passez en SELARL</a>
+        </div>
+      </section>
+
+      <section class="container section-white">
+        <h2><span class="highlight-blue">MedLex</span>, la solution juridique pour les soignants libéraux</h2>
+        <div class="persona-grid">
+          <article id="creation" class="persona-card">
+            <h3>Immatriculation</h3>
+            <p>Création d'une entreprise libérale (BNC)</p>
+            <span class="mini-price">479 € TTC</span>
+            <ul>
+              <li>Questionnaire intelligent</li>
+              <li>Accompagnement à l'immatriculation par une ou un formaliste</li>
+            </ul>
+          </article>
+          <article id="contrats" class="persona-card">
+            <h3>Contrat de remplacement ou de collaboration</h3>
+            <p>Solutions contractuelles adaptées aux soignants libéraux.</p>
+            <span class="mini-price">À partir de 119 €</span>
+            <ul>
+              <li>Questionnaire intelligent</li>
+              <li>Clauses adaptées aux soignants</li>
+            </ul>
+          </article>
+          <article class="persona-card">
+            <h3>Bail professionnel</h3>
+            <span class="mini-price">219 €</span>
+            <ul>
+              <li>Questionnaire intelligent</li>
+              <li>Clauses adaptées aux professions de santé</li>
+            </ul>
+          </article>
+          <article class="persona-card">
+            <h3>Changement d'adresse du siège ou de nom</h3>
+            <span class="mini-price">359 € (hors frais administratifs)</span>
+            <ul>
+              <li>Dépôt des pièces en ligne</li>
+              <li>Formalités adaptées par une ou un formaliste</li>
+            </ul>
+          </article>
+          <article id="selarl" class="persona-card">
+            <h3>Passage en SELARL</h3>
+            <span class="mini-price">6 000 € HT</span>
+            <ul>
+              <li>Questionnaire intelligent</li>
+              <li>Consultation de projection en ligne offerte</li>
+              <li>Gestion du dossier avec avocat partenaire et expert-comptable</li>
+            </ul>
+          </article>
+          <article class="persona-card">
+            <h3>Abonnement LegalUp</h3>
+            <p>
+              Veille réglementaire, alertes, modèles de contrats : tout ce qu'il
+              faut pour exercer sereinement.
+            </p>
+            <ul>
+              <li>Accès illimité aux documents et modèles juridiques</li>
+              <li>Veille juridique et mises à jour réglementaires</li>
+              <li>Support juridique réactif par email</li>
+            </ul>
+            <span class="mini-price">29 € TTC / mois</span>
+          </article>
+        </div>
+      </section>
+
+      <section class="container section-soft">
+        <h2>Fiabilité. Rapidité. Simplicité.</h2>
+        <p class="intro">Plus de 5000 soignantes libérales accompagnées depuis 2025</p>
+        <div class="center-cta">
+          <a class="big-cta-btn" href="#creation">Créez votre cabinet</a>
+        </div>
+      </section>
+
+    </main>
+
+    <footer id="footer" class="container">
+      <div class="footer-wrap">
+        <div class="footer-top">
+          <div class="footer-links">
+            <p class="footer-brand">MedLex</p>
+            <p>
+              MedLex accompagne les soignants libéraux dans toutes leurs
+              démarches juridiques : installation, structuration, évolution et
+              suivi administratif du cabinet.
+            </p>
+            <p><strong>Inscrivez-vous à la newsletter MedLex</strong></p>
+            <form class="newsletter-form" action="#" method="post">
+              <input type="email" placeholder="Votre adresse email" aria-label="Votre adresse email" />
+              <button type="submit">S'abonner</button>
+            </form>
+            <p class="footer-small">
+              Consultez notre Politique de Confidentialité pour en savoir plus.
+            </p>
+            <p>MedLex SAS</p>
+            <p>24 rue de la Santé Libérale, 75013 Paris</p>
+            <p><a href="mailto:contact@medlex.fr">Contactez-nous</a></p>
+            <p><a href="tel:+33176390060">01 76 39 00 60</a></p>
+            <p>Du lundi au vendredi de 9h à 19h</p>
+            <div class="social-links">
+              <a href="#" aria-label="Instagram">IG</a>
+              <a href="#" aria-label="LinkedIn">in</a>
+            </div>
+            <p class="footer-small">
+              Vos échanges avec MedLex sont protégés par notre charte de respect
+              de la vie privée.
+            </p>
+            <p class="footer-small">© MedLex.fr 2026. Tous droits réservés.</p>
+          </div>
+          <div></div>
+        </div>
+        <div class="footer-bottom">
+          <div class="footer-col">
+            <h4>Services juridiques</h4>
+            <a href="#creation">Installation</a>
+            <a href="#contrats">Modification et cession</a>
+            <a href="#selarl">Passage en SELARL</a>
+          </div>
+          <div class="footer-col">
+            <h4>Abonnement</h4>
+            <a href="#creation">LegalUp</a>
+            <a href="#contrats">Support juridique</a>
+            <a href="#selarl">Tarifs</a>
+          </div>
+          <div class="footer-col">
+            <h4>Contenus</h4>
+            <a href="#footer">Fiches pratiques</a>
+            <a href="#footer">Guides</a>
+            <a href="#footer">Ressources</a>
+          </div>
+          <div class="footer-col">
+            <h4>Autres informations</h4>
+            <a href="mailto:contact@medlex.fr">Contact</a>
+            <a href="#footer">Politique de confidentialité</a>
+            <a href="#footer">Mentions légales</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

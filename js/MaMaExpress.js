@@ -1,6 +1,7 @@
 /**
  * MaMaExpress — logique applicative (carte, itinéraire, PMI).
  * Prérequis : js/pmi_addresses.js et js/pmi_durees.js chargés avant ce fichier.
+ * Les listes d’adresses et la matrice de durées viennent uniquement de ces données (rien d’en dur ici).
  */
 'use strict';
 
