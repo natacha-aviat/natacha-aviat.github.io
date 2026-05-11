@@ -1,0 +1,13 @@
+# Supabase
+.branches
+.temp
+
+# Secrets (ne jamais versionner)
+.env
+.env.*
+!.env.example
+
+# dotenvx
+.env.keys
+.env.local
+.env.*.local
