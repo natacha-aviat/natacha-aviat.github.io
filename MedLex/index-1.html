@@ -1,0 +1,1088 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Clausia | Le droit de la santé, rédigé par une avocate</title>
+    <meta
+      name="description"
+      content="Contrats de remplacement, collaboration, association et SELARL pour infirmières libérales. Rédaction juridique encadrée par une avocate, conforme au Code de la santé publique."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Lora:ital,wght@0,500;0,600;0,700;1,500&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --night: #1b2a4a;
+        --paper: #f7f5f0;
+        --brass: #b8975a;
+        --slate: #5a6472;
+        --white: #ffffff;
+        --border: rgba(27, 42, 74, 0.12);
+        --shadow: 0 18px 48px rgba(27, 42, 74, 0.08);
+        --shadow-soft: 0 8px 24px rgba(27, 42, 74, 0.06);
+        --serif: "Lora", "Times New Roman", Georgia, serif;
+        --sans: "Inter", "Segoe UI", Roboto, Arial, sans-serif;
+        --max: 1120px;
+      }
+
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        margin: 0;
+        font-family: var(--sans);
+        font-size: 1rem;
+        line-height: 1.65;
+        color: var(--night);
+        background: var(--paper);
+        -webkit-font-smoothing: antialiased;
+      }
+
+      h1,
+      h2,
+      .brand-mark {
+        font-family: var(--serif);
+        font-weight: 600;
+        letter-spacing: -0.02em;
+      }
+
+      h1 {
+        font-size: clamp(2.1rem, 4.2vw, 3.35rem);
+        line-height: 1.12;
+        margin: 0 0 1rem;
+      }
+
+      h2 {
+        font-size: clamp(1.55rem, 2.6vw, 2.15rem);
+        line-height: 1.2;
+        margin: 0 0 0.75rem;
+      }
+
+      h3 {
+        font-family: var(--sans);
+        font-size: 1.05rem;
+        font-weight: 600;
+        margin: 0 0 0.5rem;
+      }
+
+      p {
+        margin: 0 0 1rem;
+      }
+
+      a {
+        color: inherit;
+      }
+
+      .container {
+        width: min(var(--max), 92%);
+        margin: 0 auto;
+      }
+
+      .eyebrow {
+        display: inline-block;
+        font-size: 0.78rem;
+        font-weight: 600;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--brass);
+        margin-bottom: 0.85rem;
+      }
+
+      .lede,
+      .muted {
+        color: var(--slate);
+      }
+
+      .lede {
+        font-size: 1.08rem;
+        max-width: 34rem;
+      }
+
+      /* Header */
+      .site-header {
+        position: sticky;
+        top: 0;
+        z-index: 30;
+        background: rgba(247, 245, 240, 0.92);
+        backdrop-filter: blur(10px);
+        border-bottom: 1px solid var(--border);
+      }
+
+      .header-inner {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+        padding: 0.9rem 0;
+      }
+
+      .brand {
+        display: flex;
+        flex-direction: column;
+        text-decoration: none;
+        color: var(--night);
+      }
+
+      .brand-mark {
+        font-size: 1.45rem;
+        line-height: 1;
+      }
+
+      .brand-sub {
+        font-size: 0.72rem;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--slate);
+        margin-top: 0.2rem;
+      }
+
+      .nav {
+        display: flex;
+        align-items: center;
+        gap: 1.4rem;
+        flex-wrap: wrap;
+      }
+
+      .nav a {
+        text-decoration: none;
+        font-size: 0.92rem;
+        font-weight: 500;
+        color: var(--slate);
+      }
+
+      .nav a:hover {
+        color: var(--night);
+      }
+
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.4rem;
+        padding: 0.85rem 1.35rem;
+        border-radius: 2px;
+        font-family: var(--sans);
+        font-size: 0.95rem;
+        font-weight: 600;
+        text-decoration: none;
+        border: 1px solid transparent;
+        cursor: pointer;
+        transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+      }
+
+      .btn-primary {
+        background: var(--night);
+        color: var(--paper);
+        border-color: var(--night);
+      }
+
+      .btn-primary:hover {
+        background: #132038;
+      }
+
+      .btn-outline {
+        background: transparent;
+        color: var(--night);
+        border-color: rgba(27, 42, 74, 0.28);
+      }
+
+      .btn-outline:hover {
+        border-color: var(--night);
+        background: rgba(255, 255, 255, 0.55);
+      }
+
+      .btn-brass {
+        background: transparent;
+        color: var(--brass);
+        border-color: var(--brass);
+      }
+
+      .btn-brass:hover {
+        background: rgba(184, 151, 90, 0.08);
+      }
+
+      /* Hero */
+      .hero {
+        padding: 3.5rem 0 4rem;
+      }
+
+      .hero-grid {
+        display: grid;
+        grid-template-columns: 1.05fr 0.95fr;
+        gap: 3rem;
+        align-items: center;
+      }
+
+      .hero-copy .tagline {
+        font-family: var(--serif);
+        font-style: italic;
+        font-size: clamp(1.05rem, 2vw, 1.25rem);
+        color: var(--slate);
+        margin-bottom: 1.5rem;
+        max-width: 28rem;
+      }
+
+      .hero-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.75rem;
+        margin: 1.75rem 0 1.25rem;
+      }
+
+      .reassurance {
+        display: flex;
+        align-items: flex-start;
+        gap: 0.65rem;
+        max-width: 32rem;
+        padding: 0.85rem 1rem;
+        background: rgba(255, 255, 255, 0.65);
+        border: 1px solid var(--border);
+        font-size: 0.88rem;
+        color: var(--slate);
+      }
+
+      .reassurance::before {
+        content: "";
+        flex-shrink: 0;
+        width: 3px;
+        align-self: stretch;
+        background: var(--brass);
+        border-radius: 1px;
+      }
+
+      .portrait-wrap {
+        position: relative;
+      }
+
+      .portrait-frame {
+        position: relative;
+        overflow: hidden;
+        border: 1px solid var(--border);
+        background: linear-gradient(145deg, #e8e4dc, #f7f5f0);
+        box-shadow: var(--shadow);
+      }
+
+      .portrait-frame::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        border: 1px solid rgba(184, 151, 90, 0.35);
+        margin: 12px;
+        pointer-events: none;
+        z-index: 2;
+      }
+
+      .portrait-frame img {
+        display: block;
+        width: 100%;
+        aspect-ratio: 4 / 5;
+        object-fit: cover;
+        object-position: center top;
+      }
+
+      .portrait-caption {
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        padding: 1.25rem 1.5rem;
+        background: linear-gradient(0deg, rgba(27, 42, 74, 0.88), transparent);
+        color: var(--paper);
+        z-index: 3;
+      }
+
+      .portrait-caption strong {
+        display: block;
+        font-family: var(--serif);
+        font-size: 1.1rem;
+        font-weight: 600;
+      }
+
+      .portrait-caption span {
+        font-size: 0.82rem;
+        opacity: 0.88;
+      }
+
+      /* Sections */
+      .section {
+        padding: 4.5rem 0;
+      }
+
+      .section-dark {
+        background: var(--night);
+        color: var(--paper);
+      }
+
+      .section-dark .muted,
+      .section-dark .lede {
+        color: rgba(247, 245, 240, 0.78);
+      }
+
+      .section-white {
+        background: var(--white);
+      }
+
+      .section-header {
+        max-width: 40rem;
+        margin-bottom: 2.5rem;
+      }
+
+      .section-header.center {
+        text-align: center;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      /* Caution block */
+      .caution-panel {
+        display: grid;
+        grid-template-columns: auto 1fr;
+        gap: 2rem;
+        align-items: start;
+        padding: 2.5rem;
+        background: var(--white);
+        border: 1px solid var(--border);
+        box-shadow: var(--shadow-soft);
+      }
+
+      .seal {
+        width: 72px;
+        height: 72px;
+        border-radius: 50%;
+        border: 2px solid var(--brass);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+      }
+
+      .seal svg {
+        width: 36px;
+        height: 36px;
+        stroke: var(--brass);
+        fill: none;
+        stroke-width: 1.4;
+      }
+
+      .caution-panel blockquote {
+        margin: 1rem 0 0;
+        padding-left: 1rem;
+        border-left: 2px solid var(--brass);
+        font-family: var(--serif);
+        font-size: 1.05rem;
+        font-style: italic;
+        color: var(--slate);
+      }
+
+      /* Contracts grid */
+      .contracts-grid {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        gap: 1rem;
+      }
+
+      .contract-card {
+        padding: 1.35rem 1.2rem;
+        background: var(--paper);
+        border: 1px solid var(--border);
+        min-height: 100%;
+      }
+
+      .contract-card.featured {
+        grid-column: span 1;
+        border-color: rgba(184, 151, 90, 0.45);
+        background: linear-gradient(180deg, #fff 0%, var(--paper) 100%);
+      }
+
+      .contract-card .label {
+        font-size: 0.72rem;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--brass);
+        margin-bottom: 0.5rem;
+      }
+
+      .contract-card p {
+        font-size: 0.92rem;
+        color: var(--slate);
+        margin: 0;
+      }
+
+      .clause-demo {
+        margin-top: 2rem;
+        padding: 1.5rem 1.75rem;
+        background: var(--white);
+        border-left: 3px solid var(--brass);
+      }
+
+      .clause-demo .clause-title {
+        font-size: 0.78rem;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--brass);
+        margin-bottom: 0.5rem;
+      }
+
+      .clause-demo p {
+        margin: 0;
+        font-size: 0.95rem;
+        color: var(--slate);
+      }
+
+      /* SELARL journey */
+      .selarl-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1.25rem;
+      }
+
+      .step-card {
+        padding: 1.75rem;
+        background: rgba(255, 255, 255, 0.04);
+        border: 1px solid rgba(247, 245, 240, 0.12);
+      }
+
+      .step-num {
+        font-family: var(--serif);
+        font-size: 1.75rem;
+        color: var(--brass);
+        margin-bottom: 0.75rem;
+      }
+
+      .partners {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.65rem;
+        margin-top: 2rem;
+      }
+
+      .partner-tag {
+        padding: 0.45rem 0.85rem;
+        font-size: 0.82rem;
+        border: 1px solid rgba(247, 245, 240, 0.2);
+        color: rgba(247, 245, 240, 0.85);
+      }
+
+      /* Testimonials */
+      .testimonials-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1.25rem;
+      }
+
+      .testimonial {
+        padding: 1.75rem;
+        background: var(--white);
+        border: 1px solid var(--border);
+      }
+
+      .testimonial blockquote {
+        margin: 0 0 1.25rem;
+        font-size: 0.98rem;
+        color: var(--night);
+      }
+
+      .testimonial cite {
+        display: block;
+        font-style: normal;
+        font-size: 0.85rem;
+        color: var(--slate);
+      }
+
+      .testimonial cite strong {
+        display: block;
+        color: var(--night);
+        font-weight: 600;
+      }
+
+      .barreau-note {
+        margin-top: 2rem;
+        padding: 1.25rem 1.5rem;
+        text-align: center;
+        border: 1px solid var(--border);
+        background: rgba(184, 151, 90, 0.06);
+        font-size: 0.92rem;
+        color: var(--slate);
+      }
+
+      .barreau-note strong {
+        color: var(--night);
+      }
+
+      /* Subscription */
+      .subscription-grid {
+        display: grid;
+        grid-template-columns: 1.2fr 0.8fr;
+        gap: 2rem;
+        align-items: start;
+      }
+
+      .offer-list {
+        list-style: none;
+        margin: 1.5rem 0 0;
+        padding: 0;
+      }
+
+      .offer-list li {
+        position: relative;
+        padding: 0.65rem 0 0.65rem 1.5rem;
+        border-bottom: 1px solid var(--border);
+        color: var(--slate);
+        font-size: 0.95rem;
+      }
+
+      .offer-list li::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 1.05rem;
+        width: 6px;
+        height: 6px;
+        background: var(--brass);
+        border-radius: 50%;
+      }
+
+      .price-card {
+        padding: 2rem;
+        background: var(--night);
+        color: var(--paper);
+        text-align: center;
+      }
+
+      .price-card .amount {
+        font-family: var(--serif);
+        font-size: 2.5rem;
+        line-height: 1;
+        margin: 0.5rem 0;
+      }
+
+      .price-card .period {
+        font-size: 0.88rem;
+        opacity: 0.75;
+        margin-bottom: 1.5rem;
+      }
+
+      /* Final CTA */
+      .final-cta {
+        text-align: center;
+        padding: 5rem 0;
+        background: linear-gradient(180deg, var(--paper) 0%, #ece8e0 100%);
+        border-top: 1px solid var(--border);
+      }
+
+      .final-cta h2 {
+        max-width: 18ch;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .final-cta .lede {
+        margin: 0 auto 2rem;
+      }
+
+      /* Footer */
+      footer {
+        padding: 2.5rem 0 3rem;
+        background: var(--night);
+        color: rgba(247, 245, 240, 0.72);
+        font-size: 0.88rem;
+      }
+
+      .footer-grid {
+        display: grid;
+        grid-template-columns: 1.5fr repeat(3, 1fr);
+        gap: 2rem;
+        padding-bottom: 2rem;
+        border-bottom: 1px solid rgba(247, 245, 240, 0.1);
+      }
+
+      .footer-brand {
+        font-family: var(--serif);
+        font-size: 1.35rem;
+        color: var(--paper);
+        margin-bottom: 0.75rem;
+      }
+
+      footer h4 {
+        font-family: var(--sans);
+        font-size: 0.78rem;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--paper);
+        margin: 0 0 0.75rem;
+      }
+
+      footer a {
+        display: block;
+        color: rgba(247, 245, 240, 0.72);
+        text-decoration: none;
+        margin-bottom: 0.4rem;
+      }
+
+      footer a:hover {
+        color: var(--paper);
+      }
+
+      .footer-bottom {
+        display: flex;
+        justify-content: space-between;
+        gap: 1rem;
+        flex-wrap: wrap;
+        padding-top: 1.5rem;
+        font-size: 0.8rem;
+      }
+
+      .nav-toggle {
+        display: none;
+        background: none;
+        border: 1px solid var(--border);
+        padding: 0.5rem 0.75rem;
+        font: inherit;
+        cursor: pointer;
+        color: var(--night);
+      }
+
+      @media (max-width: 980px) {
+        .hero-grid,
+        .subscription-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .contracts-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+
+        .selarl-grid,
+        .testimonials-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .caution-panel {
+          grid-template-columns: 1fr;
+        }
+
+        .footer-grid {
+          grid-template-columns: 1fr 1fr;
+        }
+      }
+
+      @media (max-width: 640px) {
+        .nav {
+          display: none;
+        }
+
+        .nav.is-open {
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
+          width: 100%;
+          padding-top: 0.5rem;
+        }
+
+        .header-inner {
+          flex-wrap: wrap;
+        }
+
+        .nav-toggle {
+          display: inline-flex;
+        }
+
+        .contracts-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .footer-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .hero {
+          padding-top: 2rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container header-inner">
+        <a class="brand" href="#top" aria-label="Clausia — accueil">
+          <span class="brand-mark">Clausia</span>
+          <span class="brand-sub">Droit &amp; soins infirmiers</span>
+        </a>
+        <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="main-nav">
+          Menu
+        </button>
+        <nav class="nav" id="main-nav" aria-label="Navigation principale">
+          <a href="#caution">Caution avocat</a>
+          <a href="#contrats">Contrats</a>
+          <a href="#selarl">SELARL</a>
+          <a href="#temoignages">Témoignages</a>
+          <a href="#abonnement">Abonnement</a>
+          <a class="btn btn-primary" href="./questionnaire-remplacement.html">Générer mon contrat</a>
+        </nav>
+      </div>
+    </header>
+
+    <main id="top">
+      <!-- Hero -->
+      <section class="hero">
+        <div class="container hero-grid">
+          <div class="hero-copy">
+            <p class="eyebrow">Infirmières libérales</p>
+            <h1>Vos engagements professionnels, rédigés avec la rigueur du barreau.</h1>
+            <p class="tagline">« Le droit de la santé, rédigé par une avocate. »</p>
+            <p class="lede">
+              Vous exercez au contact des patients ; nous encadrons vos relations professionnelles
+              par écrit. Clausia vous propose des contrats pensés pour le libéral infirmier, validés
+              sur le fondement du Code de la santé publique et de la déontologie ordinale.
+            </p>
+            <div class="hero-actions">
+              <a class="btn btn-primary" href="./questionnaire-remplacement.html">Générer mon contrat</a>
+              <a class="btn btn-outline" href="#contrats">Découvrir les contrats</a>
+            </div>
+            <div class="reassurance">
+              Conforme au Code de la santé publique et au Code de déontologie infirmier.
+            </div>
+          </div>
+
+          <div class="portrait-wrap">
+            <div class="portrait-frame">
+              <img
+                id="portrait-violaine"
+                src="./images/violaine_avocate.png"
+                alt="Me Violaine — avocate, portrait professionnel en robe"
+                width="480"
+                height="600"
+              />
+              <div class="portrait-caption">
+                <strong>Me Violaine</strong>
+                <span>Avocate — droit de la santé &amp; professions infirmières</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Caution avocate -->
+      <section class="section section-white" id="caution">
+        <div class="container">
+          <div class="section-header">
+            <p class="eyebrow">Caution juridique</p>
+            <h2>Une avocate derrière chaque contrat</h2>
+            <p class="lede">
+              Derrière Clausia, ce n’est pas un modèle générique téléchargé sur internet : c’est
+              l’œuvre d’une praticienne du droit de la santé, habituée aux enjeux du cabinet
+              infirmier libéral.
+            </p>
+          </div>
+
+          <div class="caution-panel">
+            <div class="seal" aria-hidden="true">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M12 3l7 4v6c0 4.5-3.2 8.7-7 9-3.8-.3-7-4.5-7-9V7l7-4z" />
+                <path d="M9 12l2 2 4-4" />
+              </svg>
+            </div>
+            <div>
+              <h3>Le cadre que vous méritez</h3>
+              <p class="muted">
+                Chaque document repose sur une analyse des textes applicables — articles du Code de
+                la santé publique relatifs au remplacement, à la collaboration et à l’exercice en
+                société, ainsi que sur les règles déontologiques de l’Ordre des infirmiers. Vous
+                signez en connaissance de cause ; nous avons veillé à ce que le contrat dise
+                précisément ce qu’il doit dire, ni plus, ni moins.
+              </p>
+              <blockquote>
+                « Un contrat mal rédigé expose autant le remplaçant que le remplacé. Mon rôle est de
+                traduire votre accord en clauses opposables, lisibles et proportionnées. »
+              </blockquote>
+              <p class="muted" style="margin-top: 1rem; margin-bottom: 0">
+                — Me Violaine, avocate au barreau
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Contrats couverts -->
+      <section class="section" id="contrats">
+        <div class="container">
+          <div class="section-header">
+            <p class="eyebrow">Documentation contractuelle</p>
+            <h2>Les contrats couverts</h2>
+            <p class="lede">
+              Des actes adaptés à chaque étape de votre vie professionnelle, du remplacement
+              ponctuel à la structuration en société d’exercice.
+            </p>
+          </div>
+
+          <div class="contracts-grid">
+            <article class="contract-card featured">
+              <p class="label">Disponible</p>
+              <h3>Contrat de remplacement</h3>
+              <p>
+                Remplacement continu, discontinu ou avec planning annexé. Clauses de durée,
+                facturation, redevance et résiliation encadrées.
+              </p>
+            </article>
+            <article class="contract-card">
+              <h3>Contrat de collaboration</h3>
+              <p>
+                Association de moyens entre confrères, sans confusion des patientèles ni
+                requalification en lien de subordination.
+              </p>
+            </article>
+            <article class="contract-card">
+              <h3>Contrat d’association</h3>
+              <p>
+                Partage d’un cabinet ou d’une patientèle dans le respect des règles ordinale et
+                fiscales du libéral.
+              </p>
+            </article>
+            <article class="contract-card">
+              <h3>Contrat de cession</h3>
+              <p>
+                Transmission d’éléments d’actif ou de patientèle : sécurisation des garanties et
+                du prix.
+              </p>
+            </article>
+            <article class="contract-card">
+              <h3>Passage en SELARL</h3>
+              <p>
+                Statuts, pacte d’associés et coordination avec les formalités d’immatriculation et
+                d’inscription ordinale.
+              </p>
+            </article>
+          </div>
+
+          <div class="clause-demo">
+            <p class="clause-title">Exemple de clause — durée du remplacement</p>
+            <p>
+              Cette clause encadre la durée du remplacement. Elle protège les deux parties en cas
+              de prolongation.
+            </p>
+          </div>
+
+          <p style="margin-top: 1.75rem; text-align: center">
+            <a class="btn btn-primary" href="./questionnaire-remplacement.html">Générer mon contrat de remplacement</a>
+          </p>
+        </div>
+      </section>
+
+      <!-- Parcours SELARL -->
+      <section class="section section-dark" id="selarl">
+        <div class="container">
+          <div class="section-header">
+            <p class="eyebrow">Structuration</p>
+            <h2>Le parcours SELARL clé-en-main</h2>
+            <p class="lede">
+              Passer en société d’exercice libéral requiert une orchestration précise entre droit
+              des sociétés, fiscalité, ordre professionnel et commissariat aux comptes. Nous
+              pilotons l’ensemble du dossier pour que vous restiez concentrée sur votre exercice.
+            </p>
+          </div>
+
+          <div class="selarl-grid">
+            <article class="step-card">
+              <p class="step-num">I</p>
+              <h3 style="color: var(--paper)">Cadrage &amp; statuts</h3>
+              <p class="muted">
+                Analyse de votre situation, rédaction des statuts et du pacte d’associés, choix des
+                options fiscales et sociales adaptées à votre projet.
+              </p>
+            </article>
+            <article class="step-card">
+              <p class="step-num">II</p>
+              <h3 style="color: var(--paper)">Comptabilité &amp; CAC</h3>
+              <p class="muted">
+                Mise en relation et coordination avec votre expert-comptable et votre commissaire
+                aux comptes : calendrier, pièces attendues, cohérence des documents déposés.
+              </p>
+            </article>
+            <article class="step-card">
+              <p class="step-num">III</p>
+              <h3 style="color: var(--paper)">Ordre &amp; immatriculation</h3>
+              <p class="muted">
+                Dépôt auprès du greffe, déclarations auprès de l’Ordre des infirmiers et suivi
+                jusqu’à l’immatriculation effective de votre SELARL.
+              </p>
+            </article>
+          </div>
+
+          <div class="partners" aria-label="Interlocuteurs coordonnés">
+            <span class="partner-tag">Expert-comptable</span>
+            <span class="partner-tag">Commissaire aux comptes</span>
+            <span class="partner-tag">Ordre des infirmiers</span>
+            <span class="partner-tag">Greffe du tribunal de commerce</span>
+            <span class="partner-tag">Urssaf &amp; administration fiscale</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Témoignages -->
+      <section class="section section-white" id="temoignages">
+        <div class="container">
+          <div class="section-header center">
+            <p class="eyebrow">Confiance professionnelle</p>
+            <h2>Ce qu’en disent les infirmières libérales</h2>
+            <p class="lede">
+              Des collègues qui ont souhaité sécuriser leurs accords par écrit, sans jargon
+              inutile ni fausse familiarité.
+            </p>
+          </div>
+
+          <div class="testimonials-grid">
+            <figure class="testimonial">
+              <blockquote>
+                « J’avais déjà signé un remplacement sur un modèle trouvé en ligne. La différence
+                est nette : ici, chaque clause a un sens juridique. Je me suis sentie protégée,
+                pas infantilisée. »
+              </blockquote>
+              <cite>
+                <strong>Infirmière libérale — région parisienne</strong>
+                Contrat de remplacement, 2025
+              </cite>
+            </figure>
+            <figure class="testimonial">
+              <blockquote>
+                « Le passage en SELARL me faisait peur. Avoir une avocate qui parle à la fois au
+                comptable et à l’Ordre m’a évité des allers-retours interminables. »
+              </blockquote>
+              <cite>
+                <strong>Infirmière libérale — Nouvelle-Aquitaine</strong>
+                Structuration SELARL, 2025
+              </cite>
+            </figure>
+            <figure class="testimonial">
+              <blockquote>
+                « On m’explique le pourquoi des clauses, avec les références aux textes. C’est
+                rassurant quand on a déjà eu une mauvaise expérience avec un contrat mal rédigé. »
+              </blockquote>
+              <cite>
+                <strong>Infirmière libérale — Occitanie</strong>
+                Contrat de collaboration, 2025
+              </cite>
+            </figure>
+          </div>
+
+          <p class="barreau-note">
+            <strong>Me Violaine</strong> est inscrite au barreau et exerce en droit de la santé.
+            Clausia est une marque éditée sous sa caution professionnelle — aucun document n’est
+            diffusé sans relecture juridique.
+          </p>
+        </div>
+      </section>
+
+      <!-- Abonnement -->
+      <section class="section" id="abonnement">
+        <div class="container">
+          <div class="subscription-grid">
+            <div>
+              <p class="eyebrow">Accompagnement continu</p>
+              <h2>Abonnement Clausia</h2>
+              <p class="lede">
+                Au-delà du contrat ponctuel, restez informée des évolutions réglementaires et
+                disposez d’outils prêts à l’emploi lorsque la situation l’exige.
+              </p>
+              <ul class="offer-list">
+                <li>Micro-formations juridiques (remplacement, collaboration, SELARL, facturation)</li>
+                <li>Mises en demeure et courriers types rédigés sur le fondement applicable</li>
+                <li>Veille sur les textes ordinales et législatifs concernant l’exercice infirmier</li>
+                <li>Accès prioritaire à une consultation avec Me Violaine ou son équipe</li>
+              </ul>
+            </div>
+            <aside class="price-card">
+              <p class="eyebrow" style="margin-bottom: 0.5rem">Formule professionnelle</p>
+              <p class="amount">49&nbsp;€</p>
+              <p class="period">TTC / mois — sans engagement de durée</p>
+              <a class="btn btn-brass" href="mailto:contact@medlex.fr?subject=Abonnement%20Clausia">
+                Demander une présentation
+              </a>
+            </aside>
+          </div>
+        </div>
+      </section>
+
+      <!-- CTA final -->
+      <section class="final-cta" id="commencer">
+        <div class="container">
+          <p class="eyebrow">Première étape</p>
+          <h2>Vous méritez un contrat à la hauteur de votre exercice.</h2>
+          <p class="lede">
+            Répondez au questionnaire guidé : vos réponses alimentent un projet de contrat
+            conforme aux exigences du libéral infirmier. Vous conservez la maîtrise de chaque
+            clause avant signature.
+          </p>
+          <a class="btn btn-primary" href="./questionnaire-remplacement.html">Générer mon contrat</a>
+          <p class="muted" style="margin-top: 1.25rem; font-size: 0.88rem">
+            Conforme au Code de la santé publique et au Code de déontologie infirmier.
+          </p>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="container">
+        <div class="footer-grid">
+          <div>
+            <p class="footer-brand">Clausia</p>
+            <p>
+              Le droit de la santé, rédigé par une avocate. Marque dédiée aux infirmières libérales,
+              éditée sous la caution de Me Violaine.
+            </p>
+            <p style="margin-top: 1rem">
+              <a href="mailto:contact@medlex.fr">contact@medlex.fr</a>
+              <a href="tel:+33176390060">01 76 39 00 60</a>
+            </p>
+          </div>
+          <div>
+            <h4>Contrats</h4>
+            <a href="./questionnaire-remplacement.html">Remplacement</a>
+            <a href="#contrats">Collaboration</a>
+            <a href="#contrats">Association &amp; cession</a>
+            <a href="#selarl">SELARL</a>
+          </div>
+          <div>
+            <h4>Services</h4>
+            <a href="#abonnement">Abonnement</a>
+            <a href="#caution">Caution avocat</a>
+            <a href="./index.html">MedLex (site actuel)</a>
+          </div>
+          <div>
+            <h4>Informations</h4>
+            <a href="#footer">Mentions légales</a>
+            <a href="#footer">Politique de confidentialité</a>
+            <a href="#temoignages">Témoignages</a>
+          </div>
+        </div>
+        <div class="footer-bottom" id="footer">
+          <span>© Clausia — MedLex 2026. Tous droits réservés.</span>
+          <span>24 rue de la Santé Libérale, 75013 Paris</span>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      (function () {
+        var toggle = document.querySelector(".nav-toggle");
+        var nav = document.getElementById("main-nav");
+        if (toggle && nav) {
+          toggle.addEventListener("click", function () {
+            var open = nav.classList.toggle("is-open");
+            toggle.setAttribute("aria-expanded", open ? "true" : "false");
+          });
+        }
+      })();
+    </script>
+  </body>
+</html>

@@ -1,0 +1,1092 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Au Clair | Le juridique, expliqué comme par une collègue</title>
+    <meta
+      name="description"
+      content="Au Clair t'accompagne pas à pas dans tes contrats d'infirmière libérale. Pédagogie, bienveillance et rédaction par Me Violaine, avocate en droit de la santé."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Nunito:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --cream: #fbf6ee;
+        --sage: #8fa68e;
+        --sage-dark: #728971;
+        --terra: #d89a7e;
+        --terra-soft: rgba(216, 154, 126, 0.18);
+        --ink: #3d3a36;
+        --ink-muted: #6b6560;
+        --white: #fffef9;
+        --border: rgba(61, 58, 54, 0.1);
+        --radius: 16px;
+        --radius-sm: 12px;
+        --shadow: 0 8px 32px rgba(61, 58, 54, 0.07);
+        --shadow-soft: 0 4px 16px rgba(61, 58, 54, 0.05);
+        --serif: "Fraunces", Georgia, serif;
+        --sans: "Nunito", "Segoe UI", sans-serif;
+        --max: 1080px;
+      }
+
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        margin: 0;
+        font-family: var(--sans);
+        font-size: 1.02rem;
+        line-height: 1.65;
+        color: var(--ink);
+        background: var(--cream);
+        -webkit-font-smoothing: antialiased;
+      }
+
+      h1,
+      h2,
+      h3,
+      .brand {
+        font-family: var(--serif);
+        font-weight: 600;
+        letter-spacing: -0.02em;
+      }
+
+      h1 {
+        font-size: clamp(2rem, 4.2vw, 2.85rem);
+        line-height: 1.15;
+        margin: 0 0 1rem;
+      }
+
+      h2 {
+        font-size: clamp(1.45rem, 2.8vw, 2rem);
+        line-height: 1.2;
+        margin: 0 0 0.75rem;
+      }
+
+      h3 {
+        font-size: 1.1rem;
+        margin: 0 0 0.5rem;
+      }
+
+      p {
+        margin: 0 0 0.85rem;
+      }
+
+      a {
+        color: inherit;
+      }
+
+      .container {
+        width: min(var(--max), 92%);
+        margin: 0 auto;
+      }
+
+      /* Header */
+      .site-header {
+        padding: 1rem 0;
+      }
+
+      .header-inner {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+        flex-wrap: wrap;
+      }
+
+      .brand {
+        text-decoration: none;
+        color: var(--ink);
+        font-size: 1.5rem;
+        font-style: italic;
+      }
+
+      .brand em {
+        font-style: normal;
+        color: var(--sage-dark);
+      }
+
+      .nav {
+        display: flex;
+        align-items: center;
+        gap: 1.25rem;
+        flex-wrap: wrap;
+      }
+
+      .nav a {
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 0.92rem;
+        color: var(--ink-muted);
+      }
+
+      .nav a:hover {
+        color: var(--ink);
+      }
+
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.45rem;
+        padding: 0.85rem 1.4rem;
+        border-radius: 999px;
+        font-family: var(--sans);
+        font-size: 0.98rem;
+        font-weight: 700;
+        text-decoration: none;
+        border: none;
+        cursor: pointer;
+        transition: transform 0.15s ease, box-shadow 0.15s ease;
+      }
+
+      .btn:hover {
+        transform: translateY(-1px);
+        box-shadow: var(--shadow-soft);
+      }
+
+      .btn-primary {
+        background: var(--terra);
+        color: var(--white);
+        box-shadow: 0 6px 20px rgba(216, 154, 126, 0.35);
+      }
+
+      .btn-primary:hover {
+        background: #c8886c;
+      }
+
+      .btn-outline {
+        background: var(--white);
+        color: var(--ink);
+        border: 2px solid var(--sage);
+      }
+
+      .btn-sage {
+        background: var(--sage);
+        color: var(--white);
+      }
+
+      .btn-sage:hover {
+        background: var(--sage-dark);
+      }
+
+      /* Hero illustré */
+      .hero {
+        padding: 2rem 0 4rem;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .hero-blob {
+        position: absolute;
+        border-radius: 50%;
+        filter: blur(60px);
+        opacity: 0.45;
+        pointer-events: none;
+      }
+
+      .hero-blob-1 {
+        width: 320px;
+        height: 320px;
+        background: var(--sage);
+        top: -80px;
+        right: -60px;
+      }
+
+      .hero-blob-2 {
+        width: 240px;
+        height: 240px;
+        background: var(--terra);
+        bottom: 0;
+        left: -80px;
+        opacity: 0.25;
+      }
+
+      .hero-grid {
+        position: relative;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 2.5rem;
+        align-items: center;
+      }
+
+      .hero-tagline {
+        font-family: var(--serif);
+        font-style: italic;
+        font-size: 1.15rem;
+        color: var(--sage-dark);
+        margin-bottom: 1.25rem;
+      }
+
+      .hero-lede {
+        color: var(--ink-muted);
+        font-size: 1.05rem;
+        max-width: 28rem;
+      }
+
+      .hero-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.75rem;
+        margin-top: 1.5rem;
+      }
+
+      .hero-visual {
+        position: relative;
+      }
+
+      .hero-card {
+        background: var(--white);
+        border-radius: var(--radius);
+        padding: 1.25rem;
+        box-shadow: var(--shadow);
+        border: 1px solid var(--border);
+      }
+
+      .hero-portrait-wrap {
+        position: relative;
+        border-radius: var(--radius);
+        overflow: hidden;
+        margin-bottom: 1rem;
+      }
+
+      .hero-portrait-wrap img {
+        display: block;
+        width: 100%;
+        aspect-ratio: 4 / 3;
+        object-fit: cover;
+        object-position: center 15%;
+      }
+
+      .hero-portrait-caption {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        padding: 1rem 1.25rem;
+        background: linear-gradient(0deg, rgba(61, 58, 54, 0.75), transparent);
+        color: var(--white);
+        font-size: 0.88rem;
+      }
+
+      .hero-portrait-caption strong {
+        display: block;
+        font-family: var(--serif);
+        font-size: 1rem;
+      }
+
+      /* Illustration mains / soin */
+      .care-illus {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        padding: 0.85rem 1rem;
+        background: var(--terra-soft);
+        border-radius: var(--radius-sm);
+        font-size: 0.88rem;
+        color: var(--ink-muted);
+      }
+
+      .care-illus svg {
+        flex-shrink: 0;
+        width: 44px;
+        height: 44px;
+      }
+
+      /* Empathie ouverture */
+      .empathy {
+        padding: 3.5rem 0;
+        background: var(--white);
+        border-top: 1px solid var(--border);
+        border-bottom: 1px solid var(--border);
+      }
+
+      .empathy-inner {
+        max-width: 38rem;
+        margin: 0 auto;
+        text-align: center;
+      }
+
+      .empathy-inner h2 {
+        color: var(--ink);
+        margin-bottom: 1rem;
+      }
+
+      .empathy-quote {
+        font-family: var(--serif);
+        font-style: italic;
+        font-size: 1.2rem;
+        color: var(--sage-dark);
+        padding: 1.25rem 1.5rem;
+        background: rgba(143, 166, 142, 0.12);
+        border-radius: var(--radius);
+        margin-top: 1.5rem;
+      }
+
+      /* Sections */
+      .section {
+        padding: 4rem 0;
+      }
+
+      .section-sage {
+        background: rgba(143, 166, 142, 0.1);
+      }
+
+      .section-header {
+        text-align: center;
+        max-width: 34rem;
+        margin: 0 auto 2.5rem;
+      }
+
+      .section-header p {
+        color: var(--ink-muted);
+      }
+
+      /* Comment ça marche — pas à pas */
+      .journey {
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+        max-width: 640px;
+        margin: 0 auto;
+      }
+
+      .journey-step {
+        display: grid;
+        grid-template-columns: 48px 1fr;
+        gap: 1.25rem;
+        padding-bottom: 2rem;
+        position: relative;
+      }
+
+      .journey-step:not(:last-child)::after {
+        content: "";
+        position: absolute;
+        left: 23px;
+        top: 48px;
+        bottom: 0;
+        width: 2px;
+        background: linear-gradient(180deg, var(--sage), var(--terra-soft));
+      }
+
+      .journey-num {
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        background: var(--white);
+        border: 2px solid var(--sage);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: var(--serif);
+        font-weight: 700;
+        font-size: 1.1rem;
+        color: var(--sage-dark);
+        flex-shrink: 0;
+      }
+
+      .journey-body {
+        background: var(--white);
+        border-radius: var(--radius);
+        padding: 1.35rem 1.5rem;
+        border: 1px solid var(--border);
+        box-shadow: var(--shadow-soft);
+      }
+
+      .journey-body p {
+        margin: 0;
+        color: var(--ink-muted);
+        font-size: 0.95rem;
+      }
+
+      /* Moments de vie pro */
+      .moments-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.25rem;
+      }
+
+      .moment-card {
+        background: var(--white);
+        border-radius: var(--radius);
+        padding: 1.75rem;
+        border: 1px solid var(--border);
+        transition: box-shadow 0.2s, transform 0.15s;
+      }
+
+      a.moment-card {
+        text-decoration: none;
+        color: inherit;
+      }
+
+      a.moment-card:hover {
+        box-shadow: var(--shadow);
+        transform: translateY(-2px);
+      }
+
+      .moment-icon {
+        font-size: 1.75rem;
+        margin-bottom: 0.75rem;
+        line-height: 1;
+      }
+
+      .moment-label {
+        display: inline-block;
+        font-size: 0.72rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+        color: var(--terra);
+        margin-bottom: 0.5rem;
+      }
+
+      .moment-card p {
+        font-size: 0.92rem;
+        color: var(--ink-muted);
+        margin: 0;
+      }
+
+      .moment-card.featured {
+        border-color: rgba(143, 166, 142, 0.45);
+        background: linear-gradient(135deg, var(--white) 0%, rgba(143, 166, 142, 0.08) 100%);
+      }
+
+      .clause-warm {
+        margin-top: 2rem;
+        padding: 1.5rem 1.75rem;
+        background: var(--white);
+        border-radius: var(--radius);
+        border-left: 4px solid var(--terra);
+        max-width: 640px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .clause-warm .label {
+        font-size: 0.78rem;
+        font-weight: 700;
+        color: var(--terra);
+        margin-bottom: 0.5rem;
+      }
+
+      .clause-warm p {
+        margin: 0;
+        font-size: 0.95rem;
+        color: var(--ink-muted);
+      }
+
+      .clause-warm em {
+        font-style: normal;
+        color: var(--ink);
+        font-weight: 600;
+      }
+
+      /* SELARL + Violaine */
+      .selarl-block {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 2.5rem;
+        align-items: center;
+      }
+
+      .selarl-copy .fear-line {
+        font-family: var(--serif);
+        font-size: 1.25rem;
+        color: var(--ink);
+        margin-bottom: 1rem;
+      }
+
+      .selarl-steps {
+        list-style: none;
+        margin: 1.5rem 0 0;
+        padding: 0;
+      }
+
+      .selarl-steps li {
+        position: relative;
+        padding: 0.5rem 0 0.5rem 1.75rem;
+        color: var(--ink-muted);
+        font-size: 0.95rem;
+      }
+
+      .selarl-steps li::before {
+        content: "♥";
+        position: absolute;
+        left: 0;
+        color: var(--terra);
+        font-size: 0.85rem;
+      }
+
+      .violaine-panel {
+        background: var(--white);
+        border-radius: var(--radius);
+        padding: 1.75rem;
+        border: 1px solid var(--border);
+        box-shadow: var(--shadow);
+        text-align: center;
+      }
+
+      .violaine-panel img {
+        width: 120px;
+        height: 120px;
+        border-radius: 50%;
+        object-fit: cover;
+        object-position: center top;
+        border: 4px solid var(--sage);
+        margin-bottom: 1rem;
+      }
+
+      .violaine-panel .role {
+        font-size: 0.85rem;
+        color: var(--sage-dark);
+        font-weight: 600;
+        margin-bottom: 0.75rem;
+      }
+
+      .violaine-panel p {
+        font-size: 0.92rem;
+        color: var(--ink-muted);
+        text-align: left;
+        margin: 0;
+      }
+
+      /* Abonnement filet */
+      .safety-net {
+        background: var(--white);
+        border-radius: var(--radius);
+        padding: 2.5rem;
+        border: 1px solid var(--border);
+        box-shadow: var(--shadow);
+        max-width: 720px;
+        margin: 0 auto;
+        text-align: center;
+      }
+
+      .safety-net h2 {
+        margin-bottom: 0.5rem;
+      }
+
+      .safety-net .subtitle {
+        color: var(--ink-muted);
+        margin-bottom: 1.75rem;
+      }
+
+      .safety-features {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1rem;
+        text-align: left;
+        margin-bottom: 1.75rem;
+      }
+
+      .safety-item {
+        padding: 1rem;
+        background: var(--cream);
+        border-radius: var(--radius-sm);
+      }
+
+      .safety-item strong {
+        display: block;
+        font-size: 0.92rem;
+        margin-bottom: 0.35rem;
+      }
+
+      .safety-item span {
+        font-size: 0.85rem;
+        color: var(--ink-muted);
+      }
+
+      .price-tag {
+        font-family: var(--serif);
+        font-size: 2rem;
+        color: var(--terra);
+        margin: 0.5rem 0;
+      }
+
+      .price-tag small {
+        font-family: var(--sans);
+        font-size: 0.9rem;
+        color: var(--ink-muted);
+        font-weight: 500;
+      }
+
+      /* CTA final */
+      .final-cta {
+        padding: 4.5rem 0 5rem;
+        text-align: center;
+        position: relative;
+      }
+
+      .final-cta-inner {
+        max-width: 32rem;
+        margin: 0 auto;
+        padding: 2.5rem 2rem;
+        background: var(--white);
+        border-radius: var(--radius);
+        border: 1px solid var(--border);
+        box-shadow: var(--shadow);
+      }
+
+      .final-cta h2 {
+        margin-bottom: 0.75rem;
+      }
+
+      .final-cta p {
+        color: var(--ink-muted);
+        margin-bottom: 1.5rem;
+      }
+
+      .warm-note {
+        margin-top: 1.25rem;
+        font-size: 0.88rem;
+        color: var(--sage-dark);
+        font-style: italic;
+      }
+
+      /* Decorative scene */
+      .daily-scene {
+        display: flex;
+        justify-content: center;
+        gap: 1.5rem;
+        margin-top: 2.5rem;
+        flex-wrap: wrap;
+      }
+
+      .scene-card {
+        width: 140px;
+        padding: 1rem;
+        background: rgba(255, 254, 249, 0.8);
+        border-radius: var(--radius-sm);
+        border: 1px dashed var(--sage);
+        text-align: center;
+        font-size: 0.78rem;
+        color: var(--ink-muted);
+      }
+
+      .scene-card svg {
+        width: 48px;
+        height: 48px;
+        margin-bottom: 0.5rem;
+        stroke: var(--sage);
+        fill: none;
+        stroke-width: 1.5;
+      }
+
+      /* Footer */
+      footer {
+        padding: 2rem 0 2.5rem;
+        border-top: 1px solid var(--border);
+        font-size: 0.88rem;
+        color: var(--ink-muted);
+      }
+
+      .footer-inner {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 1rem;
+      }
+
+      .footer-links {
+        display: flex;
+        gap: 1.25rem;
+      }
+
+      .footer-links a {
+        color: var(--ink-muted);
+        text-decoration: none;
+      }
+
+      .footer-links a:hover {
+        color: var(--ink);
+      }
+
+      .nav-toggle {
+        display: none;
+        background: var(--white);
+        border: 1px solid var(--border);
+        border-radius: 999px;
+        padding: 0.5rem 0.85rem;
+        font-family: var(--sans);
+        font-weight: 600;
+        cursor: pointer;
+      }
+
+      @media (max-width: 900px) {
+        .hero-grid,
+        .selarl-block,
+        .moments-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .safety-features {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      @media (max-width: 640px) {
+        .nav {
+          display: none;
+        }
+
+        .nav.is-open {
+          display: flex;
+          flex-direction: column;
+          width: 100%;
+          padding-top: 0.5rem;
+        }
+
+        .nav-toggle {
+          display: inline-flex;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container header-inner">
+        <a class="brand" href="#top">Au <em>Clair</em></a>
+        <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="main-nav">
+          Menu
+        </button>
+        <nav class="nav" id="main-nav" aria-label="Navigation">
+          <a href="#empathie">Pourquoi</a>
+          <a href="#parcours">Comment</a>
+          <a href="#moments">Tes contrats</a>
+          <a href="#selarl">SELARL</a>
+          <a class="btn btn-primary" href="./questionnaire-remplacement.html">Je crée mon contrat</a>
+        </nav>
+      </div>
+    </header>
+
+    <main id="top">
+      <!-- Hero -->
+      <section class="hero">
+        <div class="hero-blob hero-blob-1" aria-hidden="true"></div>
+        <div class="hero-blob hero-blob-2" aria-hidden="true"></div>
+        <div class="container hero-grid">
+          <div>
+            <p class="hero-tagline">« Le juridique, expliqué comme par une collègue qui s'y connaît. »</p>
+            <h1>Tu n'es pas seule face aux papiers.</h1>
+            <p class="hero-lede">
+              Entre deux tournées, entre deux patients, le contrat attend souvent dans un coin de ton
+              bureau. Au Clair te guide pas à pas — avec des mots simples, et une avocate derrière
+              chaque clause.
+            </p>
+            <div class="hero-actions">
+              <a class="btn btn-primary" href="./questionnaire-remplacement.html">Je crée mon contrat</a>
+              <a class="btn btn-outline" href="#parcours">Voir comment on t'accompagne</a>
+            </div>
+            <div class="care-illus" style="margin-top: 1.5rem">
+              <svg viewBox="0 0 48 48" aria-hidden="true">
+                <path
+                  d="M12 28c0-6 6-10 12-10s12 4 12 10"
+                  stroke="#8FA68E"
+                  stroke-width="2"
+                  fill="none"
+                />
+                <path
+                  d="M18 22c2-3 5-4 6-4s4 1 6 4M24 18v-4M20 16l4-2 4 2"
+                  stroke="#D89A7E"
+                  stroke-width="1.5"
+                  fill="none"
+                  stroke-linecap="round"
+                />
+                <ellipse cx="24" cy="32" rx="14" ry="6" fill="rgba(143,166,142,0.15)" />
+              </svg>
+              <span>Comme une collègue qui prend le temps de t'expliquer — sans jugement.</span>
+            </div>
+          </div>
+
+          <div class="hero-visual">
+            <div class="hero-card">
+              <div class="hero-portrait-wrap">
+                <img
+                  src="./images/violaine_avocate.png"
+                  alt="Me Violaine souriante, en robe d'avocate"
+                  width="480"
+                  height="360"
+                />
+                <div class="hero-portrait-caption">
+                  <strong>Me Violaine</strong>
+                  Ton filet juridique — droit de la santé
+                </div>
+              </div>
+              <p style="margin: 0; font-size: 0.9rem; color: var(--ink-muted); text-align: center">
+                Une vraie avocate, pas un robot. Chaque modèle est relu par une praticienne du droit
+                des soignants.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Empathie -->
+      <section class="empathy" id="empathie">
+        <div class="container empathy-inner">
+          <h2>On sait que le juridique, c'est anxiogène.</h2>
+          <p style="color: var(--ink-muted); margin: 0">
+            Tu as déjà eu peur de mal faire. De signer trop vite. De laisser passer une clause qui te
+            coûterait cher plus tard. Ce n'est pas un échec personnel : le droit n'est pas ton métier —
+            et ce n'est pas censé l'être.
+          </p>
+          <p class="empathy-quote">
+            « Non, tu n'es pas censée tout connaître du droit. C'est notre métier. »
+          </p>
+        </div>
+      </section>
+
+      <!-- Comment ça marche -->
+      <section class="section" id="parcours">
+        <div class="container">
+          <div class="section-header">
+            <h2>Comment ça marche ? On y va ensemble.</h2>
+            <p>Pas de jargon inutile. Chaque étape est expliquée avant que tu avances.</p>
+          </div>
+
+          <div class="journey">
+            <article class="journey-step">
+              <div class="journey-num">1</div>
+              <div class="journey-body">
+                <h3>Tu nous racontes ta situation</h3>
+                <p>
+                  Un questionnaire guidé, question par question. Remplacement continu ou discontinu ?
+                  Facturation directe ou via le remplacé ? Tu réponds comme tu le ferais à une
+                  collègue — on s'occupe de traduire en droit.
+                </p>
+              </div>
+            </article>
+            <article class="journey-step">
+              <div class="journey-num">2</div>
+              <div class="journey-body">
+                <h3>Tu relis, clause par clause</h3>
+                <p>
+                  Aperçu instantané de ton contrat. Chaque passage important est mis en évidence.
+                  Tu peux revenir en arrière, modifier une réponse, repartir — sans culpabilité.
+                </p>
+              </div>
+            </article>
+            <article class="journey-step">
+              <div class="journey-num">3</div>
+              <div class="journey-body">
+                <h3>Tu télécharges et tu signes sereinement</h3>
+                <p>
+                  PDF propre, prêt à envoyer à ton co-contractant. Tu sais ce que tu signes — parce
+                  qu'on t'a expliqué pourquoi chaque clause existe.
+                </p>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- Moments de vie pro -->
+      <section class="section section-sage" id="moments">
+        <div class="container">
+          <div class="section-header">
+            <h2>Les contrats, ce sont des moments de ta vie pro</h2>
+            <p>On ne te vend pas un PDF. On t'accompagne dans une étape que tu traverses vraiment.</p>
+          </div>
+
+          <div class="moments-grid">
+            <a class="moment-card featured" href="./questionnaire-remplacement.html">
+              <span class="moment-label">Disponible maintenant</span>
+              <div class="moment-icon" aria-hidden="true">🤝</div>
+              <h3>« Je remplace une collègue »</h3>
+              <p>
+                Congé, maladie, maternité… Tu prends le relais. On sécurise la durée, la facturation
+                et ce qui se passe si le remplacement se prolonge.
+              </p>
+            </a>
+            <div class="moment-card">
+              <span class="moment-label">Bientôt</span>
+              <div class="moment-icon" aria-hidden="true">🌿</div>
+              <h3>« Je travaille avec une confrère »</h3>
+              <p>
+                Collaboration, association de moyens — sans requalification en salariat ni mauvaise
+                surprise fiscale.
+              </p>
+            </div>
+            <div class="moment-card">
+              <span class="moment-label">Bientôt</span>
+              <div class="moment-icon" aria-hidden="true">🏠</div>
+              <h3>« Je partage un cabinet »</h3>
+              <p>
+                Association, bail professionnel — les règles ordinale traduites en mots que tu
+                comprends.
+              </p>
+            </div>
+            <div class="moment-card">
+              <span class="moment-label">Sur mesure</span>
+              <div class="moment-icon" aria-hidden="true">✨</div>
+              <h3>« Je passe en SELARL »</h3>
+              <p>
+                Une grande étape, souvent stressante. On reste avec toi — compta, CAC, Ordre, greffe.
+              </p>
+            </div>
+          </div>
+
+          <div class="clause-warm">
+            <p class="label">Exemple — une clause expliquée simplement</p>
+            <p>
+              <em>Cette clause ?</em> Elle dit simplement que si le remplacement dure plus longtemps que
+              prévu, les deux parties doivent s'accorder par écrit — <em>et voilà pourquoi elle compte
+              pour toi</em> : tu évites de te retrouver dans le flou, sans protection.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- SELARL + Violaine -->
+      <section class="section" id="selarl">
+        <div class="container selarl-block">
+          <div class="selarl-copy">
+            <p class="fear-line">Le passage en SELARL fait peur ? On reste avec toi à chaque étape.</p>
+            <p style="color: var(--ink-muted)">
+              Statuts, pacte d'associés, expert-comptable, commissaire aux comptes, Ordre des
+              infirmiers, greffe… Ce n'est pas à toi de tout orchestrer seule. On coordonne, on
+              t'explique, on avance à ton rythme.
+            </p>
+            <ul class="selarl-steps">
+              <li>Tu décris ton projet — sans pression</li>
+              <li>On prépare les documents avec Me Violaine</li>
+              <li>On aligne compta et CAC sur le calendrier</li>
+              <li>On te tient la main jusqu'à l'immatriculation</li>
+            </ul>
+            <p style="margin-top: 1.25rem">
+              <a class="btn btn-sage" href="mailto:contact@medlex.fr?subject=SELARL%20Au%20Clair"
+                >En parler sans engagement</a
+              >
+            </p>
+          </div>
+
+          <aside class="violaine-panel">
+            <img
+              src="./images/violaine_avocate.png"
+              alt="Me Violaine, avocate en droit de la santé"
+              width="120"
+              height="120"
+            />
+            <p class="role">Me Violaine · Avocate au barreau</p>
+            <p>
+              Je ne suis pas là pour te faire sentir petite face au droit. Je suis là pour que tu
+              comprennes ce que tu signes — et que tu te sentes protégée. Chaque contrat Au Clair
+              passe par ma relecture : c'est ma signature professionnelle qui garantit le fond.
+            </p>
+          </aside>
+        </div>
+      </section>
+
+      <!-- Abonnement filet -->
+      <section class="section section-sage" id="abonnement">
+        <div class="container">
+          <div class="safety-net">
+            <h2>Ton filet de sécurité au quotidien</h2>
+            <p class="subtitle">
+              Au-delà du contrat ponctuel, reste entourée — veille, modèles, courriers types quand la
+              situation devient tendue.
+            </p>
+            <div class="safety-features">
+              <div class="safety-item">
+                <strong>Micro-formations</strong>
+                <span>Remplacement, collaboration, facturation — en petites bouchées digestes.</span>
+              </div>
+              <div class="safety-item">
+                <strong>Mises en demeure</strong>
+                <span>Des modèles prêts quand tu dois poser un cadre, sans t'énerver seule.</span>
+              </div>
+              <div class="safety-item">
+                <strong>Veille &amp; alertes</strong>
+                <span>Les textes ordinaux et législatifs qui te concernent — résumés pour toi.</span>
+              </div>
+            </div>
+            <p class="price-tag">39 €<small> TTC / mois</small></p>
+            <p style="font-size: 0.88rem; color: var(--ink-muted); margin-bottom: 1.25rem">
+              Sans engagement de durée · Accès prioritaire à Me Violaine
+            </p>
+            <a class="btn btn-primary" href="mailto:contact@medlex.fr?subject=Abonnement%20Au%20Clair"
+              >Découvrir l'abonnement</a
+            >
+          </div>
+        </div>
+      </section>
+
+      <!-- CTA final -->
+      <section class="final-cta" id="commencer">
+        <div class="container">
+          <div class="final-cta-inner">
+            <h2>Quand tu seras prête, on sera là.</h2>
+            <p>
+              Pas de course. Pas de pression. Ouvre le questionnaire quand tu as douze minutes devant
+              toi — et avance à ton rythme. On ne te laissera pas seule devant une page blanche.
+            </p>
+            <a class="btn btn-primary" href="./questionnaire-remplacement.html">Je crée mon contrat</a>
+            <p class="warm-note">Rédigé et validé par Me Violaine, avocate en droit de la santé.</p>
+          </div>
+
+          <div class="daily-scene" aria-hidden="true">
+            <div class="scene-card">
+              <svg viewBox="0 0 48 48">
+                <path d="M14 32h20M24 12v16M18 20l6-4 6 4" stroke-linecap="round" />
+                <circle cx="24" cy="36" r="4" />
+              </svg>
+              Tournée du matin
+            </div>
+            <div class="scene-card">
+              <svg viewBox="0 0 48 48">
+                <rect x="12" y="14" width="24" height="20" rx="2" />
+                <path d="M16 22h16M16 28h10" stroke-linecap="round" />
+              </svg>
+              Contrat relu entre deux patients
+            </div>
+            <div class="scene-card">
+              <svg viewBox="0 0 48 48">
+                <path d="M16 28c0-4 4-8 8-8s8 4 8 8" />
+                <path d="M20 24c1-2 3-3 4-3s3 1 4 3" stroke-linecap="round" />
+              </svg>
+              Signature sereine
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="container footer-inner">
+        <span>© Au Clair — MedLex 2026 · Avec Me Violaine</span>
+        <div class="footer-links">
+          <a href="./index.html">MedLex</a>
+          <a href="./index-1.html">Clausia</a>
+          <a href="./index-2.html">Libéo</a>
+          <a href="mailto:contact@medlex.fr">Contact</a>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      (function () {
+        var toggle = document.querySelector(".nav-toggle");
+        var nav = document.getElementById("main-nav");
+        if (toggle && nav) {
+          toggle.addEventListener("click", function () {
+            var open = nav.classList.toggle("is-open");
+            toggle.setAttribute("aria-expanded", open ? "true" : "false");
+          });
+        }
+      })();
+    </script>
+  </body>
+</html>

@@ -1,0 +1,1330 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Libéo | Contrats IDEL — efficace, rassurant, validé par une avocate</title>
+    <meta
+      name="description"
+      content="Libéo : tes contrats d'infirmière libérale en quelques minutes, expliqués pas à pas. Rédigés par Me Violaine, avocate en droit de la santé."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Lora:ital,wght@0,500;0,600;0,700;1,500&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --bg: #fbf8f4;
+        --surface: #ffffff;
+        --sage: #6f9a8a;
+        --sage-dark: #587a6d;
+        --sage-soft: rgba(111, 154, 138, 0.12);
+        --warm: #d89a7e;
+        --warm-soft: rgba(216, 154, 126, 0.14);
+        --night: #1b2a4a;
+        --ink: #3d3a36;
+        --ink-muted: #6b6560;
+        --ok: #4a9d6f;
+        --gray: #ebe6df;
+        --gray-line: rgba(61, 58, 54, 0.1);
+        --radius: 14px;
+        --radius-lg: 16px;
+        --shadow: 0 4px 24px rgba(27, 42, 74, 0.06);
+        --shadow-lg: 0 20px 48px rgba(27, 42, 74, 0.08);
+        --sans: "Inter", "Segoe UI", Roboto, sans-serif;
+        --serif: "Lora", Georgia, serif;
+        --max: 1140px;
+        --tabular: "Inter", ui-monospace, monospace;
+      }
+
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        margin: 0;
+        font-family: var(--sans);
+        font-size: 1rem;
+        line-height: 1.58;
+        color: var(--ink);
+        background: var(--bg);
+        -webkit-font-smoothing: antialiased;
+      }
+
+      h1,
+      h2,
+      .serif-title {
+        font-family: var(--serif);
+        font-weight: 600;
+        letter-spacing: -0.02em;
+        color: var(--night);
+      }
+
+      h1 {
+        font-size: clamp(2rem, 4.2vw, 2.85rem);
+        line-height: 1.12;
+        margin: 0 0 1rem;
+      }
+
+      h2 {
+        font-size: clamp(1.45rem, 2.6vw, 1.95rem);
+        line-height: 1.2;
+        margin: 0 0 0.65rem;
+      }
+
+      h3 {
+        font-size: 1.05rem;
+        font-weight: 600;
+        margin: 0 0 0.45rem;
+        color: var(--ink);
+      }
+
+      p {
+        margin: 0 0 0.75rem;
+      }
+
+      a {
+        color: inherit;
+      }
+
+      .tabular {
+        font-variant-numeric: tabular-nums;
+        font-feature-settings: "tnum";
+      }
+
+      .container {
+        width: min(var(--max), 92%);
+        margin: 0 auto;
+      }
+
+      /* Badge avocate — T1 omniprésent */
+      .trust-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.45rem;
+        padding: 0.4rem 0.8rem;
+        background: var(--surface);
+        border: 1px solid var(--gray-line);
+        border-radius: 999px;
+        font-size: 0.76rem;
+        font-weight: 500;
+        color: var(--night);
+        box-shadow: var(--shadow);
+      }
+
+      .trust-badge img {
+        width: 22px;
+        height: 22px;
+        border-radius: 50%;
+        object-fit: cover;
+        object-position: center top;
+      }
+
+      .trust-badge svg {
+        flex-shrink: 0;
+        width: 14px;
+        height: 14px;
+        stroke: var(--sage);
+        fill: none;
+        stroke-width: 2;
+      }
+
+      .trust-badge strong {
+        font-weight: 600;
+      }
+
+      .trust-bar {
+        position: sticky;
+        top: 0;
+        z-index: 50;
+        background: rgba(251, 248, 244, 0.94);
+        backdrop-filter: blur(10px);
+        border-bottom: 1px solid var(--gray-line);
+        padding: 0.45rem 0;
+        text-align: center;
+      }
+
+      .legal-line {
+        font-size: 0.8rem;
+        color: var(--ink-muted);
+        margin-top: 0.65rem;
+      }
+
+      .legal-line strong {
+        color: var(--night);
+        font-weight: 600;
+      }
+
+      /* Header T2 */
+      .site-header {
+        padding: 0.85rem 0;
+        border-bottom: 1px solid var(--gray-line);
+      }
+
+      .header-inner {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+      }
+
+      .logo {
+        display: flex;
+        flex-direction: column;
+        text-decoration: none;
+        color: var(--night);
+      }
+
+      .logo-mark {
+        font-family: var(--sans);
+        font-weight: 700;
+        font-size: 1.35rem;
+        letter-spacing: -0.03em;
+        display: flex;
+        align-items: center;
+        gap: 0.4rem;
+      }
+
+      .logo-dot {
+        width: 9px;
+        height: 9px;
+        border-radius: 50%;
+        background: var(--sage);
+      }
+
+      .logo-tag {
+        font-size: 0.72rem;
+        color: var(--ink-muted);
+        font-weight: 500;
+        margin-top: 0.1rem;
+      }
+
+      .nav {
+        display: flex;
+        align-items: center;
+        gap: 1.15rem;
+      }
+
+      .nav a {
+        text-decoration: none;
+        font-size: 0.9rem;
+        font-weight: 500;
+        color: var(--ink-muted);
+      }
+
+      .nav a:hover {
+        color: var(--ink);
+      }
+
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.4rem;
+        padding: 0.78rem 1.3rem;
+        border-radius: var(--radius);
+        font-family: var(--sans);
+        font-size: 0.95rem;
+        font-weight: 600;
+        text-decoration: none;
+        border: none;
+        cursor: pointer;
+        transition: transform 0.15s, box-shadow 0.15s, background 0.15s;
+      }
+
+      .btn:hover {
+        transform: translateY(-1px);
+      }
+
+      .btn-primary {
+        background: linear-gradient(135deg, var(--sage) 0%, var(--sage-dark) 100%);
+        color: var(--surface);
+        box-shadow: 0 6px 20px rgba(111, 154, 138, 0.35);
+      }
+
+      .btn-warm {
+        background: var(--warm);
+        color: var(--surface);
+        box-shadow: 0 6px 18px rgba(216, 154, 126, 0.3);
+      }
+
+      .btn-warm:hover {
+        background: #c8886c;
+      }
+
+      .btn-secondary {
+        background: var(--surface);
+        color: var(--ink);
+        border: 1px solid var(--gray);
+      }
+
+      /* Hero T2 + T3 */
+      .hero {
+        padding: 2.75rem 0 4rem;
+      }
+
+      .hero-grid {
+        display: grid;
+        grid-template-columns: 1fr 1.1fr;
+        gap: 2.5rem;
+        align-items: center;
+      }
+
+      .hero-warm {
+        font-size: 1.05rem;
+        color: var(--ink-muted);
+        max-width: 28rem;
+        margin-bottom: 1.25rem;
+      }
+
+      .hero-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.65rem;
+        margin-bottom: 1rem;
+      }
+
+      .hero-chips {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        margin-top: 1rem;
+      }
+
+      .chip {
+        padding: 0.35rem 0.7rem;
+        background: var(--sage-soft);
+        border-radius: 999px;
+        font-size: 0.78rem;
+        font-weight: 600;
+        color: var(--sage-dark);
+      }
+
+      .chip-warm {
+        background: var(--warm-soft);
+        color: #9a6848;
+      }
+
+      /* Dashboard T2 warmed */
+      .dashboard-wrap {
+        perspective: 1100px;
+      }
+
+      .dashboard {
+        background: var(--surface);
+        border: 1px solid var(--gray-line);
+        border-radius: var(--radius-lg);
+        box-shadow: var(--shadow-lg);
+        overflow: hidden;
+        animation: float-dash 6s ease-in-out infinite;
+      }
+
+      @keyframes float-dash {
+        0%,
+        100% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(-6px);
+        }
+      }
+
+      .dash-top {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0.6rem 1rem;
+        background: var(--gray);
+        border-bottom: 1px solid var(--gray-line);
+      }
+
+      .dash-dots {
+        display: flex;
+        gap: 5px;
+      }
+
+      .dash-dots span {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: #ccc5bc;
+      }
+
+      .dash-dots span:nth-child(1) {
+        background: #e8a598;
+      }
+      .dash-dots span:nth-child(2) {
+        background: #e8d4a0;
+      }
+      .dash-dots span:nth-child(3) {
+        background: var(--ok);
+      }
+
+      .dash-label {
+        font-size: 0.7rem;
+        font-weight: 600;
+        color: var(--ink-muted);
+      }
+
+      .dash-body {
+        display: grid;
+        grid-template-columns: 130px 1fr;
+        min-height: 270px;
+      }
+
+      .dash-side {
+        padding: 0.85rem 0.65rem;
+        background: #f6f3ef;
+        border-right: 1px solid var(--gray-line);
+      }
+
+      .dash-nav {
+        display: flex;
+        align-items: center;
+        gap: 0.4rem;
+        padding: 0.4rem 0.55rem;
+        border-radius: 8px;
+        font-size: 0.68rem;
+        font-weight: 500;
+        color: var(--ink-muted);
+        margin-bottom: 0.2rem;
+      }
+
+      .dash-nav.on {
+        background: var(--sage-soft);
+        color: var(--sage-dark);
+      }
+
+      .dash-main {
+        padding: 1rem;
+      }
+
+      .dash-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        margin-bottom: 0.85rem;
+      }
+
+      .dash-row h4 {
+        margin: 0;
+        font-size: 0.9rem;
+      }
+
+      .dash-row p {
+        margin: 0.1rem 0 0;
+        font-size: 0.68rem;
+        color: var(--ink-muted);
+      }
+
+      .pill-ok {
+        padding: 0.2rem 0.55rem;
+        border-radius: 999px;
+        background: rgba(74, 157, 111, 0.15);
+        color: var(--ok);
+        font-size: 0.65rem;
+        font-weight: 700;
+      }
+
+      .dash-stats {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 0.45rem;
+        margin-bottom: 0.75rem;
+      }
+
+      .stat {
+        padding: 0.55rem;
+        background: var(--bg);
+        border-radius: 10px;
+        border: 1px solid var(--gray-line);
+      }
+
+      .stat .l {
+        font-size: 0.6rem;
+        color: var(--ink-muted);
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+      }
+
+      .stat .v {
+        font-family: var(--tabular);
+        font-size: 1rem;
+        font-weight: 700;
+        margin-top: 0.1rem;
+        color: var(--night);
+      }
+
+      .explain-box {
+        padding: 0.65rem 0.75rem;
+        background: var(--warm-soft);
+        border-radius: 10px;
+        border-left: 3px solid var(--warm);
+        font-size: 0.72rem;
+        color: var(--ink-muted);
+        line-height: 1.45;
+      }
+
+      .explain-box em {
+        font-style: normal;
+        font-weight: 600;
+        color: var(--ink);
+      }
+
+      /* Empathie courte T3 */
+      .empathy-strip {
+        padding: 2rem 0;
+        background: var(--surface);
+        border-top: 1px solid var(--gray-line);
+        border-bottom: 1px solid var(--gray-line);
+      }
+
+      .empathy-inner {
+        display: grid;
+        grid-template-columns: auto 1fr;
+        gap: 1.25rem;
+        align-items: center;
+        max-width: 720px;
+        margin: 0 auto;
+      }
+
+      .empathy-icon {
+        width: 52px;
+        height: 52px;
+        border-radius: 50%;
+        background: var(--warm-soft);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+      }
+
+      .empathy-inner p {
+        margin: 0;
+        color: var(--ink-muted);
+        font-size: 0.98rem;
+      }
+
+      .empathy-inner strong {
+        color: var(--ink);
+      }
+
+      /* Sections */
+      .section {
+        padding: 4rem 0;
+      }
+
+      .section-soft {
+        background: rgba(111, 154, 138, 0.06);
+      }
+
+      .section-header {
+        text-align: center;
+        max-width: 34rem;
+        margin: 0 auto 2.25rem;
+      }
+
+      .section-header p {
+        color: var(--ink-muted);
+        margin-top: 0.45rem;
+      }
+
+      /* Steps T2 + T3 copy */
+      .steps {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1rem;
+      }
+
+      .step {
+        background: var(--surface);
+        border: 1px solid var(--gray-line);
+        border-radius: var(--radius-lg);
+        padding: 1.5rem;
+        box-shadow: var(--shadow);
+      }
+
+      .step-num {
+        font-family: var(--tabular);
+        font-size: 0.7rem;
+        font-weight: 700;
+        color: var(--sage);
+        letter-spacing: 0.08em;
+        margin-bottom: 0.5rem;
+      }
+
+      .step h3 {
+        font-family: var(--serif);
+        font-size: 1.15rem;
+        color: var(--night);
+        margin-bottom: 0.5rem;
+      }
+
+      .step p {
+        font-size: 0.9rem;
+        color: var(--ink-muted);
+        margin: 0;
+      }
+
+      .steps-phrase {
+        text-align: center;
+        margin-top: 1.5rem;
+        font-family: var(--serif);
+        font-size: 1.2rem;
+        color: var(--night);
+      }
+
+      .steps-phrase span {
+        color: var(--sage-dark);
+      }
+
+      /* Contracts T2 */
+      .contracts {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1rem;
+      }
+
+      .card {
+        background: var(--surface);
+        border: 1px solid var(--gray-line);
+        border-radius: var(--radius-lg);
+        padding: 1.4rem;
+        transition: box-shadow 0.2s, transform 0.15s;
+      }
+
+      a.card {
+        text-decoration: none;
+        color: inherit;
+      }
+
+      a.card:hover {
+        box-shadow: var(--shadow-lg);
+        transform: translateY(-2px);
+      }
+
+      .card.live {
+        border-color: rgba(111, 154, 138, 0.4);
+        background: linear-gradient(180deg, rgba(111, 154, 138, 0.06) 0%, var(--surface) 100%);
+      }
+
+      .badge {
+        display: inline-block;
+        padding: 0.18rem 0.5rem;
+        border-radius: 6px;
+        font-size: 0.65rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+        margin-bottom: 0.55rem;
+      }
+
+      .badge-ok {
+        background: rgba(74, 157, 111, 0.15);
+        color: var(--ok);
+      }
+
+      .badge-soon {
+        background: var(--gray);
+        color: var(--ink-muted);
+      }
+
+      .card p {
+        font-size: 0.88rem;
+        color: var(--ink-muted);
+        margin: 0;
+      }
+
+      .card-link {
+        margin-top: 0.75rem;
+        font-size: 0.85rem;
+        font-weight: 600;
+        color: var(--sage-dark);
+      }
+
+      /* Caution T1 */
+      .caution {
+        background: var(--night);
+        color: rgba(251, 248, 244, 0.9);
+        border-radius: var(--radius-lg);
+        padding: 2rem;
+        display: grid;
+        grid-template-columns: auto 1fr;
+        gap: 1.5rem;
+        align-items: start;
+      }
+
+      .caution-photo {
+        width: 96px;
+        height: 96px;
+        border-radius: 50%;
+        object-fit: cover;
+        object-position: center top;
+        border: 3px solid var(--sage);
+      }
+
+      .caution h2 {
+        color: var(--surface);
+        font-size: 1.35rem;
+        margin-bottom: 0.5rem;
+      }
+
+      .caution p {
+        font-size: 0.92rem;
+        opacity: 0.88;
+        margin: 0;
+        max-width: 40rem;
+      }
+
+      .caution .trust-badge {
+        margin-top: 1rem;
+        background: rgba(255, 255, 255, 0.08);
+        border-color: rgba(255, 255, 255, 0.15);
+        color: var(--surface);
+      }
+
+      /* SELARL */
+      .selarl-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 2rem;
+        align-items: start;
+      }
+
+      .timeline {
+        position: relative;
+        padding-left: 1.25rem;
+      }
+
+      .timeline::before {
+        content: "";
+        position: absolute;
+        left: 4px;
+        top: 6px;
+        bottom: 6px;
+        width: 2px;
+        background: linear-gradient(180deg, var(--sage), var(--warm));
+      }
+
+      .tl-item {
+        position: relative;
+        padding-bottom: 1.25rem;
+      }
+
+      .tl-item::before {
+        content: "";
+        position: absolute;
+        left: -1.25rem;
+        top: 5px;
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background: var(--surface);
+        border: 2px solid var(--sage);
+      }
+
+      .tl-item p {
+        font-size: 0.88rem;
+        color: var(--ink-muted);
+        margin: 0;
+      }
+
+      /* Pricing T2 warm frame */
+      .pricing {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1rem;
+      }
+
+      .price-card {
+        background: var(--surface);
+        border: 1px solid var(--gray-line);
+        border-radius: var(--radius-lg);
+        padding: 1.6rem;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .price-card.featured {
+        border-color: var(--sage);
+        box-shadow: 0 8px 32px rgba(111, 154, 138, 0.15);
+      }
+
+      .price-card .name {
+        font-size: 0.82rem;
+        font-weight: 600;
+        color: var(--ink-muted);
+      }
+
+      .price-card .amount {
+        font-family: var(--tabular);
+        font-size: 2rem;
+        font-weight: 700;
+        color: var(--night);
+        margin: 0.35rem 0;
+      }
+
+      .price-card ul {
+        list-style: none;
+        margin: 1rem 0;
+        padding: 0;
+        flex: 1;
+        font-size: 0.86rem;
+        color: var(--ink-muted);
+      }
+
+      .price-card li {
+        padding: 0.35rem 0 0.35rem 1.2rem;
+        position: relative;
+      }
+
+      .price-card li::before {
+        content: "✓";
+        position: absolute;
+        left: 0;
+        color: var(--ok);
+        font-weight: 700;
+      }
+
+      .price-card .btn {
+        width: 100%;
+        margin-top: auto;
+      }
+
+      /* Final */
+      .final {
+        padding: 4rem 0 5rem;
+        background: linear-gradient(180deg, var(--bg), var(--gray));
+      }
+
+      .final-grid {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        gap: 2.5rem;
+        align-items: center;
+      }
+
+      .final-copy p {
+        color: var(--ink-muted);
+        max-width: 28rem;
+      }
+
+      .phone {
+        width: 210px;
+        background: var(--night);
+        border-radius: 26px;
+        padding: 9px;
+        box-shadow: var(--shadow-lg);
+      }
+
+      .phone-screen {
+        background: var(--bg);
+        border-radius: 18px;
+        overflow: hidden;
+        min-height: 360px;
+        padding: 0.85rem;
+      }
+
+      .phone-head {
+        font-weight: 700;
+        font-size: 0.85rem;
+        margin-bottom: 0.65rem;
+        display: flex;
+        align-items: center;
+        gap: 0.35rem;
+      }
+
+      .phone-head::before {
+        content: "";
+        width: 7px;
+        height: 7px;
+        border-radius: 50%;
+        background: var(--sage);
+      }
+
+      .phone-item {
+        background: var(--surface);
+        border: 1px solid var(--gray-line);
+        border-radius: 10px;
+        padding: 0.65rem;
+        margin-bottom: 0.45rem;
+        font-size: 0.68rem;
+      }
+
+      .phone-item .s {
+        color: var(--ok);
+        font-weight: 700;
+        margin-top: 0.15rem;
+      }
+
+      footer {
+        padding: 1.75rem 0;
+        border-top: 1px solid var(--gray-line);
+        font-size: 0.85rem;
+        color: var(--ink-muted);
+      }
+
+      .footer-row {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 1rem;
+      }
+
+      .footer-links {
+        display: flex;
+        gap: 1rem;
+      }
+
+      .footer-links a {
+        color: var(--ink-muted);
+        text-decoration: none;
+      }
+
+      .nav-toggle {
+        display: none;
+        border: 1px solid var(--gray);
+        background: var(--surface);
+        border-radius: 8px;
+        padding: 0.45rem 0.65rem;
+        font: inherit;
+        cursor: pointer;
+      }
+
+      @media (max-width: 960px) {
+        .hero-grid,
+        .selarl-grid,
+        .final-grid,
+        .caution {
+          grid-template-columns: 1fr;
+        }
+
+        .steps,
+        .contracts,
+        .pricing {
+          grid-template-columns: 1fr;
+        }
+
+        .dash-body {
+          grid-template-columns: 1fr;
+        }
+
+        .dash-side {
+          display: none;
+        }
+
+        .empathy-inner {
+          grid-template-columns: 1fr;
+          text-align: center;
+        }
+
+        .empathy-icon {
+          margin: 0 auto;
+        }
+      }
+
+      @media (max-width: 640px) {
+        .nav {
+          display: none;
+        }
+
+        .nav.is-open {
+          display: flex;
+          flex-direction: column;
+          width: 100%;
+        }
+
+        .header-inner {
+          flex-wrap: wrap;
+        }
+
+        .nav-toggle {
+          display: inline-flex;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="trust-bar">
+      <div class="container">
+        <span class="trust-badge">
+          <img src="./images/violaine_avocate.png" alt="" width="22" height="22" />
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M12 3l7 4v6c0 4.5-3.2 8.7-7 9-3.8-.3-7-4.5-7-9V7l7-4z" />
+            <path d="M9 12l2 2 4-4" />
+          </svg>
+          Rédigé par <strong>Me Violaine</strong>, avocate en droit de la santé
+        </span>
+      </div>
+    </div>
+
+    <header class="site-header">
+      <div class="container header-inner">
+        <a class="logo" href="#top">
+          <span class="logo-mark"><span class="logo-dot"></span>Libéo</span>
+          <span class="logo-tag">au clair — contrats IDEL</span>
+        </a>
+        <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav">Menu</button>
+        <nav class="nav" id="nav">
+          <a href="#etapes">Comment</a>
+          <a href="#contrats">Contrats</a>
+          <a href="#selarl">SELARL</a>
+          <a href="#tarifs">Tarifs</a>
+          <a class="btn btn-primary" href="./questionnaire-remplacement.html">Créer mon contrat</a>
+        </nav>
+      </div>
+    </header>
+
+    <main id="top">
+      <section class="hero">
+        <div class="container hero-grid">
+          <div>
+            <span class="trust-badge" style="margin-bottom: 1rem">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M12 3l7 4v6c0 4.5-3.2 8.7-7 9-3.8-.3-7-4.5-7-9V7l7-4z" />
+              </svg>
+              Conforme Code de la santé publique &amp; déontologie infirmière
+            </span>
+            <h1 class="serif-title">Ton contrat, prêt en minutes — sans stress.</h1>
+            <p class="hero-warm">
+              L'efficacité d'une app moderne, les explications d'une collègue bienveillante, la
+              rigueur d'une avocate derrière chaque clause. Tu n'as pas à tout savoir du droit :
+              c'est exactement pour ça qu'on est là.
+            </p>
+            <div class="hero-actions">
+              <a class="btn btn-warm" href="./questionnaire-remplacement.html">Créer mon contrat</a>
+              <a class="btn btn-secondary" href="#etapes">Voir comment ça marche</a>
+            </div>
+            <div class="hero-chips">
+              <span class="chip tabular">~12 min</span>
+              <span class="chip">Questionnaire guidé</span>
+              <span class="chip chip-warm">PDF en 1 clic</span>
+            </div>
+            <p class="legal-line">
+              Chaque document est <strong>validé par Me Violaine</strong>, avocate spécialisée en
+              droit de la santé.
+            </p>
+          </div>
+
+          <div class="dashboard-wrap" aria-hidden="true">
+            <div class="dashboard">
+              <div class="dash-top">
+                <div class="dash-dots"><span></span><span></span><span></span></div>
+                <span class="dash-label">libeo · Contrat de remplacement</span>
+              </div>
+              <div class="dash-body">
+                <aside class="dash-side">
+                  <div class="dash-nav on">Questionnaire</div>
+                  <div class="dash-nav">Aperçu</div>
+                  <div class="dash-nav">PDF</div>
+                </aside>
+                <div class="dash-main">
+                  <div class="dash-row">
+                    <div>
+                      <h4>Étape 8 — Facturation</h4>
+                      <p>On t'explique chaque choix avant de continuer</p>
+                    </div>
+                    <span class="pill-ok tabular">68 %</span>
+                  </div>
+                  <div class="dash-stats">
+                    <div class="stat">
+                      <div class="l">Temps</div>
+                      <div class="v tabular">12 min</div>
+                    </div>
+                    <div class="stat">
+                      <div class="l">Clauses</div>
+                      <div class="v tabular">24</div>
+                    </div>
+                    <div class="stat">
+                      <div class="l">Validé</div>
+                      <div class="v" style="font-size: 0.75rem; color: var(--ok)">Avocate</div>
+                    </div>
+                  </div>
+                  <div class="explain-box">
+                    <em>Cette clause ?</em> Elle encadre la durée du remplacement — pour que personne
+                    ne soit prise au dépourvu si ça dure plus longtemps que prévu.
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="empathy-strip">
+        <div class="container empathy-inner">
+          <div class="empathy-icon" aria-hidden="true">💚</div>
+          <p>
+            <strong>Le juridique, c'est anxiogène — et ce n'est pas de ta faute.</strong> Entre la
+            tournée, la paperasse et la peur de mal faire, le contrat passe souvent en dernier. Libéo
+            te guide pas à pas, sans jargon ni jugement.
+          </p>
+        </div>
+      </section>
+
+      <section class="section" id="etapes">
+        <div class="container">
+          <div class="section-header">
+            <h2 class="serif-title">Comment ça marche</h2>
+            <p>Trois étapes. Tu avances à ton rythme — on t'explique le pourquoi à chaque fois.</p>
+          </div>
+          <div class="steps">
+            <article class="step">
+              <p class="step-num">01</p>
+              <h3>Génère</h3>
+              <p>
+                Tu réponds au questionnaire en ligne. Chaque question est claire ; les clauses
+                s'adaptent à ta situation (continu, discontinu, planning…).
+              </p>
+            </article>
+            <article class="step">
+              <p class="step-num">02</p>
+              <h3>Relis</h3>
+              <p>
+                Aperçu instantané, clause par clause. Tu peux revenir modifier — sans repartir de
+                zéro, sans culpabilité.
+              </p>
+            </article>
+            <article class="step">
+              <p class="step-num">03</p>
+              <h3>Signe</h3>
+              <p>
+                PDF propre, opposable, conforme. Tu sais ce que tu signes parce qu'on t'a dit
+                pourquoi chaque passage compte.
+              </p>
+            </article>
+          </div>
+          <p class="steps-phrase"><span>Génère.</span> <span>Relis.</span> <span>Signe.</span></p>
+        </div>
+      </section>
+
+      <section class="section section-soft" id="contrats">
+        <div class="container">
+          <div class="section-header">
+            <h2 class="serif-title">Tes contrats, au bon moment</h2>
+            <p>Des documents pensés pour les vraies étapes de ta vie pro — pas des modèles génériques.</p>
+          </div>
+          <div class="contracts">
+            <a class="card live" href="./questionnaire-remplacement.html">
+              <span class="badge badge-ok">Disponible</span>
+              <h3>Remplacement</h3>
+              <p>Congé, maladie, maternité… Durée, facturation, redevance, résiliation.</p>
+              <p class="card-link">Créer mon contrat →</p>
+            </a>
+            <div class="card">
+              <span class="badge badge-soon">Bientôt</span>
+              <h3>Collaboration</h3>
+              <p>Association de moyens sans requalification en salariat.</p>
+            </div>
+            <div class="card">
+              <span class="badge badge-soon">Bientôt</span>
+              <h3>Association &amp; cession</h3>
+              <p>Partage de cabinet, transmission de patientèle.</p>
+            </div>
+            <div class="card">
+              <span class="badge badge-soon">Bientôt</span>
+              <h3>Bail professionnel</h3>
+              <p>Locaux d'exercice adaptés aux IDEL.</p>
+            </div>
+            <a class="card" href="#selarl">
+              <span class="badge badge-soon">Sur devis</span>
+              <h3>Passage en SELARL</h3>
+              <p>Statuts, pacte, compta, CAC, Ordre — accompagné de A à Z.</p>
+              <p class="card-link">Découvrir →</p>
+            </a>
+            <div class="card">
+              <span class="badge badge-soon">Abonnement</span>
+              <h3>Filet au quotidien</h3>
+              <p>Veille, micro-formations, mises en demeure types.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="container">
+          <div class="caution">
+            <img
+              class="caution-photo"
+              src="./images/violaine_avocate.png"
+              alt="Me Violaine, avocate en robe"
+              width="96"
+              height="96"
+            />
+            <div>
+              <h2 class="serif-title">Une avocate derrière chaque contrat</h2>
+              <p>
+                Libéo est rapide et simple — pas approximatif. Me Violaine, avocate en droit de la
+                santé, rédige et maintient chaque modèle. Tu gagnes du temps ; tu ne renonces pas à
+                la rigueur du barreau. C'est le même niveau d'exigence qu'un cabinet d'avocats, avec
+                l'expérience fluide que tu attends d'un outil digital.
+              </p>
+              <span class="trust-badge">
+                <img src="./images/violaine_avocate.png" alt="" width="22" height="22" />
+                <strong>Me Violaine</strong> · Avocate au barreau · Droit de la santé
+              </span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section-soft" id="selarl">
+        <div class="container selarl-grid">
+          <div>
+            <h2 class="serif-title">SELARL : on reste avec toi</h2>
+            <p style="color: var(--ink-muted); margin-bottom: 1rem">
+              Le passage en SELARL fait peur ? Normal. On coordonne compta, CAC et Ordre — tu signes,
+              c'est tout. Pas besoin de tout orchestrer seule.
+            </p>
+            <div class="timeline">
+              <div class="tl-item">
+                <h3>Questionnaire &amp; projection</h3>
+                <p>Tu décris ton projet. On te propose la structure adaptée.</p>
+              </div>
+              <div class="tl-item">
+                <h3>Statuts relus par Me Violaine</h3>
+                <p>Documents générés, validés juridiquement.</p>
+              </div>
+              <div class="tl-item">
+                <h3>Compta &amp; CAC alignés</h3>
+                <p>Calendrier partagé, pièces coordonnées.</p>
+              </div>
+              <div class="tl-item">
+                <h3>Immatriculation &amp; Ordre</h3>
+                <p>Suivi jusqu'au bout — greffe et inscription ordinale.</p>
+              </div>
+            </div>
+            <p style="margin-top: 1.25rem">
+              <a class="btn btn-primary" href="mailto:contact@medlex.fr?subject=SELARL%20Libéo"
+                >En parler sans engagement</a
+              >
+            </p>
+          </div>
+          <div class="explain-box" style="padding: 1.5rem; font-size: 0.92rem">
+            <p style="margin: 0 0 0.75rem; font-family: var(--serif); font-size: 1.1rem; color: var(--night)">
+              « Simple ne veut pas dire léger. »
+            </p>
+            <p style="margin: 0">
+              Chaque étape SELARL est expliquée avant que tu valides. Tu comprends ce que tu signes —
+              et tu sais qui relit derrière : une avocate, pas un algorithme seul.
+            </p>
+            <span class="trust-badge" style="margin-top: 1rem">
+              Rédigé par <strong>Me Violaine</strong>, avocate en droit de la santé
+            </span>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="tarifs">
+        <div class="container">
+          <div class="section-header">
+            <h2 class="serif-title">Tarifs clairs, sans surprise</h2>
+            <p>Ton filet de sécurité au quotidien, si tu en as besoin au-delà du contrat ponctuel.</p>
+          </div>
+          <div class="pricing">
+            <article class="price-card">
+              <p class="name">À la carte</p>
+              <p class="amount tabular">119 €<small style="font-size: 0.85rem"> TTC</small></p>
+              <ul>
+                <li>Questionnaire + aperçu</li>
+                <li>Export PDF</li>
+                <li>Validé par Me Violaine</li>
+              </ul>
+              <a class="btn btn-secondary" href="./questionnaire-remplacement.html">Créer mon contrat</a>
+            </article>
+            <article class="price-card featured">
+              <p class="name">Libéo Pro</p>
+              <p class="amount tabular">29 €<small style="font-size: 0.85rem">/mois</small></p>
+              <ul>
+                <li>Contrats illimités</li>
+                <li>Micro-formations &amp; veille</li>
+                <li>Mises en demeure types</li>
+                <li>Accès prioritaire avocate</li>
+              </ul>
+              <a class="btn btn-primary" href="mailto:contact@medlex.fr?subject=Libéo%20Pro">Essayer Pro</a>
+            </article>
+            <article class="price-card">
+              <p class="name">SELARL clé-en-main</p>
+              <p class="amount" style="font-size: 1.35rem">Sur devis</p>
+              <ul>
+                <li>Parcours A → Z</li>
+                <li>Compta + CAC + Ordre</li>
+                <li>Me Violaine en lead</li>
+              </ul>
+              <a class="btn btn-secondary" href="mailto:contact@medlex.fr?subject=SELARL">Demander un devis</a>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="final" id="commencer">
+        <div class="container final-grid">
+          <div class="final-copy">
+            <h2 class="serif-title">Prête quand tu l'es.</h2>
+            <p>
+              Douze minutes, un PDF propre, une signature sereine. Comme sur Doctolib — sauf que
+              derrière, c'est le droit de la santé, pas un modèle trouvé sur internet.
+            </p>
+            <a class="btn btn-warm" href="./questionnaire-remplacement.html">Créer mon contrat</a>
+            <p class="legal-line">
+              <span class="trust-badge" style="margin-top: 0.75rem; box-shadow: none">
+                <img src="./images/violaine_avocate.png" alt="" width="22" height="22" />
+                Rédigé par <strong>Me Violaine</strong>, avocate en droit de la santé
+              </span>
+            </p>
+          </div>
+          <div class="phone" aria-hidden="true">
+            <div class="phone-screen">
+              <div class="phone-head">Libéo</div>
+              <div class="phone-item">
+                Remplacement — M. Dupont
+                <div class="s">✓ PDF prêt · Validé avocate</div>
+              </div>
+              <div class="phone-item">
+                Collaboration — en cours
+                <div class="s" style="color: var(--sage-dark)">45 % · Clause expliquée</div>
+              </div>
+              <div class="phone-item">
+                SELARL #2847
+                <div class="s" style="color: var(--ink-muted)">Compta OK</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="container footer-row">
+        <span>© Libéo au clair — MedLex 2026 · Me Violaine</span>
+        <div class="footer-links">
+          <a href="./index.html">MedLex</a>
+          <a href="./index-1.html">Clausia</a>
+          <a href="./index-2.html">Libéo pur</a>
+          <a href="./index-3.html">Au Clair pur</a>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      (function () {
+        var t = document.querySelector(".nav-toggle");
+        var n = document.getElementById("nav");
+        if (t && n) {
+          t.addEventListener("click", function () {
+            var o = n.classList.toggle("is-open");
+            t.setAttribute("aria-expanded", o ? "true" : "false");
+          });
+        }
+      })();
+    </script>
+  </body>
+</html>

@@ -1,0 +1,1475 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Libéo | Tes contrats de soignante libérale, prêts en quelques minutes</title>
+    <meta
+      name="description"
+      content="Libéo génère tes contrats de remplacement, collaboration et SELARL en quelques minutes. Rédigés par Me Violaine, avocate en droit de la santé."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --bg: #fbfcfd;
+        --teal: #0fa3a3;
+        --teal-dark: #0c8585;
+        --ink: #16314d;
+        --ok: #34c759;
+        --gray: #e8edf1;
+        --gray-text: #5f6b7a;
+        --white: #ffffff;
+        --radius: 14px;
+        --radius-lg: 16px;
+        --shadow: 0 4px 24px rgba(22, 49, 77, 0.06);
+        --shadow-lg: 0 20px 50px rgba(22, 49, 77, 0.1);
+        --font: "Inter", "Segoe UI", Roboto, Arial, sans-serif;
+        --max: 1140px;
+        --tabular: "Inter", ui-monospace, monospace;
+      }
+
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        margin: 0;
+        font-family: var(--font);
+        font-size: 1rem;
+        line-height: 1.55;
+        color: var(--ink);
+        background: var(--bg);
+        -webkit-font-smoothing: antialiased;
+      }
+
+      h1,
+      h2,
+      h3 {
+        margin: 0;
+        font-weight: 700;
+        letter-spacing: -0.025em;
+      }
+
+      h1 {
+        font-size: clamp(2rem, 4.5vw, 3rem);
+        line-height: 1.08;
+      }
+
+      h2 {
+        font-size: clamp(1.5rem, 2.8vw, 2rem);
+        line-height: 1.15;
+      }
+
+      h3 {
+        font-size: 1.05rem;
+        font-weight: 600;
+      }
+
+      p {
+        margin: 0 0 0.75rem;
+      }
+
+      a {
+        color: inherit;
+      }
+
+      .tabular {
+        font-variant-numeric: tabular-nums;
+        font-feature-settings: "tnum";
+      }
+
+      .container {
+        width: min(var(--max), 92%);
+        margin: 0 auto;
+      }
+
+      /* Badge avocate — persistant */
+      .trust-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.45rem 0.85rem;
+        background: var(--white);
+        border: 1px solid var(--gray);
+        border-radius: 999px;
+        font-size: 0.78rem;
+        font-weight: 500;
+        color: var(--ink);
+        box-shadow: var(--shadow);
+      }
+
+      .trust-badge svg {
+        flex-shrink: 0;
+        width: 16px;
+        height: 16px;
+        stroke: var(--teal);
+        fill: none;
+        stroke-width: 2;
+      }
+
+      .trust-badge strong {
+        font-weight: 600;
+      }
+
+      .trust-bar {
+        position: sticky;
+        top: 0;
+        z-index: 40;
+        background: rgba(251, 252, 253, 0.92);
+        backdrop-filter: blur(10px);
+        border-bottom: 1px solid var(--gray);
+        padding: 0.5rem 0;
+        text-align: center;
+      }
+
+      /* Header */
+      .site-header {
+        padding: 0.85rem 0;
+        border-bottom: 1px solid var(--gray);
+        background: var(--bg);
+      }
+
+      .header-inner {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+      }
+
+      .logo {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        text-decoration: none;
+        color: var(--ink);
+        font-weight: 700;
+        font-size: 1.35rem;
+        letter-spacing: -0.03em;
+      }
+
+      .logo-dot {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background: var(--teal);
+      }
+
+      .nav {
+        display: flex;
+        align-items: center;
+        gap: 1.25rem;
+      }
+
+      .nav a {
+        text-decoration: none;
+        font-size: 0.9rem;
+        font-weight: 500;
+        color: var(--gray-text);
+      }
+
+      .nav a:hover {
+        color: var(--ink);
+      }
+
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.4rem;
+        padding: 0.75rem 1.25rem;
+        border-radius: var(--radius);
+        font-family: var(--font);
+        font-size: 0.95rem;
+        font-weight: 600;
+        text-decoration: none;
+        border: none;
+        cursor: pointer;
+        transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+      }
+
+      .btn:active {
+        transform: scale(0.98);
+      }
+
+      .btn-primary {
+        background: var(--teal);
+        color: var(--white);
+        box-shadow: 0 4px 14px rgba(15, 163, 163, 0.35);
+      }
+
+      .btn-primary:hover {
+        background: var(--teal-dark);
+      }
+
+      .btn-secondary {
+        background: var(--white);
+        color: var(--ink);
+        border: 1px solid var(--gray);
+      }
+
+      .btn-secondary:hover {
+        border-color: #cdd5dc;
+        box-shadow: var(--shadow);
+      }
+
+      .btn-ink {
+        background: var(--ink);
+        color: var(--white);
+      }
+
+      .btn-ink:hover {
+        background: #0f2438;
+      }
+
+      /* Hero */
+      .hero {
+        padding: 3rem 0 4rem;
+        overflow: hidden;
+      }
+
+      .hero-grid {
+        display: grid;
+        grid-template-columns: 1fr 1.15fr;
+        gap: 2.5rem;
+        align-items: center;
+      }
+
+      .hero-copy .subtitle {
+        font-size: 1.12rem;
+        color: var(--gray-text);
+        margin: 1rem 0 1.5rem;
+        max-width: 26rem;
+      }
+
+      .hero-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.65rem;
+        margin-bottom: 1.25rem;
+      }
+
+      .hero-meta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+        font-size: 0.85rem;
+        color: var(--gray-text);
+      }
+
+      .hero-meta span {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.35rem;
+      }
+
+      .hero-meta .check {
+        color: var(--ok);
+        font-weight: 700;
+      }
+
+      /* Dashboard mockup animé */
+      .dashboard-wrap {
+        position: relative;
+        perspective: 1200px;
+      }
+
+      .dashboard {
+        background: var(--white);
+        border: 1px solid var(--gray);
+        border-radius: var(--radius-lg);
+        box-shadow: var(--shadow-lg);
+        overflow: hidden;
+        animation: float-dashboard 6s ease-in-out infinite;
+      }
+
+      @keyframes float-dashboard {
+        0%,
+        100% {
+          transform: translateY(0) rotateX(2deg) rotateY(-3deg);
+        }
+        50% {
+          transform: translateY(-8px) rotateX(0deg) rotateY(2deg);
+        }
+      }
+
+      .dash-topbar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0.65rem 1rem;
+        background: var(--gray);
+        border-bottom: 1px solid #dde3e8;
+      }
+
+      .dash-dots {
+        display: flex;
+        gap: 5px;
+      }
+
+      .dash-dots span {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: #c5cdd5;
+      }
+
+      .dash-dots span:first-child {
+        background: #ff6b6b;
+      }
+      .dash-dots span:nth-child(2) {
+        background: #ffd93d;
+      }
+      .dash-dots span:nth-child(3) {
+        background: var(--ok);
+      }
+
+      .dash-title {
+        font-size: 0.72rem;
+        font-weight: 600;
+        color: var(--gray-text);
+      }
+
+      .dash-body {
+        display: grid;
+        grid-template-columns: 140px 1fr;
+        min-height: 280px;
+      }
+
+      .dash-sidebar {
+        padding: 1rem 0.75rem;
+        border-right: 1px solid var(--gray);
+        background: #f6f8fa;
+      }
+
+      .dash-nav-item {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.45rem 0.6rem;
+        border-radius: 8px;
+        font-size: 0.72rem;
+        font-weight: 500;
+        color: var(--gray-text);
+        margin-bottom: 0.25rem;
+      }
+
+      .dash-nav-item.active {
+        background: rgba(15, 163, 163, 0.12);
+        color: var(--teal-dark);
+      }
+
+      .dash-nav-dot {
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: currentColor;
+        opacity: 0.5;
+      }
+
+      .dash-nav-item.active .dash-nav-dot {
+        background: var(--teal);
+        opacity: 1;
+      }
+
+      .dash-main {
+        padding: 1rem 1.1rem;
+      }
+
+      .dash-header-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        margin-bottom: 1rem;
+      }
+
+      .dash-header-row h4 {
+        margin: 0;
+        font-size: 0.95rem;
+      }
+
+      .dash-header-row p {
+        margin: 0.15rem 0 0;
+        font-size: 0.72rem;
+        color: var(--gray-text);
+      }
+
+      .progress-pill {
+        padding: 0.25rem 0.6rem;
+        border-radius: 999px;
+        background: rgba(52, 199, 89, 0.12);
+        color: #248a3d;
+        font-size: 0.68rem;
+        font-weight: 600;
+        animation: pulse-ok 2.5s ease-in-out infinite;
+      }
+
+      @keyframes pulse-ok {
+        0%,
+        100% {
+          opacity: 1;
+        }
+        50% {
+          opacity: 0.75;
+        }
+      }
+
+      .dash-cards {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 0.5rem;
+        margin-bottom: 0.85rem;
+      }
+
+      .dash-stat {
+        padding: 0.6rem;
+        background: var(--gray);
+        border-radius: 10px;
+      }
+
+      .dash-stat .label {
+        font-size: 0.62rem;
+        color: var(--gray-text);
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+      }
+
+      .dash-stat .value {
+        font-family: var(--tabular);
+        font-size: 1.1rem;
+        font-weight: 700;
+        margin-top: 0.15rem;
+      }
+
+      .dash-form-preview {
+        border: 1px solid var(--gray);
+        border-radius: 10px;
+        padding: 0.75rem;
+        background: var(--bg);
+      }
+
+      .form-line {
+        height: 8px;
+        background: var(--gray);
+        border-radius: 4px;
+        margin-bottom: 0.45rem;
+        animation: shimmer 2s ease-in-out infinite;
+      }
+
+      .form-line:nth-child(1) {
+        width: 45%;
+      }
+      .form-line:nth-child(2) {
+        width: 78%;
+        animation-delay: 0.2s;
+      }
+      .form-line:nth-child(3) {
+        width: 62%;
+        animation-delay: 0.4s;
+      }
+      .form-line.filled {
+        background: linear-gradient(90deg, rgba(15, 163, 163, 0.25), rgba(15, 163, 163, 0.08));
+        width: 90%;
+      }
+
+      @keyframes shimmer {
+        0%,
+        100% {
+          opacity: 0.7;
+        }
+        50% {
+          opacity: 1;
+        }
+      }
+
+      .typing-cursor {
+        display: inline-block;
+        width: 2px;
+        height: 12px;
+        background: var(--teal);
+        margin-left: 2px;
+        vertical-align: middle;
+        animation: blink 1s step-end infinite;
+      }
+
+      @keyframes blink {
+        50% {
+          opacity: 0;
+        }
+      }
+
+      /* Steps */
+      .section {
+        padding: 4rem 0;
+      }
+
+      .section-gray {
+        background: var(--gray);
+      }
+
+      .section-header {
+        text-align: center;
+        max-width: 32rem;
+        margin: 0 auto 2.5rem;
+      }
+
+      .section-header p {
+        color: var(--gray-text);
+        margin-top: 0.5rem;
+      }
+
+      .steps-row {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1rem;
+      }
+
+      .step-card {
+        background: var(--white);
+        border: 1px solid var(--gray);
+        border-radius: var(--radius-lg);
+        padding: 1.75rem 1.5rem;
+        text-align: center;
+        box-shadow: var(--shadow);
+      }
+
+      .step-icon {
+        width: 48px;
+        height: 48px;
+        margin: 0 auto 1rem;
+        border-radius: 12px;
+        background: rgba(15, 163, 163, 0.1);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.35rem;
+      }
+
+      .step-num {
+        font-family: var(--tabular);
+        font-size: 0.72rem;
+        font-weight: 700;
+        color: var(--teal);
+        letter-spacing: 0.08em;
+        margin-bottom: 0.35rem;
+      }
+
+      .steps-tagline {
+        text-align: center;
+        margin-top: 1.75rem;
+        font-size: 1.35rem;
+        font-weight: 700;
+        color: var(--ink);
+        letter-spacing: -0.02em;
+      }
+
+      .steps-tagline span {
+        color: var(--teal);
+      }
+
+      /* Contracts grid */
+      .contracts-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1rem;
+      }
+
+      .contract-card {
+        display: block;
+        text-decoration: none;
+        color: inherit;
+        background: var(--white);
+        border: 1px solid var(--gray);
+        border-radius: var(--radius-lg);
+        padding: 1.5rem;
+        transition: border-color 0.2s, box-shadow 0.2s, transform 0.15s;
+      }
+
+      .contract-card:hover {
+        border-color: rgba(15, 163, 163, 0.4);
+        box-shadow: var(--shadow-lg);
+        transform: translateY(-2px);
+      }
+
+      .contract-card.live {
+        border-color: rgba(15, 163, 163, 0.35);
+        background: linear-gradient(180deg, rgba(15, 163, 163, 0.04) 0%, var(--white) 100%);
+      }
+
+      .badge {
+        display: inline-block;
+        padding: 0.2rem 0.55rem;
+        border-radius: 6px;
+        font-size: 0.68rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+        margin-bottom: 0.65rem;
+      }
+
+      .badge-live {
+        background: rgba(52, 199, 89, 0.15);
+        color: #248a3d;
+      }
+
+      .badge-soon {
+        background: var(--gray);
+        color: var(--gray-text);
+      }
+
+      .contract-card p {
+        font-size: 0.9rem;
+        color: var(--gray-text);
+        margin: 0;
+      }
+
+      .contract-arrow {
+        margin-top: 1rem;
+        font-size: 0.85rem;
+        font-weight: 600;
+        color: var(--teal);
+      }
+
+      /* SELARL timeline */
+      .selarl-block {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 2.5rem;
+        align-items: center;
+      }
+
+      .selarl-copy .highlight {
+        font-size: 1.05rem;
+        font-weight: 500;
+        color: var(--ink);
+        margin: 1rem 0 1.5rem;
+        padding: 1rem 1.25rem;
+        background: var(--white);
+        border-radius: var(--radius);
+        border-left: 4px solid var(--teal);
+      }
+
+      .timeline {
+        position: relative;
+        padding-left: 1.5rem;
+      }
+
+      .timeline::before {
+        content: "";
+        position: absolute;
+        left: 5px;
+        top: 8px;
+        bottom: 8px;
+        width: 2px;
+        background: linear-gradient(180deg, var(--teal), var(--ok));
+        border-radius: 1px;
+      }
+
+      .timeline-item {
+        position: relative;
+        padding-bottom: 1.5rem;
+      }
+
+      .timeline-item:last-child {
+        padding-bottom: 0;
+      }
+
+      .timeline-item::before {
+        content: "";
+        position: absolute;
+        left: -1.5rem;
+        top: 6px;
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        background: var(--white);
+        border: 3px solid var(--teal);
+      }
+
+      .timeline-item.done::before {
+        background: var(--ok);
+        border-color: var(--ok);
+      }
+
+      .timeline-item h4 {
+        font-size: 0.95rem;
+        margin-bottom: 0.25rem;
+      }
+
+      .timeline-item p {
+        font-size: 0.88rem;
+        color: var(--gray-text);
+        margin: 0;
+      }
+
+      .coord-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        margin-top: 1.25rem;
+      }
+
+      .coord-tag {
+        padding: 0.35rem 0.7rem;
+        background: var(--gray);
+        border-radius: 8px;
+        font-size: 0.78rem;
+        font-weight: 500;
+        color: var(--gray-text);
+      }
+
+      /* Caution avocate */
+      .caution-band {
+        background: var(--ink);
+        color: var(--white);
+        border-radius: var(--radius-lg);
+        padding: 2rem;
+        display: grid;
+        grid-template-columns: auto 1fr;
+        gap: 1.5rem;
+        align-items: center;
+      }
+
+      .caution-photo {
+        width: 88px;
+        height: 88px;
+        border-radius: 50%;
+        object-fit: cover;
+        object-position: center top;
+        border: 3px solid rgba(15, 163, 163, 0.5);
+      }
+
+      .caution-band h3 {
+        font-size: 1.15rem;
+        margin-bottom: 0.35rem;
+      }
+
+      .caution-band p {
+        font-size: 0.92rem;
+        opacity: 0.85;
+        margin: 0;
+        max-width: 42rem;
+      }
+
+      .caution-band .trust-badge {
+        margin-top: 0.85rem;
+        background: rgba(255, 255, 255, 0.08);
+        border-color: rgba(255, 255, 255, 0.15);
+        color: var(--white);
+      }
+
+      .caution-band .trust-badge svg {
+        stroke: var(--teal);
+      }
+
+      /* Pricing */
+      .pricing-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1rem;
+        align-items: stretch;
+      }
+
+      .price-card {
+        background: var(--white);
+        border: 1px solid var(--gray);
+        border-radius: var(--radius-lg);
+        padding: 1.75rem;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .price-card.featured {
+        border-color: var(--teal);
+        box-shadow: 0 8px 32px rgba(15, 163, 163, 0.15);
+        position: relative;
+      }
+
+      .price-card.featured::before {
+        content: "Populaire";
+        position: absolute;
+        top: -10px;
+        left: 50%;
+        transform: translateX(-50%);
+        padding: 0.2rem 0.65rem;
+        background: var(--teal);
+        color: var(--white);
+        font-size: 0.68rem;
+        font-weight: 700;
+        border-radius: 999px;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+      }
+
+      .price-name {
+        font-size: 0.85rem;
+        font-weight: 600;
+        color: var(--gray-text);
+        margin-bottom: 0.5rem;
+      }
+
+      .price-amount {
+        font-family: var(--tabular);
+        font-size: 2.25rem;
+        font-weight: 700;
+        letter-spacing: -0.03em;
+      }
+
+      .price-amount small {
+        font-size: 0.9rem;
+        font-weight: 500;
+        color: var(--gray-text);
+      }
+
+      .price-features {
+        list-style: none;
+        margin: 1.25rem 0;
+        padding: 0;
+        flex: 1;
+      }
+
+      .price-features li {
+        position: relative;
+        padding: 0.4rem 0 0.4rem 1.4rem;
+        font-size: 0.88rem;
+        color: var(--gray-text);
+      }
+
+      .price-features li::before {
+        content: "✓";
+        position: absolute;
+        left: 0;
+        color: var(--ok);
+        font-weight: 700;
+      }
+
+      .price-card .btn {
+        width: 100%;
+        margin-top: auto;
+      }
+
+      /* Final CTA + mobile */
+      .final-section {
+        padding: 4rem 0 5rem;
+        background: linear-gradient(180deg, var(--bg) 0%, var(--gray) 100%);
+      }
+
+      .final-grid {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        gap: 3rem;
+        align-items: center;
+      }
+
+      .final-copy h2 {
+        margin-bottom: 0.75rem;
+      }
+
+      .final-copy p {
+        color: var(--gray-text);
+        max-width: 28rem;
+        margin-bottom: 1.5rem;
+      }
+
+      /* Mobile mockup */
+      .phone-wrap {
+        position: relative;
+      }
+
+      .phone {
+        width: 220px;
+        background: var(--ink);
+        border-radius: 28px;
+        padding: 10px;
+        box-shadow: var(--shadow-lg);
+        animation: float-phone 5s ease-in-out infinite;
+      }
+
+      @keyframes float-phone {
+        0%,
+        100% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(-10px);
+        }
+      }
+
+      .phone-screen {
+        background: var(--bg);
+        border-radius: 20px;
+        overflow: hidden;
+        min-height: 380px;
+      }
+
+      .phone-notch {
+        height: 24px;
+        background: var(--white);
+        display: flex;
+        justify-content: center;
+        align-items: flex-end;
+        padding-bottom: 4px;
+      }
+
+      .phone-notch span {
+        width: 60px;
+        height: 5px;
+        background: var(--gray);
+        border-radius: 3px;
+      }
+
+      .phone-content {
+        padding: 1rem 0.85rem;
+      }
+
+      .phone-content .app-logo {
+        font-weight: 700;
+        font-size: 0.95rem;
+        margin-bottom: 0.75rem;
+        display: flex;
+        align-items: center;
+        gap: 0.35rem;
+      }
+
+      .phone-content .app-logo::before {
+        content: "";
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: var(--teal);
+      }
+
+      .phone-card {
+        background: var(--white);
+        border: 1px solid var(--gray);
+        border-radius: 12px;
+        padding: 0.75rem;
+        margin-bottom: 0.5rem;
+      }
+
+      .phone-card .title {
+        font-size: 0.72rem;
+        font-weight: 600;
+      }
+
+      .phone-card .status {
+        font-size: 0.62rem;
+        color: var(--ok);
+        font-weight: 600;
+        margin-top: 0.2rem;
+      }
+
+      .phone-cta {
+        margin-top: 0.75rem;
+        padding: 0.55rem;
+        background: var(--teal);
+        color: var(--white);
+        border-radius: 10px;
+        text-align: center;
+        font-size: 0.72rem;
+        font-weight: 600;
+      }
+
+      /* Footer */
+      footer {
+        padding: 2rem 0;
+        border-top: 1px solid var(--gray);
+        font-size: 0.85rem;
+        color: var(--gray-text);
+      }
+
+      .footer-inner {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 1rem;
+      }
+
+      .footer-links {
+        display: flex;
+        gap: 1.25rem;
+      }
+
+      .footer-links a {
+        color: var(--gray-text);
+        text-decoration: none;
+      }
+
+      .footer-links a:hover {
+        color: var(--ink);
+      }
+
+      .nav-toggle {
+        display: none;
+        background: var(--white);
+        border: 1px solid var(--gray);
+        border-radius: 8px;
+        padding: 0.45rem 0.65rem;
+        font: inherit;
+        cursor: pointer;
+      }
+
+      @media (max-width: 960px) {
+        .hero-grid,
+        .selarl-block,
+        .final-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .dashboard-wrap {
+          order: -1;
+        }
+
+        .steps-row,
+        .contracts-grid,
+        .pricing-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .caution-band {
+          grid-template-columns: 1fr;
+          text-align: center;
+        }
+
+        .caution-photo {
+          margin: 0 auto;
+        }
+
+        .phone-wrap {
+          justify-self: center;
+        }
+
+        .dash-body {
+          grid-template-columns: 1fr;
+        }
+
+        .dash-sidebar {
+          display: none;
+        }
+      }
+
+      @media (max-width: 640px) {
+        .nav {
+          display: none;
+        }
+
+        .nav.is-open {
+          display: flex;
+          flex-direction: column;
+          position: absolute;
+          top: 100%;
+          left: 0;
+          right: 0;
+          background: var(--bg);
+          padding: 1rem;
+          border-bottom: 1px solid var(--gray);
+        }
+
+        .site-header {
+          position: relative;
+        }
+
+        .header-inner {
+          flex-wrap: wrap;
+        }
+
+        .nav-toggle {
+          display: inline-flex;
+        }
+
+        .trust-bar .trust-badge {
+          font-size: 0.7rem;
+          padding: 0.35rem 0.65rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Badge persistant -->
+    <div class="trust-bar">
+      <div class="container">
+        <span class="trust-badge">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M12 3l7 4v6c0 4.5-3.2 8.7-7 9-3.8-.3-7-4.5-7-9V7l7-4z" />
+            <path d="M9 12l2 2 4-4" />
+          </svg>
+          Rédigé par <strong>Me Violaine</strong>, avocate en droit de la santé
+        </span>
+      </div>
+    </div>
+
+    <header class="site-header">
+      <div class="container header-inner">
+        <a class="logo" href="#top"><span class="logo-dot" aria-hidden="true"></span>Libéo</a>
+        <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="main-nav">
+          Menu
+        </button>
+        <nav class="nav" id="main-nav" aria-label="Navigation">
+          <a href="#etapes">Comment ça marche</a>
+          <a href="#contrats">Contrats</a>
+          <a href="#selarl">SELARL</a>
+          <a href="#tarifs">Tarifs</a>
+          <a class="btn btn-primary" href="./questionnaire-remplacement.html">Créer mon contrat</a>
+        </nav>
+      </div>
+    </header>
+
+    <main id="top">
+      <!-- Hero -->
+      <section class="hero">
+        <div class="container hero-grid">
+          <div class="hero-copy">
+            <h1>Tes contrats de soignante libérale, prêts en quelques minutes.</h1>
+            <p class="subtitle">
+              Tu réponds au questionnaire, on génère ton contrat, tu signes — sans perdre une matinée
+              dans les modèles Word.
+            </p>
+            <div class="hero-actions">
+              <a class="btn btn-primary" href="./questionnaire-remplacement.html">Créer mon contrat</a>
+              <a class="btn btn-secondary" href="#etapes">Voir comment ça marche</a>
+            </div>
+            <div class="hero-meta">
+              <span><span class="check">✓</span> Questionnaire guidé</span>
+              <span><span class="check">✓</span> PDF en 1 clic</span>
+              <span class="tabular">~12 min en moyenne</span>
+            </div>
+          </div>
+
+          <div class="dashboard-wrap" aria-hidden="true">
+            <div class="dashboard">
+              <div class="dash-topbar">
+                <div class="dash-dots"><span></span><span></span><span></span></div>
+                <span class="dash-title">libeo.app — Contrat de remplacement</span>
+              </div>
+              <div class="dash-body">
+                <aside class="dash-sidebar">
+                  <div class="dash-nav-item active">
+                    <span class="dash-nav-dot"></span> Questionnaire
+                  </div>
+                  <div class="dash-nav-item">
+                    <span class="dash-nav-dot"></span> Aperçu
+                  </div>
+                  <div class="dash-nav-item">
+                    <span class="dash-nav-dot"></span> PDF
+                  </div>
+                </aside>
+                <div class="dash-main">
+                  <div class="dash-header-row">
+                    <div>
+                      <h4>Contrat de remplacement</h4>
+                      <p>Étape 8 sur 12 — Modalités de facturation</p>
+                    </div>
+                    <span class="progress-pill tabular">68 %</span>
+                  </div>
+                  <div class="dash-cards">
+                    <div class="dash-stat">
+                      <div class="label">Durée</div>
+                      <div class="value tabular">12 min</div>
+                    </div>
+                    <div class="dash-stat">
+                      <div class="label">Clauses</div>
+                      <div class="value tabular">24</div>
+                    </div>
+                    <div class="dash-stat">
+                      <div class="label">Statut</div>
+                      <div class="value" style="font-size: 0.85rem; color: var(--ok)">En cours</div>
+                    </div>
+                  </div>
+                  <div class="dash-form-preview">
+                    <div class="form-line filled"></div>
+                    <div class="form-line"></div>
+                    <div class="form-line"></div>
+                    <p style="margin: 0.5rem 0 0; font-size: 0.72rem; color: var(--gray-text)">
+                      Redevance prévue : Oui<span class="typing-cursor"></span>
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 3 étapes -->
+      <section class="section section-gray" id="etapes">
+        <div class="container">
+          <div class="section-header">
+            <h2>Trois étapes, zéro friction</h2>
+            <p>Le droit devient un outil. Pas un obstacle.</p>
+          </div>
+          <div class="steps-row">
+            <article class="step-card">
+              <p class="step-num">01</p>
+              <div class="step-icon" aria-hidden="true">⚡</div>
+              <h3>Génère</h3>
+              <p style="color: var(--gray-text); font-size: 0.92rem; margin: 0">
+                Tu remplis le questionnaire en ligne. Les clauses s'adaptent à ta situation — remplacement
+                continu, discontinu ou avec planning.
+              </p>
+            </article>
+            <article class="step-card">
+              <p class="step-num">02</p>
+              <div class="step-icon" aria-hidden="true">👁</div>
+              <h3>Relis</h3>
+              <p style="color: var(--gray-text); font-size: 0.92rem; margin: 0">
+                Aperçu HTML instantané. Tu vois chaque article avant de t'engager. Tu modifies si
+                besoin, sans repartir de zéro.
+              </p>
+            </article>
+            <article class="step-card">
+              <p class="step-num">03</p>
+              <div class="step-icon" aria-hidden="true">✍️</div>
+              <h3>Signe</h3>
+              <p style="color: var(--gray-text); font-size: 0.92rem; margin: 0">
+                Télécharge le PDF, fais-le signer par ton co-contractant. C'est prêt pour ton
+                cabinet — propre, complet, opposable.
+              </p>
+            </article>
+          </div>
+          <p class="steps-tagline"><span>Génère.</span> <span>Relis.</span> <span>Signe.</span></p>
+        </div>
+      </section>
+
+      <!-- Contrats -->
+      <section class="section" id="contrats">
+        <div class="container">
+          <div class="section-header">
+            <h2>Tous tes contrats, au même endroit</h2>
+            <p>Choisis le document dont tu as besoin. Clique, réponds, c'est parti.</p>
+          </div>
+          <div class="contracts-grid">
+            <a class="contract-card live" href="./questionnaire-remplacement.html">
+              <span class="badge badge-live">Disponible</span>
+              <h3>Contrat de remplacement</h3>
+              <p>Continu, discontinu ou planning annexé. Facturation, redevance, résiliation.</p>
+              <p class="contract-arrow">Créer maintenant →</p>
+            </a>
+            <span class="contract-card" style="cursor: default">
+              <span class="badge badge-soon">Bientôt</span>
+              <h3>Contrat de collaboration</h3>
+              <p>Association de moyens entre confrères, sans requalification en salariat.</p>
+            </span>
+            <span class="contract-card" style="cursor: default">
+              <span class="badge badge-soon">Bientôt</span>
+              <h3>Contrat d'association</h3>
+              <p>Partage de cabinet ou de patientèle, encadré ordinalement.</p>
+            </span>
+            <span class="contract-card" style="cursor: default">
+              <span class="badge badge-soon">Bientôt</span>
+              <h3>Contrat de cession</h3>
+              <p>Transmission d'actif ou de patientèle, garanties et prix sécurisés.</p>
+            </span>
+            <span class="contract-card" style="cursor: default">
+              <span class="badge badge-soon">Bientôt</span>
+              <h3>Bail professionnel</h3>
+              <p>Clauses adaptées aux locaux d'exercice infirmier.</p>
+            </span>
+            <a class="contract-card" href="#selarl">
+              <span class="badge badge-soon">Sur devis</span>
+              <h3>Passage en SELARL</h3>
+              <p>Statuts, pacte, immatriculation — parcours clé-en-main.</p>
+              <p class="contract-arrow">Découvrir le parcours →</p>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- SELARL -->
+      <section class="section section-gray" id="selarl">
+        <div class="container selarl-block">
+          <div class="selarl-copy">
+            <h2>Ton passage en SELARL, de A à Z.</h2>
+            <p class="highlight">
+              On coordonne compta, CAC et Ordre — tu signes, c'est tout.
+            </p>
+            <p style="color: var(--gray-text); margin-bottom: 0">
+              Plus besoin de jongler entre dix interlocuteurs. Libéo pilote le calendrier, les
+              pièces et les échanges. Toi, tu restes concentrée sur tes patients.
+            </p>
+            <div class="coord-tags">
+              <span class="coord-tag">Expert-comptable</span>
+              <span class="coord-tag">Commissaire aux comptes</span>
+              <span class="coord-tag">Ordre des infirmiers</span>
+              <span class="coord-tag">Greffe</span>
+            </div>
+          </div>
+          <div class="timeline" aria-label="Parcours SELARL">
+            <div class="timeline-item done">
+              <h4>Questionnaire &amp; projection</h4>
+              <p>Tu décris ton projet. On te propose la structure adaptée.</p>
+            </div>
+            <div class="timeline-item done">
+              <h4>Statuts &amp; pacte d'associés</h4>
+              <p>Documents générés et relus par Me Violaine.</p>
+            </div>
+            <div class="timeline-item">
+              <h4>Coordination compta &amp; CAC</h4>
+              <p>Alignement des pièces, calendrier partagé.</p>
+            </div>
+            <div class="timeline-item">
+              <h4>Immatriculation &amp; Ordre</h4>
+              <p>Dépôt greffe, inscription ordinale — suivi jusqu'au bout.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Caution avocate -->
+      <section class="section">
+        <div class="container">
+          <div class="caution-band">
+            <img
+              class="caution-photo"
+              src="./images/violaine_avocate.png"
+              alt="Me Violaine, avocate en robe"
+              width="88"
+              height="88"
+            />
+            <div>
+              <h3>Simple ne veut pas dire approximatif.</h3>
+              <p>
+                Chaque modèle Libéo est rédigé et maintenu par Me Violaine, avocate spécialisée en
+                droit de la santé. Tu gagnes du temps — sans renoncer à la rigueur du barreau. C'est
+                le même niveau d'exigence qu'un cabinet d'avocats, avec l'UX d'une app que tu
+                utilises déjà au quotidien.
+              </p>
+              <span class="trust-badge">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M12 3l7 4v6c0 4.5-3.2 8.7-7 9-3.8-.3-7-4.5-7-9V7l7-4z" />
+                  <path d="M9 12l2 2 4-4" />
+                </svg>
+                Rédigé par <strong>Me Violaine</strong>, avocate en droit de la santé
+              </span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Abonnement -->
+      <section class="section section-gray" id="tarifs">
+        <div class="container">
+          <div class="section-header">
+            <h2>Reste couverte au-delà du contrat</h2>
+            <p>Veille, modèles et courriers — pour ne plus être prise de court.</p>
+          </div>
+          <div class="pricing-grid">
+            <article class="price-card">
+              <p class="price-name">Essentiel</p>
+              <p class="price-amount tabular">0 €</p>
+              <p style="font-size: 0.85rem; color: var(--gray-text); margin-bottom: 0">Par contrat généré</p>
+              <ul class="price-features">
+                <li>Questionnaire + aperçu HTML</li>
+                <li>Export PDF</li>
+                <li>Modification depuis l'aperçu</li>
+              </ul>
+              <a class="btn btn-secondary" href="./questionnaire-remplacement.html">Créer mon contrat</a>
+            </article>
+            <article class="price-card featured">
+              <p class="price-name">Libéo Pro</p>
+              <p class="price-amount tabular">29 €<small>/mois</small></p>
+              <ul class="price-features">
+                <li>Contrats illimités (remplacement, collab.)</li>
+                <li>Micro-formations juridiques</li>
+                <li>Mises en demeure types</li>
+                <li>Veille ordinale &amp; législative</li>
+              </ul>
+              <a class="btn btn-primary" href="mailto:contact@medlex.fr?subject=Libéo%20Pro">Essayer Pro</a>
+            </article>
+            <article class="price-card">
+              <p class="price-name">SELARL clé-en-main</p>
+              <p class="price-amount tabular">Sur devis</p>
+              <ul class="price-features">
+                <li>Parcours A → Z coordonné</li>
+                <li>Compta + CAC + Ordre</li>
+                <li>Accompagnement Me Violaine</li>
+                <li>Immatriculation suivie</li>
+              </ul>
+              <a class="btn btn-secondary" href="mailto:contact@medlex.fr?subject=SELARL%20Libéo">Demander un devis</a>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- CTA final + mobile -->
+      <section class="final-section" id="commencer">
+        <div class="container final-grid">
+          <div class="final-copy">
+            <h2>Prête ? Ton contrat t'attend.</h2>
+            <p>
+              Comme sur Doctolib ou Qonto : tu ouvres, tu avances, c'est réglé. Douze minutes,
+              un PDF propre, une signature sereine.
+            </p>
+            <a class="btn btn-primary" href="./questionnaire-remplacement.html">Créer mon contrat</a>
+            <p style="margin-top: 1rem; font-size: 0.82rem">
+              <span class="trust-badge" style="box-shadow: none">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M12 3l7 4v6c0 4.5-3.2 8.7-7 9-3.8-.3-7-4.5-7-9V7l7-4z" />
+                  <path d="M9 12l2 2 4-4" />
+                </svg>
+                Rédigé par <strong>Me Violaine</strong>, avocate en droit de la santé
+              </span>
+            </p>
+          </div>
+          <div class="phone-wrap" aria-hidden="true">
+            <div class="phone">
+              <div class="phone-screen">
+                <div class="phone-notch"><span></span></div>
+                <div class="phone-content">
+                  <div class="app-logo">Libéo</div>
+                  <div class="phone-card">
+                    <div class="title">Remplacement — M. Dupont</div>
+                    <div class="status">✓ PDF prêt</div>
+                  </div>
+                  <div class="phone-card">
+                    <div class="title">Collaboration — Dr. Martin</div>
+                    <div class="status" style="color: var(--teal)">En cours · 45 %</div>
+                  </div>
+                  <div class="phone-card">
+                    <div class="title">SELARL — dossier #2847</div>
+                    <div class="status" style="color: var(--gray-text)">Compta validée</div>
+                  </div>
+                  <div class="phone-cta">Créer mon contrat</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="container footer-inner">
+        <span>© Libéo — MedLex 2026</span>
+        <div class="footer-links">
+          <a href="./index.html">MedLex classique</a>
+          <a href="./index-1.html">Clausia</a>
+          <a href="mailto:contact@medlex.fr">Contact</a>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      (function () {
+        var toggle = document.querySelector(".nav-toggle");
+        var nav = document.getElementById("main-nav");
+        if (toggle && nav) {
+          toggle.addEventListener("click", function () {
+            var open = nav.classList.toggle("is-open");
+            toggle.setAttribute("aria-expanded", open ? "true" : "false");
+          });
+        }
+      })();
+    </script>
+  </body>
+</html>
