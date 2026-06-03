@@ -1,107 +1,154 @@
-<div style="background: var(--color-background-secondary); border-radius: var(--border-radius-lg); padding: 1.5rem; font-family: var(--font-sans);">
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Libéo | Aperçu landing</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/dist/tabler-icons.min.css" />
+  <style>
+    :root {
+      --color-background-primary: #ffffff;
+      --color-background-secondary: #f5f4f0;
+      --color-border-tertiary: rgba(61, 58, 54, 0.12);
+      --color-text-primary: #3d3a36;
+      --color-text-secondary: #6b6760;
+      --color-text-tertiary: #9a9590;
+      --border-radius-md: 10px;
+      --border-radius-lg: 14px;
+      --font-sans: "Inter", "Segoe UI", Roboto, Arial, sans-serif;
+      --font-serif: Georgia, "Times New Roman", serif;
+    }
 
-  <div style="background: var(--color-background-primary); border-radius: var(--border-radius-lg); border: 0.5px solid var(--color-border-tertiary); overflow: hidden;">
+    * {
+      box-sizing: border-box;
+    }
 
-    <div style="display: flex; align-items: center; justify-content: space-between; padding: 14px 20px; border-bottom: 0.5px solid var(--color-border-tertiary);">
-      <div style="display: flex; align-items: center; gap: 8px;">
-        <span style="width: 26px; height: 26px; border-radius: 7px; background: #1D9E75; color: #fff; display: inline-flex; align-items: center; justify-content: center; font-size: 15px;"><i class="ti ti-heart-handshake" aria-hidden="true"></i></span>
-        <span style="font-size: 16px; font-weight: 500; color: var(--color-text-primary);">Libéo</span>
-      </div>
-      <div style="display: flex; align-items: center; gap: 18px; font-size: 13px; color: var(--color-text-secondary);">
-        <span>Contrats</span><span>SELARL</span><span>Abonnement</span>
-        <span style="padding: 7px 14px; border-radius: var(--border-radius-md); background: #1D9E75; color: #fff; font-weight: 500;">Créer mon contrat</span>
-      </div>
-    </div>
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 2rem 1rem 3rem;
+      background: #ebe8e2;
+      font-family: var(--font-sans);
+    }
 
-    <div style="padding: 2.5rem 2rem 2rem; text-align: center; background: #FBF6EE;">
-      <span style="display: inline-flex; align-items: center; gap: 6px; font-size: 12px; color: #0F6E56; background: #E1F5EE; padding: 5px 12px; border-radius: 20px; margin-bottom: 16px;"><i class="ti ti-scale" aria-hidden="true"></i> Rédigé par une avocate en droit de la santé</span>
-      <h1 style="font-family: var(--font-serif); font-size: 30px; line-height: 1.25; margin: 0 0 12px; color: #3D3A36; font-weight: 500;">Vos contrats de soignante libérale,<br>prêts en quelques minutes.</h1>
-      <p style="font-size: 15px; color: #6B6760; max-width: 460px; margin: 0 auto 22px; line-height: 1.6;">On vous explique chaque clause, sans jargon. Vous générez, vous relisez en confiance, vous signez. C'est tout.</p>
-      <div style="display: flex; gap: 10px; justify-content: center;">
-        <span style="padding: 11px 22px; border-radius: var(--border-radius-md); background: #1D9E75; color: #fff; font-weight: 500; font-size: 14px;">Je crée mon contrat</span>
-        <span style="padding: 11px 22px; border-radius: var(--border-radius-md); background: #fff; border: 0.5px solid #D3D1C7; color: #3D3A36; font-size: 14px;">Voir comment ça marche</span>
-      </div>
-    </div>
+    .page-frame {
+      width: min(920px, 100%);
+      margin: 0 auto;
+    }
+  </style>
+</head>
+<body>
+  <div class="page-frame">
+    <div style="background: var(--color-background-secondary); border-radius: var(--border-radius-lg); padding: 1.5rem; font-family: var(--font-sans);">
 
-    <div style="padding: 2rem; border-top: 0.5px solid var(--color-border-tertiary);">
-      <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px;">
-        <div style="text-align: center;">
-          <span style="width: 40px; height: 40px; border-radius: 11px; background: #E1F5EE; color: #0F6E56; display: inline-flex; align-items: center; justify-content: center; font-size: 19px; margin-bottom: 10px;"><i class="ti ti-wand" aria-hidden="true"></i></span>
-          <p style="font-size: 14px; font-weight: 500; margin: 0 0 4px; color: var(--color-text-primary);">Générez</p>
-          <p style="font-size: 12.5px; color: var(--color-text-secondary); margin: 0; line-height: 1.5;">Répondez à quelques questions simples.</p>
+      <div style="background: var(--color-background-primary); border-radius: var(--border-radius-lg); border: 0.5px solid var(--color-border-tertiary); overflow: hidden;">
+
+        <div style="display: flex; align-items: center; justify-content: space-between; padding: 14px 20px; border-bottom: 0.5px solid var(--color-border-tertiary);">
+          <div style="display: flex; align-items: center; gap: 8px;">
+            <span style="width: 26px; height: 26px; border-radius: 7px; background: #1D9E75; color: #fff; display: inline-flex; align-items: center; justify-content: center; font-size: 15px;"><i class="ti ti-heart-handshake" aria-hidden="true"></i></span>
+            <span style="font-size: 16px; font-weight: 500; color: var(--color-text-primary);">Libéo</span>
+          </div>
+          <div style="display: flex; align-items: center; gap: 18px; font-size: 13px; color: var(--color-text-secondary);">
+            <span>Contrats</span><span>SELARL</span><span>Abonnement</span>
+            <span style="padding: 7px 14px; border-radius: var(--border-radius-md); background: #1D9E75; color: #fff; font-weight: 500;">Créer mon contrat</span>
+          </div>
         </div>
-        <div style="text-align: center;">
-          <span style="width: 40px; height: 40px; border-radius: 11px; background: #FBF6EE; color: #99603C; display: inline-flex; align-items: center; justify-content: center; font-size: 19px; margin-bottom: 10px;"><i class="ti ti-eye-check" aria-hidden="true"></i></span>
-          <p style="font-size: 14px; font-weight: 500; margin: 0 0 4px; color: var(--color-text-primary);">Relisez en confiance</p>
-          <p style="font-size: 12.5px; color: var(--color-text-secondary); margin: 0; line-height: 1.5;">Chaque clause est expliquée en clair.</p>
+
+        <div style="padding: 2.5rem 2rem 2rem; text-align: center; background: #FBF6EE;">
+          <span style="display: inline-flex; align-items: center; gap: 6px; font-size: 12px; color: #0F6E56; background: #E1F5EE; padding: 5px 12px; border-radius: 20px; margin-bottom: 16px;"><i class="ti ti-scale" aria-hidden="true"></i> Rédigé par une avocate en droit de la santé</span>
+          <h1 style="font-family: var(--font-serif); font-size: 30px; line-height: 1.25; margin: 0 auto 12px; color: #3D3A36; font-weight: 500; max-width: 520px;">Vos contrats de soignante libérale,<br>prêts en quelques minutes.</h1>
+          <p style="font-size: 15px; color: #6B6760; max-width: 460px; margin: 0 auto 22px; line-height: 1.6;">On vous explique chaque clause, sans jargon. Vous générez, vous relisez en confiance, vous signez. C'est tout.</p>
+          <div style="display: flex; gap: 10px; justify-content: center; flex-wrap: wrap;">
+            <span style="padding: 11px 22px; border-radius: var(--border-radius-md); background: #1D9E75; color: #fff; font-weight: 500; font-size: 14px;">Je crée mon contrat</span>
+            <span style="padding: 11px 22px; border-radius: var(--border-radius-md); background: #fff; border: 0.5px solid #D3D1C7; color: #3D3A36; font-size: 14px;">Voir comment ça marche</span>
+          </div>
         </div>
-        <div style="text-align: center;">
-          <span style="width: 40px; height: 40px; border-radius: 11px; background: #E1F5EE; color: #0F6E56; display: inline-flex; align-items: center; justify-content: center; font-size: 19px; margin-bottom: 10px;"><i class="ti ti-signature" aria-hidden="true"></i></span>
-          <p style="font-size: 14px; font-weight: 500; margin: 0 0 4px; color: var(--color-text-primary);">Signez</p>
-          <p style="font-size: 12.5px; color: var(--color-text-secondary); margin: 0; line-height: 1.5;">Téléchargez votre contrat conforme.</p>
+
+        <div style="padding: 2rem; border-top: 0.5px solid var(--color-border-tertiary);">
+          <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px;">
+            <div style="text-align: center;">
+              <span style="width: 40px; height: 40px; border-radius: 11px; background: #E1F5EE; color: #0F6E56; display: inline-flex; align-items: center; justify-content: center; font-size: 19px; margin-bottom: 10px;"><i class="ti ti-wand" aria-hidden="true"></i></span>
+              <p style="font-size: 14px; font-weight: 500; margin: 0 0 4px; color: var(--color-text-primary);">Générez</p>
+              <p style="font-size: 12.5px; color: var(--color-text-secondary); margin: 0; line-height: 1.5;">Répondez à quelques questions simples.</p>
+            </div>
+            <div style="text-align: center;">
+              <span style="width: 40px; height: 40px; border-radius: 11px; background: #FBF6EE; color: #99603C; display: inline-flex; align-items: center; justify-content: center; font-size: 19px; margin-bottom: 10px;"><i class="ti ti-eye-check" aria-hidden="true"></i></span>
+              <p style="font-size: 14px; font-weight: 500; margin: 0 0 4px; color: var(--color-text-primary);">Relisez en confiance</p>
+              <p style="font-size: 12.5px; color: var(--color-text-secondary); margin: 0; line-height: 1.5;">Chaque clause est expliquée en clair.</p>
+            </div>
+            <div style="text-align: center;">
+              <span style="width: 40px; height: 40px; border-radius: 11px; background: #E1F5EE; color: #0F6E56; display: inline-flex; align-items: center; justify-content: center; font-size: 19px; margin-bottom: 10px;"><i class="ti ti-signature" aria-hidden="true"></i></span>
+              <p style="font-size: 14px; font-weight: 500; margin: 0 0 4px; color: var(--color-text-primary);">Signez</p>
+              <p style="font-size: 12.5px; color: var(--color-text-secondary); margin: 0; line-height: 1.5;">Téléchargez votre contrat conforme.</p>
+            </div>
+          </div>
         </div>
+
+        <div style="padding: 1.75rem 2rem; border-top: 0.5px solid var(--color-border-tertiary); text-align: center;">
+          <p style="font-size: 13px; color: var(--color-text-secondary); margin: 0 0 14px;">Tous vos contrats du quotidien d'IDEL</p>
+          <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; text-align: left;">
+            <div style="border: 0.5px solid var(--color-border-tertiary); border-radius: var(--border-radius-md); padding: 12px 14px; font-size: 13px; color: var(--color-text-primary);"><i class="ti ti-replace" style="color:#1D9E75; margin-right:7px;" aria-hidden="true"></i>Remplacement</div>
+            <div style="border: 0.5px solid var(--color-border-tertiary); border-radius: var(--border-radius-md); padding: 12px 14px; font-size: 13px; color: var(--color-text-primary);"><i class="ti ti-users" style="color:#1D9E75; margin-right:7px;" aria-hidden="true"></i>Collaboration</div>
+            <div style="border: 0.5px solid var(--color-border-tertiary); border-radius: var(--border-radius-md); padding: 12px 14px; font-size: 13px; color: var(--color-text-primary);"><i class="ti ti-friends" style="color:#1D9E75; margin-right:7px;" aria-hidden="true"></i>Association</div>
+            <div style="border: 0.5px solid var(--color-border-tertiary); border-radius: var(--border-radius-md); padding: 12px 14px; font-size: 13px; color: var(--color-text-primary);"><i class="ti ti-transfer" style="color:#1D9E75; margin-right:7px;" aria-hidden="true"></i>Cession de patientèle</div>
+            <div style="border: 0.5px solid var(--color-border-tertiary); border-radius: var(--border-radius-md); padding: 12px 14px; font-size: 13px; color: var(--color-text-primary);"><i class="ti ti-building-bank" style="color:#1D9E75; margin-right:7px;" aria-hidden="true"></i>Statuts SELARL / SC</div>
+            <div style="border: 0.5px solid var(--color-border-tertiary); border-radius: var(--border-radius-md); padding: 12px 14px; font-size: 13px; color: var(--color-text-secondary); background: var(--color-background-secondary);"><i class="ti ti-dots" style="margin-right:7px;" aria-hidden="true"></i>Et plus à venir</div>
+          </div>
+        </div>
+
+        <div style="padding: 1.75rem 2rem; border-top: 0.5px solid var(--color-border-tertiary); background: #FBF6EE; text-align: center;">
+          <div style="display: flex; flex-direction: column; align-items: center; gap: 12px; max-width: 520px; margin: 0 auto;">
+            <span style="width: 56px; height: 56px; border-radius: 50%; background: #1D9E75; color: #fff; flex-shrink: 0; display: inline-flex; align-items: center; justify-content: center; font-size: 18px; font-weight: 500;">V.</span>
+            <div>
+              <p style="font-size: 15px; font-weight: 500; margin: 0 0 4px; color: #3D3A36;">Une vraie avocate derrière chaque contrat</p>
+              <p style="font-size: 13px; color: #6B6760; margin: 0; line-height: 1.6;">Maître Violaine, avocate en droit de la santé, rédige et met à jour chaque modèle. Vous n'êtes pas censée tout connaître du droit — c'est notre métier.</p>
+            </div>
+          </div>
+        </div>
+
+        <div style="padding: 1.75rem 2rem; border-top: 0.5px solid var(--color-border-tertiary); text-align: center;">
+          <p style="font-size: 14px; font-weight: 500; margin: 0 auto 4px; color: var(--color-text-primary); max-width: 480px;">Le passage en SELARL fait peur ? On reste avec vous.</p>
+          <p style="font-size: 13px; color: var(--color-text-secondary); margin: 0 auto 14px; line-height: 1.6; max-width: 520px;">On coordonne tout : comptable, commissaire aux comptes, Ordre infirmier. Vous signez, on s'occupe du reste.</p>
+          <div style="display: flex; align-items: center; justify-content: center; gap: 6px; flex-wrap: wrap;">
+            <span style="font-size: 12px; padding: 6px 12px; border-radius: 20px; background: #E1F5EE; color: #0F6E56;">Dossier</span>
+            <i class="ti ti-arrow-right" style="color: var(--color-text-tertiary); font-size: 13px;" aria-hidden="true"></i>
+            <span style="font-size: 12px; padding: 6px 12px; border-radius: 20px; background: #E1F5EE; color: #0F6E56;">Comptable</span>
+            <i class="ti ti-arrow-right" style="color: var(--color-text-tertiary); font-size: 13px;" aria-hidden="true"></i>
+            <span style="font-size: 12px; padding: 6px 12px; border-radius: 20px; background: #E1F5EE; color: #0F6E56;">CAC</span>
+            <i class="ti ti-arrow-right" style="color: var(--color-text-tertiary); font-size: 13px;" aria-hidden="true"></i>
+            <span style="font-size: 12px; padding: 6px 12px; border-radius: 20px; background: #E1F5EE; color: #0F6E56;">Ordre infirmier</span>
+            <i class="ti ti-arrow-right" style="color: var(--color-text-tertiary); font-size: 13px;" aria-hidden="true"></i>
+            <span style="font-size: 12px; padding: 6px 12px; border-radius: 20px; background: #1D9E75; color: #fff;">SELARL créée</span>
+          </div>
+        </div>
+
+        <div style="padding: 2rem; border-top: 0.5px solid var(--color-border-tertiary); background: var(--color-background-secondary); text-align: center;">
+          <p style="font-size: 13px; color: var(--color-text-secondary); margin: 0 0 16px;">Votre filet de sécurité au quotidien</p>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; max-width: 560px; margin: 0 auto; text-align: left;">
+            <div style="background: #fff; border: 0.5px solid var(--color-border-tertiary); border-radius: var(--border-radius-lg); padding: 18px;">
+              <p style="font-size: 14px; font-weight: 500; margin: 0 0 4px; color: var(--color-text-primary);">À l'acte</p>
+              <p style="font-size: 22px; font-weight: 500; margin: 0 0 10px; color: var(--color-text-primary);">dès 29€<span style="font-size:13px; color:var(--color-text-secondary); font-weight:400;"> / contrat</span></p>
+              <p style="font-size: 12.5px; color: var(--color-text-secondary); margin: 0; line-height: 1.6;">Un contrat, généré et expliqué.</p>
+            </div>
+            <div style="background: #fff; border: 2px solid #1D9E75; border-radius: var(--border-radius-lg); padding: 18px; position: relative;">
+              <span style="position:absolute; top:-10px; left:50%; transform:translateX(-50%); font-size: 11px; background: #1D9E75; color: #fff; padding: 3px 10px; border-radius: 12px; white-space: nowrap;">Le plus choisi</span>
+              <p style="font-size: 14px; font-weight: 500; margin: 0 0 4px; color: var(--color-text-primary);">Abonnement</p>
+              <p style="font-size: 22px; font-weight: 500; margin: 0 0 10px; color: var(--color-text-primary);">19€<span style="font-size:13px; color:var(--color-text-secondary); font-weight:400;"> / mois</span></p>
+              <p style="font-size: 12.5px; color: var(--color-text-secondary); margin: 0; line-height: 1.6;">Contrats illimités, micro-formations, courriers de mise en demeure en cas de litige.</p>
+            </div>
+          </div>
+        </div>
+
+        <div style="padding: 2.25rem 2rem; text-align: center; background: #1D9E75;">
+          <p style="font-size: 19px; font-weight: 500; margin: 0 auto 14px; color: #fff; max-width: 400px;">Prête à signer l'esprit tranquille ?</p>
+          <span style="padding: 11px 26px; border-radius: var(--border-radius-md); background: #fff; color: #0F6E56; font-weight: 500; font-size: 14px;">Je crée mon premier contrat</span>
+        </div>
+
       </div>
     </div>
-
-    <div style="padding: 1.75rem 2rem; border-top: 0.5px solid var(--color-border-tertiary);">
-      <p style="font-size: 13px; color: var(--color-text-secondary); margin: 0 0 14px; text-align: center;">Tous vos contrats du quotidien d'IDEL</p>
-      <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px;">
-        <div style="border: 0.5px solid var(--color-border-tertiary); border-radius: var(--border-radius-md); padding: 12px 14px; font-size: 13px; color: var(--color-text-primary);"><i class="ti ti-replace" style="color:#1D9E75; margin-right:7px;" aria-hidden="true"></i>Remplacement</div>
-        <div style="border: 0.5px solid var(--color-border-tertiary); border-radius: var(--border-radius-md); padding: 12px 14px; font-size: 13px; color: var(--color-text-primary);"><i class="ti ti-users" style="color:#1D9E75; margin-right:7px;" aria-hidden="true"></i>Collaboration</div>
-        <div style="border: 0.5px solid var(--color-border-tertiary); border-radius: var(--border-radius-md); padding: 12px 14px; font-size: 13px; color: var(--color-text-primary);"><i class="ti ti-friends" style="color:#1D9E75; margin-right:7px;" aria-hidden="true"></i>Association</div>
-        <div style="border: 0.5px solid var(--color-border-tertiary); border-radius: var(--border-radius-md); padding: 12px 14px; font-size: 13px; color: var(--color-text-primary);"><i class="ti ti-transfer" style="color:#1D9E75; margin-right:7px;" aria-hidden="true"></i>Cession de patientèle</div>
-        <div style="border: 0.5px solid var(--color-border-tertiary); border-radius: var(--border-radius-md); padding: 12px 14px; font-size: 13px; color: var(--color-text-primary);"><i class="ti ti-building-bank" style="color:#1D9E75; margin-right:7px;" aria-hidden="true"></i>Statuts SELARL / SC</div>
-        <div style="border: 0.5px solid var(--color-border-tertiary); border-radius: var(--border-radius-md); padding: 12px 14px; font-size: 13px; color: var(--color-text-secondary); background: var(--color-background-secondary);"><i class="ti ti-dots" style="margin-right:7px;" aria-hidden="true"></i>Et plus à venir</div>
-      </div>
-    </div>
-
-    <div style="padding: 1.75rem 2rem; border-top: 0.5px solid var(--color-border-tertiary); background: #FBF6EE;">
-      <div style="display: flex; gap: 18px; align-items: flex-start;">
-        <span style="width: 56px; height: 56px; border-radius: 50%; background: #1D9E75; color: #fff; flex-shrink: 0; display: inline-flex; align-items: center; justify-content: center; font-size: 18px; font-weight: 500;">V.</span>
-        <div>
-          <p style="font-size: 15px; font-weight: 500; margin: 0 0 4px; color: #3D3A36;">Une vraie avocate derrière chaque contrat</p>
-          <p style="font-size: 13px; color: #6B6760; margin: 0; line-height: 1.6;">Maître Violaine, avocate en droit de la santé, rédige et met à jour chaque modèle. Vous n'êtes pas censée tout connaître du droit — c'est notre métier.</p>
-        </div>
-      </div>
-    </div>
-
-    <div style="padding: 1.75rem 2rem; border-top: 0.5px solid var(--color-border-tertiary);">
-      <p style="font-size: 14px; font-weight: 500; margin: 0 0 4px; color: var(--color-text-primary);">Le passage en SELARL fait peur ? On reste avec vous.</p>
-      <p style="font-size: 13px; color: var(--color-text-secondary); margin: 0 0 14px; line-height: 1.6;">On coordonne tout : comptable, commissaire aux comptes, Ordre infirmier. Vous signez, on s'occupe du reste.</p>
-      <div style="display: flex; align-items: center; gap: 6px; flex-wrap: wrap;">
-        <span style="font-size: 12px; padding: 6px 12px; border-radius: 20px; background: #E1F5EE; color: #0F6E56;">Dossier</span>
-        <i class="ti ti-arrow-right" style="color: var(--color-text-tertiary); font-size: 13px;" aria-hidden="true"></i>
-        <span style="font-size: 12px; padding: 6px 12px; border-radius: 20px; background: #E1F5EE; color: #0F6E56;">Comptable</span>
-        <i class="ti ti-arrow-right" style="color: var(--color-text-tertiary); font-size: 13px;" aria-hidden="true"></i>
-        <span style="font-size: 12px; padding: 6px 12px; border-radius: 20px; background: #E1F5EE; color: #0F6E56;">CAC</span>
-        <i class="ti ti-arrow-right" style="color: var(--color-text-tertiary); font-size: 13px;" aria-hidden="true"></i>
-        <span style="font-size: 12px; padding: 6px 12px; border-radius: 20px; background: #E1F5EE; color: #0F6E56;">Ordre infirmier</span>
-        <i class="ti ti-arrow-right" style="color: var(--color-text-tertiary); font-size: 13px;" aria-hidden="true"></i>
-        <span style="font-size: 12px; padding: 6px 12px; border-radius: 20px; background: #1D9E75; color: #fff;">SELARL créée</span>
-      </div>
-    </div>
-
-    <div style="padding: 2rem; border-top: 0.5px solid var(--color-border-tertiary); background: var(--color-background-secondary);">
-      <p style="font-size: 13px; color: var(--color-text-secondary); margin: 0 0 16px; text-align: center;">Votre filet de sécurité au quotidien</p>
-      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
-        <div style="background: #fff; border: 0.5px solid var(--color-border-tertiary); border-radius: var(--border-radius-lg); padding: 18px;">
-          <p style="font-size: 14px; font-weight: 500; margin: 0 0 4px; color: var(--color-text-primary);">À l'acte</p>
-          <p style="font-size: 22px; font-weight: 500; margin: 0 0 10px; color: var(--color-text-primary);">dès 29€<span style="font-size:13px; color:var(--color-text-secondary); font-weight:400;"> / contrat</span></p>
-          <p style="font-size: 12.5px; color: var(--color-text-secondary); margin: 0; line-height: 1.6;">Un contrat, généré et expliqué.</p>
-        </div>
-        <div style="background: #fff; border: 2px solid #1D9E75; border-radius: var(--border-radius-lg); padding: 18px; position: relative;">
-          <span style="position:absolute; top:-10px; left:18px; font-size: 11px; background: #1D9E75; color: #fff; padding: 3px 10px; border-radius: 12px;">Le plus choisi</span>
-          <p style="font-size: 14px; font-weight: 500; margin: 0 0 4px; color: var(--color-text-primary);">Abonnement</p>
-          <p style="font-size: 22px; font-weight: 500; margin: 0 0 10px; color: var(--color-text-primary);">19€<span style="font-size:13px; color:var(--color-text-secondary); font-weight:400;"> / mois</span></p>
-          <p style="font-size: 12.5px; color: var(--color-text-secondary); margin: 0; line-height: 1.6;">Contrats illimités, micro-formations, courriers de mise en demeure en cas de litige.</p>
-        </div>
-      </div>
-    </div>
-
-    <div style="padding: 2.25rem 2rem; text-align: center; background: #1D9E75;">
-      <p style="font-size: 19px; font-weight: 500; margin: 0 0 14px; color: #fff;">Prête à signer l'esprit tranquille ?</p>
-      <span style="padding: 11px 26px; border-radius: var(--border-radius-md); background: #fff; color: #0F6E56; font-weight: 500; font-size: 14px;">Je crée mon premier contrat</span>
-    </div>
-
   </div>
-</div>
+</body>
+</html>
