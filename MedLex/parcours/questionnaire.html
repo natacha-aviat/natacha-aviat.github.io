@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Questionnaire · Au Clair</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../css/parcours.css" />
+</head>
+<body class="ac-page">
+  <div class="ac-page">
+    <header class="ac-shell-header">
+      <div class="ac-shell-header__row">
+        <a class="ac-logo" href="../index.html"><span class="ac-logo__dot" aria-hidden="true"></span>Au Clair</a>
+        <a class="ac-back" id="q-back" href="verification-email.html">← Retour</a>
+      </div>
+      <div class="ac-shell-header__progress">
+        <div class="ac-progress">
+          <div class="ac-progress__meta"><span id="q-label">Question 1 sur 5</span><span class="ac-progress__pct" id="q-pct">20 %</span></div>
+          <div class="ac-progress__track"><div class="ac-progress__fill" id="q-fill" style="width:20%"></div></div>
+        </div>
+      </div>
+    </header>
+    <main class="ac-main">
+      <section class="ac-q-step is-active" data-step="0">
+        <h1 class="ac-title ac-title--sm ac-title--page">Quel type de remplacement ?</h1>
+        <p class="ac-microcopy ac-spacer-sm">Pas de mauvaise réponse — on adapte les clauses.</p>
+        <div class="ac-stack-sm ac-spacer-lg">
+          <button type="button" class="ac-choice ac-choice--selected" data-select="type" data-value="continu">
+            <p class="ac-choice__title">Remplacement continu</p>
+            <p class="ac-choice__desc">Du … au … sur une période déterminée</p>
+          </button>
+          <button type="button" class="ac-choice" data-select="type" data-value="discontinu">
+            <p class="ac-choice__title">Remplacement discontinu</p>
+            <p class="ac-choice__desc">Certains jours ou périodes seulement</p>
+          </button>
+        </div>
+      </section>
+      <section class="ac-q-step" data-step="1">
+        <h1 class="ac-title ac-title--sm ac-title--page" id="dates-title">Quelles dates ?</h1>
+        <p class="ac-microcopy ac-spacer-sm">Tu pourras ajuster plus tard — sans culpabilité.</p>
+        <div class="ac-stack-md ac-spacer-lg" id="dates-continu">
+          <label class="ac-label">Date de début<input type="date" class="ac-input" /></label>
+          <label class="ac-label">Date de fin<input type="date" class="ac-input" /></label>
+        </div>
+        <textarea rows="4" class="ac-textarea ac-spacer-lg ac-hidden" id="dates-discontinu" placeholder="Ex. lundi/mercredi 7h–13h, week-end alterné…"></textarea>
+      </section>
+      <section class="ac-q-step" data-step="2">
+        <h1 class="ac-title ac-title--sm ac-title--page">Comment tu factures ?</h1>
+        <p class="ac-microcopy ac-spacer-sm">On t'explique l'impact de chaque option.</p>
+        <div class="ac-stack-sm ac-spacer-lg">
+          <button type="button" class="ac-choice ac-choice--selected" data-select="facturation">
+            <p class="ac-choice__title">Facturation directe</p>
+            <p class="ac-choice__desc">Tu factures toi-même pendant le remplacement</p>
+          </button>
+          <button type="button" class="ac-choice" data-select="facturation">
+            <p class="ac-choice__title">Via la CPS du remplacé</p>
+            <p class="ac-choice__desc">Le remplacé facture pour toi</p>
+          </button>
+        </div>
+      </section>
+      <section class="ac-q-step" data-step="3">
+        <h1 class="ac-title ac-title--sm ac-title--page">Une redevance au remplacé ?</h1>
+        <div class="ac-choice-row ac-spacer-lg">
+          <button type="button" class="ac-choice ac-choice--selected" data-select="redevance" data-value="oui">oui</button>
+          <button type="button" class="ac-choice" data-select="redevance" data-value="non">non</button>
+        </div>
+      </section>
+      <section class="ac-q-step" data-step="4">
+        <h1 class="ac-title ac-title--sm ac-title--page">Qui es-tu dans ce contrat ?</h1>
+        <div class="ac-stack-md ac-spacer-lg">
+          <label class="ac-label">Ton nom (remplaçant·e)<input class="ac-input" placeholder="Marie Dupont" value="Marie Dupont" /></label>
+          <label class="ac-label">Infirmier·ère remplacé·e<input class="ac-input" value="Dr. Martin" /></label>
+        </div>
+      </section>
+      <div class="ac-btn-row">
+        <button type="button" class="ac-btn ac-btn--secondary" id="q-prev">Retour</button>
+        <button type="button" class="ac-btn ac-btn--primary" id="q-next">Continuer</button>
+      </div>
+    </main>
+  </div>
+  <script src="../js/questionnaire.js"></script>
+</body></html>

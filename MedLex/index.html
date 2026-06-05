@@ -3,704 +3,387 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>MedLex | Accompagnement juridique des infirmières libérales</title>
+    <title>Au Clair | Le juridique, expliqué comme par une collègue</title>
     <meta
       name="description"
-      content="MedLex accompagne les infirmières libérales et les professionnels de santé dans leur structuration : passage en SELARL, immatriculation, contrats et formalités."
+      content="Au Clair t'accompagne pas à pas dans tes contrats d'infirmière libérale. Pédagogie, bienveillance et rédaction par Me Violaine, avocate en droit de la santé."
     />
-    <style>
-      :root {
-        --bg: #f3f6fc;
-        --card: #ffffff;
-        --text: #0f1f3d;
-        --muted: #55637f;
-        --primary: #245fda;
-        --primary-dark: #1a47a5;
-        --accent: #e9f0ff;
-        --border: #d8e2f4;
-        --shadow-sm: 0 8px 20px rgba(15, 31, 61, 0.06);
-        --shadow-md: 0 14px 36px rgba(15, 31, 61, 0.1);
-      }
-
-      * {
-        box-sizing: border-box;
-      }
-
-      body {
-        margin: 0;
-        font-family: "Inter", "Segoe UI", Roboto, Arial, sans-serif;
-        color: var(--text);
-        background: linear-gradient(180deg, #f7f9fe 0%, #f1f5fc 100%);
-        line-height: 1.55;
-        letter-spacing: 0.01em;
-        -webkit-font-smoothing: antialiased;
-      }
-
-      .container {
-        width: min(1100px, 92%);
-        margin: 0 auto;
-      }
-
-      header {
-        position: sticky;
-        top: 0;
-        z-index: 20;
-        padding: 14px 0 10px;
-        background: rgba(243, 246, 252, 0.88);
-        backdrop-filter: blur(8px);
-      }
-
-      .topbar {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        gap: 18px;
-        padding: 12px 14px;
-        border: 1px solid var(--border);
-        border-radius: 14px;
-        background: rgba(255, 255, 255, 0.9);
-        box-shadow: var(--shadow-sm);
-      }
-
-      .logo {
-        font-weight: 800;
-        letter-spacing: 0.3px;
-        font-size: 1.35rem;
-        white-space: nowrap;
-      }
-
-      .logo span {
-        color: var(--primary);
-      }
-
-      .main-nav {
-        display: flex;
-        gap: 18px;
-        align-items: center;
-      }
-
-      .main-nav a {
-        text-decoration: none;
-        color: var(--text);
-        font-weight: 500;
-        font-size: 0.94rem;
-      }
-
-      .main-nav a:hover {
-        color: var(--primary-dark);
-      }
-
-      .header-actions {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-      }
-
-      .phone-btn {
-        padding: 11px 16px;
-        border-radius: 12px;
-        font-weight: 600;
-        text-decoration: none;
-        color: #fff;
-        background: var(--primary);
-        white-space: nowrap;
-        box-shadow: 0 8px 16px rgba(36, 95, 218, 0.22);
-      }
-
-      .phone-btn:hover {
-        background: var(--primary-dark);
-      }
-
-      .btn {
-        display: inline-block;
-        text-decoration: none;
-        border-radius: 12px;
-        padding: 11px 18px;
-        font-weight: 600;
-        transition: 0.2s ease;
-      }
-
-      .btn-primary {
-        color: #fff;
-        background: var(--primary);
-      }
-
-      .btn-primary:hover {
-        background: var(--primary-dark);
-      }
-
-      .btn-secondary {
-        color: var(--primary-dark);
-        background: #ffffff;
-        border: 1px solid #c9dbff;
-      }
-
-      .btn-secondary:hover {
-        background: #f3f7ff;
-      }
-
-      .hero {
-        display: grid;
-        grid-template-columns: 1.2fr 1fr;
-        gap: 28px;
-        padding: 28px 0 18px;
-        align-items: center;
-      }
-
-      .hero-image {
-        background: var(--card);
-        border: 1px solid var(--border);
-        border-radius: 18px;
-        padding: 12px;
-        box-shadow: var(--shadow-md);
-      }
-
-      .hero-image img {
-        width: 100%;
-        display: block;
-        border-radius: 14px;
-        object-fit: cover;
-      }
-
-      .hero h1 {
-        font-size: clamp(2rem, 3.2vw, 3.15rem);
-        line-height: 1.12;
-        margin: 0 0 16px;
-        letter-spacing: -0.02em;
-      }
-
-      .highlight-blue {
-        color: var(--primary);
-      }
-
-      .hero p {
-        color: var(--muted);
-        margin: 0 0 20px;
-      }
-
-      .hero-actions {
-        display: flex;
-        gap: 10px;
-        flex-wrap: wrap;
-      }
-
-      section {
-        padding: 46px 0;
-        margin-bottom: 18px;
-        border-radius: 16px;
-      }
-
-      .section-hero {
-        background: linear-gradient(135deg, #f3f8ff, #edf4ff);
-      }
-
-      .section-white {
-        background: #ffffff;
-        width: 100vw;
-        margin-left: calc(50% - 50vw);
-        border-radius: 0;
-      }
-
-      .section-white > * {
-        width: min(1100px, 92%);
-        margin-left: auto;
-        margin-right: auto;
-      }
-
-      .section-soft {
-        background: #f7faff;
-      }
-
-      h2 {
-        margin: 0 0 16px;
-        font-size: clamp(1.45rem, 2.2vw, 2rem);
-        letter-spacing: -0.01em;
-      }
-
-      .intro {
-        color: var(--muted);
-        margin: 0 0 20px;
-        max-width: 760px;
-      }
-
-      .persona-grid {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 16px;
-      }
-
-      .persona-card {
-        background: var(--card);
-        border: 1px solid var(--border);
-        border-radius: 16px;
-        padding: 20px;
-        box-shadow: var(--shadow-sm);
-      }
-
-      .persona-card h3 {
-        margin: 0 0 8px;
-      }
-
-      .persona-card p {
-        margin: 0 0 14px;
-        color: var(--muted);
-      }
-
-      .persona-card ul {
-        margin-top: 8px;
-      }
-
-      .mini-price {
-        display: inline-block;
-        margin-top: 6px;
-        font-weight: 700;
-        color: var(--primary-dark);
-      }
-
-      .steps {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 14px;
-      }
-
-      .step-card {
-        background: var(--card);
-        border: 1px solid var(--border);
-        border-radius: 16px;
-        padding: 20px;
-        box-shadow: var(--shadow-sm);
-      }
-
-      .step-number {
-        display: inline-block;
-        min-width: 36px;
-        padding: 4px 10px;
-        border-radius: 999px;
-        background: #d9e7ff;
-        color: #1f57c2;
-        font-weight: 700;
-        margin-bottom: 8px;
-      }
-
-      .center-cta {
-        text-align: center;
-        margin-top: 18px;
-      }
-
-      .intro-with-images {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 14px;
-        flex-wrap: wrap;
-        text-align: center;
-      }
-
-      .intro-with-images .intro {
-        margin: 0;
-      }
-
-      .mini-images {
-        display: flex;
-        justify-content: center;
-        gap: 10px;
-        flex-wrap: wrap;
-      }
-
-      .mini-images img {
-        width: 130px;
-        height: 90px;
-        object-fit: cover;
-        border-radius: 10px;
-        border: 1px solid var(--border);
-        box-shadow: var(--shadow-sm);
-      }
-
-      .big-cta-btn {
-        display: inline-block;
-        margin-top: 10px;
-        padding: 14px 26px;
-        border-radius: 14px;
-        background: var(--primary);
-        color: #fff;
-        text-decoration: none;
-        font-size: 1.05rem;
-        font-weight: 700;
-        box-shadow: 0 10px 22px rgba(36, 95, 218, 0.25);
-      }
-
-      .big-cta-btn:hover {
-        background: var(--primary-dark);
-      }
-
-      ul {
-        margin: 0;
-        padding-left: 18px;
-      }
-
-      footer {
-        padding: 26px 0 34px;
-        color: var(--muted);
-        font-size: 0.95rem;
-      }
-
-      .footer-wrap {
-        background: #0e1d3a;
-        color: #dbe6ff;
-        border-radius: 16px;
-        padding: 28px;
-        box-shadow: var(--shadow-md);
-      }
-
-      .footer-top {
-        padding-bottom: 22px;
-        border-bottom: 1px solid rgba(219, 230, 255, 0.2);
-      }
-
-      .footer-brand {
-        font-size: 1.35rem;
-        font-weight: 800;
-        margin: 0 0 8px;
-        color: #ffffff;
-      }
-
-      .footer-top p {
-        margin: 6px 0;
-      }
-
-      .newsletter-form {
-        display: flex;
-        gap: 8px;
-        margin-top: 10px;
-        flex-wrap: wrap;
-      }
-
-      .newsletter-form input {
-        flex: 1;
-        min-width: 220px;
-        border: 1px solid #3a5388;
-        background: #0b1b3a;
-        color: #fff;
-        border-radius: 10px;
-        padding: 10px 12px;
-      }
-
-      .newsletter-form button {
-        border: 0;
-        border-radius: 10px;
-        background: var(--primary);
-        color: #fff;
-        padding: 10px 14px;
-        font-weight: 700;
-        cursor: pointer;
-      }
-
-      .footer-small {
-        font-size: 0.82rem;
-        color: #b8c9f0;
-      }
-
-      .footer-links a {
-        color: #dbe6ff;
-        text-decoration: none;
-      }
-
-      .footer-links a:hover {
-        text-decoration: underline;
-      }
-
-      .footer-bottom {
-        display: grid;
-        grid-template-columns: repeat(4, 1fr);
-        gap: 14px;
-        padding-top: 22px;
-      }
-
-      .footer-col h4 {
-        margin: 0 0 8px;
-        color: #fff;
-      }
-
-      .footer-col a {
-        display: block;
-        color: #dbe6ff;
-        text-decoration: none;
-        margin-bottom: 6px;
-      }
-
-      .footer-col a:hover {
-        text-decoration: underline;
-      }
-
-      @media (max-width: 930px) {
-        .hero {
-          grid-template-columns: 1fr;
-        }
-
-        .topbar {
-          flex-wrap: wrap;
-        }
-
-        .main-nav {
-          order: 3;
-          width: 100%;
-          flex-wrap: wrap;
-          gap: 10px 14px;
-          padding-top: 6px;
-        }
-
-        .persona-grid {
-          grid-template-columns: 1fr;
-        }
-
-        .steps {
-          grid-template-columns: 1fr;
-        }
-
-        .footer-bottom {
-          grid-template-columns: 1fr;
-        }
-      }
-
-      @media (max-width: 620px) {
-        .intro-with-images {
-          flex-direction: column;
-          align-items: center;
-        }
-      }
-    </style>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/site.css" />
   </head>
-  <body>
-    <header class="container">
-      <div class="topbar">
-        <div class="logo">Med<span>Lex</span></div>
-        <nav class="main-nav" aria-label="Navigation principale">
-          <a href="#creation">Installation</a>
-          <a href="#contrats">Modification et Cession</a>
-          <a href="#selarl">Tarifs</a>
-          <a href="./questionnaire-remplacement.html">Fiches pratiques</a>
+<body>
+    <div class="trust-bar">
+      <div class="container">
+        <span class="trust-badge">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M12 3l7 4v6c0 4.5-3.2 8.7-7 9-3.8-.3-7-4.5-7-9V7l7-4z" />
+            <path d="M9 12l2 2 4-4" />
+          </svg>
+          Rédigé par <strong>Me Violaine</strong>, avocate en droit de la santé · Conforme au Code de
+          la santé publique et au Code de déontologie infirmier
+        </span>
+      </div>
+    </div>
+
+    <header class="site-header">
+      <div class="container header-inner">
+        <a class="logo" href="#top"><span class="logo-dot" aria-hidden="true"></span>Au Clair</a>
+        <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="main-nav">
+          Menu
+        </button>
+        <nav class="nav" id="main-nav" aria-label="Navigation">
+          <a href="#empathie">Pourquoi</a>
+          <a href="#parcours">Comment</a>
+          <a href="#moments">Contrats</a>
+          <a href="#selarl">SELARL</a>
+          <a href="#abonnement">Abonnement</a>
+          <a class="btn btn-primary" href="parcours/email.html">Je crée mon contrat</a>
         </nav>
-        <div class="header-actions">
-          <a class="phone-btn" href="tel:+33176390060">01 76 39 00 60</a>
-        </div>
       </div>
     </header>
 
-    <main>
-      <section class="container hero section-hero">
-        <div>
-          <h1>Donnez de l'envergure à votre <span class="highlight-blue">entreprise de soin</span></h1>
-          <p>
-            La vie juridique des soignants en libéral, en toute confiance.
-          </p>
-          <div class="hero-actions">
-            <a class="btn btn-primary" href="#selarl">Passez en SELARL</a>
-            <a class="btn btn-secondary" href="#creation">Tous nos services</a>
+    <main id="top">
+      <section class="hero">
+        <div class="container hero-grid">
+          <div class="hero-copy">
+            <p class="hero-tagline">« Le juridique, expliqué comme par une collègue qui s'y connaît. »</p>
+            <h1>Tu n'es pas seule face aux papiers.</h1>
+            <p class="hero-lede">
+              Entre deux tournées, entre deux patients, le contrat attend souvent dans un coin de ton
+              bureau. Au Clair te guide pas à pas — avec des mots simples, et une avocate derrière
+              chaque clause.
+            </p>
+            <div class="hero-actions">
+              <a class="btn btn-primary" href="parcours/email.html">Je crée mon contrat</a>
+              <a class="btn btn-secondary" href="#parcours">Voir comment on t'accompagne</a>
+            </div>
+            <div class="care-note">
+              Comme une collègue qui prend le temps de t'expliquer — sans jugement.
+            </div>
+            <p style="margin-top: 0.85rem; font-size: 0.8rem; color: var(--gray-text); max-width: 28rem">
+              Modèles conformes au Code de la santé publique et au Code de déontologie infirmier.
+            </p>
+          </div>
+
+          <div class="dashboard-wrap" aria-hidden="true">
+            <div class="dashboard">
+              <div class="dash-topbar">
+                <div class="dash-dots"><span></span><span></span><span></span></div>
+                <span class="dash-title">au-clair.app — Contrat de remplacement</span>
+              </div>
+              <div class="dash-body">
+                <aside class="dash-sidebar">
+                  <div class="dash-nav-item active"><span class="dash-nav-dot"></span> Questionnaire</div>
+                  <div class="dash-nav-item"><span class="dash-nav-dot"></span> Aperçu</div>
+                  <div class="dash-nav-item"><span class="dash-nav-dot"></span> PDF</div>
+                </aside>
+                <div class="dash-main">
+                  <div class="dash-header-row">
+                    <div>
+                      <h4>Tu nous racontes ta situation</h4>
+                      <p>Étape 8 — Modalités de facturation</p>
+                    </div>
+                    <span class="progress-pill tabular">68 %</span>
+                  </div>
+                  <div class="dash-explain">
+                    <strong>Cette clause ?</strong> Elle dit simplement que si le remplacement dure plus
+                    longtemps que prévu, les deux parties doivent s'accorder par écrit — et voilà pourquoi
+                    elle compte pour toi.
+                  </div>
+                  <p style="margin: 0.75rem 0 0; font-size: 0.72rem; color: var(--gray-text)">
+                    Validé par Me Violaine · droit de la santé
+                  </p>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
-        <div class="hero-image">
-          <img
-            src="./images/hero-equipe-soignants.jpg"
-            alt="Équipe soignante en tenue professionnelle"
-          />
+      </section>
+
+      <section class="empathy-strip" id="empathie">
+        <div class="container empathy-inner">
+          <h2>On sait que le juridique, c'est anxiogène.</h2>
+          <p style="color: var(--gray-text); margin: 0">
+            Tu as déjà eu peur de mal faire. De signer trop vite. De laisser passer une clause qui te
+            coûterait cher plus tard. Ce n'est pas un échec personnel : le droit n'est pas ton métier —
+            et ce n'est pas censé l'être.
+          </p>
+          <p class="empathy-quote">
+            « Non, tu n'es pas censée tout connaître du droit. C'est notre métier. »
+          </p>
         </div>
       </section>
 
-      <section class="container section-white">
-        <h2>La solution complète pour <span class="highlight-blue">s'installer et faire vivre votre cabinet</span></h2>
-        <div class="steps">
-          <article class="step-card">
-            <h3>Formalités juridiques</h3>
-            <p>Créez et modifiez votre cabinet en quelques clics.</p>
-          </article>
-          <article class="step-card">
-            <h3>Coordination</h3>
-            <p>
-              Déléguez l'alignement avec le comptable, l'administration, le
-              commissaire aux comptes.
-            </p>
-          </article>
-          <article class="step-card">
-            <h3>Accompagnement au quotidien</h3>
-            <p>
-              Une équipe d'avocats disponibles par téléphone et chat pour
-              répondre à toutes vos questions de soignant en libéral.
-            </p>
-          </article>
+      <section class="section section-gray" id="parcours">
+        <div class="container">
+          <div class="section-header">
+            <h2>Comment ça marche ? On y va ensemble.</h2>
+            <p>Pas de jargon inutile. Chaque étape est expliquée avant que tu avances.</p>
+          </div>
+          <div class="steps-row">
+            <article class="step-card">
+              <p class="step-num">01</p>
+              <h3>Tu nous racontes ta situation</h3>
+              <p>
+                Un questionnaire guidé, question par question. Remplacement continu ou discontinu ?
+                Facturation directe ou via le remplacé ? Tu réponds comme à une collègue — on traduit
+                en droit.
+              </p>
+            </article>
+            <article class="step-card">
+              <p class="step-num">02</p>
+              <h3>Tu relis, clause par clause</h3>
+              <p>
+                Aperçu instantané de ton contrat. Chaque passage important est mis en évidence. Tu
+                peux revenir en arrière, modifier — sans culpabilité.
+              </p>
+            </article>
+            <article class="step-card">
+              <p class="step-num">03</p>
+              <h3>Tu télécharges et tu signes sereinement</h3>
+              <p>
+                PDF propre, prêt à envoyer à ton co-contractant. Tu sais ce que tu signes — parce
+                qu'on t'a expliqué pourquoi chaque clause existe.
+              </p>
+            </article>
+          </div>
         </div>
       </section>
 
-      <section class="container section-soft">
-        <h2>Passez <span class="highlight-blue">facilement</span> votre cabinet en SELARL <span class="highlight-blue">en 3 étapes</span></h2>
-        <div class="steps">
-          <article class="step-card">
-            <span class="step-number">01</span>
-            <h3>Vous répondez à quelques questions sur votre projet</h3>
+      <section class="section" id="moments">
+        <div class="container">
+          <div class="section-header">
+            <h2>Les contrats, ce sont des moments de ta vie pro</h2>
+            <p>On ne te vend pas un PDF. On t'accompagne dans une étape que tu traverses vraiment.</p>
+          </div>
+          <div class="contracts-grid">
+            <a class="contract-card live" href="parcours/email.html">
+              <span class="badge badge-live">Disponible maintenant</span>
+              <div class="moment-icon" aria-hidden="true">🤝</div>
+              <h3>« Je remplace une collègue »</h3>
+              <p>
+                Congé, maladie, maternité… Tu prends le relais. On sécurise la durée, la facturation
+                et ce qui se passe si le remplacement se prolonge.
+              </p>
+              <p class="contract-arrow">Je crée mon contrat →</p>
+            </a>
+            <div class="contract-card">
+              <span class="badge badge-soon">Bientôt</span>
+              <div class="moment-icon" aria-hidden="true">🌿</div>
+              <h3>« Je travaille avec une consœur »</h3>
+              <p>
+                Collaboration, association de moyens — sans requalification en salariat ni mauvaise
+                surprise fiscale.
+              </p>
+            </div>
+            <div class="contract-card">
+              <span class="badge badge-soon">Bientôt</span>
+              <div class="moment-icon" aria-hidden="true">🏠</div>
+              <h3>« Je partage un cabinet »</h3>
+              <p>
+                Association, bail professionnel — les règles ordinales traduites en mots que tu
+                comprends.
+              </p>
+            </div>
+            <a class="contract-card" href="#selarl">
+              <span class="badge badge-soon">Sur mesure</span>
+              <div class="moment-icon" aria-hidden="true">✨</div>
+              <h3>« Je passe en SELARL »</h3>
+              <p>
+                Une grande étape, souvent stressante. On reste avec toi — compta, CAC, Ordre, greffe.
+              </p>
+              <p class="contract-arrow">En parler →</p>
+            </a>
+          </div>
+          <div class="clause-box">
+            <p class="label">Exemple — une clause expliquée simplement</p>
             <p>
-              En quelques minutes, vous décrivez votre situation actuelle, vos
-              objectifs de revenus et votre organisation de cabinet.
+              <strong>Cette clause ?</strong> Elle dit simplement que si le remplacement dure plus longtemps
+              que prévu, les deux parties doivent s'accorder par écrit —
+              <strong>et voilà pourquoi elle compte pour toi</strong> : tu évites de te retrouver dans le
+              flou, sans protection.
             </p>
-          </article>
-          <article class="step-card">
-            <span class="step-number">02</span>
-            <h3>Nous constituons votre dossier et générons vos documents</h3>
-            <p>
-              Nos équipes préparent les actes nécessaires, vérifient les pièces
-              et coordonnent les échanges avec vos partenaires.
-            </p>
-          </article>
-          <article class="step-card">
-            <span class="step-number">03</span>
-            <h3>Nous immatriculons votre cabinet</h3>
-            <p>
-              Nous pilotons les formalités jusqu'à validation pour un passage en
-              SELARL sécurisé, sans blocage administratif.
-            </p>
-          </article>
-        </div>
-        <div class="center-cta">
-          <a class="btn btn-primary" href="#selarl">Passez en SELARL</a>
+          </div>
         </div>
       </section>
 
-      <section class="container section-white">
-        <h2><span class="highlight-blue">MedLex</span>, la solution juridique pour les soignants libéraux</h2>
-        <div class="persona-grid">
-          <article id="creation" class="persona-card">
-            <h3>Immatriculation</h3>
-            <p>Création d'une entreprise libérale (BNC)</p>
-            <span class="mini-price">479 € TTC</span>
-            <ul>
-              <li>Questionnaire intelligent</li>
-              <li>Accompagnement à l'immatriculation par une ou un formaliste</li>
+      <section class="section section-gray" id="selarl">
+        <div class="container selarl-block">
+          <div>
+            <h2>Le passage en SELARL fait peur ? On reste avec toi à chaque étape.</h2>
+            <p style="color: var(--gray-text)">
+              Statuts, pacte d'associés, expert-comptable, commissaire aux comptes, Ordre des
+              infirmiers, greffe… Ce n'est pas à toi de tout orchestrer seule. On coordonne, on
+              t'explique, on avance à ton rythme.
+            </p>
+            <ul class="selarl-steps">
+              <li>Tu décris ton projet — sans pression</li>
+              <li>On prépare les documents avec Me Violaine</li>
+              <li>On aligne compta et CAC sur le calendrier</li>
+              <li>On te tient la main jusqu'à l'immatriculation</li>
             </ul>
-          </article>
-          <article id="contrats" class="persona-card">
-            <h3>Contrat de remplacement ou de collaboration</h3>
-            <p>Solutions contractuelles adaptées aux soignants libéraux.</p>
-            <span class="mini-price">À partir de 119 €</span>
-            <ul>
-              <li>Questionnaire intelligent</li>
-              <li>Clauses adaptées aux soignants</li>
-            </ul>
-            <p style="margin-top: 10px">
-              <a class="btn btn-secondary" href="./questionnaire-remplacement.html"
-                >Ouvrir le questionnaire de remplacement</a
+            <p style="margin-top: 1.25rem">
+              <a class="btn btn-primary" href="mailto:contact@au-clair.app?subject=SELARL%20Au%20Clair"
+                >En parler sans engagement</a
               >
             </p>
-          </article>
-          <article class="persona-card">
-            <h3>Bail professionnel</h3>
-            <span class="mini-price">219 €</span>
-            <ul>
-              <li>Questionnaire intelligent</li>
-              <li>Clauses adaptées aux professions de santé</li>
-            </ul>
-          </article>
-          <article class="persona-card">
-            <h3>Changement d'adresse du siège ou de nom</h3>
-            <span class="mini-price">359 € (hors frais administratifs)</span>
-            <ul>
-              <li>Dépôt des pièces en ligne</li>
-              <li>Formalités adaptées par une ou un formaliste</li>
-            </ul>
-          </article>
-          <article id="selarl" class="persona-card">
-            <h3>Passage en SELARL</h3>
-            <span class="mini-price">6 000 € HT</span>
-            <ul>
-              <li>Questionnaire intelligent</li>
-              <li>Consultation de projection en ligne offerte</li>
-              <li>Gestion du dossier avec avocat partenaire et expert-comptable</li>
-            </ul>
-          </article>
-          <article class="persona-card">
-            <h3>Abonnement LegalUp</h3>
-            <p>
-              Veille réglementaire, alertes, modèles de contrats : tout ce qu'il
-              faut pour exercer sereinement.
+          </div>
+          <aside class="violaine-panel">
+            <img
+              src="./images/violaine_avocate.png"
+              alt="Me Violaine, avocate en droit de la santé"
+              width="96"
+              height="96"
+            />
+            <p class="role">Me Violaine · Avocate au barreau</p>
+            <p class="violaine-voice">
+              Je ne suis pas là pour vous faire sentir petite face au droit. Je suis là pour que vous
+              compreniez ce que vous signez — et que vous vous sentiez protégée. Chaque contrat Au Clair
+              passe par ma relecture : c'est ma signature professionnelle qui garantit le fond.
             </p>
-            <ul>
-              <li>Accès illimité aux documents et modèles juridiques</li>
-              <li>Veille juridique et mises à jour réglementaires</li>
-              <li>Support juridique réactif par email</li>
-            </ul>
-            <span class="mini-price">29 € TTC / mois</span>
-          </article>
+          </aside>
         </div>
       </section>
 
-      <section class="container section-soft">
-        <h2>Fiabilité. Rapidité. Simplicité.</h2>
-        <div class="intro-with-images">
-          <p class="intro">Plus de 5000 soignantes libérales<br />accompagnées depuis 2025</p>
-          <div class="mini-images">
-            <img src="./images/nurse-preparing-their-shift.jpg" alt="Soignante préparant sa tournée" loading="lazy" />
-            <img src="./images/portrait-female-working-nurse.jpg" alt="Portrait de soignante libérale" loading="lazy" />
+      <section class="section">
+        <div class="container">
+          <div class="caution-band">
+            <img
+              class="caution-photo"
+              src="./images/violaine_avocate.png"
+              alt="Me Violaine, avocate en robe"
+              width="88"
+              height="88"
+            />
+            <div>
+              <h3>Une vraie avocate, pas un robot.</h3>
+              <p>
+                Chaque modèle est relu par une praticienne du droit des soignants. Tu gagnes en
+                simplicité — sans renoncer à la rigueur du barreau.
+              </p>
+              <span class="trust-badge">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M12 3l7 4v6c0 4.5-3.2 8.7-7 9-3.8-.3-7-4.5-7-9V7l7-4z" />
+                  <path d="M9 12l2 2 4-4" />
+                </svg>
+                Rédigé par <strong>Me Violaine</strong>, avocate en droit de la santé
+              </span>
+            </div>
           </div>
         </div>
-        <div class="center-cta">
-          <a class="big-cta-btn" href="#creation">Créez votre cabinet</a>
+      </section>
+
+      <section class="section section-gray" id="abonnement">
+        <div class="container">
+          <div class="section-header">
+            <h2>Ton filet de sécurité au quotidien</h2>
+            <p>
+              Au-delà du contrat ponctuel, reste entourée — veille, modèles, courriers types quand la
+              situation devient tendue.
+            </p>
+          </div>
+          <div class="pricing-grid">
+            <article class="price-card">
+              <p class="price-name">À l'acte</p>
+              <p class="price-amount tabular">29 €<small> TTC / contrat</small></p>
+              <ul class="price-features">
+                <li>Un contrat, généré et expliqué</li>
+                <li>Questionnaire + aperçu</li>
+                <li>Export PDF</li>
+                <li>Validé par Me Violaine</li>
+              </ul>
+              <a class="btn btn-secondary" href="parcours/email.html">Je crée mon contrat</a>
+            </article>
+            <article class="price-card featured">
+              <p class="price-name">Abonnement Au Clair</p>
+              <p class="price-amount tabular">19 €<small>/mois</small></p>
+              <ul class="price-features">
+                <li>Contrats illimités</li>
+                <li>Micro-formations en petites bouchées</li>
+                <li>Mises en demeure types</li>
+                <li>Veille ordinale &amp; législative</li>
+                <li>Accès prioritaire à Me Violaine</li>
+              </ul>
+              <a class="btn btn-primary" href="mailto:contact@au-clair.app?subject=Abonnement%20Au%20Clair"
+                >Découvrir l'abonnement</a
+              >
+            </article>
+            <article class="price-card">
+              <p class="price-name">SELARL accompagnée</p>
+              <p class="price-amount" style="font-size: 1.35rem">Sur devis</p>
+              <ul class="price-features">
+                <li>Parcours de A à Z</li>
+                <li>Compta + CAC + Ordre</li>
+                <li>Me Violaine en lead</li>
+                <li>Sans engagement initial</li>
+              </ul>
+              <a class="btn btn-secondary" href="mailto:contact@au-clair.app?subject=SELARL%20Au%20Clair"
+                >En parler</a
+              >
+            </article>
+          </div>
+          <p style="text-align: center; margin-top: 1.25rem; font-size: 0.85rem; color: var(--gray-text)">
+            Sans engagement de durée sur l'abonnement · L'abonnement est pensé si tu génères plusieurs
+            contrats par an
+          </p>
         </div>
       </section>
 
+      <section class="final-section" id="commencer">
+        <div class="container final-grid">
+          <div class="final-copy">
+            <h2>Quand tu seras prête, on sera là.</h2>
+            <p>
+              Pas de course. Pas de pression. Ouvre le questionnaire quand tu as douze minutes devant
+              toi — et avance à ton rythme. On ne te laissera pas seule devant une page blanche.
+            </p>
+            <a class="btn btn-primary" href="parcours/email.html">Je crée mon contrat</a>
+            <p class="warm-note">
+              Rédigé et validé par Me Violaine, avocate en droit de la santé · Conforme au Code de
+              déontologie infirmier.
+            </p>
+          </div>
+          <div class="phone-wrap" aria-hidden="true">
+            <div class="phone">
+              <div class="phone-screen">
+                <div class="phone-head">Au Clair</div>
+                <div class="phone-item">
+                  Remplacement — collègue
+                  <div class="s">✓ PDF prêt · Clause expliquée</div>
+                </div>
+                <div class="phone-item">
+                  Contrat relu entre deux patients
+                  <div class="s" style="color: var(--teal)">En cours · 68 %</div>
+                </div>
+                <div class="phone-item">
+                  SELARL — dossier
+                  <div class="s" style="color: var(--gray-text)">Me Violaine · validé</div>
+                </div>
+                <div class="phone-cta">Je crée mon contrat</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
     </main>
 
-    <footer id="footer" class="container">
-      <div class="footer-wrap">
-        <div class="footer-top">
-          <div class="footer-links">
-            <p class="footer-brand">MedLex</p>
-            <p>
-              MedLex accompagne les soignants libéraux dans toutes leurs
-              démarches juridiques : installation, structuration, évolution et
-              suivi administratif du cabinet.
-            </p>
-            <p><strong>Inscrivez-vous à la newsletter MedLex</strong></p>
-            <form class="newsletter-form" action="#" method="post">
-              <input type="email" placeholder="Votre adresse email" aria-label="Votre adresse email" />
-              <button type="submit">S'abonner</button>
-            </form>
-            <p class="footer-small">
-              Consultez notre Politique de Confidentialité pour en savoir plus.
-            </p>
-            <p>MedLex SAS</p>
-            <p>24 rue de la Santé Libérale, 75013 Paris</p>
-            <p><a href="mailto:contact@medlex.fr">Contactez-nous</a></p>
-            <p><a href="tel:+33176390060">01 76 39 00 60</a></p>
-            <p>Du lundi au vendredi de 9h à 19h</p>
-            <p class="footer-small">
-              Vos échanges avec MedLex sont protégés par notre charte de respect
-              de la vie privée.
-            </p>
-            <p class="footer-small">© MedLex.fr 2026. Tous droits réservés.</p>
-          </div>
-        </div>
-        <div class="footer-bottom">
-          <div class="footer-col">
-            <h4>Services juridiques</h4>
-            <a href="#creation">Installation</a>
-            <a href="#contrats">Modification et cession</a>
-            <a href="#selarl">Passage en SELARL</a>
-          </div>
-          <div class="footer-col">
-            <h4>Abonnement</h4>
-            <a href="#creation">LegalUp</a>
-            <a href="#contrats">Support juridique</a>
-            <a href="#selarl">Tarifs</a>
-          </div>
-          <div class="footer-col">
-            <h4>Contenus</h4>
-            <a href="./questionnaire-remplacement.html">Contrat de remplacement (questionnaire)</a>
-          </div>
-          <div class="footer-col">
-            <h4>Autres informations</h4>
-            <a href="mailto:contact@medlex.fr">Contact</a>
-            <a href="#footer">Politique de confidentialité</a>
-            <a href="#footer">Mentions légales</a>
-          </div>
+    <footer id="footer">
+      <div class="container footer-inner">
+        <span>© Au Clair 2026</span>
+        <div class="footer-links">
+          <a href="parcours/email.html">Créer mon contrat</a>
+          <a href="#footer">Mentions légales</a>
+          <a href="#footer">Politique de confidentialité</a>
+          <a href="mailto:contact@au-clair.app">contact@au-clair.app</a>
         </div>
       </div>
     </footer>
+
+    <script src="js/nav.js"></script>
   </body>
 </html>
