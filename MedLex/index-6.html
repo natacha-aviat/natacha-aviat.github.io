@@ -652,6 +652,10 @@
         margin: 0;
       }
 
+      .violaine-voice {
+        font-style: italic;
+      }
+
       .caution-band {
         background: var(--ink);
         color: var(--white);
@@ -969,6 +973,11 @@
         .nav-toggle {
           display: inline-flex;
         }
+
+        .trust-bar .trust-badge {
+          font-size: 0.68rem;
+          padding: 0.35rem 0.65rem;
+        }
       }
     </style>
   </head>
@@ -980,7 +989,8 @@
             <path d="M12 3l7 4v6c0 4.5-3.2 8.7-7 9-3.8-.3-7-4.5-7-9V7l7-4z" />
             <path d="M9 12l2 2 4-4" />
           </svg>
-          Rédigé par <strong>Me Violaine</strong>, avocate en droit de la santé
+          Rédigé par <strong>Me Violaine</strong>, avocate en droit de la santé · Conforme au Code de
+          la santé publique et au Code de déontologie infirmier
         </span>
       </div>
     </div>
@@ -1020,6 +1030,9 @@
             <div class="care-note">
               Comme une collègue qui prend le temps de t'expliquer — sans jugement.
             </div>
+            <p style="margin-top: 0.85rem; font-size: 0.8rem; color: var(--gray-text); max-width: 28rem">
+              Modèles conformes au Code de la santé publique et au Code de déontologie infirmier.
+            </p>
           </div>
 
           <div class="dashboard-wrap" aria-hidden="true">
@@ -1127,7 +1140,7 @@
             <div class="contract-card">
               <span class="badge badge-soon">Bientôt</span>
               <div class="moment-icon" aria-hidden="true">🌿</div>
-              <h3>« Je travaille avec une confrère »</h3>
+              <h3>« Je travaille avec une consœur »</h3>
               <p>
                 Collaboration, association de moyens — sans requalification en salariat ni mauvaise
                 surprise fiscale.
@@ -1138,7 +1151,7 @@
               <div class="moment-icon" aria-hidden="true">🏠</div>
               <h3>« Je partage un cabinet »</h3>
               <p>
-                Association, bail professionnel — les règles ordinale traduites en mots que tu
+                Association, bail professionnel — les règles ordinales traduites en mots que tu
                 comprends.
               </p>
             </div>
@@ -1180,7 +1193,7 @@
               <li>On te tient la main jusqu'à l'immatriculation</li>
             </ul>
             <p style="margin-top: 1.25rem">
-              <a class="btn btn-primary" href="mailto:contact@medlex.fr?subject=SELARL%20Au%20Clair"
+              <a class="btn btn-primary" href="mailto:contact@au-clair.app?subject=SELARL%20Au%20Clair"
                 >En parler sans engagement</a
               >
             </p>
@@ -1193,9 +1206,9 @@
               height="96"
             />
             <p class="role">Me Violaine · Avocate au barreau</p>
-            <p>
-              Je ne suis pas là pour te faire sentir petite face au droit. Je suis là pour que tu
-              comprennes ce que tu signes — et que tu te sentes protégée. Chaque contrat Au Clair
+            <p class="violaine-voice">
+              Je ne suis pas là pour vous faire sentir petite face au droit. Je suis là pour que vous
+              compreniez ce que vous signez — et que vous vous sentiez protégée. Chaque contrat Au Clair
               passe par ma relecture : c'est ma signature professionnelle qui garantit le fond.
             </p>
           </aside>
@@ -1241,8 +1254,8 @@
           </div>
           <div class="pricing-grid">
             <article class="price-card">
-              <p class="price-name">À la carte</p>
-              <p class="price-amount tabular">119 €<small> TTC</small></p>
+              <p class="price-name">À l'acte</p>
+              <p class="price-amount tabular">29 €<small> TTC / contrat</small></p>
               <ul class="price-features">
                 <li>Un contrat, généré et expliqué</li>
                 <li>Questionnaire + aperçu</li>
@@ -1253,14 +1266,15 @@
             </article>
             <article class="price-card featured">
               <p class="price-name">Abonnement Au Clair</p>
-              <p class="price-amount tabular">39 €<small>/mois</small></p>
+              <p class="price-amount tabular">19 €<small>/mois</small></p>
               <ul class="price-features">
+                <li>Contrats illimités</li>
                 <li>Micro-formations en petites bouchées</li>
                 <li>Mises en demeure types</li>
                 <li>Veille ordinale &amp; législative</li>
                 <li>Accès prioritaire à Me Violaine</li>
               </ul>
-              <a class="btn btn-primary" href="mailto:contact@medlex.fr?subject=Abonnement%20Au%20Clair"
+              <a class="btn btn-primary" href="mailto:contact@au-clair.app?subject=Abonnement%20Au%20Clair"
                 >Découvrir l'abonnement</a
               >
             </article>
@@ -1273,13 +1287,14 @@
                 <li>Me Violaine en lead</li>
                 <li>Sans engagement initial</li>
               </ul>
-              <a class="btn btn-secondary" href="mailto:contact@medlex.fr?subject=SELARL%20Au%20Clair"
+              <a class="btn btn-secondary" href="mailto:contact@au-clair.app?subject=SELARL%20Au%20Clair"
                 >En parler</a
               >
             </article>
           </div>
           <p style="text-align: center; margin-top: 1.25rem; font-size: 0.85rem; color: var(--gray-text)">
-            Sans engagement de durée sur l'abonnement
+            Sans engagement de durée sur l'abonnement · L'abonnement est pensé si tu génères plusieurs
+            contrats par an
           </p>
         </div>
       </section>
@@ -1293,7 +1308,10 @@
               toi — et avance à ton rythme. On ne te laissera pas seule devant une page blanche.
             </p>
             <a class="btn btn-primary" href="./questionnaire-remplacement.html">Je crée mon contrat</a>
-            <p class="warm-note">Rédigé et validé par Me Violaine, avocate en droit de la santé.</p>
+            <p class="warm-note">
+              Rédigé et validé par Me Violaine, avocate en droit de la santé · Conforme au Code de
+              déontologie infirmier.
+            </p>
           </div>
           <div class="phone-wrap" aria-hidden="true">
             <div class="phone">
@@ -1319,14 +1337,14 @@
       </section>
     </main>
 
-    <footer>
+    <footer id="footer">
       <div class="container footer-inner">
-        <span>© Au Clair — MedLex 2026 · Me Violaine</span>
+        <span>© Au Clair 2026</span>
         <div class="footer-links">
-          <a href="./index-2.html">Libéo (forme)</a>
-          <a href="./index-3.html">Au Clair (texte)</a>
-          <a href="./index-4.html">Hybride</a>
-          <a href="mailto:contact@medlex.fr">Contact</a>
+          <a href="./questionnaire-remplacement.html">Créer mon contrat</a>
+          <a href="#footer">Mentions légales</a>
+          <a href="#footer">Politique de confidentialité</a>
+          <a href="mailto:contact@au-clair.app">contact@au-clair.app</a>
         </div>
       </div>
     </footer>
