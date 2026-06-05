@@ -16,7 +16,7 @@ Ouvrir [http://localhost:3000](http://localhost:3000).
 
 | Écran | Route |
 |-------|--------|
-| Accueil | `/` |
+| Accueil | `/` ou `index-6.html` → `./tunnel/parcours/email/` |
 | Email | `/parcours/email` |
 | Vérification lien magique | `/parcours/verification-email` |
 | Questionnaire | `/parcours/questionnaire` |
