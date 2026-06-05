@@ -11,18 +11,19 @@ export default function VerificationEmailPage() {
   return (
     <>
       <FunnelShell step={2} backHref="/parcours/email">
-        <div className="text-center">
-          <p className="mb-2 text-4xl" aria-hidden>
+        <div className="ac-centre">
+          <p className="ac-emoji" aria-hidden>
             📬
           </p>
-          <h1 className="mb-2 text-2xl font-bold text-[#16314d]">Vérifie ta boîte mail</h1>
-          <p className="mb-6 text-sm text-[#5f6b7a]">
+          <h1 className="ac-title ac-title--page">Vérifie ta boîte mail</h1>
+          <p className="ac-microcopy ac-spacer-lg">
             On vient d&apos;envoyer un lien à{" "}
-            <strong className="text-[#16314d]">{state.email || "ton adresse"}</strong>. Clique dessus
+            <strong className="ac-inline-strong">{state.email || "ton adresse"}</strong>. Clique dessus
             pour continuer — ou simule ci-dessous.
           </p>
-          <div className="flex flex-col gap-3">
+          <div className="ac-stack-sm">
             <BtnPrimary
+              fullWidth
               onClick={() => {
                 dispatch({ type: "VERIFY_EMAIL" });
                 router.push("/parcours/questionnaire");
@@ -30,7 +31,9 @@ export default function VerificationEmailPage() {
             >
               J&apos;ai cliqué sur le lien
             </BtnPrimary>
-            <BtnSecondary href="/parcours/email">Changer d&apos;email</BtnSecondary>
+            <BtnSecondary href="/parcours/email" fullWidth>
+              Changer d&apos;email
+            </BtnSecondary>
           </div>
         </div>
       </FunnelShell>

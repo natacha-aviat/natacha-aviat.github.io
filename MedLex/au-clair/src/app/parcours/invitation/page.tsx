@@ -27,18 +27,18 @@ export default function InvitationPage() {
     return (
       <>
         <FunnelShell step={5} backHref="/parcours/apercu">
-          <div className="text-center">
-            <p className="mb-2 text-3xl text-[#34c759]" aria-hidden>
+          <div className="ac-centre">
+            <p className="ac-emoji ac-emoji--ok" aria-hidden>
               ✓
             </p>
-            <h1 className="mb-2 text-2xl font-bold text-[#16314d]">Invitation envoyée</h1>
+            <h1 className="ac-title ac-title--page">Invitation envoyée</h1>
             <StatusBadge status="en-attente-tiers" />
-            <p className="mt-4 text-sm text-[#5f6b7a]">
-              En attente de validation de <strong>{state.otherParty.name}</strong> (
-              {state.otherParty.email || "email"}). Elle remplit ses infos elle-même — avant tout
+            <p className="ac-microcopy ac-spacer-lg">
+              En attente de validation de <strong className="ac-inline-strong">{state.otherParty.name}</strong>{" "}
+              ({state.otherParty.email || "email"}). Elle remplit ses infos elle-même — avant tout
               paiement.
             </p>
-            <BtnPrimary className="mt-8" onClick={() => router.push("/parcours/paiement")}>
+            <BtnPrimary fullWidth className="ac-spacer-lg" onClick={() => router.push("/parcours/paiement")}>
               Continuer (maquette)
             </BtnPrimary>
           </div>
@@ -60,22 +60,22 @@ export default function InvitationPage() {
 
   return (
     <FunnelShell step={5} backHref="/parcours/apercu">
-      <h1 className="mb-2 text-2xl font-bold text-[#16314d]">Inviter l&apos;autre partie</h1>
-      <p className="mb-4 text-sm text-[#5f6b7a]">
+      <h1 className="ac-title ac-title--page">Inviter l&apos;autre partie</h1>
+      <p className="ac-microcopy ac-spacer-sm">
         Elle remplit ses infos elle-même et valide qu&apos;elle est d&apos;accord — avant tout paiement.
       </p>
 
-      <div className="mb-6 rounded-[14px] border border-[#e8edf1] bg-white p-4">
-        <p className="text-xs font-semibold uppercase tracking-wide text-[#0fa3a3]">Récap</p>
-        <p className="mt-1 font-semibold text-[#16314d]">{state.otherParty.name}</p>
-        <p className="text-sm text-[#5f6b7a]">Rôle : {state.otherParty.role}</p>
-        <p className="mt-2 text-sm text-[#5f6b7a]">
+      <div className="ac-card ac-card--flat ac-spacer-lg">
+        <p className="ac-card__kicker">Récap</p>
+        <p className="ac-card__title ac-spacer-top">{state.otherParty.name}</p>
+        <p className="ac-card__desc">Rôle : {state.otherParty.role}</p>
+        <p className="ac-card__meta">
           Contrat de remplacement · {state.questionnaire.typeRemplacement || "—"}
         </p>
       </div>
 
-      <form onSubmit={onInvite} className="space-y-4">
-        <label className="block text-sm">
+      <form onSubmit={onInvite} className="ac-form">
+        <label className="ac-label">
           Email de l&apos;autre partie
           <input
             type="email"
@@ -83,11 +83,15 @@ export default function InvitationPage() {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             placeholder="collegue@email.com"
-            className="mt-1 w-full rounded-[14px] border border-[#e8edf1] px-4 py-3.5"
+            className="ac-input"
           />
         </label>
-        <BtnPrimary type="submit">Inviter</BtnPrimary>
-        <BtnSecondary href="/parcours/apercu">Retour à l&apos;aperçu</BtnSecondary>
+        <BtnPrimary type="submit" fullWidth>
+          Inviter
+        </BtnPrimary>
+        <BtnSecondary href="/parcours/apercu" fullWidth>
+          Retour à l&apos;aperçu
+        </BtnSecondary>
       </form>
     </FunnelShell>
   );

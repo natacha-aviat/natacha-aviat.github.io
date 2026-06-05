@@ -9,24 +9,28 @@ export default function ApercuPage() {
 
   return (
     <FunnelShell step={4} backHref="/parcours/questionnaire">
-      <h1 className="mb-2 text-2xl font-bold text-[#16314d]">Ce que ton contrat te apporte</h1>
-      <p className="mb-4 text-sm text-[#5f6b7a]">
+      <h1 className="ac-title ac-title--page">Ce que ton contrat te apporte</h1>
+      <p className="ac-microcopy ac-spacer-sm">
         On te montre le bénéfice de chaque clause — le texte juridique exact se débloque après paiement.
       </p>
-      <TrustBadge />
+      <div className="ac-spacer-sm">
+        <TrustBadge />
+      </div>
 
-      <div className="mt-6 space-y-3">
+      <div className="ac-clause-list">
         {CLAUSE_BENEFITS.map((c) => (
-          <article key={c.id} className="rounded-[14px] border border-[#e8edf1] bg-white p-4 shadow-sm">
-            <h2 className="text-base font-semibold text-[#16314d]">{c.title}</h2>
-            <p className="mt-1 text-sm text-[#5f6b7a]">{c.benefit}</p>
+          <article key={c.id} className="ac-card">
+            <h2 className="ac-card__title">{c.title}</h2>
+            <p className="ac-card__desc">{c.benefit}</p>
             <LockedClausePreview />
           </article>
         ))}
       </div>
 
-      <div className="mt-8">
-        <BtnPrimary onClick={() => router.push("/parcours/invitation")}>Continuer</BtnPrimary>
+      <div className="ac-spacer-lg">
+        <BtnPrimary fullWidth onClick={() => router.push("/parcours/invitation")}>
+          Continuer
+        </BtnPrimary>
       </div>
     </FunnelShell>
   );

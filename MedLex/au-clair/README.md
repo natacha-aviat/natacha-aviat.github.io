@@ -33,3 +33,11 @@ Barre **« Maquette — simuler »** en bas des écrans concernés pour avancer 
 ## Charte
 
 Identique à `index-6.html` : Inter, teal `#0FA3A3`, encre `#16314D`, mobile-first.
+
+Styles centralisés dans `src/app/globals.css` (classes `ac-*` : boutons, cartes, formulaires, badges, barre simulateur). Après modification CSS ou pages :
+
+```bash
+npm run export:tunnel
+```
+
+Régénère le dossier `MedLex/tunnel/` pour GitHub Pages.

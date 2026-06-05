@@ -1,2 +1,2 @@
-:HL["/MedLex/tunnel/_next/static/chunks/06maa1mc3itd7.css","style"]
-0:{"tree":{"name":"","param":null,"prefetchHints":16,"slots":{"children":{"name":"/_not-found","param":null,"prefetchHints":0,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":0,"slots":null}}}}},"staleTime":300,"buildId":"TgH3eEfboocefzCuyiRlI"}
+:HL["/MedLex/tunnel/_next/static/chunks/3z2h_mxli6h1p.css","style"]
+0:{"tree":{"name":"","param":null,"prefetchHints":16,"slots":{"children":{"name":"/_not-found","param":null,"prefetchHints":0,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":0,"slots":null}}}}},"staleTime":300,"buildId":"bPaA1pKlFO2pgOm9uRnIG"}
