@@ -22,9 +22,13 @@
         <p class="ac-emoji" aria-hidden="true">⏱</p>
         <h1 class="ac-title ac-title--page">Ce lien a expiré</h1>
         <p class="ac-microcopy ac-spacer-lg">Pas de panique — on t'en renvoie un tout de suite. Clique ci-dessous pour simuler le renvoi.</p>
-        <a class="ac-btn ac-btn--primary ac-btn--full" href="questionnaire.html">Renvoyer un lien (simulation)</a>
+        <a class="ac-btn ac-btn--primary ac-btn--full" data-ac-questionnaire-link href="questionnaire.html">Renvoyer un lien (simulation)</a>
         <a href="email.html" class="ac-link ac-link--block">Recommencer avec un autre email</a>
       </div>
     </main>
   </div>
+  <script src="../js/parcours-type.js"></script>
+  <script>
+    if (window.ParcoursType) window.ParcoursType.applyQuestionnaireLinks();
+  </script>
 </body></html>

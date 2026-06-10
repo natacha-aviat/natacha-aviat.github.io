@@ -14,7 +14,7 @@
     <header class="ac-shell-header">
       <div class="ac-shell-header__row">
         <a class="ac-logo" href="../index.html"><span class="ac-logo__dot" aria-hidden="true"></span>Au Clair</a>
-        <a class="ac-back" href="questionnaire.html">← Retour</a>
+        <a class="ac-back" data-ac-apercu-back href="questionnaire.html">← Retour</a>
       </div>
       <div class="ac-shell-header__progress">
         <div class="ac-progress">
@@ -130,4 +130,14 @@
       </div>
     </main>
   </div>
+  <script src="../js/parcours-type.js"></script>
+  <script>
+    if (window.ParcoursType) {
+      window.ParcoursType.applyApercuBackLinks();
+      var title = document.querySelector(".ac-title--page");
+      if (title && window.ParcoursType.isCollaboration()) {
+        title.textContent = "Ce qui sera dans ton contrat de collaboration";
+      }
+    }
+  </script>
 </body></html>

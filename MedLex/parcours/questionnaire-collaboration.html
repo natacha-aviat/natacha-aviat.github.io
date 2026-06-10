@@ -1,0 +1,186 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Questionnaire collaboration · Au Clair</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../css/parcours.css" />
+</head>
+<body class="ac-page">
+  <div class="ac-page">
+    <header class="ac-shell-header">
+      <div class="ac-shell-header__row">
+        <a class="ac-logo" href="../index.html"><span class="ac-logo__dot" aria-hidden="true"></span>Au Clair</a>
+        <a class="ac-back" id="q-back" href="verification-email.html">← Retour</a>
+      </div>
+      <div class="ac-shell-header__progress">
+        <div class="ac-progress">
+          <div class="ac-progress__meta"><span id="q-label">Question 1 sur 10</span><span class="ac-progress__pct" id="q-pct">10 %</span></div>
+          <div class="ac-progress__track"><div class="ac-progress__fill" id="q-fill" style="width:10%"></div></div>
+        </div>
+      </div>
+    </header>
+    <main class="ac-main">
+      <p class="ac-microcopy ac-spacer-sm"><span class="ac-badge-type">Collaboration libérale</span></p>
+
+      <!-- 1. Titulaire -->
+      <section class="ac-q-step is-active" data-step="0">
+        <h1 class="ac-title ac-title--sm ac-title--page">L'infirmier·ère titulaire du cabinet</h1>
+        <div class="ac-stack-md ac-spacer-lg">
+          <label class="ac-label">Civilité
+            <select id="t-civilite" class="ac-input"><option>Mme</option><option>M.</option></select>
+          </label>
+          <label class="ac-label">Nom et prénom<input id="t-nom" class="ac-input" placeholder="Ex. Martin Claire" /></label>
+          <label class="ac-label">N° ordinal<input id="t-ordinal" class="ac-input" /></label>
+          <label class="ac-label">N° RPPS<input id="t-rpps" class="ac-input" /></label>
+          <label class="ac-label">Adresse du cabinet<textarea id="t-adresse" rows="2" class="ac-textarea"></textarea></label>
+        </div>
+      </section>
+
+      <!-- 2. Collaborateur -->
+      <section class="ac-q-step" data-step="1">
+        <h1 class="ac-title ac-title--sm ac-title--page">Toi, collaborateur·rice</h1>
+        <div class="ac-stack-md ac-spacer-lg">
+          <label class="ac-label">Civilité
+            <select id="c-civilite" class="ac-input"><option>Mme</option><option>M.</option></select>
+          </label>
+          <label class="ac-label">Nom et prénom<input id="c-nom" class="ac-input" placeholder="Ex. Dupont Marie" /></label>
+          <label class="ac-label">N° ordinal<input id="c-ordinal" class="ac-input" /></label>
+          <label class="ac-label">N° RPPS<input id="c-rpps" class="ac-input" /></label>
+          <label class="ac-label">Adresse d'exercice<textarea id="c-adresse" rows="2" class="ac-textarea"></textarea></label>
+        </div>
+      </section>
+
+      <!-- 3. Art. 2 — patientèle personnelle -->
+      <section class="ac-q-step" data-step="2">
+        <h1 class="ac-title ac-title--sm ac-title--page">Ta patientèle personnelle</h1>
+        <p class="ac-microcopy ac-spacer-sm">Combien de temps pourras-tu consacrer à ta propre patientèle ?</p>
+        <div class="ac-stack-md ac-spacer-lg">
+          <label class="ac-label">Nombre minimal<input type="number" id="patientele-nb" class="ac-input" min="1" placeholder="Ex. 2" /></label>
+          <div class="ac-choice-row">
+            <button type="button" class="ac-choice ac-choice--selected" data-select="patientele-unite" data-value="journees">journées</button>
+            <button type="button" class="ac-choice" data-select="patientele-unite" data-value="demi-journees">demi-journées</button>
+          </div>
+          <div class="ac-choice-row">
+            <button type="button" class="ac-choice ac-choice--selected" data-select="patientele-periode" data-value="semaine">par semaine</button>
+            <button type="button" class="ac-choice" data-select="patientele-periode" data-value="mois">par mois</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- 4. Art. 3 — temps collaboration -->
+      <section class="ac-q-step" data-step="3">
+        <h1 class="ac-title ac-title--sm ac-title--page">Temps pour la collaboration</h1>
+        <p class="ac-microcopy ac-spacer-sm">Temps minimum consacré à la patientèle du titulaire.</p>
+        <div class="ac-stack-md ac-spacer-lg">
+          <label class="ac-label">Nombre minimal<input type="number" id="collab-nb" class="ac-input" min="1" placeholder="Ex. 3" /></label>
+          <div class="ac-choice-row">
+            <button type="button" class="ac-choice ac-choice--selected" data-select="collab-unite" data-value="journees">journées</button>
+            <button type="button" class="ac-choice" data-select="collab-unite" data-value="demi-journees">demi-journées</button>
+          </div>
+          <div class="ac-choice-row">
+            <button type="button" class="ac-choice ac-choice--selected" data-select="collab-periode" data-value="semaine">par semaine</button>
+            <button type="button" class="ac-choice" data-select="collab-periode" data-value="mois">par mois</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- 5. Art. 5 — lieu -->
+      <section class="ac-q-step" data-step="4">
+        <h1 class="ac-title ac-title--sm ac-title--page">Lieu d'exercice</h1>
+        <label class="ac-label ac-spacer-lg">
+          Adresse complète du cabinet
+          <textarea id="lieu-adresse" rows="3" class="ac-textarea" placeholder="Même adresse que le titulaire si besoin"></textarea>
+        </label>
+      </section>
+
+      <!-- 6. Art. 5 — moyens -->
+      <section class="ac-q-step" data-step="5">
+        <h1 class="ac-title ac-title--sm ac-title--page">Moyens mis à disposition</h1>
+        <p class="ac-microcopy ac-spacer-sm">Coche ce que le titulaire met à ta disposition.</p>
+        <div class="ac-stack-sm ac-spacer-lg" id="moyens-list">
+          <label class="ac-check"><input type="checkbox" name="moyens" value="salle-attente" checked /> Salle d'attente</label>
+          <label class="ac-check"><input type="checkbox" name="moyens" value="salle-soins" checked /> Salle de soins</label>
+          <label class="ac-check"><input type="checkbox" name="moyens" value="secretariat" /> Secrétariat</label>
+          <label class="ac-check"><input type="checkbox" name="moyens" value="telephone" checked /> Téléphone</label>
+          <label class="ac-check"><input type="checkbox" name="moyens" value="internet" checked /> Accès internet</label>
+          <label class="ac-check"><input type="checkbox" name="moyens" value="dossiers" checked /> Conservation des dossiers patients</label>
+          <label class="ac-check"><input type="checkbox" name="moyens" value="documentation" /> Documentation</label>
+          <label class="ac-label ac-spacer-sm">Autre<input type="text" id="moyens-autre" class="ac-input" placeholder="Précise si besoin" /></label>
+        </div>
+      </section>
+
+      <!-- 7. Art. 6.2 — forfait -->
+      <section class="ac-q-step" data-step="6">
+        <h1 class="ac-title ac-title--sm ac-title--page">Répartition des forfaits</h1>
+        <p class="ac-microcopy ac-spacer-sm">Quand vous prenez en charge un même patient le même jour.</p>
+        <div class="ac-stack-sm ac-spacer-lg">
+          <button type="button" class="ac-choice ac-choice--selected" data-select="forfait-mode" data-value="tour-role">
+            <p class="ac-choice__title">À tour de rôle</p>
+            <p class="ac-choice__desc">Selon le planning</p>
+          </button>
+          <button type="button" class="ac-choice" data-select="forfait-mode" data-value="parts-egales">
+            <p class="ac-choice__title">Parts égales</p>
+          </button>
+          <button type="button" class="ac-choice" data-select="forfait-mode" data-value="pourcentages">
+            <p class="ac-choice__title">Pourcentages définis</p>
+          </button>
+        </div>
+        <div class="ac-hidden ac-stack-md" id="bloc-forfait-pct">
+          <label class="ac-label">% titulaire<input type="number" id="forfait-pct-titulaire" class="ac-input" min="0" max="100" /></label>
+          <label class="ac-label">% collaborateur<input type="number" id="forfait-pct-collab" class="ac-input" min="0" max="100" /></label>
+        </div>
+      </section>
+
+      <!-- 8. Art. 6.2 — reversement -->
+      <section class="ac-q-step" data-step="7">
+        <h1 class="ac-title ac-title--sm ac-title--page">Reversement du forfait</h1>
+        <div class="ac-stack-md ac-spacer-lg">
+          <label class="ac-label">Qui reverse les parts ?<input id="forfait-reverseur" class="ac-input" placeholder="Nom de la personne chargée" /></label>
+          <label class="ac-label">Délai (jours après perception)<input type="number" id="forfait-delai" class="ac-input" min="1" value="10" /></label>
+        </div>
+      </section>
+
+      <!-- 9. Art. 7 — redevance -->
+      <section class="ac-q-step" data-step="8">
+        <h1 class="ac-title ac-title--sm ac-title--page">Redevance de collaboration</h1>
+        <div class="ac-choice-row ac-spacer-lg">
+          <button type="button" class="ac-choice ac-choice--selected" data-select="redevance-type" data-value="pourcentage">% du CA</button>
+          <button type="button" class="ac-choice" data-select="redevance-type" data-value="forfait">Montant fixe</button>
+        </div>
+        <div class="ac-stack-md ac-spacer-lg" id="bloc-redevance-pct">
+          <label class="ac-label">Pourcentage (%)<input type="number" id="redevance-pct" class="ac-input" min="0" max="100" placeholder="15" /></label>
+        </div>
+        <div class="ac-hidden ac-stack-md ac-spacer-lg" id="bloc-redevance-montant">
+          <label class="ac-label">Montant mensuel (€)<input type="number" id="redevance-montant" class="ac-input" min="0" /></label>
+        </div>
+        <label class="ac-label">Versée au plus tard le (jour du mois)<input type="number" id="redevance-jour" class="ac-input" min="1" max="28" value="10" /></label>
+      </section>
+
+      <!-- 10. Art. 14 — durée -->
+      <section class="ac-q-step" data-step="9">
+        <h1 class="ac-title ac-title--sm ac-title--page">Durée du contrat</h1>
+        <div class="ac-choice-row ac-spacer-lg">
+          <button type="button" class="ac-choice" data-select="duree-type" data-value="determinee">Durée déterminée</button>
+          <button type="button" class="ac-choice ac-choice--selected" data-select="duree-type" data-value="indeterminee">Durée indéterminée</button>
+        </div>
+        <div class="ac-hidden ac-stack-md ac-spacer-lg" id="bloc-dates">
+          <label class="ac-label">Date de début<input type="date" id="date-debut" class="ac-input" /></label>
+          <label class="ac-label">Date de fin<input type="date" id="date-fin" class="ac-input" /></label>
+        </div>
+      </section>
+
+      <div class="ac-btn-row">
+        <button type="button" class="ac-btn ac-btn--secondary" id="q-prev">Retour</button>
+        <button type="button" class="ac-btn ac-btn--primary" id="q-next">Continuer</button>
+      </div>
+    </main>
+  </div>
+  <script src="../js/choices.js"></script>
+  <script src="../js/parcours-type.js"></script>
+  <script src="../js/questionnaire-collaboration.js"></script>
+</body>
+</html>

@@ -65,6 +65,15 @@ async function initContratPage() {
   var pdfBtn = document.getElementById('download-pdf');
   if (!docEl) return;
 
+  var isCollab = window.ParcoursType && window.ParcoursType.isCollaboration();
+  if (isCollab) {
+    showError(
+      'Le contrat de collaboration sera bientôt généré automatiquement. Pour l’instant, complète le questionnaire collaboration — la génération PDF arrive dans une prochaine version.'
+    );
+    if (pdfBtn) pdfBtn.disabled = true;
+    return;
+  }
+
   var snap = window.ParcoursSnapshot && window.ParcoursSnapshot.load();
   if (!snap) {
     showError(

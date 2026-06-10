@@ -457,6 +457,31 @@ a {
   stroke-width: 2;
 }
 
+.ac-badge-type {
+  display: inline-block;
+  padding: 0.25rem 0.625rem;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--ac-teal);
+  background: rgba(15, 163, 163, 0.12);
+}
+
+.ac-check {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.9375rem;
+  color: var(--ac-ink);
+  cursor: pointer;
+}
+
+.ac-check input {
+  width: 1.125rem;
+  height: 1.125rem;
+  accent-color: var(--ac-teal);
+}
+
 .ac-badge {
   display: inline-block;
   padding: 0.125rem 0.5rem;

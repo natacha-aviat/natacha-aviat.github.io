@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Quel contrat ? · Au Clair</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../css/parcours.css" />
+</head>
+<body class="ac-page">
+  <div class="ac-page">
+    <header class="ac-shell-header">
+      <div class="ac-shell-header__row">
+        <a class="ac-logo" href="../index.html"><span class="ac-logo__dot" aria-hidden="true"></span>Au Clair</a>
+        <a class="ac-back" href="../index.html">← Retour</a>
+      </div>
+    </header>
+    <main class="ac-main">
+      <h1 class="ac-title ac-title--page">Quel contrat veux-tu créer ?</h1>
+      <p class="ac-microcopy ac-spacer-sm">
+        On adapte le questionnaire et les clauses à ta situation — remplacement ou collaboration libérale.
+      </p>
+      <div class="ac-stack-sm ac-spacer-lg">
+        <button type="button" class="ac-choice ac-choice--selected" data-select="parcours" data-value="remplacement">
+          <p class="ac-choice__title">Contrat de remplacement</p>
+          <p class="ac-choice__desc">Tu remplaces une collègue temporairement (congé, maladie, maternité…)</p>
+        </button>
+        <button type="button" class="ac-choice" data-select="parcours" data-value="collaboration">
+          <p class="ac-choice__title">Contrat de collaboration libérale</p>
+          <p class="ac-choice__desc">Tu travailles avec une consœur sur la durée, en cabinet partagé</p>
+        </button>
+      </div>
+      <button type="button" class="ac-btn ac-btn--primary ac-btn--full" id="choix-next">Continuer</button>
+      <p class="ac-microcopy--xs ac-spacer-sm">Tu pourras revenir en arrière à tout moment.</p>
+    </main>
+  </div>
+  <script src="../js/choices.js"></script>
+  <script src="../js/parcours-type.js"></script>
+  <script src="../js/choix-contrat.js"></script>
+</body>
+</html>

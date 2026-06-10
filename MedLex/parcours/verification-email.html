@@ -29,7 +29,7 @@
         <h1 class="ac-title ac-title--page">Vérifie ta boîte mail</h1>
         <p class="ac-microcopy ac-spacer-lg">On vient d'envoyer un lien à <strong class="ac-inline-strong">ton adresse</strong>. Clique dessus pour continuer — ou simule ci-dessous.</p>
         <div class="ac-stack-sm">
-          <a class="ac-btn ac-btn--primary ac-btn--full" href="questionnaire.html">J'ai cliqué sur le lien</a>
+          <a class="ac-btn ac-btn--primary ac-btn--full" data-ac-questionnaire-link href="questionnaire.html">J'ai cliqué sur le lien</a>
           <a class="ac-btn ac-btn--secondary ac-btn--full" href="email.html">Changer d'email</a>
         </div>
       </div>
@@ -41,4 +41,8 @@
       <a class="ac-simulate__btn" href="lien-expire.html">Simuler : lien expiré</a>
     </div>
   </div>
+  <script src="../js/parcours-type.js"></script>
+  <script>
+    if (window.ParcoursType) window.ParcoursType.applyQuestionnaireLinks();
+  </script>
 </body></html>

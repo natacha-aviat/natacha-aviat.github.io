@@ -165,6 +165,9 @@
         step++;
         render();
       } else {
+        if (window.ParcoursType) {
+          window.ParcoursType.set("remplacement");
+        }
         if (window.ParcoursSnapshot) {
           window.ParcoursSnapshot.save();
         }
