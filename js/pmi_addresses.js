@@ -1,6 +1,7 @@
 // Fichier principal : catalogue PMI (maj. manuelle + script OSRM pour les durées).
 // Historique CSV : Adresses PMI_2025-07.csv ; ajouts 2026 : PMI Joliot Curie (95140),
-// PMI Jaurès Blanc-Mesnil, PMI Gros Saule — ids 198–200.
+// PMI Jaurès Blanc-Mesnil, PMI Gros Saule (ids 198–200) ; PMI Poliveau, 49 Bd Masséna,
+// PMI Ribière, Hôpital Mère Enfant de l'Est Parisien (ids 201–204).
 
 const PMI_ADDRESSES = [
   {
@@ -1602,6 +1603,38 @@ const PMI_ADDRESSES = [
     "lat": 48.953497,
     "lng": 2.518502,
     "telephone": ""
+  },
+  {
+    "id": 201,
+    "nom": "PMI Poliveau",
+    "address": "34 RUE POLIVEAU, 75005 PARIS",
+    "lat": 48.8402326,
+    "lng": 2.3584604,
+    "telephone": ""
+  },
+  {
+    "id": 202,
+    "nom": "PMI 49 Bd Masséna",
+    "address": "49 BOULEVARD MASSÉNA, 75013 PARIS",
+    "lat": 48.8225619,
+    "lng": 2.373277,
+    "telephone": ""
+  },
+  {
+    "id": 203,
+    "nom": "PMI Ribière",
+    "address": "10 RUE HENRI RIBIÈRE, 75019 PARIS",
+    "lat": 48.8763387,
+    "lng": 2.3955786,
+    "telephone": ""
+  },
+  {
+    "id": 204,
+    "nom": "Hôpital Mère Enfant de l'Est Parisien",
+    "address": "9 RUE DES BLUETS, 75011 PARIS",
+    "lat": 48.8644409,
+    "lng": 2.3818547,
+    "telephone": ""
   }
 ];
 
@@ -1806,6 +1839,10 @@ const PMI_ADDRESS_TO_ID = {
   "36 AVENUE FRÉDÉRIC JOLIOT-CURIE, 95140 GARGES-LÈS-GONESSE": 198,
   "2 BIS AVENUE JEAN JAURÈS, 93150 LE BLANC-MESNIL": 199,
   "4 RUE DU DOCTEUR JEAN PERLIS, 93600 AULNAY-SOUS-BOIS": 200,
+  "34 RUE POLIVEAU, 75005 PARIS": 201,
+  "49 BOULEVARD MASSÉNA, 75013 PARIS": 202,
+  "10 RUE HENRI RIBIÈRE, 75019 PARIS": 203,
+  "9 RUE DES BLUETS, 75011 PARIS": 204,
   "rue Louis Girard, Aubervilliers": 197
 };
 

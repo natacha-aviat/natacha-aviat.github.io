@@ -1,7 +1,8 @@
 #!/usr/bin/env node
 /**
  * Durées trajet PMI ↔ nouvelles PMI (via OSRM, comme le catalogue CSV d’origine).
- * Usage : node scripts/generate-pmi-new-pairs-osrm.mjs > /tmp/pmi-new-lines.txt 2>/tmp/osrm.log
+ * Usage : node scripts/generate-pmi-new-pairs-osrm.mjs [id…] > /tmp/pmi-new-lines.txt 2>/tmp/osrm.log
+ * Exemple : node scripts/generate-pmi-new-pairs-osrm.mjs 201 202 203 204
  */
 
 import fs from 'fs';
@@ -13,8 +14,10 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(__dirname, '..');
 const PMI_ADDR_FILE = join(ROOT, 'pmi_addresses.js');
 
-const NEW_IDS = [198, 199, 200];
+const NEW_IDS = process.argv.slice(2).map(Number).filter((n) => !Number.isNaN(n));
 const DEPOT_ID = 197;
+/** Dernier id du catalogue CSV d’origine (avant ajouts manuels) */
+const CATALOG_MAX_ID = 196;
 
 const MAMAMA_COORDS = { lat: 48.90355834151138, lng: 2.378094237324154 };
 
@@ -61,8 +64,11 @@ async function main() {
   for (const p of PMI_ADDRESSES) coordsById[p.id] = { lat: p.lat, lng: p.lng };
   coordsById[DEPOT_ID] = MAMAMA_COORDS;
 
-  /** Ne pas inclure les tout derniers ids (nouvelles PMI) dans le « socle » catalogue */
-  const legacyMax = Math.max(...PMI_ADDRESSES.filter((p) => !NEW_IDS.includes(p.id)).map((p) => p.id));
+  if (NEW_IDS.length === 0) {
+    console.error('Usage: node scripts/generate-pmi-new-pairs-osrm.mjs <id> [id…]');
+    process.exit(1);
+  }
+
   for (const id of NEW_IDS) {
     if (!coordsById[id]) {
       console.error(`Id ${id} manquant`);
@@ -70,7 +76,15 @@ async function main() {
     }
   }
 
-  const oldSide = [...Array.from({ length: legacyMax + 1 }, (_, i) => i), DEPOT_ID];
+  /** Socle : catalogue 0–196, dépôt 197, puis PMI déjà ajoutées manuellement */
+  const previouslyAdded = PMI_ADDRESSES.map((p) => p.id).filter(
+    (id) => id > CATALOG_MAX_ID && !NEW_IDS.includes(id) && id !== DEPOT_ID
+  );
+  const oldSide = [
+    ...Array.from({ length: CATALOG_MAX_ID + 1 }, (_, i) => i),
+    DEPOT_ID,
+    ...previouslyAdded.sort((a, b) => a - b),
+  ];
   /** @type {{ pairs: () => Promise<[string,string]>, label: string }[]} */
   const work = [];
 
