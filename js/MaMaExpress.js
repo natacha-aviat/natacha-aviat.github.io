@@ -192,7 +192,9 @@ function initializeFromJS() {
         lat: pmi.lat,
         lng: pmi.lng,
         telephone: pmi.telephone != null ? pmi.telephone : ''
-    }));
+    })).sort((a, b) =>
+        (a.nom || '').localeCompare(b.nom || '', 'fr', { sensitivity: 'base' })
+    );
     
     filteredPmis = [...allPmis];
     displayPmis();
