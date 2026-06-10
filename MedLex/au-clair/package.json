@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "export:tunnel": "STATIC_EXPORT=1 NEXT_PUBLIC_BASE_PATH=/MedLex/tunnel next build && node scripts/sync-tunnel.mjs",
+    "sync:redirects": "node scripts/sync-redirects.mjs",
     "start": "next start",
     "lint": "eslint"
   },
