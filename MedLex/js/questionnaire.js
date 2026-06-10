@@ -165,9 +165,17 @@
         step++;
         render();
       } else {
+        if (window.ParcoursSnapshot) {
+          window.ParcoursSnapshot.save();
+        }
         window.location.href = "apercu.html";
       }
     });
+  }
+
+  if (window.ParcoursSnapshot && window.ParcoursSnapshot.restorePending()) {
+    type = selectedValue("type") || type;
+    updateConditionals();
   }
 
   render();

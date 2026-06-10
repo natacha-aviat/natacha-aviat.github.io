@@ -7,15 +7,21 @@ import { escapeHtml, jsonLiteralForEmbeddedParse } from './utils.js';
 import { collectQuestionnaireSnapshot } from './snapshot.js';
 import { buildContractRenderedHtml } from './render-html.js';
 
-function getHtml2PdfScriptUrl() {
+function getMedLexAssetUrl(filename) {
   if (typeof window !== 'undefined' && window.location && window.location.href) {
     try {
-      return new URL('html2pdf.bundle.min.js', window.location.href).href;
+      var inParcours = /\/parcours\//.test(window.location.pathname);
+      var rel = inParcours ? '../' + filename : filename;
+      return new URL(rel, window.location.href).href;
     } catch {
       /* ignore */
     }
   }
-  return './html2pdf.bundle.min.js';
+  return './' + filename;
+}
+
+function getHtml2PdfScriptUrl() {
+  return getMedLexAssetUrl('html2pdf.bundle.min.js');
 }
 
 /**
@@ -59,10 +65,18 @@ export function buildHtmlPreviewDocument(bodyText, answers, opts) {
   const statusHtml = autoPdf
     ? '<p id="medlex-pdf-auto-status" class="medlex-no-print" style="margin:0 0 12px;font-size:14px;color:#245fda;font-weight:600">Le contrat s’affiche ci-dessous. Le PDF va se télécharger automatiquement…</p>'
     : '';
-  const qPageUrlStr =
-    typeof window !== 'undefined' && window.location && window.location.href
-      ? String(window.location.href).split('#')[0]
-      : '';
+  let qPageUrlStr = '';
+  if (typeof window !== 'undefined' && window.location && window.location.href) {
+    try {
+      if (/\/parcours\//.test(window.location.pathname)) {
+        qPageUrlStr = new URL('questionnaire.html', window.location.href).href.split('#')[0];
+      } else {
+        qPageUrlStr = String(window.location.href).split('#')[0];
+      }
+    } catch {
+      qPageUrlStr = String(window.location.href).split('#')[0];
+    }
+  }
   const questionnairePageUrlJson = JSON.stringify(qPageUrlStr);
 
   return `<!doctype html>

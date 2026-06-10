@@ -30,75 +30,21 @@
       </p>
       <span class="ac-unlocked-badge">✓ Texte complet débloqué</span>
 
-      <div class="ac-contract-doc" tabindex="0" aria-label="Aperçu du contrat de remplacement">
+      <div class="ac-contract-doc" id="contract-doc" tabindex="0" aria-label="Aperçu du contrat de remplacement" aria-busy="true">
         <p class="ac-contract-doc__title">Contrat de remplacement infirmier libéral</p>
-        <p class="ac-contract-doc__subtitle">Entre Marie Dupont et Dr. Martin · Remplacement continu</p>
-
-        <article class="ac-contract-doc__article">
-          <h2>Article 1 — Durée du remplacement</h2>
-          <p>
-            Le présent contrat est conclu pour une période déterminée, du 1<sup>er</sup> juillet 2026 au 31
-            décembre 2026 inclusivement. Toute prolongation devra faire l'objet d'un avenant écrit signé par
-            les deux parties, conformément aux règles ordinales applicables.
-          </p>
-        </article>
-
-        <article class="ac-contract-doc__article">
-          <h2>Article 2 — Modalités de facturation</h2>
-          <p>
-            Pendant la durée du remplacement, la remplaçante exercera en facturation directe sous son propre
-            numéro CPS. Elle s'engage à établir les feuilles de soins et à assurer le suivi administratif
-            afférent. Le remplacé lui transmettra les éléments nécessaires à la continuité des soins dans un
-            délai de quarante-huit heures.
-          </p>
-        </article>
-
-        <article class="ac-contract-doc__article">
-          <h2>Article 3 — Redevance au remplacé</h2>
-          <p>
-            À titre de compensation pour la mise à disposition du cabinet et du fichier patients, la
-            remplaçante versera au remplacé une redevance mensuelle fixée à 15 % du chiffre d'affaires net
-            encaissé, payable au plus tard le 10 de chaque mois pour le mois précédent.
-          </p>
-        </article>
-
-        <article class="ac-contract-doc__article">
-          <h2>Article 4 — Résiliation anticipée</h2>
-          <p>
-            Chaque partie pourra mettre fin au contrat moyennant un préavis de quinze jours notifié par
-            lettre recommandée avec accusé de réception, sauf cas de force majeure ou de manquement grave
-            d'une partie à ses obligations.
-          </p>
-        </article>
-
-        <article class="ac-contract-doc__article">
-          <h2>Article 5 — Responsabilité professionnelle</h2>
-          <p>
-            La remplaçante déclare être titulaire d'une assurance responsabilité civile professionnelle en
-            cours de validité couvrant son activité de remplacement. Elle s'engage à respecter le Code de
-            déontologie infirmier et les obligations déclaratives auprès de l'Ordre.
-          </p>
-        </article>
-
-        <article class="ac-contract-doc__article">
-          <h2>Article 6 — Non-concurrence</h2>
-          <p>
-            En cas de remplacement d'une durée supérieure à trois mois, les parties conviennent d'une clause
-            de non-concurrence limitée au secteur géographique du cabinet remplacé, pour une durée maximale
-            de six mois à compter de la fin du remplacement, dans les conditions prévues par la réglementation
-            en vigueur.
-          </p>
-        </article>
+        <p class="ac-contract-doc__subtitle ac-contract-doc__loading">Génération du texte en cours…</p>
       </div>
 
       <div class="ac-btn-row ac-btn-row--stack">
-        <button type="button" class="ac-btn ac-btn--secondary ac-btn--full" onclick="alert('Téléchargement PDF simulé — génération réelle à venir.')">
-          Télécharger le PDF (simulation)
+        <button type="button" class="ac-btn ac-btn--secondary ac-btn--full" id="download-pdf" disabled>
+          Télécharger le PDF
         </button>
         <a class="ac-btn ac-btn--primary ac-btn--full" href="signature.html">Passer à la signature</a>
       </div>
-      <p class="ac-microcopy--xs">Maquette — aucun PDF réel n'est généré.</p>
+      <p class="ac-microcopy--xs">Texte généré à partir de tes réponses au questionnaire.</p>
     </main>
   </div>
+  <script src="../js/parcours-snapshot.js"></script>
+  <script type="module" src="../js/contrat-page.js"></script>
 </body>
 </html>

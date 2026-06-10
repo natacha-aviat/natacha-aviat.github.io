@@ -832,6 +832,24 @@ a {
   margin-bottom: 0;
 }
 
+.ac-contract-doc__body p {
+  margin: 0 0 0.5rem;
+  color: var(--ac-muted);
+}
+
+.ac-contract-doc__body p:last-child {
+  margin-bottom: 0;
+}
+
+.ac-contract-doc__body strong {
+  color: var(--ac-ink);
+  font-weight: 600;
+}
+
+.ac-contract-doc__loading {
+  font-style: italic;
+}
+
 .ac-btn-row--stack {
   margin-top: 1.5rem;
 }
