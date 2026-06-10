@@ -18,8 +18,8 @@
       </div>
       <div class="ac-shell-header__progress">
         <div class="ac-progress">
-          <div class="ac-progress__meta"><span>Étape 6 sur 8</span><span class="ac-progress__pct">75 %</span></div>
-          <div class="ac-progress__track"><div class="ac-progress__fill" style="width:75%"></div></div>
+          <div class="ac-progress__meta"><span>Étape 6 sur 9</span><span class="ac-progress__pct">67 %</span></div>
+          <div class="ac-progress__track"><div class="ac-progress__fill" style="width:67%"></div></div>
         </div>
       </div>
     </header>
@@ -31,16 +31,16 @@
       </div>
       <p class="ac-price">Montant : 29 € TTC / contrat</p>
       <div class="ac-stack-sm ac-spacer-lg">
-        <button type="button" class="ac-choice ac-choice--selected">
+        <button type="button" class="ac-choice ac-choice--selected" data-select="paiement" data-value="ma-part">
           <p class="ac-choice__title">Je paie ma part</p>
           <p class="ac-choice__desc">14,50 € — ta moitié du contrat</p>
         </button>
-        <button type="button" class="ac-choice">
+        <button type="button" class="ac-choice" data-select="paiement" data-value="tout">
           <p class="ac-choice__title">Je paie tout</p>
           <p class="ac-choice__desc">29 € — tu règles les deux parts d'un coup</p>
         </button>
       </div>
-      <a class="ac-btn ac-btn--primary ac-btn--full" href="signature.html">Payer (simulation)</a>
+      <a class="ac-btn ac-btn--primary ac-btn--full" href="contrat.html">Payer (simulation)</a>
       <p class="ac-microcopy--xs">Aucun paiement réel — Stripe viendra plus tard.</p>
     </main>
   </div>
@@ -51,4 +51,5 @@
       <a class="ac-simulate__btn" href="paiement-rembourse.html">Simuler : remboursement 1 mois</a>
     </div>
   </div>
+  <script src="../js/choices.js"></script>
 </body></html>

@@ -1,7 +1,7 @@
 (function () {
-  var STEPS = 5;
+  var STEPS = 13;
   var step = 0;
-  var type = "continu";
+  var type = "continue";
 
   var steps = document.querySelectorAll(".ac-q-step");
   var label = document.getElementById("q-label");
@@ -10,9 +10,91 @@
   var backLink = document.getElementById("q-back");
   var prevBtn = document.getElementById("q-prev");
   var nextBtn = document.getElementById("q-next");
+
   var datesTitle = document.getElementById("dates-title");
   var datesContinu = document.getElementById("dates-continu");
-  var datesDiscontinu = document.getElementById("dates-discontinu");
+  var datesDiscontinuWrap = document.getElementById("dates-discontinu-wrap");
+  var motif = document.getElementById("motif");
+  var motifAutreWrap = document.getElementById("motif-autre-wrap");
+  var modeExercice = document.getElementById("mode-exercice");
+  var blocAssocies = document.getElementById("bloc-associes");
+  var alerteAssocies = document.getElementById("alerte-associes");
+  var multi = document.getElementById("multi-remplacements");
+  var alerteMulti = document.getElementById("alerte-multi");
+  var lieu = document.getElementById("lieu");
+  var adresseLieu = document.getElementById("adresse-lieu");
+  var rAdresse = document.getElementById("r-adresse");
+  var rpAdresse = document.getElementById("rp-adresse");
+  var blocTiersPayant = document.getElementById("bloc-tiers-payant");
+  var blocTauxRedevance = document.getElementById("bloc-taux-redevance");
+  var blocAnnexesTexte = document.getElementById("bloc-annexes-texte");
+  var alerteTemporaire = document.getElementById("alerte-temporaire");
+  var alerteAccord = document.getElementById("alerte-accord");
+
+  function selectedValue(group) {
+    var btn = document.querySelector('[data-select="' + group + '"].ac-choice--selected');
+    return btn ? btn.getAttribute("data-value") : null;
+  }
+
+  function toggle(el, show) {
+    if (el) el.classList.toggle("ac-hidden", !show);
+  }
+
+  function updateConditionals() {
+    var isContinu = type === "continue";
+    if (step === 1) {
+      if (datesTitle) {
+        datesTitle.textContent = isContinu ? "Quelles dates ?" : "Quels jours / périodes ?";
+      }
+      toggle(datesContinu, isContinu);
+      toggle(datesDiscontinuWrap, !isContinu);
+    }
+
+    if (motif && motifAutreWrap) {
+      toggle(motifAutreWrap, motif.value === "autre");
+    }
+
+    if (modeExercice && blocAssocies) {
+      toggle(blocAssocies, modeExercice.value !== "seul");
+    }
+    if (alerteAssocies) {
+      toggle(alerteAssocies, selectedValue("associes") === "non");
+    }
+
+    if (multi && alerteMulti) {
+      toggle(alerteMulti, multi.value === "plus");
+    }
+
+    if (blocTiersPayant) {
+      toggle(blocTiersPayant, selectedValue("facturation") === "via-remplace");
+    }
+
+    if (blocTauxRedevance) {
+      toggle(blocTauxRedevance, selectedValue("redevance") === "oui");
+    }
+
+    if (blocAnnexesTexte) {
+      toggle(blocAnnexesTexte, selectedValue("annexes") === "oui");
+    }
+
+    if (alerteTemporaire) {
+      toggle(alerteTemporaire, selectedValue("temporaire") === "non");
+    }
+
+    if (alerteAccord) {
+      toggle(alerteAccord, selectedValue("accord") === "non");
+    }
+  }
+
+  function syncAdresseLieu() {
+    if (!lieu || !adresseLieu) return;
+    var v = lieu.value;
+    if (v === "cabinet-remplace" && rAdresse && rAdresse.value) {
+      adresseLieu.value = rAdresse.value;
+    } else if (v === "cabinet-remplacant" && rpAdresse && rpAdresse.value) {
+      adresseLieu.value = rpAdresse.value;
+    }
+  }
 
   function render() {
     var progress = Math.round(((step + 1) / STEPS) * 100);
@@ -24,26 +106,20 @@
     if (fill) fill.style.width = progress + "%";
     if (backLink) {
       backLink.href = step === 0 ? "verification-email.html" : "#";
-      backLink.onclick = step === 0 ? null : function (e) {
-        e.preventDefault();
-        step--;
-        render();
-      };
+      backLink.onclick =
+        step === 0
+          ? null
+          : function (e) {
+              e.preventDefault();
+              step--;
+              render();
+            };
     }
     if (nextBtn) {
       nextBtn.textContent = step === STEPS - 1 ? "Voir l'aperçu" : "Continuer";
     }
-    if (step === 1) {
-      if (type === "continu") {
-        if (datesTitle) datesTitle.textContent = "Quelles dates ?";
-        if (datesContinu) datesContinu.classList.remove("ac-hidden");
-        if (datesDiscontinu) datesDiscontinu.classList.add("ac-hidden");
-      } else {
-        if (datesTitle) datesTitle.textContent = "Quels jours / périodes ?";
-        if (datesContinu) datesContinu.classList.add("ac-hidden");
-        if (datesDiscontinu) datesDiscontinu.classList.remove("ac-hidden");
-      }
-    }
+    updateConditionals();
+    window.scrollTo({ top: 0, behavior: "smooth" });
   }
 
   document.querySelectorAll("[data-select]").forEach(function (btn) {
@@ -55,10 +131,22 @@
       btn.classList.add("ac-choice--selected");
       if (group === "type" && btn.getAttribute("data-value")) {
         type = btn.getAttribute("data-value");
-        if (step === 1) render();
       }
+      updateConditionals();
     });
   });
+
+  if (motif) motif.addEventListener("change", updateConditionals);
+  if (modeExercice) modeExercice.addEventListener("change", updateConditionals);
+  if (multi) multi.addEventListener("change", updateConditionals);
+  if (lieu) {
+    lieu.addEventListener("change", function () {
+      syncAdresseLieu();
+      updateConditionals();
+    });
+  }
+  if (rAdresse) rAdresse.addEventListener("blur", syncAdresseLieu);
+  if (rpAdresse) rpAdresse.addEventListener("blur", syncAdresseLieu);
 
   if (prevBtn) {
     prevBtn.addEventListener("click", function () {

@@ -18,17 +18,18 @@
       </div>
       <div class="ac-shell-header__progress">
         <div class="ac-progress">
-          <div class="ac-progress__meta"><span id="q-label">Question 1 sur 5</span><span class="ac-progress__pct" id="q-pct">20 %</span></div>
-          <div class="ac-progress__track"><div class="ac-progress__fill" id="q-fill" style="width:20%"></div></div>
+          <div class="ac-progress__meta"><span id="q-label">Question 1 sur 13</span><span class="ac-progress__pct" id="q-pct">8 %</span></div>
+          <div class="ac-progress__track"><div class="ac-progress__fill" id="q-fill" style="width:8%"></div></div>
         </div>
       </div>
     </header>
     <main class="ac-main">
+      <!-- 1. Type -->
       <section class="ac-q-step is-active" data-step="0">
         <h1 class="ac-title ac-title--sm ac-title--page">Quel type de remplacement ?</h1>
         <p class="ac-microcopy ac-spacer-sm">Pas de mauvaise réponse — on adapte les clauses.</p>
         <div class="ac-stack-sm ac-spacer-lg">
-          <button type="button" class="ac-choice ac-choice--selected" data-select="type" data-value="continu">
+          <button type="button" class="ac-choice ac-choice--selected" data-select="type" data-value="continue">
             <p class="ac-choice__title">Remplacement continu</p>
             <p class="ac-choice__desc">Du … au … sur une période déterminée</p>
           </button>
@@ -36,50 +37,228 @@
             <p class="ac-choice__title">Remplacement discontinu</p>
             <p class="ac-choice__desc">Certains jours ou périodes seulement</p>
           </button>
+          <button type="button" class="ac-choice" data-select="type" data-value="planning">
+            <p class="ac-choice__title">Planning variable</p>
+            <p class="ac-choice__desc">Jours ou créneaux selon un planning à préciser</p>
+          </button>
         </div>
       </section>
+
+      <!-- 2. Dates / périodes -->
       <section class="ac-q-step" data-step="1">
         <h1 class="ac-title ac-title--sm ac-title--page" id="dates-title">Quelles dates ?</h1>
         <p class="ac-microcopy ac-spacer-sm">Tu pourras ajuster plus tard — sans culpabilité.</p>
         <div class="ac-stack-md ac-spacer-lg" id="dates-continu">
-          <label class="ac-label">Date de début<input type="date" class="ac-input" /></label>
-          <label class="ac-label">Date de fin<input type="date" class="ac-input" /></label>
+          <label class="ac-label">Date de début<input type="date" id="date-debut" class="ac-input" /></label>
+          <label class="ac-label">Date de fin<input type="date" id="date-fin" class="ac-input" /></label>
         </div>
-        <textarea rows="4" class="ac-textarea ac-spacer-lg ac-hidden" id="dates-discontinu" placeholder="Ex. lundi/mercredi 7h–13h, week-end alterné…"></textarea>
+        <label class="ac-label ac-hidden" id="dates-discontinu-wrap">
+          Périodes concernées
+          <textarea rows="4" id="periodes-discontinues" class="ac-textarea" placeholder="Ex. lundi/mercredi 7h–13h, week-end alterné…"></textarea>
+        </label>
       </section>
+
+      <!-- 3. Éligibilité -->
       <section class="ac-q-step" data-step="2">
+        <h1 class="ac-title ac-title--sm ac-title--page">Remplacement temporaire ?</h1>
+        <p class="ac-microcopy ac-spacer-sm">Le contrat de remplacement doit porter sur une durée déterminée.</p>
+        <div class="ac-choice-row ac-spacer-lg">
+          <button type="button" class="ac-choice ac-choice--selected" data-select="temporaire" data-value="oui">oui</button>
+          <button type="button" class="ac-choice" data-select="temporaire" data-value="non">non</button>
+        </div>
+        <p class="ac-microcopy ac-hidden ac-spacer-sm" id="alerte-temporaire">Un remplacement non temporaire relève d'un autre cadre — on t'oriente si besoin.</p>
+      </section>
+
+      <!-- 4. Motif -->
+      <section class="ac-q-step" data-step="3">
+        <h1 class="ac-title ac-title--sm ac-title--page">Motif du remplacement</h1>
+        <label class="ac-label ac-spacer-lg">
+          Motif principal
+          <select id="motif" class="ac-input">
+            <option value="conge-maternite">Congé maternité / paternité</option>
+            <option value="maladie">Maladie ou accident</option>
+            <option value="formation">Formation ou congé sabbatique</option>
+            <option value="autre">Autre</option>
+          </select>
+        </label>
+        <label class="ac-label ac-hidden" id="motif-autre-wrap">
+          Précise le motif
+          <input type="text" id="motif-autre-texte" class="ac-input" placeholder="Ex. congé sans solde…" />
+        </label>
+      </section>
+
+      <!-- 5. Remplacé·e -->
+      <section class="ac-q-step" data-step="4">
+        <h1 class="ac-title ac-title--sm ac-title--page">L'infirmier·ère remplacé·e</h1>
+        <div class="ac-stack-md ac-spacer-lg">
+          <label class="ac-label">Civilité
+            <select id="r-civilite" class="ac-input">
+              <option>Mme</option>
+              <option>M.</option>
+              <option>Dr</option>
+            </select>
+          </label>
+          <label class="ac-label">Nom et prénom<input id="r-nom" class="ac-input" value="Martin Claire" /></label>
+          <label class="ac-label">N° ordinal<input id="r-ordinal" class="ac-input" placeholder="Ex. 75 123 456 7" /></label>
+          <label class="ac-label">N° RPPS<input id="r-rpps" class="ac-input" placeholder="11 chiffres" /></label>
+          <label class="ac-label">Adresse professionnelle<textarea id="r-adresse" rows="2" class="ac-textarea">12 rue des Lilas, 75011 Paris</textarea></label>
+          <label class="ac-label">Mode d'exercice
+            <select id="mode-exercice" class="ac-input">
+              <option value="seul">Exercice seul·e</option>
+              <option value="associes">En association ou SEL</option>
+            </select>
+          </label>
+        </div>
+        <div class="ac-hidden ac-spacer-sm" id="bloc-associes">
+          <p class="ac-microcopy ac-spacer-sm">Les associé·e·s sont-ils informés et d'accord ?</p>
+          <div class="ac-choice-row">
+            <button type="button" class="ac-choice ac-choice--selected" data-select="associes" data-value="oui">oui</button>
+            <button type="button" class="ac-choice" data-select="associes" data-value="non">non</button>
+          </div>
+          <p class="ac-microcopy ac-hidden ac-spacer-sm" id="alerte-associes">L'accord des associé·e·s est en général requis — Me Violaine peut t'aider à cadrer ça.</p>
+        </div>
+      </section>
+
+      <!-- 6. Remplaçant·e -->
+      <section class="ac-q-step" data-step="5">
+        <h1 class="ac-title ac-title--sm ac-title--page">Toi, remplaçant·e</h1>
+        <div class="ac-stack-md ac-spacer-lg">
+          <label class="ac-label">Civilité
+            <select id="rp-civilite" class="ac-input">
+              <option>Mme</option>
+              <option>M.</option>
+            </select>
+          </label>
+          <label class="ac-label">Nom et prénom<input id="rp-nom" class="ac-input" value="Marie Dupont" /></label>
+          <label class="ac-label">N° ordinal<input id="rp-ordinal" class="ac-input" /></label>
+          <label class="ac-label">N° RPPS<input id="rp-rpps" class="ac-input" /></label>
+          <label class="ac-label">Statut
+            <select id="rp-statut" class="ac-input">
+              <option>Cabinet déjà installé·e</option>
+              <option>Première installation / autre situation</option>
+            </select>
+          </label>
+          <label class="ac-label">Adresse professionnelle<textarea id="rp-adresse" rows="2" class="ac-textarea"></textarea></label>
+          <label class="ac-label">Autres remplacements en cours ?
+            <select id="multi-remplacements" class="ac-input">
+              <option value="un">Un seul remplacement</option>
+              <option value="plus">Plusieurs remplacements simultanés</option>
+            </select>
+          </label>
+        </div>
+        <p class="ac-microcopy ac-hidden" id="alerte-multi">Plusieurs remplacements en parallèle : vérifie les règles ordinales — on t'alerte dans le contrat.</p>
+      </section>
+
+      <!-- 7. Lieu -->
+      <section class="ac-q-step" data-step="6">
+        <h1 class="ac-title ac-title--sm ac-title--page">Lieu d'exercice</h1>
+        <div class="ac-stack-md ac-spacer-lg">
+          <label class="ac-label" id="label-lieu">Lieu principal
+            <select id="lieu" class="ac-input">
+              <option value="cabinet-remplace">Cabinet du remplacé·e</option>
+              <option value="cabinet-remplacant">Cabinet du remplaçant·e</option>
+              <option value="autre">Autre lieu</option>
+            </select>
+          </label>
+          <label class="ac-label">Adresse du lieu<textarea id="adresse-lieu" rows="2" class="ac-textarea">12 rue des Lilas, 75011 Paris</textarea></label>
+        </div>
+      </section>
+
+      <!-- 8. Organisation -->
+      <section class="ac-q-step" data-step="7">
+        <h1 class="ac-title ac-title--sm ac-title--page">Organisation du remplacement</h1>
+        <p class="ac-microcopy ac-spacer-sm">Un accord préalable sur l'organisation des soins est-il prévu ?</p>
+        <div class="ac-choice-row ac-spacer-lg">
+          <button type="button" class="ac-choice ac-choice--selected" data-select="accord" data-value="oui">oui</button>
+          <button type="button" class="ac-choice" data-select="accord" data-value="non">non</button>
+        </div>
+        <p class="ac-microcopy ac-hidden" id="alerte-accord">On te recommande de prévoir un échange avant le début — une clause le rappellera dans le contrat.</p>
+      </section>
+
+      <!-- 9. Facturation -->
+      <section class="ac-q-step" data-step="8">
         <h1 class="ac-title ac-title--sm ac-title--page">Comment tu factures ?</h1>
         <p class="ac-microcopy ac-spacer-sm">On t'explique l'impact de chaque option.</p>
         <div class="ac-stack-sm ac-spacer-lg">
-          <button type="button" class="ac-choice ac-choice--selected" data-select="facturation">
+          <button type="button" class="ac-choice ac-choice--selected" data-select="facturation" data-value="directe">
             <p class="ac-choice__title">Facturation directe</p>
             <p class="ac-choice__desc">Tu factures toi-même pendant le remplacement</p>
           </button>
-          <button type="button" class="ac-choice" data-select="facturation">
+          <button type="button" class="ac-choice" data-select="facturation" data-value="via-remplace">
             <p class="ac-choice__title">Via la CPS du remplacé</p>
             <p class="ac-choice__desc">Le remplacé facture pour toi</p>
           </button>
         </div>
+        <div class="ac-hidden ac-stack-md" id="bloc-tiers-payant">
+          <label class="ac-label">Tiers payant pendant le remplacement ?
+            <select id="tiers-payant" class="ac-input">
+              <option value="non">Non</option>
+              <option value="oui">Oui</option>
+            </select>
+          </label>
+          <label class="ac-label">Taux de tiers payant (%)<input type="number" id="taux-tiers-payant" class="ac-input" min="0" max="100" placeholder="0" /></label>
+        </div>
       </section>
-      <section class="ac-q-step" data-step="3">
-        <h1 class="ac-title ac-title--sm ac-title--page">Une redevance au remplacé ?</h1>
+
+      <!-- 10. Redevance -->
+      <section class="ac-q-step" data-step="9">
+        <h1 class="ac-title ac-title--sm ac-title--page">Redevance au remplacé·e</h1>
         <div class="ac-choice-row ac-spacer-lg">
           <button type="button" class="ac-choice ac-choice--selected" data-select="redevance" data-value="oui">oui</button>
           <button type="button" class="ac-choice" data-select="redevance" data-value="non">non</button>
         </div>
+        <div class="ac-hidden ac-stack-md ac-spacer-lg" id="bloc-taux-redevance">
+          <label class="ac-label">Taux de redevance (%)<input type="number" id="taux-redevance" class="ac-input" min="0" max="100" placeholder="15" /></label>
+        </div>
+        <label class="ac-label">Mode de règlement
+          <select id="mode-reglement" class="ac-input">
+            <option>Virement bancaire</option>
+            <option>Chèque</option>
+            <option>Autre</option>
+          </select>
+        </label>
       </section>
-      <section class="ac-q-step" data-step="4">
-        <h1 class="ac-title ac-title--sm ac-title--page">Qui es-tu dans ce contrat ?</h1>
+
+      <!-- 11. Résiliation -->
+      <section class="ac-q-step" data-step="10">
+        <h1 class="ac-title ac-title--sm ac-title--page">Délais de résiliation</h1>
+        <p class="ac-microcopy ac-spacer-sm">Préavis en cas d'accord mutuel ou de manquement.</p>
         <div class="ac-stack-md ac-spacer-lg">
-          <label class="ac-label">Ton nom (remplaçant·e)<input class="ac-input" placeholder="Marie Dupont" value="Marie Dupont" /></label>
-          <label class="ac-label">Infirmier·ère remplacé·e<input class="ac-input" value="Dr. Martin" /></label>
+          <label class="ac-label">Préavis d'accord mutuel (jours)<input type="number" id="preavis-accord" class="ac-input" value="15" min="0" /></label>
+          <label class="ac-label">Préavis pour manquement (jours)<input type="number" id="preavis-manquement" class="ac-input" value="8" min="0" /></label>
         </div>
       </section>
+
+      <!-- 12. Non-concurrence -->
+      <section class="ac-q-step" data-step="11">
+        <h1 class="ac-title ac-title--sm ac-title--page">Clause de non-concurrence</h1>
+        <p class="ac-microcopy ac-spacer-sm">Utile si le remplacement dépasse 3 mois — on l'adapte au cadre légal.</p>
+        <div class="ac-choice-row ac-spacer-lg">
+          <button type="button" class="ac-choice" data-select="nonconcurrence" data-value="oui">oui</button>
+          <button type="button" class="ac-choice ac-choice--selected" data-select="nonconcurrence" data-value="non">non</button>
+        </div>
+      </section>
+
+      <!-- 13. Annexes -->
+      <section class="ac-q-step" data-step="12">
+        <h1 class="ac-title ac-title--sm ac-title--page">Annexes complémentaires ?</h1>
+        <div class="ac-choice-row ac-spacer-lg">
+          <button type="button" class="ac-choice" data-select="annexes" data-value="oui">oui</button>
+          <button type="button" class="ac-choice ac-choice--selected" data-select="annexes" data-value="non">non</button>
+        </div>
+        <label class="ac-label ac-hidden ac-spacer-lg" id="bloc-annexes-texte">
+          Liste ou description des annexes
+          <textarea id="annexes-texte" rows="4" class="ac-textarea" placeholder="Ex. liste des patients à charge, planning détaillé…"></textarea>
+        </label>
+      </section>
+
       <div class="ac-btn-row">
         <button type="button" class="ac-btn ac-btn--secondary" id="q-prev">Retour</button>
         <button type="button" class="ac-btn ac-btn--primary" id="q-next">Continuer</button>
       </div>
     </main>
   </div>
+  <script src="../js/choices.js"></script>
   <script src="../js/questionnaire.js"></script>
-</body></html>
+</body>
+</html>
