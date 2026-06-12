@@ -30,18 +30,27 @@ var TYPE_LABELS = {
   planning: 'Planning variable',
 };
 
-function showError(message) {
+function showError(message, questionnaireHref) {
   var doc = document.getElementById('contract-doc');
   if (!doc) return;
+  var href = questionnaireHref || 'questionnaire.html';
+  var isCollab = window.ParcoursType && window.ParcoursType.isCollaboration();
+  var title = isCollab
+    ? 'Contrat de collaboration infirmier libéral'
+    : 'Contrat de remplacement infirmier libéral';
   doc.innerHTML =
-    '<p class="ac-contract-doc__title">Contrat de remplacement infirmier libéral</p>' +
+    '<p class="ac-contract-doc__title">' +
+    title +
+    '</p>' +
     '<p class="ac-microcopy" style="margin-top:1rem;color:var(--ac-ink)">' +
     escapeHtml(message) +
     '</p>' +
-    '<p class="ac-microcopy ac-spacer-sm"><a href="questionnaire.html">Revenir au questionnaire</a></p>';
+    '<p class="ac-microcopy ac-spacer-sm"><a href="' +
+    escapeHtml(href) +
+    '">Revenir au questionnaire</a></p>';
 }
 
-function renderContract(docEl, bodyText, answers, Contract) {
+function renderRemplacementContract(docEl, bodyText, answers, Contract) {
   var subtitle =
     escapeHtml(answers.rpNom) +
     ' et ' +
@@ -60,44 +69,59 @@ function renderContract(docEl, bodyText, answers, Contract) {
     '</div>';
 }
 
-async function initContratPage() {
+function renderCollaborationContract(docEl, bodyText, answers, Contract) {
+  var subtitle = escapeHtml(answers.tNom) + ' et ' + escapeHtml(answers.cNom);
+
+  var bodyHtml = Contract.buildContractRenderedHtml(bodyText, answers);
+  docEl.innerHTML =
+    '<p class="ac-contract-doc__title">Contrat de collaboration infirmier libéral</p>' +
+    '<p class="ac-contract-doc__subtitle">' +
+    subtitle +
+    '</p>' +
+    '<div class="ac-contract-doc__body">' +
+    bodyHtml +
+    '</div>';
+}
+
+function updatePageChrome(isCollab) {
   var docEl = document.getElementById('contract-doc');
-  var pdfBtn = document.getElementById('download-pdf');
-  if (!docEl) return;
-
-  var isCollab = window.ParcoursType && window.ParcoursType.isCollaboration();
-  if (isCollab) {
-    showError(
-      'Le contrat de collaboration sera bientôt généré automatiquement. Pour l’instant, complète le questionnaire collaboration — la génération PDF arrive dans une prochaine version.'
+  if (docEl) {
+    docEl.setAttribute(
+      'aria-label',
+      isCollab ? 'Aperçu du contrat de collaboration' : 'Aperçu du contrat de remplacement'
     );
-    if (pdfBtn) pdfBtn.disabled = true;
-    return;
   }
+}
 
-  var snap = window.ParcoursSnapshot && window.ParcoursSnapshot.load();
+async function initCollaborationContrat(docEl, pdfBtn) {
+  var qHref = 'questionnaire-collaboration.html';
+
+  var snap =
+    window.ParcoursCollaborationSnapshot && window.ParcoursCollaborationSnapshot.load();
   if (!snap) {
     showError(
-      'Aucune réponse au questionnaire n’a été trouvée. Complète le questionnaire pour générer ton contrat.'
+      'Aucune réponse au questionnaire n’a été trouvée. Complète le questionnaire pour générer ton contrat.',
+      qHref
     );
     if (pdfBtn) pdfBtn.disabled = true;
     return;
   }
 
-  if (!window.ParcoursSnapshot.apply(snap)) {
-    showError('Impossible de restaurer les réponses du questionnaire.');
+  if (!window.ParcoursCollaborationSnapshot.apply(snap)) {
+    showError('Impossible de restaurer les réponses du questionnaire.', qHref);
     if (pdfBtn) pdfBtn.disabled = true;
     return;
   }
 
   try {
-    await loadScript('../medlex-contract-template-embedded.js');
-    var mod = await import('./contract/medlex-contract.js');
-    var Contract = mod.default || window.MedLexContract;
+    await loadScript('../medlex-collaboration-template-embedded.js');
+    await import('./contract/collaboration/medlex-collaboration-contract.js');
+    var Contract = window.MedLexCollaborationContract;
 
     var templateRaw = await Contract.loadTemplate();
     var answers = Contract.collectAnswers();
     var bodyText = Contract.buildContractText(templateRaw, answers);
-    renderContract(docEl, bodyText, answers, Contract);
+    renderCollaborationContract(docEl, bodyText, answers, Contract);
     docEl.removeAttribute('aria-busy');
 
     if (pdfBtn) {
@@ -111,9 +135,73 @@ async function initContratPage() {
     showError(
       e instanceof Error
         ? 'Erreur lors de la génération : ' + e.message
-        : 'Erreur lors de la génération du contrat.'
+        : 'Erreur lors de la génération du contrat.',
+      qHref
     );
     if (pdfBtn) pdfBtn.disabled = true;
+  }
+}
+
+async function initRemplacementContrat(docEl, pdfBtn) {
+  var qHref = 'questionnaire.html';
+
+  var snap = window.ParcoursSnapshot && window.ParcoursSnapshot.load();
+  if (!snap) {
+    showError(
+      'Aucune réponse au questionnaire n’a été trouvée. Complète le questionnaire pour générer ton contrat.',
+      qHref
+    );
+    if (pdfBtn) pdfBtn.disabled = true;
+    return;
+  }
+
+  if (!window.ParcoursSnapshot.apply(snap)) {
+    showError('Impossible de restaurer les réponses du questionnaire.', qHref);
+    if (pdfBtn) pdfBtn.disabled = true;
+    return;
+  }
+
+  try {
+    await loadScript('../medlex-contract-template-embedded.js');
+    var mod = await import('./contract/medlex-contract.js');
+    var Contract = mod.default || window.MedLexContract;
+
+    var templateRaw = await Contract.loadTemplate();
+    var answers = Contract.collectAnswers();
+    var bodyText = Contract.buildContractText(templateRaw, answers);
+    renderRemplacementContract(docEl, bodyText, answers, Contract);
+    docEl.removeAttribute('aria-busy');
+
+    if (pdfBtn) {
+      pdfBtn.disabled = false;
+      pdfBtn.addEventListener('click', function () {
+        Contract.downloadPdf();
+      });
+    }
+  } catch (e) {
+    console.error(e);
+    showError(
+      e instanceof Error
+        ? 'Erreur lors de la génération : ' + e.message
+        : 'Erreur lors de la génération du contrat.',
+      qHref
+    );
+    if (pdfBtn) pdfBtn.disabled = true;
+  }
+}
+
+async function initContratPage() {
+  var docEl = document.getElementById('contract-doc');
+  var pdfBtn = document.getElementById('download-pdf');
+  if (!docEl) return;
+
+  var isCollab = window.ParcoursType && window.ParcoursType.isCollaboration();
+  updatePageChrome(isCollab);
+
+  if (isCollab) {
+    await initCollaborationContrat(docEl, pdfBtn);
+  } else {
+    await initRemplacementContrat(docEl, pdfBtn);
   }
 }
 

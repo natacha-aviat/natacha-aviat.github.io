@@ -6,9 +6,11 @@
   var params = new URLSearchParams(window.location.search);
   var preset = params.get("type");
   if (preset === "remplacement" || preset === "collaboration") {
-    document.querySelectorAll('[data-select="parcours"]').forEach(function (btn) {
-      btn.classList.toggle("ac-choice--selected", btn.getAttribute("data-value") === preset);
-    });
+    if (window.ParcoursType) {
+      window.ParcoursType.set(preset);
+    }
+    window.location.replace("email.html?type=" + encodeURIComponent(preset));
+    return;
   }
 
   function selectedParcours() {

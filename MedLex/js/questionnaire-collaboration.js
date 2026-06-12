@@ -1,7 +1,6 @@
 (function () {
   var STEPS = 10;
   var step = 0;
-  var STORAGE_KEY = "medlex-parcours-collaboration-snapshot";
 
   var steps = document.querySelectorAll(".ac-q-step");
   var label = document.getElementById("q-label");
@@ -35,33 +34,6 @@
 
     if (step === 4 && lieuAdresse && tAdresse && !lieuAdresse.value && tAdresse.value) {
       lieuAdresse.value = tAdresse.value;
-    }
-  }
-
-  function collectSnapshot() {
-    var fields = {};
-    var radios = {};
-    document.querySelectorAll("input[id], select[id], textarea[id]").forEach(function (el) {
-      var t = el.type;
-      if (t === "radio" || t === "button" || t === "submit") return;
-      if (t === "checkbox") return;
-      fields[el.id] = el.value;
-    });
-    document.querySelectorAll('input[name="moyens"]:checked').forEach(function (el, i) {
-      fields["moyen-" + i] = el.value;
-    });
-    ["patientele-unite", "patientele-periode", "collab-unite", "collab-periode", "forfait-mode", "redevance-type", "duree-type"].forEach(function (g) {
-      var v = selectedValue(g);
-      if (v) radios[g] = v;
-    });
-    return { version: 1, parcours: "collaboration", fields: fields, radios: radios };
-  }
-
-  function saveSnapshot() {
-    try {
-      sessionStorage.setItem(STORAGE_KEY, JSON.stringify(collectSnapshot()));
-    } catch (e) {
-      /* ignore */
     }
   }
 
@@ -120,7 +92,9 @@
         step++;
         render();
       } else {
-        saveSnapshot();
+        if (window.ParcoursCollaborationSnapshot) {
+          window.ParcoursCollaborationSnapshot.save();
+        }
         window.location.href = "apercu.html";
       }
     });
@@ -128,6 +102,10 @@
 
   if (window.ParcoursType) {
     window.ParcoursType.set("collaboration");
+  }
+
+  if (window.ParcoursCollaborationSnapshot && window.ParcoursCollaborationSnapshot.restorePending()) {
+    updateConditionals();
   }
 
   render();

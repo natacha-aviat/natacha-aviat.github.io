@@ -27,10 +27,10 @@ function getHtml2PdfScriptUrl() {
 /**
  * @param {Record<string, unknown>} [html2canvasExtra] fusionné dans html2canvas (ex. onclone).
  */
-export function html2PdfOptions(html2canvasExtra) {
+export function html2PdfOptions(html2canvasExtra, filename) {
   return {
     margin: [12, 12, 12, 12],
-    filename: PDF_FILENAME,
+    filename: filename || PDF_FILENAME,
     image: { type: 'jpeg', quality: 0.95 },
     html2canvas: Object.assign(
       {
@@ -49,7 +49,7 @@ export function html2PdfOptions(html2canvasExtra) {
 /**
  * @param {string} bodyText
  * @param {Record<string, string|boolean>} answers
- * @param {{ autoDownloadPdf?: boolean; formSnapshot?: object }} [opts]
+ * @param {{ autoDownloadPdf?: boolean; formSnapshot?: object; questionnairePageUrl?: string; pdfFilename?: string; pendingRestoreKey?: string; previewTitle?: string; buildRenderedHtml?: Function }} [opts]
  */
 export function buildHtmlPreviewDocument(bodyText, answers, opts) {
   const o = opts || {};
@@ -58,15 +58,19 @@ export function buildHtmlPreviewDocument(bodyText, answers, opts) {
     o.formSnapshot != null && typeof o.formSnapshot === 'object'
       ? o.formSnapshot
       : collectQuestionnaireSnapshot();
-  const rendered = buildContractRenderedHtml(bodyText, answers);
+  const renderFn = typeof o.buildRenderedHtml === 'function' ? o.buildRenderedHtml : buildContractRenderedHtml;
+  const rendered = renderFn(bodyText, answers);
   const h2p = getHtml2PdfScriptUrl();
-  const pdfOptsLiteral = jsonLiteralForEmbeddedParse(html2PdfOptions());
+  const pdfFilename = o.pdfFilename || PDF_FILENAME;
+  const pendingRestoreKey = o.pendingRestoreKey || STORAGE_KEY_PENDING_RESTORE;
+  const previewTitle = o.previewTitle || 'Aperçu contrat de remplacement';
+  const pdfOptsLiteral = jsonLiteralForEmbeddedParse(html2PdfOptions({}, pdfFilename));
   const snapLiteral = jsonLiteralForEmbeddedParse(snap);
   const statusHtml = autoPdf
     ? '<p id="medlex-pdf-auto-status" class="medlex-no-print" style="margin:0 0 12px;font-size:14px;color:#245fda;font-weight:600">Le contrat s’affiche ci-dessous. Le PDF va se télécharger automatiquement…</p>'
     : '';
-  let qPageUrlStr = '';
-  if (typeof window !== 'undefined' && window.location && window.location.href) {
+  let qPageUrlStr = o.questionnairePageUrl || '';
+  if (!qPageUrlStr && typeof window !== 'undefined' && window.location && window.location.href) {
     try {
       if (/\/parcours\//.test(window.location.pathname)) {
         qPageUrlStr = new URL('questionnaire.html', window.location.href).href.split('#')[0];
@@ -84,7 +88,7 @@ export function buildHtmlPreviewDocument(bodyText, answers, opts) {
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Aperçu contrat de remplacement</title>
+  <title>${escapeHtml(previewTitle)}</title>
   <style>
     body { margin: 0; background: #f3f6fc; font-family: Inter, Segoe UI, Roboto, Arial, sans-serif; color: #111; }
     main {
@@ -165,10 +169,10 @@ export function buildHtmlPreviewDocument(bodyText, answers, opts) {
     if (qPageUrl) {
       var json = JSON.stringify(snap);
       try {
-        sessionStorage.setItem(${JSON.stringify(STORAGE_KEY_PENDING_RESTORE)}, json);
+        sessionStorage.setItem(${JSON.stringify(pendingRestoreKey)}, json);
       } catch (e3) {
         try {
-          localStorage.setItem(${JSON.stringify(STORAGE_KEY_PENDING_RESTORE)}, json);
+          localStorage.setItem(${JSON.stringify(pendingRestoreKey)}, json);
         } catch (e4) {
           window.alert(
             'Impossible d’enregistrer les données localement. Autorisez le stockage pour ce site ou désactivez le mode privé restreint.'
