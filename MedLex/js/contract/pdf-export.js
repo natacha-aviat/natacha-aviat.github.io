@@ -15,17 +15,42 @@ import { pdfLog, pdfWarn, pdfError } from './pdf-debug.js';
 
 let engineReady = false;
 
-function getHtml2PdfScriptUrl() {
+function getJsPdfScriptUrl() {
   if (typeof window !== 'undefined' && window.location && window.location.href) {
     try {
       const inParcours = /\/parcours\//.test(window.location.pathname);
-      const rel = inParcours ? '../html2pdf.bundle.min.js' : './html2pdf.bundle.min.js';
+      const rel = inParcours ? '../jspdf.umd.min.js' : './jspdf.umd.min.js';
       return new URL(rel, window.location.href).href;
     } catch {
       /* ignore */
     }
   }
-  return './html2pdf.bundle.min.js';
+  return './jspdf.umd.min.js';
+}
+
+function waitForJsPdf(maxMs) {
+  const deadline = Date.now() + (maxMs || 12000);
+  return new Promise(function (resolve, reject) {
+    function tick() {
+      if (jsPdfAvailable()) {
+        pdfLog('jsPDF détecté après attente');
+        resolve();
+        return;
+      }
+      if (Date.now() >= deadline) {
+        reject(
+          new Error(
+            'jsPDF introuvable après ' +
+              maxMs +
+              ' ms — vérifiez que jspdf.umd.min.js est bien chargé.'
+          )
+        );
+        return;
+      }
+      window.setTimeout(tick, 50);
+    }
+    tick();
+  });
 }
 
 function jsPdfAvailable() {
@@ -34,49 +59,33 @@ function jsPdfAvailable() {
 
 function loadJsPdf() {
   if (jsPdfAvailable()) {
-    pdfLog('jsPDF déjà disponible', {
-      html2pdf: typeof window.html2pdf,
-      jspdf: typeof window.jspdf,
-    });
+    pdfLog('jsPDF déjà disponible', { jspdf: typeof window.jspdf });
     return Promise.resolve();
   }
-  pdfLog('Chargement jsPDF…', getHtml2PdfScriptUrl());
+
+  const scriptUrl = getJsPdfScriptUrl();
+  pdfLog('Chargement jsPDF…', scriptUrl);
+
+  const existing =
+    document.querySelector('script[data-medlex-jspdf="1"]') ||
+    document.querySelector('script[data-medlex-html2pdf="1"]');
+
+  if (existing) {
+    pdfLog('Balise script jsPDF déjà présente', { src: existing.src });
+    return waitForJsPdf(12000);
+  }
+
   return new Promise(function (resolve, reject) {
-    const existing = document.querySelector('script[data-medlex-html2pdf="1"]');
-    if (existing) {
-      pdfLog('Balise script html2pdf déjà présente', { src: existing.src });
-      if (jsPdfAvailable()) {
-        pdfLog('jsPDF disponible après détection script existant');
-        resolve();
-        return;
-      }
-      existing.addEventListener('load', function () {
-        pdfLog('Événement load script html2pdf', { jsPdfOk: jsPdfAvailable() });
-        resolve();
-      });
-      existing.addEventListener('error', function () {
-        pdfError('Échec chargement script html2pdf');
-        reject(new Error('Impossible de charger jsPDF'));
-      });
-      window.setTimeout(function () {
-        pdfLog('Vérification différée jsPDF', { jsPdfOk: jsPdfAvailable() });
-        if (jsPdfAvailable()) {
-          resolve();
-        }
-      }, 0);
-      return;
-    }
     const s = document.createElement('script');
-    s.src = getHtml2PdfScriptUrl();
+    s.src = scriptUrl;
     s.async = false;
-    s.setAttribute('data-medlex-html2pdf', '1');
+    s.setAttribute('data-medlex-jspdf', '1');
     s.onload = function () {
-      pdfLog('Script html2pdf chargé', { jsPdfOk: jsPdfAvailable() });
-      resolve();
+      waitForJsPdf(3000).then(resolve).catch(reject);
     };
     s.onerror = function () {
-      pdfError('Script html2pdf introuvable', s.src);
-      reject(new Error('Impossible de charger jsPDF'));
+      pdfError('Script jsPDF introuvable', s.src);
+      reject(new Error('Impossible de charger jsPDF : ' + s.src));
     };
     document.head.appendChild(s);
   });
@@ -94,7 +103,12 @@ export async function preloadPdfEngine() {
       throw new Error('jsPDF indisponible après chargement');
     }
     const pdf = new window.jspdf.jsPDF({ unit: 'mm', format: 'a4', orientation: 'portrait' });
-    const hasInter = await registerInterFonts(pdf);
+    let hasInter = false;
+    try {
+      hasInter = await registerInterFonts(pdf);
+    } catch (fontErr) {
+      pdfWarn('Polices Inter ignorées, Helvetica sera utilisée', fontErr);
+    }
     engineReady = true;
     pdfLog('Moteur PDF prêt', {
       dureeMs: Math.round(performance.now() - t0),
@@ -106,6 +120,14 @@ export async function preloadPdfEngine() {
     pdfError('Échec préchargement moteur PDF', e);
     throw e;
   }
+}
+
+/** @returns {Promise<void>} */
+export function ensurePdfEngineReady() {
+  if (engineReady && jsPdfAvailable()) {
+    return Promise.resolve();
+  }
+  return preloadPdfEngine();
 }
 
 export function isPdfEngineReady() {

@@ -94,10 +94,14 @@ function updatePageChrome(isCollab) {
 }
 
 var pdfExportModule = null;
+var pdfPreloadPromise = null;
 
 function preloadPdfEngine() {
+  if (pdfPreloadPromise) {
+    return pdfPreloadPromise;
+  }
   console.log('[MedLex PDF]', 'contrat-page : démarrage préchargement…');
-  return import('./contract/pdf-export.js')
+  pdfPreloadPromise = import('./contract/pdf-export.js')
     .then(function (mod) {
       console.log('[MedLex PDF]', 'contrat-page : module pdf-export importé');
       pdfExportModule = mod;
@@ -109,14 +113,30 @@ function preloadPdfEngine() {
       });
     })
     .catch(function (e) {
+      pdfPreloadPromise = null;
       console.error('[MedLex PDF]', 'contrat-page : échec préchargement', e);
+      throw e;
     });
+  return pdfPreloadPromise;
 }
 
 function wirePdfDownload(pdfBtn, docEl, filename) {
   if (!pdfBtn || !docEl) return;
-  pdfBtn.disabled = false;
-  preloadPdfEngine();
+
+  var labelReady = 'Télécharger le PDF';
+  pdfBtn.disabled = true;
+  pdfBtn.textContent = 'Préparation du PDF…';
+
+  preloadPdfEngine()
+    .then(function () {
+      pdfBtn.disabled = false;
+      pdfBtn.textContent = labelReady;
+    })
+    .catch(function () {
+      pdfBtn.disabled = false;
+      pdfBtn.textContent = labelReady;
+    });
+
   pdfBtn.addEventListener('click', function () {
     var prev = pdfBtn.textContent;
     pdfBtn.disabled = true;
@@ -127,33 +147,51 @@ function wirePdfDownload(pdfBtn, docEl, filename) {
       pret: pdfExportModule ? pdfExportModule.isPdfEngineReady() : false,
       contractDoc: Boolean(docEl && docEl.querySelector('.ac-contract-doc__body')),
     });
-    try {
-      if (!pdfExportModule) {
-        throw new Error(
-          'Module PDF non chargé — patientez une seconde et réessayez.'
-        );
-      }
-      if (!pdfExportModule.isPdfEngineReady()) {
-        throw new Error(
-          'Le moteur PDF se prépare encore — patientez une seconde et réessayez.'
-        );
-      }
+
+    function runDownload() {
       pdfExportModule.downloadContractPdfNow({
         filename: filename,
         sourceElement: docEl,
       });
-    } catch (e) {
-      console.error('[MedLex PDF]', 'contrat-page : erreur au clic', e);
-      alert(
-        e instanceof Error
-          ? 'Impossible de générer le PDF : ' + e.message
-          : 'Impossible de générer le PDF.'
-      );
-      preloadPdfEngine();
-    } finally {
-      pdfBtn.disabled = false;
-      pdfBtn.textContent = prev || 'Télécharger le PDF';
     }
+
+    function resetBtn() {
+      pdfBtn.disabled = false;
+      pdfBtn.textContent = prev || labelReady;
+    }
+
+    if (pdfExportModule && pdfExportModule.isPdfEngineReady()) {
+      try {
+        runDownload();
+      } catch (e) {
+        console.error('[MedLex PDF]', 'contrat-page : erreur au clic', e);
+        alert(
+          e instanceof Error
+            ? 'Impossible de générer le PDF : ' + e.message
+            : 'Impossible de générer le PDF.'
+        );
+      } finally {
+        resetBtn();
+      }
+      return;
+    }
+
+    (pdfExportModule ? pdfExportModule.ensurePdfEngineReady() : preloadPdfEngine())
+      .then(function () {
+        if (!pdfExportModule) {
+          throw new Error('Module PDF non chargé.');
+        }
+        runDownload();
+      })
+      .catch(function (e) {
+        console.error('[MedLex PDF]', 'contrat-page : erreur au clic', e);
+        alert(
+          e instanceof Error
+            ? 'Impossible de générer le PDF : ' + e.message
+            : 'Impossible de générer le PDF.'
+        );
+      })
+      .finally(resetBtn);
   });
 }
 
