@@ -21,6 +21,7 @@ export const PDF_TYPO = {
   body: 10,
   article: 10.5,
   tocHeading: 11,
+  tocHeadingLineHeight: 5.5,
   tocTitle: 9.5,
   tocAvocate: 8,
   tocAvocateLineHeight: 4.2,

@@ -56,6 +56,10 @@
     if (parts.length > 1) return parts.slice(1).join(" \u2013 ").trim();
     return String(heading || "").trim();
   }
+  function tocDisplayTitle(section) {
+    if (section.isPreamble) return "PR\xC9AMBULE ET IDENTIFICATION DES PARTIES";
+    return titleFromHeading(section.heading).toUpperCase();
+  }
   function shortLabelFromKey(key, isPreamble) {
     if (isPreamble) return "Intro";
     if (key === "misc") return "Passage";
@@ -546,6 +550,7 @@
         body: 10,
         article: 10.5,
         tocHeading: 11,
+        tocHeadingLineHeight: 5.5,
         tocTitle: 9.5,
         tocAvocate: 8,
         tocAvocateLineHeight: 4.2,
@@ -818,33 +823,105 @@
       pdf.line(marginLeft, ctx.y, pageWidth - marginRight, ctx.y);
       ctx.y += 3;
     }
-    function drawSectionGuide(entry, index, total) {
-      writeWrapped("Section " + (index + 1) + " sur " + total, {
-        fontSize: PDF_TYPO.tocDesc,
-        bold: true,
-        color: PDF_THEME.muted,
-        lineHeight: PDF_TYPO.tocDescLineHeight
+    function estimateDescHeight(desc, pageLabel) {
+      setFont("normal", PDF_TYPO.tocDesc);
+      const pageW = pdf.getTextWidth(pageLabel);
+      const leaderReserve = 12 + pageW;
+      const wrapW = Math.max(maxWidth * 0.45, maxWidth - leaderReserve);
+      const lines = pdf.splitTextToSize(String(desc || ""), wrapW);
+      return Math.max(1, lines.length) * PDF_TYPO.tocDescLineHeight;
+    }
+    function countTocOverflowPages(startY, entries) {
+      let y = startY + PDF_TYPO.tocHeadingLineHeight + 3;
+      let extraPages = 0;
+      entries.forEach(function(entry) {
+        if (entry.isPreamble) return;
+        const pageLabel = "p 0";
+        const entryH = PDF_TYPO.tocTitleLineHeight + 0.4 + estimateDescHeight(entry.desc, pageLabel) + 1.8;
+        if (y + entryH > pageHeight - marginBottom) {
+          extraPages += 1;
+          y = marginTop + entryH;
+        } else {
+          y += entryH;
+        }
       });
-      ctx.y += 0.5;
-      writeWrapped(entry.shortLabel + " \u2014 " + entry.title, {
-        fontSize: PDF_TYPO.tocTitle,
+      return extraPages;
+    }
+    function drawTocDescWithPage(desc, pageNum, pageBreak) {
+      const fontSize = PDF_TYPO.tocDesc;
+      const lh = PDF_TYPO.tocDescLineHeight;
+      const pageLabel = "p " + pageNum;
+      setFont("normal", fontSize);
+      pdf.setTextColor(PDF_THEME.muted[0], PDF_THEME.muted[1], PDF_THEME.muted[2]);
+      const pageW = pdf.getTextWidth(pageLabel);
+      const dotW = pdf.getTextWidth(".");
+      const rightEdge = pageWidth - marginRight;
+      const pageX = rightEdge - pageW;
+      const leaderReserve = 12 + pageW;
+      const wrapW = Math.max(maxWidth * 0.45, maxWidth - leaderReserve);
+      const lines = pdf.splitTextToSize(String(desc || ""), wrapW);
+      if (!lines.length) lines.push("");
+      lines.forEach(function(line, lineIndex) {
+        pageBreak(lh);
+        const isLast = lineIndex === lines.length - 1;
+        if (!isLast) {
+          pdf.text(line, marginLeft, ctx.y);
+        } else {
+          pdf.text(line, marginLeft, ctx.y);
+          let x = marginLeft + pdf.getTextWidth(line) + 2;
+          const dotsEnd = pageX - 1;
+          while (x + dotW < dotsEnd) {
+            pdf.text(".", x, ctx.y);
+            x += dotW;
+          }
+          pdf.text(pageLabel, pageX, ctx.y);
+        }
+        ctx.y += lh;
+      });
+    }
+    function drawToc(entries, sectionPages, anchorPage, anchorY, maxTocPage) {
+      pdf.setPage(anchorPage);
+      ctx.y = anchorY;
+      function tocPageBreak(lineH) {
+        if (ctx.y + lineH <= pageHeight - marginBottom) return;
+        const nextPage = pdf.internal.getCurrentPageInfo().pageNumber + 1;
+        if (nextPage <= maxTocPage) {
+          pdf.setPage(nextPage);
+          ctx.y = marginTop;
+        }
+      }
+      tocPageBreak(PDF_TYPO.tocHeadingLineHeight);
+      writeWrapped("Sommaire", {
+        fontSize: PDF_TYPO.tocHeading,
         bold: true,
         color: PDF_THEME.ink,
-        lineHeight: PDF_TYPO.tocTitleLineHeight
+        lineHeight: PDF_TYPO.tocHeadingLineHeight,
+        pageBreak: tocPageBreak
       });
-      if (entry.desc) {
-        writeWrapped(entry.desc, {
-          fontSize: PDF_TYPO.tocDesc,
-          color: PDF_THEME.muted,
-          lineHeight: PDF_TYPO.tocDescLineHeight
+      ctx.y += 3;
+      entries.forEach(function(entry, index) {
+        if (entry.isPreamble) return;
+        const pageNum = sectionPages[index] || 1;
+        tocPageBreak(PDF_TYPO.tocTitleLineHeight + PDF_TYPO.tocDescLineHeight * 2);
+        writeWrapped(entry.shortLabel + " \u2014 " + entry.tocTitle, {
+          fontSize: PDF_TYPO.tocTitle,
+          bold: true,
+          color: PDF_THEME.ink,
+          lineHeight: PDF_TYPO.tocTitleLineHeight,
+          pageBreak: tocPageBreak
         });
-      }
+        ctx.y += 0.4;
+        drawTocDescWithPage(entry.desc, pageNum, tocPageBreak);
+        ctx.y += 1.8;
+      });
+    }
+    function drawSectionGuide(entry) {
       if (entry.avocateNotes && entry.avocateNotes.length) {
         entry.avocateNotes.forEach(function(noteText) {
           drawAvocateComment(noteText);
         });
       }
-      ctx.y += 2;
+      ctx.y += 1;
       writeWrapped("Texte juridique", {
         fontSize: PDF_TYPO.tocDesc,
         bold: true,
@@ -938,13 +1015,15 @@
         }
       });
     }
-    function renderProgressiveContract(tocEntries2, sectionGroups) {
-      const total = tocEntries2.length;
+    function renderProgressiveContract(tocEntries2, sectionGroups, sectionPages) {
       sectionGroups.forEach(function(group, index) {
+        sectionPages[index] = pdf.internal.getNumberOfPages();
         const entry = tocEntries2[index] || {
           shortLabel: group.isPreamble ? "Intro" : "Art.",
           title: group.heading,
+          tocTitle: String(group.heading || "").toUpperCase(),
           desc: "",
+          isPreamble: group.isPreamble,
           avocateNotes: []
         };
         if (index > 0) {
@@ -953,7 +1032,7 @@
         } else {
           ctx.y += 2;
         }
-        drawSectionGuide(entry, index, total);
+        drawSectionGuide(entry);
         renderBodyBlocks(group.blocks, { skipInlineComments: true });
       });
     }
@@ -992,9 +1071,10 @@
       const lh = options.lineHeight || PDF_TYPO.bodyLineHeight;
       setFont(style, fontSize);
       pdf.setTextColor(color[0], color[1], color[2]);
+      const pageBreak = options.pageBreak || newPageIfNeeded;
       const lines = pdf.splitTextToSize(text, maxWidth);
       for (let i = 0; i < lines.length; i++) {
-        newPageIfNeeded(lh);
+        pageBreak(lh);
         const x = align === "center" ? pageWidth / 2 : marginLeft;
         pdf.text(lines[i], x, ctx.y, { align });
         ctx.y += lh;
@@ -1073,7 +1153,9 @@
           return {
             shortLabel: entry.shortLabel,
             title: entry.title,
+            tocTitle: section ? tocDisplayTitle(section) : entry.title.toUpperCase(),
             desc: entry.desc,
+            isPreamble: section ? Boolean(section.isPreamble) : false,
             avocateNotes: notes.map(function(n) {
               return n.comment;
             })
@@ -1082,12 +1164,28 @@
         const sectionGroups = groupBodyBlocksBySection(bodyBlocks);
         if (tocEntries.length && sectionGroups.length) {
           useProgressive = true;
+          const tocAnchorY = ctx.y;
+          const tocAnchorPage = pdf.internal.getNumberOfPages();
+          pdf.addPage();
+          ctx.y = marginTop;
+          const sectionPages = [];
           pdfLog("PDF progressif", {
             sections: tocEntries.length,
             groupes: sectionGroups.length,
             parcours: meta.parcours
           });
-          renderProgressiveContract(tocEntries, sectionGroups);
+          renderProgressiveContract(tocEntries, sectionGroups, sectionPages);
+          const tocOverflowPages = countTocOverflowPages(tocAnchorY, tocEntries);
+          for (let p = 0; p < tocOverflowPages; p++) {
+            pdf.insertPage(tocAnchorPage + 1);
+          }
+          if (tocOverflowPages > 0) {
+            for (let i = 0; i < sectionPages.length; i++) {
+              sectionPages[i] += tocOverflowPages;
+            }
+          }
+          const maxTocPage = tocAnchorPage + tocOverflowPages;
+          drawToc(tocEntries, sectionPages, tocAnchorPage, tocAnchorY, maxTocPage);
         }
       } catch (tocErr) {
         pdfWarn("PDF progressif ignor\xE9", tocErr);

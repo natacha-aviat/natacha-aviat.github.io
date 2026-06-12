@@ -165,6 +165,12 @@ function titleFromHeading(heading) {
   return String(heading || '').trim();
 }
 
+/** Titre affiché dans le sommaire PDF (majuscules, comme dans le contrat). */
+export function tocDisplayTitle(section) {
+  if (section.isPreamble) return 'PRÉAMBULE ET IDENTIFICATION DES PARTIES';
+  return titleFromHeading(section.heading).toUpperCase();
+}
+
 function shortLabelFromKey(key, isPreamble) {
   if (isPreamble) return 'Intro';
   if (key === 'misc') return 'Passage';
