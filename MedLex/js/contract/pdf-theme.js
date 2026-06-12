@@ -2,6 +2,8 @@
  * Charte graphique Au Clair pour l’export PDF (alignée sur parcours.css).
  */
 
+import { pdfLog, pdfWarn } from './pdf-debug.js';
+
 /** @type {{ ink: number[]; muted: number[]; teal: number[]; gray: number[]; white: number[] }} */
 export const PDF_THEME = {
   ink: [22, 49, 77],
@@ -37,6 +39,7 @@ function fetchFontAsBase64(url) {
       reject(new Error('Délai dépassé pour la police'));
     }, FONT_TIMEOUT_MS);
 
+    pdfLog('Chargement police…', url);
     fetch(url, { cache: 'force-cache' })
       .then(function (res) {
         if (!res.ok) {
@@ -46,6 +49,7 @@ function fetchFontAsBase64(url) {
       })
       .then(function (buf) {
         window.clearTimeout(timer);
+        pdfLog('Police chargée', { url: url, octets: buf.byteLength });
         const bytes = new Uint8Array(buf);
         let binary = '';
         for (let i = 0; i < bytes.length; i++) {
@@ -55,6 +59,7 @@ function fetchFontAsBase64(url) {
       })
       .catch(function (err) {
         window.clearTimeout(timer);
+        pdfWarn('Échec chargement police', { url: url, erreur: err.message || err });
         reject(err);
       });
   });
@@ -65,11 +70,15 @@ function fetchFontAsBase64(url) {
  * @param {import('jspdf').jsPDF} pdf
  */
 export function applyInterFontsIfCached(pdf) {
-  if (!interFontsCache) return false;
+  if (!interFontsCache) {
+    pdfLog('Inter non en cache → Helvetica');
+    return false;
+  }
   pdf.addFileToVFS('Inter-Regular.ttf', interFontsCache.regular);
   pdf.addFileToVFS('Inter-Bold.ttf', interFontsCache.bold);
   pdf.addFont('Inter-Regular.ttf', 'Inter', 'normal');
   pdf.addFont('Inter-Bold.ttf', 'Inter', 'bold');
+  pdfLog('Police Inter appliquée au document');
   return true;
 }
 
@@ -78,17 +87,20 @@ export function applyInterFontsIfCached(pdf) {
  */
 export async function registerInterFonts(pdf) {
   if (interFontsCache) {
+    pdfLog('Inter déjà en cache');
     return applyInterFontsIfCached(pdf);
   }
+  pdfLog('Téléchargement Inter depuis le CDN…');
   try {
     const [regular, bold] = await Promise.all([
       fetchFontAsBase64(FONT_CDN + '/inter-latin-400-normal.ttf'),
       fetchFontAsBase64(FONT_CDN + '/inter-latin-700-normal.ttf'),
     ]);
     interFontsCache = { regular, bold };
+    pdfLog('Inter enregistrée avec succès');
     return applyInterFontsIfCached(pdf);
   } catch (e) {
-    console.warn('Inter indisponible pour le PDF, repli sur Helvetica', e);
+    pdfWarn('Inter indisponible, repli Helvetica', e);
     return false;
   }
 }

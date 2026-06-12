@@ -9,7 +9,9 @@ import {
   registerInterFonts,
   applyInterFontsIfCached,
   isArticleHeading,
+  interFontsReady,
 } from './pdf-theme.js';
+import { pdfLog, pdfWarn, pdfError } from './pdf-debug.js';
 
 let engineReady = false;
 
@@ -32,22 +34,32 @@ function jsPdfAvailable() {
 
 function loadJsPdf() {
   if (jsPdfAvailable()) {
+    pdfLog('jsPDF déjà disponible', {
+      html2pdf: typeof window.html2pdf,
+      jspdf: typeof window.jspdf,
+    });
     return Promise.resolve();
   }
+  pdfLog('Chargement jsPDF…', getHtml2PdfScriptUrl());
   return new Promise(function (resolve, reject) {
     const existing = document.querySelector('script[data-medlex-html2pdf="1"]');
     if (existing) {
+      pdfLog('Balise script html2pdf déjà présente', { src: existing.src });
       if (jsPdfAvailable()) {
+        pdfLog('jsPDF disponible après détection script existant');
         resolve();
         return;
       }
       existing.addEventListener('load', function () {
+        pdfLog('Événement load script html2pdf', { jsPdfOk: jsPdfAvailable() });
         resolve();
       });
       existing.addEventListener('error', function () {
+        pdfError('Échec chargement script html2pdf');
         reject(new Error('Impossible de charger jsPDF'));
       });
       window.setTimeout(function () {
+        pdfLog('Vérification différée jsPDF', { jsPdfOk: jsPdfAvailable() });
         if (jsPdfAvailable()) {
           resolve();
         }
@@ -59,9 +71,11 @@ function loadJsPdf() {
     s.async = false;
     s.setAttribute('data-medlex-html2pdf', '1');
     s.onload = function () {
+      pdfLog('Script html2pdf chargé', { jsPdfOk: jsPdfAvailable() });
       resolve();
     };
     s.onerror = function () {
+      pdfError('Script html2pdf introuvable', s.src);
       reject(new Error('Impossible de charger jsPDF'));
     };
     document.head.appendChild(s);
@@ -72,17 +86,37 @@ function loadJsPdf() {
  * Précharge jsPDF et les polices Inter (à appeler au chargement de la page contrat).
  */
 export async function preloadPdfEngine() {
-  await loadJsPdf();
-  if (!jsPdfAvailable()) {
-    throw new Error('jsPDF indisponible');
+  pdfLog('── Préchargement moteur PDF ──');
+  const t0 = performance.now();
+  try {
+    await loadJsPdf();
+    if (!jsPdfAvailable()) {
+      throw new Error('jsPDF indisponible après chargement');
+    }
+    const pdf = new window.jspdf.jsPDF({ unit: 'mm', format: 'a4', orientation: 'portrait' });
+    const hasInter = await registerInterFonts(pdf);
+    engineReady = true;
+    pdfLog('Moteur PDF prêt', {
+      dureeMs: Math.round(performance.now() - t0),
+      inter: hasInter,
+      engineReady: engineReady,
+    });
+  } catch (e) {
+    engineReady = false;
+    pdfError('Échec préchargement moteur PDF', e);
+    throw e;
   }
-  const pdf = new window.jspdf.jsPDF({ unit: 'mm', format: 'a4', orientation: 'portrait' });
-  await registerInterFonts(pdf);
-  engineReady = true;
 }
 
 export function isPdfEngineReady() {
-  return engineReady && jsPdfAvailable();
+  const ready = engineReady && jsPdfAvailable();
+  pdfLog('isPdfEngineReady()', {
+    ready: ready,
+    engineReady: engineReady,
+    jsPdf: jsPdfAvailable(),
+    inter: interFontsReady(),
+  });
+  return ready;
 }
 
 function buildRootFromHtml(title, subtitle, bodyHtml) {
@@ -170,6 +204,15 @@ function buildPdfBlob(root, filename) {
   if (!JsPDF) {
     throw new Error('jsPDF indisponible');
   }
+
+  const blocks = collectPdfBlocks(root);
+  pdfLog('Génération du blob PDF…', {
+    filename: filename,
+    blocs: blocks.length,
+    paragraphes: blocks.filter(function (b) {
+      return b.type === 'paragraph';
+    }).length,
+  });
 
   const opts = html2PdfOptions({}, filename);
   const margins = opts.margin || [18, 18, 18, 18];
@@ -289,7 +332,6 @@ function buildPdfBlob(root, filename) {
 
   drawBrandHeader();
 
-  const blocks = collectPdfBlocks(root);
   blocks.forEach(function (block) {
     if (block.type === 'title') {
       ctx.y += 2;
@@ -344,10 +386,24 @@ function buildPdfBlob(root, filename) {
     }
   });
 
-  return pdf.output('blob');
+  const blob = pdf.output('blob');
+  pdfLog('Blob PDF généré', {
+    tailleOctets: blob ? blob.size : 0,
+    type: blob ? blob.type : null,
+    pages: pdf.internal.getNumberOfPages(),
+  });
+  return blob;
 }
 
 function triggerBlobDownload(blob, filename) {
+  if (!blob || !blob.size) {
+    pdfError('Blob vide — téléchargement annulé', { filename: filename });
+    throw new Error('Fichier PDF vide');
+  }
+  pdfLog('Déclenchement téléchargement…', {
+    filename: filename,
+    tailleOctets: blob.size,
+  });
   const url = URL.createObjectURL(blob);
   const a = document.createElement('a');
   a.href = url;
@@ -356,6 +412,7 @@ function triggerBlobDownload(blob, filename) {
   a.style.display = 'none';
   document.body.appendChild(a);
   a.click();
+  pdfLog('Lien de téléchargement cliqué', { href: url.substring(0, 48) + '…' });
   window.setTimeout(function () {
     URL.revokeObjectURL(url);
     if (a.parentNode) {
@@ -391,19 +448,37 @@ function cleanupHost(tempHost) {
  * @param {{ filename: string; sourceElement?: HTMLElement; title?: string; subtitle?: string; bodyHtml?: string }} opts
  */
 export function downloadContractPdfNow(opts) {
+  pdfLog('── Clic télécharger (synchrone) ──');
+  pdfLog('État moteur', {
+    engineReady: engineReady,
+    jsPdf: jsPdfAvailable(),
+    inter: interFontsReady(),
+  });
+
   if (!jsPdfAvailable()) {
     throw new Error('Le moteur PDF n’est pas prêt. Réessayez dans quelques secondes.');
   }
 
   const filename = opts.filename || 'contrat-medlex.pdf';
   const resolved = resolveRoot(opts);
+  pdfLog('Source contrat', {
+    filename: filename,
+    elementId: resolved.root.id || '(sans id)',
+    classes: resolved.root.className,
+    bodyPresent: Boolean(resolved.root.querySelector('.ac-contract-doc__body')),
+  });
 
+  const t0 = performance.now();
   try {
     const blob = buildPdfBlob(resolved.root, filename);
     if (!blob) {
       throw new Error('Génération du PDF vide');
     }
     triggerBlobDownload(blob, filename);
+    pdfLog('Téléchargement terminé', { dureeMs: Math.round(performance.now() - t0) });
+  } catch (e) {
+    pdfError('Erreur downloadContractPdfNow', e);
+    throw e;
   } finally {
     cleanupHost(resolved.tempHost);
   }
