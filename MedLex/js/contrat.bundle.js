@@ -811,69 +811,150 @@
       pdf.line(marginLeft, headerY + 5, pageWidth - marginRight, headerY + 5);
       ctx.y = headerY + 11;
     }
-    function startBodyPage() {
-      pdf.addPage();
-      ctx.y = marginTop;
-      drawBrandHeader();
+    function drawSectionSeparator() {
+      ctx.y += 1;
+      pdf.setDrawColor(PDF_THEME.gray[0], PDF_THEME.gray[1], PDF_THEME.gray[2]);
+      pdf.setLineWidth(0.25);
+      pdf.line(marginLeft, ctx.y, pageWidth - marginRight, ctx.y);
+      ctx.y += 3;
     }
-    function drawToc(entries) {
-      if (!entries || !entries.length) return;
-      ctx.y += 2;
-      writeWrapped("Sommaire", {
-        fontSize: PDF_TYPO.tocHeading,
+    function drawSectionGuide(entry, index, total) {
+      writeWrapped("Section " + (index + 1) + " sur " + total, {
+        fontSize: PDF_TYPO.tocDesc,
+        bold: true,
+        color: PDF_THEME.muted,
+        lineHeight: PDF_TYPO.tocDescLineHeight
+      });
+      ctx.y += 0.5;
+      writeWrapped(entry.shortLabel + " \u2014 " + entry.title, {
+        fontSize: PDF_TYPO.tocTitle,
         bold: true,
         color: PDF_THEME.ink,
-        lineHeight: PDF_TYPO.titleLineHeight
+        lineHeight: PDF_TYPO.tocTitleLineHeight
       });
-      ctx.y += 2;
-      writeWrapped(
-        "Chaque section est r\xE9sum\xE9e ci-dessous pour t\u2019aider \xE0 relire ton contrat.",
-        {
-          fontSize: PDF_TYPO.tocDesc,
-          color: PDF_THEME.muted,
-          lineHeight: PDF_TYPO.tocDescLineHeight
-        }
-      );
-      ctx.y += 3;
-      entries.forEach(function(entry, index) {
-        const heading = entry.shortLabel + " \u2014 " + entry.title;
-        newPageIfNeeded(PDF_TYPO.tocTitleLineHeight + PDF_TYPO.tocDescLineHeight * 2);
-        writeWrapped(heading, {
-          fontSize: PDF_TYPO.tocTitle,
-          bold: true,
-          color: PDF_THEME.ink,
-          lineHeight: PDF_TYPO.tocTitleLineHeight
-        });
+      if (entry.desc) {
         writeWrapped(entry.desc, {
           fontSize: PDF_TYPO.tocDesc,
           color: PDF_THEME.muted,
           lineHeight: PDF_TYPO.tocDescLineHeight
         });
-        if (entry.avocateNotes && entry.avocateNotes.length) {
-          entry.avocateNotes.forEach(function(noteText) {
-            ctx.y += 1;
-            writeWrapped("Me Violaine \u2014 Commentaire", {
-              fontSize: PDF_TYPO.tocAvocate,
+      }
+      if (entry.avocateNotes && entry.avocateNotes.length) {
+        entry.avocateNotes.forEach(function(noteText) {
+          drawAvocateComment(noteText);
+        });
+      }
+      ctx.y += 2;
+      writeWrapped("Texte juridique", {
+        fontSize: PDF_TYPO.tocDesc,
+        bold: true,
+        color: PDF_THEME.ink,
+        lineHeight: PDF_TYPO.tocDescLineHeight
+      });
+      ctx.y += 1;
+    }
+    function groupBodyBlocksBySection(bodyBlocks2) {
+      const groups = [];
+      let current = null;
+      bodyBlocks2.forEach(function(block) {
+        if (block.type === "paragraph") {
+          const plain = block.el.innerText.trim();
+          if (isArticleHeading(plain)) {
+            if (current) {
+              groups.push(current);
+            }
+            current = {
+              isPreamble: false,
+              heading: plain,
+              blocks: [{ type: "paragraph", el: block.el, isHeading: true }]
+            };
+            return;
+          }
+        }
+        if (!current) {
+          current = {
+            isPreamble: true,
+            heading: "Pr\xE9ambule et identification des parties",
+            blocks: []
+          };
+        }
+        current.blocks.push(block);
+      });
+      if (current) {
+        groups.push(current);
+      }
+      return groups;
+    }
+    function renderBodyBlocks(bodyBlocks2, options) {
+      const skipInlineComments = options && options.skipInlineComments;
+      const drawnComments = {};
+      bodyBlocks2.forEach(function(block) {
+        if (block.type === "spacer") {
+          ctx.y += PDF_TYPO.blockGap;
+        } else if (block.type === "paragraph") {
+          const plain = block.el.innerText.trim();
+          if (!plain) {
+            ctx.y += PDF_TYPO.blockGap;
+            return;
+          }
+          if (isArticleHeading(plain)) {
+            if (!block.isHeading) {
+              ctx.y += 3;
+            }
+            writeWrapped(plain, {
+              fontSize: PDF_TYPO.article,
               bold: true,
-              color: PDF_THEME.teal,
-              lineHeight: PDF_TYPO.tocAvocateLineHeight
+              color: PDF_THEME.ink,
+              lineHeight: PDF_TYPO.articleLineHeight
             });
-            String(noteText || "").split(/\n\n+/).filter(Boolean).forEach(function(para) {
-              writeWrapped(para.trim(), {
-                fontSize: PDF_TYPO.tocAvocate,
-                color: PDF_THEME.muted,
-                lineHeight: PDF_TYPO.tocAvocateLineHeight
+            ctx.y += block.isHeading ? 1 : 2;
+            if (!skipInlineComments) {
+              findCommentsMatchingLine(plain).forEach(function(note) {
+                if (drawnComments[note.id]) return;
+                drawnComments[note.id] = true;
+                drawAvocateComment(note.comment);
               });
+            }
+            return;
+          }
+          const hasBold = block.el.querySelector("strong, b");
+          if (hasBold) {
+            writeRichParagraph(block.el);
+          } else {
+            writeWrapped(plain, {
+              fontSize: PDF_TYPO.body,
+              color: PDF_THEME.muted,
+              lineHeight: PDF_TYPO.bodyLineHeight
             });
-          });
+          }
+          ctx.y += 1.2;
+          if (!skipInlineComments) {
+            findCommentsMatchingLine(plain).forEach(function(note) {
+              if (drawnComments[note.id]) return;
+              drawnComments[note.id] = true;
+              drawAvocateComment(note.comment);
+            });
+          }
         }
-        if (index < entries.length - 1) {
-          ctx.y += 1.5;
-          pdf.setDrawColor(PDF_THEME.gray[0], PDF_THEME.gray[1], PDF_THEME.gray[2]);
-          pdf.setLineWidth(0.2);
-          pdf.line(marginLeft, ctx.y, pageWidth - marginRight, ctx.y);
-          ctx.y += 2.5;
+      });
+    }
+    function renderProgressiveContract(tocEntries2, sectionGroups) {
+      const total = tocEntries2.length;
+      sectionGroups.forEach(function(group, index) {
+        const entry = tocEntries2[index] || {
+          shortLabel: group.isPreamble ? "Intro" : "Art.",
+          title: group.heading,
+          desc: "",
+          avocateNotes: []
+        };
+        if (index > 0) {
+          newPageIfNeeded(PDF_TYPO.tocTitleLineHeight * 4);
+          drawSectionSeparator();
+        } else {
+          ctx.y += 2;
         }
+        drawSectionGuide(entry, index, total);
+        renderBodyBlocks(group.blocks, { skipInlineComments: true });
       });
     }
     function drawAvocateComment(commentText) {
@@ -898,52 +979,6 @@
       pdf.setLineWidth(0.6);
       pdf.line(marginLeft, boxTop, marginLeft, ctx.y - 0.5);
       ctx.y += 1.5;
-    }
-    function renderBodyBlocks(bodyBlocks2) {
-      const drawnComments = {};
-      bodyBlocks2.forEach(function(block) {
-        if (block.type === "spacer") {
-          ctx.y += PDF_TYPO.blockGap;
-        } else if (block.type === "paragraph") {
-          const plain = block.el.innerText.trim();
-          if (!plain) {
-            ctx.y += PDF_TYPO.blockGap;
-            return;
-          }
-          if (isArticleHeading(plain)) {
-            ctx.y += 3;
-            writeWrapped(plain, {
-              fontSize: PDF_TYPO.article,
-              bold: true,
-              color: PDF_THEME.ink,
-              lineHeight: PDF_TYPO.articleLineHeight
-            });
-            ctx.y += 2;
-            findCommentsMatchingLine(plain).forEach(function(note) {
-              if (drawnComments[note.id]) return;
-              drawnComments[note.id] = true;
-              drawAvocateComment(note.comment);
-            });
-            return;
-          }
-          const hasBold = block.el.querySelector("strong, b");
-          if (hasBold) {
-            writeRichParagraph(block.el);
-          } else {
-            writeWrapped(plain, {
-              fontSize: PDF_TYPO.body,
-              color: PDF_THEME.muted,
-              lineHeight: PDF_TYPO.bodyLineHeight
-            });
-          }
-          ctx.y += 1.2;
-          findCommentsMatchingLine(plain).forEach(function(note) {
-            if (drawnComments[note.id]) return;
-            drawnComments[note.id] = true;
-            drawAvocateComment(note.comment);
-          });
-        }
-      });
     }
     function measureWord(word, bold, fontSize) {
       setFont(bold ? "bold" : "normal", fontSize);
@@ -1028,11 +1063,11 @@
     });
     const meta = pdfMeta || {};
     let tocEntries = [];
+    let useProgressive = false;
     if (meta.bodyText && meta.parcours) {
       try {
-        tocEntries = buildArticleSections(meta.bodyText, meta.parcours);
         const sections = splitSections(meta.bodyText);
-        tocEntries = tocEntries.map(function(entry, index) {
+        tocEntries = buildArticleSections(meta.bodyText, meta.parcours).map(function(entry, index) {
           const section = sections[index];
           const notes = section ? getCommentsForArticleSection(section) : [];
           return {
@@ -1044,16 +1079,23 @@
             })
           };
         });
-        pdfLog("Sommaire PDF", { sections: tocEntries.length, parcours: meta.parcours });
+        const sectionGroups = groupBodyBlocksBySection(bodyBlocks);
+        if (tocEntries.length && sectionGroups.length) {
+          useProgressive = true;
+          pdfLog("PDF progressif", {
+            sections: tocEntries.length,
+            groupes: sectionGroups.length,
+            parcours: meta.parcours
+          });
+          renderProgressiveContract(tocEntries, sectionGroups);
+        }
       } catch (tocErr) {
-        pdfWarn("Sommaire PDF ignor\xE9", tocErr);
+        pdfWarn("PDF progressif ignor\xE9", tocErr);
       }
     }
-    if (tocEntries.length) {
-      drawToc(tocEntries);
-      startBodyPage();
+    if (!useProgressive) {
+      renderBodyBlocks(bodyBlocks);
     }
-    renderBodyBlocks(bodyBlocks);
     const blob = pdf.output("blob");
     pdfLog("Blob PDF g\xE9n\xE9r\xE9", {
       tailleOctets: blob ? blob.size : 0,
