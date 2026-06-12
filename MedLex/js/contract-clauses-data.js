@@ -305,7 +305,7 @@
           return t.id !== 'cadre';
         })
         .map(function (t) {
-          return { title: t.title, desc: t.desc };
+          return { themeId: t.id, title: t.title, desc: t.desc };
         });
     },
   };

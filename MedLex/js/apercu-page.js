@@ -16,8 +16,18 @@
     '</div>';
 
   function renderClauses(clauses) {
+    var avocate = window.MedLexAvocateComments;
     return clauses
       .map(function (c) {
+        var notesHtml = '';
+        if (avocate && c.themeId) {
+          notesHtml = avocate
+            .getCommentsForApercuTheme(c.themeId)
+            .map(function (note) {
+              return avocate.renderCommentHtml(note.comment);
+            })
+            .join('');
+        }
         return (
           '<article class="ac-card">' +
           '<h2 class="ac-card__title">' +
@@ -26,6 +36,7 @@
           '<p class="ac-card__desc">' +
           c.desc +
           '</p>' +
+          notesHtml +
           LOCKED_BLOCK +
           '</article>'
         );

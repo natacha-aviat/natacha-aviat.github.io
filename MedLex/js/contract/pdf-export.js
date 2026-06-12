@@ -3,6 +3,11 @@
  */
 
 import { html2PdfOptions } from './pdf-options.js';
+import { buildArticleSections, splitSections } from './article-guide.js';
+import {
+  findCommentsMatchingLine,
+  getCommentsForArticleSection,
+} from './avocate-comments.js';
 import {
   PDF_THEME,
   PDF_TYPO,
@@ -220,8 +225,9 @@ function getWordsFromParagraph(p) {
 /**
  * @param {HTMLElement} root
  * @param {string} filename
+ * @param {{ bodyText?: string, parcours?: string }} [pdfMeta]
  */
-function buildPdfBlob(root, filename) {
+function buildPdfBlob(root, filename, pdfMeta) {
   const JsPDF = window.jspdf && window.jspdf.jsPDF;
   if (!JsPDF) {
     throw new Error('jsPDF indisponible');
@@ -291,6 +297,154 @@ function buildPdfBlob(root, filename) {
     ctx.y = headerY + 11;
   }
 
+  function startBodyPage() {
+    pdf.addPage();
+    ctx.y = marginTop;
+    drawBrandHeader();
+  }
+
+  function drawToc(entries) {
+    if (!entries || !entries.length) return;
+
+    ctx.y += 2;
+    writeWrapped('Sommaire', {
+      fontSize: PDF_TYPO.tocHeading,
+      bold: true,
+      color: PDF_THEME.ink,
+      lineHeight: PDF_TYPO.titleLineHeight,
+    });
+    ctx.y += 2;
+    writeWrapped(
+      'Chaque section est résumée ci-dessous pour t’aider à relire ton contrat.',
+      {
+        fontSize: PDF_TYPO.tocDesc,
+        color: PDF_THEME.muted,
+        lineHeight: PDF_TYPO.tocDescLineHeight,
+      }
+    );
+    ctx.y += 3;
+
+    entries.forEach(function (entry, index) {
+      const heading = entry.shortLabel + ' — ' + entry.title;
+      newPageIfNeeded(PDF_TYPO.tocTitleLineHeight + PDF_TYPO.tocDescLineHeight * 2);
+      writeWrapped(heading, {
+        fontSize: PDF_TYPO.tocTitle,
+        bold: true,
+        color: PDF_THEME.ink,
+        lineHeight: PDF_TYPO.tocTitleLineHeight,
+      });
+      writeWrapped(entry.desc, {
+        fontSize: PDF_TYPO.tocDesc,
+        color: PDF_THEME.muted,
+        lineHeight: PDF_TYPO.tocDescLineHeight,
+      });
+      if (entry.avocateNotes && entry.avocateNotes.length) {
+        entry.avocateNotes.forEach(function (noteText) {
+          ctx.y += 1;
+          writeWrapped('Me Violaine — Commentaire', {
+            fontSize: PDF_TYPO.tocAvocate,
+            bold: true,
+            color: PDF_THEME.teal,
+            lineHeight: PDF_TYPO.tocAvocateLineHeight,
+          });
+          String(noteText || '')
+            .split(/\n\n+/)
+            .filter(Boolean)
+            .forEach(function (para) {
+              writeWrapped(para.trim(), {
+                fontSize: PDF_TYPO.tocAvocate,
+                color: PDF_THEME.muted,
+                lineHeight: PDF_TYPO.tocAvocateLineHeight,
+              });
+            });
+        });
+      }
+      if (index < entries.length - 1) {
+        ctx.y += 1.5;
+        pdf.setDrawColor(PDF_THEME.gray[0], PDF_THEME.gray[1], PDF_THEME.gray[2]);
+        pdf.setLineWidth(0.2);
+        pdf.line(marginLeft, ctx.y, pageWidth - marginRight, ctx.y);
+        ctx.y += 2.5;
+      }
+    });
+  }
+
+  function drawAvocateComment(commentText) {
+    if (!commentText) return;
+    ctx.y += 1.5;
+    const boxTop = ctx.y - 1;
+    writeWrapped('Me Violaine — Commentaire', {
+      fontSize: PDF_TYPO.tocAvocate,
+      bold: true,
+      color: PDF_THEME.teal,
+      lineHeight: PDF_TYPO.tocAvocateLineHeight,
+    });
+    String(commentText)
+      .split(/\n\n+/)
+      .filter(Boolean)
+      .forEach(function (para) {
+        writeWrapped(para.trim(), {
+          fontSize: PDF_TYPO.tocAvocate,
+          color: PDF_THEME.muted,
+          lineHeight: PDF_TYPO.tocAvocateLineHeight,
+        });
+      });
+    ctx.y += 1;
+    pdf.setDrawColor(PDF_THEME.teal[0], PDF_THEME.teal[1], PDF_THEME.teal[2]);
+    pdf.setLineWidth(0.6);
+    pdf.line(marginLeft, boxTop, marginLeft, ctx.y - 0.5);
+    ctx.y += 1.5;
+  }
+
+  function renderBodyBlocks(bodyBlocks) {
+    const drawnComments = {};
+    bodyBlocks.forEach(function (block) {
+      if (block.type === 'spacer') {
+        ctx.y += PDF_TYPO.blockGap;
+      } else if (block.type === 'paragraph') {
+        const plain = block.el.innerText.trim();
+        if (!plain) {
+          ctx.y += PDF_TYPO.blockGap;
+          return;
+        }
+
+        if (isArticleHeading(plain)) {
+          ctx.y += 3;
+          writeWrapped(plain, {
+            fontSize: PDF_TYPO.article,
+            bold: true,
+            color: PDF_THEME.ink,
+            lineHeight: PDF_TYPO.articleLineHeight,
+          });
+          ctx.y += 2;
+          findCommentsMatchingLine(plain).forEach(function (note) {
+            if (drawnComments[note.id]) return;
+            drawnComments[note.id] = true;
+            drawAvocateComment(note.comment);
+          });
+          return;
+        }
+
+        const hasBold = block.el.querySelector('strong, b');
+        if (hasBold) {
+          writeRichParagraph(block.el);
+        } else {
+          writeWrapped(plain, {
+            fontSize: PDF_TYPO.body,
+            color: PDF_THEME.muted,
+            lineHeight: PDF_TYPO.bodyLineHeight,
+          });
+        }
+        ctx.y += 1.2;
+        findCommentsMatchingLine(plain).forEach(function (note) {
+          if (drawnComments[note.id]) return;
+          drawnComments[note.id] = true;
+          drawAvocateComment(note.comment);
+        });
+      }
+    });
+  }
+
   function measureWord(word, bold, fontSize) {
     setFont(bold ? 'bold' : 'normal', fontSize);
     return pdf.getTextWidth(word);
@@ -354,7 +508,14 @@ function buildPdfBlob(root, filename) {
 
   drawBrandHeader();
 
-  blocks.forEach(function (block) {
+  const headerBlocks = blocks.filter(function (b) {
+    return b.type === 'title' || b.type === 'subtitle';
+  });
+  const bodyBlocks = blocks.filter(function (b) {
+    return b.type !== 'title' && b.type !== 'subtitle';
+  });
+
+  headerBlocks.forEach(function (block) {
     if (block.type === 'title') {
       ctx.y += 2;
       writeWrapped(block.text, {
@@ -373,40 +534,39 @@ function buildPdfBlob(root, filename) {
         lineHeight: PDF_TYPO.subtitleLineHeight,
       });
       ctx.y += 5;
-    } else if (block.type === 'spacer') {
-      ctx.y += PDF_TYPO.blockGap;
-    } else if (block.type === 'paragraph') {
-      const plain = block.el.innerText.trim();
-      if (!plain) {
-        ctx.y += PDF_TYPO.blockGap;
-        return;
-      }
-
-      if (isArticleHeading(plain)) {
-        ctx.y += 3;
-        writeWrapped(plain, {
-          fontSize: PDF_TYPO.article,
-          bold: true,
-          color: PDF_THEME.ink,
-          lineHeight: PDF_TYPO.articleLineHeight,
-        });
-        ctx.y += 2;
-        return;
-      }
-
-      const hasBold = block.el.querySelector('strong, b');
-      if (hasBold) {
-        writeRichParagraph(block.el);
-      } else {
-        writeWrapped(plain, {
-          fontSize: PDF_TYPO.body,
-          color: PDF_THEME.muted,
-          lineHeight: PDF_TYPO.bodyLineHeight,
-        });
-      }
-      ctx.y += 1.2;
     }
   });
+
+  const meta = pdfMeta || {};
+  let tocEntries = [];
+  if (meta.bodyText && meta.parcours) {
+    try {
+      tocEntries = buildArticleSections(meta.bodyText, meta.parcours);
+      const sections = splitSections(meta.bodyText);
+      tocEntries = tocEntries.map(function (entry, index) {
+        const section = sections[index];
+        const notes = section ? getCommentsForArticleSection(section) : [];
+        return {
+          shortLabel: entry.shortLabel,
+          title: entry.title,
+          desc: entry.desc,
+          avocateNotes: notes.map(function (n) {
+            return n.comment;
+          }),
+        };
+      });
+      pdfLog('Sommaire PDF', { sections: tocEntries.length, parcours: meta.parcours });
+    } catch (tocErr) {
+      pdfWarn('Sommaire PDF ignoré', tocErr);
+    }
+  }
+
+  if (tocEntries.length) {
+    drawToc(tocEntries);
+    startBodyPage();
+  }
+
+  renderBodyBlocks(bodyBlocks);
 
   const blob = pdf.output('blob');
   pdfLog('Blob PDF généré', {
@@ -492,7 +652,10 @@ export function downloadContractPdfNow(opts) {
 
   const t0 = performance.now();
   try {
-    const blob = buildPdfBlob(resolved.root, filename);
+    const blob = buildPdfBlob(resolved.root, filename, {
+      bodyText: opts.bodyText,
+      parcours: opts.parcours,
+    });
     if (!blob) {
       throw new Error('Génération du PDF vide');
     }

@@ -1083,6 +1083,42 @@ a {
   margin-top: 0.25rem;
 }
 
+.ac-avocate-note {
+  margin: 0 0 1rem;
+  padding: 0.875rem 1rem;
+  border-left: 3px solid var(--ac-teal);
+  border-radius: 0 0.5rem 0.5rem 0;
+  background: color-mix(in srgb, var(--ac-teal) 8%, var(--ac-white));
+}
+
+.ac-avocate-note__label {
+  margin: 0 0 0.5rem;
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: var(--ac-teal-dark);
+}
+
+.ac-avocate-note__body p {
+  margin: 0 0 0.5rem;
+  font-size: 0.8125rem;
+  line-height: 1.55;
+  color: var(--ac-ink);
+}
+
+.ac-avocate-note__body p:last-child {
+  margin-bottom: 0;
+}
+
+.ac-avocate-notes-host:empty {
+  display: none;
+}
+
+.ac-main--contrat .ac-avocate-note {
+  margin-bottom: 1.25rem;
+}
+
 .ac-contract-doc {
   margin-top: 0;
   max-height: min(28rem, 55vh);

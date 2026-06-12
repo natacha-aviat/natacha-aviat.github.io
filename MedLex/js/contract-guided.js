@@ -99,6 +99,16 @@
         '</div>';
     }
 
+    var avocateHtml = '';
+    if (window.MedLexAvocateComments && window.MedLexAvocateComments.getCommentsForArticleSection) {
+      avocateHtml = window.MedLexAvocateComments
+        .getCommentsForArticleSection(sec)
+        .map(function (note) {
+          return window.MedLexAvocateComments.renderCommentHtml(note.comment);
+        })
+        .join('');
+    }
+
     return (
       '<article class="ac-card ac-card--guided">' +
       '<div class="ac-guided-card__head">' +
@@ -115,6 +125,7 @@
       '<p class="ac-card__desc ac-guided-benefit">' +
       escapeHtml(article.desc) +
       '</p>' +
+      avocateHtml +
       '<div class="ac-guided-legal ac-contract-doc__body">' +
       legalHtml +
       '</div>' +

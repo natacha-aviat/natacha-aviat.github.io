@@ -42,6 +42,362 @@
     }
   });
 
+  // js/contract/article-guide.js
+  function isArticleLine(line) {
+    return /^(Article|ARTICLE)\s+/i.test(String(line || "").trim());
+  }
+  function articleKeyFromSection(section) {
+    if (section.isPreamble) return "preamble";
+    const m = String(section.heading || "").match(/Article\s+(\d+(?:\.\d+)?)(?:er|re)?\b/i);
+    return m ? m[1] : "misc";
+  }
+  function titleFromHeading(heading) {
+    const parts = String(heading || "").split(/\s+[–\-]\s+/);
+    if (parts.length > 1) return parts.slice(1).join(" \u2013 ").trim();
+    return String(heading || "").trim();
+  }
+  function shortLabelFromKey(key, isPreamble) {
+    if (isPreamble) return "Intro";
+    if (key === "misc") return "Passage";
+    return "Art. " + key.replace("er", "");
+  }
+  function getArticleMeta(parcours, section) {
+    const key = articleKeyFromSection(section);
+    const store = parcours === "collaboration" ? COLLAB_ARTICLE_META : REMPL_ARTICLE_META;
+    const extra = store[key] || {};
+    const title = section.isPreamble ? "Pr\xE9ambule et parties" : titleFromHeading(section.heading);
+    const editSteps = extra.editSteps ? extra.editSteps.slice() : extra.editStep != null ? [{ step: extra.editStep, label: "Modifier" }] : [];
+    return {
+      key,
+      shortLabel: shortLabelFromKey(key, section.isPreamble),
+      title,
+      desc: extra.desc || "Ce passage pr\xE9cise tes droits et obligations sur ce point du contrat.",
+      editSteps
+    };
+  }
+  function splitSections(bodyText) {
+    const lines = String(bodyText || "").split("\n");
+    const sections = [];
+    const preamble = [];
+    let current = null;
+    lines.forEach(function(line) {
+      const trimmed = line.trim();
+      if (!trimmed) return;
+      if (isArticleLine(trimmed)) {
+        if (current) sections.push(current);
+        current = { heading: trimmed, lines: [] };
+      } else if (current) {
+        current.lines.push(line);
+      } else {
+        preamble.push(line);
+      }
+    });
+    if (current) sections.push(current);
+    if (preamble.length) {
+      sections.unshift({
+        heading: "Pr\xE9ambule et identification des parties",
+        lines: preamble,
+        isPreamble: true
+      });
+    }
+    return sections;
+  }
+  function buildArticleSections(bodyText, parcours) {
+    return splitSections(bodyText).map(function(section) {
+      const meta = getArticleMeta(parcours, section);
+      return {
+        shortLabel: meta.shortLabel,
+        title: meta.title,
+        desc: meta.desc
+      };
+    });
+  }
+  var COLLAB_ARTICLE_META, REMPL_ARTICLE_META;
+  var init_article_guide = __esm({
+    "js/contract/article-guide.js"() {
+      COLLAB_ARTICLE_META = {
+        preamble: {
+          desc: "Identification du titulaire et du collaborateur, et rappel du cadre l\xE9gal de la collaboration lib\xE9rale.",
+          editSteps: [
+            { step: 0, label: "Modifier le titulaire" },
+            { step: 1, label: "Modifier le collaborateur" }
+          ]
+        },
+        "1": {
+          desc: "Ce passage pose le cadre l\xE9gal de la collaboration lib\xE9rale \u2014 sans lien de subordination.",
+          editStep: 0
+        },
+        "2": {
+          desc: "Ce paragraphe encadre le temps consacr\xE9 \xE0 ta patient\xE8le personnelle \u2014 journ\xE9es ou demi-journ\xE9es, clair pour les deux.",
+          editStep: 2
+        },
+        "3": {
+          desc: "Ce paragraphe fixe le temps minimum d\xE9di\xE9 \xE0 la collaboration et \xE9vite une requalification en salariat.",
+          editStep: 3
+        },
+        "4": {
+          desc: "Ce paragraphe encadre le suivi de chaque patient\xE8le \u2014 un point de rep\xE8re clair en cas d\u2019\xE9volution ou de fin de collaboration."
+        },
+        "5": {
+          desc: "Ce paragraphe pr\xE9cise l\u2019adresse du cabinet et les moyens mis \xE0 disposition (salle de soins, secr\xE9tariat, dossiers\u2026).",
+          editSteps: [
+            { step: 4, label: "Modifier le lieu" },
+            { step: 5, label: "Modifier les moyens" }
+          ]
+        },
+        "6": {
+          desc: "Ce paragraphe te prot\xE8ge sur la cl\xE9 de r\xE9partition des forfaits et les d\xE9lais de reversement.",
+          editSteps: [
+            { step: 6, label: "Modifier les forfaits" },
+            { step: 7, label: "Modifier le reversement" }
+          ]
+        },
+        "7": {
+          desc: "Ce paragraphe fixe la redevance (pourcentage du CA ou forfait mensuel) et la date limite de versement.",
+          editStep: 8
+        },
+        "8": {
+          desc: "Ind\xE9pendance professionnelle, d\xE9ontologie et interdiction du comp\xE9rage entre vous deux."
+        },
+        "9": {
+          desc: "Assurance RCP, charges fiscales et sociales \u2014 chacune reste responsable de ses propres obligations."
+        },
+        "10": {
+          desc: "Planning, cong\xE9s et absences : organis\xE9s d\u2019un commun accord, sans d\xE9cision unilat\xE9rale."
+        },
+        "11": {
+          desc: "Protection en cas de maternit\xE9, paternit\xE9 ou adoption \u2014 pas de rupture abusive du contrat."
+        },
+        "12": {
+          desc: "Organisation du remplacement en cas d\u2019arr\xEAt maladie et protection contre une rupture li\xE9e \xE0 la maladie."
+        },
+        "13": {
+          desc: "Information des patients sur ta pr\xE9sence au cabinet, dans le respect du libre choix."
+        },
+        "14": {
+          desc: "Dur\xE9e du contrat (d\xE9termin\xE9e ou ind\xE9termin\xE9e) et possibilit\xE9 de l\u2019adapter par avenant.",
+          editStep: 9
+        },
+        "15": {
+          desc: "Premier mois d\u2019essai : chacune peut mettre fin au contrat avec un court pr\xE9avis.",
+          editStep: 9
+        },
+        "16": {
+          desc: "Conditions de fin du contrat, pr\xE9avis et cas de rupture pour faute grave.",
+          editStep: 9
+        },
+        "17": {
+          desc: "Droit de priorit\xE9 du collaborateur en cas de succession ou d\u2019association du titulaire."
+        },
+        "18": {
+          desc: "Loyaut\xE9 r\xE9ciproque et interdiction de concurrence d\xE9loyale \xE0 la fin de la collaboration."
+        },
+        "19": {
+          desc: "Clause de non-concurrence ou caract\xE8re personnel du contrat \u2014 selon le paragraphe concern\xE9."
+        },
+        "20": {
+          desc: "En cas de diff\xE9rend, recherche d\u2019une solution amiable avant toute action en justice."
+        },
+        "21": {
+          desc: "Transmission du contrat sign\xE9 \xE0 l\u2019Ordre des infirmiers dans le d\xE9lai l\xE9gal."
+        }
+      };
+      REMPL_ARTICLE_META = {
+        preamble: {
+          desc: "Identification des parties, motif du remplacement et rappel du cadre du remplacement lib\xE9ral.",
+          editStep: 4
+        },
+        "1": {
+          desc: "Objet du remplacement : exercer en lieu et place du remplac\xE9, pour une dur\xE9e limit\xE9e.",
+          editStep: 3
+        },
+        "2": {
+          desc: "Ce paragraphe te prot\xE8ge en cas de prolongation impr\xE9vue \u2014 personne ne reste dans le flou.",
+          editStep: 1
+        },
+        "3": {
+          desc: "Lieu d\u2019exercice du remplacement et conditions mat\xE9rielles d\u2019accueil.",
+          editStep: 6
+        },
+        "4": {
+          desc: "Obligations r\xE9ciproques des parties pendant le remplacement.",
+          editStep: 7
+        },
+        "4.3": {
+          desc: "Confirmation de ton ind\xE9pendance professionnelle \u2014 pas de lien de subordination.",
+          editStep: 7
+        },
+        "5": {
+          desc: "Ce paragraphe te prot\xE8ge si un litige survient sur qui facture quoi, et comment.",
+          editStep: 8
+        },
+        "6": {
+          desc: "Ce paragraphe te prot\xE8ge sur la couverture RCP et les obligations ordinale pendant le remplacement."
+        },
+        "7": {
+          desc: "Le contrat est personnel et ne peut pas \xEAtre c\xE9d\xE9 \xE0 un tiers."
+        },
+        "8": {
+          desc: "Ce paragraphe te prot\xE8ge si l'une de vous doit arr\xEAter le remplacement plus t\xF4t que pr\xE9vu.",
+          editStep: 10
+        },
+        "8.1": { desc: "R\xE9siliation d\u2019un commun accord entre vous.", editStep: 10 },
+        "8.2": { desc: "R\xE9siliation en cas de manquement grave \xE0 l\u2019une des parties.", editStep: 10 },
+        "8.3": { desc: "Cas de r\xE9siliation de plein droit (d\xE9c\xE8s, sanctions, etc.).", editStep: 10 },
+        "8.4": {
+          desc: "Cons\xE9quences financi\xE8res si le remplacement s\u2019arr\xEAte avant la date pr\xE9vue.",
+          editStep: 8
+        },
+        "9": { desc: "Renouvellement \xE9ventuel du remplacement.", editStep: 1 },
+        "10": { desc: "Fin du remplacement et restitution de la patient\xE8le.", editStep: 1 },
+        "11": {
+          desc: "Ce paragraphe te prot\xE8ge si le remplacement d\xE9passe 3 mois \u2014 cadre l\xE9gal, pas surprise.",
+          editStep: 11
+        },
+        "12": { desc: "R\xE8glement amiable des diff\xE9rends avant recours au tribunal." },
+        "13": { desc: "Transmission du contrat et pi\xE8ces annexes." },
+        "14": { desc: "Annexes compl\xE9mentaires \xE9ventuelles au contrat.", editStep: 12 }
+      };
+    }
+  });
+
+  // js/contract/avocate-comments.js
+  function normalizeText(s) {
+    return String(s || "").replace(/\u2019/g, "'").replace(/\u2018/g, "'").replace(/\u00a0/g, " ");
+  }
+  function getCommentsForArticleSection(section) {
+    if (!section || section.isPreamble) return [];
+    const keyMatch = String(section.heading || "").match(/Article\s+(\d+(?:\.\d+)?)(?:er|re)?\b/i);
+    const key = keyMatch ? keyMatch[1] : null;
+    if (!key) return [];
+    const fullText = normalizeText(
+      (section.heading || "") + "\n" + (section.lines || []).join("\n")
+    );
+    return AVOCATE_COMMENTS.filter(function(c) {
+      if (c.articleKey !== key) return false;
+      if (!c.match) return true;
+      return c.match.test(fullText) || c.match.test(normalizeText(section.heading || ""));
+    });
+  }
+  function findCommentsMatchingLine(line) {
+    const text = normalizeText(line);
+    if (!text.trim()) return [];
+    return AVOCATE_COMMENTS.filter(function(c) {
+      return c.match && c.match.test(text);
+    });
+  }
+  var AVOCATE_COMMENTS;
+  var init_avocate_comments = __esm({
+    "js/contract/avocate-comments.js"() {
+      AVOCATE_COMMENTS = [
+        {
+          id: "bilan-annuel",
+          articleKey: "1",
+          match: /bilan relatif à l'exécution du présent contrat/i,
+          comment: "L'Ordre des infirmiers souligne l'importance de r\xE9aliser un bilan annuel de la collaboration. Ce temps d'\xE9change permet aux parties de faire le point sur les conditions d'ex\xE9cution du contrat, d'identifier les \xE9ventuels ajustements n\xE9cessaires et de pr\xE9server l'\xE9quilibre de la relation lib\xE9rale.\n\nEn cas d'\xE9volution des modalit\xE9s de collaboration, il convient de formaliser toute modification par un avenant \xE9crit, sign\xE9 par les parties, puis transmis \xE0 l'Ordre des infirmiers."
+        },
+        {
+          id: "patientele-moyens",
+          articleKey: "2",
+          apercuThemeId: "patientele",
+          questionnaireStep: 2,
+          match: /réserver au Collaborateur un minimum/i,
+          comment: "Ces pr\xE9cisions rev\xEAtent une importance particuli\xE8re. La jurisprudence rappelle en effet qu'il ne suffit pas d'affirmer, de mani\xE8re g\xE9n\xE9rale, l'ind\xE9pendance du collaborateur : le contrat doit \xE9galement pr\xE9voir, de fa\xE7on concr\xE8te, les conditions lui permettant de d\xE9velopper sa patient\xE8le personnelle.\n\nIl est donc recommand\xE9 de d\xE9finir clairement le temps et les moyens mis \xE0 sa disposition \xE0 cette fin. Un engagement r\xE9el, identifiable et suffisamment pr\xE9cis permet de s\xE9curiser la collaboration et de pr\xE9server l'\xE9quilibre de la relation lib\xE9rale."
+        },
+        {
+          id: "planning-subordination",
+          articleKey: "3",
+          apercuThemeId: "organisation",
+          questionnaireStep: 3,
+          match: /ne pas gérer unilatéralement le planning, les congés ou les tournées/i,
+          comment: "En pratique, lorsque le planning, les cong\xE9s ou les tourn\xE9es sont d\xE9termin\xE9s de mani\xE8re unilat\xE9rale par le titulaire, cette organisation peut \xEAtre regard\xE9e comme un indice d'un lien de subordination. Elle est alors susceptible de fragiliser la qualification lib\xE9rale de la relation et d'entra\xEEner, le cas \xE9ch\xE9ant, une requalification en contrat de travail.\n\nIl est donc recommand\xE9 de pr\xE9voir une organisation concert\xE9e, respectueuse de l'autonomie professionnelle du collaborateur, afin de s\xE9curiser la collaboration et de pr\xE9server son caract\xE8re lib\xE9ral."
+        },
+        {
+          id: "recensement-conjoint",
+          articleKey: "4",
+          match: /procèdent annuellement et conjointement à un recensement de leur patientèle/i,
+          comment: "Cette pr\xE9cision permet de rappeler que le recensement de la patient\xE8le est une d\xE9marche commune, qui repose sur la coop\xE9ration des deux parties.\n\nLa jurisprudence a d\xE9j\xE0 pu souligner que cette obligation ne pesait pas uniquement sur le collaborateur, mais devait \xEAtre mise en \u0153uvre conjointement. En l'absence de preuve d'un manquement imputable \xE0 une seule partie, les demandes de r\xE9solution du contrat peuvent \xEAtre rejet\xE9es.\n\nEn pratique, il est donc recommand\xE9 d'organiser ce recensement de mani\xE8re r\xE9guli\xE8re, transparente et concert\xE9e, afin de s\xE9curiser la collaboration et d'\xE9viter les difficult\xE9s en fin de contrat."
+        },
+        {
+          id: "synthese-facturation",
+          articleKey: "6",
+          apercuThemeId: "forfaits",
+          questionnaireStep: 6,
+          match: /synthèse issue du logiciel de facturation est annexée au présent contrat chaque mois/i,
+          comment: "Cette annexe est utile pour s\xE9curiser la collaboration et faciliter la transparence entre les parties. Le commentaire de l'Ordre recommande en effet de pr\xE9voir un document permettant d'identifier clairement les modalit\xE9s de facturation, de r\xE9partition et de reversement des forfaits.\n\nLa jurisprudence rappelle \xE9galement l'importance de conserver des \xE9l\xE9ments comptables clairs et exploitables. \xC0 d\xE9faut de justificatifs suffisants, les demandes de redevance ou de r\xE9gularisation compl\xE9mentaire peuvent \xEAtre rejet\xE9es.\n\nEn pratique, il est donc pr\xE9f\xE9rable d'annexer au contrat une synth\xE8se issue du logiciel de facturation et de l'actualiser \xE0 chaque changement d'organisation ou de planning."
+        },
+        {
+          id: "redevance-suspension",
+          articleKey: "7",
+          apercuThemeId: "redevance",
+          questionnaireStep: 8,
+          match: /impossibilité d'accéder aux locaux du fait du Titulaire/i,
+          comment: "Cette pr\xE9cision permet de s\xE9curiser les relations entre les parties, notamment en fin de contrat.\n\nLa jurisprudence a d\xE9j\xE0 rappel\xE9 qu'un titulaire ne peut pas r\xE9clamer une redevance compl\xE9mentaire lorsque le collaborateur a \xE9t\xE9 priv\xE9 d'acc\xE8s aux locaux pendant la p\xE9riode de pr\xE9avis. Dans un arr\xEAt du 16 mai 2017, la cour d'appel d'Aix-en-Provence a ainsi rejet\xE9 une telle demande.\n\nPar ailleurs, le commentaire de l'Ordre recommande de pr\xE9voir une redevance proportionn\xE9e au temps de pr\xE9sence effectif du collaborateur. La proratisation permet donc d'assurer une r\xE9partition plus juste des charges et de limiter les risques de contestation."
+        },
+        {
+          id: "assurance-locaux",
+          articleKey: "9",
+          match: /attestation d'assurance couvrant les locaux mis à sa disposition/i,
+          comment: "Cette pr\xE9cision permet de clarifier les assurances de chacun. Le Collaborateur doit \xEAtre couvert pour sa responsabilit\xE9 professionnelle, c'est-\xE0-dire pour les actes qu'il r\xE9alise dans le cadre de son activit\xE9. De son c\xF4t\xE9, le Titulaire doit pouvoir justifier que les locaux mis \xE0 disposition sont bien assur\xE9s.\n\nEn pratique, annexer les attestations d'assurance au contrat permet d'\xE9viter les incertitudes en cas de sinistre ou de difficult\xE9 li\xE9e \xE0 l'utilisation des locaux."
+        },
+        {
+          id: "planning-conges",
+          articleKey: "10",
+          match: /fixation des dates et durées des congés, sont déterminées d'un commun accord/i,
+          comment: "Cette clause vise \xE0 pr\xE9server l'\xE9quilibre de la collaboration lib\xE9rale. Le planning, les cong\xE9s et les absences doivent \xEAtre organis\xE9s d'un commun accord, afin de respecter l'ind\xE9pendance de chacun et d'\xE9viter toute situation pouvant \xEAtre interpr\xE9t\xE9e comme un lien de subordination.\n\nEn effet, une fixation unilat\xE9rale des cong\xE9s peut constituer un indice de subordination. La cour d'appel de Pau l'a notamment retenu en 2015.\n\nLa clause permet \xE9galement d'assurer la continuit\xE9 des soins. La cour d'appel de Poitiers, dans un arr\xEAt du 28 f\xE9vrier 2023, a valid\xE9 le principe selon lequel l'organisation des cong\xE9s peut pr\xE9voir que le cabinet ne soit pas simultan\xE9ment d\xE9sert\xE9 par les professionnels."
+        },
+        {
+          id: "arret-maladie",
+          articleKey: "12",
+          match: /En cas de maladie, le Collaborateur organise, dans la mesure du possible, son remplacement/i,
+          comment: "Cette clause permet d'organiser concr\xE8tement la continuit\xE9 des soins pendant l'absence du Collaborateur, en pr\xE9voyant la recherche d'un rempla\xE7ant et, si n\xE9cessaire, l'aide du Titulaire dans cette d\xE9marche.\n\nElle prot\xE8ge \xE9galement le Collaborateur pendant son arr\xEAt maladie."
+        },
+        {
+          id: "duree-determinee",
+          articleKey: "14",
+          apercuThemeId: "duree",
+          questionnaireStep: 9,
+          showWhen: function(ctx) {
+            return ctx && ctx.dureeType === "determinee";
+          },
+          match: /présent contrat est conclu à compter du/i,
+          comment: "Attention : Sauf situation exceptionnelle d\xFBment justifi\xE9e par les parties, notamment en cas de longue maladie, d'hospitalisation ou de circonstances particuli\xE8res, la dur\xE9e du contrat ne peut \xEAtre inf\xE9rieure \xE0 six mois."
+        },
+        {
+          id: "duree-indeterminee",
+          articleKey: "14",
+          apercuThemeId: "duree",
+          questionnaireStep: 9,
+          showWhen: function(ctx) {
+            return ctx && ctx.dureeType === "indeterminee";
+          },
+          match: /présent contrat est conclu pour une durée indéterminée/i,
+          comment: "Cette clause permet de clarifier d\xE8s le d\xE9part la dur\xE9e de la collaboration : soit pour une dur\xE9e d\xE9termin\xE9e, soit pour une dur\xE9e ind\xE9termin\xE9e.\n\nLorsque le contrat est conclu pour une dur\xE9e d\xE9termin\xE9e, il est important d'\xE9viter les contrats trop courts. Le commentaire de l'Ordre rappelle en effet qu'une dur\xE9e inf\xE9rieure \xE0 six mois ne correspond pas, sauf situation exceptionnelle, \xE0 l'esprit de la collaboration lib\xE9rale et peut fragiliser le contrat.\n\nPour les contrats \xE0 dur\xE9e ind\xE9termin\xE9e, il est utile de pr\xE9voir un point r\xE9gulier entre les parties. Ce r\xE9examen permet d'adapter le contrat \xE0 l'\xE9volution de la collaboration, notamment en ce qui concerne les conditions d'exercice, la patient\xE8le, les moyens mis \xE0 disposition, la r\xE9mun\xE9ration ou encore la redevance."
+        },
+        {
+          id: "periode-essai",
+          articleKey: "15",
+          apercuThemeId: "duree",
+          match: /PÉRIODE D['\u2019]ESSAI/i,
+          comment: "Cette clause permet de clarifier les conditions dans lesquelles il peut \xEAtre mis fin \xE0 la collaboration pendant la p\xE9riode d'essai."
+        },
+        {
+          id: "fin-contrat-preavis",
+          articleKey: "16",
+          apercuThemeId: "duree",
+          match: /FIN DE CONTRAT ET PRÉAVIS/i,
+          comment: "Cette clause permet d'encadrer clairement les conditions de fin de la collaboration, afin que chaque partie connaisse les d\xE9marches \xE0 respecter, notamment le d\xE9lai de pr\xE9avis et la forme de la notification.\n\nDe mani\xE8re g\xE9n\xE9rale, le droit de mettre fin au contrat doit \xEAtre exerc\xE9 de bonne foi. La jurisprudence a d\xE9j\xE0 admis qu'une r\xE9siliation pouvait \xEAtre abusive lorsqu'elle \xE9tait utilis\xE9e pour priver le Collaborateur de droits pr\xE9vus au contrat, notamment un droit de priorit\xE9. Dans ce cas, une indemnisation peut \xEAtre accord\xE9e au titre de la perte de chance."
+        },
+        {
+          id: "non-concurrence",
+          articleKey: "19",
+          match: /ne pas s'installer, directement ou indirectement, à titre libéral, pendant une durée de 12/i,
+          comment: "Les rayons de 6 \xE0 10 km ou exclusion d'une commune sont fr\xE9quemment admis. C'est pourquoi nous proposons de retenir 10 km. 20 km peuvent \xEAtre jug\xE9s licites en zone rurale ; un p\xE9rim\xE8tre couvrant de facto toute une ville moyenne peut \xEAtre sanctionn\xE9.\n\nNous vous recommandons 1 an pour maximiser les chances de validit\xE9 de la clause en cas de litige. En effet, si deux ans sont qualifi\xE9s de dur\xE9e habituellement retenue et largement valid\xE9s, ce n'est pas toujours le cas. Trois ans et plus peuvent \xEAtre admis rarement selon le contexte."
+        }
+      ];
+    }
+  });
+
   // js/contract/pdf-debug.js
   function pdfLog(message, detail) {
     if (detail !== void 0) {
@@ -189,7 +545,13 @@
         subtitle: 9,
         body: 10,
         article: 10.5,
+        tocHeading: 11,
+        tocTitle: 9.5,
+        tocAvocate: 8,
+        tocAvocateLineHeight: 4.2,
         bodyLineHeight: 5.8,
+        tocTitleLineHeight: 5,
+        tocDescLineHeight: 4.6,
         titleLineHeight: 6.5,
         subtitleLineHeight: 4.8,
         articleLineHeight: 6,
@@ -388,7 +750,7 @@
     });
     return words;
   }
-  function buildPdfBlob(root, filename) {
+  function buildPdfBlob(root, filename, pdfMeta) {
     const JsPDF = window.jspdf && window.jspdf.jsPDF;
     if (!JsPDF) {
       throw new Error("jsPDF indisponible");
@@ -449,6 +811,140 @@
       pdf.line(marginLeft, headerY + 5, pageWidth - marginRight, headerY + 5);
       ctx.y = headerY + 11;
     }
+    function startBodyPage() {
+      pdf.addPage();
+      ctx.y = marginTop;
+      drawBrandHeader();
+    }
+    function drawToc(entries) {
+      if (!entries || !entries.length) return;
+      ctx.y += 2;
+      writeWrapped("Sommaire", {
+        fontSize: PDF_TYPO.tocHeading,
+        bold: true,
+        color: PDF_THEME.ink,
+        lineHeight: PDF_TYPO.titleLineHeight
+      });
+      ctx.y += 2;
+      writeWrapped(
+        "Chaque section est r\xE9sum\xE9e ci-dessous pour t\u2019aider \xE0 relire ton contrat.",
+        {
+          fontSize: PDF_TYPO.tocDesc,
+          color: PDF_THEME.muted,
+          lineHeight: PDF_TYPO.tocDescLineHeight
+        }
+      );
+      ctx.y += 3;
+      entries.forEach(function(entry, index) {
+        const heading = entry.shortLabel + " \u2014 " + entry.title;
+        newPageIfNeeded(PDF_TYPO.tocTitleLineHeight + PDF_TYPO.tocDescLineHeight * 2);
+        writeWrapped(heading, {
+          fontSize: PDF_TYPO.tocTitle,
+          bold: true,
+          color: PDF_THEME.ink,
+          lineHeight: PDF_TYPO.tocTitleLineHeight
+        });
+        writeWrapped(entry.desc, {
+          fontSize: PDF_TYPO.tocDesc,
+          color: PDF_THEME.muted,
+          lineHeight: PDF_TYPO.tocDescLineHeight
+        });
+        if (entry.avocateNotes && entry.avocateNotes.length) {
+          entry.avocateNotes.forEach(function(noteText) {
+            ctx.y += 1;
+            writeWrapped("Me Violaine \u2014 Commentaire", {
+              fontSize: PDF_TYPO.tocAvocate,
+              bold: true,
+              color: PDF_THEME.teal,
+              lineHeight: PDF_TYPO.tocAvocateLineHeight
+            });
+            String(noteText || "").split(/\n\n+/).filter(Boolean).forEach(function(para) {
+              writeWrapped(para.trim(), {
+                fontSize: PDF_TYPO.tocAvocate,
+                color: PDF_THEME.muted,
+                lineHeight: PDF_TYPO.tocAvocateLineHeight
+              });
+            });
+          });
+        }
+        if (index < entries.length - 1) {
+          ctx.y += 1.5;
+          pdf.setDrawColor(PDF_THEME.gray[0], PDF_THEME.gray[1], PDF_THEME.gray[2]);
+          pdf.setLineWidth(0.2);
+          pdf.line(marginLeft, ctx.y, pageWidth - marginRight, ctx.y);
+          ctx.y += 2.5;
+        }
+      });
+    }
+    function drawAvocateComment(commentText) {
+      if (!commentText) return;
+      ctx.y += 1.5;
+      const boxTop = ctx.y - 1;
+      writeWrapped("Me Violaine \u2014 Commentaire", {
+        fontSize: PDF_TYPO.tocAvocate,
+        bold: true,
+        color: PDF_THEME.teal,
+        lineHeight: PDF_TYPO.tocAvocateLineHeight
+      });
+      String(commentText).split(/\n\n+/).filter(Boolean).forEach(function(para) {
+        writeWrapped(para.trim(), {
+          fontSize: PDF_TYPO.tocAvocate,
+          color: PDF_THEME.muted,
+          lineHeight: PDF_TYPO.tocAvocateLineHeight
+        });
+      });
+      ctx.y += 1;
+      pdf.setDrawColor(PDF_THEME.teal[0], PDF_THEME.teal[1], PDF_THEME.teal[2]);
+      pdf.setLineWidth(0.6);
+      pdf.line(marginLeft, boxTop, marginLeft, ctx.y - 0.5);
+      ctx.y += 1.5;
+    }
+    function renderBodyBlocks(bodyBlocks2) {
+      const drawnComments = {};
+      bodyBlocks2.forEach(function(block) {
+        if (block.type === "spacer") {
+          ctx.y += PDF_TYPO.blockGap;
+        } else if (block.type === "paragraph") {
+          const plain = block.el.innerText.trim();
+          if (!plain) {
+            ctx.y += PDF_TYPO.blockGap;
+            return;
+          }
+          if (isArticleHeading(plain)) {
+            ctx.y += 3;
+            writeWrapped(plain, {
+              fontSize: PDF_TYPO.article,
+              bold: true,
+              color: PDF_THEME.ink,
+              lineHeight: PDF_TYPO.articleLineHeight
+            });
+            ctx.y += 2;
+            findCommentsMatchingLine(plain).forEach(function(note) {
+              if (drawnComments[note.id]) return;
+              drawnComments[note.id] = true;
+              drawAvocateComment(note.comment);
+            });
+            return;
+          }
+          const hasBold = block.el.querySelector("strong, b");
+          if (hasBold) {
+            writeRichParagraph(block.el);
+          } else {
+            writeWrapped(plain, {
+              fontSize: PDF_TYPO.body,
+              color: PDF_THEME.muted,
+              lineHeight: PDF_TYPO.bodyLineHeight
+            });
+          }
+          ctx.y += 1.2;
+          findCommentsMatchingLine(plain).forEach(function(note) {
+            if (drawnComments[note.id]) return;
+            drawnComments[note.id] = true;
+            drawAvocateComment(note.comment);
+          });
+        }
+      });
+    }
     function measureWord(word, bold, fontSize) {
       setFont(bold ? "bold" : "normal", fontSize);
       return pdf.getTextWidth(word);
@@ -503,7 +999,13 @@
       flushLine();
     }
     drawBrandHeader();
-    blocks.forEach(function(block) {
+    const headerBlocks = blocks.filter(function(b) {
+      return b.type === "title" || b.type === "subtitle";
+    });
+    const bodyBlocks = blocks.filter(function(b) {
+      return b.type !== "title" && b.type !== "subtitle";
+    });
+    headerBlocks.forEach(function(block) {
       if (block.type === "title") {
         ctx.y += 2;
         writeWrapped(block.text, {
@@ -522,38 +1024,36 @@
           lineHeight: PDF_TYPO.subtitleLineHeight
         });
         ctx.y += 5;
-      } else if (block.type === "spacer") {
-        ctx.y += PDF_TYPO.blockGap;
-      } else if (block.type === "paragraph") {
-        const plain = block.el.innerText.trim();
-        if (!plain) {
-          ctx.y += PDF_TYPO.blockGap;
-          return;
-        }
-        if (isArticleHeading(plain)) {
-          ctx.y += 3;
-          writeWrapped(plain, {
-            fontSize: PDF_TYPO.article,
-            bold: true,
-            color: PDF_THEME.ink,
-            lineHeight: PDF_TYPO.articleLineHeight
-          });
-          ctx.y += 2;
-          return;
-        }
-        const hasBold = block.el.querySelector("strong, b");
-        if (hasBold) {
-          writeRichParagraph(block.el);
-        } else {
-          writeWrapped(plain, {
-            fontSize: PDF_TYPO.body,
-            color: PDF_THEME.muted,
-            lineHeight: PDF_TYPO.bodyLineHeight
-          });
-        }
-        ctx.y += 1.2;
       }
     });
+    const meta = pdfMeta || {};
+    let tocEntries = [];
+    if (meta.bodyText && meta.parcours) {
+      try {
+        tocEntries = buildArticleSections(meta.bodyText, meta.parcours);
+        const sections = splitSections(meta.bodyText);
+        tocEntries = tocEntries.map(function(entry, index) {
+          const section = sections[index];
+          const notes = section ? getCommentsForArticleSection(section) : [];
+          return {
+            shortLabel: entry.shortLabel,
+            title: entry.title,
+            desc: entry.desc,
+            avocateNotes: notes.map(function(n) {
+              return n.comment;
+            })
+          };
+        });
+        pdfLog("Sommaire PDF", { sections: tocEntries.length, parcours: meta.parcours });
+      } catch (tocErr) {
+        pdfWarn("Sommaire PDF ignor\xE9", tocErr);
+      }
+    }
+    if (tocEntries.length) {
+      drawToc(tocEntries);
+      startBodyPage();
+    }
+    renderBodyBlocks(bodyBlocks);
     const blob = pdf.output("blob");
     pdfLog("Blob PDF g\xE9n\xE9r\xE9", {
       tailleOctets: blob ? blob.size : 0,
@@ -627,7 +1127,10 @@
     });
     const t0 = performance.now();
     try {
-      const blob = buildPdfBlob(resolved.root, filename);
+      const blob = buildPdfBlob(resolved.root, filename, {
+        bodyText: opts.bodyText,
+        parcours: opts.parcours
+      });
       if (!blob) {
         throw new Error("G\xE9n\xE9ration du PDF vide");
       }
@@ -650,6 +1153,8 @@
   var init_pdf_export = __esm({
     "js/contract/pdf-export.js"() {
       init_pdf_options();
+      init_article_guide();
+      init_avocate_comments();
       init_pdf_theme();
       init_pdf_debug();
       engineReady = false;
@@ -1909,8 +2414,9 @@
     });
     return pdfPreloadPromise;
   }
-  function wirePdfDownload(pdfBtn, docEl, filename) {
+  function wirePdfDownload(pdfBtn, docEl, filename, pdfMeta) {
     if (!pdfBtn || !docEl) return;
+    var meta = pdfMeta || {};
     var labelReady = "T\xE9l\xE9charger le PDF";
     pdfBtn.disabled = true;
     pdfBtn.textContent = "Pr\xE9paration du PDF\u2026";
@@ -1934,7 +2440,9 @@
       function runDownload() {
         pdfExportModule.downloadContractPdfNow({
           filename,
-          sourceElement: docEl
+          sourceElement: docEl,
+          bodyText: meta.bodyText,
+          parcours: meta.parcours
         });
       }
       function resetBtn() {
@@ -1993,7 +2501,10 @@
       var rendered = renderCollaborationContract(docEl, bodyText, answers, Contract);
       docEl.removeAttribute("aria-busy");
       mountGuidedContractView("collaboration", rendered.bodyText, rendered.bodyHtml);
-      wirePdfDownload(pdfBtn, docEl, "contrat-de-collaboration-medlex.pdf");
+      wirePdfDownload(pdfBtn, docEl, "contrat-de-collaboration-medlex.pdf", {
+        bodyText: rendered.bodyText,
+        parcours: "collaboration"
+      });
     } catch (e) {
       console.error(e);
       showError(
@@ -2029,7 +2540,10 @@
       var rendered = renderRemplacementContract(docEl, bodyText, answers, Contract);
       docEl.removeAttribute("aria-busy");
       mountGuidedContractView("remplacement", rendered.bodyText, rendered.bodyHtml);
-      wirePdfDownload(pdfBtn, docEl, "contrat-de-remplacement-medlex.pdf");
+      wirePdfDownload(pdfBtn, docEl, "contrat-de-remplacement-medlex.pdf", {
+        bodyText: rendered.bodyText,
+        parcours: "remplacement"
+      });
     } catch (e) {
       console.error(e);
       showError(

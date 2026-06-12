@@ -97,12 +97,30 @@
           : "Continuer";
     }
     updateConditionals();
+    renderAvocateNotes();
     window.scrollTo({ top: 0, behavior: "smooth" });
+  }
+
+  function renderAvocateNotes() {
+    var host = document.getElementById("q-avocate-notes");
+    if (!host) return;
+    if (!window.MedLexAvocateComments) {
+      host.innerHTML = "";
+      return;
+    }
+    var ctx = { dureeType: selectedValue("duree-type") || "indeterminee" };
+    var notes = window.MedLexAvocateComments.getCommentsForQuestionnaireStep(step, ctx);
+    host.innerHTML = notes
+      .map(function (note) {
+        return window.MedLexAvocateComments.renderCommentHtml(note.comment);
+      })
+      .join("");
   }
 
   document.querySelectorAll("[data-select]").forEach(function (btn) {
     btn.addEventListener("click", function () {
       updateConditionals();
+      renderAvocateNotes();
     });
   });
 

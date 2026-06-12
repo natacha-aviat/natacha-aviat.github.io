@@ -139,8 +139,10 @@ function preloadPdfEngine() {
   return pdfPreloadPromise;
 }
 
-function wirePdfDownload(pdfBtn, docEl, filename) {
+function wirePdfDownload(pdfBtn, docEl, filename, pdfMeta) {
   if (!pdfBtn || !docEl) return;
+
+  var meta = pdfMeta || {};
 
   var labelReady = 'Télécharger le PDF';
   pdfBtn.disabled = true;
@@ -171,6 +173,8 @@ function wirePdfDownload(pdfBtn, docEl, filename) {
       pdfExportModule.downloadContractPdfNow({
         filename: filename,
         sourceElement: docEl,
+        bodyText: meta.bodyText,
+        parcours: meta.parcours,
       });
     }
 
@@ -246,7 +250,10 @@ async function initCollaborationContrat(docEl, pdfBtn) {
     docEl.removeAttribute('aria-busy');
     mountGuidedContractView('collaboration', rendered.bodyText, rendered.bodyHtml);
 
-    wirePdfDownload(pdfBtn, docEl, 'contrat-de-collaboration-medlex.pdf');
+    wirePdfDownload(pdfBtn, docEl, 'contrat-de-collaboration-medlex.pdf', {
+      bodyText: rendered.bodyText,
+      parcours: 'collaboration',
+    });
   } catch (e) {
     console.error(e);
     showError(
@@ -290,7 +297,10 @@ async function initRemplacementContrat(docEl, pdfBtn) {
     docEl.removeAttribute('aria-busy');
     mountGuidedContractView('remplacement', rendered.bodyText, rendered.bodyHtml);
 
-    wirePdfDownload(pdfBtn, docEl, 'contrat-de-remplacement-medlex.pdf');
+    wirePdfDownload(pdfBtn, docEl, 'contrat-de-remplacement-medlex.pdf', {
+      bodyText: rendered.bodyText,
+      parcours: 'remplacement',
+    });
   } catch (e) {
     console.error(e);
     showError(
