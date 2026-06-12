@@ -16,6 +16,7 @@
   --ac-shadow-teal: 0 4px 14px rgba(15, 163, 163, 0.35);
   --ac-font: "Inter", "Segoe UI", Roboto, Arial, sans-serif;
   --ac-max: 32rem;
+  --ac-max-wide: 56rem;
 }
 
 *,
@@ -100,6 +101,16 @@ a {
   max-width: var(--ac-max);
   margin-inline: auto;
   padding: 1.5rem 1rem 7rem;
+}
+
+.ac-page--contrat .ac-shell-header__row,
+.ac-page--contrat .ac-shell-header__progress {
+  max-width: var(--ac-max-wide);
+}
+
+.ac-main--contrat {
+  max-width: var(--ac-max-wide);
+  padding-inline: clamp(1rem, 3vw, 2rem);
 }
 
 .ac-logo {
@@ -850,7 +861,7 @@ a {
   .ac-guided-layout {
     flex-direction: row;
     align-items: flex-start;
-    gap: 1.25rem;
+    gap: 1.5rem;
   }
 }
 
@@ -860,12 +871,22 @@ a {
 
 @media (min-width: 768px) {
   .ac-guided-sidebar {
-    flex: 0 0 11.5rem;
+    flex: 0 0 13.5rem;
     position: sticky;
     top: 0.75rem;
     max-height: calc(100vh - 1.5rem);
     overflow-y: auto;
     padding-right: 0.25rem;
+  }
+
+  .ac-main--contrat .ac-guided-sidebar {
+    flex: 0 0 15rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .ac-main--contrat .ac-guided-sidebar {
+    flex: 0 0 16.5rem;
   }
 }
 
@@ -945,10 +966,14 @@ a {
 }
 
 .ac-guided-sideitem__title {
-  font-size: 0.6875rem;
+  font-size: 0.75rem;
   font-weight: 500;
-  line-height: 1.35;
+  line-height: 1.4;
   color: var(--ac-ink);
+}
+
+.ac-main--contrat .ac-guided-sideitem__title {
+  font-size: 0.8125rem;
 }
 
 .ac-guided-main {
@@ -1027,6 +1052,18 @@ a {
   background: var(--ac-bg);
   font-size: 0.75rem;
   line-height: 1.6;
+}
+
+.ac-main--contrat .ac-guided-legal {
+  padding: 1.25rem 1.5rem;
+  font-size: 0.8125rem;
+  line-height: 1.65;
+}
+
+.ac-main--contrat .ac-contract-doc {
+  max-height: min(36rem, 70vh);
+  padding: 1.5rem 1.75rem;
+  font-size: 0.875rem;
 }
 
 .ac-guided-legal__block + .ac-guided-legal__block {
