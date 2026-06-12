@@ -1,11 +1,9 @@
 /**
- * Export PDF direct — texte vectoriel jsPDF (pas de capture html2canvas).
+ * Export PDF direct — texte vectoriel jsPDF, charte Au Clair.
  */
 
 import { html2PdfOptions } from './pdf-options.js';
-
-const COLOR_INK = [22, 49, 77];
-const COLOR_MUTED = [95, 107, 122];
+import { PDF_THEME, PDF_TYPO, registerInterFonts, isArticleHeading } from './pdf-theme.js';
 
 function getHtml2PdfScriptUrl() {
   if (typeof window !== 'undefined' && window.location && window.location.href) {
@@ -98,96 +96,213 @@ function collectPdfBlocks(root) {
   return blocks;
 }
 
+function getWordsFromParagraph(p) {
+  const words = [];
+  function walk(node, bold) {
+    if (node.nodeType === Node.TEXT_NODE) {
+      const text = node.textContent || '';
+      text.split(/\s+/).filter(Boolean).forEach(function (part) {
+        words.push({ text: part, bold: bold });
+      });
+      return;
+    }
+    if (node.nodeType !== Node.ELEMENT_NODE) return;
+    if (node.tagName === 'STRONG' || node.tagName === 'B') {
+      node.childNodes.forEach(function (child) {
+        walk(child, true);
+      });
+      return;
+    }
+    node.childNodes.forEach(function (child) {
+      walk(child, bold);
+    });
+  }
+  p.childNodes.forEach(function (child) {
+    walk(child, false);
+  });
+  return words;
+}
+
 /**
  * @param {HTMLElement} root
  * @param {string} filename
  */
-function renderPdfAsText(root, filename) {
+async function renderPdfAsText(root, filename) {
   const JsPDF = window.jspdf && window.jspdf.jsPDF;
   if (!JsPDF) {
     throw new Error('jsPDF indisponible');
   }
 
   const opts = html2PdfOptions({}, filename);
-  const margins = opts.margin || [15, 15, 15, 15];
+  const margins = opts.margin || [18, 18, 18, 18];
   const marginTop = margins[0];
   const marginRight = margins[1];
   const marginBottom = margins[2];
   const marginLeft = margins[3];
 
   const pdf = new JsPDF(opts.jsPDF);
+  const hasInter = await registerInterFonts(pdf);
+  const fontFamily = hasInter ? 'Inter' : 'helvetica';
+
   const pageWidth = pdf.internal.pageSize.getWidth();
   const pageHeight = pdf.internal.pageSize.getHeight();
   const maxWidth = pageWidth - marginLeft - marginRight;
 
-  const bodyLineHeight = 5.4;
-  const titleLineHeight = 7;
-  const subtitleLineHeight = 4.8;
-  const blockGap = 2.8;
+  const ctx = {
+    pdf: pdf,
+    fontFamily: fontFamily,
+    marginLeft: marginLeft,
+    marginRight: marginRight,
+    marginTop: marginTop,
+    marginBottom: marginBottom,
+    pageWidth: pageWidth,
+    pageHeight: pageHeight,
+    maxWidth: maxWidth,
+    bodyFontSize: PDF_TYPO.body,
+    bodyLineHeight: PDF_TYPO.bodyLineHeight,
+    y: marginTop,
+  };
 
-  let y = marginTop;
+  function setFont(style, size) {
+    pdf.setFont(fontFamily, style);
+    pdf.setFontSize(size);
+  }
 
   function newPageIfNeeded(lineH) {
-    if (y + lineH > pageHeight - marginBottom) {
+    if (ctx.y + lineH > pageHeight - marginBottom) {
       pdf.addPage();
-      y = marginTop;
+      ctx.y = marginTop;
     }
   }
 
-  function writeWrapped(text, options) {
-    const fontSize = options.fontSize || 11;
-    const style = options.bold ? 'bold' : 'normal';
-    const color = options.color || COLOR_MUTED;
-    const align = options.align || 'left';
-    const lh = options.lineHeight || bodyLineHeight;
+  function drawBrandHeader() {
+    const headerY = 12;
+    pdf.setFillColor(PDF_THEME.teal[0], PDF_THEME.teal[1], PDF_THEME.teal[2]);
+    pdf.circle(marginLeft + 1.4, headerY, 1.1, 'F');
+    setFont('bold', PDF_TYPO.brand);
+    pdf.setTextColor(PDF_THEME.ink[0], PDF_THEME.ink[1], PDF_THEME.ink[2]);
+    pdf.text('Au Clair', marginLeft + 4.5, headerY + 1.1);
+    pdf.setDrawColor(PDF_THEME.gray[0], PDF_THEME.gray[1], PDF_THEME.gray[2]);
+    pdf.setLineWidth(0.35);
+    pdf.line(marginLeft, headerY + 5, pageWidth - marginRight, headerY + 5);
+    ctx.y = headerY + 11;
+  }
 
-    pdf.setFontSize(fontSize);
-    pdf.setFont('helvetica', style);
+  function measureWord(word, bold, fontSize) {
+    setFont(bold ? 'bold' : 'normal', fontSize);
+    return pdf.getTextWidth(word);
+  }
+
+  function writeWrapped(text, options) {
+    const fontSize = options.fontSize || PDF_TYPO.body;
+    const style = options.bold ? 'bold' : 'normal';
+    const color = options.color || PDF_THEME.muted;
+    const align = options.align || 'left';
+    const lh = options.lineHeight || PDF_TYPO.bodyLineHeight;
+
+    setFont(style, fontSize);
     pdf.setTextColor(color[0], color[1], color[2]);
 
     const lines = pdf.splitTextToSize(text, maxWidth);
     for (let i = 0; i < lines.length; i++) {
       newPageIfNeeded(lh);
       const x = align === 'center' ? pageWidth / 2 : marginLeft;
-      pdf.text(lines[i], x, y, { align: align });
-      y += lh;
+      pdf.text(lines[i], x, ctx.y, { align: align });
+      ctx.y += lh;
     }
   }
+
+  function writeRichParagraph(p) {
+    const words = getWordsFromParagraph(p);
+    if (!words.length) return;
+
+    let line = [];
+    let lineWidth = 0;
+    const spaceW = measureWord(' ', false, ctx.bodyFontSize);
+
+    function flushLine() {
+      if (!line.length) return;
+      newPageIfNeeded(ctx.bodyLineHeight);
+      let x = marginLeft;
+      line.forEach(function (w, idx) {
+        setFont(w.bold ? 'bold' : 'normal', ctx.bodyFontSize);
+        const c = w.bold ? PDF_THEME.ink : PDF_THEME.muted;
+        pdf.setTextColor(c[0], c[1], c[2]);
+        const chunk = (idx > 0 ? ' ' : '') + w.text;
+        pdf.text(chunk, x, ctx.y);
+        x += pdf.getTextWidth(chunk);
+      });
+      ctx.y += ctx.bodyLineHeight;
+      line = [];
+      lineWidth = 0;
+    }
+
+    words.forEach(function (w) {
+      const wW = measureWord(w.text, w.bold, ctx.bodyFontSize);
+      const addW = line.length ? spaceW + wW : wW;
+      if (line.length && lineWidth + addW > maxWidth) {
+        flushLine();
+      }
+      line.push(w);
+      lineWidth += line.length === 1 ? wW : spaceW + wW;
+    });
+    flushLine();
+  }
+
+  drawBrandHeader();
 
   const blocks = collectPdfBlocks(root);
   blocks.forEach(function (block) {
     if (block.type === 'title') {
-      y += 2;
+      ctx.y += 2;
       writeWrapped(block.text, {
-        fontSize: 14,
+        fontSize: PDF_TYPO.title,
         bold: true,
-        color: COLOR_INK,
+        color: PDF_THEME.ink,
         align: 'center',
-        lineHeight: titleLineHeight,
+        lineHeight: PDF_TYPO.titleLineHeight,
       });
-      y += 1.5;
+      ctx.y += 1.5;
     } else if (block.type === 'subtitle') {
       writeWrapped(block.text, {
-        fontSize: 9,
-        color: COLOR_MUTED,
+        fontSize: PDF_TYPO.subtitle,
+        color: PDF_THEME.muted,
         align: 'center',
-        lineHeight: subtitleLineHeight,
+        lineHeight: PDF_TYPO.subtitleLineHeight,
       });
-      y += 5;
+      ctx.y += 5;
     } else if (block.type === 'spacer') {
-      y += blockGap;
+      ctx.y += PDF_TYPO.blockGap;
     } else if (block.type === 'paragraph') {
       const plain = block.el.innerText.trim();
       if (!plain) {
-        y += blockGap;
+        ctx.y += PDF_TYPO.blockGap;
         return;
       }
-      writeWrapped(plain, {
-        fontSize: 11,
-        color: COLOR_MUTED,
-        lineHeight: bodyLineHeight,
-      });
-      y += 1.2;
+
+      if (isArticleHeading(plain)) {
+        ctx.y += 3;
+        writeWrapped(plain, {
+          fontSize: PDF_TYPO.article,
+          bold: true,
+          color: PDF_THEME.ink,
+          lineHeight: PDF_TYPO.articleLineHeight,
+        });
+        ctx.y += 2;
+        return;
+      }
+
+      const hasBold = block.el.querySelector('strong, b');
+      if (hasBold) {
+        writeRichParagraph(block.el);
+      } else {
+        writeWrapped(plain, {
+          fontSize: PDF_TYPO.body,
+          color: PDF_THEME.muted,
+          lineHeight: PDF_TYPO.bodyLineHeight,
+        });
+      }
+      ctx.y += 1.2;
     }
   });
 
@@ -234,7 +349,7 @@ export async function downloadContractPdf(opts) {
 
   try {
     await loadJsPdf();
-    const blob = renderPdfAsText(root, filename);
+    const blob = await renderPdfAsText(root, filename);
     if (!blob) {
       throw new Error('Génération du PDF vide');
     }
