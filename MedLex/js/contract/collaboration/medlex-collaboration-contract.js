@@ -7,56 +7,38 @@ import { collectQuestionnaireSnapshot, applyQuestionnaireSnapshot } from './snap
 import { collectAnswers } from './answers.js';
 import { loadTemplate, buildContractText } from './template-engine.js';
 import { buildContractRenderedHtml } from './render-html.js';
-import { buildHtmlPreviewDocument } from '../preview-document.js';
-import { PDF_FILENAME, STORAGE_KEY_PENDING_RESTORE } from './constants.js';
-
-function collaborationQuestionnaireUrl() {
-  if (typeof window !== 'undefined' && window.location && window.location.href) {
-    try {
-      if (/\/parcours\//.test(window.location.pathname)) {
-        return new URL('questionnaire-collaboration.html', window.location.href).href.split('#')[0];
-      }
-    } catch {
-      /* ignore */
-    }
-  }
-  return '';
-}
+import { PDF_FILENAME } from './constants.js';
+import { downloadContractPdf } from '../pdf-export.js';
 
 async function downloadPdf() {
   const btn = $('download-pdf');
   const prev = btn?.textContent;
   if (btn) {
     btn.disabled = true;
-    btn.textContent = 'Ouverture…';
+    btn.textContent = 'Téléchargement…';
   }
 
   try {
+    const docEl = document.getElementById('contract-doc');
+    if (docEl && docEl.querySelector('.ac-contract-doc__body')) {
+      await downloadContractPdf({
+        filename: PDF_FILENAME,
+        sourceElement: docEl,
+      });
+      return;
+    }
+
     const templateRaw = await loadTemplate();
     const answers = collectAnswers();
     const bodyText = buildContractText(templateRaw, answers);
-    const win = window.open('', '_blank');
-    if (!win) {
-      alert(
-        'Impossible d’ouvrir une nouvelle fenêtre. Autorisez les fenêtres pop-up pour ce site, puis réessayez.'
-      );
-      return;
-    }
-    window.medlexLastPreviewWindow = win;
-    const snap = collectQuestionnaireSnapshot();
-    win.document.open();
-    win.document.write(
-      buildHtmlPreviewDocument(bodyText, answers, {
-        autoDownloadPdf: true,
-        formSnapshot: snap,
-        buildRenderedHtml: buildContractRenderedHtml,
-        questionnairePageUrl: collaborationQuestionnaireUrl(),
-        pdfFilename: PDF_FILENAME,
-        pendingRestoreKey: STORAGE_KEY_PENDING_RESTORE,
-        previewTitle: 'Aperçu contrat de collaboration',
-      })
-    );
-    win.document.close();
+    const bodyHtml = buildContractRenderedHtml(bodyText, answers);
+
+    await downloadContractPdf({
+      filename: PDF_FILENAME,
+      title: 'Contrat de collaboration infirmier libéral',
+      subtitle: answers.tNom + ' et ' + answers.cNom,
+      bodyHtml: bodyHtml,
+    });
   } catch (e) {
     console.error(e);
     alert(

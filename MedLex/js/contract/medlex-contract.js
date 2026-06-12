@@ -4,11 +4,19 @@
  */
 
 import { $ } from './utils.js';
+import { PDF_FILENAME } from './constants.js';
 import { collectQuestionnaireSnapshot, applyQuestionnaireSnapshot } from './snapshot.js';
 import { collectAnswers } from './answers.js';
 import { loadTemplate, buildContractText } from './template-engine.js';
 import { buildContractRenderedHtml } from './render-html.js';
 import { buildHtmlPreviewDocument } from './preview-document.js';
+import { downloadContractPdf } from './pdf-export.js';
+
+const TYPE_LABELS = {
+  continue: 'Remplacement continu',
+  discontinu: 'Remplacement discontinu',
+  planning: 'Planning variable',
+};
 
 async function downloadPdf() {
   const multi = $('multi-remplacements')?.value;
@@ -23,30 +31,36 @@ async function downloadPdf() {
   const prev = btn?.textContent;
   if (btn) {
     btn.disabled = true;
-    btn.textContent = 'Ouverture…';
+    btn.textContent = 'Téléchargement…';
   }
 
   try {
+    const docEl = document.getElementById('contract-doc');
+    if (docEl && docEl.querySelector('.ac-contract-doc__body')) {
+      await downloadContractPdf({
+        filename: PDF_FILENAME,
+        sourceElement: docEl,
+      });
+      return;
+    }
+
     const templateRaw = await loadTemplate();
     const answers = collectAnswers();
     const bodyText = buildContractText(templateRaw, answers);
-    const win = window.open('', '_blank');
-    if (!win) {
-      alert(
-        'Impossible d’ouvrir une nouvelle fenêtre. Autorisez les fenêtres pop-up pour ce site, puis réessayez « Télécharger le projet PDF ».'
-      );
-      return;
-    }
-    window.medlexLastPreviewWindow = win;
-    win.document.open();
-    const snap = collectQuestionnaireSnapshot();
-    win.document.write(
-      buildHtmlPreviewDocument(bodyText, answers, {
-        autoDownloadPdf: true,
-        formSnapshot: snap,
-      })
-    );
-    win.document.close();
+    const bodyHtml = buildContractRenderedHtml(bodyText, answers);
+    const subtitle =
+      answers.rpNom +
+      ' et ' +
+      answers.rNom +
+      ' · ' +
+      (TYPE_LABELS[answers.typeRemplacement] || 'Remplacement');
+
+    await downloadContractPdf({
+      filename: PDF_FILENAME,
+      title: 'Contrat de remplacement infirmier libéral',
+      subtitle: subtitle,
+      bodyHtml: bodyHtml,
+    });
   } catch (e) {
     console.error(e);
     alert(
@@ -55,7 +69,7 @@ async function downloadPdf() {
   } finally {
     if (btn) {
       btn.disabled = false;
-      btn.textContent = prev || 'Télécharger le projet PDF';
+      btn.textContent = prev || 'Télécharger le PDF';
     }
   }
 }
