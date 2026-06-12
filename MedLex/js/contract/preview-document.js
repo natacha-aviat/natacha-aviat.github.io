@@ -3,6 +3,7 @@
  */
 
 import { PDF_FILENAME, STORAGE_KEY_PENDING_RESTORE } from './constants.js';
+import { html2PdfOptions } from './pdf-options.js';
 import { escapeHtml, jsonLiteralForEmbeddedParse } from './utils.js';
 import { collectQuestionnaireSnapshot } from './snapshot.js';
 import { buildContractRenderedHtml } from './render-html.js';
@@ -24,27 +25,7 @@ function getHtml2PdfScriptUrl() {
   return getMedLexAssetUrl('html2pdf.bundle.min.js');
 }
 
-/**
- * @param {Record<string, unknown>} [html2canvasExtra] fusionné dans html2canvas (ex. onclone).
- */
-export function html2PdfOptions(html2canvasExtra, filename) {
-  return {
-    margin: [12, 12, 12, 12],
-    filename: filename || PDF_FILENAME,
-    image: { type: 'jpeg', quality: 0.95 },
-    html2canvas: Object.assign(
-      {
-        scale: 2,
-        useCORS: true,
-        logging: false,
-        scrollX: 0,
-        scrollY: 0,
-      },
-      html2canvasExtra || {}
-    ),
-    jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' },
-  };
-}
+export { html2PdfOptions };
 
 /**
  * @param {string} bodyText

@@ -93,6 +93,33 @@ function updatePageChrome(isCollab) {
   }
 }
 
+function wirePdfDownload(pdfBtn, docEl, filename) {
+  if (!pdfBtn || !docEl) return;
+  pdfBtn.disabled = false;
+  pdfBtn.addEventListener('click', async function () {
+    var prev = pdfBtn.textContent;
+    pdfBtn.disabled = true;
+    pdfBtn.textContent = 'Téléchargement…';
+    try {
+      var mod = await import('./contract/pdf-export.js');
+      await mod.downloadContractPdf({
+        filename: filename,
+        sourceElement: docEl,
+      });
+    } catch (e) {
+      console.error(e);
+      alert(
+        e instanceof Error
+          ? 'Impossible de générer le PDF : ' + e.message
+          : 'Impossible de générer le PDF.'
+      );
+    } finally {
+      pdfBtn.disabled = false;
+      pdfBtn.textContent = prev || 'Télécharger le PDF';
+    }
+  });
+}
+
 async function initCollaborationContrat(docEl, pdfBtn) {
   var qHref = 'questionnaire-collaboration.html';
 
@@ -124,12 +151,7 @@ async function initCollaborationContrat(docEl, pdfBtn) {
     renderCollaborationContract(docEl, bodyText, answers, Contract);
     docEl.removeAttribute('aria-busy');
 
-    if (pdfBtn) {
-      pdfBtn.disabled = false;
-      pdfBtn.addEventListener('click', function () {
-        Contract.downloadPdf();
-      });
-    }
+    wirePdfDownload(pdfBtn, docEl, 'contrat-de-collaboration-medlex.pdf');
   } catch (e) {
     console.error(e);
     showError(
@@ -172,12 +194,7 @@ async function initRemplacementContrat(docEl, pdfBtn) {
     renderRemplacementContract(docEl, bodyText, answers, Contract);
     docEl.removeAttribute('aria-busy');
 
-    if (pdfBtn) {
-      pdfBtn.disabled = false;
-      pdfBtn.addEventListener('click', function () {
-        Contract.downloadPdf();
-      });
-    }
+    wirePdfDownload(pdfBtn, docEl, 'contrat-de-remplacement-medlex.pdf');
   } catch (e) {
     console.error(e);
     showError(

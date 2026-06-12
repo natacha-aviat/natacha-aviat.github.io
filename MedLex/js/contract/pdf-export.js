@@ -1,8 +1,8 @@
 /**
- * Export PDF direct (sans ouvrir un nouvel onglet) — style Au Clair.
+ * Export PDF direct sur la page courante — aucun nouvel onglet ni page d’aperçu.
  */
 
-import { html2PdfOptions } from './preview-document.js';
+import { html2PdfOptions } from './pdf-options.js';
 
 const PDF_ROOT_STYLES = `
 .medlex-pdf-root {
@@ -71,6 +71,10 @@ function loadHtml2Pdf() {
   return new Promise(function (resolve, reject) {
     const existing = document.querySelector('script[data-medlex-html2pdf="1"]');
     if (existing) {
+      if (typeof window.html2pdf === 'function') {
+        resolve();
+        return;
+      }
       existing.addEventListener('load', function () {
         resolve();
       });
@@ -81,7 +85,7 @@ function loadHtml2Pdf() {
     }
     const s = document.createElement('script');
     s.src = getHtml2PdfScriptUrl();
-    s.async = true;
+    s.async = false;
     s.setAttribute('data-medlex-html2pdf', '1');
     s.onload = function () {
       resolve();
@@ -157,6 +161,32 @@ function buildRootFromHtml(title, subtitle, bodyHtml) {
   return root;
 }
 
+function triggerBlobDownload(blob, filename) {
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = filename;
+  a.rel = 'noopener';
+  a.style.display = 'none';
+  document.body.appendChild(a);
+  a.click();
+  window.setTimeout(function () {
+    URL.revokeObjectURL(url);
+    if (a.parentNode) {
+      a.parentNode.removeChild(a);
+    }
+  }, 250);
+}
+
+async function renderPdfBlob(captureRoot, filename) {
+  const worker = window.html2pdf().set(html2PdfOptions({}, filename)).from(captureRoot);
+  if (typeof worker.outputPdf === 'function') {
+    return worker.outputPdf('blob');
+  }
+  const pdf = await worker.toPdf().get('pdf');
+  return pdf.output('blob');
+}
+
 /**
  * @param {{ filename: string; sourceElement?: HTMLElement; title?: string; subtitle?: string; bodyHtml?: string }} opts
  */
@@ -189,10 +219,11 @@ export async function downloadContractPdf(opts) {
       throw new Error('html2pdf indisponible');
     }
 
-    const chain = window.html2pdf().set(html2PdfOptions({}, filename)).from(captureRoot).save();
-    if (chain && typeof chain.then === 'function') {
-      await chain;
+    const blob = await renderPdfBlob(captureRoot, filename);
+    if (!blob) {
+      throw new Error('Génération du PDF vide');
     }
+    triggerBlobDownload(blob, filename);
   } finally {
     if (host && host.parentNode) {
       host.parentNode.removeChild(host);
