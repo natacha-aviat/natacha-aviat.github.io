@@ -27,11 +27,39 @@ export const PDF_TYPO = {
   blockGap: 2.8,
 };
 
-const FONT_CDN = 'https://cdn.jsdelivr.net/npm/@fontsource/inter@5.2.5/files';
 const FONT_TIMEOUT_MS = 8000;
+
+const FONT_SOURCES = {
+  regular: 'inter-latin-400-normal.ttf',
+  bold: 'inter-latin-700-normal.ttf',
+};
 
 /** @type {{ regular: string; bold: string } | null} */
 let interFontsCache = null;
+
+function isFileProtocol() {
+  return typeof window !== 'undefined' && window.location && window.location.protocol === 'file:';
+}
+
+function getLocalFontUrl(filename) {
+  if (typeof window !== 'undefined' && window.location && window.location.href) {
+    try {
+      const inParcours = /\/parcours\//.test(window.location.pathname);
+      const rel = inParcours ? '../fonts/' + filename : './fonts/' + filename;
+      return new URL(rel, window.location.href).href;
+    } catch {
+      /* ignore */
+    }
+  }
+  return './fonts/' + filename;
+}
+
+function getFontUrls(filename) {
+  return [
+    getLocalFontUrl(filename),
+    'https://cdn.jsdelivr.net/fontsource/fonts/inter@latest/' + filename,
+  ];
+}
 
 function fetchFontAsBase64(url) {
   return new Promise(function (resolve, reject) {
@@ -43,7 +71,7 @@ function fetchFontAsBase64(url) {
     fetch(url, { cache: 'force-cache' })
       .then(function (res) {
         if (!res.ok) {
-          throw new Error('Police introuvable : ' + url);
+          throw new Error('Police introuvable (' + res.status + ') : ' + url);
         }
         return res.arrayBuffer();
       })
@@ -63,6 +91,19 @@ function fetchFontAsBase64(url) {
         reject(err);
       });
   });
+}
+
+async function fetchFontWithFallback(filename) {
+  const urls = getFontUrls(filename);
+  let lastErr = null;
+  for (let i = 0; i < urls.length; i++) {
+    try {
+      return await fetchFontAsBase64(urls[i]);
+    } catch (e) {
+      lastErr = e;
+    }
+  }
+  throw lastErr || new Error('Police introuvable : ' + filename);
 }
 
 /**
@@ -86,15 +127,19 @@ export function applyInterFontsIfCached(pdf) {
  * @param {import('jspdf').jsPDF} pdf
  */
 export async function registerInterFonts(pdf) {
+  if (isFileProtocol()) {
+    pdfLog('Protocole file:// — police Inter ignorée (Helvetica). Ouvrez le site via http://localhost pour Inter.');
+    return false;
+  }
   if (interFontsCache) {
     pdfLog('Inter déjà en cache');
     return applyInterFontsIfCached(pdf);
   }
-  pdfLog('Téléchargement Inter depuis le CDN…');
+  pdfLog('Chargement Inter (local puis CDN)…');
   try {
     const [regular, bold] = await Promise.all([
-      fetchFontAsBase64(FONT_CDN + '/inter-latin-400-normal.ttf'),
-      fetchFontAsBase64(FONT_CDN + '/inter-latin-700-normal.ttf'),
+      fetchFontWithFallback(FONT_SOURCES.regular),
+      fetchFontWithFallback(FONT_SOURCES.bold),
     ]);
     interFontsCache = { regular, bold };
     pdfLog('Inter enregistrée avec succès');
