@@ -22,5 +22,9 @@ export function html2PdfOptions(html2canvasExtra, filename) {
       html2canvasExtra || {}
     ),
     jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' },
+    pagebreak: {
+      mode: ['avoid-all', 'css', 'legacy'],
+      avoid: '.medlex-pdf-visual-line',
+    },
   };
 }

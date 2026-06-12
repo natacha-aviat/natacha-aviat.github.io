@@ -49,7 +49,107 @@ const PDF_ROOT_STYLES = `
   color: #16314d;
   font-weight: 600;
 }
+.medlex-pdf-visual-line {
+  display: block;
+  page-break-inside: avoid !important;
+  break-inside: avoid !important;
+  -webkit-column-break-inside: avoid !important;
+  margin: 0 0 8px;
+  line-height: 1.65;
+  color: #5f6b7a;
+}
+.medlex-pdf-visual-line strong {
+  color: #16314d;
+  font-weight: 600;
+}
+.medlex-pdf-visual-line--spacer {
+  min-height: 0.35em;
+  margin-bottom: 4px;
+}
 `;
+
+function measureTextWidth(text, font) {
+  const canvas = document.createElement('canvas');
+  const ctx = canvas.getContext('2d');
+  if (!ctx) return text.length * 8;
+  ctx.font = font;
+  return ctx.measureText(text).width;
+}
+
+function getFontFromElement(el) {
+  const s = window.getComputedStyle(el);
+  return [s.fontStyle, s.fontVariant, s.fontWeight, s.fontSize, s.fontFamily].filter(Boolean).join(' ');
+}
+
+function wrapPlainText(text, maxWidth, font) {
+  const words = String(text || '')
+    .trim()
+    .split(/\s+/)
+    .filter(Boolean);
+  if (!words.length) return [''];
+  const lines = [];
+  let current = '';
+  for (let i = 0; i < words.length; i++) {
+    const word = words[i];
+    const trial = current ? current + ' ' + word : word;
+    if (measureTextWidth(trial, font) > maxWidth && current) {
+      lines.push(current);
+      current = word;
+    } else {
+      current = trial;
+    }
+  }
+  if (current) lines.push(current);
+  return lines;
+}
+
+function replaceParagraphWithLineBlocks(p, maxWidth) {
+  const font = getFontFromElement(p);
+  const lines = wrapPlainText(p.innerText, maxWidth, font);
+  if (lines.length <= 1) {
+    p.classList.add('medlex-pdf-visual-line');
+    return;
+  }
+  const parent = p.parentNode;
+  if (!parent) return;
+  const frag = document.createDocumentFragment();
+  lines.forEach(function (line) {
+    const div = document.createElement('div');
+    div.className = 'medlex-pdf-visual-line';
+    div.textContent = line;
+    frag.appendChild(div);
+  });
+  parent.insertBefore(frag, p);
+  parent.removeChild(p);
+}
+
+/**
+ * Découpe les paragraphes longs en lignes visuelles indivisibles pour html2pdf.
+ * @param {HTMLElement} root
+ */
+function preparePdfPagination(root) {
+  const padX = 96;
+  const maxWidth = Math.max(200, root.clientWidth - padX);
+
+  root
+    .querySelectorAll(
+      '.medlex-pdf-root__title, .medlex-pdf-root__subtitle, .ac-contract-doc__title, .ac-contract-doc__subtitle'
+    )
+    .forEach(function (el) {
+      el.classList.add('medlex-pdf-visual-line');
+    });
+
+  Array.from(root.querySelectorAll('.medlex-pdf-root__body p, .ac-contract-doc__body p')).forEach(function (p) {
+    replaceParagraphWithLineBlocks(p, maxWidth);
+  });
+
+  root.querySelectorAll('br').forEach(function (br) {
+    const div = document.createElement('div');
+    div.className = 'medlex-pdf-visual-line medlex-pdf-visual-line--spacer';
+    div.innerHTML = '&nbsp;';
+    br.replaceWith(div);
+  });
+}
 
 function getHtml2PdfScriptUrl() {
   if (typeof window !== 'undefined' && window.location && window.location.href) {
@@ -178,12 +278,57 @@ function triggerBlobDownload(blob, filename) {
   }, 250);
 }
 
+async function captureElementCanvas(lineEl, opts) {
+  const worker = window.html2pdf().set({
+    margin: 0,
+    html2canvas: opts.html2canvas,
+    image: opts.image,
+    jsPDF: opts.jsPDF,
+  }).from(lineEl).toCanvas();
+  return worker.get('canvas');
+}
+
 async function renderPdfBlob(captureRoot, filename) {
-  const worker = window.html2pdf().set(html2PdfOptions({}, filename)).from(captureRoot);
-  if (typeof worker.outputPdf === 'function') {
-    return worker.outputPdf('blob');
+  const opts = html2PdfOptions({}, filename);
+  const lines = Array.from(captureRoot.querySelectorAll('.medlex-pdf-visual-line'));
+
+  const JsPDF = window.jspdf && window.jspdf.jsPDF;
+  if (!lines.length || !JsPDF) {
+    const worker = window.html2pdf().set(opts).from(captureRoot);
+    if (typeof worker.outputPdf === 'function') {
+      return worker.outputPdf('blob');
+    }
+    const pdf = await worker.toPdf().get('pdf');
+    return pdf.output('blob');
   }
-  const pdf = await worker.toPdf().get('pdf');
+
+  const margins = opts.margin || [12, 12, 12, 12];
+  const marginTop = margins[0];
+  const marginRight = margins[1];
+  const marginBottom = margins[2];
+  const marginLeft = margins[3];
+  const pdf = new JsPDF(opts.jsPDF);
+  const pageWidth = pdf.internal.pageSize.getWidth();
+  const pageHeight = pdf.internal.pageSize.getHeight();
+  const contentWidth = pageWidth - marginLeft - marginRight;
+  const maxY = pageHeight - marginBottom;
+  let y = marginTop;
+  const lineGap = 0.4;
+
+  for (let i = 0; i < lines.length; i++) {
+    const canvas = await captureElementCanvas(lines[i], opts);
+    const imgData = canvas.toDataURL('image/jpeg', opts.image.quality);
+    const imgHeightMm = (canvas.height * contentWidth) / canvas.width;
+
+    if (y + imgHeightMm > maxY && y > marginTop) {
+      pdf.addPage();
+      y = marginTop;
+    }
+
+    pdf.addImage(imgData, 'JPEG', marginLeft, y, contentWidth, imgHeightMm);
+    y += imgHeightMm + lineGap;
+  }
+
   return pdf.output('blob');
 }
 
@@ -214,6 +359,8 @@ export async function downloadContractPdf(opts) {
         requestAnimationFrame(r);
       });
     });
+
+    preparePdfPagination(captureRoot);
 
     if (typeof window.html2pdf !== 'function') {
       throw new Error('html2pdf indisponible');
