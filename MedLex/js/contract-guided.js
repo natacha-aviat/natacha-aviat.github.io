@@ -1,5 +1,5 @@
 /**
- * Relecture guidée du contrat — une section à la fois, avec texte juridique repliable.
+ * Relecture guidée du contrat — un article par section, navigation latérale.
  */
 (function () {
   function escapeHtml(s) {
@@ -44,111 +44,76 @@
     return sections;
   }
 
-  function assignTheme(section, themes, used) {
-    var i;
-    for (i = 0; i < themes.length; i++) {
-      if (themes[i].match.test(section.heading)) {
-        if (!used[themes[i].id]) {
-          used[themes[i].id] = themes[i];
-          used[themes[i].id].sections = [];
-        }
-        used[themes[i].id].sections.push(section);
-        return;
-      }
-    }
-    if (!used._autres) {
-      used._autres = {
-        id: 'autres',
-        title: 'Autres clauses',
-        desc: 'Ces passages complètent le contrat sur des points plus techniques ou annexes.',
-        sections: [],
+  function buildArticleSections(bodyText, parcours) {
+    var guide = window.MedLexArticleGuide;
+    return splitSections(bodyText).map(function (section, index) {
+      var meta = guide ? guide.getArticleMeta(parcours, section) : {};
+      return {
+        index: index,
+        section: section,
+        shortLabel: meta.shortLabel || 'Art.',
+        title: meta.title || section.heading,
+        desc: meta.desc || '',
+        editSteps: meta.editSteps || [],
       };
-    }
-    used._autres.sections.push(section);
-  }
-
-  function groupSections(bodyText, parcours) {
-    var themes =
-      window.MedLexClauseThemes && parcours === 'collaboration'
-        ? window.MedLexClauseThemes.collaboration
-        : window.MedLexClauseThemes
-          ? window.MedLexClauseThemes.remplacement
-          : [];
-    var raw = splitSections(bodyText);
-    var used = {};
-    var i;
-
-    raw.forEach(function (sec) {
-      if (sec.isPreamble && themes[0]) {
-        if (!used[themes[0].id]) {
-          used[themes[0].id] = {
-            id: themes[0].id,
-            title: themes[0].title,
-            desc: themes[0].desc,
-            sections: [],
-          };
-        }
-        used[themes[0].id].sections.push(sec);
-        return;
-      }
-      assignTheme(sec, themes, used);
     });
-
-    var ordered = [];
-    themes.forEach(function (t) {
-      if (used[t.id]) {
-        ordered.push(used[t.id]);
-      } else {
-        ordered.push({
-          id: t.id,
-          title: t.title,
-          desc: t.desc,
-          sections: [],
-        });
-      }
-    });
-    if (used._autres && used._autres.sections.length) ordered.push(used._autres);
-    return ordered;
   }
 
   function sectionToHtml(section, renderLineFn) {
-    var html = '<p class="ac-guided-section__heading">' + escapeHtml(section.heading) + '</p>';
+    var html = '';
+    if (!section.isPreamble) {
+      html += '<p class="ac-guided-section__heading">' + escapeHtml(section.heading) + '</p>';
+    }
     section.lines.forEach(function (line) {
       html += renderLineFn(line);
     });
     return html;
   }
 
-  function renderGuidedStep(group, bodyHtmlMap, stepIndex, total) {
-    var legalHtml = '';
-    var hasLegal = group.sections && group.sections.length > 0;
-
-    if (hasLegal) {
-      group.sections.forEach(function (sec) {
-        legalHtml +=
-          '<div class="ac-guided-legal__block">' +
-          (bodyHtmlMap[sec.heading] || sectionToHtml(sec, function (line) {
-            return '<p>' + escapeHtml(line) + '</p>';
-          })) +
-          '</div>';
+  function renderGuidedStep(article, bodyHtmlMap, stepIndex, total, parcours) {
+    var sec = article.section;
+    var legalHtml =
+      bodyHtmlMap[sec.heading] ||
+      sectionToHtml(sec, function (line) {
+        return '<p>' + escapeHtml(line) + '</p>';
       });
-    } else {
-      legalHtml =
-        '<p class="ac-microcopy">Ce passage n’apparaît pas dans le texte généré. Consulte l’onglet <strong>Texte intégral</strong> si besoin.</p>';
+
+    var guide = window.MedLexArticleGuide;
+    var editBtn = '';
+    if (guide && article.editSteps && article.editSteps.length) {
+      editBtn =
+        '<div class="ac-guided-edit-row">' +
+        article.editSteps
+          .map(function (link) {
+            var href = guide.questionnaireHref(parcours, link.step);
+            if (!href) return '';
+            return (
+              '<a class="ac-btn ac-btn--secondary ac-guided-edit" href="' +
+              escapeHtml(href) +
+              '">' +
+              escapeHtml(link.label) +
+              '</a>'
+            );
+          })
+          .join('') +
+        '</div>';
     }
 
     return (
       '<article class="ac-card ac-card--guided">' +
-      '<p class="ac-guided-step">Section ' +
+      '<div class="ac-guided-card__head">' +
+      '<p class="ac-guided-step">Article ' +
       (stepIndex + 1) +
       ' sur ' +
       total +
       '</p>' +
+      editBtn +
+      '</div>' +
       '<h2 class="ac-card__title">' +
-      escapeHtml(group.title) +
+      escapeHtml(article.title) +
       '</h2>' +
       '<p class="ac-card__desc ac-guided-benefit">' +
-      escapeHtml(group.desc) +
+      escapeHtml(article.desc) +
       '</p>' +
       '<div class="ac-guided-legal ac-contract-doc__body">' +
       legalHtml +
@@ -164,6 +129,7 @@
     var paras = wrap.querySelectorAll('p');
     var currentKey = null;
     var buf = [];
+    var preambleBuf = [];
 
     function flush() {
       if (currentKey && buf.length) map[currentKey] = buf.join('');
@@ -178,45 +144,33 @@
         buf.push('<p class="ac-guided-section__heading">' + escapeHtml(text) + '</p>');
       } else if (currentKey) {
         buf.push(p.outerHTML);
+      } else {
+        preambleBuf.push(p.outerHTML);
       }
     });
     flush();
+    if (preambleBuf.length) {
+      map['Préambule et identification des parties'] = preambleBuf.join('');
+    }
     return map;
   }
 
-  function renderProgressDots(groups, activeIndex) {
-    return (
-      '<div class="ac-guided-dots" aria-hidden="true">' +
-      groups
-        .map(function (_, i) {
-          return (
-            '<span class="ac-guided-dot' +
-            (i === activeIndex ? ' ac-guided-dot--active' : '') +
-            (i < activeIndex ? ' ac-guided-dot--done' : '') +
-            '"></span>'
-          );
-        })
-        .join('') +
-      '</div>'
-    );
-  }
-
-  function renderChips(groups, activeIndex) {
-    return groups
-      .map(function (g, i) {
+  function renderSidebarNav(articles, activeIndex) {
+    return articles
+      .map(function (a, i) {
         return (
-          '<button type="button" class="ac-guided-chip' +
-          (i === activeIndex ? ' ac-guided-chip--active' : '') +
+          '<button type="button" class="ac-guided-sideitem' +
+          (i === activeIndex ? ' ac-guided-sideitem--active' : '') +
           '" data-guided-step="' +
           i +
           '" aria-current="' +
           (i === activeIndex ? 'step' : 'false') +
           '">' +
-          '<span class="ac-guided-chip__num">' +
-          (i + 1) +
+          '<span class="ac-guided-sideitem__label">' +
+          escapeHtml(a.shortLabel) +
           '</span>' +
-          '<span class="ac-guided-chip__label">' +
-          escapeHtml(g.title) +
+          '<span class="ac-guided-sideitem__title">' +
+          escapeHtml(a.title) +
           '</span>' +
           '</button>'
         );
@@ -224,14 +178,39 @@
       .join('');
   }
 
+  function renderMobileJump(articles, activeIndex) {
+    var options = articles
+      .map(function (a, i) {
+        return (
+          '<option value="' +
+          i +
+          '"' +
+          (i === activeIndex ? ' selected' : '') +
+          '>' +
+          escapeHtml(a.shortLabel + ' — ' + a.title) +
+          '</option>'
+        );
+      })
+      .join('');
+
+    return (
+      '<label class="ac-guided-jump">' +
+      '<span class="ac-guided-jump__label">Aller à l’article</span>' +
+      '<select class="ac-input ac-guided-jump__select" id="guided-jump">' +
+      options +
+      '</select>' +
+      '</label>'
+    );
+  }
+
   function mountGuidedView(opts) {
     var root = document.getElementById('contract-guided');
     if (!root || !opts.bodyText) return;
 
     var parcours = opts.parcours || 'remplacement';
-    var groups = groupSections(opts.bodyText, parcours);
-    if (!groups.length) {
-      root.innerHTML = '<p class="ac-microcopy">Impossible de découper le contrat en sections.</p>';
+    var articles = buildArticleSections(opts.bodyText, parcours);
+    if (!articles.length) {
+      root.innerHTML = '<p class="ac-microcopy">Impossible de découper le contrat en articles.</p>';
       return;
     }
 
@@ -240,34 +219,36 @@
 
     function paint() {
       root.innerHTML =
-        renderProgressDots(groups, step) +
-        '<div class="ac-guided-nav" role="tablist" aria-label="Sections du contrat (' +
-        groups.length +
-        ')">' +
-        renderChips(groups, step) +
-        '</div>' +
+        '<div class="ac-guided-layout">' +
+        '<aside class="ac-guided-sidebar" aria-label="Sommaire du contrat">' +
+        renderMobileJump(articles, step) +
+        '<nav class="ac-guided-sidebar__nav" role="tablist">' +
+        renderSidebarNav(articles, step) +
+        '</nav>' +
+        '</aside>' +
+        '<div class="ac-guided-main">' +
         '<div class="ac-guided-panel" id="contract-guided-panel" aria-live="polite">' +
-        renderGuidedStep(groups[step], bodyHtmlMap, step, groups.length) +
+        renderGuidedStep(articles[step], bodyHtmlMap, step, articles.length, parcours) +
         '</div>' +
         '<div class="ac-btn-row ac-guided-actions">' +
         '<button type="button" class="ac-btn ac-btn--secondary" id="guided-prev"' +
         (step === 0 ? ' disabled' : '') +
         '>Précédent</button>' +
         '<button type="button" class="ac-btn ac-btn--secondary" id="guided-next"' +
-        (step === groups.length - 1 ? ' disabled' : '') +
+        (step === articles.length - 1 ? ' disabled' : '') +
         '>' +
-        (step === groups.length - 1 ? 'Dernière section' : 'Section suivante') +
+        (step === articles.length - 1 ? 'Dernier article' : 'Article suivant') +
         '</button>' +
+        '</div>' +
+        '</div>' +
         '</div>';
     }
 
     function goTo(index) {
-      if (index < 0 || index >= groups.length) return;
+      if (index < 0 || index >= articles.length) return;
       step = index;
       paint();
       bind();
-      var panel = document.getElementById('contract-guided-panel');
-      if (panel) panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
     }
 
     function bind() {
@@ -276,10 +257,16 @@
           goTo(Number(btn.getAttribute('data-guided-step')));
         });
       });
+      var jump = document.getElementById('guided-jump');
+      if (jump) {
+        jump.addEventListener('change', function () {
+          goTo(Number(jump.value));
+        });
+      }
       var prev = document.getElementById('guided-prev');
       var next = document.getElementById('guided-next');
       if (prev) prev.addEventListener('click', function () { goTo(step - 1); });
-      if (next && step < groups.length - 1) {
+      if (next && step < articles.length - 1) {
         next.addEventListener('click', function () { goTo(step + 1); });
       }
     }
@@ -311,6 +298,7 @@
   window.MedLexContractGuided = {
     mount: mountGuidedView,
     initViewToggle: initViewToggle,
-    groupSections: groupSections,
+    buildArticleSections: buildArticleSections,
+    splitSections: splitSections,
   };
 })();

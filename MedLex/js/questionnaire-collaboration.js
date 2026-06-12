@@ -1,6 +1,9 @@
 (function () {
   var STEPS = 10;
-  var step = 0;
+  var params = new URLSearchParams(window.location.search);
+  var fromContrat = params.get("from") === "contrat";
+  var stepParam = parseInt(params.get("step"), 10);
+  var step = !isNaN(stepParam) && stepParam >= 0 && stepParam < STEPS ? stepParam : 0;
 
   var steps = document.querySelectorAll(".ac-q-step");
   var label = document.getElementById("q-label");
@@ -25,6 +28,29 @@
     if (el) el.classList.toggle("ac-hidden", !show);
   }
 
+  function saveAndReturnContrat() {
+    if (window.ParcoursCollaborationSnapshot) {
+      window.ParcoursCollaborationSnapshot.save();
+    }
+    window.location.href = "contrat.html";
+  }
+
+  function ensureContratSaveBtn() {
+    if (!fromContrat) return;
+    var row = document.querySelector(".ac-btn-row");
+    if (!row) return;
+    var btn = document.getElementById("q-save-contrat");
+    if (!btn) {
+      btn = document.createElement("button");
+      btn.type = "button";
+      btn.id = "q-save-contrat";
+      btn.className = "ac-btn ac-btn--secondary";
+      btn.textContent = "Enregistrer et retour au contrat";
+      btn.addEventListener("click", saveAndReturnContrat);
+      row.appendChild(btn);
+    }
+  }
+
   function updateConditionals() {
     toggle(blocForfaitPct, selectedValue("forfait-mode") === "pourcentages");
     var revType = selectedValue("redevance-type") || "pourcentage";
@@ -46,18 +72,29 @@
     if (pct) pct.textContent = progress + " %";
     if (fill) fill.style.width = progress + "%";
     if (backLink) {
-      backLink.href = step === 0 ? "verification-email.html" : "#";
-      backLink.onclick =
-        step === 0
-          ? null
-          : function (e) {
-              e.preventDefault();
-              step--;
-              render();
-            };
+      if (fromContrat && step === 0) {
+        backLink.href = "contrat.html";
+        backLink.onclick = null;
+      } else {
+        backLink.href = step === 0 ? "verification-email.html" : "#";
+        backLink.onclick =
+          step === 0
+            ? null
+            : function (e) {
+                e.preventDefault();
+                step--;
+                render();
+              };
+      }
     }
+    ensureContratSaveBtn();
     if (nextBtn) {
-      nextBtn.textContent = step === STEPS - 1 ? "Voir l'aperçu" : "Continuer";
+      nextBtn.textContent =
+        step === STEPS - 1
+          ? fromContrat
+            ? "Enregistrer et retour au contrat"
+            : "Voir l'aperçu"
+          : "Continuer";
     }
     updateConditionals();
     window.scrollTo({ top: 0, behavior: "smooth" });
@@ -80,6 +117,8 @@
       if (step > 0) {
         step--;
         render();
+      } else if (fromContrat) {
+        window.location.href = "contrat.html";
       } else {
         window.location.href = "verification-email.html";
       }
@@ -95,7 +134,7 @@
         if (window.ParcoursCollaborationSnapshot) {
           window.ParcoursCollaborationSnapshot.save();
         }
-        window.location.href = "apercu.html";
+        window.location.href = fromContrat ? "contrat.html" : "apercu.html";
       }
     });
   }
