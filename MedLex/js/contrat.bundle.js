@@ -1846,21 +1846,37 @@
   };
   function showError(message, questionnaireHref) {
     var doc = document.getElementById("contract-doc");
+    var guided = document.getElementById("contract-guided");
+    var toggle = document.querySelector(".ac-view-toggle");
     if (!doc) return;
     var href = questionnaireHref || "questionnaire.html";
     var isCollab = window.ParcoursType && window.ParcoursType.isCollaboration();
     var title = isCollab ? "Contrat de collaboration infirmier lib\xE9ral" : "Contrat de remplacement infirmier lib\xE9ral";
+    if (guided) guided.innerHTML = "";
+    if (toggle) toggle.classList.add("ac-hidden");
+    doc.classList.remove("ac-hidden");
     doc.innerHTML = '<p class="ac-contract-doc__title">' + title + '</p><p class="ac-microcopy" style="margin-top:1rem;color:var(--ac-ink)">' + escapeHtml2(message) + '</p><p class="ac-microcopy ac-spacer-sm"><a href="' + escapeHtml2(href) + '">Revenir au questionnaire</a></p>';
   }
   function renderRemplacementContract(docEl, bodyText, answers, Contract) {
     var subtitle = escapeHtml2(answers.rpNom) + " et " + escapeHtml2(answers.rNom) + " \xB7 " + escapeHtml2(TYPE_LABELS2[answers.typeRemplacement] || "Remplacement");
     var bodyHtml = Contract.buildContractRenderedHtml(bodyText, answers);
     docEl.innerHTML = '<p class="ac-contract-doc__title">Contrat de remplacement infirmier lib\xE9ral</p><p class="ac-contract-doc__subtitle">' + subtitle + '</p><div class="ac-contract-doc__body">' + bodyHtml + "</div>";
+    return { bodyText, bodyHtml };
   }
   function renderCollaborationContract(docEl, bodyText, answers, Contract) {
     var subtitle = escapeHtml2(answers.tNom) + " et " + escapeHtml2(answers.cNom);
     var bodyHtml = Contract.buildContractRenderedHtml(bodyText, answers);
     docEl.innerHTML = '<p class="ac-contract-doc__title">Contrat de collaboration infirmier lib\xE9ral</p><p class="ac-contract-doc__subtitle">' + subtitle + '</p><div class="ac-contract-doc__body">' + bodyHtml + "</div>";
+    return { bodyText, bodyHtml };
+  }
+  function mountGuidedContractView(parcours, bodyText, bodyHtml) {
+    if (!window.MedLexContractGuided) return;
+    window.MedLexContractGuided.mount({
+      bodyText,
+      bodyHtml,
+      parcours
+    });
+    window.MedLexContractGuided.initViewToggle();
   }
   function updatePageChrome(isCollab) {
     var docEl = document.getElementById("contract-doc");
@@ -1974,8 +1990,9 @@
       var templateRaw = await Contract.loadTemplate();
       var answers = Contract.collectAnswers();
       var bodyText = Contract.buildContractText(templateRaw, answers);
-      renderCollaborationContract(docEl, bodyText, answers, Contract);
+      var rendered = renderCollaborationContract(docEl, bodyText, answers, Contract);
       docEl.removeAttribute("aria-busy");
+      mountGuidedContractView("collaboration", rendered.bodyText, rendered.bodyHtml);
       wirePdfDownload(pdfBtn, docEl, "contrat-de-collaboration-medlex.pdf");
     } catch (e) {
       console.error(e);
@@ -2009,8 +2026,9 @@
       var templateRaw = await Contract.loadTemplate();
       var answers = Contract.collectAnswers();
       var bodyText = Contract.buildContractText(templateRaw, answers);
-      renderRemplacementContract(docEl, bodyText, answers, Contract);
+      var rendered = renderRemplacementContract(docEl, bodyText, answers, Contract);
       docEl.removeAttribute("aria-busy");
+      mountGuidedContractView("remplacement", rendered.bodyText, rendered.bodyHtml);
       wirePdfDownload(pdfBtn, docEl, "contrat-de-remplacement-medlex.pdf");
     } catch (e) {
       console.error(e);

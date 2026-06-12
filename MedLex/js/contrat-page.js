@@ -32,12 +32,17 @@ var TYPE_LABELS = {
 
 function showError(message, questionnaireHref) {
   var doc = document.getElementById('contract-doc');
+  var guided = document.getElementById('contract-guided');
+  var toggle = document.querySelector('.ac-view-toggle');
   if (!doc) return;
   var href = questionnaireHref || 'questionnaire.html';
   var isCollab = window.ParcoursType && window.ParcoursType.isCollaboration();
   var title = isCollab
     ? 'Contrat de collaboration infirmier libéral'
     : 'Contrat de remplacement infirmier libéral';
+  if (guided) guided.innerHTML = '';
+  if (toggle) toggle.classList.add('ac-hidden');
+  doc.classList.remove('ac-hidden');
   doc.innerHTML =
     '<p class="ac-contract-doc__title">' +
     title +
@@ -67,6 +72,8 @@ function renderRemplacementContract(docEl, bodyText, answers, Contract) {
     '<div class="ac-contract-doc__body">' +
     bodyHtml +
     '</div>';
+
+  return { bodyText: bodyText, bodyHtml: bodyHtml };
 }
 
 function renderCollaborationContract(docEl, bodyText, answers, Contract) {
@@ -81,6 +88,18 @@ function renderCollaborationContract(docEl, bodyText, answers, Contract) {
     '<div class="ac-contract-doc__body">' +
     bodyHtml +
     '</div>';
+
+  return { bodyText: bodyText, bodyHtml: bodyHtml };
+}
+
+function mountGuidedContractView(parcours, bodyText, bodyHtml) {
+  if (!window.MedLexContractGuided) return;
+  window.MedLexContractGuided.mount({
+    bodyText: bodyText,
+    bodyHtml: bodyHtml,
+    parcours: parcours,
+  });
+  window.MedLexContractGuided.initViewToggle();
 }
 
 function updatePageChrome(isCollab) {
@@ -223,8 +242,9 @@ async function initCollaborationContrat(docEl, pdfBtn) {
     var templateRaw = await Contract.loadTemplate();
     var answers = Contract.collectAnswers();
     var bodyText = Contract.buildContractText(templateRaw, answers);
-    renderCollaborationContract(docEl, bodyText, answers, Contract);
+    var rendered = renderCollaborationContract(docEl, bodyText, answers, Contract);
     docEl.removeAttribute('aria-busy');
+    mountGuidedContractView('collaboration', rendered.bodyText, rendered.bodyHtml);
 
     wirePdfDownload(pdfBtn, docEl, 'contrat-de-collaboration-medlex.pdf');
   } catch (e) {
@@ -266,8 +286,9 @@ async function initRemplacementContrat(docEl, pdfBtn) {
     var templateRaw = await Contract.loadTemplate();
     var answers = Contract.collectAnswers();
     var bodyText = Contract.buildContractText(templateRaw, answers);
-    renderRemplacementContract(docEl, bodyText, answers, Contract);
+    var rendered = renderRemplacementContract(docEl, bodyText, answers, Contract);
     docEl.removeAttribute('aria-busy');
+    mountGuidedContractView('remplacement', rendered.bodyText, rendered.bodyHtml);
 
     wirePdfDownload(pdfBtn, docEl, 'contrat-de-remplacement-medlex.pdf');
   } catch (e) {

@@ -26,13 +26,24 @@
     <main class="ac-main">
       <h1 class="ac-title ac-title--page">Ton contrat</h1>
       <p class="ac-microcopy ac-spacer-sm">
-        Paiement confirmé — tu peux relire le texte intégral avant de passer à la signature.
+        Paiement confirmé — parcours le contrat section par section, ou consulte le texte intégral avant la signature.
       </p>
       <span class="ac-unlocked-badge">✓ Texte complet débloqué</span>
 
-      <div class="ac-contract-doc" id="contract-doc" tabindex="0" aria-label="Aperçu du contrat de remplacement" aria-busy="true">
-        <p class="ac-contract-doc__title">Contrat de remplacement infirmier libéral</p>
-        <p class="ac-contract-doc__subtitle ac-contract-doc__loading">Génération du texte en cours…</p>
+      <div class="ac-contract-shell" id="contract-view">
+        <div class="ac-view-toggle" role="tablist" aria-label="Mode de lecture du contrat">
+          <button type="button" class="ac-view-toggle__btn ac-view-toggle__btn--active" data-contract-view="guided" role="tab" aria-selected="true">
+            Vue guidée
+          </button>
+          <button type="button" class="ac-view-toggle__btn" data-contract-view="full" role="tab" aria-selected="false">
+            Texte intégral
+          </button>
+        </div>
+        <div id="contract-guided" class="ac-contract-guided" aria-live="polite"></div>
+        <div class="ac-contract-doc ac-hidden" id="contract-doc" tabindex="0" aria-label="Aperçu du contrat de remplacement" aria-busy="true">
+          <p class="ac-contract-doc__title">Contrat de remplacement infirmier libéral</p>
+          <p class="ac-contract-doc__subtitle ac-contract-doc__loading">Génération du texte en cours…</p>
+        </div>
       </div>
 
       <div class="ac-btn-row ac-btn-row--stack">
@@ -48,6 +59,8 @@
   <script src="../js/parcours-type.js"></script>
   <script src="../js/parcours-snapshot.js"></script>
   <script src="../js/parcours-collaboration-snapshot.js"></script>
+  <script src="../js/contract-clauses-data.js"></script>
+  <script src="../js/contract-guided.js"></script>
   <script src="../js/contrat.bundle.js"></script>
 </body>
 </html>

@@ -15,60 +15,6 @@
     '</div>' +
     '</div>';
 
-  var CLAUSES_REMPLACEMENT = [
-    {
-      title: 'Durée du remplacement',
-      desc: 'Ce paragraphe te protège en cas de prolongation imprévue — personne ne reste dans le flou.',
-    },
-    {
-      title: 'Modalités de facturation',
-      desc: 'Ce paragraphe te protège si un litige survient sur qui facture quoi, et comment.',
-    },
-    {
-      title: 'Redevance au remplacé',
-      desc: 'Ce paragraphe te protège sur le montant et le calendrier de reversement, sans ambiguïté.',
-    },
-    {
-      title: 'Résiliation anticipée',
-      desc: "Ce paragraphe te protège si l'une de vous doit arrêter le remplacement plus tôt que prévu.",
-    },
-    {
-      title: 'Responsabilité professionnelle',
-      desc: 'Ce paragraphe te protège sur la couverture RCP et les obligations ordinale pendant le remplacement.',
-    },
-    {
-      title: 'Non-concurrence',
-      desc: 'Ce paragraphe te protège si le remplacement dépasse 3 mois — cadre légal, pas surprise.',
-    },
-  ];
-
-  var CLAUSES_COLLABORATION = [
-    {
-      title: 'Patientèle du collaborateur',
-      desc: 'Ce paragraphe encadre le temps consacré à ta patientèle personnelle — journées ou demi-journées, clair pour les deux.',
-    },
-    {
-      title: 'Organisation de la collaboration',
-      desc: 'Ce paragraphe fixe le temps minimum dédié à la collaboration et évite une requalification en salariat.',
-    },
-    {
-      title: 'Lieu d’exercice et moyens',
-      desc: 'Ce paragraphe précise l’adresse du cabinet et les moyens mis à disposition (salle de soins, secrétariat, dossiers…).',
-    },
-    {
-      title: 'Répartition des forfaits',
-      desc: 'Ce paragraphe te protège sur la clé de répartition et les délais de reversement en cas de prise en charge commune.',
-    },
-    {
-      title: 'Redevance de collaboration',
-      desc: 'Ce paragraphe fixe la redevance (pourcentage du CA ou forfait mensuel) et la date limite de versement.',
-    },
-    {
-      title: 'Durée et fin du contrat',
-      desc: 'Ce paragraphe cadre la durée (déterminée ou indéterminée) et les conditions de préavis en cas de rupture.',
-    },
-  ];
-
   function renderClauses(clauses) {
     return clauses
       .map(function (c) {
@@ -93,9 +39,14 @@
     window.ParcoursType.applyApercuBackLinks();
 
     var isCollab = window.ParcoursType.isCollaboration();
+    var clauses =
+      window.MedLexClauseThemes && window.MedLexClauseThemes.forApercu
+        ? window.MedLexClauseThemes.forApercu(isCollab ? 'collaboration' : 'remplacement')
+        : [];
+
     var list = document.getElementById('apercu-clauses');
     if (list) {
-      list.innerHTML = renderClauses(isCollab ? CLAUSES_COLLABORATION : CLAUSES_REMPLACEMENT);
+      list.innerHTML = renderClauses(clauses);
     }
 
     var title = document.querySelector('.ac-title--page');
