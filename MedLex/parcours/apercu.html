@@ -33,111 +33,12 @@
       </svg>
       <span>Validé par <strong>Maître Violaine</strong> · Avocate spécialisée en droit de la santé</span>
     </span></div>
-      <div class="ac-clause-list">
-        <article class="ac-card">
-          <h2 class="ac-card__title">Durée du remplacement</h2>
-          <p class="ac-card__desc">Ce paragraphe te protège en cas de prolongation imprévue — personne ne reste dans le flou.</p>
-          <div class="ac-locked">
-            <div class="ac-locked__blur" aria-hidden="true">
-              <div class="ac-locked__line"></div>
-              <div class="ac-locked__line ac-locked__line--80"></div>
-              <div class="ac-locked__line ac-locked__line--60"></div>
-            </div>
-            <div class="ac-locked__overlay">
-              <span aria-hidden="true">🔒</span>
-              <span class="ac-locked__text">Texte complet débloqué après paiement</span>
-            </div>
-          </div>
-        </article>
-        <article class="ac-card">
-          <h2 class="ac-card__title">Modalités de facturation</h2>
-          <p class="ac-card__desc">Ce paragraphe te protège si un litige survient sur qui facture quoi, et comment.</p>
-          <div class="ac-locked">
-            <div class="ac-locked__blur" aria-hidden="true">
-              <div class="ac-locked__line"></div>
-              <div class="ac-locked__line ac-locked__line--80"></div>
-              <div class="ac-locked__line ac-locked__line--60"></div>
-            </div>
-            <div class="ac-locked__overlay">
-              <span aria-hidden="true">🔒</span>
-              <span class="ac-locked__text">Texte complet débloqué après paiement</span>
-            </div>
-          </div>
-        </article>
-        <article class="ac-card">
-          <h2 class="ac-card__title">Redevance au remplacé</h2>
-          <p class="ac-card__desc">Ce paragraphe te protège sur le montant et le calendrier de reversement, sans ambiguïté.</p>
-          <div class="ac-locked">
-            <div class="ac-locked__blur" aria-hidden="true">
-              <div class="ac-locked__line"></div>
-              <div class="ac-locked__line ac-locked__line--80"></div>
-              <div class="ac-locked__line ac-locked__line--60"></div>
-            </div>
-            <div class="ac-locked__overlay">
-              <span aria-hidden="true">🔒</span>
-              <span class="ac-locked__text">Texte complet débloqué après paiement</span>
-            </div>
-          </div>
-        </article>
-        <article class="ac-card">
-          <h2 class="ac-card__title">Résiliation anticipée</h2>
-          <p class="ac-card__desc">Ce paragraphe te protège si l'une de vous doit arrêter le remplacement plus tôt que prévu.</p>
-          <div class="ac-locked">
-            <div class="ac-locked__blur" aria-hidden="true">
-              <div class="ac-locked__line"></div>
-              <div class="ac-locked__line ac-locked__line--80"></div>
-              <div class="ac-locked__line ac-locked__line--60"></div>
-            </div>
-            <div class="ac-locked__overlay">
-              <span aria-hidden="true">🔒</span>
-              <span class="ac-locked__text">Texte complet débloqué après paiement</span>
-            </div>
-          </div>
-        </article>
-        <article class="ac-card">
-          <h2 class="ac-card__title">Responsabilité professionnelle</h2>
-          <p class="ac-card__desc">Ce paragraphe te protège sur la couverture RCP et les obligations ordinale pendant le remplacement.</p>
-          <div class="ac-locked">
-            <div class="ac-locked__blur" aria-hidden="true">
-              <div class="ac-locked__line"></div>
-              <div class="ac-locked__line ac-locked__line--80"></div>
-              <div class="ac-locked__line ac-locked__line--60"></div>
-            </div>
-            <div class="ac-locked__overlay">
-              <span aria-hidden="true">🔒</span>
-              <span class="ac-locked__text">Texte complet débloqué après paiement</span>
-            </div>
-          </div>
-        </article>
-        <article class="ac-card">
-          <h2 class="ac-card__title">Non-concurrence</h2>
-          <p class="ac-card__desc">Ce paragraphe te protège si le remplacement dépasse 3 mois — cadre légal, pas surprise.</p>
-          <div class="ac-locked">
-            <div class="ac-locked__blur" aria-hidden="true">
-              <div class="ac-locked__line"></div>
-              <div class="ac-locked__line ac-locked__line--80"></div>
-              <div class="ac-locked__line ac-locked__line--60"></div>
-            </div>
-            <div class="ac-locked__overlay">
-              <span aria-hidden="true">🔒</span>
-              <span class="ac-locked__text">Texte complet débloqué après paiement</span>
-            </div>
-          </div>
-        </article>
-      </div>
+      <div class="ac-clause-list" id="apercu-clauses" aria-live="polite"></div>
       <div class="ac-spacer-lg">
         <a class="ac-btn ac-btn--primary ac-btn--full" href="invitation.html">Continuer</a>
       </div>
     </main>
   </div>
   <script src="../js/parcours-type.js"></script>
-  <script>
-    if (window.ParcoursType) {
-      window.ParcoursType.applyApercuBackLinks();
-      var title = document.querySelector(".ac-title--page");
-      if (title && window.ParcoursType.isCollaboration()) {
-        title.textContent = "Ce qui sera dans ton contrat de collaboration";
-      }
-    }
-  </script>
+  <script src="../js/apercu-page.js"></script>
 </body></html>
