@@ -93,16 +93,34 @@ function updatePageChrome(isCollab) {
   }
 }
 
+var pdfExportModule = null;
+
+function preloadPdfEngine() {
+  return import('./contract/pdf-export.js')
+    .then(function (mod) {
+      pdfExportModule = mod;
+      return mod.preloadPdfEngine();
+    })
+    .catch(function (e) {
+      console.warn('Préchargement PDF', e);
+    });
+}
+
 function wirePdfDownload(pdfBtn, docEl, filename) {
   if (!pdfBtn || !docEl) return;
   pdfBtn.disabled = false;
-  pdfBtn.addEventListener('click', async function () {
+  preloadPdfEngine();
+  pdfBtn.addEventListener('click', function () {
     var prev = pdfBtn.textContent;
     pdfBtn.disabled = true;
     pdfBtn.textContent = 'Téléchargement…';
     try {
-      var mod = await import('./contract/pdf-export.js');
-      await mod.downloadContractPdf({
+      if (!pdfExportModule || !pdfExportModule.isPdfEngineReady()) {
+        throw new Error(
+          'Le moteur PDF se prépare encore — patientez une seconde et réessayez.'
+        );
+      }
+      pdfExportModule.downloadContractPdfNow({
         filename: filename,
         sourceElement: docEl,
       });
@@ -113,6 +131,7 @@ function wirePdfDownload(pdfBtn, docEl, filename) {
           ? 'Impossible de générer le PDF : ' + e.message
           : 'Impossible de générer le PDF.'
       );
+      preloadPdfEngine();
     } finally {
       pdfBtn.disabled = false;
       pdfBtn.textContent = prev || 'Télécharger le PDF';

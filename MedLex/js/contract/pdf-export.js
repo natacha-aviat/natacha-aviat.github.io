@@ -3,7 +3,15 @@
  */
 
 import { html2PdfOptions } from './pdf-options.js';
-import { PDF_THEME, PDF_TYPO, registerInterFonts, isArticleHeading } from './pdf-theme.js';
+import {
+  PDF_THEME,
+  PDF_TYPO,
+  registerInterFonts,
+  applyInterFontsIfCached,
+  isArticleHeading,
+} from './pdf-theme.js';
+
+let engineReady = false;
 
 function getHtml2PdfScriptUrl() {
   if (typeof window !== 'undefined' && window.location && window.location.href) {
@@ -18,19 +26,32 @@ function getHtml2PdfScriptUrl() {
   return './html2pdf.bundle.min.js';
 }
 
+function jsPdfAvailable() {
+  return Boolean(window.jspdf && window.jspdf.jsPDF);
+}
+
 function loadJsPdf() {
-  if (window.jspdf && window.jspdf.jsPDF) {
+  if (jsPdfAvailable()) {
     return Promise.resolve();
   }
   return new Promise(function (resolve, reject) {
     const existing = document.querySelector('script[data-medlex-html2pdf="1"]');
     if (existing) {
+      if (jsPdfAvailable()) {
+        resolve();
+        return;
+      }
       existing.addEventListener('load', function () {
         resolve();
       });
       existing.addEventListener('error', function () {
         reject(new Error('Impossible de charger jsPDF'));
       });
+      window.setTimeout(function () {
+        if (jsPdfAvailable()) {
+          resolve();
+        }
+      }, 0);
       return;
     }
     const s = document.createElement('script');
@@ -45,6 +66,23 @@ function loadJsPdf() {
     };
     document.head.appendChild(s);
   });
+}
+
+/**
+ * Précharge jsPDF et les polices Inter (à appeler au chargement de la page contrat).
+ */
+export async function preloadPdfEngine() {
+  await loadJsPdf();
+  if (!jsPdfAvailable()) {
+    throw new Error('jsPDF indisponible');
+  }
+  const pdf = new window.jspdf.jsPDF({ unit: 'mm', format: 'a4', orientation: 'portrait' });
+  await registerInterFonts(pdf);
+  engineReady = true;
+}
+
+export function isPdfEngineReady() {
+  return engineReady && jsPdfAvailable();
 }
 
 function buildRootFromHtml(title, subtitle, bodyHtml) {
@@ -127,7 +165,7 @@ function getWordsFromParagraph(p) {
  * @param {HTMLElement} root
  * @param {string} filename
  */
-async function renderPdfAsText(root, filename) {
+function buildPdfBlob(root, filename) {
   const JsPDF = window.jspdf && window.jspdf.jsPDF;
   if (!JsPDF) {
     throw new Error('jsPDF indisponible');
@@ -141,7 +179,7 @@ async function renderPdfAsText(root, filename) {
   const marginLeft = margins[3];
 
   const pdf = new JsPDF(opts.jsPDF);
-  const hasInter = await registerInterFonts(pdf);
+  const hasInter = applyInterFontsIfCached(pdf);
   const fontFamily = hasInter ? 'Inter' : 'helvetica';
 
   const pageWidth = pdf.internal.pageSize.getWidth();
@@ -323,40 +361,60 @@ function triggerBlobDownload(blob, filename) {
     if (a.parentNode) {
       a.parentNode.removeChild(a);
     }
-  }, 250);
+  }, 1000);
+}
+
+function resolveRoot(opts) {
+  if (opts.sourceElement) {
+    return { root: opts.sourceElement, tempHost: null };
+  }
+  if (opts.bodyHtml) {
+    const root = buildRootFromHtml(opts.title || '', opts.subtitle || '', opts.bodyHtml);
+    const tempHost = document.createElement('div');
+    tempHost.setAttribute('aria-hidden', 'true');
+    tempHost.style.cssText = 'position:fixed;left:-9999px;top:0;visibility:hidden;';
+    tempHost.appendChild(root);
+    document.body.appendChild(tempHost);
+    return { root: root, tempHost: tempHost };
+  }
+  throw new Error('Aucun contenu à exporter en PDF.');
+}
+
+function cleanupHost(tempHost) {
+  if (tempHost && tempHost.parentNode) {
+    tempHost.parentNode.removeChild(tempHost);
+  }
+}
+
+/**
+ * Téléchargement synchrone — à appeler directement dans le gestionnaire de clic.
+ * @param {{ filename: string; sourceElement?: HTMLElement; title?: string; subtitle?: string; bodyHtml?: string }} opts
+ */
+export function downloadContractPdfNow(opts) {
+  if (!jsPdfAvailable()) {
+    throw new Error('Le moteur PDF n’est pas prêt. Réessayez dans quelques secondes.');
+  }
+
+  const filename = opts.filename || 'contrat-medlex.pdf';
+  const resolved = resolveRoot(opts);
+
+  try {
+    const blob = buildPdfBlob(resolved.root, filename);
+    if (!blob) {
+      throw new Error('Génération du PDF vide');
+    }
+    triggerBlobDownload(blob, filename);
+  } finally {
+    cleanupHost(resolved.tempHost);
+  }
 }
 
 /**
  * @param {{ filename: string; sourceElement?: HTMLElement; title?: string; subtitle?: string; bodyHtml?: string }} opts
  */
 export async function downloadContractPdf(opts) {
-  const filename = opts.filename || 'contrat-medlex.pdf';
-  let root = opts.sourceElement || null;
-  let tempHost = null;
-
-  if (!root && opts.bodyHtml) {
-    root = buildRootFromHtml(opts.title || '', opts.subtitle || '', opts.bodyHtml);
-    tempHost = document.createElement('div');
-    tempHost.setAttribute('aria-hidden', 'true');
-    tempHost.style.cssText = 'position:fixed;left:-9999px;top:0;visibility:hidden;';
-    tempHost.appendChild(root);
-    document.body.appendChild(tempHost);
+  if (!engineReady) {
+    await preloadPdfEngine();
   }
-
-  if (!root) {
-    throw new Error('Aucun contenu à exporter en PDF.');
-  }
-
-  try {
-    await loadJsPdf();
-    const blob = await renderPdfAsText(root, filename);
-    if (!blob) {
-      throw new Error('Génération du PDF vide');
-    }
-    triggerBlobDownload(blob, filename);
-  } finally {
-    if (tempHost && tempHost.parentNode) {
-      tempHost.parentNode.removeChild(tempHost);
-    }
-  }
+  downloadContractPdfNow(opts);
 }
