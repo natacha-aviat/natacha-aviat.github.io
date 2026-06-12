@@ -23,6 +23,12 @@
       match: /Article\s+3\b/i,
     },
     {
+      id: 'recensement',
+      title: 'Recensement des patientèles',
+      desc: 'Ce paragraphe encadre le suivi de chaque patientèle — un point de repère clair en cas d’évolution ou de fin de collaboration.',
+      match: /Article\s+4\b/i,
+    },
+    {
       id: 'lieu',
       title: 'Lieu d’exercice et moyens',
       desc: 'Ce paragraphe précise l’adresse du cabinet et les moyens mis à disposition (salle de soins, secrétariat, dossiers…).',

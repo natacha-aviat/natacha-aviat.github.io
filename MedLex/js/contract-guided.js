@@ -96,7 +96,16 @@
 
     var ordered = [];
     themes.forEach(function (t) {
-      if (used[t.id] && used[t.id].sections.length) ordered.push(used[t.id]);
+      if (used[t.id]) {
+        ordered.push(used[t.id]);
+      } else {
+        ordered.push({
+          id: t.id,
+          title: t.title,
+          desc: t.desc,
+          sections: [],
+        });
+      }
     });
     if (used._autres && used._autres.sections.length) ordered.push(used._autres);
     return ordered;
@@ -112,14 +121,21 @@
 
   function renderGuidedStep(group, bodyHtmlMap, stepIndex, total) {
     var legalHtml = '';
-    group.sections.forEach(function (sec) {
-      legalHtml +=
-        '<div class="ac-guided-legal__block">' +
-        (bodyHtmlMap[sec.heading] || sectionToHtml(sec, function (line) {
-          return '<p>' + escapeHtml(line) + '</p>';
-        })) +
-        '</div>';
-    });
+    var hasLegal = group.sections && group.sections.length > 0;
+
+    if (hasLegal) {
+      group.sections.forEach(function (sec) {
+        legalHtml +=
+          '<div class="ac-guided-legal__block">' +
+          (bodyHtmlMap[sec.heading] || sectionToHtml(sec, function (line) {
+            return '<p>' + escapeHtml(line) + '</p>';
+          })) +
+          '</div>';
+      });
+    } else {
+      legalHtml =
+        '<p class="ac-microcopy">Ce passage n’apparaît pas dans le texte généré. Consulte l’onglet <strong>Texte intégral</strong> si besoin.</p>';
+    }
 
     return (
       '<article class="ac-card ac-card--guided">' +
@@ -134,8 +150,12 @@
       '<p class="ac-card__desc ac-guided-benefit">' +
       escapeHtml(group.desc) +
       '</p>' +
-      '<details class="ac-guided-legal">' +
-      '<summary class="ac-guided-legal__summary">Voir le texte juridique exact</summary>' +
+      '<details class="ac-guided-legal"' +
+      (hasLegal ? '' : ' open') +
+      '>' +
+      '<summary class="ac-guided-legal__summary">' +
+      (hasLegal ? 'Voir le texte juridique exact' : 'Texte juridique') +
+      '</summary>' +
       '<div class="ac-guided-legal__body ac-contract-doc__body">' +
       legalHtml +
       '</div>' +
@@ -171,6 +191,23 @@
     return map;
   }
 
+  function renderProgressDots(groups, activeIndex) {
+    return (
+      '<div class="ac-guided-dots" aria-hidden="true">' +
+      groups
+        .map(function (_, i) {
+          return (
+            '<span class="ac-guided-dot' +
+            (i === activeIndex ? ' ac-guided-dot--active' : '') +
+            (i < activeIndex ? ' ac-guided-dot--done' : '') +
+            '"></span>'
+          );
+        })
+        .join('') +
+      '</div>'
+    );
+  }
+
   function renderChips(groups, activeIndex) {
     return groups
       .map(function (g, i) {
@@ -179,8 +216,15 @@
           (i === activeIndex ? ' ac-guided-chip--active' : '') +
           '" data-guided-step="' +
           i +
+          '" aria-current="' +
+          (i === activeIndex ? 'step' : 'false') +
           '">' +
+          '<span class="ac-guided-chip__num">' +
+          (i + 1) +
+          '</span>' +
+          '<span class="ac-guided-chip__label">' +
           escapeHtml(g.title) +
+          '</span>' +
           '</button>'
         );
       })
@@ -203,7 +247,10 @@
 
     function paint() {
       root.innerHTML =
-        '<div class="ac-guided-nav" role="tablist" aria-label="Sections du contrat">' +
+        renderProgressDots(groups, step) +
+        '<div class="ac-guided-nav" role="tablist" aria-label="Sections du contrat (' +
+        groups.length +
+        ')">' +
         renderChips(groups, step) +
         '</div>' +
         '<div class="ac-guided-panel" id="contract-guided-panel" aria-live="polite">' +
