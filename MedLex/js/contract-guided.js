@@ -150,16 +150,9 @@
       '<p class="ac-card__desc ac-guided-benefit">' +
       escapeHtml(group.desc) +
       '</p>' +
-      '<details class="ac-guided-legal"' +
-      (hasLegal ? '' : ' open') +
-      '>' +
-      '<summary class="ac-guided-legal__summary">' +
-      (hasLegal ? 'Voir le texte juridique exact' : 'Texte juridique') +
-      '</summary>' +
-      '<div class="ac-guided-legal__body ac-contract-doc__body">' +
+      '<div class="ac-guided-legal ac-contract-doc__body">' +
       legalHtml +
       '</div>' +
-      '</details>' +
       '</article>'
     );
   }
