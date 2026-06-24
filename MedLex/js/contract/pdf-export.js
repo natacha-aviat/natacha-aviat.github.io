@@ -378,37 +378,42 @@ function buildPdfBlob(root, filename, pdfMeta) {
     }
   }
 
-  function groupBodyBlocksBySection(bodyBlocks) {
-    const groups = [];
-    let current = null;
+  function alignBodyBlocksToSections(bodyBlocks, sections) {
+    const groups = sections.map(function (section) {
+      return {
+        isPreamble: !!section.isPreamble,
+        heading: section.heading,
+        blocks: [],
+      };
+    });
+    if (!groups.length) return [];
 
+    let idx = 0;
     bodyBlocks.forEach(function (block) {
       if (block.type === 'paragraph') {
         const plain = block.el.innerText.trim();
         if (isArticleHeading(plain)) {
-          if (current) {
-            groups.push(current);
+          if (groups[idx] && groups[idx].isPreamble) {
+            idx = 1;
+          } else {
+            idx += 1;
           }
-          current = {
-            isPreamble: false,
-            heading: plain,
-            blocks: [{ type: 'paragraph', el: block.el, isHeading: true }],
-          };
+          if (idx >= groups.length) {
+            idx = groups.length - 1;
+          }
+          groups[idx].blocks.push({
+            type: 'paragraph',
+            el: block.el,
+            isHeading: true,
+          });
           return;
         }
       }
-      if (!current) {
-        current = {
-          isPreamble: true,
-          heading: 'Préambule et identification des parties',
-          blocks: [],
-        };
+      if (groups[idx]) {
+        groups[idx].blocks.push(block);
       }
-      current.blocks.push(block);
     });
-    if (current) {
-      groups.push(current);
-    }
+
     return groups;
   }
 
@@ -473,6 +478,13 @@ function buildPdfBlob(root, filename, pdfMeta) {
   }
 
   function renderProgressiveContract(tocEntries, sectionGroups, sectionPages) {
+    let nextTocIndex = 1;
+
+    function recordArticlePage() {
+      sectionPages[nextTocIndex] = pdf.internal.getNumberOfPages();
+      nextTocIndex += 1;
+    }
+
     sectionGroups.forEach(function (group, index) {
       const entry = tocEntries[index] || {
         shortLabel: group.isPreamble ? 'Intro' : 'Art.',
@@ -493,11 +505,7 @@ function buildPdfBlob(root, filename, pdfMeta) {
       drawSectionGuide(entry);
       renderBodyBlocks(group.blocks, {
         skipInlineComments: true,
-        recordPageForSection: group.isPreamble
-          ? null
-          : function () {
-              sectionPages[index] = pdf.internal.getNumberOfPages();
-            },
+        recordPageForSection: group.isPreamble ? null : recordArticlePage,
       });
     });
   }
@@ -643,7 +651,7 @@ function buildPdfBlob(root, filename, pdfMeta) {
           }),
         };
       });
-      const sectionGroups = groupBodyBlocksBySection(bodyBlocks);
+      const sectionGroups = alignBodyBlocksToSections(bodyBlocks, sections);
       if (tocEntries.length && sectionGroups.length) {
         useProgressive = true;
         const sectionPages = [];
@@ -653,6 +661,7 @@ function buildPdfBlob(root, filename, pdfMeta) {
           parcours: meta.parcours,
         });
         renderProgressiveContract(tocEntries, sectionGroups, sectionPages);
+        pdfLog('Pages sommaire enregistrées', sectionPages);
         drawTocAtEnd(tocEntries, sectionPages);
       }
     } catch (tocErr) {
