@@ -223,7 +223,9 @@ function getLanguageSwitchUrl(targetLang) {
         'fiche-inventaire.html': { fr: 'fiches/fiche-inventaire.html', en: 'en/fiches/sheet-inventory.html' },
         'sheet-inventory.html': { fr: 'fiches/fiche-inventaire.html', en: 'en/fiches/sheet-inventory.html' },
         'fiche-nyc-art.html': { fr: 'fiches/fiche-nyc-art.html', en: 'en/fiches/sheet-nyc-art.html' },
-        'sheet-nyc-art.html': { fr: 'fiches/fiche-nyc-art.html', en: 'en/fiches/sheet-nyc-art.html' }
+        'sheet-nyc-art.html': { fr: 'fiches/fiche-nyc-art.html', en: 'en/fiches/sheet-nyc-art.html' },
+        'fiche-emily-paris.html': { fr: 'fiches/fiche-emily-paris.html', en: 'en/fiches/sheet-emily-paris.html' },
+        'sheet-emily-paris.html': { fr: 'fiches/fiche-emily-paris.html', en: 'en/fiches/sheet-emily-paris.html' }
     };
     
     let targetPage = '';

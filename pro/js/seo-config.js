@@ -218,6 +218,32 @@ const SEO_CONFIG = {
                 aiUseCase: 'Exploration of art works in the New York subway'
             }
         },
+        'fiche-emily-paris': {
+            fr: {
+                title: 'Emily in Paris — Musées et lieux beauté | Sur mesure - Natacha Aviat',
+                description: 'Carte interactive personnalisée des musées et lieux beauté à Paris, créée pour Emily Lutzker, New-Yorkaise de passage.',
+                keywords: 'carte Paris musées, lieux beauté Paris, carte interactive Paris, Emily in Paris, guide Paris personnalisé',
+                ogType: 'product',
+                ogImage: 'https://natacha-aviat.github.io/pro/images/Emily_in_Paris.png',
+                aiProductType: 'Carte interactive sur mesure',
+                aiPrice: 'Sur mesure',
+                aiDataSource: 'Curation personnalisée',
+                aiTechnologies: 'Leaflet, JavaScript',
+                aiUseCase: 'Guide personnalisé des musées et lieux beauté à Paris pour une visiteuse américaine'
+            },
+            en: {
+                title: 'Emily in Paris — Museums & Beauty Spots | Custom - Natacha Aviat',
+                description: 'Custom interactive map of museums and beauty spots in Paris, created for Emily Lutzker, a New Yorker visiting the city.',
+                keywords: 'Paris museums map, Paris beauty spots, interactive Paris map, Emily in Paris, personalized Paris guide',
+                ogType: 'product',
+                ogImage: 'https://natacha-aviat.github.io/pro/images/Emily_in_Paris.png',
+                aiProductType: 'Custom interactive map',
+                aiPrice: 'Custom quote',
+                aiDataSource: 'Personal curation',
+                aiTechnologies: 'Leaflet, JavaScript',
+                aiUseCase: 'Personalized guide to museums and beauty spots in Paris for an American visitor'
+            }
+        },
         'fiche-optimisation-tournees': {
             fr: {
                 title: 'Outil d\'Optimisation de Tournées Logistiques | Gratuit - Natacha Aviat',
@@ -304,7 +330,9 @@ const FICHE_MAPPING = {
     'fiche-inventaire.html': { fr: 'fiches/fiche-inventaire.html', en: 'en/fiches/sheet-inventory.html' },
     'sheet-inventory.html': { fr: 'fiches/fiche-inventaire.html', en: 'en/fiches/sheet-inventory.html' },
     'fiche-nyc-art.html': { fr: 'fiches/fiche-nyc-art.html', en: 'en/fiches/sheet-nyc-art.html' },
-    'sheet-nyc-art.html': { fr: 'fiches/fiche-nyc-art.html', en: 'en/fiches/sheet-nyc-art.html' }
+    'sheet-nyc-art.html': { fr: 'fiches/fiche-nyc-art.html', en: 'en/fiches/sheet-nyc-art.html' },
+    'fiche-emily-paris.html': { fr: 'fiches/fiche-emily-paris.html', en: 'en/fiches/sheet-emily-paris.html' },
+    'sheet-emily-paris.html': { fr: 'fiches/fiche-emily-paris.html', en: 'en/fiches/sheet-emily-paris.html' }
 };
 
 // Export pour utilisation dans d'autres fichiers

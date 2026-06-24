@@ -100,6 +100,12 @@
         <priority>0.7</priority>
     </url>
     <url>
+        <loc>https://natacha-aviat.github.io/pro/fiches/fiche-emily-paris.html</loc>
+        <lastmod>2026-06-24</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    <url>
         <loc>https://natacha-aviat.github.io/pro/cgv.html</loc>
         <lastmod>2025-01-28</lastmod>
         <changefreq>yearly</changefreq>
@@ -164,6 +170,14 @@
         <xhtml:link rel="alternate" hreflang="en" href="https://natacha-aviat.github.io/pro/en/fiches/sheet-nyc-art.html"/>
         <xhtml:link rel="alternate" hreflang="fr" href="https://natacha-aviat.github.io/pro/fiches/fiche-nyc-art.html"/>
     </url>
+    <url>
+        <loc>https://natacha-aviat.github.io/pro/fiches/fiche-emily-paris.html</loc>
+        <lastmod>2026-06-24</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+        <xhtml:link rel="alternate" hreflang="en" href="https://natacha-aviat.github.io/pro/en/fiches/sheet-emily-paris.html"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://natacha-aviat.github.io/pro/fiches/fiche-emily-paris.html"/>
+    </url>
     <!-- English fiches -->
     <url>
         <loc>https://natacha-aviat.github.io/pro/en/fiches/sheet-high-schools.html</loc>
@@ -212,5 +226,13 @@
         <priority>0.7</priority>
         <xhtml:link rel="alternate" hreflang="en" href="https://natacha-aviat.github.io/pro/en/fiches/sheet-nyc-art.html"/>
         <xhtml:link rel="alternate" hreflang="fr" href="https://natacha-aviat.github.io/pro/fiches/fiche-nyc-art.html"/>
+    </url>
+    <url>
+        <loc>https://natacha-aviat.github.io/pro/en/fiches/sheet-emily-paris.html</loc>
+        <lastmod>2026-06-24</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+        <xhtml:link rel="alternate" hreflang="en" href="https://natacha-aviat.github.io/pro/en/fiches/sheet-emily-paris.html"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://natacha-aviat.github.io/pro/fiches/fiche-emily-paris.html"/>
     </url>
 </urlset>
