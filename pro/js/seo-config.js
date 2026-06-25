@@ -270,6 +270,32 @@ const SEO_CONFIG = {
                 aiUseCase: 'Reducing parapharmacy waste and redistributing to families in need via pharmacies'
             }
         },
+        'fiche-medlex': {
+            fr: {
+                title: 'MedLex (Au Clair) — Contrats juridiques pour infirmières libérales | Natacha Aviat',
+                description: 'Application web de génération de contrats pour infirmières libérales : questionnaire guidé, aperçu clause par clause, PDF validé par Me Violaine.',
+                keywords: 'MedLex, Au Clair, contrat infirmière libérale, remplacement infirmier, droit de la santé',
+                ogType: 'product',
+                ogImage: 'https://natacha-aviat.github.io/pro/images/MedLex.png',
+                aiProductType: 'Outil web juridique',
+                aiPrice: 'En ligne',
+                aiDataSource: 'Modèles juridiques validés par avocate',
+                aiTechnologies: 'JavaScript, Application web',
+                aiUseCase: 'Accompagnement des infirmières libérales dans leurs contrats professionnels'
+            },
+            en: {
+                title: 'MedLex (Au Clair) — Legal contracts for freelance nurses | Natacha Aviat',
+                description: 'Web application for generating contracts for freelance nurses: guided questionnaire, clause preview, PDF validated by a health law attorney.',
+                keywords: 'MedLex, Au Clair, freelance nurse contract, nurse replacement, health law',
+                ogType: 'product',
+                ogImage: 'https://natacha-aviat.github.io/pro/images/MedLex.png',
+                aiProductType: 'Legal web tool',
+                aiPrice: 'Live',
+                aiDataSource: 'Attorney-validated legal templates',
+                aiTechnologies: 'JavaScript, Web application',
+                aiUseCase: 'Supporting freelance nurses in drafting and understanding professional contracts'
+            }
+        },
         'fiche-optimisation-tournees': {
             fr: {
                 title: 'Outil d\'Optimisation de Tournées Logistiques | Gratuit - Natacha Aviat',
@@ -360,7 +386,9 @@ const FICHE_MAPPING = {
     'fiche-emily-paris.html': { fr: 'fiches/fiche-emily-paris.html', en: 'en/fiches/sheet-emily-paris.html' },
     'sheet-emily-paris.html': { fr: 'fiches/fiche-emily-paris.html', en: 'en/fiches/sheet-emily-paris.html' },
     'fiche-pharmamama.html': { fr: 'fiches/fiche-pharmamama.html', en: 'en/fiches/sheet-pharmamama.html' },
-    'sheet-pharmamama.html': { fr: 'fiches/fiche-pharmamama.html', en: 'en/fiches/sheet-pharmamama.html' }
+    'sheet-pharmamama.html': { fr: 'fiches/fiche-pharmamama.html', en: 'en/fiches/sheet-pharmamama.html' },
+    'fiche-medlex.html': { fr: 'fiches/fiche-medlex.html', en: 'en/fiches/sheet-medlex.html' },
+    'sheet-medlex.html': { fr: 'fiches/fiche-medlex.html', en: 'en/fiches/sheet-medlex.html' }
 };
 
 // Export pour utilisation dans d'autres fichiers

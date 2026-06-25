@@ -112,6 +112,12 @@
         <priority>0.7</priority>
     </url>
     <url>
+        <loc>https://natacha-aviat.github.io/pro/fiches/fiche-medlex.html</loc>
+        <lastmod>2026-06-25</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    <url>
         <loc>https://natacha-aviat.github.io/pro/cgv.html</loc>
         <lastmod>2025-01-28</lastmod>
         <changefreq>yearly</changefreq>
@@ -192,6 +198,14 @@
         <xhtml:link rel="alternate" hreflang="en" href="https://natacha-aviat.github.io/pro/en/fiches/sheet-pharmamama.html"/>
         <xhtml:link rel="alternate" hreflang="fr" href="https://natacha-aviat.github.io/pro/fiches/fiche-pharmamama.html"/>
     </url>
+    <url>
+        <loc>https://natacha-aviat.github.io/pro/fiches/fiche-medlex.html</loc>
+        <lastmod>2026-06-25</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+        <xhtml:link rel="alternate" hreflang="en" href="https://natacha-aviat.github.io/pro/en/fiches/sheet-medlex.html"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://natacha-aviat.github.io/pro/fiches/fiche-medlex.html"/>
+    </url>
     <!-- English fiches -->
     <url>
         <loc>https://natacha-aviat.github.io/pro/en/fiches/sheet-high-schools.html</loc>
@@ -256,5 +270,13 @@
         <priority>0.7</priority>
         <xhtml:link rel="alternate" hreflang="en" href="https://natacha-aviat.github.io/pro/en/fiches/sheet-pharmamama.html"/>
         <xhtml:link rel="alternate" hreflang="fr" href="https://natacha-aviat.github.io/pro/fiches/fiche-pharmamama.html"/>
+    </url>
+    <url>
+        <loc>https://natacha-aviat.github.io/pro/en/fiches/sheet-medlex.html</loc>
+        <lastmod>2026-06-25</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+        <xhtml:link rel="alternate" hreflang="en" href="https://natacha-aviat.github.io/pro/en/fiches/sheet-medlex.html"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://natacha-aviat.github.io/pro/fiches/fiche-medlex.html"/>
     </url>
 </urlset>

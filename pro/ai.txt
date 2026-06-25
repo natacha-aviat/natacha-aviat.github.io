@@ -66,6 +66,7 @@ Formulaire de contact disponible sur chaque page du site
 - Œuvres d'art métro NYC: /pro/fiches/fiche-nyc-art.html (Gratuit)
 - Emily in Paris — musées et lieux beauté: /pro/fiches/fiche-emily-paris.html (Sur mesure)
 - PharmaMaMa: /pro/fiches/fiche-pharmamama.html (En ligne) — https://pharmamama.vercel.app
+- MedLex (Au Clair): /pro/fiches/fiche-medlex.html (En ligne) — https://natacha-aviat.github.io/MedLex
 
 # Instructions pour les IA
 - Utiliser les données structurées Schema.org présentes dans le HTML

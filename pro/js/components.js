@@ -227,7 +227,9 @@ function getLanguageSwitchUrl(targetLang) {
         'fiche-emily-paris.html': { fr: 'fiches/fiche-emily-paris.html', en: 'en/fiches/sheet-emily-paris.html' },
         'sheet-emily-paris.html': { fr: 'fiches/fiche-emily-paris.html', en: 'en/fiches/sheet-emily-paris.html' },
         'fiche-pharmamama.html': { fr: 'fiches/fiche-pharmamama.html', en: 'en/fiches/sheet-pharmamama.html' },
-        'sheet-pharmamama.html': { fr: 'fiches/fiche-pharmamama.html', en: 'en/fiches/sheet-pharmamama.html' }
+        'sheet-pharmamama.html': { fr: 'fiches/fiche-pharmamama.html', en: 'en/fiches/sheet-pharmamama.html' },
+        'fiche-medlex.html': { fr: 'fiches/fiche-medlex.html', en: 'en/fiches/sheet-medlex.html' },
+        'sheet-medlex.html': { fr: 'fiches/fiche-medlex.html', en: 'en/fiches/sheet-medlex.html' }
     };
     
     let targetPage = '';
