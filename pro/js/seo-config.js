@@ -244,6 +244,32 @@ const SEO_CONFIG = {
                 aiUseCase: 'Personalized guide to museums and beauty spots in Paris for an American visitor'
             }
         },
+        'fiche-pharmamama': {
+            fr: {
+                title: 'PharmaMaMa — Dons de parapharmacie pour pharmacies solidaires | Natacha Aviat',
+                description: 'Application web pour connecter les pharmacies à l\'association MaMaMa : scan des dons, bordereaux, réception et CERFA. En ligne sur pharmamama.vercel.app',
+                keywords: 'PharmaMaMa, pharmacie solidaire, dons parapharmacie, CERFA, MaMaMa, défiscalisation',
+                ogType: 'product',
+                ogImage: 'https://natacha-aviat.github.io/pro/images/PharmaMaMa.png',
+                aiProductType: 'Outil web opérationnel',
+                aiPrice: 'En ligne',
+                aiDataSource: 'Données pharmacie et association',
+                aiTechnologies: 'Application web',
+                aiUseCase: 'Lutte contre le gaspillage en parapharmacie et redistribution aux familles en précarité'
+            },
+            en: {
+                title: 'PharmaMaMa — Pharmacy donations for solidarity | Natacha Aviat',
+                description: 'Web application connecting pharmacies to the MaMaMa association: donation scanning, delivery slips, reception and CERFA. Live at pharmamama.vercel.app',
+                keywords: 'PharmaMaMa, solidarity pharmacy, parapharmacy donations, CERFA, MaMaMa, tax deduction',
+                ogType: 'product',
+                ogImage: 'https://natacha-aviat.github.io/pro/images/PharmaMaMa.png',
+                aiProductType: 'Operational web tool',
+                aiPrice: 'Live',
+                aiDataSource: 'Pharmacy and association data',
+                aiTechnologies: 'Web application',
+                aiUseCase: 'Reducing parapharmacy waste and redistributing to families in need via pharmacies'
+            }
+        },
         'fiche-optimisation-tournees': {
             fr: {
                 title: 'Outil d\'Optimisation de Tournées Logistiques | Gratuit - Natacha Aviat',
@@ -332,7 +358,9 @@ const FICHE_MAPPING = {
     'fiche-nyc-art.html': { fr: 'fiches/fiche-nyc-art.html', en: 'en/fiches/sheet-nyc-art.html' },
     'sheet-nyc-art.html': { fr: 'fiches/fiche-nyc-art.html', en: 'en/fiches/sheet-nyc-art.html' },
     'fiche-emily-paris.html': { fr: 'fiches/fiche-emily-paris.html', en: 'en/fiches/sheet-emily-paris.html' },
-    'sheet-emily-paris.html': { fr: 'fiches/fiche-emily-paris.html', en: 'en/fiches/sheet-emily-paris.html' }
+    'sheet-emily-paris.html': { fr: 'fiches/fiche-emily-paris.html', en: 'en/fiches/sheet-emily-paris.html' },
+    'fiche-pharmamama.html': { fr: 'fiches/fiche-pharmamama.html', en: 'en/fiches/sheet-pharmamama.html' },
+    'sheet-pharmamama.html': { fr: 'fiches/fiche-pharmamama.html', en: 'en/fiches/sheet-pharmamama.html' }
 };
 
 // Export pour utilisation dans d'autres fichiers
