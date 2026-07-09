@@ -1,0 +1,228 @@
+:root {
+  --tap-pink: #e7048b;
+  --tap-pink-dark: #c40377;
+  --tap-navy: #001b44;
+  --tap-bg: #f6f6f6;
+  --tap-card: #ffffff;
+  --tap-muted: rgba(0, 0, 0, 0.55);
+  --tap-border: #e0e0e0;
+  --tap-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+  background: var(--tap-bg);
+  color: #222;
+  line-height: 1.5;
+}
+
+a {
+  color: var(--tap-navy);
+}
+
+header {
+  background: var(--tap-card);
+  border-bottom: 1px solid var(--tap-border);
+  padding: 1.25rem 1rem 1rem;
+}
+
+.header-inner,
+.controls,
+main {
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+header h1 {
+  margin: 0 0 0.35rem;
+  font-size: 1.6rem;
+  color: var(--tap-pink);
+  font-weight: 700;
+}
+
+header p {
+  margin: 0.25rem 0;
+  color: var(--tap-muted);
+  font-size: 0.95rem;
+}
+
+header a {
+  color: var(--tap-pink-dark);
+}
+
+#status {
+  margin-top: 0.75rem;
+  font-size: 0.95rem;
+}
+
+#status.loading {
+  color: var(--tap-muted);
+}
+
+#status.error {
+  color: #b00020;
+}
+
+.controls {
+  display: grid;
+  gap: 0.75rem;
+  padding: 1rem;
+  background: var(--tap-card);
+  border-bottom: 1px solid var(--tap-border);
+}
+
+.control-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem 0.75rem;
+}
+
+.control-row label {
+  font-weight: 600;
+  min-width: 11rem;
+}
+
+select {
+  flex: 1 1 14rem;
+  min-width: 12rem;
+  padding: 0.55rem 0.75rem;
+  border: 2px solid var(--tap-pink);
+  border-radius: 4px;
+  background: var(--tap-pink);
+  color: #fff;
+  font-weight: 600;
+  font-size: 0.95rem;
+  cursor: pointer;
+}
+
+select:focus {
+  outline: 2px solid var(--tap-navy);
+  outline-offset: 2px;
+}
+
+#results-count {
+  font-weight: 600;
+  color: var(--tap-navy);
+}
+
+#announcements {
+  padding: 1rem;
+  display: grid;
+  gap: 1rem;
+}
+
+.card {
+  background: var(--tap-card);
+  box-shadow: var(--tap-shadow);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.card-inner {
+  display: grid;
+  gap: 1rem;
+  padding: 1rem;
+}
+
+@media (min-width: 640px) {
+  .card-inner {
+    grid-template-columns: 30% 1fr;
+    padding: 1.25rem;
+  }
+}
+
+.card-image {
+  display: none;
+}
+
+@media (min-width: 640px) {
+  .card-image {
+    display: block;
+  }
+
+  .card-image img {
+    width: 100%;
+    display: block;
+    border: 1px solid var(--tap-border);
+    background: #eee;
+  }
+}
+
+.publisher {
+  margin: 0;
+  font-size: 1.15rem;
+  font-weight: 500;
+  font-family: Baskerville, "Palatino Linotype", Palatino, serif;
+}
+
+.publisher a {
+  text-decoration: none;
+}
+
+.publisher a:hover {
+  text-decoration: underline;
+}
+
+.card-title {
+  margin: 0.35rem 0 0.5rem;
+  font-size: 1rem;
+  font-weight: 400;
+  color: var(--tap-pink);
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  margin-bottom: 0.75rem;
+}
+
+.tag {
+  display: inline-block;
+  padding: 0.2rem 0.55rem;
+  background: var(--tap-pink);
+  color: #fff;
+  font-size: 0.78rem;
+  font-weight: 600;
+  border-radius: 3px;
+  text-decoration: none;
+}
+
+.tag:hover {
+  background: var(--tap-pink-dark);
+}
+
+.details {
+  font-size: 0.92rem;
+}
+
+.details p {
+  margin: 0.15rem 0;
+}
+
+.details .label {
+  color: var(--tap-muted);
+}
+
+.details .added {
+  color: var(--tap-pink);
+}
+
+footer {
+  text-align: center;
+  padding: 1.5rem 1rem 2rem;
+  font-size: 0.85rem;
+  color: var(--tap-muted);
+}
+
+.empty-state {
+  text-align: center;
+  padding: 2rem 1rem;
+  color: var(--tap-muted);
+}

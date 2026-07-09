@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Concours d'écriture — Textes à la pelle</title>
+  <meta name="description" content="Liste des concours d'écriture et appels à textes francophones, chargée dynamiquement depuis textes-a-la-pelle.fr">
+  <link rel="canonical" href="https://natacha-aviat.github.io/textes-a-la-pelle.html">
+  <link rel="stylesheet" href="css/textes-a-la-pelle.css">
+</head>
+<body>
+  <header>
+    <div class="header-inner">
+      <h1>Textes à la pelle</h1>
+      <p>
+        Concours d'écriture, concours de nouvelles et appels à textes francophones —
+        données chargées dynamiquement depuis
+        <a href="https://textes-a-la-pelle.fr/" target="_blank" rel="noopener">textes-a-la-pelle.fr</a>.
+      </p>
+      <p id="status" class="loading">Initialisation…</p>
+    </div>
+  </header>
+
+  <section class="controls" aria-label="Filtres et tri">
+    <div class="control-row">
+      <label for="filter-select">Filtrer les annonces par :</label>
+      <select id="filter-select" autocomplete="off">
+        <option value="">Chargement…</option>
+      </select>
+    </div>
+    <div class="control-row">
+      <label for="sort-select">Trier les annonces par :</label>
+      <select id="sort-select" autocomplete="off">
+        <option value="publication_date">date d'ajout</option>
+        <option value="closing_date">date d'échéance</option>
+      </select>
+    </div>
+    <p id="results-count" aria-live="polite"></p>
+  </section>
+
+  <main>
+    <div id="announcements" aria-live="polite"></div>
+  </main>
+
+  <footer>
+    Source : <a href="https://textes-a-la-pelle.fr/" target="_blank" rel="noopener">Textes à la pelle</a>
+    — page hébergée sur <a href="https://natacha-aviat.github.io/">natacha-aviat.github.io</a>
+  </footer>
+
+  <script src="js/textes-a-la-pelle.js"></script>
+</body>
+</html>
