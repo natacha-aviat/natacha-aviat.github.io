@@ -4,13 +4,15 @@ const DATA_URL = "data/textes-a-la-pelle.json";
 const filterButtonsEl = document.getElementById("filter-buttons");
 const selectAllBtn = document.getElementById("select-all-filters");
 const deselectAllBtn = document.getElementById("deselect-all-filters");
-const sortSelect = document.getElementById("sort-select");
+const sortButtons = [...document.querySelectorAll(".sort-btn")];
 const statusEl = document.getElementById("status");
 const resultsCountEl = document.getElementById("results-count");
 const listEl = document.getElementById("announcements");
 
 let announcements = [];
 let filterOptions = [];
+let dataUpdatedAt = Date.now();
+let currentSort = "publication_date";
 const selectedFilters = new Set();
 
 function setStatus(message, type = "loading") {
@@ -33,32 +35,88 @@ function formatUpdatedAt(isoDate) {
   });
 }
 
-function parseRelativeDate(text) {
+function parseRelativeDate(text, referenceDate = dataUpdatedAt) {
   const match = text.match(/il y a (\d+) (heure|jour|mois)/);
   if (!match) {
-    return 0;
+    return null;
   }
 
   const amount = Number(match[1]);
   const unit = match[2];
   const dayMs = 24 * 60 * 60 * 1000;
+  let offsetMs = 0;
 
   if (unit === "heure") {
-    return Date.now() - amount * 60 * 60 * 1000;
+    offsetMs = amount * 60 * 60 * 1000;
+  } else if (unit === "jour") {
+    offsetMs = amount * dayMs;
+  } else {
+    offsetMs = amount * 30 * dayMs;
   }
-  if (unit === "jour") {
-    return Date.now() - amount * dayMs;
-  }
-  return Date.now() - amount * 30 * dayMs;
+
+  return referenceDate - offsetMs;
 }
 
 function parseDeadline(text) {
   const match = text.match(/(\d{2})\/(\d{2})\/(\d{4})/);
   if (!match) {
-    return Number.MAX_SAFE_INTEGER;
+    return null;
   }
+
   const [, day, month, year] = match;
   return new Date(Number(year), Number(month) - 1, Number(day)).getTime();
+}
+
+function getAddedTimestamp(item) {
+  if (item.addedAt) {
+    const parsed = Date.parse(item.addedAt);
+    if (!Number.isNaN(parsed)) {
+      return parsed;
+    }
+  }
+
+  const relative = parseRelativeDate(item.added);
+  if (relative !== null) {
+    return relative;
+  }
+
+  return 0;
+}
+
+function getDeadlineTimestamp(item) {
+  if (item.deadlineAt) {
+    const parsed = Date.parse(item.deadlineAt);
+    if (!Number.isNaN(parsed)) {
+      return parsed;
+    }
+  }
+
+  const parsed = parseDeadline(item.deadline);
+  return parsed ?? Number.MAX_SAFE_INTEGER;
+}
+
+function compareAnnouncements(a, b) {
+  let diff = 0;
+
+  if (currentSort === "closing_date") {
+    diff = getDeadlineTimestamp(a) - getDeadlineTimestamp(b);
+  } else {
+    diff = getAddedTimestamp(b) - getAddedTimestamp(a);
+  }
+
+  if (diff !== 0) {
+    return diff;
+  }
+
+  return Number(b.id) - Number(a.id);
+}
+
+function setSort(sortValue) {
+  currentSort = sortValue;
+  sortButtons.forEach((button) => {
+    button.setAttribute("aria-pressed", String(button.dataset.sort === sortValue));
+  });
+  renderAnnouncements();
 }
 
 function getSelectableFilterOptions() {
@@ -142,20 +200,6 @@ function populateFilterButtons(options) {
   }
 }
 
-function getSortTimestamp(item, field) {
-  if (field === "addedAt") {
-    if (item.addedAt) {
-      return Date.parse(item.addedAt);
-    }
-    return parseRelativeDate(item.added);
-  }
-
-  if (item.deadlineAt) {
-    return Date.parse(item.deadlineAt);
-  }
-  return parseDeadline(item.deadline);
-}
-
 function getFilteredAnnouncements() {
   let items = announcements;
 
@@ -163,15 +207,7 @@ function getFilteredAnnouncements() {
     items = items.filter((item) => item.tags.some((tag) => selectedFilters.has(tag)));
   }
 
-  const sort = sortSelect.value;
-  items = [...items].sort((a, b) => {
-    if (sort === "closing_date") {
-      return getSortTimestamp(a, "deadlineAt") - getSortTimestamp(b, "deadlineAt");
-    }
-    return getSortTimestamp(b, "addedAt") - getSortTimestamp(a, "addedAt");
-  });
-
-  return items;
+  return [...items].sort(compareAnnouncements);
 }
 
 function renderAnnouncements() {
@@ -248,7 +284,7 @@ async function loadData() {
   setStatus("Chargement des annonces…", "loading");
 
   try {
-    const response = await fetch(DATA_URL);
+    const response = await fetch(`${DATA_URL}?v=${Date.now()}`);
     if (!response.ok) {
       throw new Error(`HTTP ${response.status}`);
     }
@@ -256,6 +292,7 @@ async function loadData() {
     const data = await response.json();
     filterOptions = data.filterOptions || [];
     announcements = data.announcements || [];
+    dataUpdatedAt = Date.parse(data.updatedAt) || Date.now();
 
     populateFilterButtons(filterOptions);
 
@@ -278,6 +315,8 @@ async function loadData() {
 
 selectAllBtn.addEventListener("click", selectAllFilters);
 deselectAllBtn.addEventListener("click", deselectAllFilters);
-sortSelect.addEventListener("change", renderAnnouncements);
+sortButtons.forEach((button) => {
+  button.addEventListener("click", () => setSort(button.dataset.sort));
+});
 
 loadData();

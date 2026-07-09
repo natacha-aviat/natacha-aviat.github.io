@@ -33,12 +33,12 @@
       </div>
       <div id="filter-buttons" class="filter-buttons" role="group" aria-label="Filtres par type et genre"></div>
     </div>
-    <div class="control-row">
-      <label for="sort-select">Trier les annonces par :</label>
-      <select id="sort-select" autocomplete="off">
-        <option value="publication_date">date d'ajout</option>
-        <option value="closing_date">date d'échéance</option>
-      </select>
+    <div class="control-row sort-section">
+      <p class="filter-title">Trier les annonces par :</p>
+      <div class="sort-buttons" role="group" aria-label="Critère de tri">
+        <button type="button" class="sort-btn" data-sort="publication_date" aria-pressed="true">date d'ajout</button>
+        <button type="button" class="sort-btn" data-sort="closing_date" aria-pressed="false">date d'échéance</button>
+      </div>
     </div>
     <p id="results-count" aria-live="polite"></p>
   </section>
@@ -52,6 +52,6 @@
     — page hébergée sur <a href="https://natacha-aviat.github.io/">natacha-aviat.github.io</a>
   </footer>
 
-  <script src="js/textes-a-la-pelle.js"></script>
+  <script src="js/textes-a-la-pelle.js?v=20260709"></script>
 </body>
 </html>

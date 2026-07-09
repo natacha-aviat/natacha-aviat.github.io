@@ -178,6 +178,36 @@ header a {
   outline-offset: 2px;
 }
 
+.sort-section {
+  align-items: flex-start;
+}
+
+.sort-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.sort-btn {
+  padding: 0.45rem 0.75rem;
+  border: 2px solid var(--tap-pink);
+  border-radius: 4px;
+  background: var(--tap-card);
+  color: var(--tap-pink);
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.sort-btn:hover {
+  background: #fff0f7;
+}
+
+.sort-btn[aria-pressed="true"] {
+  background: var(--tap-pink);
+  color: #fff;
+}
+
 select {
   flex: 1 1 14rem;
   min-width: 12rem;
