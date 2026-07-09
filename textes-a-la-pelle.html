@@ -23,11 +23,15 @@
   </header>
 
   <section class="controls" aria-label="Filtres et tri">
-    <div class="control-row">
-      <label for="filter-select">Filtrer les annonces par :</label>
-      <select id="filter-select" autocomplete="off">
-        <option value="">Chargement…</option>
-      </select>
+    <div class="filter-section">
+      <div class="filter-header">
+        <p class="filter-title">Filtrer les annonces par :</p>
+        <div class="filter-actions">
+          <button type="button" id="select-all-filters" class="action-btn">Tout sélectionner</button>
+          <button type="button" id="deselect-all-filters" class="action-btn">Tout désélectionner</button>
+        </div>
+      </div>
+      <div id="filter-buttons" class="filter-buttons" role="group" aria-label="Filtres par type et genre"></div>
     </div>
     <div class="control-row">
       <label for="sort-select">Trier les annonces par :</label>

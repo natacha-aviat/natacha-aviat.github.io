@@ -1,7 +1,9 @@
 const IMAGE_BASE = "https://textes-a-la-pelle.fr";
 const DATA_URL = "data/textes-a-la-pelle.json";
 
-const filterSelect = document.getElementById("filter-select");
+const filterButtonsEl = document.getElementById("filter-buttons");
+const selectAllBtn = document.getElementById("select-all-filters");
+const deselectAllBtn = document.getElementById("deselect-all-filters");
 const sortSelect = document.getElementById("sort-select");
 const statusEl = document.getElementById("status");
 const resultsCountEl = document.getElementById("results-count");
@@ -9,6 +11,7 @@ const listEl = document.getElementById("announcements");
 
 let announcements = [];
 let filterOptions = [];
+const selectedFilters = new Set();
 
 function setStatus(message, type = "loading") {
   statusEl.textContent = message;
@@ -58,35 +61,92 @@ function parseDeadline(text) {
   return new Date(Number(year), Number(month) - 1, Number(day)).getTime();
 }
 
-function populateFilterSelect(options) {
-  filterSelect.innerHTML = "";
+function getSelectableFilterOptions() {
+  return filterOptions.filter((option) => option.value);
+}
 
-  let currentGroup = null;
-  let groupEl = null;
+function syncFilterButtonStates() {
+  filterButtonsEl.querySelectorAll(".filter-btn").forEach((button) => {
+    const isSelected = selectedFilters.has(button.dataset.filter);
+    button.setAttribute("aria-pressed", String(isSelected));
+  });
+}
 
-  for (const option of options) {
-    if (option.group !== currentGroup) {
-      currentGroup = option.group;
-      groupEl = currentGroup ? document.createElement("optgroup") : null;
-      if (groupEl) {
-        groupEl.label = currentGroup;
-        filterSelect.appendChild(groupEl);
-      }
+function toggleFilter(value) {
+  if (selectedFilters.has(value)) {
+    selectedFilters.delete(value);
+  } else {
+    selectedFilters.add(value);
+  }
+  syncFilterButtonStates();
+  renderAnnouncements();
+}
+
+function selectAllFilters() {
+  selectedFilters.clear();
+  for (const option of getSelectableFilterOptions()) {
+    selectedFilters.add(option.value);
+  }
+  syncFilterButtonStates();
+  renderAnnouncements();
+}
+
+function deselectAllFilters() {
+  selectedFilters.clear();
+  syncFilterButtonStates();
+  renderAnnouncements();
+}
+
+function populateFilterButtons(options) {
+  filterButtonsEl.innerHTML = "";
+
+  const selectableOptions = options.filter((option) => option.value);
+  const groups = [];
+
+  for (const option of selectableOptions) {
+    const lastGroup = groups[groups.length - 1];
+    if (!lastGroup || lastGroup.label !== option.group) {
+      groups.push({ label: option.group, options: [option] });
+    } else {
+      lastGroup.options.push(option);
+    }
+  }
+
+  for (const group of groups) {
+    const groupEl = document.createElement("div");
+    groupEl.className = "filter-group";
+
+    if (group.label) {
+      const titleEl = document.createElement("p");
+      titleEl.className = "filter-group-title";
+      titleEl.textContent = group.label;
+      groupEl.appendChild(titleEl);
     }
 
-    const optionEl = document.createElement("option");
-    optionEl.value = option.value;
-    optionEl.textContent = option.label;
-    (groupEl || filterSelect).appendChild(optionEl);
+    const buttonsEl = document.createElement("div");
+    buttonsEl.className = "filter-group-buttons";
+
+    for (const option of group.options) {
+      const button = document.createElement("button");
+      button.type = "button";
+      button.className = "filter-btn";
+      button.dataset.filter = option.value;
+      button.textContent = option.label;
+      button.setAttribute("aria-pressed", "false");
+      button.addEventListener("click", () => toggleFilter(option.value));
+      buttonsEl.appendChild(button);
+    }
+
+    groupEl.appendChild(buttonsEl);
+    filterButtonsEl.appendChild(groupEl);
   }
 }
 
 function getFilteredAnnouncements() {
-  const filter = filterSelect.value;
   let items = announcements;
 
-  if (filter) {
-    items = items.filter((item) => item.tags.includes(filter));
+  if (selectedFilters.size > 0) {
+    items = items.filter((item) => item.tags.some((tag) => selectedFilters.has(tag)));
   }
 
   const sort = sortSelect.value;
@@ -105,7 +165,7 @@ function renderAnnouncements() {
   resultsCountEl.textContent = `${items.length} annonce${items.length > 1 ? "s" : ""} affichée${items.length > 1 ? "s" : ""}`;
 
   if (items.length === 0) {
-    listEl.innerHTML = '<p class="empty-state">Aucune annonce ne correspond à ce filtre.</p>';
+    listEl.innerHTML = '<p class="empty-state">Aucune annonce ne correspond aux filtres sélectionnés.</p>';
     return;
   }
 
@@ -158,7 +218,13 @@ function renderAnnouncements() {
   listEl.querySelectorAll(".tag").forEach((tagEl) => {
     tagEl.addEventListener("click", (event) => {
       event.preventDefault();
-      filterSelect.value = tagEl.dataset.filter;
+      const filter = tagEl.dataset.filter;
+      if (!selectedFilters.has(filter)) {
+        selectedFilters.add(filter);
+      } else {
+        selectedFilters.delete(filter);
+      }
+      syncFilterButtonStates();
       renderAnnouncements();
     });
   });
@@ -177,7 +243,7 @@ async function loadData() {
     filterOptions = data.filterOptions || [];
     announcements = data.announcements || [];
 
-    populateFilterSelect(filterOptions);
+    populateFilterButtons(filterOptions);
 
     const updatedLabel = formatUpdatedAt(data.updatedAt);
     setStatus(
@@ -196,7 +262,8 @@ async function loadData() {
   }
 }
 
-filterSelect.addEventListener("change", renderAnnouncements);
+selectAllBtn.addEventListener("click", selectAllFilters);
+deselectAllBtn.addEventListener("click", deselectAllFilters);
 sortSelect.addEventListener("change", renderAnnouncements);
 
 loadData();
