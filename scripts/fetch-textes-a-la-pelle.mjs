@@ -21,6 +21,38 @@ function decodeHtml(value) {
     .trim();
 }
 
+function parseRelativeDate(text, referenceDate = new Date()) {
+  const match = text.match(/il y a (\d+) (heure|jour|mois)/);
+  if (!match) {
+    return null;
+  }
+
+  const amount = Number(match[1]);
+  const unit = match[2];
+  const dayMs = 24 * 60 * 60 * 1000;
+  let offsetMs = 0;
+
+  if (unit === "heure") {
+    offsetMs = amount * 60 * 60 * 1000;
+  } else if (unit === "jour") {
+    offsetMs = amount * dayMs;
+  } else {
+    offsetMs = amount * 30 * dayMs;
+  }
+
+  return new Date(referenceDate.getTime() - offsetMs).toISOString();
+}
+
+function parseDeadlineDate(text) {
+  const match = text.match(/(\d{2})\/(\d{2})\/(\d{4})/);
+  if (!match) {
+    return null;
+  }
+
+  const [, day, month, year] = match;
+  return new Date(Date.UTC(Number(year), Number(month) - 1, Number(day))).toISOString();
+}
+
 function parseFilterOptions(html) {
   const selectMatch = html.match(/id="filter-selector"[^>]*>([\s\S]*?)<\/select>/);
   if (!selectMatch) {
@@ -55,7 +87,7 @@ function parseFilterOptions(html) {
   return options;
 }
 
-function parseAnnouncements(html) {
+function parseAnnouncements(html, referenceDate) {
   const articles = [...html.matchAll(/<article[^>]*data-id="(\d+)"[^>]*>([\s\S]*?)<\/article>/g)];
 
   return articles.map(([, id, body]) => {
@@ -66,7 +98,7 @@ function parseAnnouncements(html) {
       if (!labelMatch) {
         continue;
       }
-      const label = decodeHtml(labelMatch[1]).replace(/:$/, "");
+      const label = decodeHtml(labelMatch[1]).replace(/[\s:\u202f]+$/g, "");
       fields[label] = decodeHtml(labelMatch[2]);
     }
 
@@ -79,6 +111,9 @@ function parseAnnouncements(html) {
       decodeURIComponent(match[1]),
     );
 
+    const added = fields["Ajouté"] || "";
+    const deadline = fields["Envois jusqu'au"] || "";
+
     return {
       id,
       publisher: decodeHtml(publisherMatch?.[1] || ""),
@@ -86,8 +121,10 @@ function parseAnnouncements(html) {
       url: linkMatch?.[1] || "",
       image: imageMatch?.[1] || "",
       tags,
-      added: fields["Ajouté"] || "",
-      deadline: fields["Envois jusqu'au"] || "",
+      added,
+      addedAt: parseRelativeDate(added, referenceDate),
+      deadline,
+      deadlineAt: parseDeadlineDate(deadline),
       audience: fields.Public || "",
       fee: fields["Frais d'inscription"] || "",
       theme: fields["Thème"] || "",
@@ -114,7 +151,7 @@ const payload = {
   updatedAt: new Date().toISOString(),
   source: SOURCE_URL,
   filterOptions: parseFilterOptions(html),
-  announcements: parseAnnouncements(html),
+  announcements: parseAnnouncements(html, new Date()),
 };
 
 writeFileSync(OUTPUT, `${JSON.stringify(payload, null, 2)}\n`, "utf8");

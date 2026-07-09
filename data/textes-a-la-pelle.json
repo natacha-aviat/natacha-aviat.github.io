@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-07-09T08:12:30.955Z",
+  "updatedAt": "2026-07-09T15:39:17.778Z",
   "source": "https://textes-a-la-pelle.fr/",
   "filterOptions": [
     {
@@ -230,13 +230,15 @@
         "format_poème",
         "format_texte"
       ],
-      "added": "",
-      "deadline": "",
-      "audience": "",
-      "fee": "",
-      "theme": "",
-      "length": "",
-      "reward": ""
+      "added": "il y a 17 heures",
+      "addedAt": "2026-07-08T22:39:17.785Z",
+      "deadline": "31/08/2026",
+      "deadlineAt": "2026-08-31T00:00:00.000Z",
+      "audience": "Personnes qui s'identifient en tant que femmes",
+      "fee": "0 €",
+      "theme": "Crépuscule.",
+      "length": "1 500 mots maximum",
+      "reward": "Publication dans le numéro 1 de la revue, exemplaire offert"
     },
     {
       "id": "4909",
@@ -247,13 +249,15 @@
       "tags": [
         "format_poème"
       ],
-      "added": "",
-      "deadline": "",
-      "audience": "",
-      "fee": "",
-      "theme": "",
-      "length": "",
-      "reward": ""
+      "added": "il y a 17 heures",
+      "addedAt": "2026-07-08T22:39:17.785Z",
+      "deadline": "06/09/2026",
+      "deadlineAt": "2026-09-06T00:00:00.000Z",
+      "audience": "Tous",
+      "fee": "0 €",
+      "theme": "Renouveau.",
+      "length": "20 vers maximum",
+      "reward": "Publication dans le numéro 18 de la revue"
     },
     {
       "id": "4907",
@@ -264,13 +268,15 @@
       "tags": [
         "format_texte"
       ],
-      "added": "",
-      "deadline": "",
-      "audience": "",
-      "fee": "",
-      "theme": "",
-      "length": "",
-      "reward": ""
+      "added": "il y a 1 jour",
+      "addedAt": "2026-07-08T15:39:17.785Z",
+      "deadline": "01/09/2026",
+      "deadlineAt": "2026-09-01T00:00:00.000Z",
+      "audience": "Toute la francophonie à l'exception de l'Ile-de-France",
+      "fee": "0 €",
+      "theme": "Ophélie (détails sur le site). Littérature expérimentale.",
+      "length": "3 500-35 000 sec",
+      "reward": "Publication dans la revue, en version papier et numérique, possibilité d'envoi d'exemplaires de la version papier"
     },
     {
       "id": "4904",
@@ -281,13 +287,15 @@
       "tags": [
         "format_nouvelle"
       ],
-      "added": "",
-      "deadline": "",
-      "audience": "",
-      "fee": "",
-      "theme": "",
-      "length": "",
-      "reward": ""
+      "added": "il y a 1 jour",
+      "addedAt": "2026-07-08T15:39:17.785Z",
+      "deadline": "15/08/2026",
+      "deadlineAt": "2026-08-15T00:00:00.000Z",
+      "audience": "Tous",
+      "fee": "0-8 €",
+      "theme": "Aventure botanique.",
+      "length": "10 000-12 000 sec",
+      "reward": "Prix, publication"
     },
     {
       "id": "4903",
@@ -302,13 +310,15 @@
         "genre_policier",
         "genre_science-fiction"
       ],
-      "added": "",
-      "deadline": "",
-      "audience": "",
-      "fee": "",
-      "theme": "",
-      "length": "",
-      "reward": ""
+      "added": "il y a 2 jours",
+      "addedAt": "2026-07-07T15:39:17.785Z",
+      "deadline": "31/10/2026",
+      "deadlineAt": "2026-10-31T00:00:00.000Z",
+      "audience": "18 ans minimum",
+      "fee": "0 €",
+      "theme": "La Tour.",
+      "length": "25 000 sec",
+      "reward": "Publication en recueil, exemplaires offerts"
     },
     {
       "id": "4905",
@@ -319,13 +329,15 @@
       "tags": [
         "format_poème"
       ],
-      "added": "",
-      "deadline": "",
-      "audience": "",
-      "fee": "",
-      "theme": "",
-      "length": "",
-      "reward": ""
+      "added": "il y a 2 jours",
+      "addedAt": "2026-07-07T15:39:17.785Z",
+      "deadline": "31/12/2026",
+      "deadlineAt": "2026-12-31T00:00:00.000Z",
+      "audience": "18 ans minimum",
+      "fee": "0 €",
+      "theme": "Un message d'espoir pour l'humanité ou un hommage à une personne chère disparue.",
+      "length": "3-14 vers",
+      "reward": "Publication possible dans le prochain numéro de la revue numérique, le meilleur texte de chaque catégorie sera mis en valeur sur le site et dans un clip vidéo"
     },
     {
       "id": "4897",
@@ -336,13 +348,15 @@
       "tags": [
         "format_pièce de théâtre"
       ],
-      "added": "",
-      "deadline": "",
-      "audience": "",
-      "fee": "",
-      "theme": "",
+      "added": "il y a 3 jours",
+      "addedAt": "2026-07-06T15:39:17.785Z",
+      "deadline": "30/07/2026",
+      "deadlineAt": "2026-07-30T00:00:00.000Z",
+      "audience": "Tous",
+      "fee": "0 €",
+      "theme": "Libre.",
       "length": "",
-      "reward": ""
+      "reward": "Lecture mise en espace, représentation publique, rencontre avec des professionnel.le.s du théâtre et du livre"
     },
     {
       "id": "4902",
@@ -353,13 +367,15 @@
       "tags": [
         "format_nouvelle"
       ],
-      "added": "",
-      "deadline": "",
-      "audience": "",
-      "fee": "",
-      "theme": "",
-      "length": "",
-      "reward": ""
+      "added": "il y a 3 jours",
+      "addedAt": "2026-07-06T15:39:17.785Z",
+      "deadline": "23/08/2026",
+      "deadlineAt": "2026-08-23T00:00:00.000Z",
+      "audience": "Tous",
+      "fee": "0 €",
+      "theme": "La ville de Courbevoie doit apparaitre dans le récit.",
+      "length": "20 000-40 000 sec",
+      "reward": "Prix, publication en recueil"
     },
     {
       "id": "4881",
@@ -370,13 +386,15 @@
       "tags": [
         "format_poème"
       ],
-      "added": "",
-      "deadline": "",
-      "audience": "",
-      "fee": "",
-      "theme": "",
+      "added": "il y a 4 jours",
+      "addedAt": "2026-07-05T15:39:17.785Z",
+      "deadline": "10/08/2026",
+      "deadlineAt": "2026-08-10T00:00:00.000Z",
+      "audience": "6-17 ans",
+      "fee": "0 €",
+      "theme": "Libre.",
       "length": "",
-      "reward": ""
+      "reward": "Prix, chèque cadeau"
     },
     {
       "id": "4900",
@@ -387,13 +405,15 @@
       "tags": [
         "format_texte"
       ],
-      "added": "",
-      "deadline": "",
-      "audience": "",
-      "fee": "",
-      "theme": "",
-      "length": "",
-      "reward": ""
+      "added": "il y a 5 jours",
+      "addedAt": "2026-07-04T15:39:17.785Z",
+      "deadline": "31/12/2026",
+      "deadlineAt": "2026-12-31T00:00:00.000Z",
+      "audience": "Tous",
+      "fee": "0 €",
+      "theme": "Lui, c'est l'homme dans tous ses états.",
+      "length": "25 00 sec maximum",
+      "reward": "Publication dans le fanzine et sur le site, exemplaires offerts"
     },
     {
       "id": "4901",
@@ -404,13 +424,15 @@
       "tags": [
         "format_nouvelle"
       ],
-      "added": "",
-      "deadline": "",
-      "audience": "",
-      "fee": "",
-      "theme": "",
-      "length": "",
-      "reward": ""
+      "added": "il y a 5 jours",
+      "addedAt": "2026-07-04T15:39:17.785Z",
+      "deadline": "23/08/2026",
+      "deadlineAt": "2026-08-23T00:00:00.000Z",
+      "audience": "11 ans minimum",
+      "fee": "0 €",
+      "theme": "Un jour pas comme les autres. La nouvelle doit obligatoirement avoir pour cadre la ville de Jouy-en-Josas.",
+      "length": "10 pages maximum",
+      "reward": "Prix, bons cadeaux divers, livres, adhésions et cadeaux de la collection exclusive du Musée de la Toile de Jouy"
     },
     {
       "id": "4899",
@@ -422,13 +444,15 @@
         "format_nouvelle",
         "genre_historique"
       ],
-      "added": "",
-      "deadline": "",
-      "audience": "",
-      "fee": "",
-      "theme": "",
-      "length": "",
-      "reward": ""
+      "added": "il y a 6 jours",
+      "addedAt": "2026-07-03T15:39:17.785Z",
+      "deadline": "11/11/2026",
+      "deadlineAt": "2026-11-11T00:00:00.000Z",
+      "audience": "11 ans minimum",
+      "fee": "0 €",
+      "theme": "Écrire sur un lieu emblématique de la Charente, à une époque facilement identifiable de son histoire. Votre maison familiale, l’école de votre enfance, ou encore l’écluse de Juac sont autant d’exemples de lieux chargés d’histoires à envisager comme le décor de votre récit.",
+      "length": "15 000 sec maximum",
+      "reward": "Prix, bons d'achat en librairie de 105 €, 75 €, 50 €, 45 €, 30 €, 20 €"
     },
     {
       "id": "4880",
@@ -439,13 +463,15 @@
       "tags": [
         "format_pièce de théâtre"
       ],
-      "added": "",
-      "deadline": "",
-      "audience": "",
-      "fee": "",
-      "theme": "",
+      "added": "il y a 6 jours",
+      "addedAt": "2026-07-03T15:39:17.785Z",
+      "deadline": "30/07/2026",
+      "deadlineAt": "2026-07-30T00:00:00.000Z",
+      "audience": "Artistes professionnel·les",
+      "fee": "0 €",
+      "theme": "Libre. Création pour l'extérieur, le tout-terrain, les lieux non dédiés, forme légère techniquement, projet participatif possible.",
       "length": "",
-      "reward": ""
+      "reward": "Résidence d'une semaine (hébergement, participation pour les repas, prise en charge des déplacements), rémunération des ateliers : 55 € HT/heure (max 3h/artiste), rémunération des sorties de résidence : 160 € brut/personne"
     },
     {
       "id": "4895",
@@ -464,13 +490,15 @@
         "genre_réaliste",
         "genre_science-fiction"
       ],
-      "added": "",
-      "deadline": "",
-      "audience": "",
-      "fee": "",
-      "theme": "",
-      "length": "",
-      "reward": ""
+      "added": "il y a 7 jours",
+      "addedAt": "2026-07-02T15:39:17.785Z",
+      "deadline": "28/08/2026",
+      "deadlineAt": "2026-08-28T00:00:00.000Z",
+      "audience": "Auteurs amateurs non publiés, 16 ans minimum",
+      "fee": "0 €",
+      "theme": "Choisissez vos mots pour décrire un paysage. Votre regard nous le fera traverser et vos sens nous le feront découvrir. Que vous choisissiez la beauté, la rudesse ou la désolation d’un lieu, il ne sera pas un simple décor, votre sensibilité devra transcrire l’atmosphère de cet endroit. Osez nous surprendre avec une fin surprenante, un élément perturbateur que l’on n’attend pas : un objet, une trace, un être vivant ou imaginé.",
+      "length": "10 000 sec maximum",
+      "reward": "Prix, lot, publication en recueil, exemplaire offert"
     },
     {
       "id": "4898",
@@ -481,13 +509,15 @@
       "tags": [
         "format_nouvelle"
       ],
-      "added": "",
-      "deadline": "",
-      "audience": "",
-      "fee": "",
-      "theme": "",
-      "length": "",
-      "reward": ""
+      "added": "il y a 7 jours",
+      "addedAt": "2026-07-02T15:39:17.785Z",
+      "deadline": "31/01/2027",
+      "deadlineAt": "2027-01-31T00:00:00.000Z",
+      "audience": "Pour tout public qui aime écrire et raconter des histoires",
+      "fee": "7 €",
+      "theme": "Libre. Liste de mots à insérer dans le texte (au moins 10 sur les 12) : neuf, Champagne, cuillère, voyage, bienveillance, volupté, merveilleux, sourire, nuage, diablerie, orage, chapeau.",
+      "length": "6 000 signes (espace non compris)",
+      "reward": "Prix, bon d'achat de 480 € à dépenser au Relais du Bois Saint-Georges, bons d'achat en librairie de 120 €, 80 €"
     },
     {
       "id": "4894",
@@ -498,13 +528,15 @@
       "tags": [
         "format_poème"
       ],
-      "added": "",
-      "deadline": "",
-      "audience": "",
-      "fee": "",
-      "theme": "",
-      "length": "",
-      "reward": ""
+      "added": "il y a 8 jours",
+      "addedAt": "2026-07-01T15:39:17.785Z",
+      "deadline": "24/08/2026",
+      "deadlineAt": "2026-08-24T00:00:00.000Z",
+      "audience": "Tous",
+      "fee": "0 €",
+      "theme": "Le mot « cloche » avec tous les sens qu'on peut lui donner.",
+      "length": "150 mots maximum",
+      "reward": "Prix au plus beau poème non encore défini"
     },
     {
       "id": "4878",
@@ -515,13 +547,15 @@
       "tags": [
         "format_pièce de théâtre"
       ],
-      "added": "",
-      "deadline": "",
-      "audience": "",
-      "fee": "",
-      "theme": "",
-      "length": "",
-      "reward": ""
+      "added": "il y a 8 jours",
+      "addedAt": "2026-07-01T15:39:17.785Z",
+      "deadline": "12/07/2026",
+      "deadlineAt": "2026-07-12T00:00:00.000Z",
+      "audience": "Être un·e artiste, créatrice/créateur ou écrivain·e engagé·e professionnellement dans la création contemporaine et justifiant de travaux antérieurs",
+      "fee": "0 €",
+      "theme": "Libre. Attention particulière aux projets à destination des jeunes publics. Pièces originales, inédites, en langue française, pour 1 à 5 interprètes, durée d'environ 1h30.",
+      "length": "1 h 30 environ",
+      "reward": "Bourse d'écriture de 650 €, résidence d'écriture (logement, frais de transport/repas pris en charge), résidence de création (logement, transports, repas pris en charge), mise en scène, représentation lors du Lyncéus Festival 2027, rémunération en droits d'auteur pour les textes finis sélectionnés"
     },
     {
       "id": "4896",
@@ -532,13 +566,15 @@
       "tags": [
         "format_nouvelle"
       ],
-      "added": "",
-      "deadline": "",
-      "audience": "",
-      "fee": "",
-      "theme": "",
-      "length": "",
-      "reward": ""
+      "added": "il y a 9 jours",
+      "addedAt": "2026-06-30T15:39:17.785Z",
+      "deadline": "30/09/2026",
+      "deadlineAt": "2026-09-30T00:00:00.000Z",
+      "audience": "Tous",
+      "fee": "0-10 €",
+      "theme": "Anniversaire.",
+      "length": "20 000 sec maximum",
+      "reward": "Prix, publication, lecture publique"
     },
     {
       "id": "4892",
@@ -551,13 +587,15 @@
         "format_poème",
         "format_tanka"
       ],
-      "added": "",
-      "deadline": "",
-      "audience": "",
-      "fee": "",
-      "theme": "",
-      "length": "",
-      "reward": ""
+      "added": "il y a 9 jours",
+      "addedAt": "2026-06-30T15:39:17.785Z",
+      "deadline": "01/12/2026",
+      "deadlineAt": "2026-12-01T00:00:00.000Z",
+      "audience": "18 ans minimum",
+      "fee": "0 €",
+      "theme": "Selon l'inspiration née de 4 illustrations de Valérie Marchand.",
+      "length": "3-15 lignes",
+      "reward": "Publication dans la revue numérique de janvier 2027"
     },
     {
       "id": "4890",
@@ -571,13 +609,15 @@
         "format_saynète",
         "format_texte"
       ],
-      "added": "",
-      "deadline": "",
-      "audience": "",
-      "fee": "",
-      "theme": "",
-      "length": "",
-      "reward": ""
+      "added": "il y a 10 jours",
+      "addedAt": "2026-06-29T15:39:17.785Z",
+      "deadline": "31/10/2026",
+      "deadlineAt": "2026-10-31T00:00:00.000Z",
+      "audience": "Tous",
+      "fee": "0 €",
+      "theme": "Amitié, solidarité, écritures collectives.",
+      "length": "2 000 signes (espaces non compris)",
+      "reward": "Publication dans le numéro 4, print artistique (linogravure) édition limitée"
     },
     {
       "id": "4891",
@@ -588,13 +628,15 @@
       "tags": [
         "format_nouvelle"
       ],
-      "added": "",
-      "deadline": "",
-      "audience": "",
-      "fee": "",
-      "theme": "",
-      "length": "",
-      "reward": ""
+      "added": "il y a 10 jours",
+      "addedAt": "2026-06-29T15:39:17.785Z",
+      "deadline": "31/10/2026",
+      "deadlineAt": "2026-10-31T00:00:00.000Z",
+      "audience": "15 ans minimum",
+      "fee": "0 €",
+      "theme": "Être en lien avec le Thouarsais par le biais d’un événement, d’une figure historique, d’une œuvre patrimoniale ou faisant librement écho à l’histoire de Thouarset de ses environs et débuter par le paragraphe suivant : « L’hôtel Tyndo ressemblait à une fourmilière, sa voisine la Tour Grainetière n'était pas en reste. Partout dans la ville, on entendait aussi des clameurs. Les Thouarsais s'agitaient. Il faut dire que l'événement était de taille et le personnage d'importance. Nul ne savait si cette venue était de bon augure. »",
+      "length": "1 600 mots",
+      "reward": "Prix, lots, publication dans le Bulletin Annuel de l'Association"
     },
     {
       "id": "4883",
@@ -605,13 +647,15 @@
       "tags": [
         "format_texte"
       ],
-      "added": "",
-      "deadline": "",
-      "audience": "",
-      "fee": "",
-      "theme": "",
+      "added": "il y a 11 jours",
+      "addedAt": "2026-06-28T15:39:17.785Z",
+      "deadline": "31/07/2026",
+      "deadlineAt": "2026-07-31T00:00:00.000Z",
+      "audience": "Tous",
+      "fee": "0 €",
+      "theme": "NINJA.",
       "length": "",
-      "reward": ""
+      "reward": "Publication sur le site de la revue inutile"
     },
     {
       "id": "4885",
@@ -623,13 +667,15 @@
         "format_pantoun",
         "format_poème"
       ],
-      "added": "",
-      "deadline": "",
-      "audience": "",
-      "fee": "",
-      "theme": "",
+      "added": "il y a 11 jours",
+      "addedAt": "2026-06-28T15:39:17.785Z",
+      "deadline": "15/07/2026",
+      "deadlineAt": "2026-07-15T00:00:00.000Z",
+      "audience": "Tous",
+      "fee": "0 €",
+      "theme": "Mémoire.",
       "length": "",
-      "reward": ""
+      "reward": "Publication dans la revue semestrielle Pantouns et Genres Brefs"
     },
     {
       "id": "4893",
@@ -642,13 +688,15 @@
         "genre_contemporain",
         "genre_romance"
       ],
-      "added": "",
-      "deadline": "",
-      "audience": "",
-      "fee": "",
-      "theme": "",
-      "length": "",
-      "reward": ""
+      "added": "il y a 12 jours",
+      "addedAt": "2026-06-27T15:39:17.785Z",
+      "deadline": "31/08/2026",
+      "deadlineAt": "2026-08-31T00:00:00.000Z",
+      "audience": "Auteurs débutants ou confirmés",
+      "fee": "0 €",
+      "theme": "L'été.",
+      "length": "5 chapitres ou 8 000 mots minimum",
+      "reward": "Prix, liseuse kindle, bons d'achat de 50 €, 25 € valables chez Cultura ou une enseigne équivalente au choix"
     },
     {
       "id": "4884",
@@ -659,13 +707,15 @@
       "tags": [
         "format_nouvelle"
       ],
-      "added": "",
-      "deadline": "",
-      "audience": "",
-      "fee": "",
-      "theme": "",
-      "length": "",
-      "reward": ""
+      "added": "il y a 12 jours",
+      "addedAt": "2026-06-27T15:39:17.785Z",
+      "deadline": "02/08/2026",
+      "deadlineAt": "2026-08-02T00:00:00.000Z",
+      "audience": "Tous",
+      "fee": "0 €",
+      "theme": "La penta-contrainte révélée progressivement durant les trois semaines précédant la nuit du concours.Samedi 11 juillet à 20h semaine -3 : un thème à interpréter. Samedi 25 juillet à 20h semaine -1 : un type d’interaction à proposer au lecteur. Samedi 1 août 2026 à 20h,12h avant la fin du concours : un accessoire principal, une phrase, et un personnage.",
+      "length": "10 000 sec maximum",
+      "reward": "Prix, livres, jeu, lecture enregistrée"
     },
     {
       "id": "4889",
@@ -676,13 +726,15 @@
       "tags": [
         "format_nouvelle"
       ],
-      "added": "",
-      "deadline": "",
-      "audience": "",
-      "fee": "",
-      "theme": "",
+      "added": "il y a 13 jours",
+      "addedAt": "2026-06-26T15:39:17.785Z",
+      "deadline": "31/08/2026",
+      "deadlineAt": "2026-08-31T00:00:00.000Z",
+      "audience": "Tous auteurs vivants",
+      "fee": "0 €",
+      "theme": "Libre.",
       "length": "",
-      "reward": ""
+      "reward": "Votre portfolio en ligne, avec votre nom de domaine, des extraits de vos textes pourraient être choisis par des enseignants pour être étudiés en classe"
     },
     {
       "id": "4888",
@@ -693,13 +745,15 @@
       "tags": [
         "format_poème"
       ],
-      "added": "",
-      "deadline": "",
-      "audience": "",
-      "fee": "",
-      "theme": "",
-      "length": "",
-      "reward": ""
+      "added": "il y a 13 jours",
+      "addedAt": "2026-06-26T15:39:17.785Z",
+      "deadline": "20/09/2026",
+      "deadlineAt": "2026-09-20T00:00:00.000Z",
+      "audience": "Tous",
+      "fee": "0 €",
+      "theme": "Écrire des poèmes en lien avec les œuvres et leurs artistes.",
+      "length": "40 lignes maximum.",
+      "reward": "Publication livresque, lot de 2 ouvrages, rétribution financière si équilibre budgétaire de l’association"
     },
     {
       "id": "4877",
@@ -710,13 +764,15 @@
       "tags": [
         "format_nouvelle"
       ],
-      "added": "",
-      "deadline": "",
-      "audience": "",
-      "fee": "",
-      "theme": "",
-      "length": "",
-      "reward": ""
+      "added": "il y a 14 jours",
+      "addedAt": "2026-06-25T15:39:17.785Z",
+      "deadline": "05/01/2027",
+      "deadlineAt": "2027-01-05T00:00:00.000Z",
+      "audience": "15 ans minimum",
+      "fee": "0 €",
+      "theme": "Pieds sur Terre ou tête en l'air ?",
+      "length": "6 000-15 000 sec",
+      "reward": "Prix, liseuses, abonnements annuels au Muséum, paniers boutique du Muséum, beaux livres, déjeuner complet au restaurant le Moaï, surprises Raisonnables ou évaporées de la boutique du Muséum, cadeaux de nos partenaires, publication en recueil et sur le site, création d’un livre audio via le podcast Plumes en Voix"
     },
     {
       "id": "4873",
@@ -727,13 +783,15 @@
       "tags": [
         "format_nouvelle"
       ],
-      "added": "",
-      "deadline": "",
-      "audience": "",
-      "fee": "",
-      "theme": "",
-      "length": "",
-      "reward": ""
+      "added": "il y a 14 jours",
+      "addedAt": "2026-06-25T15:39:17.785Z",
+      "deadline": "26/03/2027",
+      "deadlineAt": "2027-03-26T00:00:00.000Z",
+      "audience": "12-17 ans",
+      "fee": "0 €",
+      "theme": "Les dessous du lac.",
+      "length": "6 000-9 000 sec",
+      "reward": "Prix, publication dans la revue du Parc national, journée en montagne accompagnée par un garde du Parc national, place pour le spectacle du vendredi ou samedi soir du 7e festival Murmure du Monde, livre sur les Pyrénées"
     },
     {
       "id": "4887",
@@ -745,13 +803,15 @@
         "format_album",
         "genre_jeunesse"
       ],
-      "added": "",
-      "deadline": "",
-      "audience": "",
-      "fee": "",
-      "theme": "",
-      "length": "",
-      "reward": ""
+      "added": "il y a 15 jours",
+      "addedAt": "2026-06-24T15:39:17.785Z",
+      "deadline": "08/08/2026",
+      "deadlineAt": "2026-08-08T00:00:00.000Z",
+      "audience": "Tous auteurs/illustrateurs",
+      "fee": "0 €",
+      "theme": "Mer et aventure. Album (textes et illustrations) à destination d'enfants de 3 à 7 ans.",
+      "length": "32 pages",
+      "reward": "Chèque de 150 €, 16 albums d’une valeur de 250 €"
     },
     {
       "id": "4886",
@@ -763,13 +823,15 @@
         "format_scénario",
         "format_texte"
       ],
-      "added": "",
-      "deadline": "",
-      "audience": "",
-      "fee": "",
-      "theme": "",
-      "length": "",
-      "reward": ""
+      "added": "il y a 15 jours",
+      "addedAt": "2026-06-24T15:39:17.785Z",
+      "deadline": "31/08/2026",
+      "deadlineAt": "2026-08-31T00:00:00.000Z",
+      "audience": "Résidents de Champagne Ardenne",
+      "fee": "0 €",
+      "theme": "Libre. Lorsqu'on attend un bus, on ne sait jamais ce qu'il va se passer ni qui on va croiser… Nous lançons un appel à textes à destination d'auteurs qui résident en Champagne Ardenne. Nous sommes en quête de textes/scénarios qui racontent ces rencontres : jour ou nuit, drôles ou émouvantes, toutes les tonalités nous intéressent !",
+      "length": "2 minutes",
+      "reward": "200 €"
     },
     {
       "id": "4875",
@@ -780,13 +842,15 @@
       "tags": [
         "format_nouvelle"
       ],
-      "added": "",
-      "deadline": "",
-      "audience": "",
-      "fee": "",
-      "theme": "",
-      "length": "",
-      "reward": ""
+      "added": "il y a 16 jours",
+      "addedAt": "2026-06-23T15:39:17.785Z",
+      "deadline": "28/07/2026",
+      "deadlineAt": "2026-07-28T00:00:00.000Z",
+      "audience": "18 ans minimum",
+      "fee": "25 € (comprend 2 ateliers d'écriture)",
+      "theme": "Détour(s).",
+      "length": "6 000 sec",
+      "reward": "Prix, bons d'achat sur stage Aleph de 500 €, 400 €, 200 €, 5 nouvelles publiées dans la revue Rue Saint Ambroise"
     },
     {
       "id": "4876",
@@ -797,13 +861,15 @@
       "tags": [
         "format_nouvelle"
       ],
-      "added": "",
-      "deadline": "",
-      "audience": "",
-      "fee": "",
-      "theme": "",
-      "length": "",
-      "reward": ""
+      "added": "il y a 16 jours",
+      "addedAt": "2026-06-23T15:39:17.785Z",
+      "deadline": "30/09/2026",
+      "deadlineAt": "2026-09-30T00:00:00.000Z",
+      "audience": "Tous",
+      "fee": "0 €",
+      "theme": "Le message caché de Joséphine Baker.",
+      "length": "4 000-8 000 sec",
+      "reward": "Prix"
     },
     {
       "id": "4874",
@@ -814,13 +880,15 @@
       "tags": [
         "format_sonnet"
       ],
-      "added": "",
-      "deadline": "",
-      "audience": "",
-      "fee": "",
-      "theme": "",
+      "added": "il y a 17 jours",
+      "addedAt": "2026-06-22T15:39:17.785Z",
+      "deadline": "15/08/2026",
+      "deadlineAt": "2026-08-15T00:00:00.000Z",
+      "audience": "18 ans minimum",
+      "fee": "0 €",
+      "theme": "Libre.",
       "length": "",
-      "reward": ""
+      "reward": "Publication dans le premier numéro de la revue"
     },
     {
       "id": "4882",
@@ -832,13 +900,15 @@
         "format_bande dessinée",
         "format_récit"
       ],
-      "added": "",
-      "deadline": "",
-      "audience": "",
-      "fee": "",
-      "theme": "",
-      "length": "",
-      "reward": ""
+      "added": "il y a 18 jours",
+      "addedAt": "2026-06-21T15:39:17.785Z",
+      "deadline": "30/09/2026",
+      "deadlineAt": "2026-09-30T00:00:00.000Z",
+      "audience": "Tous, bédéistes débutants, émergents et professionnels, écrivain(es)",
+      "fee": "5 €",
+      "theme": "Inflation. Le prix des aliments grimpe. Les loyers augmentent. Les rêves coûtent-ils plus cher eux aussi ? À travers un récit court ou mise en BD avec l'humour, le drame, la satire, la science-fiction ou le fantastique, racontez comment l'inflation transforme le quotidien, les relations humaines et notre vision de l'avenir.",
+      "length": "3-5 pages",
+      "reward": "Publication dans l’anthologie francophone de bande dessinée Nouvelle Planche, exemplaire papier, et prix en argent pour les lauréates des catégories BD et récits courts"
     },
     {
       "id": "4872",
@@ -849,13 +919,15 @@
       "tags": [
         "format_nouvelle"
       ],
-      "added": "",
-      "deadline": "",
-      "audience": "",
-      "fee": "",
-      "theme": "",
-      "length": "",
-      "reward": ""
+      "added": "il y a 18 jours",
+      "addedAt": "2026-06-21T15:39:17.785Z",
+      "deadline": "15/11/2026",
+      "deadlineAt": "2026-11-15T00:00:00.000Z",
+      "audience": "18 ans minimum",
+      "fee": "0 €",
+      "theme": "Les dessous du lac.",
+      "length": "12 000-18 000 sec",
+      "reward": "Prix, publication dans la revue du Parc national, journée en montagne accompagnée par un garde du Parc national, place pour le spectacle du vendredi ou samedi soir du 7e festival Murmure du Monde, livre sur les Pyrénées, publication des textes sur le site web du Parc national"
     },
     {
       "id": "4869",
@@ -871,13 +943,15 @@
         "format_témoignage",
         "format_texte"
       ],
-      "added": "",
-      "deadline": "",
-      "audience": "",
-      "fee": "",
-      "theme": "",
-      "length": "",
-      "reward": ""
+      "added": "il y a 19 jours",
+      "addedAt": "2026-06-20T15:39:17.785Z",
+      "deadline": "20/09/2026",
+      "deadlineAt": "2026-09-20T00:00:00.000Z",
+      "audience": "Tous, à partir de la création d'un compte gratuit sur Panodyssey, ouvert aux auteurs déjà inscrits comme aux nouveaux participants",
+      "fee": "0 €",
+      "theme": "Parlez aux chats. Thème libre et ouvert : le chat animal, les chats des IA génératives ou toute interprétation créative du mot « chat ».",
+      "length": "5 minutes maximum de lecture par publication",
+      "reward": "Prix, parcours éditorial d'un an sur Panodyssey (mise en avant régulière, accompagnement éditorial, échanges réguliers avec le fondateur)"
     },
     {
       "id": "4868",
@@ -889,13 +963,15 @@
         "format_nouvelle",
         "genre_érotique"
       ],
-      "added": "",
-      "deadline": "",
-      "audience": "",
-      "fee": "",
-      "theme": "",
-      "length": "",
-      "reward": ""
+      "added": "il y a 20 jours",
+      "addedAt": "2026-06-19T15:39:17.785Z",
+      "deadline": "15/08/2026",
+      "deadlineAt": "2026-08-15T00:00:00.000Z",
+      "audience": "18 ans minimum",
+      "fee": "0 €",
+      "theme": "Le texte devra obligatoirement contenir la phrase « Le désir est parfois incompris, même pour soi-même. », placée librement dans le texte (début, milieu ou fin).",
+      "length": "800-1 800 mots",
+      "reward": "Prix, les 10 auteur·ices sélectionné·es recevront : lecture et enregistrement audio de leur texte, diffusé dans le podcast Le Son du Désir, publication de leur texte dans un recueil imprimé, sur le site lesondudesir.fr et sur Substack, le/la grand·e gagnant·e bénéficiera en supplément : récompense de 100 €, cadeaux offerts par les partenaires du projet"
     },
     {
       "id": "4866",
@@ -906,13 +982,15 @@
       "tags": [
         "format_nouvelle"
       ],
-      "added": "",
-      "deadline": "",
-      "audience": "",
-      "fee": "",
-      "theme": "",
-      "length": "",
-      "reward": ""
+      "added": "il y a 22 jours",
+      "addedAt": "2026-06-17T15:39:17.785Z",
+      "deadline": "04/11/2026",
+      "deadlineAt": "2026-11-04T00:00:00.000Z",
+      "audience": "Tous",
+      "fee": "0 €",
+      "theme": "Roue(s) Libre(s). La nouvelle doit intégrer le vélo (l'objet, l'activité, la mobilité douce et non la prouesse sportive, au choix).",
+      "length": "8 000-15 000 sec",
+      "reward": "Prix, bon d'achat de 100 € à la FNAC, panier gourmand (présence obligatoire à la remise des prix)"
     },
     {
       "id": "4864",
@@ -926,13 +1004,15 @@
         "format_poème",
         "format_slam"
       ],
-      "added": "",
-      "deadline": "",
-      "audience": "",
-      "fee": "",
-      "theme": "",
-      "length": "",
-      "reward": ""
+      "added": "il y a 23 jours",
+      "addedAt": "2026-06-16T15:39:17.785Z",
+      "deadline": "22/08/2026",
+      "deadlineAt": "2026-08-22T00:00:00.000Z",
+      "audience": "Tous",
+      "fee": "0 €",
+      "theme": "Passage(s)",
+      "length": "10-30 lignes",
+      "reward": "Prix, livres, lecture publique, publication"
     },
     {
       "id": "4863",
@@ -948,13 +1028,15 @@
         "format_témoignage",
         "genre_policier"
       ],
-      "added": "",
-      "deadline": "",
-      "audience": "",
-      "fee": "",
-      "theme": "",
-      "length": "",
-      "reward": ""
+      "added": "il y a 24 jours",
+      "addedAt": "2026-06-15T15:39:17.785Z",
+      "deadline": "03/09/2026",
+      "deadlineAt": "2026-09-03T00:00:00.000Z",
+      "audience": "18 ans minimum",
+      "fee": "0 €",
+      "theme": "Enquête policière, spécial héritage. Racontez une enquête policière, réaliste ou fantastique, à partir d’un crime en rapport avec un héritage, quel qu’il soit, à l'époque de votre choix.",
+      "length": "4 pages maximum",
+      "reward": "Publication dans le 2ème numéro de la revue"
     },
     {
       "id": "4859",
@@ -966,13 +1048,15 @@
         "format_roman",
         "genre_policier"
       ],
-      "added": "",
-      "deadline": "",
-      "audience": "",
-      "fee": "",
-      "theme": "",
-      "length": "",
-      "reward": ""
+      "added": "il y a 25 jours",
+      "addedAt": "2026-06-14T15:39:17.785Z",
+      "deadline": "10/07/2026",
+      "deadlineAt": "2026-07-10T00:00:00.000Z",
+      "audience": "Tous",
+      "fee": "0 €",
+      "theme": "Œuvre de fiction mettant en lumière l’univers de la gendarmerie, ses valeurs, ses missions ou le métier de gendarme.",
+      "length": "150 pages minimum",
+      "reward": "Contrat d'édition"
     },
     {
       "id": "4860",
@@ -983,13 +1067,15 @@
       "tags": [
         "format_texte"
       ],
-      "added": "",
-      "deadline": "",
-      "audience": "",
-      "fee": "",
-      "theme": "",
-      "length": "",
-      "reward": ""
+      "added": "il y a 26 jours",
+      "addedAt": "2026-06-13T15:39:17.785Z",
+      "deadline": "15/07/2026",
+      "deadlineAt": "2026-07-15T00:00:00.000Z",
+      "audience": "Tous",
+      "fee": "0 €",
+      "theme": "Fictions autour des bourlingueurs. Littérature blanche, polar, SF, fantastique… mais aussi musique, arts graphiques et vidéos. (Évitez la poésie, sauf si elle est exceptionnelle). Le sujet peut être traité de manière explicite mais des approches conceptuelles, métaphoriques voire philosophiques sont aussi acceptées.",
+      "length": "15 000 sec maximum",
+      "reward": "La joie d'être publié dans cette capsule temporelle à ciel ouvert qu'est LITTERATURE UNDERGROUND."
     },
     {
       "id": "4861",
@@ -1000,13 +1086,15 @@
       "tags": [
         "format_nouvelle"
       ],
-      "added": "",
-      "deadline": "",
-      "audience": "",
-      "fee": "",
-      "theme": "",
-      "length": "",
-      "reward": ""
+      "added": "il y a 26 jours",
+      "addedAt": "2026-06-13T15:39:17.785Z",
+      "deadline": "31/08/2026",
+      "deadlineAt": "2026-08-31T00:00:00.000Z",
+      "audience": "Tous",
+      "fee": "0 €",
+      "theme": "Inclure la phrase : « Et dans un dernier souffle, je comprends tout. »",
+      "length": "15 000-18 000 sec",
+      "reward": "Prix, chèques cadeaux en librairie, publication"
     },
     {
       "id": "4862",
@@ -1020,13 +1108,15 @@
         "genre_fantasy",
         "genre_science-fiction"
       ],
-      "added": "",
-      "deadline": "",
-      "audience": "",
-      "fee": "",
-      "theme": "",
-      "length": "",
-      "reward": ""
+      "added": "il y a 27 jours",
+      "addedAt": "2026-06-12T15:39:17.785Z",
+      "deadline": "31/07/2026",
+      "deadlineAt": "2026-07-31T00:00:00.000Z",
+      "audience": "Auteur et autrice de l'imaginaire",
+      "fee": "0 €",
+      "theme": "Libre.",
+      "length": "premier chapitre (5 000 mots maximum) et le synopsis (1 000-1 500 mots)",
+      "reward": "Le ou la gagnant·e remportera une prestation de bêta-lecture complète de son manuscrit (lecture annotée, fiche de compte-rendu, accompagnement pendant la réécriture), les 4 projets suivants seront mis à l’honneur sur mes réseaux et sur mon site, TOUS les participants recevrons un retour sur leur projet de quelques lignes par mail."
     },
     {
       "id": "4857",
@@ -1037,13 +1127,15 @@
       "tags": [
         "format_poème"
       ],
-      "added": "",
-      "deadline": "",
-      "audience": "",
-      "fee": "",
-      "theme": "",
+      "added": "il y a 27 jours",
+      "addedAt": "2026-06-12T15:39:17.785Z",
+      "deadline": "15/09/2026",
+      "deadlineAt": "2026-09-15T00:00:00.000Z",
+      "audience": "12-18 ans",
+      "fee": "0 €",
+      "theme": "Libre. Poésie classique, néoclassique, libre, libérée ou prose poétique.",
       "length": "",
-      "reward": ""
+      "reward": "Prix"
     },
     {
       "id": "4858",
@@ -1060,13 +1152,15 @@
         "format_roman",
         "format_texte"
       ],
-      "added": "",
-      "deadline": "",
-      "audience": "",
-      "fee": "",
-      "theme": "",
+      "added": "il y a 28 jours",
+      "addedAt": "2026-06-11T15:39:17.785Z",
+      "deadline": "04/09/2026",
+      "deadlineAt": "2026-09-04T00:00:00.000Z",
+      "audience": "Tous",
+      "fee": "0 €",
+      "theme": "Paysages : écrire les lieux, habiter le monde.",
       "length": "",
-      "reward": ""
+      "reward": "35 $ CAD/page, publication dans le numéro 180"
     },
     {
       "id": "4856",
@@ -1077,13 +1171,15 @@
       "tags": [
         "format_nouvelle"
       ],
-      "added": "",
-      "deadline": "",
-      "audience": "",
-      "fee": "",
-      "theme": "",
-      "length": "",
-      "reward": ""
+      "added": "il y a 29 jours",
+      "addedAt": "2026-06-10T15:39:17.785Z",
+      "deadline": "28/09/2026",
+      "deadlineAt": "2026-09-28T00:00:00.000Z",
+      "audience": "16 ans minimum",
+      "fee": "0 €",
+      "theme": "Et si nous avions tous un secret.",
+      "length": "3-7 pages",
+      "reward": "Prix, bons d'achat en librairie, publication en recueil"
     },
     {
       "id": "4855",
@@ -1099,13 +1195,15 @@
         "format_pièce de théâtre",
         "format_scénario"
       ],
-      "added": "",
-      "deadline": "",
-      "audience": "",
-      "fee": "",
-      "theme": "",
-      "length": "",
-      "reward": ""
+      "added": "il y a 1 mois",
+      "addedAt": "2026-06-09T15:39:17.785Z",
+      "deadline": "27/09/2026",
+      "deadlineAt": "2026-09-27T00:00:00.000Z",
+      "audience": "Étudiant·es inscrit·es dans un établissement d’enseignement supérieur public en Nouvelle-Aquitaine (universités, écoles d’art publiques, autres établissements publics), lycéen·nes de Pessac",
+      "fee": "0 €",
+      "theme": "Libre.",
+      "length": "120 000 sec maximum",
+      "reward": "1 000 € x 4, 700 € , 500 € x 4, 300 €, résidence d’écriture à la Villa Valmont"
     },
     {
       "id": "4854",
@@ -1118,13 +1216,15 @@
         "genre_policier",
         "genre_thriller"
       ],
-      "added": "",
-      "deadline": "",
-      "audience": "",
-      "fee": "",
-      "theme": "",
-      "length": "",
-      "reward": ""
+      "added": "il y a 1 mois",
+      "addedAt": "2026-06-09T15:39:17.785Z",
+      "deadline": "20/09/2026",
+      "deadlineAt": "2026-09-20T00:00:00.000Z",
+      "audience": "Tous",
+      "fee": "0 €",
+      "theme": "Première et dernière phrases imposées.",
+      "length": "2-3 pages",
+      "reward": "Prix, publication en recueil, lecture publique lors du festival"
     },
     {
       "id": "4853",
@@ -1137,13 +1237,15 @@
         "genre_policier",
         "genre_thriller"
       ],
-      "added": "",
-      "deadline": "",
-      "audience": "",
-      "fee": "",
-      "theme": "",
-      "length": "",
-      "reward": ""
+      "added": "il y a 1 mois",
+      "addedAt": "2026-06-09T15:39:17.785Z",
+      "deadline": "14/09/2026",
+      "deadlineAt": "2026-09-14T00:00:00.000Z",
+      "audience": "Résidents de Belgique ou des communes frontalières",
+      "fee": "0 €",
+      "theme": "Enlèvement/disparition.",
+      "length": "500-10 000 mots",
+      "reward": "Prix, publication en recueil"
     },
     {
       "id": "4850",
@@ -1155,13 +1257,15 @@
         "format_novella",
         "genre_science-fiction"
       ],
-      "added": "",
-      "deadline": "",
-      "audience": "",
-      "fee": "",
-      "theme": "",
-      "length": "",
-      "reward": ""
+      "added": "il y a 1 mois",
+      "addedAt": "2026-06-09T15:39:17.785Z",
+      "deadline": "30/09/2026",
+      "deadlineAt": "2026-09-30T00:00:00.000Z",
+      "audience": "26 ans maximum",
+      "fee": "0 €",
+      "theme": "Créativité, intelligence artificielle, effondrements écologiques et sociétaux, et futurs désirables.",
+      "length": "120 000-180 000 sec",
+      "reward": "Publication dans une collection dédiée"
     },
     {
       "id": "4852",
@@ -1172,13 +1276,15 @@
       "tags": [
         "format_poème"
       ],
-      "added": "",
-      "deadline": "",
+      "added": "il y a 1 mois",
+      "addedAt": "2026-06-09T15:39:17.785Z",
+      "deadline": "01/08/2026",
+      "deadlineAt": "2026-08-01T00:00:00.000Z",
       "audience": "",
-      "fee": "",
-      "theme": "",
-      "length": "",
-      "reward": ""
+      "fee": "0 €",
+      "theme": "Libre.",
+      "length": "5-10 pages",
+      "reward": "35 $ CAD/page, publication dans la revue"
     },
     {
       "id": "4849",
@@ -1189,13 +1295,15 @@
       "tags": [
         "format_nouvelle"
       ],
-      "added": "",
-      "deadline": "",
-      "audience": "",
-      "fee": "",
-      "theme": "",
-      "length": "",
-      "reward": ""
+      "added": "il y a 1 mois",
+      "addedAt": "2026-06-09T15:39:17.785Z",
+      "deadline": "14/07/2026",
+      "deadlineAt": "2026-07-14T00:00:00.000Z",
+      "audience": "Tous",
+      "fee": "0 €",
+      "theme": "Ombre et lumière",
+      "length": "3 pages maximum",
+      "reward": "Prix, publication dans un recueil édité par l’association, 3 nouvelles coups de cœur mises en avant lors d’une soirée littéraire"
     },
     {
       "id": "4851",
@@ -1206,13 +1314,15 @@
       "tags": [
         "format_texte"
       ],
-      "added": "",
-      "deadline": "",
-      "audience": "",
-      "fee": "",
-      "theme": "",
-      "length": "",
-      "reward": ""
+      "added": "il y a 1 mois",
+      "addedAt": "2026-06-09T15:39:17.785Z",
+      "deadline": "15/08/2026",
+      "deadlineAt": "2026-08-15T00:00:00.000Z",
+      "audience": "18 ans minimum",
+      "fee": "0 €",
+      "theme": "Incipit de roman.",
+      "length": "3 000 mots maximum",
+      "reward": "Le lauréat gagnera un pack d'accompagnement d'une valeur totale de 550 € : un diagnostic éditorial personnalisé (relecture et correction ligne par ligne de son texte), une participation à l'une de nos formations intensives à l'automne 2026 (« Commencer un roman » ou « Retravailler un roman »), et la publication de son texte sur le blog de L’atelier d'écriture by Christine"
     },
     {
       "id": "4848",
@@ -1225,13 +1335,15 @@
         "format_poème",
         "format_texte"
       ],
-      "added": "",
-      "deadline": "",
-      "audience": "",
-      "fee": "",
-      "theme": "",
-      "length": "",
-      "reward": ""
+      "added": "il y a 1 mois",
+      "addedAt": "2026-06-09T15:39:17.785Z",
+      "deadline": "15/09/2026",
+      "deadlineAt": "2026-09-15T00:00:00.000Z",
+      "audience": "tous",
+      "fee": "0 €",
+      "theme": "Comment voyez-vous le monde de demain ? Comment imaginez-vous notre avenir dans les domaines de l'écologie, du travail, de la culture, de la politique ou encore des relations sociétales ou amoureuses ? Vivrons-nous dans une utopie ou une dystopie ? Qu'importe votre nature optimiste ou pessimiste, nous vous invitons à voyager dans le futur à bord des machines Imagination ou Anticipation. Nous avons hâte de lire, sous forme de poèmes ou de nouvelles, le récit de vos aventures radieuses ou cauchemardesques.",
+      "length": "19 000 sec maximum",
+      "reward": "Publication dans le numéro 11 de la revue L’Éponge en décembre 2026"
     },
     {
       "id": "4847",
@@ -1242,13 +1354,15 @@
       "tags": [
         "format_nouvelle"
       ],
-      "added": "",
-      "deadline": "",
-      "audience": "",
-      "fee": "",
-      "theme": "",
-      "length": "",
-      "reward": ""
+      "added": "il y a 1 mois",
+      "addedAt": "2026-06-09T15:39:17.785Z",
+      "deadline": "04/09/2026",
+      "deadlineAt": "2026-09-04T00:00:00.000Z",
+      "audience": "13 ans minimum",
+      "fee": "0 €",
+      "theme": "Histoire à vous dresser les cheveux sur la tête.",
+      "length": "5 pages maximum",
+      "reward": "Prix, bon cadeau culture"
     },
     {
       "id": "4845",
@@ -1259,13 +1373,15 @@
       "tags": [
         "format_poème"
       ],
-      "added": "",
-      "deadline": "",
-      "audience": "",
-      "fee": "",
-      "theme": "",
+      "added": "il y a 1 mois",
+      "addedAt": "2026-06-09T15:39:17.785Z",
+      "deadline": "31/08/2026",
+      "deadlineAt": "2026-08-31T00:00:00.000Z",
+      "audience": "18 ans minimum",
+      "fee": "0 €",
+      "theme": "Demain. Contrainte : le poème, en vers ou en prose, ne devra comporter aucun a ni aucun i.",
       "length": "",
-      "reward": ""
+      "reward": "Publication sur le groupe Facebook et en recueil, livres"
     },
     {
       "id": "4846",
@@ -1280,13 +1396,15 @@
         "format_poème",
         "format_texte"
       ],
-      "added": "",
-      "deadline": "",
-      "audience": "",
-      "fee": "",
-      "theme": "",
-      "length": "",
-      "reward": ""
+      "added": "il y a 1 mois",
+      "addedAt": "2026-06-09T15:39:17.785Z",
+      "deadline": "31/07/2026",
+      "deadlineAt": "2026-07-31T00:00:00.000Z",
+      "audience": "Tous",
+      "fee": "0 €",
+      "theme": "À partir d'un événement, d'une figure, d'un système ou d'une époque de l'actualité politique ou géopolitique, fictionnez-le, racontez-le, détournez-le. Le monde est votre matière première.",
+      "length": "15 000 sec maximum",
+      "reward": "Publication dans le numéro 2 de Burokrat, exemplaire offert"
     },
     {
       "id": "4843",
@@ -1297,13 +1415,15 @@
       "tags": [
         "format_roman"
       ],
-      "added": "",
-      "deadline": "",
-      "audience": "",
-      "fee": "",
-      "theme": "",
+      "added": "il y a 1 mois",
+      "addedAt": "2026-06-09T15:39:17.785Z",
+      "deadline": "10/07/2026",
+      "deadlineAt": "2026-07-10T00:00:00.000Z",
+      "audience": "Auteurs d'un roman publié ou à publier entre le 1er juillet 2025 et le 30 juin 2026, résidant dans la région Centre Val de Loire, ou dont l'action du roman se déroule dans la région, ou édité par un éditeur régional",
+      "fee": "0 €",
+      "theme": "Libre.",
       "length": "",
-      "reward": ""
+      "reward": "Dotation de 5 000 € utilisée pour acheter et distribuer l'œuvre lauréate auprès des agents"
     },
     {
       "id": "4841",
@@ -1317,13 +1437,15 @@
         "format_fiction",
         "format_texte"
       ],
-      "added": "",
-      "deadline": "",
-      "audience": "",
-      "fee": "",
-      "theme": "",
-      "length": "",
-      "reward": ""
+      "added": "il y a 1 mois",
+      "addedAt": "2026-06-09T15:39:17.785Z",
+      "deadline": "31/07/2026",
+      "deadlineAt": "2026-07-31T00:00:00.000Z",
+      "audience": "Tous",
+      "fee": "0 €",
+      "theme": "Face au silence des pantoufles, à vos palmes ! Fascisme et antifascisme en Suisse romande.",
+      "length": "5 000-20 000 sec",
+      "reward": "300 CHF, publication dans le numéro 9"
     },
     {
       "id": "4837",
@@ -1334,13 +1456,15 @@
       "tags": [
         "format_texte"
       ],
-      "added": "",
-      "deadline": "",
-      "audience": "",
-      "fee": "",
-      "theme": "",
-      "length": "",
-      "reward": ""
+      "added": "il y a 1 mois",
+      "addedAt": "2026-06-09T15:39:17.785Z",
+      "deadline": "20/07/2026",
+      "deadlineAt": "2026-07-20T00:00:00.000Z",
+      "audience": "18 ans minimum",
+      "fee": "5 €",
+      "theme": "La Liberté. Tout genre littéraire accepté sauf essai et poésie.",
+      "length": "500 mots maximum",
+      "reward": "Prix, bons culturels de 45 €, 15 € et 10 €, accompagnement personnalisé pour des conseils d'écriture ainsi qu'une mise en avant sur le site et les réseaux de l'association pour le coup de coeur du jury"
     },
     {
       "id": "4835",
@@ -1351,13 +1475,15 @@
       "tags": [
         "format_poème"
       ],
-      "added": "",
-      "deadline": "",
-      "audience": "",
-      "fee": "",
-      "theme": "",
-      "length": "",
-      "reward": ""
+      "added": "il y a 1 mois",
+      "addedAt": "2026-06-09T15:39:17.785Z",
+      "deadline": "28/08/2026",
+      "deadlineAt": "2026-08-28T00:00:00.000Z",
+      "audience": "Tous",
+      "fee": "0 €",
+      "theme": "Non à la dépravation des mœurs. Exprimer, à travers des textes engagés, une réflexion artistique et critique autour du thème.",
+      "length": "5-7 pages",
+      "reward": "50 000 FCFA, livres, publication en recueil"
     },
     {
       "id": "4833",
@@ -1368,13 +1494,15 @@
       "tags": [
         "format_poème"
       ],
-      "added": "",
-      "deadline": "",
-      "audience": "",
-      "fee": "",
-      "theme": "",
-      "length": "",
-      "reward": ""
+      "added": "il y a 1 mois",
+      "addedAt": "2026-06-09T15:39:17.785Z",
+      "deadline": "09/08/2026",
+      "deadlineAt": "2026-08-09T00:00:00.000Z",
+      "audience": "Tous",
+      "fee": "0 €",
+      "theme": "Les métamorphoses du quotidien.",
+      "length": "25 lignes maximum",
+      "reward": "Prix, livres, publication du poème gagnant dans le magazine Quatre-Temps, sur le site et les réseaux sociaux"
     },
     {
       "id": "4836",
@@ -1386,13 +1514,15 @@
         "format_conte",
         "format_nouvelle"
       ],
-      "added": "",
-      "deadline": "",
-      "audience": "",
-      "fee": "",
-      "theme": "",
-      "length": "",
-      "reward": ""
+      "added": "il y a 1 mois",
+      "addedAt": "2026-06-09T15:39:17.785Z",
+      "deadline": "01/09/2026",
+      "deadlineAt": "2026-09-01T00:00:00.000Z",
+      "audience": "Tous",
+      "fee": "12 €",
+      "theme": "La Lune du Loup.",
+      "length": "4-6 pages",
+      "reward": "Prix, publication en recueil, exemplaires offerts"
     },
     {
       "id": "4830",
@@ -1408,13 +1538,15 @@
         "format_témoignage",
         "format_texte"
       ],
-      "added": "",
-      "deadline": "",
-      "audience": "",
-      "fee": "",
-      "theme": "",
-      "length": "",
-      "reward": ""
+      "added": "il y a 1 mois",
+      "addedAt": "2026-06-09T15:39:17.785Z",
+      "deadline": "15/07/2026",
+      "deadlineAt": "2026-07-15T00:00:00.000Z",
+      "audience": "Tous",
+      "fee": "0 €",
+      "theme": "Écrire Gaza, à partir d’ici, c’est avoir des mots pour dire, imaginer, témoigner, relier, faire exister des voix, porter une attention, créer du lien depuis ici.",
+      "length": "2 pages maximum",
+      "reward": "Prix, publication des 10 meilleurs textes dans un recueil collectif, les bénéfices de la vente du recueil sont reversés intégralement à l'AFPS pour ses projets en direction des enfants à Gaza"
     },
     {
       "id": "4823",
@@ -1425,13 +1557,15 @@
       "tags": [
         "format_bande dessinée"
       ],
-      "added": "",
-      "deadline": "",
-      "audience": "",
-      "fee": "",
-      "theme": "",
-      "length": "",
-      "reward": ""
+      "added": "il y a 1 mois",
+      "addedAt": "2026-06-09T15:39:17.785Z",
+      "deadline": "17/08/2026",
+      "deadlineAt": "2026-08-17T00:00:00.000Z",
+      "audience": "Autrices et auteurs jamais publiés",
+      "fee": "0 €",
+      "theme": "Roses corsaires.",
+      "length": "1-2 planches",
+      "reward": "500 € de bourse de création, lots de matériel artistique, stage de BD, exposition au prochain festival"
     },
     {
       "id": "4821",
@@ -1442,13 +1576,15 @@
       "tags": [
         "format_nouvelle"
       ],
-      "added": "",
-      "deadline": "",
-      "audience": "",
-      "fee": "",
-      "theme": "",
-      "length": "",
-      "reward": ""
+      "added": "il y a 1 mois",
+      "addedAt": "2026-06-09T15:39:17.785Z",
+      "deadline": "31/08/2026",
+      "deadlineAt": "2026-08-31T00:00:00.000Z",
+      "audience": "Résidents du département du Morbihan, individuel, collectif ou scolaire",
+      "fee": "0 €",
+      "theme": "Cuisinez une nouvelle gourmande !",
+      "length": "5-8 pages",
+      "reward": "Prix, bons d'achat en librairie, publication sur le site et en recueil"
     },
     {
       "id": "4820",
@@ -1460,13 +1596,15 @@
         "format_nouvelle",
         "format_poème"
       ],
-      "added": "",
-      "deadline": "",
-      "audience": "",
-      "fee": "",
-      "theme": "",
-      "length": "",
-      "reward": ""
+      "added": "il y a 1 mois",
+      "addedAt": "2026-06-09T15:39:17.785Z",
+      "deadline": "25/07/2026",
+      "deadlineAt": "2026-07-25T00:00:00.000Z",
+      "audience": "Résidents de la région Hauts-de-France",
+      "fee": "0 €",
+      "theme": "Intégrer les mots : orchestre, chemin, chênes, musique.",
+      "length": "6 pages maximum",
+      "reward": "Prix, livres, publication"
     },
     {
       "id": "4815",
@@ -1477,13 +1615,15 @@
       "tags": [
         "format_nouvelle"
       ],
-      "added": "",
-      "deadline": "",
-      "audience": "",
-      "fee": "",
-      "theme": "",
-      "length": "",
-      "reward": ""
+      "added": "il y a 1 mois",
+      "addedAt": "2026-06-09T15:39:17.785Z",
+      "deadline": "01/11/2026",
+      "deadlineAt": "2026-11-01T00:00:00.000Z",
+      "audience": "Tous",
+      "fee": "10-20 €",
+      "theme": "L'intrus.",
+      "length": "10 000 sec maximum",
+      "reward": "800 €, 600 €, 400 €, 300 €, 200 €, publication sur le site et en recueil, exemplaires offerts"
     },
     {
       "id": "4814",
@@ -1494,13 +1634,15 @@
       "tags": [
         "format_nouvelle"
       ],
-      "added": "",
-      "deadline": "",
-      "audience": "",
-      "fee": "",
-      "theme": "",
-      "length": "",
-      "reward": ""
+      "added": "il y a 1 mois",
+      "addedAt": "2026-06-09T15:39:17.785Z",
+      "deadline": "30/09/2026",
+      "deadlineAt": "2026-09-30T00:00:00.000Z",
+      "audience": "18 ans minimum",
+      "fee": "0 €",
+      "theme": "Des récits qui regardent la réalité en face sans céder au désespoir. Des situations où subsiste la possibilité d’un sursaut capable de remettre le monde du côté de l’humain.",
+      "length": "10 000-15 000 sec",
+      "reward": "Prix, publication en recueil pour les 15 lauréats, promotion sur réseaux et salons du livre"
     },
     {
       "id": "4813",
@@ -1511,13 +1653,15 @@
       "tags": [
         "format_nouvelle"
       ],
-      "added": "",
-      "deadline": "",
-      "audience": "",
-      "fee": "",
-      "theme": "",
-      "length": "",
-      "reward": ""
+      "added": "il y a 1 mois",
+      "addedAt": "2026-06-09T15:39:17.785Z",
+      "deadline": "07/09/2026",
+      "deadlineAt": "2026-09-07T00:00:00.000Z",
+      "audience": "Tous, individuel ou collectif",
+      "fee": "0 €",
+      "theme": "Faire converser architecture et écriture. Le genre littéraire est libre, mais le propos doit s’appuyer sur un bâtiment construit.",
+      "length": "20 000 sec maximum",
+      "reward": "2 500 €, 1 000 €, 500 €"
     },
     {
       "id": "4810",
@@ -1528,13 +1672,15 @@
       "tags": [
         "format_nouvelle"
       ],
-      "added": "",
-      "deadline": "",
-      "audience": "",
-      "fee": "",
-      "theme": "",
-      "length": "",
-      "reward": ""
+      "added": "il y a 1 mois",
+      "addedAt": "2026-06-09T15:39:17.785Z",
+      "deadline": "15/08/2026",
+      "deadlineAt": "2026-08-15T00:00:00.000Z",
+      "audience": "18 ans minimum",
+      "fee": "5 €",
+      "theme": "La fabuleuse bibliothèque du Marquis.",
+      "length": "3-5 pages",
+      "reward": "Prix, livres, lecture lors des Journées du Patrimoine 2026, publication de la nouvelle sur le site de l'Association"
     },
     {
       "id": "4807",
@@ -1547,13 +1693,15 @@
         "genre_science-fiction",
         "genre_thriller"
       ],
-      "added": "",
-      "deadline": "",
-      "audience": "",
-      "fee": "",
-      "theme": "",
-      "length": "",
-      "reward": ""
+      "added": "il y a 2 mois",
+      "addedAt": "2026-05-10T15:39:17.785Z",
+      "deadline": "01/09/2026",
+      "deadlineAt": "2026-09-01T00:00:00.000Z",
+      "audience": "Tous",
+      "fee": "7 € par nouvelle (plusieurs soumissions possibles)",
+      "theme": "Libre, autour des mots-clés choc, émerveillement, désir, peur, haine, lien, amour, éternité, survie, réalité, radiation, espace profond, yeux vides — liste indicative, ouverte à toute écriture qui s'inscrit dans notre ligne éditoriale (SF, Noir, Thriller, Drame, Halluciné).",
+      "length": "2 500 mots",
+      "reward": "250 €, 100 €, 50 €, les 3 lauréats bénéficient en plus d'une adaptation audio immersive de leur œuvre et les 10 premiers d'une publication dans notre recueil papier"
     },
     {
       "id": "4796",
@@ -1564,13 +1712,15 @@
       "tags": [
         "format_nouvelle"
       ],
-      "added": "",
-      "deadline": "",
-      "audience": "",
-      "fee": "",
-      "theme": "",
-      "length": "",
-      "reward": ""
+      "added": "il y a 2 mois",
+      "addedAt": "2026-05-10T15:39:17.785Z",
+      "deadline": "21/08/2026",
+      "deadlineAt": "2026-08-21T00:00:00.000Z",
+      "audience": "Tous",
+      "fee": "0 €",
+      "theme": "Au fil de l'eau.",
+      "length": "3-12 pages",
+      "reward": "Prix, chèque ou chèque cadeau de 300 €, publication en recueil"
     },
     {
       "id": "4785",
@@ -1587,13 +1737,15 @@
         "genre_fantastique",
         "genre_science-fiction"
       ],
-      "added": "",
-      "deadline": "",
-      "audience": "",
-      "fee": "",
-      "theme": "",
-      "length": "",
-      "reward": ""
+      "added": "il y a 2 mois",
+      "addedAt": "2026-05-10T15:39:17.785Z",
+      "deadline": "31/08/2026",
+      "deadlineAt": "2026-08-31T00:00:00.000Z",
+      "audience": "8 ans minimum",
+      "fee": "0 €",
+      "theme": "Ailes de Nuit à Kernascléden.",
+      "length": "1-4 pages",
+      "reward": "Prix, nichoir à chauve-souris, entrées gratuites, livre spécialisé, peluche, exposition lors de l’anniversaire (26-27 sept. 2026), publication sur les réseaux sociaux du musée"
     },
     {
       "id": "4782",
@@ -1610,13 +1762,15 @@
         "format_récit",
         "format_slam"
       ],
-      "added": "",
-      "deadline": "",
-      "audience": "",
-      "fee": "",
-      "theme": "",
-      "length": "",
-      "reward": ""
+      "added": "il y a 2 mois",
+      "addedAt": "2026-05-10T15:39:17.785Z",
+      "deadline": "31/07/2026",
+      "deadlineAt": "2026-07-31T00:00:00.000Z",
+      "audience": "7 ans minimium, résidents de France, individuel ou collectif",
+      "fee": "0 €",
+      "theme": "Vous êtes choisi pour représenter l'Alsace lors du prochain vol habité vers la Lune.",
+      "length": "12 000 sec maximum",
+      "reward": "Prix, chèques culture, publication en recueil"
     },
     {
       "id": "4779",
@@ -1627,13 +1781,15 @@
       "tags": [
         "format_nouvelle"
       ],
-      "added": "",
-      "deadline": "",
-      "audience": "",
-      "fee": "",
-      "theme": "",
-      "length": "",
-      "reward": ""
+      "added": "il y a 2 mois",
+      "addedAt": "2026-05-10T15:39:17.785Z",
+      "deadline": "31/08/2026",
+      "deadlineAt": "2026-08-31T00:00:00.000Z",
+      "audience": "Résidents de France Métropolitaine",
+      "fee": "0 €",
+      "theme": "Une main tendue.",
+      "length": "5 000-10 000 sec",
+      "reward": "80 €, 50 €, 30 €, 20 € x 2"
     },
     {
       "id": "4775",
@@ -1644,13 +1800,15 @@
       "tags": [
         "format_nouvelle"
       ],
-      "added": "",
-      "deadline": "",
-      "audience": "",
-      "fee": "",
-      "theme": "",
-      "length": "",
-      "reward": ""
+      "added": "il y a 2 mois",
+      "addedAt": "2026-05-10T15:39:17.785Z",
+      "deadline": "15/07/2026",
+      "deadlineAt": "2026-07-15T00:00:00.000Z",
+      "audience": "12-18 ans, résidents de la région Nouvelle Aquitaine",
+      "fee": "5 €",
+      "theme": "L’histoire devra mettre en scène le déroulement et la résolution d’une enquête.",
+      "length": "7 000-10 000 sec",
+      "reward": "100 €, 50 €, 30 €, publication en recueil"
     },
     {
       "id": "4768",
@@ -1663,13 +1821,15 @@
         "genre_policier",
         "genre_thriller"
       ],
-      "added": "",
-      "deadline": "",
-      "audience": "",
-      "fee": "",
-      "theme": "",
-      "length": "",
-      "reward": ""
+      "added": "il y a 2 mois",
+      "addedAt": "2026-05-10T15:39:17.785Z",
+      "deadline": "31/08/2026",
+      "deadlineAt": "2026-08-31T00:00:00.000Z",
+      "audience": "Tout public sachant écrire",
+      "fee": "0 €",
+      "theme": "Imposé (1 phrase incipit et fin).",
+      "length": "3 pages maximum",
+      "reward": "Gloire, Honneur et dotation de livres"
     },
     {
       "id": "4774",
@@ -1680,13 +1840,15 @@
       "tags": [
         "format_nouvelle"
       ],
-      "added": "",
-      "deadline": "",
-      "audience": "",
-      "fee": "",
-      "theme": "",
-      "length": "",
-      "reward": ""
+      "added": "il y a 2 mois",
+      "addedAt": "2026-05-10T15:39:17.785Z",
+      "deadline": "15/07/2026",
+      "deadlineAt": "2026-07-15T00:00:00.000Z",
+      "audience": "18 ans minimum",
+      "fee": "8 €",
+      "theme": "Beautés en touche, touches de beauté.",
+      "length": "10 000 sec maximum",
+      "reward": "300 €, 200 €, 100 €, publication en recueil numérique et papier"
     },
     {
       "id": "4765",
@@ -1697,13 +1859,15 @@
       "tags": [
         "format_nouvelle"
       ],
-      "added": "",
-      "deadline": "",
-      "audience": "",
-      "fee": "",
-      "theme": "",
-      "length": "",
-      "reward": ""
+      "added": "il y a 2 mois",
+      "addedAt": "2026-05-10T15:39:17.785Z",
+      "deadline": "31/10/2026",
+      "deadlineAt": "2026-10-31T00:00:00.000Z",
+      "audience": "16 ans minimum",
+      "fee": "0 €",
+      "theme": "Il faudra inclure la phrase suivante : « Sur le quai restaient quelques flaques argentées, des tickets déchirés et des mégots écrasés » et insérer ces 5 mots : accentuer, poivre, acouphène, pic, feuillet.",
+      "length": "10 000 sec maximum",
+      "reward": "Prix, publication en recueil, exemplaires offerts"
     },
     {
       "id": "4761",
@@ -1714,13 +1878,15 @@
       "tags": [
         "format_recueil de poèmes"
       ],
-      "added": "",
-      "deadline": "",
-      "audience": "",
-      "fee": "",
-      "theme": "",
-      "length": "",
-      "reward": ""
+      "added": "il y a 2 mois",
+      "addedAt": "2026-05-10T15:39:17.785Z",
+      "deadline": "21/08/2026",
+      "deadlineAt": "2026-08-21T00:00:00.000Z",
+      "audience": "Tous",
+      "fee": "12 €",
+      "theme": "Histoire et mémoire en poésie.",
+      "length": "30-40 pages",
+      "reward": "Édition à compte d'éditeur du recueil primé, exemplaire offert à chaque candidat"
     },
     {
       "id": "4762",
@@ -1731,13 +1897,15 @@
       "tags": [
         "format_nouvelle"
       ],
-      "added": "",
-      "deadline": "",
-      "audience": "",
-      "fee": "",
-      "theme": "",
-      "length": "",
-      "reward": ""
+      "added": "il y a 2 mois",
+      "addedAt": "2026-05-10T15:39:17.785Z",
+      "deadline": "15/07/2026",
+      "deadlineAt": "2026-07-15T00:00:00.000Z",
+      "audience": "Tous ceux qui souhaitent faire connaître leur talent d'écrivain",
+      "fee": "20 €",
+      "theme": "Libre.",
+      "length": "70 000 signes maximum",
+      "reward": "Chèque de 250 €, diplôme, parution du texte dans la revue annuelle et sur le site internet du PEN Club de Monaco"
     },
     {
       "id": "4760",
@@ -1749,13 +1917,15 @@
         "format_haïku",
         "format_poème"
       ],
-      "added": "",
-      "deadline": "",
-      "audience": "",
-      "fee": "",
-      "theme": "",
-      "length": "",
-      "reward": ""
+      "added": "il y a 2 mois",
+      "addedAt": "2026-05-10T15:39:17.785Z",
+      "deadline": "17/07/2026",
+      "deadlineAt": "2026-07-17T00:00:00.000Z",
+      "audience": "Tous",
+      "fee": "0 €",
+      "theme": "Faune et flore. Au choix : la Grue cendrée, des ailes et des rêves…, villages engloutis et mémoire, floraison, flore et saison… ou terre et eau.",
+      "length": "20 lignes maximum",
+      "reward": "Prix, livres, nichoirs, mangeoires, journée découverte du Lac du Der avec animateur LPO, lever de Grues, publication dans un recueil consacré à la Grue cendrée"
     },
     {
       "id": "4754",
@@ -1772,13 +1942,15 @@
         "format_poème",
         "format_récit"
       ],
-      "added": "",
-      "deadline": "",
-      "audience": "",
-      "fee": "",
-      "theme": "",
-      "length": "",
-      "reward": ""
+      "added": "il y a 2 mois",
+      "addedAt": "2026-05-10T15:39:17.785Z",
+      "deadline": "10/07/2026",
+      "deadlineAt": "2026-07-10T00:00:00.000Z",
+      "audience": "18 ans minimum en indivduel, primaires, collègiens, lycéens sous couvert de l'enseignant responsable en collectif",
+      "fee": "0 €",
+      "theme": "« Je te donne cette plume ». Un jour, un inconnu vous offre une plume rouge, une plume magique qui vous donne le pouvoir de changer un peu le monde. Que pensez-vous en faire ?",
+      "length": "1 page maximum",
+      "reward": "Publication dans le 2ème numéro de la revue numérique Ascendances, culture et généalogie"
     },
     {
       "id": "4752",
@@ -1789,13 +1961,15 @@
       "tags": [
         "format_nouvelle"
       ],
-      "added": "",
-      "deadline": "",
-      "audience": "",
-      "fee": "",
-      "theme": "",
-      "length": "",
-      "reward": ""
+      "added": "il y a 3 mois",
+      "addedAt": "2026-04-10T15:39:17.785Z",
+      "deadline": "15/08/2026",
+      "deadlineAt": "2026-08-15T00:00:00.000Z",
+      "audience": "tous, avec ou sans lien avec l'histoire de la présence française en Algérie",
+      "fee": "0 €",
+      "theme": "Traverser. Les premiers arrivants européens en Algérie à partir de 1830.",
+      "length": "15 000 sec maximum",
+      "reward": "Prix, publication dans un recueil, mise en son du texte, livres et documents"
     },
     {
       "id": "4753",
@@ -1806,13 +1980,15 @@
       "tags": [
         "format_poème"
       ],
-      "added": "",
-      "deadline": "",
-      "audience": "",
-      "fee": "",
-      "theme": "",
-      "length": "",
-      "reward": ""
+      "added": "il y a 3 mois",
+      "addedAt": "2026-04-10T15:39:17.785Z",
+      "deadline": "28/09/2026",
+      "deadlineAt": "2026-09-28T00:00:00.000Z",
+      "audience": "Tous",
+      "fee": "0-9 €",
+      "theme": "Faune, flore et sentiments.",
+      "length": "34 lignes maximum",
+      "reward": "Prix"
     },
     {
       "id": "4751",
@@ -1823,13 +1999,15 @@
       "tags": [
         "format_nouvelle"
       ],
-      "added": "",
-      "deadline": "",
-      "audience": "",
-      "fee": "",
-      "theme": "",
-      "length": "",
-      "reward": ""
+      "added": "il y a 3 mois",
+      "addedAt": "2026-04-10T15:39:17.785Z",
+      "deadline": "01/09/2026",
+      "deadlineAt": "2026-09-01T00:00:00.000Z",
+      "audience": "12 ans minimum",
+      "fee": "0 €",
+      "theme": "Le surréalisme. Écrire à partir du tableau de Max Ernst Au rendez vous des amis.",
+      "length": "5 000 sec maximum",
+      "reward": "Prix, bons Fnac, publication en version audio"
     },
     {
       "id": "4749",
@@ -1847,13 +2025,15 @@
         "format_slam",
         "format_texte"
       ],
-      "added": "",
-      "deadline": "",
-      "audience": "",
-      "fee": "",
-      "theme": "",
-      "length": "",
-      "reward": ""
+      "added": "il y a 3 mois",
+      "addedAt": "2026-04-10T15:39:17.785Z",
+      "deadline": "31/07/2026",
+      "deadlineAt": "2026-07-31T00:00:00.000Z",
+      "audience": "Résidents de France, 8 ans minimum",
+      "fee": "0 €",
+      "theme": "Destination lune.",
+      "length": "12 000 sec maximum",
+      "reward": "Prix, chèques culture, publication sur le site"
     },
     {
       "id": "4725",
@@ -1864,13 +2044,15 @@
       "tags": [
         "format_nouvelle"
       ],
-      "added": "",
-      "deadline": "",
-      "audience": "",
-      "fee": "",
-      "theme": "",
-      "length": "",
-      "reward": ""
+      "added": "il y a 3 mois",
+      "addedAt": "2026-04-10T15:39:17.785Z",
+      "deadline": "30/09/2026",
+      "deadlineAt": "2026-09-30T00:00:00.000Z",
+      "audience": "Tous",
+      "fee": "7 €",
+      "theme": "Quelque part en chemin, vers midi…",
+      "length": "1 500-6 000 sec",
+      "reward": "Prix, chèques livres de 150 €, 100 €, 50 €, publication en recueil, exemplaires offerts"
     },
     {
       "id": "4721",
@@ -1883,13 +2065,15 @@
         "genre_fantasy",
         "genre_horreur"
       ],
-      "added": "",
-      "deadline": "",
-      "audience": "",
-      "fee": "",
-      "theme": "",
-      "length": "",
-      "reward": ""
+      "added": "il y a 3 mois",
+      "addedAt": "2026-04-10T15:39:17.785Z",
+      "deadline": "01/09/2026",
+      "deadlineAt": "2026-09-01T00:00:00.000Z",
+      "audience": "18 ans minimum",
+      "fee": "0 €",
+      "theme": "La lisière : l’horreur tapie dans la vallée de l'étrange. Gothique, dark-fantasy, creepypastas et autres intrigues liminales : de la lisière émergent toutes sortes de textes à l'interface entre le bizarre et l'horreur chimiquement pure. Nous cherchons des atmosphères oppressantes et des fins inoubliables qui procurent cette « jubilation du malaise ». C’est une invitation à traverser le miroir pour savourer le plaisir incommode de l'effroi.",
+      "length": "10 000-80 000 sec",
+      "reward": "Publication dans notre collection La Lisière, rémunération en droits d'auteurs, à-valoir sur le 1er tirage"
     },
     {
       "id": "4720",
@@ -1901,13 +2085,15 @@
         "format_récit",
         "genre_science-fiction"
       ],
-      "added": "",
-      "deadline": "",
-      "audience": "",
-      "fee": "",
-      "theme": "",
-      "length": "",
-      "reward": ""
+      "added": "il y a 3 mois",
+      "addedAt": "2026-04-10T15:39:17.785Z",
+      "deadline": "01/09/2026",
+      "deadlineAt": "2026-09-01T00:00:00.000Z",
+      "audience": "18 ans minimum",
+      "fee": "0 €",
+      "theme": "Paradoxes Latents : générateur de méta-fictions. Paradoxes Latents est une collection d'anthologies dédiée à une science-fiction prospective et philosophique, privilégiant la solidité des idées et la vraisemblance des univers. Les récits doivent explorer les zones de frottement entre réel et imaginaire, utilisant le paradoxe pour interroger les mutations technologiques, sociales ou intimes de l'humain. C'est un laboratoire narratif qui cherche à bousculer les certitudes et à dévoiler de nouveaux horizons de pensée.",
+      "length": "10 000-80 000 sec",
+      "reward": "Publication dans notre collection Paradoxes Latents, rémunération en droits d'auteurs, à-valoir sur le 1er tirage"
     },
     {
       "id": "4722",
@@ -1918,13 +2104,15 @@
       "tags": [
         "format_nouvelle"
       ],
-      "added": "",
-      "deadline": "",
-      "audience": "",
-      "fee": "",
-      "theme": "",
-      "length": "",
-      "reward": ""
+      "added": "il y a 3 mois",
+      "addedAt": "2026-04-10T15:39:17.785Z",
+      "deadline": "18/12/2026",
+      "deadlineAt": "2026-12-18T00:00:00.000Z",
+      "audience": "tous",
+      "fee": "7 €",
+      "theme": "Journalisme(s).",
+      "length": "1 500 mots maximum",
+      "reward": "1000 € et publication en ligne, 500 €"
     },
     {
       "id": "4719",
@@ -1935,13 +2123,15 @@
       "tags": [
         "format_récit"
       ],
-      "added": "",
-      "deadline": "",
-      "audience": "",
-      "fee": "",
-      "theme": "",
-      "length": "",
-      "reward": ""
+      "added": "il y a 3 mois",
+      "addedAt": "2026-04-10T15:39:17.785Z",
+      "deadline": "01/09/2026",
+      "deadlineAt": "2026-09-01T00:00:00.000Z",
+      "audience": "18 ans minimum",
+      "fee": "0 €",
+      "theme": "Zestes : la littérature blanche, avec une pointe d’acidité. Dans cette collection, nous explorons le quotidien, le sensible et l’humain. Mais attention : chaque récit doit porter en lui une fin piquante. Nous recherchons cette chute inattendue, ce retournement de situation ou cette pointe d'ironie qui laisse un goût persistant en bouche bien après la lecture.",
+      "length": "10 000-80 000 sec",
+      "reward": "Publication dans notre collection Zeste, rémunération en droits d'auteurs, à-valoir sur le 1er tirage"
     },
     {
       "id": "4716",
@@ -1953,13 +2143,15 @@
         "format_nouvelle",
         "format_poème"
       ],
-      "added": "",
-      "deadline": "",
-      "audience": "",
-      "fee": "",
-      "theme": "",
-      "length": "",
-      "reward": ""
+      "added": "il y a 3 mois",
+      "addedAt": "2026-04-10T15:39:17.785Z",
+      "deadline": "15/09/2026",
+      "deadlineAt": "2026-09-15T00:00:00.000Z",
+      "audience": "18 ans minimum",
+      "fee": "0 €",
+      "theme": "Carnet de voyage.",
+      "length": "6 000 sec maximum",
+      "reward": "Prix, livres"
     },
     {
       "id": "4700",
@@ -1970,13 +2162,15 @@
       "tags": [
         "format_nouvelle"
       ],
-      "added": "",
-      "deadline": "",
-      "audience": "",
-      "fee": "",
-      "theme": "",
-      "length": "",
-      "reward": ""
+      "added": "il y a 3 mois",
+      "addedAt": "2026-04-10T15:39:17.785Z",
+      "deadline": "30/06/2028",
+      "deadlineAt": "2028-06-30T00:00:00.000Z",
+      "audience": "Tous",
+      "fee": "0 €",
+      "theme": "Tout ça c'est pour rire ! (jeunes) ou Rien ne sert… (adultes).",
+      "length": "15 000 sec maximum",
+      "reward": "Prix, chèques-lire de 320 €, 200 €, 120 €, 100 €, 70 €"
     },
     {
       "id": "4690",
@@ -1987,13 +2181,15 @@
       "tags": [
         "format_poème"
       ],
-      "added": "",
-      "deadline": "",
-      "audience": "",
-      "fee": "",
-      "theme": "",
+      "added": "il y a 3 mois",
+      "addedAt": "2026-04-10T15:39:17.785Z",
+      "deadline": "01/10/2026",
+      "deadlineAt": "2026-10-01T00:00:00.000Z",
+      "audience": "Tous",
+      "fee": "0 €",
+      "theme": "Poésie mathématique. Nous recherchons des poèmes qui capturent l’essence des mathématiques : des textes qui en révèlent la beauté, qui les rendent sensibles, vivantes, vibrantes. Prose ou vers, rimes ou liberté formelle, sonnet, haïku ou contrainte oulipienne : toutes les formes sont les bienvenues, pourvu qu’elles portent votre inspiration.",
       "length": "",
-      "reward": ""
+      "reward": "Prix, publication dans la Gazette de la Société Mathématique de France et sur le site"
     },
     {
       "id": "4685",
@@ -2004,13 +2200,15 @@
       "tags": [
         "format_nouvelle"
       ],
-      "added": "",
-      "deadline": "",
-      "audience": "",
-      "fee": "",
-      "theme": "",
-      "length": "",
-      "reward": ""
+      "added": "il y a 4 mois",
+      "addedAt": "2026-03-11T15:39:17.785Z",
+      "deadline": "31/07/2026",
+      "deadlineAt": "2026-07-31T00:00:00.000Z",
+      "audience": "Tous",
+      "fee": "7 €",
+      "theme": "Ce chat n'était pas normal.",
+      "length": "5 000 signes maximum",
+      "reward": "100 €, publication sur le site"
     },
     {
       "id": "4672",
@@ -2021,13 +2219,15 @@
       "tags": [
         "format_nouvelle"
       ],
-      "added": "",
-      "deadline": "",
-      "audience": "",
-      "fee": "",
-      "theme": "",
-      "length": "",
-      "reward": ""
+      "added": "il y a 4 mois",
+      "addedAt": "2026-03-11T15:39:17.785Z",
+      "deadline": "01/09/2026",
+      "deadlineAt": "2026-09-01T00:00:00.000Z",
+      "audience": "Tous",
+      "fee": "10 €",
+      "theme": "Avoir un lien avec la Lorraine.",
+      "length": "15 000-23 000 sec",
+      "reward": "500 €, publication dans la revue Etudes Touloises"
     },
     {
       "id": "4651",
@@ -2038,13 +2238,15 @@
       "tags": [
         "format_nouvelle"
       ],
-      "added": "",
-      "deadline": "",
-      "audience": "",
-      "fee": "",
-      "theme": "",
-      "length": "",
-      "reward": ""
+      "added": "il y a 4 mois",
+      "addedAt": "2026-03-11T15:39:17.785Z",
+      "deadline": "15/08/2026",
+      "deadlineAt": "2026-08-15T00:00:00.000Z",
+      "audience": "18 ans minimum, résidents de France métropolitaine",
+      "fee": "5 €",
+      "theme": "Suite",
+      "length": "12 000 sec maximum",
+      "reward": "Les 3 textes les mieux notés se verront proposer un contrat d’édition afin de publier leur texte dans la revue Pol[ys]émique des éditions Paul&Mike début 2027"
     },
     {
       "id": "4644",
@@ -2055,13 +2257,15 @@
       "tags": [
         "format_poème"
       ],
-      "added": "",
-      "deadline": "",
-      "audience": "",
-      "fee": "",
-      "theme": "",
-      "length": "",
-      "reward": ""
+      "added": "il y a 4 mois",
+      "addedAt": "2026-03-11T15:39:17.785Z",
+      "deadline": "31/01/2027",
+      "deadlineAt": "2027-01-31T00:00:00.000Z",
+      "audience": "Tous",
+      "fee": "0 €",
+      "theme": "Changement global, ses angoisses, ode à la Terre et à l’espoir d’un monde nouveau.",
+      "length": "3 pages maximum",
+      "reward": "Parution dans le numéro d'avril 2027"
     },
     {
       "id": "4571",
@@ -2072,13 +2276,15 @@
       "tags": [
         "format_nouvelle"
       ],
-      "added": "",
-      "deadline": "",
-      "audience": "",
-      "fee": "",
-      "theme": "",
-      "length": "",
-      "reward": ""
+      "added": "il y a 5 mois",
+      "addedAt": "2026-02-09T15:39:17.785Z",
+      "deadline": "01/08/2026",
+      "deadlineAt": "2026-08-01T00:00:00.000Z",
+      "audience": "18 ans minimum",
+      "fee": "0 €",
+      "theme": "Le jour où…",
+      "length": "1-8 pages",
+      "reward": "300 €, 150 €"
     },
     {
       "id": "4541",
@@ -2090,13 +2296,15 @@
         "format_roman",
         "genre_fantastique"
       ],
-      "added": "",
-      "deadline": "",
-      "audience": "",
-      "fee": "",
-      "theme": "",
-      "length": "",
-      "reward": ""
+      "added": "il y a 6 mois",
+      "addedAt": "2026-01-10T15:39:17.785Z",
+      "deadline": "31/01/2027",
+      "deadlineAt": "2027-01-31T00:00:00.000Z",
+      "audience": "18 ans minimum (toute personne majeure au 02/01/2027), résidents de France métropolitaine",
+      "fee": "0 €",
+      "theme": "Libre.",
+      "length": "250 000 sec maximum",
+      "reward": "Publication à compte d'éditeur pour le roman sélectionné. Nous n'excluons pas d'en publier plusieurs si nous recevons des perles."
     },
     {
       "id": "4523",
@@ -2107,13 +2315,15 @@
       "tags": [
         "format_texte"
       ],
-      "added": "",
-      "deadline": "",
-      "audience": "",
-      "fee": "",
-      "theme": "",
-      "length": "",
-      "reward": ""
+      "added": "il y a 6 mois",
+      "addedAt": "2026-01-10T15:39:17.785Z",
+      "deadline": "31/12/2026",
+      "deadlineAt": "2026-12-31T00:00:00.000Z",
+      "audience": "Tous",
+      "fee": "0 €",
+      "theme": "Libre",
+      "length": "1 page maximum",
+      "reward": "Publication sur le site"
     },
     {
       "id": "4451",
@@ -2124,13 +2334,15 @@
       "tags": [
         "format_nouvelle"
       ],
-      "added": "",
-      "deadline": "",
-      "audience": "",
-      "fee": "",
-      "theme": "",
-      "length": "",
-      "reward": ""
+      "added": "il y a 8 mois",
+      "addedAt": "2025-11-11T15:39:17.785Z",
+      "deadline": "01/12/2026",
+      "deadlineAt": "2026-12-01T00:00:00.000Z",
+      "audience": "Tous",
+      "fee": "0 €",
+      "theme": "Le Tartare est un restaurant gastronomique. À chaque service, des convives viennent y déguster, sans le savoir, ce qui sera leur dernier repas... Imaginez la soirée d’une des tables de ce huis clos pour construire une satire sociale collaborative.",
+      "length": "15 000 sec maximum",
+      "reward": "Rémunération forfaitaire, accompagnement éditorial par un des étudiants du master et publication dans un recueil de 30 nouvelles"
     },
     {
       "id": "4385",
@@ -2145,13 +2357,15 @@
         "format_poème",
         "format_texte"
       ],
-      "added": "",
-      "deadline": "",
-      "audience": "",
-      "fee": "",
-      "theme": "",
-      "length": "",
-      "reward": ""
+      "added": "il y a 9 mois",
+      "addedAt": "2025-10-12T15:39:17.785Z",
+      "deadline": "26/10/2026",
+      "deadlineAt": "2026-10-26T00:00:00.000Z",
+      "audience": "Tous",
+      "fee": "0 €",
+      "theme": "Racines, Nous sommes nés quelque part. Pas par hasard. Dieu nous a placés là, au cœur d’un peuple, d’une histoire, d’un paysage, d'un village, d'une famille. Il nous a mis là sans doute pour une bonne raison, je lui demande souvent… dans mes silences en regardant le ciel, dans mes pourquoi et mes comment• Et si nous avons parfois oublié, dispersés par les vents du monde, il est temps de revenir. Revenir à ce qui nous fonde, nous relie, nous élève.",
+      "length": "2 pages maximum",
+      "reward": "Publication en recueil, exposition des oeuvres picturales"
     }
   ]
 }

@@ -142,6 +142,20 @@ function populateFilterButtons(options) {
   }
 }
 
+function getSortTimestamp(item, field) {
+  if (field === "addedAt") {
+    if (item.addedAt) {
+      return Date.parse(item.addedAt);
+    }
+    return parseRelativeDate(item.added);
+  }
+
+  if (item.deadlineAt) {
+    return Date.parse(item.deadlineAt);
+  }
+  return parseDeadline(item.deadline);
+}
+
 function getFilteredAnnouncements() {
   let items = announcements;
 
@@ -152,9 +166,9 @@ function getFilteredAnnouncements() {
   const sort = sortSelect.value;
   items = [...items].sort((a, b) => {
     if (sort === "closing_date") {
-      return parseDeadline(a.deadline) - parseDeadline(b.deadline);
+      return getSortTimestamp(a, "deadlineAt") - getSortTimestamp(b, "deadlineAt");
     }
-    return parseRelativeDate(b.added) - parseRelativeDate(a.added);
+    return getSortTimestamp(b, "addedAt") - getSortTimestamp(a, "addedAt");
   });
 
   return items;
