@@ -1,5 +1,5 @@
-const SOURCE_URL = "https://textes-a-la-pelle.fr/";
 const IMAGE_BASE = "https://textes-a-la-pelle.fr";
+const DATA_URL = "data/textes-a-la-pelle.json";
 
 const filterSelect = document.getElementById("filter-select");
 const sortSelect = document.getElementById("sort-select");
@@ -15,112 +15,18 @@ function setStatus(message, type = "loading") {
   statusEl.className = type;
 }
 
-function decodeHtml(value) {
-  const el = document.createElement("textarea");
-  el.innerHTML = value;
-  return el.value.replace(/\u202f/g, "").trim();
-}
-
 function tagLabel(tagValue) {
   const idx = tagValue.indexOf("_");
   return idx >= 0 ? tagValue.slice(idx + 1) : tagValue;
 }
 
-async function fetchHtml(url) {
-  const attempts = [
-    url,
-    `https://api.allorigins.win/raw?url=${encodeURIComponent(url)}`,
-  ];
-
-  let lastError = null;
-  for (const target of attempts) {
-    try {
-      const response = await fetch(target);
-      if (!response.ok) {
-        lastError = new Error(`HTTP ${response.status}`);
-        continue;
-      }
-      const html = await response.text();
-      if (html.includes('data-id="')) {
-        return html;
-      }
-      lastError = new Error("Réponse invalide");
-    } catch (error) {
-      lastError = error;
-    }
+function formatUpdatedAt(isoDate) {
+  if (!isoDate) {
+    return "";
   }
-
-  throw lastError || new Error("Chargement impossible");
-}
-
-function parseFilterOptions(doc) {
-  const select = doc.querySelector("#filter-selector");
-  if (!select) {
-    return [];
-  }
-
-  const options = [];
-  for (const node of select.childNodes) {
-    if (node.nodeName === "OPTION") {
-      options.push({
-        group: "",
-        value: node.getAttribute("value") || "",
-        label: decodeHtml(node.textContent),
-      });
-    } else if (node.nodeName === "OPTGROUP") {
-      const group = decodeHtml(node.getAttribute("label") || "");
-      for (const option of node.querySelectorAll("option")) {
-        options.push({
-          group,
-          value: option.getAttribute("value") || "",
-          label: decodeHtml(option.textContent),
-        });
-      }
-    }
-  }
-  return options;
-}
-
-function parseAnnouncements(doc) {
-  return [...doc.querySelectorAll("article[data-id]")].map((article) => {
-    const fields = {};
-    for (const paragraph of article.querySelectorAll("p.mv0")) {
-      const labelEl = paragraph.querySelector("span.o-80");
-      if (!labelEl) {
-        continue;
-      }
-      const label = decodeHtml(labelEl.textContent).replace(/:$/, "");
-      const clone = paragraph.cloneNode(true);
-      clone.querySelector("span.o-80")?.remove();
-      fields[label] = decodeHtml(clone.textContent);
-    }
-
-    const publisherEl = article.querySelector("h2.publisher");
-    const titleEl = article.querySelector("h3");
-    const linkEl = article.querySelector('a.dib.navy[href]');
-    const imageEl = article.querySelector("img[data-src], img.lazy");
-
-    const tags = [...article.querySelectorAll('a[href*="filter="]')].map((tag) => {
-      const href = tag.getAttribute("href") || "";
-      const match = href.match(/filter=([^&]+)/);
-      return match ? decodeURIComponent(match[1]) : "";
-    }).filter(Boolean);
-
-    return {
-      id: article.dataset.id,
-      publisher: decodeHtml(publisherEl?.textContent || ""),
-      title: decodeHtml(titleEl?.textContent || ""),
-      url: linkEl?.getAttribute("href") || "",
-      image: imageEl?.getAttribute("data-src") || imageEl?.getAttribute("src") || "",
-      tags,
-      added: fields["Ajouté"] || "",
-      deadline: fields["Envois jusqu'au"] || "",
-      audience: fields.Public || "",
-      fee: fields["Frais d'inscription"] || "",
-      theme: fields.Thème || "",
-      length: fields.Longueur || "",
-      reward: fields.Gratification || "",
-    };
+  return new Date(isoDate).toLocaleString("fr-FR", {
+    dateStyle: "long",
+    timeStyle: "short",
   });
 }
 
@@ -259,24 +165,30 @@ function renderAnnouncements() {
 }
 
 async function loadData() {
-  setStatus("Chargement des annonces depuis textes-a-la-pelle.fr…", "loading");
+  setStatus("Chargement des annonces…", "loading");
 
   try {
-    const html = await fetchHtml(SOURCE_URL);
-    const doc = new DOMParser().parseFromString(html, "text/html");
+    const response = await fetch(DATA_URL);
+    if (!response.ok) {
+      throw new Error(`HTTP ${response.status}`);
+    }
 
-    filterOptions = parseFilterOptions(doc);
-    announcements = parseAnnouncements(doc);
+    const data = await response.json();
+    filterOptions = data.filterOptions || [];
+    announcements = data.announcements || [];
 
     populateFilterSelect(filterOptions);
 
-    const activeCount = announcements.length;
-    setStatus(`${activeCount} annonces actives chargées.`, "");
+    const updatedLabel = formatUpdatedAt(data.updatedAt);
+    setStatus(
+      `${announcements.length} annonces actives — dernière mise à jour : ${updatedLabel}.`,
+      "",
+    );
     renderAnnouncements();
   } catch (error) {
     console.error(error);
     setStatus(
-      "Impossible de charger les données. Vérifiez votre connexion et réessayez.",
+      "Impossible de charger les données. Le fichier data/textes-a-la-pelle.json est peut-être absent.",
       "error",
     );
     listEl.innerHTML = "";

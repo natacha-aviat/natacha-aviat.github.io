@@ -1,0 +1,2157 @@
+{
+  "updatedAt": "2026-07-09T08:12:30.955Z",
+  "source": "https://textes-a-la-pelle.fr/",
+  "filterOptions": [
+    {
+      "group": "",
+      "value": "",
+      "label": "tout afficher (107)"
+    },
+    {
+      "group": "type de texte :",
+      "value": "format_album",
+      "label": "album (2)"
+    },
+    {
+      "group": "type de texte :",
+      "value": "format_article",
+      "label": "article (2)"
+    },
+    {
+      "group": "type de texte :",
+      "value": "format_autofiction",
+      "label": "autofiction (1)"
+    },
+    {
+      "group": "type de texte :",
+      "value": "format_bande dessinée",
+      "label": "bande dessinée (5)"
+    },
+    {
+      "group": "type de texte :",
+      "value": "format_chanson",
+      "label": "chanson (5)"
+    },
+    {
+      "group": "type de texte :",
+      "value": "format_comptine",
+      "label": "comptine (1)"
+    },
+    {
+      "group": "type de texte :",
+      "value": "format_conte",
+      "label": "conte (5)"
+    },
+    {
+      "group": "type de texte :",
+      "value": "format_dialogue",
+      "label": "dialogue (2)"
+    },
+    {
+      "group": "type de texte :",
+      "value": "format_essai",
+      "label": "essai (1)"
+    },
+    {
+      "group": "type de texte :",
+      "value": "format_fiction",
+      "label": "fiction (5)"
+    },
+    {
+      "group": "type de texte :",
+      "value": "format_haïku",
+      "label": "haïku (3)"
+    },
+    {
+      "group": "type de texte :",
+      "value": "format_lettre",
+      "label": "lettre (8)"
+    },
+    {
+      "group": "type de texte :",
+      "value": "format_monologue",
+      "label": "monologue (1)"
+    },
+    {
+      "group": "type de texte :",
+      "value": "format_nouvelle",
+      "label": "nouvelle (57)"
+    },
+    {
+      "group": "type de texte :",
+      "value": "format_novella",
+      "label": "novella (1)"
+    },
+    {
+      "group": "type de texte :",
+      "value": "format_pamphlet",
+      "label": "pamphlet (1)"
+    },
+    {
+      "group": "type de texte :",
+      "value": "format_pantoun",
+      "label": "pantoun (1)"
+    },
+    {
+      "group": "type de texte :",
+      "value": "format_pièce de théâtre",
+      "label": "pièce de théâtre (6)"
+    },
+    {
+      "group": "type de texte :",
+      "value": "format_poème",
+      "label": "poème (32)"
+    },
+    {
+      "group": "type de texte :",
+      "value": "format_récit",
+      "label": "récit (12)"
+    },
+    {
+      "group": "type de texte :",
+      "value": "format_recueil de poèmes",
+      "label": "recueil de poèmes (1)"
+    },
+    {
+      "group": "type de texte :",
+      "value": "format_roman",
+      "label": "roman (6)"
+    },
+    {
+      "group": "type de texte :",
+      "value": "format_saynète",
+      "label": "saynète (1)"
+    },
+    {
+      "group": "type de texte :",
+      "value": "format_scénario",
+      "label": "scénario (2)"
+    },
+    {
+      "group": "type de texte :",
+      "value": "format_slam",
+      "label": "slam (3)"
+    },
+    {
+      "group": "type de texte :",
+      "value": "format_sonnet",
+      "label": "sonnet (1)"
+    },
+    {
+      "group": "type de texte :",
+      "value": "format_tanka",
+      "label": "tanka (1)"
+    },
+    {
+      "group": "type de texte :",
+      "value": "format_témoignage",
+      "label": "témoignage (3)"
+    },
+    {
+      "group": "type de texte :",
+      "value": "format_texte",
+      "label": "texte (18)"
+    },
+    {
+      "group": "genre littéraire :",
+      "value": "genre_aventure",
+      "label": "aventure (1)"
+    },
+    {
+      "group": "genre littéraire :",
+      "value": "genre_contemporain",
+      "label": "contemporain (1)"
+    },
+    {
+      "group": "genre littéraire :",
+      "value": "genre_érotique",
+      "label": "érotique (1)"
+    },
+    {
+      "group": "genre littéraire :",
+      "value": "genre_fantastique",
+      "label": "fantastique (5)"
+    },
+    {
+      "group": "genre littéraire :",
+      "value": "genre_fantasy",
+      "label": "fantasy (3)"
+    },
+    {
+      "group": "genre littéraire :",
+      "value": "genre_historique",
+      "label": "historique (2)"
+    },
+    {
+      "group": "genre littéraire :",
+      "value": "genre_horreur",
+      "label": "horreur (1)"
+    },
+    {
+      "group": "genre littéraire :",
+      "value": "genre_jeunesse",
+      "label": "jeunesse (1)"
+    },
+    {
+      "group": "genre littéraire :",
+      "value": "genre_policier",
+      "label": "policier (7)"
+    },
+    {
+      "group": "genre littéraire :",
+      "value": "genre_réaliste",
+      "label": "réaliste (1)"
+    },
+    {
+      "group": "genre littéraire :",
+      "value": "genre_romance",
+      "label": "romance (1)"
+    },
+    {
+      "group": "genre littéraire :",
+      "value": "genre_science-fiction",
+      "label": "science-fiction (7)"
+    },
+    {
+      "group": "genre littéraire :",
+      "value": "genre_thriller",
+      "label": "thriller (4)"
+    }
+  ],
+  "announcements": [
+    {
+      "id": "4879",
+      "publisher": "Collectif Femmes Obscures, Revue Crépuscule",
+      "title": "Appel à textes",
+      "url": "https://www.femmesobscures.fr/revue-crepuscule",
+      "image": "/assets/screenshots/4879.png",
+      "tags": [
+        "format_fiction",
+        "format_poème",
+        "format_texte"
+      ],
+      "added": "",
+      "deadline": "",
+      "audience": "",
+      "fee": "",
+      "theme": "",
+      "length": "",
+      "reward": ""
+    },
+    {
+      "id": "4909",
+      "publisher": "Revue Page poétique",
+      "title": "Appel à textes - Page poétique n°18",
+      "url": "https://pagepoetique.wordpress.com/2026/07/04/numero-18-renouveau/",
+      "image": "/assets/screenshots/4909.png",
+      "tags": [
+        "format_poème"
+      ],
+      "added": "",
+      "deadline": "",
+      "audience": "",
+      "fee": "",
+      "theme": "",
+      "length": "",
+      "reward": ""
+    },
+    {
+      "id": "4907",
+      "publisher": "Revue Restes",
+      "title": "Appel à textes - Hors-Série #2 de la Revue Restes",
+      "url": "https://revuerestes.com/nous-contacter/",
+      "image": "/assets/screenshots/4907.png",
+      "tags": [
+        "format_texte"
+      ],
+      "added": "",
+      "deadline": "",
+      "audience": "",
+      "fee": "",
+      "theme": "",
+      "length": "",
+      "reward": ""
+    },
+    {
+      "id": "4904",
+      "publisher": "Webstory",
+      "title": "Concours de nouvelles",
+      "url": "https://webstory.ch/concours/aventure-botanique/",
+      "image": "/assets/screenshots/4904.png",
+      "tags": [
+        "format_nouvelle"
+      ],
+      "added": "",
+      "deadline": "",
+      "audience": "",
+      "fee": "",
+      "theme": "",
+      "length": "",
+      "reward": ""
+    },
+    {
+      "id": "4903",
+      "publisher": "Association ImaJn’ère",
+      "title": "Appel à textes 2027 - Anthologie Tour et détours",
+      "url": "https://imajnere.fr/anthologies-boutique/appel-a-textes-2027/",
+      "image": "/assets/screenshots/4903.png",
+      "tags": [
+        "format_nouvelle",
+        "genre_fantastique",
+        "genre_fantasy",
+        "genre_policier",
+        "genre_science-fiction"
+      ],
+      "added": "",
+      "deadline": "",
+      "audience": "",
+      "fee": "",
+      "theme": "",
+      "length": "",
+      "reward": ""
+    },
+    {
+      "id": "4905",
+      "publisher": "Revue Ascendances, culture et généalogie",
+      "title": "Appel à textes n°4",
+      "url": "https://pagicare.wixsite.com/ascendances",
+      "image": "/assets/screenshots/4905.png",
+      "tags": [
+        "format_poème"
+      ],
+      "added": "",
+      "deadline": "",
+      "audience": "",
+      "fee": "",
+      "theme": "",
+      "length": "",
+      "reward": ""
+    },
+    {
+      "id": "4897",
+      "publisher": "Comité de lecture Le Plongeoir, Compagnie La Nageuse au Piano",
+      "title": "Appel à textes - Session 8",
+      "url": "https://www.artcena.fr/annonces/appels-a-projets/appel-a-textes-session-8-2026-2027/le-plongeoir-comite-de-lecture",
+      "image": "/assets/screenshots/4897.png",
+      "tags": [
+        "format_pièce de théâtre"
+      ],
+      "added": "",
+      "deadline": "",
+      "audience": "",
+      "fee": "",
+      "theme": "",
+      "length": "",
+      "reward": ""
+    },
+    {
+      "id": "4902",
+      "publisher": "Service des affaires culturelles de la ville de Courbevoie",
+      "title": "Concours de nouvelles - Prix des Bruyères",
+      "url": "https://www.ville-courbevoie.fr/11-10235/l-agenda-de-vos-evenements/fiche/prix-des-bruyeres-4e-edition.htm",
+      "image": "/assets/screenshots/4902.png",
+      "tags": [
+        "format_nouvelle"
+      ],
+      "added": "",
+      "deadline": "",
+      "audience": "",
+      "fee": "",
+      "theme": "",
+      "length": "",
+      "reward": ""
+    },
+    {
+      "id": "4881",
+      "publisher": "Bibliothèque de Clérieux",
+      "title": "Concours de poésie",
+      "url": "https://www.drome-cestmanature.com/fiches/concours-de-poeme-a-la-bibliotheque-de-clerieux/",
+      "image": "/assets/screenshots/4881.png",
+      "tags": [
+        "format_poème"
+      ],
+      "added": "",
+      "deadline": "",
+      "audience": "",
+      "fee": "",
+      "theme": "",
+      "length": "",
+      "reward": ""
+    },
+    {
+      "id": "4900",
+      "publisher": "Association Bigornette",
+      "title": "Appel à textes - Lui",
+      "url": "https://www.patreon.com/Bigornette/posts/lui-appel-texte-162477319",
+      "image": "/assets/screenshots/4900.png",
+      "tags": [
+        "format_texte"
+      ],
+      "added": "",
+      "deadline": "",
+      "audience": "",
+      "fee": "",
+      "theme": "",
+      "length": "",
+      "reward": ""
+    },
+    {
+      "id": "4901",
+      "publisher": "Ville de Jouy-en-Josas",
+      "title": "Concours de nouvelles – Prix Littéraire de Jouy-en-Josas",
+      "url": "https://www.jouy-en-josas.fr/prix_litteraire.aspx",
+      "image": "/assets/screenshots/4901.png",
+      "tags": [
+        "format_nouvelle"
+      ],
+      "added": "",
+      "deadline": "",
+      "audience": "",
+      "fee": "",
+      "theme": "",
+      "length": "",
+      "reward": ""
+    },
+    {
+      "id": "4899",
+      "publisher": "Archives de la Charente",
+      "title": "Concours de nouvelles historiques - Mémoire de lieux",
+      "url": "https://lasource.archives.lacharente.fr/n/concours-de-nouvelles-historiques/n:336",
+      "image": "/assets/screenshots/4899.png",
+      "tags": [
+        "format_nouvelle",
+        "genre_historique"
+      ],
+      "added": "",
+      "deadline": "",
+      "audience": "",
+      "fee": "",
+      "theme": "",
+      "length": "",
+      "reward": ""
+    },
+    {
+      "id": "4880",
+      "publisher": "Association Le Grand Bain",
+      "title": "Appel à candidatures – Résidences de création en milieu rural, Les Tentatives du Grand Bain 2027",
+      "url": "https://www.artcena.fr/annonces/appels-a-projets/les-tentatives-du-grand-bain",
+      "image": "/assets/screenshots/4880.png",
+      "tags": [
+        "format_pièce de théâtre"
+      ],
+      "added": "",
+      "deadline": "",
+      "audience": "",
+      "fee": "",
+      "theme": "",
+      "length": "",
+      "reward": ""
+    },
+    {
+      "id": "4895",
+      "publisher": "Association De Prose en vers, Collectif pour la lecture et l'écriture, Saint-Dié-des-Vosges",
+      "title": "Concours d'écriture - Des mots pour un paysage",
+      "url": "https://de-prose-en-vers.s2.yapla.com/fr/concours-decriture",
+      "image": "/assets/screenshots/4895.png",
+      "tags": [
+        "format_conte",
+        "format_lettre",
+        "format_nouvelle",
+        "format_récit",
+        "genre_fantastique",
+        "genre_historique",
+        "genre_policier",
+        "genre_réaliste",
+        "genre_science-fiction"
+      ],
+      "added": "",
+      "deadline": "",
+      "audience": "",
+      "fee": "",
+      "theme": "",
+      "length": "",
+      "reward": ""
+    },
+    {
+      "id": "4898",
+      "publisher": "Association Saint Georges club",
+      "title": "Concours de nouvelles",
+      "url": "https://relaisdubois.com/association-saint-georges-club/",
+      "image": "/assets/screenshots/4898.png",
+      "tags": [
+        "format_nouvelle"
+      ],
+      "added": "",
+      "deadline": "",
+      "audience": "",
+      "fee": "",
+      "theme": "",
+      "length": "",
+      "reward": ""
+    },
+    {
+      "id": "4894",
+      "publisher": "Association Vive Saint-Aubin",
+      "title": "Concours de poésie",
+      "url": "https://vive-st-aubin.com/cloches-clocher/",
+      "image": "/assets/screenshots/4894.png",
+      "tags": [
+        "format_poème"
+      ],
+      "added": "",
+      "deadline": "",
+      "audience": "",
+      "fee": "",
+      "theme": "",
+      "length": "",
+      "reward": ""
+    },
+    {
+      "id": "4878",
+      "publisher": "Collectif Lyncéus",
+      "title": "Appel à textes - Appel à projets Lyncéus Festival 2027",
+      "url": "https://www.artcena.fr/annonces/appels-a-projets/appel-a-projets-lynceus-festival-2027",
+      "image": "/assets/screenshots/4878.png",
+      "tags": [
+        "format_pièce de théâtre"
+      ],
+      "added": "",
+      "deadline": "",
+      "audience": "",
+      "fee": "",
+      "theme": "",
+      "length": "",
+      "reward": ""
+    },
+    {
+      "id": "4896",
+      "publisher": "Association des Amis d’Alain Spiess",
+      "title": "Concours de nouvelles 2026",
+      "url": "https://prixalainspiess2.wordpress.com/concours-de-nouvelles/",
+      "image": "/assets/screenshots/4896.png",
+      "tags": [
+        "format_nouvelle"
+      ],
+      "added": "",
+      "deadline": "",
+      "audience": "",
+      "fee": "",
+      "theme": "",
+      "length": "",
+      "reward": ""
+    },
+    {
+      "id": "4892",
+      "publisher": "Association Les Sens Retournés",
+      "title": "Appel à textes - À vos plumes !",
+      "url": "https://www.facebook.com/people/Les-Sens-Retourn%C3%A9s/100058955573222/",
+      "image": "/assets/screenshots/4892.png",
+      "tags": [
+        "format_haïku",
+        "format_poème",
+        "format_tanka"
+      ],
+      "added": "",
+      "deadline": "",
+      "audience": "",
+      "fee": "",
+      "theme": "",
+      "length": "",
+      "reward": ""
+    },
+    {
+      "id": "4890",
+      "publisher": "Association Rature et Brouillon",
+      "title": "Appel à textes - Rattus Bibliothecam n°04, Joyeuse Camaraderie",
+      "url": "https://www.instagram.com/p/DXzNY4pDN_h/",
+      "image": "/assets/screenshots/4890.png",
+      "tags": [
+        "format_nouvelle",
+        "format_poème",
+        "format_saynète",
+        "format_texte"
+      ],
+      "added": "",
+      "deadline": "",
+      "audience": "",
+      "fee": "",
+      "theme": "",
+      "length": "",
+      "reward": ""
+    },
+    {
+      "id": "4891",
+      "publisher": "Société d’Histoire d’Arts et d’Archéologie du Pays Thouarsais",
+      "title": "Concours de nouvelles - Osez l'écriture",
+      "url": "https://www.shaapt.fr/activites",
+      "image": "/assets/screenshots/4891.png",
+      "tags": [
+        "format_nouvelle"
+      ],
+      "added": "",
+      "deadline": "",
+      "audience": "",
+      "fee": "",
+      "theme": "",
+      "length": "",
+      "reward": ""
+    },
+    {
+      "id": "4883",
+      "publisher": "La revue inutile",
+      "title": "Appel à textes",
+      "url": "https://revueinutile.com/ninja/",
+      "image": "/assets/screenshots/4883.png",
+      "tags": [
+        "format_texte"
+      ],
+      "added": "",
+      "deadline": "",
+      "audience": "",
+      "fee": "",
+      "theme": "",
+      "length": "",
+      "reward": ""
+    },
+    {
+      "id": "4885",
+      "publisher": "Pantun Sayang. Les Amis Francophones du Pantoun.",
+      "title": "Appel à textes - Appel à pantouns",
+      "url": "https://pantun-sayang-afp.fr/2026/06/pantouns-memoire/",
+      "image": "/assets/screenshots/4885.png",
+      "tags": [
+        "format_pantoun",
+        "format_poème"
+      ],
+      "added": "",
+      "deadline": "",
+      "audience": "",
+      "fee": "",
+      "theme": "",
+      "length": "",
+      "reward": ""
+    },
+    {
+      "id": "4893",
+      "publisher": "Bookulture",
+      "title": "Concours d'écriture - Un été pour s'aimer",
+      "url": "https://bookulture.com/concours/un-ete-pour-s-aimer",
+      "image": "/assets/screenshots/4893.png",
+      "tags": [
+        "format_roman",
+        "genre_contemporain",
+        "genre_romance"
+      ],
+      "added": "",
+      "deadline": "",
+      "audience": "",
+      "fee": "",
+      "theme": "",
+      "length": "",
+      "reward": ""
+    },
+    {
+      "id": "4884",
+      "publisher": "Le Cercle de l’Orbite Galactique",
+      "title": "Concours de nouvelles - La N.U.I.E 26, Nuit des Univers Interactifs en Écriture",
+      "url": "https://www.lecog.fr/la-nuie/",
+      "image": "/assets/screenshots/4884.png",
+      "tags": [
+        "format_nouvelle"
+      ],
+      "added": "",
+      "deadline": "",
+      "audience": "",
+      "fee": "",
+      "theme": "",
+      "length": "",
+      "reward": ""
+    },
+    {
+      "id": "4889",
+      "publisher": "Application Web et Android RIMe",
+      "title": "Appel à textes – Toutes vos nouvelles pour le lancement d'une nouvelle plateforme de lecture",
+      "url": "https://rime.academy/tutos/appel-a-textes/nouvelles",
+      "image": "/assets/screenshots/4889.png",
+      "tags": [
+        "format_nouvelle"
+      ],
+      "added": "",
+      "deadline": "",
+      "audience": "",
+      "fee": "",
+      "theme": "",
+      "length": "",
+      "reward": ""
+    },
+    {
+      "id": "4888",
+      "publisher": "Association Ad verba",
+      "title": "Appel à textes - Faire courir le paysage",
+      "url": "https://adverbaeditions.com/",
+      "image": "/assets/screenshots/4888.png",
+      "tags": [
+        "format_poème"
+      ],
+      "added": "",
+      "deadline": "",
+      "audience": "",
+      "fee": "",
+      "theme": "",
+      "length": "",
+      "reward": ""
+    },
+    {
+      "id": "4877",
+      "publisher": "Muséum national d’Histoire naturelle de Toulouse",
+      "title": "Concours de nouvelles",
+      "url": "https://museum.toulouse-metropole.fr/concours-litteraire-2026/",
+      "image": "/assets/screenshots/4877.png",
+      "tags": [
+        "format_nouvelle"
+      ],
+      "added": "",
+      "deadline": "",
+      "audience": "",
+      "fee": "",
+      "theme": "",
+      "length": "",
+      "reward": ""
+    },
+    {
+      "id": "4873",
+      "publisher": "Parc national des Pyrénées, Agence de l'Eau Adour-Garonne, Café-librairie du Kairn, Association Le murmure du monde, Bibliothèque d’Arrens-Marsous, Association Entre plumes",
+      "title": "Concours de nouvelles - Deuxième édition du concours de nouvelles du Parc national des Pyrénées",
+      "url": "https://www.pyrenees-parcnational.fr/fr/actualites/2eme-edition-du-concours-litteraire-du-parc-national-des-pyrenees",
+      "image": "/assets/screenshots/4873.png",
+      "tags": [
+        "format_nouvelle"
+      ],
+      "added": "",
+      "deadline": "",
+      "audience": "",
+      "fee": "",
+      "theme": "",
+      "length": "",
+      "reward": ""
+    },
+    {
+      "id": "4887",
+      "publisher": "Association Auteurs d’Avenir",
+      "title": "Concours d'écriture - Concours 2026 de création d'un album jeunesse",
+      "url": "https://www.editions-a-de-saint-prix.fr/catalogue/REGLEMENT-DU-CONCOURS-2026-DE-CREATION-DUN-ALBUM-JEUNESSE-p842905337/",
+      "image": "/assets/screenshots/4887.png",
+      "tags": [
+        "format_album",
+        "genre_jeunesse"
+      ],
+      "added": "",
+      "deadline": "",
+      "audience": "",
+      "fee": "",
+      "theme": "",
+      "length": "",
+      "reward": ""
+    },
+    {
+      "id": "4886",
+      "publisher": "OUELELE",
+      "title": "Appel à textes/scénarios - Comme par hasard",
+      "url": "https://ouelele.sitew.org/Appel-a-textes",
+      "image": "/assets/screenshots/4886.png",
+      "tags": [
+        "format_scénario",
+        "format_texte"
+      ],
+      "added": "",
+      "deadline": "",
+      "audience": "",
+      "fee": "",
+      "theme": "",
+      "length": "",
+      "reward": ""
+    },
+    {
+      "id": "4875",
+      "publisher": "Aleph-Ecriture",
+      "title": "Concours de nouvelles",
+      "url": "https://www.inventoire.com/wp2017/wp-content/uploads/2026/06/C-2026-Reglement-concours-nouvelle-Aleph-Inventoire.pdf",
+      "image": "/assets/screenshots/4875.png",
+      "tags": [
+        "format_nouvelle"
+      ],
+      "added": "",
+      "deadline": "",
+      "audience": "",
+      "fee": "",
+      "theme": "",
+      "length": "",
+      "reward": ""
+    },
+    {
+      "id": "4876",
+      "publisher": "Association Les Amis de la Place Clichy",
+      "title": "Concours de nouvelles - Festival Mix!Cité",
+      "url": "https://festivalplaceclichy.fr/concours-2025-de-nouvelles/",
+      "image": "/assets/screenshots/4876.png",
+      "tags": [
+        "format_nouvelle"
+      ],
+      "added": "",
+      "deadline": "",
+      "audience": "",
+      "fee": "",
+      "theme": "",
+      "length": "",
+      "reward": ""
+    },
+    {
+      "id": "4874",
+      "publisher": "Revue Calibre 12",
+      "title": "Appel à textes - Appel à poèmes",
+      "url": "https://sebdelannoy.substack.com/p/calibre-12",
+      "image": "/assets/screenshots/4874.png",
+      "tags": [
+        "format_sonnet"
+      ],
+      "added": "",
+      "deadline": "",
+      "audience": "",
+      "fee": "",
+      "theme": "",
+      "length": "",
+      "reward": ""
+    },
+    {
+      "id": "4882",
+      "publisher": "Nouvelle planche, Revue anthologique francophone de bande dessinée",
+      "title": "Appel à textes",
+      "url": "https://www.instagram.com/nouvelleplanchebd",
+      "image": "/assets/screenshots/4882.png",
+      "tags": [
+        "format_bande dessinée",
+        "format_récit"
+      ],
+      "added": "",
+      "deadline": "",
+      "audience": "",
+      "fee": "",
+      "theme": "",
+      "length": "",
+      "reward": ""
+    },
+    {
+      "id": "4872",
+      "publisher": "Parc national des Pyrénées, Agence de l'Eau Adour-Garonne, Café-librairie du Kairn, Association Le murmure du monde, Bibliothèque d’Arrens-Marsous, Association Entre plumes",
+      "title": "Concours de nouvelles - Deuxième édition du concours de nouvelles du Parc national des Pyrénées",
+      "url": "https://www.pyrenees-parcnational.fr/fr/actualites/2eme-edition-du-concours-litteraire-du-parc-national-des-pyrenees",
+      "image": "/assets/screenshots/4872.png",
+      "tags": [
+        "format_nouvelle"
+      ],
+      "added": "",
+      "deadline": "",
+      "audience": "",
+      "fee": "",
+      "theme": "",
+      "length": "",
+      "reward": ""
+    },
+    {
+      "id": "4869",
+      "publisher": "Panodyssey, réseau social littéraire",
+      "title": "Concours d’écriture - Chat Sans Frontières",
+      "url": "https://panodyssey.com/fr/article/culture/chat-sans-frontieres-un-concours-d-ecriture-inedit-au-monde-entre-plumes-et-chats-grace-a-panodyssey-emueh4qba35a",
+      "image": "/assets/screenshots/4869.png",
+      "tags": [
+        "format_essai",
+        "format_fiction",
+        "format_lettre",
+        "format_poème",
+        "format_témoignage",
+        "format_texte"
+      ],
+      "added": "",
+      "deadline": "",
+      "audience": "",
+      "fee": "",
+      "theme": "",
+      "length": "",
+      "reward": ""
+    },
+    {
+      "id": "4868",
+      "publisher": "Podcast Le Son du Désir",
+      "title": "Concours de nouvelles érotiques, Le Son du Désir — 2ème édition",
+      "url": "https://www.lesondudesir.fr/concours-decriture-le-son-du-desir/",
+      "image": "/assets/screenshots/4868.png",
+      "tags": [
+        "format_nouvelle",
+        "genre_érotique"
+      ],
+      "added": "",
+      "deadline": "",
+      "audience": "",
+      "fee": "",
+      "theme": "",
+      "length": "",
+      "reward": ""
+    },
+    {
+      "id": "4866",
+      "publisher": "Association Cycliste Associés pour le Droit de Rouler en sécurité, Ateliers d'écriture Écrire à Mulhouse",
+      "title": "Concours de nouvelles - Le vélo sous toutes ses formes",
+      "url": "https://velomulhouse.fr/concours-decriture-roue-libre/",
+      "image": "/assets/screenshots/4866.png",
+      "tags": [
+        "format_nouvelle"
+      ],
+      "added": "",
+      "deadline": "",
+      "audience": "",
+      "fee": "",
+      "theme": "",
+      "length": "",
+      "reward": ""
+    },
+    {
+      "id": "4864",
+      "publisher": "Atelier d’écriture du Foyer Rural de Plougasnou",
+      "title": "Concours de poésie – Troisième édition",
+      "url": "https://www.foyerruralplougasnou.fr/page/2955800-actualites",
+      "image": "/assets/screenshots/4864.png",
+      "tags": [
+        "format_chanson",
+        "format_comptine",
+        "format_poème",
+        "format_slam"
+      ],
+      "added": "",
+      "deadline": "",
+      "audience": "",
+      "fee": "",
+      "theme": "",
+      "length": "",
+      "reward": ""
+    },
+    {
+      "id": "4863",
+      "publisher": "Revue Ascendances, culture et généalogie",
+      "title": "Appel à textes n°3",
+      "url": "https://pagicare.wixsite.com/ascendances",
+      "image": "/assets/screenshots/4863.png",
+      "tags": [
+        "format_lettre",
+        "format_nouvelle",
+        "format_poème",
+        "format_récit",
+        "format_témoignage",
+        "genre_policier"
+      ],
+      "added": "",
+      "deadline": "",
+      "audience": "",
+      "fee": "",
+      "theme": "",
+      "length": "",
+      "reward": ""
+    },
+    {
+      "id": "4859",
+      "publisher": "Gendarmerie Nationale, Éditions Plon",
+      "title": "Concours d'écriture - 7e Prix du Polar de la Gendarmerie nationale",
+      "url": "https://www.gendarmerie.interieur.gouv.fr/gendinfo/actualites/2026/lancement-de-l-appel-a-candidatures-du-7e-prix-du-polar-de-la-gendarmerie-nationale",
+      "image": "/assets/screenshots/4859.png",
+      "tags": [
+        "format_roman",
+        "genre_policier"
+      ],
+      "added": "",
+      "deadline": "",
+      "audience": "",
+      "fee": "",
+      "theme": "",
+      "length": "",
+      "reward": ""
+    },
+    {
+      "id": "4860",
+      "publisher": "Site Littérature Underground",
+      "title": "Appel à textes - Les bourlingueurs",
+      "url": "http://patrick.gomez.ruiz.free.fr/#AAT-bourlingueurs",
+      "image": "/assets/screenshots/4860.png",
+      "tags": [
+        "format_texte"
+      ],
+      "added": "",
+      "deadline": "",
+      "audience": "",
+      "fee": "",
+      "theme": "",
+      "length": "",
+      "reward": ""
+    },
+    {
+      "id": "4861",
+      "publisher": "Ville d’Yssingeaux",
+      "title": "Concours de nouvelles - Festival Coq en Plume 2026",
+      "url": "https://www.yssingeaux.fr/fr/culture-loisirs/agenda-manifestations/coq-en-plume",
+      "image": "/assets/screenshots/4861.png",
+      "tags": [
+        "format_nouvelle"
+      ],
+      "added": "",
+      "deadline": "",
+      "audience": "",
+      "fee": "",
+      "theme": "",
+      "length": "",
+      "reward": ""
+    },
+    {
+      "id": "4862",
+      "publisher": "Betty Nicoud, bêta-lectrice professionnelle",
+      "title": "Concours d'écriture SFFF - Remporte la bêta-lecture complète de ton roman de l'imaginaire",
+      "url": "https://www.bettynicoud.fr/about-1",
+      "image": "/assets/screenshots/4862.png",
+      "tags": [
+        "format_roman",
+        "genre_fantastique",
+        "genre_fantasy",
+        "genre_science-fiction"
+      ],
+      "added": "",
+      "deadline": "",
+      "audience": "",
+      "fee": "",
+      "theme": "",
+      "length": "",
+      "reward": ""
+    },
+    {
+      "id": "4857",
+      "publisher": "Société d’Emulation de Cambrai",
+      "title": "Concours de poésie - Prix Lemaire-Deharveng",
+      "url": "https://www.destination-cambresis.fr/evenement/concours-de-poesie/",
+      "image": "/assets/screenshots/4857.png",
+      "tags": [
+        "format_poème"
+      ],
+      "added": "",
+      "deadline": "",
+      "audience": "",
+      "fee": "",
+      "theme": "",
+      "length": "",
+      "reward": ""
+    },
+    {
+      "id": "4858",
+      "publisher": "Revue Nuit Blanche",
+      "title": "Appel à textes",
+      "url": "https://nuitblanche.com/appel-a-textes-numero-180/",
+      "image": "/assets/screenshots/4858.png",
+      "tags": [
+        "format_article",
+        "format_bande dessinée",
+        "format_pièce de théâtre",
+        "format_poème",
+        "format_récit",
+        "format_roman",
+        "format_texte"
+      ],
+      "added": "",
+      "deadline": "",
+      "audience": "",
+      "fee": "",
+      "theme": "",
+      "length": "",
+      "reward": ""
+    },
+    {
+      "id": "4856",
+      "publisher": "Ville de Villeneuve la Comptal",
+      "title": "Concours de nouvelles - Salon du livre de Villeneuve la Comptal",
+      "url": "https://www.villeneuve-la-comptal.fr/index.php/actualite/491-concours-de-nouvelles-2026",
+      "image": "/assets/screenshots/4856.png",
+      "tags": [
+        "format_nouvelle"
+      ],
+      "added": "",
+      "deadline": "",
+      "audience": "",
+      "fee": "",
+      "theme": "",
+      "length": "",
+      "reward": ""
+    },
+    {
+      "id": "4855",
+      "publisher": "Université Bordeaux Montaigne, Ville de Pessac",
+      "title": "Concours d'écriture - Premiers feux #6, Concours régional des jeunes écritures",
+      "url": "https://www.u-bordeaux-montaigne.fr/fr/campus/culture/premiers-feux-concours-des-jeunes-ecritures-en-nouvelle-aquitaine.html",
+      "image": "/assets/screenshots/4855.png",
+      "tags": [
+        "format_album",
+        "format_bande dessinée",
+        "format_nouvelle",
+        "format_pamphlet",
+        "format_pièce de théâtre",
+        "format_scénario"
+      ],
+      "added": "",
+      "deadline": "",
+      "audience": "",
+      "fee": "",
+      "theme": "",
+      "length": "",
+      "reward": ""
+    },
+    {
+      "id": "4854",
+      "publisher": "Festival Sang d’encre, MJC de Vienne",
+      "title": "Concours de nouvelles - Brèves de Sang d’encre 2026",
+      "url": "https://atelierdescarmes.o80.fr/category/breves-sang-encre/edition-actuelle-sang-encre/",
+      "image": "/assets/screenshots/4854.png",
+      "tags": [
+        "format_nouvelle",
+        "genre_policier",
+        "genre_thriller"
+      ],
+      "added": "",
+      "deadline": "",
+      "audience": "",
+      "fee": "",
+      "theme": "",
+      "length": "",
+      "reward": ""
+    },
+    {
+      "id": "4853",
+      "publisher": "Commune d'Estaimpuis, La Nuit du Polar",
+      "title": "Concours de nouvelles – Festival du Polar 2026",
+      "url": "https://www.festivalpolarestaimpuis.com/concours-decriture/",
+      "image": "/assets/screenshots/4853.png",
+      "tags": [
+        "format_nouvelle",
+        "genre_policier",
+        "genre_thriller"
+      ],
+      "added": "",
+      "deadline": "",
+      "audience": "",
+      "fee": "",
+      "theme": "",
+      "length": "",
+      "reward": ""
+    },
+    {
+      "id": "4850",
+      "publisher": "Maison d'édition associative Les Mondes d'Après",
+      "title": "Concours de novellas - Kesk'IA, t'aimes pas mon cyberstyle ?",
+      "url": "https://lesmondesdapres.fr/keskia/",
+      "image": "/assets/screenshots/4850.png",
+      "tags": [
+        "format_novella",
+        "genre_science-fiction"
+      ],
+      "added": "",
+      "deadline": "",
+      "audience": "",
+      "fee": "",
+      "theme": "",
+      "length": "",
+      "reward": ""
+    },
+    {
+      "id": "4852",
+      "publisher": "Revue Estuaire",
+      "title": "Appel à textes",
+      "url": "https://revue-estuaire.com/appels-de-textes/",
+      "image": "/assets/screenshots/4852.png",
+      "tags": [
+        "format_poème"
+      ],
+      "added": "",
+      "deadline": "",
+      "audience": "",
+      "fee": "",
+      "theme": "",
+      "length": "",
+      "reward": ""
+    },
+    {
+      "id": "4849",
+      "publisher": "Association Criou Livres",
+      "title": "Concours de nouvelles",
+      "url": "https://crioulivres.fr/concours-de-nouvelles/",
+      "image": "/assets/screenshots/4849.png",
+      "tags": [
+        "format_nouvelle"
+      ],
+      "added": "",
+      "deadline": "",
+      "audience": "",
+      "fee": "",
+      "theme": "",
+      "length": "",
+      "reward": ""
+    },
+    {
+      "id": "4851",
+      "publisher": "L'atelier d'écriture by Christine",
+      "title": "Concours d'écriture d'incipit 2026",
+      "url": "https://www.atelierdecriturebychristine.com/post/concours-ecriture-incipit",
+      "image": "/assets/screenshots/4851.png",
+      "tags": [
+        "format_texte"
+      ],
+      "added": "",
+      "deadline": "",
+      "audience": "",
+      "fee": "",
+      "theme": "",
+      "length": "",
+      "reward": ""
+    },
+    {
+      "id": "4848",
+      "publisher": "Revue L'Éponge",
+      "title": "Appel à textes",
+      "url": "https://www.leponge.eu/appel-a-textes-et-illustrations/",
+      "image": "/assets/screenshots/4848.png",
+      "tags": [
+        "format_nouvelle",
+        "format_poème",
+        "format_texte"
+      ],
+      "added": "",
+      "deadline": "",
+      "audience": "",
+      "fee": "",
+      "theme": "",
+      "length": "",
+      "reward": ""
+    },
+    {
+      "id": "4847",
+      "publisher": "Ville de Thouaré-sur-Loire",
+      "title": "Concours de nouvelles",
+      "url": "https://www.thouare.fr/actualite/concours-de-nouvelles/",
+      "image": "/assets/screenshots/4847.png",
+      "tags": [
+        "format_nouvelle"
+      ],
+      "added": "",
+      "deadline": "",
+      "audience": "",
+      "fee": "",
+      "theme": "",
+      "length": "",
+      "reward": ""
+    },
+    {
+      "id": "4845",
+      "publisher": "Association Lignes d'Horizons",
+      "title": "Appel à textes - Appel à poèmes",
+      "url": "https://www.facebook.com/groups/1761573850907786",
+      "image": "/assets/screenshots/4845.png",
+      "tags": [
+        "format_poème"
+      ],
+      "added": "",
+      "deadline": "",
+      "audience": "",
+      "fee": "",
+      "theme": "",
+      "length": "",
+      "reward": ""
+    },
+    {
+      "id": "4846",
+      "publisher": "Revue Burokrat",
+      "title": "Concours d'écriture",
+      "url": "https://www.burokrat.fr/concours-nouvelle/",
+      "image": "/assets/screenshots/4846.png",
+      "tags": [
+        "format_monologue",
+        "format_nouvelle",
+        "format_pièce de théâtre",
+        "format_poème",
+        "format_texte"
+      ],
+      "added": "",
+      "deadline": "",
+      "audience": "",
+      "fee": "",
+      "theme": "",
+      "length": "",
+      "reward": ""
+    },
+    {
+      "id": "4843",
+      "publisher": "Section régionale interministérielle d'action sociale Centre Val de Loire",
+      "title": "Concours d'écriture - Prix littéraire SRIAS Centre Val de Loire 2025",
+      "url": "https://www.prefectures-regions.gouv.fr/centre-val-de-loire/Region-et-institutions/Organisation-administrative-de-la-region/Ressources-humaines-et-action-sociale/La-SRIAS/Loisirs-Culture/Prix-litteraires/Prix-litteraires-2026",
+      "image": "/assets/screenshots/4843.png",
+      "tags": [
+        "format_roman"
+      ],
+      "added": "",
+      "deadline": "",
+      "audience": "",
+      "fee": "",
+      "theme": "",
+      "length": "",
+      "reward": ""
+    },
+    {
+      "id": "4841",
+      "publisher": "Revue Mets tes palmes",
+      "title": "Appel à textes",
+      "url": "https://www.instagram.com/p/DYC2FGsgugh/",
+      "image": "/assets/screenshots/4841.png",
+      "tags": [
+        "format_article",
+        "format_autofiction",
+        "format_fiction",
+        "format_texte"
+      ],
+      "added": "",
+      "deadline": "",
+      "audience": "",
+      "fee": "",
+      "theme": "",
+      "length": "",
+      "reward": ""
+    },
+    {
+      "id": "4837",
+      "publisher": "Association Talents Libres",
+      "title": "Concours d'écriture - Mille et un signes",
+      "url": "https://www.helloasso.com/associations/talents-libres/evenements/concours-ecriture-1001-signes-le-talent-2",
+      "image": "/assets/screenshots/4837.png",
+      "tags": [
+        "format_texte"
+      ],
+      "added": "",
+      "deadline": "",
+      "audience": "",
+      "fee": "",
+      "theme": "",
+      "length": "",
+      "reward": ""
+    },
+    {
+      "id": "4835",
+      "publisher": "Association Les Fous du Livre, Ministère des Arts et de la Culture du Cameroun",
+      "title": "Concours international de poésie – FESTIFOUS 2026",
+      "url": "https://livredulivre.com/concours-international-de-poesie-lassociation-les-fous-du-livre-lance-un-appel-a-candidatures-sur-non-a-la-depravation-des-moeurs-pour-le-festifous-2026/",
+      "image": "/assets/screenshots/4835.png",
+      "tags": [
+        "format_poème"
+      ],
+      "added": "",
+      "deadline": "",
+      "audience": "",
+      "fee": "",
+      "theme": "",
+      "length": "",
+      "reward": ""
+    },
+    {
+      "id": "4833",
+      "publisher": "Les Amis du Jardin botanique de Montréal",
+      "title": "Concours de poésie – 50e anniversaire des Amis du Jardin botanique",
+      "url": "https://amisjardin.com/activite/concours-de-poesie-du-12-mai-au-9-aout",
+      "image": "/assets/screenshots/4833.png",
+      "tags": [
+        "format_poème"
+      ],
+      "added": "",
+      "deadline": "",
+      "audience": "",
+      "fee": "",
+      "theme": "",
+      "length": "",
+      "reward": ""
+    },
+    {
+      "id": "4836",
+      "publisher": "Association La Grange de Mercure",
+      "title": "Concours d'écriture - Prix Littéraire 2026",
+      "url": "https://www.lagrangedemercure.com/",
+      "image": "/assets/screenshots/4836.png",
+      "tags": [
+        "format_conte",
+        "format_nouvelle"
+      ],
+      "added": "",
+      "deadline": "",
+      "audience": "",
+      "fee": "",
+      "theme": "",
+      "length": "",
+      "reward": ""
+    },
+    {
+      "id": "4830",
+      "publisher": "Association France Palestine Solidarité Roubaix-Tourcoing, Bureau d'Art et de Recherche, Pastel FM",
+      "title": "Concours d'écriture - Gaza, j'écris ton nom",
+      "url": "https://openagenda.com/fr/quefaire/events/17196663_concours-decriture-solidaire-gaza-jecris-ton-nom",
+      "image": "/assets/screenshots/4830.png",
+      "tags": [
+        "format_fiction",
+        "format_lettre",
+        "format_poème",
+        "format_récit",
+        "format_témoignage",
+        "format_texte"
+      ],
+      "added": "",
+      "deadline": "",
+      "audience": "",
+      "fee": "",
+      "theme": "",
+      "length": "",
+      "reward": ""
+    },
+    {
+      "id": "4823",
+      "publisher": "Association Quai des Bulles",
+      "title": "Appel à candidatures - Concours BD Jeunes Talents 2026",
+      "url": "https://prix.quaidesbulles.com/concours-jeunes-talents-2026/",
+      "image": "/assets/screenshots/4823.png",
+      "tags": [
+        "format_bande dessinée"
+      ],
+      "added": "",
+      "deadline": "",
+      "audience": "",
+      "fee": "",
+      "theme": "",
+      "length": "",
+      "reward": ""
+    },
+    {
+      "id": "4821",
+      "publisher": "Ville de La Trinité-sur-Mer",
+      "title": "Concours de nouvelles",
+      "url": "https://www.latrinitesurmer.fr/%f0%9f%96%8b%ef%b8%8f%f0%9f%93%94-concours-litteraire-cuisinez-une-nouvelle-gourmande/",
+      "image": "/assets/screenshots/4821.png",
+      "tags": [
+        "format_nouvelle"
+      ],
+      "added": "",
+      "deadline": "",
+      "audience": "",
+      "fee": "",
+      "theme": "",
+      "length": "",
+      "reward": ""
+    },
+    {
+      "id": "4820",
+      "publisher": "Médiathèque Lucien Charton de Liancourt, Ville de Liancourt",
+      "title": "Concours d'écriture - Concours de poésies et nouvelles",
+      "url": "https://www.ville-liancourt.fr/agenda/mediatheque-concours-de-nouvelles-de-poesies",
+      "image": "/assets/screenshots/4820.png",
+      "tags": [
+        "format_nouvelle",
+        "format_poème"
+      ],
+      "added": "",
+      "deadline": "",
+      "audience": "",
+      "fee": "",
+      "theme": "",
+      "length": "",
+      "reward": ""
+    },
+    {
+      "id": "4815",
+      "publisher": "Association Le Loir Littéraire",
+      "title": "Concours de nouvelles 2026",
+      "url": "http://www.leloirlitteraire.com/",
+      "image": "/assets/screenshots/4815.png",
+      "tags": [
+        "format_nouvelle"
+      ],
+      "added": "",
+      "deadline": "",
+      "audience": "",
+      "fee": "",
+      "theme": "",
+      "length": "",
+      "reward": ""
+    },
+    {
+      "id": "4814",
+      "publisher": "Asbl Play Again",
+      "title": "Concours de nouvelles - Réinventer la Terre, concours international francophone",
+      "url": "https://www.play-again.be/",
+      "image": "/assets/screenshots/4814.png",
+      "tags": [
+        "format_nouvelle"
+      ],
+      "added": "",
+      "deadline": "",
+      "audience": "",
+      "fee": "",
+      "theme": "",
+      "length": "",
+      "reward": ""
+    },
+    {
+      "id": "4813",
+      "publisher": "Société française des architectes",
+      "title": "Concours de nouvelles - Prix Henry Jacques Le Même, Architecture à la lettre — un lieu, un texte",
+      "url": "https://sfarchi.org/prix-le-meme-2/",
+      "image": "/assets/screenshots/4813.png",
+      "tags": [
+        "format_nouvelle"
+      ],
+      "added": "",
+      "deadline": "",
+      "audience": "",
+      "fee": "",
+      "theme": "",
+      "length": "",
+      "reward": ""
+    },
+    {
+      "id": "4810",
+      "publisher": "Association des Patrimoines d'Aubais",
+      "title": "Concours de nouvelles - 43ème édition des Journées Européennes du Patrimoine",
+      "url": "https://patrimoinesaubais.com/evenements/",
+      "image": "/assets/screenshots/4810.png",
+      "tags": [
+        "format_nouvelle"
+      ],
+      "added": "",
+      "deadline": "",
+      "audience": "",
+      "fee": "",
+      "theme": "",
+      "length": "",
+      "reward": ""
+    },
+    {
+      "id": "4807",
+      "publisher": "Les Éditions du Singe brûlé",
+      "title": "Concours de lancement des éditions du Singe brûlé",
+      "url": "https://lesingebrule.fr/#concours",
+      "image": "/assets/screenshots/4807.png",
+      "tags": [
+        "format_nouvelle",
+        "genre_science-fiction",
+        "genre_thriller"
+      ],
+      "added": "",
+      "deadline": "",
+      "audience": "",
+      "fee": "",
+      "theme": "",
+      "length": "",
+      "reward": ""
+    },
+    {
+      "id": "4796",
+      "publisher": "Association Festival du Livre de Pont-Saint-Esprit et du Gard Rhodanien",
+      "title": "Concours de nouvelles",
+      "url": "https://www.festivallivrepont.fr/concours-nouvelles-2026/",
+      "image": "/assets/screenshots/4796.png",
+      "tags": [
+        "format_nouvelle"
+      ],
+      "added": "",
+      "deadline": "",
+      "audience": "",
+      "fee": "",
+      "theme": "",
+      "length": "",
+      "reward": ""
+    },
+    {
+      "id": "4785",
+      "publisher": "Maison de la Chauve-Souris",
+      "title": "Concours d'écriture - 20ème anniversaire de la Maison de la Chauve-Souris",
+      "url": "https://www.maisondelachauvesouris.com/nos-animations/",
+      "image": "/assets/screenshots/4785.png",
+      "tags": [
+        "format_bande dessinée",
+        "format_conte",
+        "format_poème",
+        "format_récit",
+        "genre_aventure",
+        "genre_fantastique",
+        "genre_science-fiction"
+      ],
+      "added": "",
+      "deadline": "",
+      "audience": "",
+      "fee": "",
+      "theme": "",
+      "length": "",
+      "reward": ""
+    },
+    {
+      "id": "4782",
+      "publisher": "Collectivité européenne d'Alsace",
+      "title": "Concours d'écriture - Concours littéraire d’Alsace : Cap sur la Lune !",
+      "url": "https://www.alsace.eu/aides-et-services/culture-patrimoine-et-tourisme/concours-litteraire-d-alsace/#:~:text=En%20%C3%A9cho%20%C3%A0%20l'exposition,la%20th%C3%A9matique%20de%20la%20Lune.",
+      "image": "/assets/screenshots/4782.png",
+      "tags": [
+        "format_chanson",
+        "format_dialogue",
+        "format_fiction",
+        "format_lettre",
+        "format_poème",
+        "format_récit",
+        "format_slam"
+      ],
+      "added": "",
+      "deadline": "",
+      "audience": "",
+      "fee": "",
+      "theme": "",
+      "length": "",
+      "reward": ""
+    },
+    {
+      "id": "4779",
+      "publisher": "Association Le temps de lire, Lions Bourgueil Chinon",
+      "title": "Concours de nouvelles",
+      "url": "https://livreschinon.com/concours2026.html",
+      "image": "/assets/screenshots/4779.png",
+      "tags": [
+        "format_nouvelle"
+      ],
+      "added": "",
+      "deadline": "",
+      "audience": "",
+      "fee": "",
+      "theme": "",
+      "length": "",
+      "reward": ""
+    },
+    {
+      "id": "4775",
+      "publisher": "Association En avant Première",
+      "title": "Concours de nouvelles 4e concours de nouvelles de la ville de Surgères",
+      "url": "https://www.ville-surgeres.fr/",
+      "image": "/assets/screenshots/4775.png",
+      "tags": [
+        "format_nouvelle"
+      ],
+      "added": "",
+      "deadline": "",
+      "audience": "",
+      "fee": "",
+      "theme": "",
+      "length": "",
+      "reward": ""
+    },
+    {
+      "id": "4768",
+      "publisher": "Association Culture Art Polar Sud Aveyron",
+      "title": "Concours de nouvelles - Polar, vin & Cie 2026",
+      "url": "https://cap-sud-aveyron.over-blog.org/2026/03/concours-de-nouvelles-polar-2026-participez-et-gagnez.html",
+      "image": "/assets/screenshots/4768.png",
+      "tags": [
+        "format_nouvelle",
+        "genre_policier",
+        "genre_thriller"
+      ],
+      "added": "",
+      "deadline": "",
+      "audience": "",
+      "fee": "",
+      "theme": "",
+      "length": "",
+      "reward": ""
+    },
+    {
+      "id": "4774",
+      "publisher": "Université de Lille, Université du Temps Libre de Lille",
+      "title": "Concours de nouvelles - Quelles nouvelles 2026",
+      "url": "https://e.pcloud.link/publink/show?code=XZ3QoGZHc7X0aV3iIBGb2dwxKimTVtBouPk",
+      "image": "/assets/screenshots/4774.png",
+      "tags": [
+        "format_nouvelle"
+      ],
+      "added": "",
+      "deadline": "",
+      "audience": "",
+      "fee": "",
+      "theme": "",
+      "length": "",
+      "reward": ""
+    },
+    {
+      "id": "4765",
+      "publisher": "Association J'écris… J'm'édite",
+      "title": "Concours de nouvelles",
+      "url": "https://www.jecrisjmedite.fr/",
+      "image": "/assets/screenshots/4765.png",
+      "tags": [
+        "format_nouvelle"
+      ],
+      "added": "",
+      "deadline": "",
+      "audience": "",
+      "fee": "",
+      "theme": "",
+      "length": "",
+      "reward": ""
+    },
+    {
+      "id": "4761",
+      "publisher": "Éditions des Deux Rues",
+      "title": "Concours de poésie - Prix de Poésie Histoire et Mémoire",
+      "url": "https://www.editionsdes2rues.com/",
+      "image": "/assets/screenshots/4761.png",
+      "tags": [
+        "format_recueil de poèmes"
+      ],
+      "added": "",
+      "deadline": "",
+      "audience": "",
+      "fee": "",
+      "theme": "",
+      "length": "",
+      "reward": ""
+    },
+    {
+      "id": "4762",
+      "publisher": "PEN Club de Monaco",
+      "title": "Concours de nouvelles - Prix Armand Lunel",
+      "url": "https://penclub-monaco.org/prix_et_ateliers/armand_lunel/le_prix_armand_lunel.php",
+      "image": "/assets/screenshots/4762.png",
+      "tags": [
+        "format_nouvelle"
+      ],
+      "added": "",
+      "deadline": "",
+      "audience": "",
+      "fee": "",
+      "theme": "",
+      "length": "",
+      "reward": ""
+    },
+    {
+      "id": "4760",
+      "publisher": "Ligue de Protection des Oiseaux Champagne-Ardenne",
+      "title": "Concours de poésie - Concours International de Poésie LPO Champagne-Ardenne et Grand Est 2026",
+      "url": "https://champagne-ardenne.lpo.fr/lpo-ca/actualites/3506-concours-international-de-poesie-lpo-champagne-ardenne-et-grand-est-2026?highlight=WyJjb25jb3VycyJd",
+      "image": "/assets/screenshots/4760.png",
+      "tags": [
+        "format_haïku",
+        "format_poème"
+      ],
+      "added": "",
+      "deadline": "",
+      "audience": "",
+      "fee": "",
+      "theme": "",
+      "length": "",
+      "reward": ""
+    },
+    {
+      "id": "4754",
+      "publisher": "Revue Ascendances, culture et généalogie",
+      "title": "Appel à textes n°2",
+      "url": "https://pagicare.wixsite.com/ascendances",
+      "image": "/assets/screenshots/4754.png",
+      "tags": [
+        "format_chanson",
+        "format_conte",
+        "format_haïku",
+        "format_lettre",
+        "format_nouvelle",
+        "format_poème",
+        "format_récit"
+      ],
+      "added": "",
+      "deadline": "",
+      "audience": "",
+      "fee": "",
+      "theme": "",
+      "length": "",
+      "reward": ""
+    },
+    {
+      "id": "4752",
+      "publisher": "Centre de documentation historique sur l'Algérie d'Aix en Provence",
+      "title": "Concours de nouvelles du Cdha 2026",
+      "url": "https://docs.google.com/forms/d/e/1FAIpQLSfFM_ayCUVedrlK04mLtAb6Mk5G3YjU3od_AmkLdPz18EG9UA/viewform",
+      "image": "/assets/screenshots/4752.png",
+      "tags": [
+        "format_nouvelle"
+      ],
+      "added": "",
+      "deadline": "",
+      "audience": "",
+      "fee": "",
+      "theme": "",
+      "length": "",
+      "reward": ""
+    },
+    {
+      "id": "4753",
+      "publisher": "Comité des fêtes de Mialet",
+      "title": "Concours de poésie de la vallée des Camisards",
+      "url": "https://www.mialet.fr/concours-de-poesie/",
+      "image": "/assets/screenshots/4753.png",
+      "tags": [
+        "format_poème"
+      ],
+      "added": "",
+      "deadline": "",
+      "audience": "",
+      "fee": "",
+      "theme": "",
+      "length": "",
+      "reward": ""
+    },
+    {
+      "id": "4751",
+      "publisher": "Association Les Arts S'Enchainent",
+      "title": "Concours de nouvelles 2026 - Salon du livre et du dessin de Saint Brice sous forêt",
+      "url": "https://lesartse95.over-blog.com/2026/04/conours-de-nouvelles-2026.html",
+      "image": "/assets/screenshots/4751.png",
+      "tags": [
+        "format_nouvelle"
+      ],
+      "added": "",
+      "deadline": "",
+      "audience": "",
+      "fee": "",
+      "theme": "",
+      "length": "",
+      "reward": ""
+    },
+    {
+      "id": "4749",
+      "publisher": "Collectivité européenne d’Alsace",
+      "title": "Concours d'écriture - Concours littéraire d’Alsace",
+      "url": "https://www.alsace.eu/aides-et-services/culture-patrimoine-et-tourisme/concours-litteraire-d-alsace/",
+      "image": "/assets/screenshots/4749.png",
+      "tags": [
+        "format_chanson",
+        "format_dialogue",
+        "format_lettre",
+        "format_nouvelle",
+        "format_poème",
+        "format_récit",
+        "format_slam",
+        "format_texte"
+      ],
+      "added": "",
+      "deadline": "",
+      "audience": "",
+      "fee": "",
+      "theme": "",
+      "length": "",
+      "reward": ""
+    },
+    {
+      "id": "4725",
+      "publisher": "Association Compostelle 2000",
+      "title": "Concours de nouvelles - Cinquième Concours de Nouvelles de Compostelle 2000",
+      "url": "https://compostelle2000.org/cinquieme-concours-de-nouvelles/",
+      "image": "/assets/screenshots/4725.png",
+      "tags": [
+        "format_nouvelle"
+      ],
+      "added": "",
+      "deadline": "",
+      "audience": "",
+      "fee": "",
+      "theme": "",
+      "length": "",
+      "reward": ""
+    },
+    {
+      "id": "4721",
+      "publisher": "Altérative Éditions",
+      "title": "Appel à textes - La Lisière #1",
+      "url": "https://www.alterative.fr/books/at/atll001/",
+      "image": "/assets/screenshots/4721.png",
+      "tags": [
+        "format_récit",
+        "genre_fantasy",
+        "genre_horreur"
+      ],
+      "added": "",
+      "deadline": "",
+      "audience": "",
+      "fee": "",
+      "theme": "",
+      "length": "",
+      "reward": ""
+    },
+    {
+      "id": "4720",
+      "publisher": "Altérative Éditions",
+      "title": "Appel à textes - Paradoxes Latents #1",
+      "url": "https://www.alterative.fr/books/at/atpl001/",
+      "image": "/assets/screenshots/4720.png",
+      "tags": [
+        "format_récit",
+        "genre_science-fiction"
+      ],
+      "added": "",
+      "deadline": "",
+      "audience": "",
+      "fee": "",
+      "theme": "",
+      "length": "",
+      "reward": ""
+    },
+    {
+      "id": "4722",
+      "publisher": "Association des Amis de Corinne Vuillaume",
+      "title": "Concours de nouvelles - Prix Corinne Vuillaume, 10ème édition",
+      "url": "https://corinnevuillaume.org/accueil/prix-corinne-vuillaume",
+      "image": "/assets/screenshots/4722.png",
+      "tags": [
+        "format_nouvelle"
+      ],
+      "added": "",
+      "deadline": "",
+      "audience": "",
+      "fee": "",
+      "theme": "",
+      "length": "",
+      "reward": ""
+    },
+    {
+      "id": "4719",
+      "publisher": "Altérative Éditions",
+      "title": "Appel à textes - Zestes #1",
+      "url": "https://www.alterative.fr/books/at/atzt001/",
+      "image": "/assets/screenshots/4719.png",
+      "tags": [
+        "format_récit"
+      ],
+      "added": "",
+      "deadline": "",
+      "audience": "",
+      "fee": "",
+      "theme": "",
+      "length": "",
+      "reward": ""
+    },
+    {
+      "id": "4716",
+      "publisher": "Salon Bigouden du livre",
+      "title": "Concours d'écriture - Concours de micronouvelles et de poésies",
+      "url": "https://www.facebook.com/SalonBigoudenDuLivre/posts/pfbid02V21ncyk3xswwsLdiPNdhi7KLh1phX43dPtmKYpc3gPuaukxZH5BvYr5TsM1Q1eQUl",
+      "image": "/assets/screenshots/4716.png",
+      "tags": [
+        "format_nouvelle",
+        "format_poème"
+      ],
+      "added": "",
+      "deadline": "",
+      "audience": "",
+      "fee": "",
+      "theme": "",
+      "length": "",
+      "reward": ""
+    },
+    {
+      "id": "4700",
+      "publisher": "Association Feignies Loisirs Animations Culture, Ville de Feignies, Médiathèque Jean Jarosz",
+      "title": "Concours de nouvelles France Philippe 2026",
+      "url": "https://lireensambre.agglo-maubeugevaldesambre.fr/cms/articleview/id/124",
+      "image": "/assets/screenshots/4700.png",
+      "tags": [
+        "format_nouvelle"
+      ],
+      "added": "",
+      "deadline": "",
+      "audience": "",
+      "fee": "",
+      "theme": "",
+      "length": "",
+      "reward": ""
+    },
+    {
+      "id": "4690",
+      "publisher": "Société Mathématique de France",
+      "title": "Concours de poésie mathématique Michèle Audin",
+      "url": "https://smf.emath.fr/concours-de-poesie-2026",
+      "image": "/assets/screenshots/4690.png",
+      "tags": [
+        "format_poème"
+      ],
+      "added": "",
+      "deadline": "",
+      "audience": "",
+      "fee": "",
+      "theme": "",
+      "length": "",
+      "reward": ""
+    },
+    {
+      "id": "4685",
+      "publisher": "Association Les Mots d'Où, Bibliothèque d'Auffargis",
+      "title": "Concours de nouvelles - Prix Jean-Claude Noël de la nouvelle d'Auffargis",
+      "url": "https://opac-x-bibliothequeauffargis.biblixnet.net/node/6892",
+      "image": "/assets/screenshots/4685.png",
+      "tags": [
+        "format_nouvelle"
+      ],
+      "added": "",
+      "deadline": "",
+      "audience": "",
+      "fee": "",
+      "theme": "",
+      "length": "",
+      "reward": ""
+    },
+    {
+      "id": "4672",
+      "publisher": "Cercle des Etudes Locales du Toulois",
+      "title": "Concours de nouvelles - Prix Moselly 2026",
+      "url": "https://www.etudes-touloises.fr/moselly/imagesmoselly/reglement_moselly.pdf",
+      "image": "/assets/screenshots/4672.png",
+      "tags": [
+        "format_nouvelle"
+      ],
+      "added": "",
+      "deadline": "",
+      "audience": "",
+      "fee": "",
+      "theme": "",
+      "length": "",
+      "reward": ""
+    },
+    {
+      "id": "4651",
+      "publisher": "Éditions Paul&Mike",
+      "title": "Concours de nouvelles - Publication revue",
+      "url": "https://drive.google.com/file/d/1Z9ru7DGHns7QAAQwgezyJMEds1nTB9qL/view",
+      "image": "/assets/screenshots/4651.png",
+      "tags": [
+        "format_nouvelle"
+      ],
+      "added": "",
+      "deadline": "",
+      "audience": "",
+      "fee": "",
+      "theme": "",
+      "length": "",
+      "reward": ""
+    },
+    {
+      "id": "4644",
+      "publisher": "Maison d'édition associative nos accointances, Revue hélas!",
+      "title": "Appel à textes - Vert Combat #004",
+      "url": "https://www.revue-helas.fr/",
+      "image": "/assets/screenshots/4644.png",
+      "tags": [
+        "format_poème"
+      ],
+      "added": "",
+      "deadline": "",
+      "audience": "",
+      "fee": "",
+      "theme": "",
+      "length": "",
+      "reward": ""
+    },
+    {
+      "id": "4571",
+      "publisher": "Association Les Amis des Arts et de la Culture",
+      "title": "Concours de nouvelles de Riantec",
+      "url": "https://les-amis-des-arts-et-de-la-culture-1.s2.yapla.com",
+      "image": "/assets/screenshots/4571.png",
+      "tags": [
+        "format_nouvelle"
+      ],
+      "added": "",
+      "deadline": "",
+      "audience": "",
+      "fee": "",
+      "theme": "",
+      "length": "",
+      "reward": ""
+    },
+    {
+      "id": "4541",
+      "publisher": "Cabinet d'édition Plumes Ascendantes",
+      "title": "Appel à textes - Romans fantastiques",
+      "url": "https://plumesascendantes.fr/appels-a-textes/",
+      "image": "/assets/screenshots/4541.png",
+      "tags": [
+        "format_roman",
+        "genre_fantastique"
+      ],
+      "added": "",
+      "deadline": "",
+      "audience": "",
+      "fee": "",
+      "theme": "",
+      "length": "",
+      "reward": ""
+    },
+    {
+      "id": "4523",
+      "publisher": "Récit-page",
+      "title": "Appel à textes",
+      "url": "http://www.recit-page.fr/",
+      "image": "/assets/screenshots/4523.png",
+      "tags": [
+        "format_texte"
+      ],
+      "added": "",
+      "deadline": "",
+      "audience": "",
+      "fee": "",
+      "theme": "",
+      "length": "",
+      "reward": ""
+    },
+    {
+      "id": "4451",
+      "publisher": "Éditions de la Chambre froide, Étudiants du Master 2 Création Éditoriale Multisupports de Sorbonne Université",
+      "title": "Appel à textes - Tartare, un roman collaboratif des étudiants en édition de la Sorbonne",
+      "url": "https://framaforms.org/appel-a-textes-des-editions-de-la-chambre-froide-1761243103",
+      "image": "/assets/screenshots/4451.png",
+      "tags": [
+        "format_nouvelle"
+      ],
+      "added": "",
+      "deadline": "",
+      "audience": "",
+      "fee": "",
+      "theme": "",
+      "length": "",
+      "reward": ""
+    },
+    {
+      "id": "4385",
+      "publisher": "Gaëlle Lavisse, Association dis petite",
+      "title": "Appel à textes - 10e Festival épistolaire des Hauts de France",
+      "url": "https://www.facebook.com/people/Festival-francophone-%C3%A9pistolaire-des-Hauts-de-France/61551027459856/",
+      "image": "/assets/screenshots/4385.png",
+      "tags": [
+        "format_chanson",
+        "format_conte",
+        "format_lettre",
+        "format_poème",
+        "format_texte"
+      ],
+      "added": "",
+      "deadline": "",
+      "audience": "",
+      "fee": "",
+      "theme": "",
+      "length": "",
+      "reward": ""
+    }
+  ]
+}
