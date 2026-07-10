@@ -197,6 +197,25 @@ header a {
   background: #002d6d;
 }
 
+.filter-btn.audience-filter-btn {
+  border-color: #00796b;
+  color: #00796b;
+}
+
+.filter-btn.audience-filter-btn:hover {
+  background: #e0f2f1;
+}
+
+.filter-btn.audience-filter-btn[aria-pressed="true"] {
+  background: #00796b;
+  border-color: #00796b;
+  color: #fff;
+}
+
+.filter-btn.audience-filter-btn[aria-pressed="true"]:hover {
+  background: #00695c;
+}
+
 .sort-section {
   align-items: flex-start;
 }

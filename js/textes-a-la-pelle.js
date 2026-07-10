@@ -3,6 +3,7 @@ const DATA_URL = "data/textes-a-la-pelle.json";
 
 const filterButtonsEl = document.getElementById("filter-buttons");
 const feeFilterButtonsEl = document.getElementById("fee-filter-buttons");
+const audienceFilterButtonsEl = document.getElementById("audience-filter-buttons");
 const selectAllBtn = document.getElementById("select-all-filters");
 const deselectAllBtn = document.getElementById("deselect-all-filters");
 const sortButtons = [...document.querySelectorAll(".sort-btn")];
@@ -13,10 +14,12 @@ const listEl = document.getElementById("announcements");
 let announcements = [];
 let filterOptions = [];
 let feeFilterOptions = [];
+let audienceFilterOptions = [];
 let dataUpdatedAt = Date.now();
 let currentSort = "publication_date";
 const selectedFilters = new Set();
 const selectedFeeFilters = new Set();
+const selectedAudienceFilters = new Set();
 
 function setStatus(message, type = "loading") {
   statusEl.textContent = message;
@@ -87,6 +90,99 @@ function buildFeeFilterOptionsFromAnnouncements(items) {
   for (const item of items) {
     const category = getFeeCategory(item);
     if (!category || category === "unknown") {
+      continue;
+    }
+    counts.set(category, (counts.get(category) || 0) + 1);
+  }
+
+  return Object.keys(labels)
+    .filter((value) => counts.has(value))
+    .map((value) => ({
+      value,
+      label: `${labels[value]} (${counts.get(value)})`,
+    }));
+}
+
+function classifyAudience(audienceText) {
+  if (!audienceText || !audienceText.trim()) {
+    return "audience_unknown";
+  }
+
+  const text = audienceText.trim();
+  const normalized = text.toLowerCase();
+
+  if (/résident|resident|francophonie|département|belgique|morbinhan|alsace|champagne|hauts-de-france|nouvelle.aquitaine|ile-de-france|france métropolitaine|métropolitaine/i.test(text)) {
+    return "audience_geographic";
+  }
+
+  if (/professionnel|artiste|écrivain|auteur|publié|jamais publié|débutants ou confirmés|imaginaire|bédéistes|illustrateurs|étudiant/i.test(text)) {
+    return "audience_professional";
+  }
+
+  if (/femmes|identifient en tant que/i.test(text)) {
+    return "audience_specific";
+  }
+
+  if (/^tous\b/i.test(normalized) || /^tous,/i.test(normalized) || normalized.includes("tout public") || normalized.includes("pour tout public")) {
+    return "audience_all";
+  }
+
+  const rangeMatch = text.match(/(\d+)\s*[-–]\s*(\d+)\s*ans/i);
+  if (rangeMatch) {
+    const min = Number(rangeMatch[1]);
+    const max = Number(rangeMatch[2]);
+    if (max <= 17) {
+      return "audience_under_18";
+    }
+    if (min >= 18) {
+      return "audience_18_plus";
+    }
+    return "audience_mixed_age";
+  }
+
+  const maxMatch = text.match(/(\d+)\s*ans\s*maximum/i);
+  if (maxMatch) {
+    const max = Number(maxMatch[1]);
+    if (max < 18) {
+      return "audience_under_18";
+    }
+    return "audience_young_adult";
+  }
+
+  const minMatch = text.match(/(\d+)\s*ans\s*minim/i);
+  if (minMatch) {
+    const min = Number(minMatch[1]);
+    if (min >= 18) {
+      return "audience_18_plus";
+    }
+    return "audience_minors_and_up";
+  }
+
+  return "audience_other";
+}
+
+function getAudienceCategory(item) {
+  return item.audienceCategory || classifyAudience(item.audience);
+}
+
+function buildAudienceFilterOptionsFromAnnouncements(items) {
+  const labels = {
+    audience_all: "Tous",
+    audience_under_18: "Moins de 18 ans",
+    audience_minors_and_up: "Mineurs (à partir de X ans)",
+    audience_mixed_age: "Jeunes et adultes",
+    audience_18_plus: "18 ans et plus",
+    audience_young_adult: "Jeunes adultes (âge maximum)",
+    audience_geographic: "Résidents (critère géographique)",
+    audience_professional: "Auteurs / professionnels",
+    audience_specific: "Public spécifique",
+    audience_unknown: "Non précisé",
+  };
+  const counts = new Map();
+
+  for (const item of items) {
+    const category = getAudienceCategory(item);
+    if (!category || category === "audience_other") {
       continue;
     }
     counts.set(category, (counts.get(category) || 0) + 1);
@@ -202,6 +298,10 @@ function getSelectableFeeFilterOptions() {
   return feeFilterOptions.filter((option) => option.value);
 }
 
+function getSelectableAudienceFilterOptions() {
+  return audienceFilterOptions.filter((option) => option.value);
+}
+
 function syncFilterButtonStates() {
   filterButtonsEl.querySelectorAll(".filter-btn").forEach((button) => {
     const isSelected = selectedFilters.has(button.dataset.filter);
@@ -216,9 +316,17 @@ function syncFeeFilterButtonStates() {
   });
 }
 
+function syncAudienceFilterButtonStates() {
+  audienceFilterButtonsEl.querySelectorAll(".audience-filter-btn").forEach((button) => {
+    const isSelected = selectedAudienceFilters.has(button.dataset.audienceFilter);
+    button.setAttribute("aria-pressed", String(isSelected));
+  });
+}
+
 function syncAllFilterButtonStates() {
   syncFilterButtonStates();
   syncFeeFilterButtonStates();
+  syncAudienceFilterButtonStates();
 }
 
 function toggleFilter(value) {
@@ -241,14 +349,28 @@ function toggleFeeFilter(value) {
   renderAnnouncements();
 }
 
+function toggleAudienceFilter(value) {
+  if (selectedAudienceFilters.has(value)) {
+    selectedAudienceFilters.delete(value);
+  } else {
+    selectedAudienceFilters.add(value);
+  }
+  syncAudienceFilterButtonStates();
+  renderAnnouncements();
+}
+
 function selectAllFilters() {
   selectedFilters.clear();
   selectedFeeFilters.clear();
+  selectedAudienceFilters.clear();
   for (const option of getSelectableFilterOptions()) {
     selectedFilters.add(option.value);
   }
   for (const option of getSelectableFeeFilterOptions()) {
     selectedFeeFilters.add(option.value);
+  }
+  for (const option of getSelectableAudienceFilterOptions()) {
+    selectedAudienceFilters.add(option.value);
   }
   syncAllFilterButtonStates();
   renderAnnouncements();
@@ -257,6 +379,7 @@ function selectAllFilters() {
 function deselectAllFilters() {
   selectedFilters.clear();
   selectedFeeFilters.clear();
+  selectedAudienceFilters.clear();
   syncAllFilterButtonStates();
   renderAnnouncements();
 }
@@ -321,6 +444,21 @@ function populateFeeFilterButtons(options) {
   }
 }
 
+function populateAudienceFilterButtons(options) {
+  audienceFilterButtonsEl.innerHTML = "";
+
+  for (const option of options) {
+    const button = document.createElement("button");
+    button.type = "button";
+    button.className = "filter-btn audience-filter-btn";
+    button.dataset.audienceFilter = option.value;
+    button.textContent = option.label;
+    button.setAttribute("aria-pressed", "false");
+    button.addEventListener("click", () => toggleAudienceFilter(option.value));
+    audienceFilterButtonsEl.appendChild(button);
+  }
+}
+
 function getFilteredAnnouncements() {
   let items = announcements;
 
@@ -330,6 +468,10 @@ function getFilteredAnnouncements() {
 
   if (selectedFeeFilters.size > 0) {
     items = items.filter((item) => selectedFeeFilters.has(getFeeCategory(item)));
+  }
+
+  if (selectedAudienceFilters.size > 0) {
+    items = items.filter((item) => selectedAudienceFilters.has(getAudienceCategory(item)));
   }
 
   return [...items].sort(compareAnnouncements);
@@ -418,10 +560,12 @@ async function loadData() {
     filterOptions = data.filterOptions || [];
     announcements = data.announcements || [];
     feeFilterOptions = data.feeFilterOptions || buildFeeFilterOptionsFromAnnouncements(announcements);
+    audienceFilterOptions = data.audienceFilterOptions || buildAudienceFilterOptionsFromAnnouncements(announcements);
     dataUpdatedAt = Date.parse(data.updatedAt) || Date.now();
 
     populateFilterButtons(filterOptions);
     populateFeeFilterButtons(feeFilterOptions);
+    populateAudienceFilterButtons(audienceFilterOptions);
 
     const updatedLabel = formatUpdatedAt(data.updatedAt);
     setStatus(

@@ -118,6 +118,96 @@ function buildFeeFilterOptions(announcements) {
     }));
 }
 
+const AUDIENCE_FILTER_LABELS = {
+  audience_all: "Tous",
+  audience_under_18: "Moins de 18 ans",
+  audience_minors_and_up: "Mineurs (à partir de X ans)",
+  audience_mixed_age: "Jeunes et adultes",
+  audience_18_plus: "18 ans et plus",
+  audience_young_adult: "Jeunes adultes (âge maximum)",
+  audience_geographic: "Résidents (critère géographique)",
+  audience_professional: "Auteurs / professionnels",
+  audience_specific: "Public spécifique",
+  audience_unknown: "Non précisé",
+};
+
+function classifyAudience(audienceText) {
+  if (!audienceText || !audienceText.trim()) {
+    return "audience_unknown";
+  }
+
+  const text = audienceText.trim();
+  const normalized = text.toLowerCase();
+
+  if (/résident|resident|francophonie|département|belgique|morbinhan|alsace|champagne|hauts-de-france|nouvelle.aquitaine|ile-de-france|france métropolitaine|métropolitaine/i.test(text)) {
+    return "audience_geographic";
+  }
+
+  if (/professionnel|artiste|écrivain|auteur|publié|jamais publié|débutants ou confirmés|imaginaire|bédéistes|illustrateurs|étudiant/i.test(text)) {
+    return "audience_professional";
+  }
+
+  if (/femmes|identifient en tant que/i.test(text)) {
+    return "audience_specific";
+  }
+
+  if (/^tous\b/i.test(normalized) || /^tous,/i.test(normalized) || normalized.includes("tout public") || normalized.includes("pour tout public")) {
+    return "audience_all";
+  }
+
+  const rangeMatch = text.match(/(\d+)\s*[-–]\s*(\d+)\s*ans/i);
+  if (rangeMatch) {
+    const min = Number(rangeMatch[1]);
+    const max = Number(rangeMatch[2]);
+    if (max <= 17) {
+      return "audience_under_18";
+    }
+    if (min >= 18) {
+      return "audience_18_plus";
+    }
+    return "audience_mixed_age";
+  }
+
+  const maxMatch = text.match(/(\d+)\s*ans\s*maximum/i);
+  if (maxMatch) {
+    const max = Number(maxMatch[1]);
+    if (max < 18) {
+      return "audience_under_18";
+    }
+    return "audience_young_adult";
+  }
+
+  const minMatch = text.match(/(\d+)\s*ans\s*minim/i);
+  if (minMatch) {
+    const min = Number(minMatch[1]);
+    if (min >= 18) {
+      return "audience_18_plus";
+    }
+    return "audience_minors_and_up";
+  }
+
+  return "audience_other";
+}
+
+function buildAudienceFilterOptions(announcements) {
+  const counts = new Map();
+
+  for (const item of announcements) {
+    const category = item.audienceCategory;
+    if (!category || category === "audience_other") {
+      continue;
+    }
+    counts.set(category, (counts.get(category) || 0) + 1);
+  }
+
+  return Object.keys(AUDIENCE_FILTER_LABELS)
+    .filter((value) => counts.has(value))
+    .map((value) => ({
+      value,
+      label: `${AUDIENCE_FILTER_LABELS[value]} (${counts.get(value)})`,
+    }));
+}
+
 function parseFilterOptions(html) {
   const selectMatch = html.match(/id="filter-selector"[^>]*>([\s\S]*?)<\/select>/);
   if (!selectMatch) {
@@ -179,6 +269,7 @@ function parseAnnouncements(html, referenceDate) {
     const added = fields["Ajouté"] || "";
     const deadline = fields["Envois jusqu'au"] || "";
     const fee = fields["Frais d'inscription"] || "";
+    const audience = fields.Public || "";
 
     return {
       id,
@@ -191,7 +282,8 @@ function parseAnnouncements(html, referenceDate) {
       addedAt: parseRelativeDate(added, referenceDate),
       deadline,
       deadlineAt: parseDeadlineDate(deadline),
-      audience: fields.Public || "",
+      audience,
+      audienceCategory: classifyAudience(audience),
       fee,
       feeCategory: classifyFee(fee),
       theme: fields["Thème"] || "",
@@ -221,6 +313,7 @@ const payload = {
   announcements: parseAnnouncements(html, new Date()),
 };
 payload.feeFilterOptions = buildFeeFilterOptions(payload.announcements);
+payload.audienceFilterOptions = buildAudienceFilterOptions(payload.announcements);
 
 writeFileSync(OUTPUT, `${JSON.stringify(payload, null, 2)}\n`, "utf8");
 console.log(`Écrit ${payload.announcements.length} annonces dans ${OUTPUT}`);
