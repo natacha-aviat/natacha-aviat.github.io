@@ -391,6 +391,93 @@
       .album-grid { grid-template-columns: repeat(3, 1fr); }
       .sidebar { width: 180px; min-width: 180px; }
     }
+
+    /* ── Vue Rechercher ── */
+    .search-layout {
+      height: calc(100vh - 80px);
+      overflow-y: auto;
+      padding: 24px 28px 32px;
+    }
+
+    .search-layout[hidden] { display: none; }
+
+    .layout.hidden { display: none; }
+
+    .search-view-panel {
+      background: var(--bg-panel);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 14px 16px;
+      max-width: 900px;
+    }
+
+    .btn-chercher {
+      background: var(--gold);
+      color: #0b101b;
+      border: none;
+      border-radius: var(--radius);
+      font-size: 13px;
+      font-weight: 700;
+      padding: 9px 22px;
+      cursor: pointer;
+      font-family: inherit;
+      white-space: nowrap;
+      transition: background 0.15s;
+    }
+
+    .btn-chercher:hover { background: var(--gold-hover); }
+
+    .scope-filters {
+      display: flex;
+      gap: 8px;
+      margin-top: 12px;
+      flex-wrap: wrap;
+    }
+
+    .scope-btn {
+      background: transparent;
+      border: 1px solid #3d4f66;
+      color: var(--text-muted);
+      border-radius: var(--radius-sm);
+      padding: 5px 14px;
+      font-size: 12px;
+      font-weight: 500;
+      cursor: pointer;
+      font-family: inherit;
+      transition: background 0.15s, border-color 0.15s, color 0.15s;
+    }
+
+    .scope-btn:hover {
+      border-color: #4d6280;
+      color: var(--text);
+    }
+
+    .scope-btn.active {
+      background: var(--blue-active);
+      border-color: #3a7ab5;
+      color: #fff;
+    }
+
+    .empty-state {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 80px 20px;
+      color: var(--text-muted);
+      text-align: center;
+    }
+
+    .empty-state svg {
+      width: 48px;
+      height: 48px;
+      margin-bottom: 16px;
+      opacity: 0.45;
+    }
+
+    .empty-state p {
+      font-size: 14px;
+    }
   </style>
 </head>
 <body>
@@ -407,13 +494,13 @@
         <span>EN</span>
       </div>
       <div class="nav-mode">
-        <button class="active">Découvrir</button>
-        <button>Rechercher</button>
+        <button class="active" data-mode="decouvrir">Découvrir</button>
+        <button data-mode="rechercher">Rechercher</button>
       </div>
     </div>
   </header>
 
-  <div class="layout">
+  <div class="layout" id="view-decouvrir">
 
     <!-- Sidebar : Les Bacs -->
     <aside class="sidebar">
@@ -721,6 +808,29 @@
     </main>
   </div>
 
+  <!-- Vue Rechercher -->
+  <div class="search-layout" id="view-rechercher" hidden>
+    <div class="search-view-panel">
+      <div class="search-row">
+        <input class="search-input" type="text" placeholder="Cherche un album, un artiste, un label...">
+        <button class="btn-chercher">Chercher</button>
+      </div>
+      <div class="scope-filters">
+        <button class="scope-btn active">Tout</button>
+        <button class="scope-btn">Albums / Titres</button>
+        <button class="scope-btn">Artistes / Labels</button>
+      </div>
+    </div>
+    <div class="empty-state">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M3 18v-6a9 9 0 0 1 18 0v6"/>
+        <path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3z"/>
+        <path d="M3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/>
+      </svg>
+      <p>Aucun résultat pour l'instant. Lance une recherche.</p>
+    </div>
+  </div>
+
   <script>
     const activeFiltersEl = document.getElementById('active-filters');
     const clearAllBtn = document.getElementById('clear-all');
@@ -785,6 +895,29 @@
       tab.addEventListener('click', () => {
         tabs.forEach(t => t.classList.remove('active'));
         tab.classList.add('active');
+      });
+    });
+
+    const modeButtons = document.querySelectorAll('.nav-mode button');
+    const viewDecouvrir = document.getElementById('view-decouvrir');
+    const viewRechercher = document.getElementById('view-rechercher');
+
+    modeButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        modeButtons.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+
+        const isRechercher = btn.dataset.mode === 'rechercher';
+        viewDecouvrir.classList.toggle('hidden', isRechercher);
+        viewRechercher.hidden = !isRechercher;
+      });
+    });
+
+    const scopeButtons = document.querySelectorAll('.scope-btn');
+    scopeButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        scopeButtons.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
       });
     });
   </script>

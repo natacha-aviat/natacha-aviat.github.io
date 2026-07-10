@@ -136,7 +136,7 @@ const AUDIENCE_FILTER_LABELS = {
   audience_young_adult: "Jeunes adultes (âge maximum)",
   audience_published: "Publié / professionnel",
   audience_unpublished: "Non publié",
-  audience_specific: "Public spécifique",
+  audience_specific: "Femmes",
   geo_france_metropolitaine: "France métropolitaine",
   geo_france: "France",
   geo_nouvelle_aquitaine: "Nouvelle-Aquitaine",

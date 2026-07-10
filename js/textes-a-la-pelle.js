@@ -239,7 +239,7 @@ function buildAudienceFilterOptionsFromAnnouncements(items) {
     audience_young_adult: "Jeunes adultes (âge maximum)",
     audience_published: "Publié / professionnel",
     audience_unpublished: "Non publié",
-    audience_specific: "Public spécifique",
+    audience_specific: "Femmes",
     geo_france_metropolitaine: "France métropolitaine",
     geo_france: "France",
     geo_nouvelle_aquitaine: "Nouvelle-Aquitaine",
@@ -572,22 +572,156 @@ function populateAudienceFilterButtons(options) {
   }
 }
 
+function getSelectedFilterSubset(selected, allowed) {
+  return new Set([...selected].filter((value) => allowed.has(value)));
+}
+
+const AGE_FILTER_IDS = new Set([
+  ...AGE_AUDIENCE_CATEGORIES,
+  "audience_no_age_constraint",
+]);
+
+const GEO_FILTER_IDS = new Set([
+  "geo_france_metropolitaine",
+  "geo_france",
+  "geo_nouvelle_aquitaine",
+  "geo_hauts_de_france",
+  "geo_champagne_ardenne",
+  "geo_morbihan",
+  "geo_belgique",
+  "geo_francophonie",
+  "geo_afrique_haiti",
+  "geo_alsace",
+  "audience_no_geo_constraint",
+]);
+
+const PUBLICATION_FILTER_IDS = new Set([
+  "audience_published",
+  "audience_unpublished",
+]);
+
+const GENDER_FILTER_IDS = new Set(["audience_specific"]);
+
+const FEE_FILTER_IDS = new Set([
+  "fee_free",
+  "fee_variable",
+  "fee_1_10",
+  "fee_11_20",
+  "fee_21_plus",
+]);
+
+function passesAgeConstraints(categories, selected) {
+  const ageSelected = getSelectedFilterSubset(selected, AGE_FILTER_IDS);
+  if (ageSelected.size === 0) {
+    return true;
+  }
+
+  if (ageSelected.size === 1 && ageSelected.has("audience_no_age_constraint")) {
+    return categories.includes("audience_no_age_constraint");
+  }
+
+  if (categories.includes("audience_no_age_constraint")) {
+    return true;
+  }
+
+  return [...ageSelected].some(
+    (filter) => filter !== "audience_no_age_constraint" && categories.includes(filter),
+  );
+}
+
+function passesGenderConstraints(categories, selected) {
+  const genderSelected = getSelectedFilterSubset(selected, GENDER_FILTER_IDS);
+  if (genderSelected.size === 0) {
+    return true;
+  }
+
+  if (genderSelected.has("audience_specific")) {
+    if (categories.includes("audience_specific")) {
+      return true;
+    }
+
+    const noGenderConstraint = !categories.includes("audience_specific");
+    const noAgeConstraint = categories.includes("audience_no_age_constraint");
+    return noGenderConstraint && noAgeConstraint;
+  }
+
+  return false;
+}
+
+function passesGeoConstraints(categories, selected) {
+  const geoSelected = getSelectedFilterSubset(selected, GEO_FILTER_IDS);
+  if (geoSelected.size === 0) {
+    return true;
+  }
+
+  if (geoSelected.size === 1 && geoSelected.has("audience_no_geo_constraint")) {
+    return categories.includes("audience_no_geo_constraint");
+  }
+
+  if (categories.includes("audience_no_geo_constraint")) {
+    return true;
+  }
+
+  return [...geoSelected].some(
+    (filter) => filter.startsWith("geo_") && categories.includes(filter),
+  );
+}
+
+function passesPublicationConstraints(categories, selected) {
+  const publicationSelected = getSelectedFilterSubset(selected, PUBLICATION_FILTER_IDS);
+  if (publicationSelected.size === 0) {
+    return true;
+  }
+
+  const hasPublicationConstraint = categories.includes("audience_published")
+    || categories.includes("audience_unpublished");
+  if (!hasPublicationConstraint) {
+    return true;
+  }
+
+  return [...publicationSelected].some((filter) => categories.includes(filter));
+}
+
+function passesAudienceConstraints(categories, selected) {
+  if (selected.size === 0) {
+    return true;
+  }
+
+  return passesAgeConstraints(categories, selected)
+    && passesGenderConstraints(categories, selected)
+    && passesGeoConstraints(categories, selected)
+    && passesPublicationConstraints(categories, selected);
+}
+
+function passesFeeConstraints(item, selected) {
+  if (selected.size === 0) {
+    return true;
+  }
+
+  const feeSelected = getSelectedFilterSubset(selected, FEE_FILTER_IDS);
+  if (feeSelected.size === 0) {
+    return true;
+  }
+
+  return feeSelected.has(getFeeCategory(item));
+}
+
+function passesTagConstraints(item, selected) {
+  if (selected.size === 0) {
+    return true;
+  }
+
+  return [...selected].every((tag) => item.tags.includes(tag));
+}
+
 function getFilteredAnnouncements() {
   let items = announcements;
 
-  if (selectedFilters.size > 0) {
-    items = items.filter((item) => item.tags.some((tag) => selectedFilters.has(tag)));
-  }
-
-  if (selectedFeeFilters.size > 0) {
-    items = items.filter((item) => selectedFeeFilters.has(getFeeCategory(item)));
-  }
-
-  if (selectedAudienceFilters.size > 0) {
-    items = items.filter((item) =>
-      getAudienceCategories(item).some((category) => selectedAudienceFilters.has(category)),
-    );
-  }
+  items = items.filter((item) => passesTagConstraints(item, selectedFilters));
+  items = items.filter((item) => passesFeeConstraints(item, selectedFeeFilters));
+  items = items.filter((item) =>
+    passesAudienceConstraints(getAudienceCategories(item), selectedAudienceFilters),
+  );
 
   return [...items].sort(compareAnnouncements);
 }
