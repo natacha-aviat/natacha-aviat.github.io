@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bandcamp Advanced Discovery World</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #0b101b;
+      --bg-panel: #111827;
+      --bg-input: #1a2233;
+      --bg-tag: #1e2a3a;
+      --text: #f0f2f5;
+      --text-muted: #8e9297;
+      --gold: #f8d448;
+      --gold-hover: #facc15;
+      --blue-active: #2e5d82;
+      --border: #1f2937;
+      --radius: 8px;
+      --radius-sm: 5px;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      font-size: 14px;
+      line-height: 1.4;
+    }
+
+    /* ── Header ── */
+    .header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      padding: 20px 28px 16px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .header-left h1 {
+      font-size: 22px;
+      font-weight: 700;
+      letter-spacing: -0.3px;
+    }
+
+    .header-left h1 .gold { color: var(--gold); }
+
+    .header-left .tagline {
+      color: var(--text-muted);
+      font-size: 13px;
+      margin-top: 4px;
+    }
+
+    .header-right {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .lang-toggle {
+      display: flex;
+      gap: 2px;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text-muted);
+    }
+
+    .lang-toggle .active {
+      color: var(--gold);
+      background: rgba(248, 212, 72, 0.12);
+      padding: 3px 7px;
+      border-radius: var(--radius-sm);
+    }
+
+    .lang-toggle span:not(.active) {
+      padding: 3px 7px;
+      cursor: pointer;
+    }
+
+    .nav-mode {
+      display: flex;
+      gap: 4px;
+    }
+
+    .nav-mode button {
+      background: none;
+      border: none;
+      color: var(--text-muted);
+      font-size: 13px;
+      font-weight: 500;
+      padding: 6px 14px;
+      border-radius: var(--radius);
+      cursor: pointer;
+      font-family: inherit;
+    }
+
+    .nav-mode button.active {
+      background: #1e2a3a;
+      color: var(--text);
+      border: 1px solid #2d3f55;
+    }
+
+    /* ── Layout ── */
+    .layout {
+      display: flex;
+      height: calc(100vh - 80px);
+    }
+
+    /* ── Sidebar ── */
+    .sidebar {
+      width: 220px;
+      min-width: 220px;
+      border-right: 1px solid var(--border);
+      overflow-y: auto;
+      padding: 16px 14px;
+      scrollbar-width: thin;
+      scrollbar-color: #2d3f55 transparent;
+    }
+
+    .sidebar h2 {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 1.2px;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+
+    .category {
+      margin-bottom: 16px;
+    }
+
+    .category h3 {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.8px;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+    }
+
+    .tag {
+      background: var(--bg-tag);
+      color: #c5cad0;
+      border: 1px solid #253347;
+      border-radius: var(--radius-sm);
+      padding: 3px 8px;
+      font-size: 11px;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: background 0.15s;
+    }
+
+    .tag:hover { background: #253347; }
+
+    .tag.active {
+      background: var(--blue-active);
+      border-color: #3a7ab5;
+      color: #fff;
+    }
+
+    /* ── Main ── */
+    .main {
+      flex: 1;
+      overflow-y: auto;
+      padding: 16px 24px 32px;
+      scrollbar-width: thin;
+      scrollbar-color: #2d3f55 transparent;
+    }
+
+    /* ── Tabs ── */
+    .tabs-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 16px;
+    }
+
+    .tabs {
+      display: flex;
+      gap: 4px;
+    }
+
+    .tab {
+      background: none;
+      border: 1px solid transparent;
+      color: var(--text-muted);
+      font-size: 13px;
+      font-weight: 500;
+      padding: 6px 14px;
+      border-radius: var(--radius);
+      cursor: pointer;
+      font-family: inherit;
+    }
+
+    .tab.active {
+      color: var(--text);
+      border-color: var(--gold);
+    }
+
+    .results-count {
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    /* ── Search bar ── */
+    .search-panel {
+      background: var(--bg-panel);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 14px 16px;
+      margin-bottom: 24px;
+    }
+
+    .search-row {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .search-input {
+      flex: 1;
+      background: var(--bg-input);
+      border: 1px solid #253347;
+      border-radius: var(--radius);
+      color: var(--text);
+      font-size: 13px;
+      padding: 9px 14px;
+      font-family: inherit;
+      outline: none;
+    }
+
+    .search-input::placeholder { color: #5a6270; }
+
+    .select-wrap {
+      position: relative;
+    }
+
+    .select-wrap select {
+      appearance: none;
+      background: var(--bg-input);
+      border: 1px solid #253347;
+      border-radius: var(--radius);
+      color: var(--text);
+      font-size: 13px;
+      padding: 9px 32px 9px 14px;
+      font-family: inherit;
+      cursor: pointer;
+      outline: none;
+    }
+
+    .select-wrap::after {
+      content: "▾";
+      position: absolute;
+      right: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--text-muted);
+      font-size: 11px;
+      pointer-events: none;
+    }
+
+    .select-days select { min-width: 58px; }
+
+    .btn-digger {
+      background: var(--gold);
+      color: #0b101b;
+      border: none;
+      border-radius: var(--radius);
+      font-size: 13px;
+      font-weight: 700;
+      padding: 9px 22px;
+      cursor: pointer;
+      font-family: inherit;
+      white-space: nowrap;
+      transition: background 0.15s;
+    }
+
+    .btn-digger:hover { background: var(--gold-hover); }
+
+    /* ── Active filters ── */
+    .active-filters {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 12px;
+      flex-wrap: wrap;
+    }
+
+    .filter-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--blue-active);
+      color: #fff;
+      border-radius: var(--radius-sm);
+      padding: 3px 10px;
+      font-size: 12px;
+    }
+
+    .filter-pill .remove {
+      cursor: pointer;
+      opacity: 0.8;
+      font-size: 13px;
+      line-height: 1;
+    }
+
+    .clear-all {
+      color: var(--text-muted);
+      font-size: 12px;
+      cursor: pointer;
+      text-decoration: none;
+    }
+
+    .clear-all:hover { color: var(--text); }
+
+    /* ── Album grid ── */
+    .album-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 20px 16px;
+    }
+
+    .album-card {
+      cursor: pointer;
+    }
+
+    .album-cover-wrap {
+      position: relative;
+      aspect-ratio: 1;
+      border-radius: var(--radius);
+      overflow: hidden;
+      margin-bottom: 8px;
+    }
+
+    .album-cover {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .album-price {
+      position: absolute;
+      bottom: 6px;
+      right: 6px;
+      background: rgba(0, 0, 0, 0.72);
+      color: var(--gold);
+      font-size: 11px;
+      font-weight: 600;
+      padding: 2px 7px;
+      border-radius: var(--radius-sm);
+    }
+
+    .album-title {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .album-artist {
+      font-size: 12px;
+      color: var(--text-muted);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      margin-top: 2px;
+    }
+
+    @media (max-width: 1200px) {
+      .album-grid { grid-template-columns: repeat(4, 1fr); }
+    }
+
+    @media (max-width: 900px) {
+      .album-grid { grid-template-columns: repeat(3, 1fr); }
+      .sidebar { width: 180px; min-width: 180px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="header">
+    <div class="header-left">
+      <h1>Bandcamp <span class="gold">Advanced Discovery World</span></h1>
+      <p class="tagline">Digging chirurgical : explore ou recherche.</p>
+    </div>
+    <div class="header-right">
+      <div class="lang-toggle">
+        <span class="active">FR</span>
+        <span>EN</span>
+      </div>
+      <div class="nav-mode">
+        <button class="active">Découvrir</button>
+        <button>Rechercher</button>
+      </div>
+    </div>
+  </header>
+
+  <div class="layout">
+
+    <!-- Sidebar : Les Bacs -->
+    <aside class="sidebar">
+      <h2>Les Bacs</h2>
+
+      <div class="category">
+        <h3>Électronique</h3>
+        <div class="tags">
+          <span class="tag">techno</span>
+          <span class="tag">house</span>
+          <span class="tag">deep-house</span>
+          <span class="tag">electro</span>
+          <span class="tag">ambient</span>
+          <span class="tag">idm</span>
+          <span class="tag">breakbeat</span>
+          <span class="tag">drum-and-bass</span>
+          <span class="tag">dubstep</span>
+          <span class="tag">downtempo</span>
+          <span class="tag">synthwave</span>
+          <span class="tag">acid</span>
+          <span class="tag active">minimal</span>
+        </div>
+      </div>
+
+      <div class="category">
+        <h3>Hip-Hop / Beats</h3>
+        <div class="tags">
+          <span class="tag">hip-hop</span>
+          <span class="tag">instrumental-hip-hop</span>
+          <span class="tag">boom-bap</span>
+          <span class="tag">trap</span>
+          <span class="tag">lo-fi</span>
+          <span class="tag active">beat-tape</span>
+          <span class="tag">trip-hop</span>
+        </div>
+      </div>
+
+      <div class="category">
+        <h3>Soul / Funk / Disco</h3>
+        <div class="tags">
+          <span class="tag">soul</span>
+          <span class="tag">funk</span>
+          <span class="tag">disco</span>
+          <span class="tag">jazz</span>
+          <span class="tag">r-and-b</span>
+          <span class="tag">afrobeat</span>
+          <span class="tag">boogie</span>
+        </div>
+      </div>
+
+      <div class="category">
+        <h3>Dub / Reggae / Global</h3>
+        <div class="tags">
+          <span class="tag">dub</span>
+          <span class="tag">reggae</span>
+          <span class="tag">dancehall</span>
+          <span class="tag">world</span>
+          <span class="tag">latin</span>
+          <span class="tag">afro-house</span>
+        </div>
+      </div>
+
+      <div class="category">
+        <h3>Rock / Indie</h3>
+        <div class="tags">
+          <span class="tag">rock</span>
+          <span class="tag">indie</span>
+          <span class="tag">post-punk</span>
+          <span class="tag">shoegaze</span>
+          <span class="tag">psychedelic</span>
+          <span class="tag">punk</span>
+          <span class="tag">metal</span>
+        </div>
+      </div>
+
+      <div class="category">
+        <h3>Expérimental</h3>
+        <div class="tags">
+          <span class="tag">experimental</span>
+          <span class="tag">noise</span>
+          <span class="tag">drone</span>
+          <span class="tag">dark-ambient</span>
+          <span class="tag">industrial</span>
+          <span class="tag">modern-classical</span>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main content -->
+    <main class="main">
+
+      <!-- Tabs -->
+      <div class="tabs-row">
+        <div class="tabs">
+          <button class="tab active">Nouveautés</button>
+          <button class="tab">Tendances</button>
+          <button class="tab">Sélection</button>
+        </div>
+        <span class="results-count">28 résultats</span>
+      </div>
+
+      <!-- Search panel -->
+      <div class="search-panel">
+        <div class="search-row">
+          <input class="search-input" type="text" placeholder="Ajoute un genre (ex : deep-house, broken-beat...)">
+          <div class="select-wrap">
+            <select>
+              <option selected>Monde entier</option>
+              <option>Paris</option>
+              <option>Londres</option>
+              <option>Berlin</option>
+              <option>Amsterdam</option>
+              <option>Lisbonne</option>
+              <option>Manchester</option>
+              <option>Bristol</option>
+              <option>Glasgow</option>
+              <option>New York</option>
+              <option>Detroit</option>
+              <option>Chicago</option>
+              <option>Los Angeles</option>
+              <option>Montréal</option>
+              <option>Tokyo</option>
+            </select>
+          </div>
+          <div class="select-wrap select-days">
+            <select>
+              <option>30</option>
+              <option selected>60</option>
+              <option>90</option>
+            </select>
+          </div>
+          <button class="btn-digger">Digger</button>
+        </div>
+        <div class="active-filters">
+          <span class="filter-pill">minimal <span class="remove">×</span></span>
+          <span class="filter-pill">beat-tape <span class="remove">×</span></span>
+          <a class="clear-all" href="#">tout effacer</a>
+        </div>
+      </div>
+
+      <!-- Album grid -->
+      <div class="album-grid">
+
+        <div class="album-card">
+          <div class="album-cover-wrap">
+            <img class="album-cover" src="https://picsum.photos/seed/album01/300/300" alt="">
+            <span class="album-price">0,00 $CA</span>
+          </div>
+          <div class="album-title">Très bruyant</div>
+          <div class="album-artist">Modulaire vol. 1</div>
+        </div>
+
+        <div class="album-card">
+          <div class="album-cover-wrap">
+            <img class="album-cover" src="https://picsum.photos/seed/album02/300/300" alt="">
+            <span class="album-price">0,00 $CA</span>
+          </div>
+          <div class="album-title">Drivewa_y</div>
+          <div class="album-artist">The Knife</div>
+        </div>
+
+        <div class="album-card">
+          <div class="album-cover-wrap">
+            <img class="album-cover" src="https://picsum.photos/seed/album03/300/300" alt="">
+            <span class="album-price">4,00 $CA</span>
+          </div>
+          <div class="album-title">Final DJ Set</div>
+          <div class="album-artist">Various Artists</div>
+        </div>
+
+        <div class="album-card">
+          <div class="album-cover-wrap">
+            <img class="album-cover" src="https://picsum.photos/seed/album04/300/300" alt="">
+            <span class="album-price">6,00 $CA</span>
+          </div>
+          <div class="album-title">JAPAN: Far East Dark Ambient Anthology 1980-1990</div>
+          <div class="album-artist">Various Artists</div>
+        </div>
+
+        <div class="album-card">
+          <div class="album-cover-wrap">
+            <img class="album-cover" src="https://picsum.photos/seed/album05/300/300" alt="">
+            <span class="album-price">5,00 $CA</span>
+          </div>
+          <div class="album-title">Robotnik</div>
+          <div class="album-artist">Ko Ishihara</div>
+        </div>
+
+        <div class="album-card">
+          <div class="album-cover-wrap">
+            <img class="album-cover" src="https://picsum.photos/seed/album06/300/300" alt="">
+            <span class="album-price">1,56 €EU</span>
+          </div>
+          <div class="album-title">Eternal Flint2</div>
+          <div class="album-artist">Distant Again</div>
+        </div>
+
+        <div class="album-card">
+          <div class="album-cover-wrap">
+            <img class="album-cover" src="https://picsum.photos/seed/album07/300/300" alt="">
+            <span class="album-price">0,00 $CA</span>
+          </div>
+          <div class="album-title">Un poco de suela en el alma</div>
+          <div class="album-artist">SKA-Hi max</div>
+        </div>
+
+        <div class="album-card">
+          <div class="album-cover-wrap">
+            <img class="album-cover" src="https://picsum.photos/seed/album08/300/300" alt="">
+            <span class="album-price">4,00 $CA</span>
+          </div>
+          <div class="album-title">rdyear</div>
+          <div class="album-artist">thoughts</div>
+        </div>
+
+        <div class="album-card">
+          <div class="album-cover-wrap">
+            <img class="album-cover" src="https://picsum.photos/seed/album09/300/300" alt="">
+            <span class="album-price">0,00 $CA</span>
+          </div>
+          <div class="album-title">Dissonant Rhythms</div>
+          <div class="album-artist">Cut Copy</div>
+        </div>
+
+        <div class="album-card">
+          <div class="album-cover-wrap">
+            <img class="album-cover" src="https://picsum.photos/seed/album10/300/300" alt="">
+            <span class="album-price">1,50 £GB</span>
+          </div>
+          <div class="album-title">New Taboo</div>
+          <div class="album-artist">Various Artists</div>
+        </div>
+
+        <div class="album-card">
+          <div class="album-cover-wrap">
+            <img class="album-cover" src="https://picsum.photos/seed/album11/300/300" alt="">
+            <span class="album-price">0,00 $CA</span>
+          </div>
+          <div class="album-title">Dusk</div>
+          <div class="album-artist">Achronman</div>
+        </div>
+
+        <div class="album-card">
+          <div class="album-cover-wrap">
+            <img class="album-cover" src="https://picsum.photos/seed/album12/300/300" alt="">
+            <span class="album-price">0,00 $CA</span>
+          </div>
+          <div class="album-title">Megabheatham</div>
+          <div class="album-artist">Dogwaffle</div>
+        </div>
+
+        <div class="album-card">
+          <div class="album-cover-wrap">
+            <img class="album-cover" src="https://picsum.photos/seed/album13/300/300" alt="">
+            <span class="album-price">6,00 $CA</span>
+          </div>
+          <div class="album-title">Сыны Чернобыля</div>
+          <div class="album-artist">Perel</div>
+        </div>
+
+        <div class="album-card">
+          <div class="album-cover-wrap">
+            <img class="album-cover" src="https://picsum.photos/seed/album14/300/300" alt="">
+            <span class="album-price">0,00 $CA</span>
+          </div>
+          <div class="album-title">live @ 4bid oude kerk</div>
+          <div class="album-artist">Gramrcy</div>
+        </div>
+
+        <div class="album-card">
+          <div class="album-cover-wrap">
+            <img class="album-cover" src="https://picsum.photos/seed/album15/300/300" alt="">
+            <span class="album-price">0,00 $CA</span>
+          </div>
+          <div class="album-title">Kraftwerk</div>
+          <div class="album-artist">Fresh Produce</div>
+        </div>
+
+        <div class="album-card">
+          <div class="album-cover-wrap">
+            <img class="album-cover" src="https://picsum.photos/seed/album16/300/300" alt="">
+            <span class="album-price">0,00 $CA</span>
+          </div>
+          <div class="album-title">I'm not here anymore</div>
+          <div class="album-artist">Y0u1</div>
+        </div>
+
+        <div class="album-card">
+          <div class="album-cover-wrap">
+            <img class="album-cover" src="https://picsum.photos/seed/album17/300/300" alt="">
+            <span class="album-price">0,00 $CA</span>
+          </div>
+          <div class="album-title">UNHOIR</div>
+          <div class="album-artist">Caprice</div>
+        </div>
+
+        <div class="album-card">
+          <div class="album-cover-wrap">
+            <img class="album-cover" src="https://picsum.photos/seed/album18/300/300" alt="">
+            <span class="album-price">0,00 $CA</span>
+          </div>
+          <div class="album-title">REDRAWN I</div>
+          <div class="album-artist">UNKNOWN LOVERS</div>
+        </div>
+
+      </div>
+    </main>
+  </div>
+
+</body>
+</html>
