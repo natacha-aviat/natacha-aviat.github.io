@@ -119,40 +119,107 @@ function buildFeeFilterOptions(announcements) {
 }
 
 const AUDIENCE_FILTER_LABELS = {
-  audience_all: "Tous",
   audience_under_18: "Moins de 18 ans",
   audience_minors_and_up: "Mineurs (à partir de X ans)",
   audience_mixed_age: "Jeunes et adultes",
   audience_18_plus: "18 ans et plus",
   audience_young_adult: "Jeunes adultes (âge maximum)",
-  audience_geographic: "Résidents (critère géographique)",
-  audience_professional: "Auteurs / professionnels",
+  audience_published: "Publié / professionnel",
+  audience_unpublished: "Non publié",
   audience_specific: "Public spécifique",
+  geo_france_metropolitaine: "France métropolitaine",
+  geo_france: "France",
+  geo_nouvelle_aquitaine: "Nouvelle-Aquitaine",
+  geo_hauts_de_france: "Hauts-de-France",
+  geo_champagne_ardenne: "Champagne-Ardenne",
+  geo_morbihan: "Morbihan",
+  geo_belgique: "Belgique et communes frontalières",
+  geo_francophonie: "Francophonie (hors Île-de-France)",
+  geo_afrique_haiti: "Afrique et Haïti",
+  geo_alsace: "Alsace",
   audience_unknown: "Non précisé",
 };
 
+const AUDIENCE_FILTER_ORDER = [
+  "audience_under_18",
+  "audience_minors_and_up",
+  "audience_mixed_age",
+  "audience_18_plus",
+  "audience_young_adult",
+  "audience_published",
+  "audience_unpublished",
+  "audience_specific",
+  "geo_france_metropolitaine",
+  "geo_france",
+  "geo_nouvelle_aquitaine",
+  "geo_hauts_de_france",
+  "geo_champagne_ardenne",
+  "geo_morbihan",
+  "geo_belgique",
+  "geo_francophonie",
+  "geo_afrique_haiti",
+  "geo_alsace",
+  "audience_unknown",
+];
+
+function classifyGeographic(text) {
+  if (/france métropolitaine/i.test(text)) {
+    return "geo_france_metropolitaine";
+  }
+  if (/nouvelle.aquitaine/i.test(text)) {
+    return "geo_nouvelle_aquitaine";
+  }
+  if (/hauts-de-france/i.test(text)) {
+    return "geo_hauts_de_france";
+  }
+  if (/champagne.ardenne/i.test(text)) {
+    return "geo_champagne_ardenne";
+  }
+  if (/morbihan/i.test(text)) {
+    return "geo_morbihan";
+  }
+  if (/belgique|communes frontalières/i.test(text)) {
+    return "geo_belgique";
+  }
+  if (/francophonie.*ile-de-france|toute la francophonie/i.test(text)) {
+    return "geo_francophonie";
+  }
+  if (/territoires africains|d'haïti/i.test(text)) {
+    return "geo_afrique_haiti";
+  }
+  if (/alsace/i.test(text)) {
+    return "geo_alsace";
+  }
+  if (/résidents de france\b|résidents de france,/i.test(text)) {
+    return "geo_france";
+  }
+
+  return null;
+}
+
 function classifyAudience(audienceText) {
   if (!audienceText || !audienceText.trim()) {
-    return "audience_unknown";
+    return ["audience_unknown"];
   }
 
   const text = audienceText.trim();
-  const normalized = text.toLowerCase();
+  const categories = [];
 
-  if (/résident|resident|francophonie|département|belgique|morbinhan|alsace|champagne|hauts-de-france|nouvelle.aquitaine|ile-de-france|france métropolitaine|métropolitaine/i.test(text)) {
-    return "audience_geographic";
+  const geographicCategory = classifyGeographic(text);
+  if (geographicCategory) {
+    categories.push(geographicCategory);
   }
 
-  if (/professionnel|artiste|écrivain|auteur|publié|jamais publié|débutants ou confirmés|imaginaire|bédéistes|illustrateurs|étudiant/i.test(text)) {
-    return "audience_professional";
+  if (/jamais publié|non publiés|non publié|amateurs non publiés/i.test(text)) {
+    categories.push("audience_unpublished");
+  }
+
+  if (/professionnel|publié|confirmés|professionnellement|au moins un livre publié|professionnels|auteurs vivants|auteurs\/illustrateurs|auteur et autrice de l'imaginaire|artistes professionnel/i.test(text)) {
+    categories.push("audience_published");
   }
 
   if (/femmes|identifient en tant que/i.test(text)) {
-    return "audience_specific";
-  }
-
-  if (/^tous\b/i.test(normalized) || /^tous,/i.test(normalized) || normalized.includes("tout public") || normalized.includes("pour tout public")) {
-    return "audience_all";
+    categories.push("audience_specific");
   }
 
   const rangeMatch = text.match(/(\d+)\s*[-–]\s*(\d+)\s*ans/i);
@@ -160,47 +227,39 @@ function classifyAudience(audienceText) {
     const min = Number(rangeMatch[1]);
     const max = Number(rangeMatch[2]);
     if (max <= 17) {
-      return "audience_under_18";
+      categories.push("audience_under_18");
+    } else if (min >= 18) {
+      categories.push("audience_18_plus");
+    } else {
+      categories.push("audience_mixed_age");
     }
-    if (min >= 18) {
-      return "audience_18_plus";
-    }
-    return "audience_mixed_age";
   }
 
   const maxMatch = text.match(/(\d+)\s*ans\s*maximum/i);
   if (maxMatch) {
     const max = Number(maxMatch[1]);
-    if (max < 18) {
-      return "audience_under_18";
-    }
-    return "audience_young_adult";
+    categories.push(max < 18 ? "audience_under_18" : "audience_young_adult");
   }
 
   const minMatch = text.match(/(\d+)\s*ans\s*minim/i);
   if (minMatch) {
     const min = Number(minMatch[1]);
-    if (min >= 18) {
-      return "audience_18_plus";
-    }
-    return "audience_minors_and_up";
+    categories.push(min >= 18 ? "audience_18_plus" : "audience_minors_and_up");
   }
 
-  return "audience_other";
+  return [...new Set(categories)];
 }
 
 function buildAudienceFilterOptions(announcements) {
   const counts = new Map();
 
   for (const item of announcements) {
-    const category = item.audienceCategory;
-    if (!category || category === "audience_other") {
-      continue;
+    for (const category of item.audienceCategories || []) {
+      counts.set(category, (counts.get(category) || 0) + 1);
     }
-    counts.set(category, (counts.get(category) || 0) + 1);
   }
 
-  return Object.keys(AUDIENCE_FILTER_LABELS)
+  return AUDIENCE_FILTER_ORDER
     .filter((value) => counts.has(value))
     .map((value) => ({
       value,
@@ -283,7 +342,7 @@ function parseAnnouncements(html, referenceDate) {
       deadline,
       deadlineAt: parseDeadlineDate(deadline),
       audience,
-      audienceCategory: classifyAudience(audience),
+      audienceCategories: classifyAudience(audience),
       fee,
       feeCategory: classifyFee(fee),
       theme: fields["Thème"] || "",

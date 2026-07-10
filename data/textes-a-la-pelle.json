@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-07-10T07:42:50.543Z",
+  "updatedAt": "2026-07-10T08:07:11.852Z",
   "source": "https://textes-a-la-pelle.fr/",
   "filterOptions": [
     {
@@ -230,12 +230,15 @@
         "format_recueil de poèmes",
         "format_roman"
       ],
-      "added": "il y a 9 heures",
-      "addedAt": "2026-07-09T22:42:50.550Z",
+      "added": "il y a 10 heures",
+      "addedAt": "2026-07-09T22:07:11.859Z",
       "deadline": "31/07/2026",
       "deadlineAt": "2026-07-31T00:00:00.000Z",
       "audience": "Résidents des territoires africains ou d'Haïti, auteurs d'au moins un livre publié à titre individuel, par une maison d’édition professionnelle",
-      "audienceCategory": "audience_geographic",
+      "audienceCategories": [
+        "geo_afrique_haiti",
+        "audience_published"
+      ],
       "fee": "0 €",
       "feeCategory": "fee_free",
       "theme": "Libre.",
@@ -251,12 +254,12 @@
       "tags": [
         "format_poème"
       ],
-      "added": "il y a 9 heures",
-      "addedAt": "2026-07-09T22:42:50.550Z",
+      "added": "il y a 10 heures",
+      "addedAt": "2026-07-09T22:07:11.859Z",
       "deadline": "05/09/2026",
       "deadlineAt": "2026-09-05T00:00:00.000Z",
       "audience": "Tous",
-      "audienceCategory": "audience_all",
+      "audienceCategories": [],
       "fee": "0 €",
       "feeCategory": "fee_free",
       "theme": "Vérité et justice.",
@@ -275,11 +278,13 @@
         "format_texte"
       ],
       "added": "il y a 1 jour",
-      "addedAt": "2026-07-09T07:42:50.550Z",
+      "addedAt": "2026-07-09T08:07:11.859Z",
       "deadline": "31/08/2026",
       "deadlineAt": "2026-08-31T00:00:00.000Z",
       "audience": "Personnes qui s'identifient en tant que femmes",
-      "audienceCategory": "audience_specific",
+      "audienceCategories": [
+        "audience_specific"
+      ],
       "fee": "0 €",
       "feeCategory": "fee_free",
       "theme": "Crépuscule.",
@@ -296,11 +301,11 @@
         "format_poème"
       ],
       "added": "il y a 1 jour",
-      "addedAt": "2026-07-09T07:42:50.550Z",
+      "addedAt": "2026-07-09T08:07:11.859Z",
       "deadline": "06/09/2026",
       "deadlineAt": "2026-09-06T00:00:00.000Z",
       "audience": "Tous",
-      "audienceCategory": "audience_all",
+      "audienceCategories": [],
       "fee": "0 €",
       "feeCategory": "fee_free",
       "theme": "Renouveau.",
@@ -317,11 +322,13 @@
         "format_texte"
       ],
       "added": "il y a 2 jours",
-      "addedAt": "2026-07-08T07:42:50.550Z",
+      "addedAt": "2026-07-08T08:07:11.859Z",
       "deadline": "01/09/2026",
       "deadlineAt": "2026-09-01T00:00:00.000Z",
       "audience": "Toute la francophonie à l'exception de l'Ile-de-France",
-      "audienceCategory": "audience_geographic",
+      "audienceCategories": [
+        "geo_francophonie"
+      ],
       "fee": "0 €",
       "feeCategory": "fee_free",
       "theme": "Ophélie (détails sur le site). Littérature expérimentale.",
@@ -338,11 +345,11 @@
         "format_nouvelle"
       ],
       "added": "il y a 2 jours",
-      "addedAt": "2026-07-08T07:42:50.550Z",
+      "addedAt": "2026-07-08T08:07:11.859Z",
       "deadline": "15/08/2026",
       "deadlineAt": "2026-08-15T00:00:00.000Z",
       "audience": "Tous",
-      "audienceCategory": "audience_all",
+      "audienceCategories": [],
       "fee": "0-8 €",
       "feeCategory": "fee_variable",
       "theme": "Aventure botanique.",
@@ -363,11 +370,13 @@
         "genre_science-fiction"
       ],
       "added": "il y a 3 jours",
-      "addedAt": "2026-07-07T07:42:50.550Z",
+      "addedAt": "2026-07-07T08:07:11.859Z",
       "deadline": "31/10/2026",
       "deadlineAt": "2026-10-31T00:00:00.000Z",
       "audience": "18 ans minimum",
-      "audienceCategory": "audience_18_plus",
+      "audienceCategories": [
+        "audience_18_plus"
+      ],
       "fee": "0 €",
       "feeCategory": "fee_free",
       "theme": "La Tour.",
@@ -384,11 +393,13 @@
         "format_poème"
       ],
       "added": "il y a 3 jours",
-      "addedAt": "2026-07-07T07:42:50.550Z",
+      "addedAt": "2026-07-07T08:07:11.859Z",
       "deadline": "31/12/2026",
       "deadlineAt": "2026-12-31T00:00:00.000Z",
       "audience": "18 ans minimum",
-      "audienceCategory": "audience_18_plus",
+      "audienceCategories": [
+        "audience_18_plus"
+      ],
       "fee": "0 €",
       "feeCategory": "fee_free",
       "theme": "Un message d'espoir pour l'humanité ou un hommage à une personne chère disparue.",
@@ -405,11 +416,11 @@
         "format_pièce de théâtre"
       ],
       "added": "il y a 4 jours",
-      "addedAt": "2026-07-06T07:42:50.550Z",
+      "addedAt": "2026-07-06T08:07:11.859Z",
       "deadline": "30/07/2026",
       "deadlineAt": "2026-07-30T00:00:00.000Z",
       "audience": "Tous",
-      "audienceCategory": "audience_all",
+      "audienceCategories": [],
       "fee": "0 €",
       "feeCategory": "fee_free",
       "theme": "Libre.",
@@ -426,11 +437,11 @@
         "format_nouvelle"
       ],
       "added": "il y a 4 jours",
-      "addedAt": "2026-07-06T07:42:50.550Z",
+      "addedAt": "2026-07-06T08:07:11.859Z",
       "deadline": "23/08/2026",
       "deadlineAt": "2026-08-23T00:00:00.000Z",
       "audience": "Tous",
-      "audienceCategory": "audience_all",
+      "audienceCategories": [],
       "fee": "0 €",
       "feeCategory": "fee_free",
       "theme": "La ville de Courbevoie doit apparaitre dans le récit.",
@@ -447,11 +458,13 @@
         "format_poème"
       ],
       "added": "il y a 5 jours",
-      "addedAt": "2026-07-05T07:42:50.550Z",
+      "addedAt": "2026-07-05T08:07:11.859Z",
       "deadline": "10/08/2026",
       "deadlineAt": "2026-08-10T00:00:00.000Z",
       "audience": "6-17 ans",
-      "audienceCategory": "audience_under_18",
+      "audienceCategories": [
+        "audience_under_18"
+      ],
       "fee": "0 €",
       "feeCategory": "fee_free",
       "theme": "Libre.",
@@ -468,11 +481,11 @@
         "format_texte"
       ],
       "added": "il y a 6 jours",
-      "addedAt": "2026-07-04T07:42:50.550Z",
+      "addedAt": "2026-07-04T08:07:11.859Z",
       "deadline": "31/12/2026",
       "deadlineAt": "2026-12-31T00:00:00.000Z",
       "audience": "Tous",
-      "audienceCategory": "audience_all",
+      "audienceCategories": [],
       "fee": "0 €",
       "feeCategory": "fee_free",
       "theme": "Lui, c'est l'homme dans tous ses états.",
@@ -489,11 +502,13 @@
         "format_nouvelle"
       ],
       "added": "il y a 6 jours",
-      "addedAt": "2026-07-04T07:42:50.550Z",
+      "addedAt": "2026-07-04T08:07:11.859Z",
       "deadline": "23/08/2026",
       "deadlineAt": "2026-08-23T00:00:00.000Z",
       "audience": "11 ans minimum",
-      "audienceCategory": "audience_minors_and_up",
+      "audienceCategories": [
+        "audience_minors_and_up"
+      ],
       "fee": "0 €",
       "feeCategory": "fee_free",
       "theme": "Un jour pas comme les autres. La nouvelle doit obligatoirement avoir pour cadre la ville de Jouy-en-Josas.",
@@ -511,11 +526,13 @@
         "genre_historique"
       ],
       "added": "il y a 7 jours",
-      "addedAt": "2026-07-03T07:42:50.550Z",
+      "addedAt": "2026-07-03T08:07:11.859Z",
       "deadline": "11/11/2026",
       "deadlineAt": "2026-11-11T00:00:00.000Z",
       "audience": "11 ans minimum",
-      "audienceCategory": "audience_minors_and_up",
+      "audienceCategories": [
+        "audience_minors_and_up"
+      ],
       "fee": "0 €",
       "feeCategory": "fee_free",
       "theme": "Écrire sur un lieu emblématique de la Charente, à une époque facilement identifiable de son histoire. Votre maison familiale, l’école de votre enfance, ou encore l’écluse de Juac sont autant d’exemples de lieux chargés d’histoires à envisager comme le décor de votre récit.",
@@ -532,11 +549,13 @@
         "format_pièce de théâtre"
       ],
       "added": "il y a 7 jours",
-      "addedAt": "2026-07-03T07:42:50.550Z",
+      "addedAt": "2026-07-03T08:07:11.859Z",
       "deadline": "30/07/2026",
       "deadlineAt": "2026-07-30T00:00:00.000Z",
       "audience": "Artistes professionnel·les",
-      "audienceCategory": "audience_professional",
+      "audienceCategories": [
+        "audience_published"
+      ],
       "fee": "0 €",
       "feeCategory": "fee_free",
       "theme": "Libre. Création pour l'extérieur, le tout-terrain, les lieux non dédiés, forme légère techniquement, projet participatif possible.",
@@ -561,11 +580,15 @@
         "genre_science-fiction"
       ],
       "added": "il y a 8 jours",
-      "addedAt": "2026-07-02T07:42:50.550Z",
+      "addedAt": "2026-07-02T08:07:11.859Z",
       "deadline": "28/08/2026",
       "deadlineAt": "2026-08-28T00:00:00.000Z",
       "audience": "Auteurs amateurs non publiés, 16 ans minimum",
-      "audienceCategory": "audience_professional",
+      "audienceCategories": [
+        "audience_unpublished",
+        "audience_published",
+        "audience_minors_and_up"
+      ],
       "fee": "0 €",
       "feeCategory": "fee_free",
       "theme": "Choisissez vos mots pour décrire un paysage. Votre regard nous le fera traverser et vos sens nous le feront découvrir. Que vous choisissiez la beauté, la rudesse ou la désolation d’un lieu, il ne sera pas un simple décor, votre sensibilité devra transcrire l’atmosphère de cet endroit. Osez nous surprendre avec une fin surprenante, un élément perturbateur que l’on n’attend pas : un objet, une trace, un être vivant ou imaginé.",
@@ -582,11 +605,11 @@
         "format_nouvelle"
       ],
       "added": "il y a 8 jours",
-      "addedAt": "2026-07-02T07:42:50.550Z",
+      "addedAt": "2026-07-02T08:07:11.859Z",
       "deadline": "31/01/2027",
       "deadlineAt": "2027-01-31T00:00:00.000Z",
       "audience": "Pour tout public qui aime écrire et raconter des histoires",
-      "audienceCategory": "audience_all",
+      "audienceCategories": [],
       "fee": "7 €",
       "feeCategory": "fee_1_10",
       "theme": "Libre. Liste de mots à insérer dans le texte (au moins 10 sur les 12) : neuf, Champagne, cuillère, voyage, bienveillance, volupté, merveilleux, sourire, nuage, diablerie, orage, chapeau.",
@@ -603,11 +626,11 @@
         "format_poème"
       ],
       "added": "il y a 9 jours",
-      "addedAt": "2026-07-01T07:42:50.550Z",
+      "addedAt": "2026-07-01T08:07:11.859Z",
       "deadline": "24/08/2026",
       "deadlineAt": "2026-08-24T00:00:00.000Z",
       "audience": "Tous",
-      "audienceCategory": "audience_all",
+      "audienceCategories": [],
       "fee": "0 €",
       "feeCategory": "fee_free",
       "theme": "Le mot « cloche » avec tous les sens qu'on peut lui donner.",
@@ -624,11 +647,13 @@
         "format_pièce de théâtre"
       ],
       "added": "il y a 9 jours",
-      "addedAt": "2026-07-01T07:42:50.550Z",
+      "addedAt": "2026-07-01T08:07:11.859Z",
       "deadline": "12/07/2026",
       "deadlineAt": "2026-07-12T00:00:00.000Z",
       "audience": "Être un·e artiste, créatrice/créateur ou écrivain·e engagé·e professionnellement dans la création contemporaine et justifiant de travaux antérieurs",
-      "audienceCategory": "audience_professional",
+      "audienceCategories": [
+        "audience_published"
+      ],
       "fee": "0 €",
       "feeCategory": "fee_free",
       "theme": "Libre. Attention particulière aux projets à destination des jeunes publics. Pièces originales, inédites, en langue française, pour 1 à 5 interprètes, durée d'environ 1h30.",
@@ -645,11 +670,11 @@
         "format_nouvelle"
       ],
       "added": "il y a 10 jours",
-      "addedAt": "2026-06-30T07:42:50.550Z",
+      "addedAt": "2026-06-30T08:07:11.859Z",
       "deadline": "30/09/2026",
       "deadlineAt": "2026-09-30T00:00:00.000Z",
       "audience": "Tous",
-      "audienceCategory": "audience_all",
+      "audienceCategories": [],
       "fee": "0-10 €",
       "feeCategory": "fee_variable",
       "theme": "Anniversaire.",
@@ -668,11 +693,13 @@
         "format_tanka"
       ],
       "added": "il y a 10 jours",
-      "addedAt": "2026-06-30T07:42:50.550Z",
+      "addedAt": "2026-06-30T08:07:11.859Z",
       "deadline": "01/12/2026",
       "deadlineAt": "2026-12-01T00:00:00.000Z",
       "audience": "18 ans minimum",
-      "audienceCategory": "audience_18_plus",
+      "audienceCategories": [
+        "audience_18_plus"
+      ],
       "fee": "0 €",
       "feeCategory": "fee_free",
       "theme": "Selon l'inspiration née de 4 illustrations de Valérie Marchand.",
@@ -692,11 +719,11 @@
         "format_texte"
       ],
       "added": "il y a 11 jours",
-      "addedAt": "2026-06-29T07:42:50.550Z",
+      "addedAt": "2026-06-29T08:07:11.859Z",
       "deadline": "31/10/2026",
       "deadlineAt": "2026-10-31T00:00:00.000Z",
       "audience": "Tous",
-      "audienceCategory": "audience_all",
+      "audienceCategories": [],
       "fee": "0 €",
       "feeCategory": "fee_free",
       "theme": "Amitié, solidarité, écritures collectives.",
@@ -713,11 +740,13 @@
         "format_nouvelle"
       ],
       "added": "il y a 11 jours",
-      "addedAt": "2026-06-29T07:42:50.550Z",
+      "addedAt": "2026-06-29T08:07:11.859Z",
       "deadline": "31/10/2026",
       "deadlineAt": "2026-10-31T00:00:00.000Z",
       "audience": "15 ans minimum",
-      "audienceCategory": "audience_minors_and_up",
+      "audienceCategories": [
+        "audience_minors_and_up"
+      ],
       "fee": "0 €",
       "feeCategory": "fee_free",
       "theme": "Être en lien avec le Thouarsais par le biais d’un événement, d’une figure historique, d’une œuvre patrimoniale ou faisant librement écho à l’histoire de Thouarset de ses environs et débuter par le paragraphe suivant : « L’hôtel Tyndo ressemblait à une fourmilière, sa voisine la Tour Grainetière n'était pas en reste. Partout dans la ville, on entendait aussi des clameurs. Les Thouarsais s'agitaient. Il faut dire que l'événement était de taille et le personnage d'importance. Nul ne savait si cette venue était de bon augure. »",
@@ -734,11 +763,11 @@
         "format_texte"
       ],
       "added": "il y a 12 jours",
-      "addedAt": "2026-06-28T07:42:50.550Z",
+      "addedAt": "2026-06-28T08:07:11.859Z",
       "deadline": "31/07/2026",
       "deadlineAt": "2026-07-31T00:00:00.000Z",
       "audience": "Tous",
-      "audienceCategory": "audience_all",
+      "audienceCategories": [],
       "fee": "0 €",
       "feeCategory": "fee_free",
       "theme": "NINJA.",
@@ -756,11 +785,11 @@
         "format_poème"
       ],
       "added": "il y a 12 jours",
-      "addedAt": "2026-06-28T07:42:50.550Z",
+      "addedAt": "2026-06-28T08:07:11.859Z",
       "deadline": "15/07/2026",
       "deadlineAt": "2026-07-15T00:00:00.000Z",
       "audience": "Tous",
-      "audienceCategory": "audience_all",
+      "audienceCategories": [],
       "fee": "0 €",
       "feeCategory": "fee_free",
       "theme": "Mémoire.",
@@ -779,11 +808,13 @@
         "genre_romance"
       ],
       "added": "il y a 13 jours",
-      "addedAt": "2026-06-27T07:42:50.550Z",
+      "addedAt": "2026-06-27T08:07:11.859Z",
       "deadline": "31/08/2026",
       "deadlineAt": "2026-08-31T00:00:00.000Z",
       "audience": "Auteurs débutants ou confirmés",
-      "audienceCategory": "audience_professional",
+      "audienceCategories": [
+        "audience_published"
+      ],
       "fee": "0 €",
       "feeCategory": "fee_free",
       "theme": "L'été.",
@@ -800,11 +831,11 @@
         "format_nouvelle"
       ],
       "added": "il y a 13 jours",
-      "addedAt": "2026-06-27T07:42:50.550Z",
+      "addedAt": "2026-06-27T08:07:11.859Z",
       "deadline": "02/08/2026",
       "deadlineAt": "2026-08-02T00:00:00.000Z",
       "audience": "Tous",
-      "audienceCategory": "audience_all",
+      "audienceCategories": [],
       "fee": "0 €",
       "feeCategory": "fee_free",
       "theme": "La penta-contrainte révélée progressivement durant les trois semaines précédant la nuit du concours.Samedi 11 juillet à 20h semaine -3 : un thème à interpréter. Samedi 25 juillet à 20h semaine -1 : un type d’interaction à proposer au lecteur. Samedi 1 août 2026 à 20h,12h avant la fin du concours : un accessoire principal, une phrase, et un personnage.",
@@ -821,11 +852,13 @@
         "format_nouvelle"
       ],
       "added": "il y a 14 jours",
-      "addedAt": "2026-06-26T07:42:50.550Z",
+      "addedAt": "2026-06-26T08:07:11.859Z",
       "deadline": "31/08/2026",
       "deadlineAt": "2026-08-31T00:00:00.000Z",
       "audience": "Tous auteurs vivants",
-      "audienceCategory": "audience_professional",
+      "audienceCategories": [
+        "audience_published"
+      ],
       "fee": "0 €",
       "feeCategory": "fee_free",
       "theme": "Libre.",
@@ -842,11 +875,11 @@
         "format_poème"
       ],
       "added": "il y a 14 jours",
-      "addedAt": "2026-06-26T07:42:50.550Z",
+      "addedAt": "2026-06-26T08:07:11.859Z",
       "deadline": "20/09/2026",
       "deadlineAt": "2026-09-20T00:00:00.000Z",
       "audience": "Tous",
-      "audienceCategory": "audience_all",
+      "audienceCategories": [],
       "fee": "0 €",
       "feeCategory": "fee_free",
       "theme": "Écrire des poèmes en lien avec les œuvres et leurs artistes.",
@@ -863,11 +896,13 @@
         "format_nouvelle"
       ],
       "added": "il y a 15 jours",
-      "addedAt": "2026-06-25T07:42:50.550Z",
+      "addedAt": "2026-06-25T08:07:11.859Z",
       "deadline": "05/01/2027",
       "deadlineAt": "2027-01-05T00:00:00.000Z",
       "audience": "15 ans minimum",
-      "audienceCategory": "audience_minors_and_up",
+      "audienceCategories": [
+        "audience_minors_and_up"
+      ],
       "fee": "0 €",
       "feeCategory": "fee_free",
       "theme": "Pieds sur Terre ou tête en l'air ?",
@@ -884,11 +919,13 @@
         "format_nouvelle"
       ],
       "added": "il y a 15 jours",
-      "addedAt": "2026-06-25T07:42:50.550Z",
+      "addedAt": "2026-06-25T08:07:11.859Z",
       "deadline": "26/03/2027",
       "deadlineAt": "2027-03-26T00:00:00.000Z",
       "audience": "12-17 ans",
-      "audienceCategory": "audience_under_18",
+      "audienceCategories": [
+        "audience_under_18"
+      ],
       "fee": "0 €",
       "feeCategory": "fee_free",
       "theme": "Les dessous du lac.",
@@ -906,11 +943,13 @@
         "genre_jeunesse"
       ],
       "added": "il y a 16 jours",
-      "addedAt": "2026-06-24T07:42:50.550Z",
+      "addedAt": "2026-06-24T08:07:11.859Z",
       "deadline": "08/08/2026",
       "deadlineAt": "2026-08-08T00:00:00.000Z",
       "audience": "Tous auteurs/illustrateurs",
-      "audienceCategory": "audience_professional",
+      "audienceCategories": [
+        "audience_published"
+      ],
       "fee": "0 €",
       "feeCategory": "fee_free",
       "theme": "Mer et aventure. Album (textes et illustrations) à destination d'enfants de 3 à 7 ans.",
@@ -928,11 +967,13 @@
         "format_texte"
       ],
       "added": "il y a 16 jours",
-      "addedAt": "2026-06-24T07:42:50.550Z",
+      "addedAt": "2026-06-24T08:07:11.859Z",
       "deadline": "31/08/2026",
       "deadlineAt": "2026-08-31T00:00:00.000Z",
       "audience": "Résidents de Champagne Ardenne",
-      "audienceCategory": "audience_geographic",
+      "audienceCategories": [
+        "geo_champagne_ardenne"
+      ],
       "fee": "0 €",
       "feeCategory": "fee_free",
       "theme": "Libre. Lorsqu'on attend un bus, on ne sait jamais ce qu'il va se passer ni qui on va croiser… Nous lançons un appel à textes à destination d'auteurs qui résident en Champagne Ardenne. Nous sommes en quête de textes/scénarios qui racontent ces rencontres : jour ou nuit, drôles ou émouvantes, toutes les tonalités nous intéressent !",
@@ -949,11 +990,13 @@
         "format_nouvelle"
       ],
       "added": "il y a 17 jours",
-      "addedAt": "2026-06-23T07:42:50.550Z",
+      "addedAt": "2026-06-23T08:07:11.859Z",
       "deadline": "28/07/2026",
       "deadlineAt": "2026-07-28T00:00:00.000Z",
       "audience": "18 ans minimum",
-      "audienceCategory": "audience_18_plus",
+      "audienceCategories": [
+        "audience_18_plus"
+      ],
       "fee": "25 € (comprend 2 ateliers d'écriture)",
       "feeCategory": "fee_21_plus",
       "theme": "Détour(s).",
@@ -970,11 +1013,11 @@
         "format_nouvelle"
       ],
       "added": "il y a 17 jours",
-      "addedAt": "2026-06-23T07:42:50.550Z",
+      "addedAt": "2026-06-23T08:07:11.859Z",
       "deadline": "30/09/2026",
       "deadlineAt": "2026-09-30T00:00:00.000Z",
       "audience": "Tous",
-      "audienceCategory": "audience_all",
+      "audienceCategories": [],
       "fee": "0 €",
       "feeCategory": "fee_free",
       "theme": "Le message caché de Joséphine Baker.",
@@ -991,11 +1034,13 @@
         "format_sonnet"
       ],
       "added": "il y a 18 jours",
-      "addedAt": "2026-06-22T07:42:50.550Z",
+      "addedAt": "2026-06-22T08:07:11.859Z",
       "deadline": "15/08/2026",
       "deadlineAt": "2026-08-15T00:00:00.000Z",
       "audience": "18 ans minimum",
-      "audienceCategory": "audience_18_plus",
+      "audienceCategories": [
+        "audience_18_plus"
+      ],
       "fee": "0 €",
       "feeCategory": "fee_free",
       "theme": "Libre.",
@@ -1013,11 +1058,13 @@
         "format_récit"
       ],
       "added": "il y a 19 jours",
-      "addedAt": "2026-06-21T07:42:50.550Z",
+      "addedAt": "2026-06-21T08:07:11.859Z",
       "deadline": "30/09/2026",
       "deadlineAt": "2026-09-30T00:00:00.000Z",
       "audience": "Tous, bédéistes débutants, émergents et professionnels, écrivain(es)",
-      "audienceCategory": "audience_professional",
+      "audienceCategories": [
+        "audience_published"
+      ],
       "fee": "5 €",
       "feeCategory": "fee_1_10",
       "theme": "Inflation. Le prix des aliments grimpe. Les loyers augmentent. Les rêves coûtent-ils plus cher eux aussi ? À travers un récit court ou mise en BD avec l'humour, le drame, la satire, la science-fiction ou le fantastique, racontez comment l'inflation transforme le quotidien, les relations humaines et notre vision de l'avenir.",
@@ -1034,11 +1081,13 @@
         "format_nouvelle"
       ],
       "added": "il y a 19 jours",
-      "addedAt": "2026-06-21T07:42:50.550Z",
+      "addedAt": "2026-06-21T08:07:11.859Z",
       "deadline": "15/11/2026",
       "deadlineAt": "2026-11-15T00:00:00.000Z",
       "audience": "18 ans minimum",
-      "audienceCategory": "audience_18_plus",
+      "audienceCategories": [
+        "audience_18_plus"
+      ],
       "fee": "0 €",
       "feeCategory": "fee_free",
       "theme": "Les dessous du lac.",
@@ -1060,11 +1109,11 @@
         "format_texte"
       ],
       "added": "il y a 20 jours",
-      "addedAt": "2026-06-20T07:42:50.550Z",
+      "addedAt": "2026-06-20T08:07:11.859Z",
       "deadline": "20/09/2026",
       "deadlineAt": "2026-09-20T00:00:00.000Z",
       "audience": "Tous, à partir de la création d'un compte gratuit sur Panodyssey, ouvert aux auteurs déjà inscrits comme aux nouveaux participants",
-      "audienceCategory": "audience_professional",
+      "audienceCategories": [],
       "fee": "0 €",
       "feeCategory": "fee_free",
       "theme": "Parlez aux chats. Thème libre et ouvert : le chat animal, les chats des IA génératives ou toute interprétation créative du mot « chat ».",
@@ -1082,11 +1131,13 @@
         "genre_érotique"
       ],
       "added": "il y a 21 jours",
-      "addedAt": "2026-06-19T07:42:50.550Z",
+      "addedAt": "2026-06-19T08:07:11.859Z",
       "deadline": "15/08/2026",
       "deadlineAt": "2026-08-15T00:00:00.000Z",
       "audience": "18 ans minimum",
-      "audienceCategory": "audience_18_plus",
+      "audienceCategories": [
+        "audience_18_plus"
+      ],
       "fee": "0 €",
       "feeCategory": "fee_free",
       "theme": "Le texte devra obligatoirement contenir la phrase « Le désir est parfois incompris, même pour soi-même. », placée librement dans le texte (début, milieu ou fin).",
@@ -1103,11 +1154,11 @@
         "format_nouvelle"
       ],
       "added": "il y a 23 jours",
-      "addedAt": "2026-06-17T07:42:50.550Z",
+      "addedAt": "2026-06-17T08:07:11.859Z",
       "deadline": "04/11/2026",
       "deadlineAt": "2026-11-04T00:00:00.000Z",
       "audience": "Tous",
-      "audienceCategory": "audience_all",
+      "audienceCategories": [],
       "fee": "0 €",
       "feeCategory": "fee_free",
       "theme": "Roue(s) Libre(s). La nouvelle doit intégrer le vélo (l'objet, l'activité, la mobilité douce et non la prouesse sportive, au choix).",
@@ -1127,11 +1178,11 @@
         "format_slam"
       ],
       "added": "il y a 24 jours",
-      "addedAt": "2026-06-16T07:42:50.550Z",
+      "addedAt": "2026-06-16T08:07:11.859Z",
       "deadline": "22/08/2026",
       "deadlineAt": "2026-08-22T00:00:00.000Z",
       "audience": "Tous",
-      "audienceCategory": "audience_all",
+      "audienceCategories": [],
       "fee": "0 €",
       "feeCategory": "fee_free",
       "theme": "Passage(s)",
@@ -1153,11 +1204,13 @@
         "genre_policier"
       ],
       "added": "il y a 25 jours",
-      "addedAt": "2026-06-15T07:42:50.550Z",
+      "addedAt": "2026-06-15T08:07:11.859Z",
       "deadline": "03/09/2026",
       "deadlineAt": "2026-09-03T00:00:00.000Z",
       "audience": "18 ans minimum",
-      "audienceCategory": "audience_18_plus",
+      "audienceCategories": [
+        "audience_18_plus"
+      ],
       "fee": "0 €",
       "feeCategory": "fee_free",
       "theme": "Enquête policière, spécial héritage. Racontez une enquête policière, réaliste ou fantastique, à partir d’un crime en rapport avec un héritage, quel qu’il soit, à l'époque de votre choix.",
@@ -1174,11 +1227,11 @@
         "format_texte"
       ],
       "added": "il y a 27 jours",
-      "addedAt": "2026-06-13T07:42:50.550Z",
+      "addedAt": "2026-06-13T08:07:11.859Z",
       "deadline": "15/07/2026",
       "deadlineAt": "2026-07-15T00:00:00.000Z",
       "audience": "Tous",
-      "audienceCategory": "audience_all",
+      "audienceCategories": [],
       "fee": "0 €",
       "feeCategory": "fee_free",
       "theme": "Fictions autour des bourlingueurs. Littérature blanche, polar, SF, fantastique… mais aussi musique, arts graphiques et vidéos. (Évitez la poésie, sauf si elle est exceptionnelle). Le sujet peut être traité de manière explicite mais des approches conceptuelles, métaphoriques voire philosophiques sont aussi acceptées.",
@@ -1195,11 +1248,11 @@
         "format_nouvelle"
       ],
       "added": "il y a 27 jours",
-      "addedAt": "2026-06-13T07:42:50.550Z",
+      "addedAt": "2026-06-13T08:07:11.859Z",
       "deadline": "31/08/2026",
       "deadlineAt": "2026-08-31T00:00:00.000Z",
       "audience": "Tous",
-      "audienceCategory": "audience_all",
+      "audienceCategories": [],
       "fee": "0 €",
       "feeCategory": "fee_free",
       "theme": "Inclure la phrase : « Et dans un dernier souffle, je comprends tout. »",
@@ -1219,11 +1272,13 @@
         "genre_science-fiction"
       ],
       "added": "il y a 28 jours",
-      "addedAt": "2026-06-12T07:42:50.550Z",
+      "addedAt": "2026-06-12T08:07:11.859Z",
       "deadline": "31/07/2026",
       "deadlineAt": "2026-07-31T00:00:00.000Z",
       "audience": "Auteur et autrice de l'imaginaire",
-      "audienceCategory": "audience_professional",
+      "audienceCategories": [
+        "audience_published"
+      ],
       "fee": "0 €",
       "feeCategory": "fee_free",
       "theme": "Libre.",
@@ -1240,11 +1295,13 @@
         "format_poème"
       ],
       "added": "il y a 28 jours",
-      "addedAt": "2026-06-12T07:42:50.550Z",
+      "addedAt": "2026-06-12T08:07:11.859Z",
       "deadline": "15/09/2026",
       "deadlineAt": "2026-09-15T00:00:00.000Z",
       "audience": "12-18 ans",
-      "audienceCategory": "audience_mixed_age",
+      "audienceCategories": [
+        "audience_mixed_age"
+      ],
       "fee": "0 €",
       "feeCategory": "fee_free",
       "theme": "Libre. Poésie classique, néoclassique, libre, libérée ou prose poétique.",
@@ -1267,11 +1324,11 @@
         "format_texte"
       ],
       "added": "il y a 29 jours",
-      "addedAt": "2026-06-11T07:42:50.550Z",
+      "addedAt": "2026-06-11T08:07:11.859Z",
       "deadline": "04/09/2026",
       "deadlineAt": "2026-09-04T00:00:00.000Z",
       "audience": "Tous",
-      "audienceCategory": "audience_all",
+      "audienceCategories": [],
       "fee": "0 €",
       "feeCategory": "fee_free",
       "theme": "Paysages : écrire les lieux, habiter le monde.",
@@ -1288,11 +1345,13 @@
         "format_nouvelle"
       ],
       "added": "il y a 1 mois",
-      "addedAt": "2026-06-10T07:42:50.550Z",
+      "addedAt": "2026-06-10T08:07:11.859Z",
       "deadline": "28/09/2026",
       "deadlineAt": "2026-09-28T00:00:00.000Z",
       "audience": "16 ans minimum",
-      "audienceCategory": "audience_minors_and_up",
+      "audienceCategories": [
+        "audience_minors_and_up"
+      ],
       "fee": "0 €",
       "feeCategory": "fee_free",
       "theme": "Et si nous avions tous un secret.",
@@ -1314,11 +1373,13 @@
         "format_scénario"
       ],
       "added": "il y a 1 mois",
-      "addedAt": "2026-06-10T07:42:50.550Z",
+      "addedAt": "2026-06-10T08:07:11.859Z",
       "deadline": "27/09/2026",
       "deadlineAt": "2026-09-27T00:00:00.000Z",
       "audience": "Étudiant·es inscrit·es dans un établissement d’enseignement supérieur public en Nouvelle-Aquitaine (universités, écoles d’art publiques, autres établissements publics), lycéen·nes de Pessac",
-      "audienceCategory": "audience_geographic",
+      "audienceCategories": [
+        "geo_nouvelle_aquitaine"
+      ],
       "fee": "0 €",
       "feeCategory": "fee_free",
       "theme": "Libre.",
@@ -1337,11 +1398,11 @@
         "genre_thriller"
       ],
       "added": "il y a 1 mois",
-      "addedAt": "2026-06-10T07:42:50.550Z",
+      "addedAt": "2026-06-10T08:07:11.859Z",
       "deadline": "20/09/2026",
       "deadlineAt": "2026-09-20T00:00:00.000Z",
       "audience": "Tous",
-      "audienceCategory": "audience_all",
+      "audienceCategories": [],
       "fee": "0 €",
       "feeCategory": "fee_free",
       "theme": "Première et dernière phrases imposées.",
@@ -1360,11 +1421,13 @@
         "genre_thriller"
       ],
       "added": "il y a 1 mois",
-      "addedAt": "2026-06-10T07:42:50.550Z",
+      "addedAt": "2026-06-10T08:07:11.859Z",
       "deadline": "14/09/2026",
       "deadlineAt": "2026-09-14T00:00:00.000Z",
       "audience": "Résidents de Belgique ou des communes frontalières",
-      "audienceCategory": "audience_geographic",
+      "audienceCategories": [
+        "geo_belgique"
+      ],
       "fee": "0 €",
       "feeCategory": "fee_free",
       "theme": "Enlèvement/disparition.",
@@ -1382,11 +1445,13 @@
         "genre_science-fiction"
       ],
       "added": "il y a 1 mois",
-      "addedAt": "2026-06-10T07:42:50.550Z",
+      "addedAt": "2026-06-10T08:07:11.859Z",
       "deadline": "30/09/2026",
       "deadlineAt": "2026-09-30T00:00:00.000Z",
       "audience": "26 ans maximum",
-      "audienceCategory": "audience_young_adult",
+      "audienceCategories": [
+        "audience_young_adult"
+      ],
       "fee": "0 €",
       "feeCategory": "fee_free",
       "theme": "Créativité, intelligence artificielle, effondrements écologiques et sociétaux, et futurs désirables.",
@@ -1403,11 +1468,13 @@
         "format_poème"
       ],
       "added": "il y a 1 mois",
-      "addedAt": "2026-06-10T07:42:50.550Z",
+      "addedAt": "2026-06-10T08:07:11.859Z",
       "deadline": "01/08/2026",
       "deadlineAt": "2026-08-01T00:00:00.000Z",
       "audience": "",
-      "audienceCategory": "audience_unknown",
+      "audienceCategories": [
+        "audience_unknown"
+      ],
       "fee": "0 €",
       "feeCategory": "fee_free",
       "theme": "Libre.",
@@ -1424,11 +1491,11 @@
         "format_nouvelle"
       ],
       "added": "il y a 1 mois",
-      "addedAt": "2026-06-10T07:42:50.550Z",
+      "addedAt": "2026-06-10T08:07:11.859Z",
       "deadline": "14/07/2026",
       "deadlineAt": "2026-07-14T00:00:00.000Z",
       "audience": "Tous",
-      "audienceCategory": "audience_all",
+      "audienceCategories": [],
       "fee": "0 €",
       "feeCategory": "fee_free",
       "theme": "Ombre et lumière",
@@ -1445,11 +1512,13 @@
         "format_texte"
       ],
       "added": "il y a 1 mois",
-      "addedAt": "2026-06-10T07:42:50.550Z",
+      "addedAt": "2026-06-10T08:07:11.859Z",
       "deadline": "15/08/2026",
       "deadlineAt": "2026-08-15T00:00:00.000Z",
       "audience": "18 ans minimum",
-      "audienceCategory": "audience_18_plus",
+      "audienceCategories": [
+        "audience_18_plus"
+      ],
       "fee": "0 €",
       "feeCategory": "fee_free",
       "theme": "Incipit de roman.",
@@ -1468,11 +1537,11 @@
         "format_texte"
       ],
       "added": "il y a 1 mois",
-      "addedAt": "2026-06-10T07:42:50.550Z",
+      "addedAt": "2026-06-10T08:07:11.859Z",
       "deadline": "15/09/2026",
       "deadlineAt": "2026-09-15T00:00:00.000Z",
       "audience": "tous",
-      "audienceCategory": "audience_all",
+      "audienceCategories": [],
       "fee": "0 €",
       "feeCategory": "fee_free",
       "theme": "Comment voyez-vous le monde de demain ? Comment imaginez-vous notre avenir dans les domaines de l'écologie, du travail, de la culture, de la politique ou encore des relations sociétales ou amoureuses ? Vivrons-nous dans une utopie ou une dystopie ? Qu'importe votre nature optimiste ou pessimiste, nous vous invitons à voyager dans le futur à bord des machines Imagination ou Anticipation. Nous avons hâte de lire, sous forme de poèmes ou de nouvelles, le récit de vos aventures radieuses ou cauchemardesques.",
@@ -1489,11 +1558,13 @@
         "format_nouvelle"
       ],
       "added": "il y a 1 mois",
-      "addedAt": "2026-06-10T07:42:50.550Z",
+      "addedAt": "2026-06-10T08:07:11.859Z",
       "deadline": "04/09/2026",
       "deadlineAt": "2026-09-04T00:00:00.000Z",
       "audience": "13 ans minimum",
-      "audienceCategory": "audience_minors_and_up",
+      "audienceCategories": [
+        "audience_minors_and_up"
+      ],
       "fee": "0 €",
       "feeCategory": "fee_free",
       "theme": "Histoire à vous dresser les cheveux sur la tête.",
@@ -1510,11 +1581,13 @@
         "format_poème"
       ],
       "added": "il y a 1 mois",
-      "addedAt": "2026-06-10T07:42:50.550Z",
+      "addedAt": "2026-06-10T08:07:11.859Z",
       "deadline": "31/08/2026",
       "deadlineAt": "2026-08-31T00:00:00.000Z",
       "audience": "18 ans minimum",
-      "audienceCategory": "audience_18_plus",
+      "audienceCategories": [
+        "audience_18_plus"
+      ],
       "fee": "0 €",
       "feeCategory": "fee_free",
       "theme": "Demain. Contrainte : le poème, en vers ou en prose, ne devra comporter aucun a ni aucun i.",
@@ -1535,11 +1608,11 @@
         "format_texte"
       ],
       "added": "il y a 1 mois",
-      "addedAt": "2026-06-10T07:42:50.550Z",
+      "addedAt": "2026-06-10T08:07:11.859Z",
       "deadline": "31/07/2026",
       "deadlineAt": "2026-07-31T00:00:00.000Z",
       "audience": "Tous",
-      "audienceCategory": "audience_all",
+      "audienceCategories": [],
       "fee": "0 €",
       "feeCategory": "fee_free",
       "theme": "À partir d'un événement, d'une figure, d'un système ou d'une époque de l'actualité politique ou géopolitique, fictionnez-le, racontez-le, détournez-le. Le monde est votre matière première.",
@@ -1559,11 +1632,11 @@
         "format_texte"
       ],
       "added": "il y a 1 mois",
-      "addedAt": "2026-06-10T07:42:50.550Z",
+      "addedAt": "2026-06-10T08:07:11.859Z",
       "deadline": "31/07/2026",
       "deadlineAt": "2026-07-31T00:00:00.000Z",
       "audience": "Tous",
-      "audienceCategory": "audience_all",
+      "audienceCategories": [],
       "fee": "0 €",
       "feeCategory": "fee_free",
       "theme": "Face au silence des pantoufles, à vos palmes ! Fascisme et antifascisme en Suisse romande.",
@@ -1580,11 +1653,13 @@
         "format_texte"
       ],
       "added": "il y a 1 mois",
-      "addedAt": "2026-06-10T07:42:50.550Z",
+      "addedAt": "2026-06-10T08:07:11.859Z",
       "deadline": "20/07/2026",
       "deadlineAt": "2026-07-20T00:00:00.000Z",
       "audience": "18 ans minimum",
-      "audienceCategory": "audience_18_plus",
+      "audienceCategories": [
+        "audience_18_plus"
+      ],
       "fee": "5 €",
       "feeCategory": "fee_1_10",
       "theme": "La Liberté. Tout genre littéraire accepté sauf essai et poésie.",
@@ -1601,11 +1676,11 @@
         "format_poème"
       ],
       "added": "il y a 1 mois",
-      "addedAt": "2026-06-10T07:42:50.550Z",
+      "addedAt": "2026-06-10T08:07:11.859Z",
       "deadline": "28/08/2026",
       "deadlineAt": "2026-08-28T00:00:00.000Z",
       "audience": "Tous",
-      "audienceCategory": "audience_all",
+      "audienceCategories": [],
       "fee": "0 €",
       "feeCategory": "fee_free",
       "theme": "Non à la dépravation des mœurs. Exprimer, à travers des textes engagés, une réflexion artistique et critique autour du thème.",
@@ -1622,11 +1697,11 @@
         "format_poème"
       ],
       "added": "il y a 1 mois",
-      "addedAt": "2026-06-10T07:42:50.550Z",
+      "addedAt": "2026-06-10T08:07:11.859Z",
       "deadline": "09/08/2026",
       "deadlineAt": "2026-08-09T00:00:00.000Z",
       "audience": "Tous",
-      "audienceCategory": "audience_all",
+      "audienceCategories": [],
       "fee": "0 €",
       "feeCategory": "fee_free",
       "theme": "Les métamorphoses du quotidien.",
@@ -1644,11 +1719,11 @@
         "format_nouvelle"
       ],
       "added": "il y a 1 mois",
-      "addedAt": "2026-06-10T07:42:50.550Z",
+      "addedAt": "2026-06-10T08:07:11.859Z",
       "deadline": "01/09/2026",
       "deadlineAt": "2026-09-01T00:00:00.000Z",
       "audience": "Tous",
-      "audienceCategory": "audience_all",
+      "audienceCategories": [],
       "fee": "12 €",
       "feeCategory": "fee_11_20",
       "theme": "La Lune du Loup.",
@@ -1670,11 +1745,11 @@
         "format_texte"
       ],
       "added": "il y a 1 mois",
-      "addedAt": "2026-06-10T07:42:50.550Z",
+      "addedAt": "2026-06-10T08:07:11.859Z",
       "deadline": "15/07/2026",
       "deadlineAt": "2026-07-15T00:00:00.000Z",
       "audience": "Tous",
-      "audienceCategory": "audience_all",
+      "audienceCategories": [],
       "fee": "0 €",
       "feeCategory": "fee_free",
       "theme": "Écrire Gaza, à partir d’ici, c’est avoir des mots pour dire, imaginer, témoigner, relier, faire exister des voix, porter une attention, créer du lien depuis ici.",
@@ -1691,11 +1766,14 @@
         "format_bande dessinée"
       ],
       "added": "il y a 1 mois",
-      "addedAt": "2026-06-10T07:42:50.550Z",
+      "addedAt": "2026-06-10T08:07:11.859Z",
       "deadline": "17/08/2026",
       "deadlineAt": "2026-08-17T00:00:00.000Z",
       "audience": "Autrices et auteurs jamais publiés",
-      "audienceCategory": "audience_professional",
+      "audienceCategories": [
+        "audience_unpublished",
+        "audience_published"
+      ],
       "fee": "0 €",
       "feeCategory": "fee_free",
       "theme": "Roses corsaires.",
@@ -1712,11 +1790,13 @@
         "format_nouvelle"
       ],
       "added": "il y a 1 mois",
-      "addedAt": "2026-06-10T07:42:50.550Z",
+      "addedAt": "2026-06-10T08:07:11.859Z",
       "deadline": "31/08/2026",
       "deadlineAt": "2026-08-31T00:00:00.000Z",
       "audience": "Résidents du département du Morbihan, individuel, collectif ou scolaire",
-      "audienceCategory": "audience_geographic",
+      "audienceCategories": [
+        "geo_morbihan"
+      ],
       "fee": "0 €",
       "feeCategory": "fee_free",
       "theme": "Cuisinez une nouvelle gourmande !",
@@ -1734,11 +1814,13 @@
         "format_poème"
       ],
       "added": "il y a 1 mois",
-      "addedAt": "2026-06-10T07:42:50.550Z",
+      "addedAt": "2026-06-10T08:07:11.859Z",
       "deadline": "25/07/2026",
       "deadlineAt": "2026-07-25T00:00:00.000Z",
       "audience": "Résidents de la région Hauts-de-France",
-      "audienceCategory": "audience_geographic",
+      "audienceCategories": [
+        "geo_hauts_de_france"
+      ],
       "fee": "0 €",
       "feeCategory": "fee_free",
       "theme": "Intégrer les mots : orchestre, chemin, chênes, musique.",
@@ -1755,11 +1837,11 @@
         "format_nouvelle"
       ],
       "added": "il y a 1 mois",
-      "addedAt": "2026-06-10T07:42:50.550Z",
+      "addedAt": "2026-06-10T08:07:11.859Z",
       "deadline": "01/11/2026",
       "deadlineAt": "2026-11-01T00:00:00.000Z",
       "audience": "Tous",
-      "audienceCategory": "audience_all",
+      "audienceCategories": [],
       "fee": "10-20 €",
       "feeCategory": "fee_11_20",
       "theme": "L'intrus.",
@@ -1776,11 +1858,13 @@
         "format_nouvelle"
       ],
       "added": "il y a 1 mois",
-      "addedAt": "2026-06-10T07:42:50.550Z",
+      "addedAt": "2026-06-10T08:07:11.859Z",
       "deadline": "30/09/2026",
       "deadlineAt": "2026-09-30T00:00:00.000Z",
       "audience": "18 ans minimum",
-      "audienceCategory": "audience_18_plus",
+      "audienceCategories": [
+        "audience_18_plus"
+      ],
       "fee": "0 €",
       "feeCategory": "fee_free",
       "theme": "Des récits qui regardent la réalité en face sans céder au désespoir. Des situations où subsiste la possibilité d’un sursaut capable de remettre le monde du côté de l’humain.",
@@ -1797,11 +1881,11 @@
         "format_nouvelle"
       ],
       "added": "il y a 1 mois",
-      "addedAt": "2026-06-10T07:42:50.550Z",
+      "addedAt": "2026-06-10T08:07:11.859Z",
       "deadline": "07/09/2026",
       "deadlineAt": "2026-09-07T00:00:00.000Z",
       "audience": "Tous, individuel ou collectif",
-      "audienceCategory": "audience_all",
+      "audienceCategories": [],
       "fee": "0 €",
       "feeCategory": "fee_free",
       "theme": "Faire converser architecture et écriture. Le genre littéraire est libre, mais le propos doit s’appuyer sur un bâtiment construit.",
@@ -1818,11 +1902,13 @@
         "format_nouvelle"
       ],
       "added": "il y a 1 mois",
-      "addedAt": "2026-06-10T07:42:50.550Z",
+      "addedAt": "2026-06-10T08:07:11.859Z",
       "deadline": "15/08/2026",
       "deadlineAt": "2026-08-15T00:00:00.000Z",
       "audience": "18 ans minimum",
-      "audienceCategory": "audience_18_plus",
+      "audienceCategories": [
+        "audience_18_plus"
+      ],
       "fee": "5 €",
       "feeCategory": "fee_1_10",
       "theme": "La fabuleuse bibliothèque du Marquis.",
@@ -1841,11 +1927,11 @@
         "genre_thriller"
       ],
       "added": "il y a 2 mois",
-      "addedAt": "2026-05-11T07:42:50.550Z",
+      "addedAt": "2026-05-11T08:07:11.859Z",
       "deadline": "01/09/2026",
       "deadlineAt": "2026-09-01T00:00:00.000Z",
       "audience": "Tous",
-      "audienceCategory": "audience_all",
+      "audienceCategories": [],
       "fee": "7 € par nouvelle (plusieurs soumissions possibles)",
       "feeCategory": "fee_1_10",
       "theme": "Libre, autour des mots-clés choc, émerveillement, désir, peur, haine, lien, amour, éternité, survie, réalité, radiation, espace profond, yeux vides — liste indicative, ouverte à toute écriture qui s'inscrit dans notre ligne éditoriale (SF, Noir, Thriller, Drame, Halluciné).",
@@ -1862,11 +1948,11 @@
         "format_nouvelle"
       ],
       "added": "il y a 2 mois",
-      "addedAt": "2026-05-11T07:42:50.550Z",
+      "addedAt": "2026-05-11T08:07:11.859Z",
       "deadline": "21/08/2026",
       "deadlineAt": "2026-08-21T00:00:00.000Z",
       "audience": "Tous",
-      "audienceCategory": "audience_all",
+      "audienceCategories": [],
       "fee": "0 €",
       "feeCategory": "fee_free",
       "theme": "Au fil de l'eau.",
@@ -1889,11 +1975,13 @@
         "genre_science-fiction"
       ],
       "added": "il y a 2 mois",
-      "addedAt": "2026-05-11T07:42:50.550Z",
+      "addedAt": "2026-05-11T08:07:11.859Z",
       "deadline": "31/08/2026",
       "deadlineAt": "2026-08-31T00:00:00.000Z",
       "audience": "8 ans minimum",
-      "audienceCategory": "audience_minors_and_up",
+      "audienceCategories": [
+        "audience_minors_and_up"
+      ],
       "fee": "0 €",
       "feeCategory": "fee_free",
       "theme": "Ailes de Nuit à Kernascléden.",
@@ -1916,11 +2004,14 @@
         "format_slam"
       ],
       "added": "il y a 2 mois",
-      "addedAt": "2026-05-11T07:42:50.550Z",
+      "addedAt": "2026-05-11T08:07:11.859Z",
       "deadline": "31/07/2026",
       "deadlineAt": "2026-07-31T00:00:00.000Z",
       "audience": "7 ans minimium, résidents de France, individuel ou collectif",
-      "audienceCategory": "audience_geographic",
+      "audienceCategories": [
+        "geo_france",
+        "audience_minors_and_up"
+      ],
       "fee": "0 €",
       "feeCategory": "fee_free",
       "theme": "Vous êtes choisi pour représenter l'Alsace lors du prochain vol habité vers la Lune.",
@@ -1937,11 +2028,13 @@
         "format_nouvelle"
       ],
       "added": "il y a 2 mois",
-      "addedAt": "2026-05-11T07:42:50.550Z",
+      "addedAt": "2026-05-11T08:07:11.859Z",
       "deadline": "31/08/2026",
       "deadlineAt": "2026-08-31T00:00:00.000Z",
       "audience": "Résidents de France Métropolitaine",
-      "audienceCategory": "audience_geographic",
+      "audienceCategories": [
+        "geo_france_metropolitaine"
+      ],
       "fee": "0 €",
       "feeCategory": "fee_free",
       "theme": "Une main tendue.",
@@ -1958,11 +2051,14 @@
         "format_nouvelle"
       ],
       "added": "il y a 2 mois",
-      "addedAt": "2026-05-11T07:42:50.550Z",
+      "addedAt": "2026-05-11T08:07:11.859Z",
       "deadline": "15/07/2026",
       "deadlineAt": "2026-07-15T00:00:00.000Z",
       "audience": "12-18 ans, résidents de la région Nouvelle Aquitaine",
-      "audienceCategory": "audience_geographic",
+      "audienceCategories": [
+        "geo_nouvelle_aquitaine",
+        "audience_mixed_age"
+      ],
       "fee": "5 €",
       "feeCategory": "fee_1_10",
       "theme": "L’histoire devra mettre en scène le déroulement et la résolution d’une enquête.",
@@ -1981,11 +2077,11 @@
         "genre_thriller"
       ],
       "added": "il y a 2 mois",
-      "addedAt": "2026-05-11T07:42:50.550Z",
+      "addedAt": "2026-05-11T08:07:11.859Z",
       "deadline": "31/08/2026",
       "deadlineAt": "2026-08-31T00:00:00.000Z",
       "audience": "Tout public sachant écrire",
-      "audienceCategory": "audience_all",
+      "audienceCategories": [],
       "fee": "0 €",
       "feeCategory": "fee_free",
       "theme": "Imposé (1 phrase incipit et fin).",
@@ -2002,11 +2098,13 @@
         "format_nouvelle"
       ],
       "added": "il y a 2 mois",
-      "addedAt": "2026-05-11T07:42:50.550Z",
+      "addedAt": "2026-05-11T08:07:11.859Z",
       "deadline": "15/07/2026",
       "deadlineAt": "2026-07-15T00:00:00.000Z",
       "audience": "18 ans minimum",
-      "audienceCategory": "audience_18_plus",
+      "audienceCategories": [
+        "audience_18_plus"
+      ],
       "fee": "8 €",
       "feeCategory": "fee_1_10",
       "theme": "Beautés en touche, touches de beauté.",
@@ -2023,11 +2121,13 @@
         "format_nouvelle"
       ],
       "added": "il y a 2 mois",
-      "addedAt": "2026-05-11T07:42:50.550Z",
+      "addedAt": "2026-05-11T08:07:11.859Z",
       "deadline": "31/10/2026",
       "deadlineAt": "2026-10-31T00:00:00.000Z",
       "audience": "16 ans minimum",
-      "audienceCategory": "audience_minors_and_up",
+      "audienceCategories": [
+        "audience_minors_and_up"
+      ],
       "fee": "0 €",
       "feeCategory": "fee_free",
       "theme": "Il faudra inclure la phrase suivante : « Sur le quai restaient quelques flaques argentées, des tickets déchirés et des mégots écrasés » et insérer ces 5 mots : accentuer, poivre, acouphène, pic, feuillet.",
@@ -2044,11 +2144,11 @@
         "format_recueil de poèmes"
       ],
       "added": "il y a 2 mois",
-      "addedAt": "2026-05-11T07:42:50.550Z",
+      "addedAt": "2026-05-11T08:07:11.859Z",
       "deadline": "21/08/2026",
       "deadlineAt": "2026-08-21T00:00:00.000Z",
       "audience": "Tous",
-      "audienceCategory": "audience_all",
+      "audienceCategories": [],
       "fee": "12 €",
       "feeCategory": "fee_11_20",
       "theme": "Histoire et mémoire en poésie.",
@@ -2065,11 +2165,11 @@
         "format_nouvelle"
       ],
       "added": "il y a 2 mois",
-      "addedAt": "2026-05-11T07:42:50.550Z",
+      "addedAt": "2026-05-11T08:07:11.859Z",
       "deadline": "15/07/2026",
       "deadlineAt": "2026-07-15T00:00:00.000Z",
       "audience": "Tous ceux qui souhaitent faire connaître leur talent d'écrivain",
-      "audienceCategory": "audience_professional",
+      "audienceCategories": [],
       "fee": "20 €",
       "feeCategory": "fee_11_20",
       "theme": "Libre.",
@@ -2087,11 +2187,11 @@
         "format_poème"
       ],
       "added": "il y a 2 mois",
-      "addedAt": "2026-05-11T07:42:50.550Z",
+      "addedAt": "2026-05-11T08:07:11.859Z",
       "deadline": "17/07/2026",
       "deadlineAt": "2026-07-17T00:00:00.000Z",
       "audience": "Tous",
-      "audienceCategory": "audience_all",
+      "audienceCategories": [],
       "fee": "0 €",
       "feeCategory": "fee_free",
       "theme": "Faune et flore. Au choix : la Grue cendrée, des ailes et des rêves…, villages engloutis et mémoire, floraison, flore et saison… ou terre et eau.",
@@ -2108,11 +2208,11 @@
         "format_nouvelle"
       ],
       "added": "il y a 3 mois",
-      "addedAt": "2026-04-11T07:42:50.550Z",
+      "addedAt": "2026-04-11T08:07:11.859Z",
       "deadline": "15/08/2026",
       "deadlineAt": "2026-08-15T00:00:00.000Z",
       "audience": "tous, avec ou sans lien avec l'histoire de la présence française en Algérie",
-      "audienceCategory": "audience_all",
+      "audienceCategories": [],
       "fee": "0 €",
       "feeCategory": "fee_free",
       "theme": "Traverser. Les premiers arrivants européens en Algérie à partir de 1830.",
@@ -2129,11 +2229,11 @@
         "format_poème"
       ],
       "added": "il y a 3 mois",
-      "addedAt": "2026-04-11T07:42:50.550Z",
+      "addedAt": "2026-04-11T08:07:11.859Z",
       "deadline": "28/09/2026",
       "deadlineAt": "2026-09-28T00:00:00.000Z",
       "audience": "Tous",
-      "audienceCategory": "audience_all",
+      "audienceCategories": [],
       "fee": "0-9 €",
       "feeCategory": "fee_variable",
       "theme": "Faune, flore et sentiments.",
@@ -2150,11 +2250,13 @@
         "format_nouvelle"
       ],
       "added": "il y a 3 mois",
-      "addedAt": "2026-04-11T07:42:50.550Z",
+      "addedAt": "2026-04-11T08:07:11.859Z",
       "deadline": "01/09/2026",
       "deadlineAt": "2026-09-01T00:00:00.000Z",
       "audience": "12 ans minimum",
-      "audienceCategory": "audience_minors_and_up",
+      "audienceCategories": [
+        "audience_minors_and_up"
+      ],
       "fee": "0 €",
       "feeCategory": "fee_free",
       "theme": "Le surréalisme. Écrire à partir du tableau de Max Ernst Au rendez vous des amis.",
@@ -2178,11 +2280,14 @@
         "format_texte"
       ],
       "added": "il y a 3 mois",
-      "addedAt": "2026-04-11T07:42:50.550Z",
+      "addedAt": "2026-04-11T08:07:11.859Z",
       "deadline": "31/07/2026",
       "deadlineAt": "2026-07-31T00:00:00.000Z",
       "audience": "Résidents de France, 8 ans minimum",
-      "audienceCategory": "audience_geographic",
+      "audienceCategories": [
+        "geo_france",
+        "audience_minors_and_up"
+      ],
       "fee": "0 €",
       "feeCategory": "fee_free",
       "theme": "Destination lune.",
@@ -2199,11 +2304,11 @@
         "format_nouvelle"
       ],
       "added": "il y a 3 mois",
-      "addedAt": "2026-04-11T07:42:50.550Z",
+      "addedAt": "2026-04-11T08:07:11.859Z",
       "deadline": "30/09/2026",
       "deadlineAt": "2026-09-30T00:00:00.000Z",
       "audience": "Tous",
-      "audienceCategory": "audience_all",
+      "audienceCategories": [],
       "fee": "7 €",
       "feeCategory": "fee_1_10",
       "theme": "Quelque part en chemin, vers midi…",
@@ -2222,11 +2327,13 @@
         "genre_horreur"
       ],
       "added": "il y a 3 mois",
-      "addedAt": "2026-04-11T07:42:50.550Z",
+      "addedAt": "2026-04-11T08:07:11.859Z",
       "deadline": "01/09/2026",
       "deadlineAt": "2026-09-01T00:00:00.000Z",
       "audience": "18 ans minimum",
-      "audienceCategory": "audience_18_plus",
+      "audienceCategories": [
+        "audience_18_plus"
+      ],
       "fee": "0 €",
       "feeCategory": "fee_free",
       "theme": "La lisière : l’horreur tapie dans la vallée de l'étrange. Gothique, dark-fantasy, creepypastas et autres intrigues liminales : de la lisière émergent toutes sortes de textes à l'interface entre le bizarre et l'horreur chimiquement pure. Nous cherchons des atmosphères oppressantes et des fins inoubliables qui procurent cette « jubilation du malaise ». C’est une invitation à traverser le miroir pour savourer le plaisir incommode de l'effroi.",
@@ -2244,11 +2351,13 @@
         "genre_science-fiction"
       ],
       "added": "il y a 3 mois",
-      "addedAt": "2026-04-11T07:42:50.550Z",
+      "addedAt": "2026-04-11T08:07:11.859Z",
       "deadline": "01/09/2026",
       "deadlineAt": "2026-09-01T00:00:00.000Z",
       "audience": "18 ans minimum",
-      "audienceCategory": "audience_18_plus",
+      "audienceCategories": [
+        "audience_18_plus"
+      ],
       "fee": "0 €",
       "feeCategory": "fee_free",
       "theme": "Paradoxes Latents : générateur de méta-fictions. Paradoxes Latents est une collection d'anthologies dédiée à une science-fiction prospective et philosophique, privilégiant la solidité des idées et la vraisemblance des univers. Les récits doivent explorer les zones de frottement entre réel et imaginaire, utilisant le paradoxe pour interroger les mutations technologiques, sociales ou intimes de l'humain. C'est un laboratoire narratif qui cherche à bousculer les certitudes et à dévoiler de nouveaux horizons de pensée.",
@@ -2265,11 +2374,11 @@
         "format_nouvelle"
       ],
       "added": "il y a 3 mois",
-      "addedAt": "2026-04-11T07:42:50.550Z",
+      "addedAt": "2026-04-11T08:07:11.859Z",
       "deadline": "18/12/2026",
       "deadlineAt": "2026-12-18T00:00:00.000Z",
       "audience": "tous",
-      "audienceCategory": "audience_all",
+      "audienceCategories": [],
       "fee": "7 €",
       "feeCategory": "fee_1_10",
       "theme": "Journalisme(s).",
@@ -2286,11 +2395,13 @@
         "format_récit"
       ],
       "added": "il y a 3 mois",
-      "addedAt": "2026-04-11T07:42:50.550Z",
+      "addedAt": "2026-04-11T08:07:11.859Z",
       "deadline": "01/09/2026",
       "deadlineAt": "2026-09-01T00:00:00.000Z",
       "audience": "18 ans minimum",
-      "audienceCategory": "audience_18_plus",
+      "audienceCategories": [
+        "audience_18_plus"
+      ],
       "fee": "0 €",
       "feeCategory": "fee_free",
       "theme": "Zestes : la littérature blanche, avec une pointe d’acidité. Dans cette collection, nous explorons le quotidien, le sensible et l’humain. Mais attention : chaque récit doit porter en lui une fin piquante. Nous recherchons cette chute inattendue, ce retournement de situation ou cette pointe d'ironie qui laisse un goût persistant en bouche bien après la lecture.",
@@ -2308,11 +2419,13 @@
         "format_poème"
       ],
       "added": "il y a 3 mois",
-      "addedAt": "2026-04-11T07:42:50.550Z",
+      "addedAt": "2026-04-11T08:07:11.859Z",
       "deadline": "15/09/2026",
       "deadlineAt": "2026-09-15T00:00:00.000Z",
       "audience": "18 ans minimum",
-      "audienceCategory": "audience_18_plus",
+      "audienceCategories": [
+        "audience_18_plus"
+      ],
       "fee": "0 €",
       "feeCategory": "fee_free",
       "theme": "Carnet de voyage.",
@@ -2329,11 +2442,11 @@
         "format_nouvelle"
       ],
       "added": "il y a 3 mois",
-      "addedAt": "2026-04-11T07:42:50.550Z",
+      "addedAt": "2026-04-11T08:07:11.859Z",
       "deadline": "30/06/2028",
       "deadlineAt": "2028-06-30T00:00:00.000Z",
       "audience": "Tous",
-      "audienceCategory": "audience_all",
+      "audienceCategories": [],
       "fee": "0 €",
       "feeCategory": "fee_free",
       "theme": "Tout ça c'est pour rire ! (jeunes) ou Rien ne sert… (adultes).",
@@ -2350,11 +2463,11 @@
         "format_poème"
       ],
       "added": "il y a 4 mois",
-      "addedAt": "2026-03-12T07:42:50.550Z",
+      "addedAt": "2026-03-12T08:07:11.859Z",
       "deadline": "01/10/2026",
       "deadlineAt": "2026-10-01T00:00:00.000Z",
       "audience": "Tous",
-      "audienceCategory": "audience_all",
+      "audienceCategories": [],
       "fee": "0 €",
       "feeCategory": "fee_free",
       "theme": "Poésie mathématique. Nous recherchons des poèmes qui capturent l’essence des mathématiques : des textes qui en révèlent la beauté, qui les rendent sensibles, vivantes, vibrantes. Prose ou vers, rimes ou liberté formelle, sonnet, haïku ou contrainte oulipienne : toutes les formes sont les bienvenues, pourvu qu’elles portent votre inspiration.",
@@ -2371,11 +2484,11 @@
         "format_nouvelle"
       ],
       "added": "il y a 4 mois",
-      "addedAt": "2026-03-12T07:42:50.550Z",
+      "addedAt": "2026-03-12T08:07:11.859Z",
       "deadline": "31/07/2026",
       "deadlineAt": "2026-07-31T00:00:00.000Z",
       "audience": "Tous",
-      "audienceCategory": "audience_all",
+      "audienceCategories": [],
       "fee": "7 €",
       "feeCategory": "fee_1_10",
       "theme": "Ce chat n'était pas normal.",
@@ -2392,11 +2505,11 @@
         "format_nouvelle"
       ],
       "added": "il y a 4 mois",
-      "addedAt": "2026-03-12T07:42:50.550Z",
+      "addedAt": "2026-03-12T08:07:11.859Z",
       "deadline": "01/09/2026",
       "deadlineAt": "2026-09-01T00:00:00.000Z",
       "audience": "Tous",
-      "audienceCategory": "audience_all",
+      "audienceCategories": [],
       "fee": "10 €",
       "feeCategory": "fee_1_10",
       "theme": "Avoir un lien avec la Lorraine.",
@@ -2413,11 +2526,14 @@
         "format_nouvelle"
       ],
       "added": "il y a 4 mois",
-      "addedAt": "2026-03-12T07:42:50.550Z",
+      "addedAt": "2026-03-12T08:07:11.859Z",
       "deadline": "15/08/2026",
       "deadlineAt": "2026-08-15T00:00:00.000Z",
       "audience": "18 ans minimum, résidents de France métropolitaine",
-      "audienceCategory": "audience_geographic",
+      "audienceCategories": [
+        "geo_france_metropolitaine",
+        "audience_18_plus"
+      ],
       "fee": "5 €",
       "feeCategory": "fee_1_10",
       "theme": "Suite",
@@ -2434,11 +2550,11 @@
         "format_poème"
       ],
       "added": "il y a 4 mois",
-      "addedAt": "2026-03-12T07:42:50.550Z",
+      "addedAt": "2026-03-12T08:07:11.859Z",
       "deadline": "31/01/2027",
       "deadlineAt": "2027-01-31T00:00:00.000Z",
       "audience": "Tous",
-      "audienceCategory": "audience_all",
+      "audienceCategories": [],
       "fee": "0 €",
       "feeCategory": "fee_free",
       "theme": "Changement global, ses angoisses, ode à la Terre et à l’espoir d’un monde nouveau.",
@@ -2455,11 +2571,13 @@
         "format_nouvelle"
       ],
       "added": "il y a 5 mois",
-      "addedAt": "2026-02-10T07:42:50.550Z",
+      "addedAt": "2026-02-10T08:07:11.859Z",
       "deadline": "01/08/2026",
       "deadlineAt": "2026-08-01T00:00:00.000Z",
       "audience": "18 ans minimum",
-      "audienceCategory": "audience_18_plus",
+      "audienceCategories": [
+        "audience_18_plus"
+      ],
       "fee": "0 €",
       "feeCategory": "fee_free",
       "theme": "Le jour où…",
@@ -2477,11 +2595,14 @@
         "genre_fantastique"
       ],
       "added": "il y a 6 mois",
-      "addedAt": "2026-01-11T07:42:50.550Z",
+      "addedAt": "2026-01-11T08:07:11.859Z",
       "deadline": "31/01/2027",
       "deadlineAt": "2027-01-31T00:00:00.000Z",
       "audience": "18 ans minimum (toute personne majeure au 02/01/2027), résidents de France métropolitaine",
-      "audienceCategory": "audience_geographic",
+      "audienceCategories": [
+        "geo_france_metropolitaine",
+        "audience_18_plus"
+      ],
       "fee": "0 €",
       "feeCategory": "fee_free",
       "theme": "Libre.",
@@ -2498,11 +2619,11 @@
         "format_texte"
       ],
       "added": "il y a 6 mois",
-      "addedAt": "2026-01-11T07:42:50.550Z",
+      "addedAt": "2026-01-11T08:07:11.859Z",
       "deadline": "31/12/2026",
       "deadlineAt": "2026-12-31T00:00:00.000Z",
       "audience": "Tous",
-      "audienceCategory": "audience_all",
+      "audienceCategories": [],
       "fee": "0 €",
       "feeCategory": "fee_free",
       "theme": "Libre",
@@ -2519,11 +2640,11 @@
         "format_nouvelle"
       ],
       "added": "il y a 8 mois",
-      "addedAt": "2025-11-12T07:42:50.550Z",
+      "addedAt": "2025-11-12T08:07:11.859Z",
       "deadline": "01/12/2026",
       "deadlineAt": "2026-12-01T00:00:00.000Z",
       "audience": "Tous",
-      "audienceCategory": "audience_all",
+      "audienceCategories": [],
       "fee": "0 €",
       "feeCategory": "fee_free",
       "theme": "Le Tartare est un restaurant gastronomique. À chaque service, des convives viennent y déguster, sans le savoir, ce qui sera leur dernier repas... Imaginez la soirée d’une des tables de ce huis clos pour construire une satire sociale collaborative.",
@@ -2544,11 +2665,11 @@
         "format_texte"
       ],
       "added": "il y a 9 mois",
-      "addedAt": "2025-10-13T07:42:50.550Z",
+      "addedAt": "2025-10-13T08:07:11.859Z",
       "deadline": "26/10/2026",
       "deadlineAt": "2026-10-26T00:00:00.000Z",
       "audience": "Tous",
-      "audienceCategory": "audience_all",
+      "audienceCategories": [],
       "fee": "0 €",
       "feeCategory": "fee_free",
       "theme": "Racines, Nous sommes nés quelque part. Pas par hasard. Dieu nous a placés là, au cœur d’un peuple, d’une histoire, d’un paysage, d'un village, d'une famille. Il nous a mis là sans doute pour une bonne raison, je lui demande souvent… dans mes silences en regardant le ciel, dans mes pourquoi et mes comment• Et si nous avons parfois oublié, dispersés par les vents du monde, il est temps de revenir. Revenir à ce qui nous fonde, nous relie, nous élève.",
@@ -2580,40 +2701,72 @@
   ],
   "audienceFilterOptions": [
     {
-      "value": "audience_all",
-      "label": "Tous (48)"
-    },
-    {
       "value": "audience_under_18",
       "label": "Moins de 18 ans (2)"
     },
     {
       "value": "audience_minors_and_up",
-      "label": "Mineurs (à partir de X ans) (9)"
+      "label": "Mineurs (à partir de X ans) (12)"
     },
     {
       "value": "audience_mixed_age",
-      "label": "Jeunes et adultes (1)"
+      "label": "Jeunes et adultes (2)"
     },
     {
       "value": "audience_18_plus",
-      "label": "18 ans et plus (19)"
+      "label": "18 ans et plus (21)"
     },
     {
       "value": "audience_young_adult",
       "label": "Jeunes adultes (âge maximum) (1)"
     },
     {
-      "value": "audience_geographic",
-      "label": "Résidents (critère géographique) (13)"
+      "value": "audience_published",
+      "label": "Publié / professionnel (10)"
     },
     {
-      "value": "audience_professional",
-      "label": "Auteurs / professionnels (11)"
+      "value": "audience_unpublished",
+      "label": "Non publié (2)"
     },
     {
       "value": "audience_specific",
       "label": "Public spécifique (1)"
+    },
+    {
+      "value": "geo_france_metropolitaine",
+      "label": "France métropolitaine (3)"
+    },
+    {
+      "value": "geo_france",
+      "label": "France (2)"
+    },
+    {
+      "value": "geo_nouvelle_aquitaine",
+      "label": "Nouvelle-Aquitaine (2)"
+    },
+    {
+      "value": "geo_hauts_de_france",
+      "label": "Hauts-de-France (1)"
+    },
+    {
+      "value": "geo_champagne_ardenne",
+      "label": "Champagne-Ardenne (1)"
+    },
+    {
+      "value": "geo_morbihan",
+      "label": "Morbihan (1)"
+    },
+    {
+      "value": "geo_belgique",
+      "label": "Belgique et communes frontalières (1)"
+    },
+    {
+      "value": "geo_francophonie",
+      "label": "Francophonie (hors Île-de-France) (1)"
+    },
+    {
+      "value": "geo_afrique_haiti",
+      "label": "Afrique et Haïti (1)"
     },
     {
       "value": "audience_unknown",
