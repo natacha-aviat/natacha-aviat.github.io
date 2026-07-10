@@ -4,8 +4,12 @@ const DATA_URL = "data/textes-a-la-pelle.json";
 const filterButtonsEl = document.getElementById("filter-buttons");
 const feeFilterButtonsEl = document.getElementById("fee-filter-buttons");
 const audienceFilterButtonsEl = document.getElementById("audience-filter-buttons");
-const selectAllBtn = document.getElementById("select-all-filters");
-const deselectAllBtn = document.getElementById("deselect-all-filters");
+const selectAllTagFiltersBtn = document.getElementById("select-all-tag-filters");
+const deselectAllTagFiltersBtn = document.getElementById("deselect-all-tag-filters");
+const selectAllFeeFiltersBtn = document.getElementById("select-all-fee-filters");
+const deselectAllFeeFiltersBtn = document.getElementById("deselect-all-fee-filters");
+const selectAllAudienceFiltersBtn = document.getElementById("select-all-audience-filters");
+const deselectAllAudienceFiltersBtn = document.getElementById("deselect-all-audience-filters");
 const sortButtons = [...document.querySelectorAll(".sort-btn")];
 const statusEl = document.getElementById("status");
 const resultsCountEl = document.getElementById("results-count");
@@ -359,28 +363,48 @@ function toggleAudienceFilter(value) {
   renderAnnouncements();
 }
 
-function selectAllFilters() {
+function selectAllTagFilters() {
   selectedFilters.clear();
-  selectedFeeFilters.clear();
-  selectedAudienceFilters.clear();
   for (const option of getSelectableFilterOptions()) {
     selectedFilters.add(option.value);
   }
-  for (const option of getSelectableFeeFilterOptions()) {
-    selectedFeeFilters.add(option.value);
-  }
-  for (const option of getSelectableAudienceFilterOptions()) {
-    selectedAudienceFilters.add(option.value);
-  }
-  syncAllFilterButtonStates();
+  syncFilterButtonStates();
   renderAnnouncements();
 }
 
-function deselectAllFilters() {
+function deselectAllTagFilters() {
   selectedFilters.clear();
+  syncFilterButtonStates();
+  renderAnnouncements();
+}
+
+function selectAllFeeFilters() {
   selectedFeeFilters.clear();
+  for (const option of getSelectableFeeFilterOptions()) {
+    selectedFeeFilters.add(option.value);
+  }
+  syncFeeFilterButtonStates();
+  renderAnnouncements();
+}
+
+function deselectAllFeeFilters() {
+  selectedFeeFilters.clear();
+  syncFeeFilterButtonStates();
+  renderAnnouncements();
+}
+
+function selectAllAudienceFilters() {
   selectedAudienceFilters.clear();
-  syncAllFilterButtonStates();
+  for (const option of getSelectableAudienceFilterOptions()) {
+    selectedAudienceFilters.add(option.value);
+  }
+  syncAudienceFilterButtonStates();
+  renderAnnouncements();
+}
+
+function deselectAllAudienceFilters() {
+  selectedAudienceFilters.clear();
+  syncAudienceFilterButtonStates();
   renderAnnouncements();
 }
 
@@ -584,8 +608,12 @@ async function loadData() {
   }
 }
 
-selectAllBtn.addEventListener("click", selectAllFilters);
-deselectAllBtn.addEventListener("click", deselectAllFilters);
+selectAllTagFiltersBtn.addEventListener("click", selectAllTagFilters);
+deselectAllTagFiltersBtn.addEventListener("click", deselectAllTagFilters);
+selectAllFeeFiltersBtn.addEventListener("click", selectAllFeeFilters);
+deselectAllFeeFiltersBtn.addEventListener("click", deselectAllFeeFilters);
+selectAllAudienceFiltersBtn.addEventListener("click", selectAllAudienceFilters);
+deselectAllAudienceFiltersBtn.addEventListener("click", deselectAllAudienceFilters);
 sortButtons.forEach((button) => {
   button.addEventListener("click", () => setSort(button.dataset.sort));
 });

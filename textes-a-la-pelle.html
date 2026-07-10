@@ -24,20 +24,38 @@
 
   <section class="controls" aria-label="Filtres et tri">
     <div class="filter-section">
-      <div class="filter-header">
-        <p class="filter-title">Filtrer les annonces par :</p>
-        <div class="filter-actions">
-          <button type="button" id="select-all-filters" class="action-btn">Tout sélectionner</button>
-          <button type="button" id="deselect-all-filters" class="action-btn">Tout désélectionner</button>
-        </div>
-      </div>
-      <div id="filter-buttons" class="filter-buttons" role="group" aria-label="Filtres par type et genre"></div>
+      <p class="filter-title">Filtrer les annonces par :</p>
+
       <div class="filter-subsection">
-        <p class="filter-group-title">frais d'inscription :</p>
+        <div class="filter-subsection-header">
+          <p class="filter-group-title">type et genre :</p>
+          <div class="filter-actions">
+            <button type="button" id="select-all-tag-filters" class="action-btn">Tout sélectionner</button>
+            <button type="button" id="deselect-all-tag-filters" class="action-btn">Tout désélectionner</button>
+          </div>
+        </div>
+        <div id="filter-buttons" class="filter-buttons" role="group" aria-label="Filtres par type et genre"></div>
+      </div>
+
+      <div class="filter-subsection">
+        <div class="filter-subsection-header">
+          <p class="filter-group-title">frais d'inscription :</p>
+          <div class="filter-actions">
+            <button type="button" id="select-all-fee-filters" class="action-btn action-btn--fee">Tout sélectionner</button>
+            <button type="button" id="deselect-all-fee-filters" class="action-btn action-btn--fee">Tout désélectionner</button>
+          </div>
+        </div>
         <div id="fee-filter-buttons" class="filter-group-buttons" role="group" aria-label="Filtres par frais d'inscription"></div>
       </div>
+
       <div class="filter-subsection">
-        <p class="filter-group-title">public :</p>
+        <div class="filter-subsection-header">
+          <p class="filter-group-title">public :</p>
+          <div class="filter-actions">
+            <button type="button" id="select-all-audience-filters" class="action-btn action-btn--audience">Tout sélectionner</button>
+            <button type="button" id="deselect-all-audience-filters" class="action-btn action-btn--audience">Tout désélectionner</button>
+          </div>
+        </div>
         <div id="audience-filter-buttons" class="filter-group-buttons" role="group" aria-label="Filtres par public"></div>
       </div>
     </div>
@@ -60,6 +78,6 @@
     — page hébergée sur <a href="https://natacha-aviat.github.io/">natacha-aviat.github.io</a>
   </footer>
 
-  <script src="js/textes-a-la-pelle.js?v=20260710b"></script>
+  <script src="js/textes-a-la-pelle.js?v=20260710c"></script>
 </body>
 </html>

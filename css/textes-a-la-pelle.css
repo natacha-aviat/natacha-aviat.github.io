@@ -183,6 +183,32 @@ header a {
   gap: 0.45rem;
 }
 
+.filter-subsection-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem 1rem;
+}
+
+.action-btn--fee {
+  border-color: var(--tap-navy);
+  color: var(--tap-navy);
+}
+
+.action-btn--fee:hover {
+  background: #e8eef8;
+}
+
+.action-btn--audience {
+  border-color: #00796b;
+  color: #00796b;
+}
+
+.action-btn--audience:hover {
+  background: #e0f2f1;
+}
+
 .filter-btn.fee-filter-btn[aria-pressed="true"] {
   background: var(--tap-navy);
   border-color: var(--tap-navy);
