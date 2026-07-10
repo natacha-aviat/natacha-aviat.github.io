@@ -178,6 +178,25 @@ header a {
   outline-offset: 2px;
 }
 
+.filter-subsection {
+  display: grid;
+  gap: 0.45rem;
+}
+
+.filter-btn.fee-filter-btn[aria-pressed="true"] {
+  background: var(--tap-navy);
+  border-color: var(--tap-navy);
+  color: #fff;
+}
+
+.filter-btn.fee-filter-btn:hover {
+  background: #e8eef8;
+}
+
+.filter-btn.fee-filter-btn[aria-pressed="true"]:hover {
+  background: #002d6d;
+}
+
 .sort-section {
   align-items: flex-start;
 }
