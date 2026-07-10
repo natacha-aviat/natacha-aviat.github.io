@@ -289,11 +289,15 @@
 
     /* ── Active filters ── */
     .active-filters {
-      display: flex;
+      display: none;
       align-items: center;
       gap: 8px;
       margin-top: 12px;
       flex-wrap: wrap;
+    }
+
+    .active-filters.has-filters {
+      display: flex;
     }
 
     .filter-pill {
@@ -543,10 +547,8 @@
           </div>
           <button class="btn-digger">Digger</button>
         </div>
-        <div class="active-filters">
-          <span class="filter-pill">minimal <span class="remove">×</span></span>
-          <span class="filter-pill">beat-tape <span class="remove">×</span></span>
-          <a class="clear-all" href="#">tout effacer</a>
+        <div class="active-filters" id="active-filters">
+          <a class="clear-all" href="#" id="clear-all">tout effacer</a>
         </div>
       </div>
 
@@ -718,6 +720,74 @@
       </div>
     </main>
   </div>
+
+  <script>
+    const activeFiltersEl = document.getElementById('active-filters');
+    const clearAllBtn = document.getElementById('clear-all');
+    const sidebarTags = document.querySelectorAll('.sidebar .tag');
+
+    const activeFilters = new Set(
+      [...document.querySelectorAll('.sidebar .tag.active')].map(t => t.textContent.trim())
+    );
+
+    function syncSidebar() {
+      sidebarTags.forEach(tag => {
+        const name = tag.textContent.trim();
+        tag.classList.toggle('active', activeFilters.has(name));
+      });
+    }
+
+    function renderActiveFilters() {
+      activeFiltersEl.querySelectorAll('.filter-pill').forEach(pill => pill.remove());
+
+      [...activeFilters].sort().forEach(name => {
+        const pill = document.createElement('span');
+        pill.className = 'filter-pill';
+        pill.innerHTML = `${name} <span class="remove" aria-label="Retirer ${name}">×</span>`;
+
+        pill.querySelector('.remove').addEventListener('click', (e) => {
+          e.stopPropagation();
+          activeFilters.delete(name);
+          syncSidebar();
+          renderActiveFilters();
+        });
+
+        activeFiltersEl.insertBefore(pill, clearAllBtn);
+      });
+
+      activeFiltersEl.classList.toggle('has-filters', activeFilters.size > 0);
+    }
+
+    sidebarTags.forEach(tag => {
+      tag.addEventListener('click', () => {
+        const name = tag.textContent.trim();
+        if (activeFilters.has(name)) {
+          activeFilters.delete(name);
+        } else {
+          activeFilters.add(name);
+        }
+        syncSidebar();
+        renderActiveFilters();
+      });
+    });
+
+    clearAllBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      activeFilters.clear();
+      syncSidebar();
+      renderActiveFilters();
+    });
+
+    renderActiveFilters();
+
+    const tabs = document.querySelectorAll('.tab');
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        tabs.forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+      });
+    });
+  </script>
 
 </body>
 </html>

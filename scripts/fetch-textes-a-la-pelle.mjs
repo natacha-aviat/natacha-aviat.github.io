@@ -118,10 +118,20 @@ function buildFeeFilterOptions(announcements) {
     }));
 }
 
+const AGE_AUDIENCE_CATEGORIES = new Set([
+  "audience_under_18",
+  "audience_minors_and_up",
+  "audience_12_18",
+  "audience_18_plus",
+  "audience_young_adult",
+]);
+
 const AUDIENCE_FILTER_LABELS = {
+  audience_no_age_constraint: "Pas de contrainte d'âge",
+  audience_no_geo_constraint: "Pas de contrainte géographique",
   audience_under_18: "Moins de 18 ans",
   audience_minors_and_up: "Mineurs (à partir de X ans)",
-  audience_mixed_age: "Jeunes et adultes",
+  audience_12_18: "12-18 ans",
   audience_18_plus: "18 ans et plus",
   audience_young_adult: "Jeunes adultes (âge maximum)",
   audience_published: "Publié / professionnel",
@@ -137,13 +147,14 @@ const AUDIENCE_FILTER_LABELS = {
   geo_francophonie: "Francophonie (hors Île-de-France)",
   geo_afrique_haiti: "Afrique et Haïti",
   geo_alsace: "Alsace",
-  audience_unknown: "Non précisé",
 };
 
 const AUDIENCE_FILTER_ORDER = [
+  "audience_no_age_constraint",
+  "audience_no_geo_constraint",
   "audience_under_18",
   "audience_minors_and_up",
-  "audience_mixed_age",
+  "audience_12_18",
   "audience_18_plus",
   "audience_young_adult",
   "audience_published",
@@ -159,7 +170,6 @@ const AUDIENCE_FILTER_ORDER = [
   "geo_francophonie",
   "geo_afrique_haiti",
   "geo_alsace",
-  "audience_unknown",
 ];
 
 function classifyGeographic(text) {
@@ -197,9 +207,24 @@ function classifyGeographic(text) {
   return null;
 }
 
+function finalizeAudienceCategories(categories) {
+  const unique = categories.filter((category) => category !== "audience_unknown");
+  const hasAge = unique.some((category) => AGE_AUDIENCE_CATEGORIES.has(category));
+  const hasGeo = unique.some((category) => category.startsWith("geo_"));
+
+  if (!hasAge) {
+    unique.push("audience_no_age_constraint");
+  }
+  if (!hasGeo) {
+    unique.push("audience_no_geo_constraint");
+  }
+
+  return [...new Set(unique)];
+}
+
 function classifyAudience(audienceText) {
   if (!audienceText || !audienceText.trim()) {
-    return ["audience_unknown"];
+    return ["audience_no_age_constraint", "audience_no_geo_constraint"];
   }
 
   const text = audienceText.trim();
@@ -231,7 +256,7 @@ function classifyAudience(audienceText) {
     } else if (min >= 18) {
       categories.push("audience_18_plus");
     } else {
-      categories.push("audience_mixed_age");
+      categories.push("audience_12_18");
     }
   }
 
@@ -247,7 +272,7 @@ function classifyAudience(audienceText) {
     categories.push(min >= 18 ? "audience_18_plus" : "audience_minors_and_up");
   }
 
-  return [...new Set(categories)];
+  return finalizeAudienceCategories(categories);
 }
 
 function buildAudienceFilterOptions(announcements) {
