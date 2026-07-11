@@ -336,6 +336,9 @@
 
     .album-card {
       cursor: pointer;
+      text-decoration: none;
+      color: inherit;
+      display: block;
     }
 
     .album-cover-wrap {
@@ -478,6 +481,41 @@
     .empty-state p {
       font-size: 14px;
     }
+
+    .status-message {
+      text-align: center;
+      padding: 48px 20px;
+      color: var(--text-muted);
+      font-size: 14px;
+    }
+
+    .status-message.error {
+      color: #f87171;
+    }
+
+    .status-message a {
+      color: var(--gold);
+    }
+
+    .album-grid.is-loading {
+      opacity: 0.45;
+      pointer-events: none;
+    }
+
+    .search-results {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 20px 16px;
+      margin-top: 24px;
+    }
+
+    @media (max-width: 1200px) {
+      .search-results { grid-template-columns: repeat(4, 1fr); }
+    }
+
+    @media (max-width: 900px) {
+      .search-results { grid-template-columns: repeat(3, 1fr); }
+    }
   </style>
 </head>
 <body>
@@ -599,15 +637,15 @@
           <button class="tab">Tendances</button>
           <button class="tab">Sélection</button>
         </div>
-        <span class="results-count">28 résultats</span>
+        <span class="results-count" id="discover-count">—</span>
       </div>
 
       <!-- Search panel -->
       <div class="search-panel">
         <div class="search-row">
-          <input class="search-input" type="text" placeholder="Ajoute un genre (ex : deep-house, broken-beat...)">
+          <input class="search-input" id="discover-genre-input" type="text" placeholder="Ajoute un genre (ex : deep-house, broken-beat...)">
           <div class="select-wrap">
-            <select>
+            <select id="discover-location">
               <option selected>Monde entier</option>
               <option>Paris</option>
               <option>Londres</option>
@@ -626,13 +664,13 @@
             </select>
           </div>
           <div class="select-wrap select-days">
-            <select>
+            <select id="discover-days">
               <option>30</option>
               <option selected>60</option>
               <option>90</option>
             </select>
           </div>
-          <button class="btn-digger">Digger</button>
+          <button class="btn-digger" id="btn-digger">Digger</button>
         </div>
         <div class="active-filters" id="active-filters">
           <a class="clear-all" href="#" id="clear-all">tout effacer</a>
@@ -640,171 +678,8 @@
       </div>
 
       <!-- Album grid -->
-      <div class="album-grid">
-
-        <div class="album-card">
-          <div class="album-cover-wrap">
-            <img class="album-cover" src="https://picsum.photos/seed/album01/300/300" alt="">
-            <span class="album-price">0,00 $CA</span>
-          </div>
-          <div class="album-title">Très bruyant</div>
-          <div class="album-artist">Modulaire vol. 1</div>
-        </div>
-
-        <div class="album-card">
-          <div class="album-cover-wrap">
-            <img class="album-cover" src="https://picsum.photos/seed/album02/300/300" alt="">
-            <span class="album-price">0,00 $CA</span>
-          </div>
-          <div class="album-title">Drivewa_y</div>
-          <div class="album-artist">The Knife</div>
-        </div>
-
-        <div class="album-card">
-          <div class="album-cover-wrap">
-            <img class="album-cover" src="https://picsum.photos/seed/album03/300/300" alt="">
-            <span class="album-price">4,00 $CA</span>
-          </div>
-          <div class="album-title">Final DJ Set</div>
-          <div class="album-artist">Various Artists</div>
-        </div>
-
-        <div class="album-card">
-          <div class="album-cover-wrap">
-            <img class="album-cover" src="https://picsum.photos/seed/album04/300/300" alt="">
-            <span class="album-price">6,00 $CA</span>
-          </div>
-          <div class="album-title">JAPAN: Far East Dark Ambient Anthology 1980-1990</div>
-          <div class="album-artist">Various Artists</div>
-        </div>
-
-        <div class="album-card">
-          <div class="album-cover-wrap">
-            <img class="album-cover" src="https://picsum.photos/seed/album05/300/300" alt="">
-            <span class="album-price">5,00 $CA</span>
-          </div>
-          <div class="album-title">Robotnik</div>
-          <div class="album-artist">Ko Ishihara</div>
-        </div>
-
-        <div class="album-card">
-          <div class="album-cover-wrap">
-            <img class="album-cover" src="https://picsum.photos/seed/album06/300/300" alt="">
-            <span class="album-price">1,56 €EU</span>
-          </div>
-          <div class="album-title">Eternal Flint2</div>
-          <div class="album-artist">Distant Again</div>
-        </div>
-
-        <div class="album-card">
-          <div class="album-cover-wrap">
-            <img class="album-cover" src="https://picsum.photos/seed/album07/300/300" alt="">
-            <span class="album-price">0,00 $CA</span>
-          </div>
-          <div class="album-title">Un poco de suela en el alma</div>
-          <div class="album-artist">SKA-Hi max</div>
-        </div>
-
-        <div class="album-card">
-          <div class="album-cover-wrap">
-            <img class="album-cover" src="https://picsum.photos/seed/album08/300/300" alt="">
-            <span class="album-price">4,00 $CA</span>
-          </div>
-          <div class="album-title">rdyear</div>
-          <div class="album-artist">thoughts</div>
-        </div>
-
-        <div class="album-card">
-          <div class="album-cover-wrap">
-            <img class="album-cover" src="https://picsum.photos/seed/album09/300/300" alt="">
-            <span class="album-price">0,00 $CA</span>
-          </div>
-          <div class="album-title">Dissonant Rhythms</div>
-          <div class="album-artist">Cut Copy</div>
-        </div>
-
-        <div class="album-card">
-          <div class="album-cover-wrap">
-            <img class="album-cover" src="https://picsum.photos/seed/album10/300/300" alt="">
-            <span class="album-price">1,50 £GB</span>
-          </div>
-          <div class="album-title">New Taboo</div>
-          <div class="album-artist">Various Artists</div>
-        </div>
-
-        <div class="album-card">
-          <div class="album-cover-wrap">
-            <img class="album-cover" src="https://picsum.photos/seed/album11/300/300" alt="">
-            <span class="album-price">0,00 $CA</span>
-          </div>
-          <div class="album-title">Dusk</div>
-          <div class="album-artist">Achronman</div>
-        </div>
-
-        <div class="album-card">
-          <div class="album-cover-wrap">
-            <img class="album-cover" src="https://picsum.photos/seed/album12/300/300" alt="">
-            <span class="album-price">0,00 $CA</span>
-          </div>
-          <div class="album-title">Megabheatham</div>
-          <div class="album-artist">Dogwaffle</div>
-        </div>
-
-        <div class="album-card">
-          <div class="album-cover-wrap">
-            <img class="album-cover" src="https://picsum.photos/seed/album13/300/300" alt="">
-            <span class="album-price">6,00 $CA</span>
-          </div>
-          <div class="album-title">Сыны Чернобыля</div>
-          <div class="album-artist">Perel</div>
-        </div>
-
-        <div class="album-card">
-          <div class="album-cover-wrap">
-            <img class="album-cover" src="https://picsum.photos/seed/album14/300/300" alt="">
-            <span class="album-price">0,00 $CA</span>
-          </div>
-          <div class="album-title">live @ 4bid oude kerk</div>
-          <div class="album-artist">Gramrcy</div>
-        </div>
-
-        <div class="album-card">
-          <div class="album-cover-wrap">
-            <img class="album-cover" src="https://picsum.photos/seed/album15/300/300" alt="">
-            <span class="album-price">0,00 $CA</span>
-          </div>
-          <div class="album-title">Kraftwerk</div>
-          <div class="album-artist">Fresh Produce</div>
-        </div>
-
-        <div class="album-card">
-          <div class="album-cover-wrap">
-            <img class="album-cover" src="https://picsum.photos/seed/album16/300/300" alt="">
-            <span class="album-price">0,00 $CA</span>
-          </div>
-          <div class="album-title">I'm not here anymore</div>
-          <div class="album-artist">Y0u1</div>
-        </div>
-
-        <div class="album-card">
-          <div class="album-cover-wrap">
-            <img class="album-cover" src="https://picsum.photos/seed/album17/300/300" alt="">
-            <span class="album-price">0,00 $CA</span>
-          </div>
-          <div class="album-title">UNHOIR</div>
-          <div class="album-artist">Caprice</div>
-        </div>
-
-        <div class="album-card">
-          <div class="album-cover-wrap">
-            <img class="album-cover" src="https://picsum.photos/seed/album18/300/300" alt="">
-            <span class="album-price">0,00 $CA</span>
-          </div>
-          <div class="album-title">REDRAWN I</div>
-          <div class="album-artist">UNKNOWN LOVERS</div>
-        </div>
-
-      </div>
+      <div class="album-grid" id="discover-results"></div>
+      <div class="status-message" id="discover-status" hidden></div>
     </main>
   </div>
 
@@ -812,8 +687,8 @@
   <div class="search-layout" id="view-rechercher" hidden>
     <div class="search-view-panel">
       <div class="search-row">
-        <input class="search-input" type="text" placeholder="Cherche un album, un artiste, un label...">
-        <button class="btn-chercher">Chercher</button>
+        <input class="search-input" id="search-query" type="text" placeholder="Cherche un album, un artiste, un label...">
+        <button class="btn-chercher" id="btn-chercher">Chercher</button>
       </div>
       <div class="scope-filters">
         <button class="scope-btn active">Tout</button>
@@ -821,7 +696,7 @@
         <button class="scope-btn">Artistes / Labels</button>
       </div>
     </div>
-    <div class="empty-state">
+    <div class="empty-state" id="search-empty">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
         <path d="M3 18v-6a9 9 0 0 1 18 0v6"/>
         <path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3z"/>
@@ -829,16 +704,184 @@
       </svg>
       <p>Aucun résultat pour l'instant. Lance une recherche.</p>
     </div>
+    <div class="search-results" id="search-results" hidden></div>
+    <div class="status-message" id="search-status" hidden></div>
   </div>
 
+  <script src="bandcamp-api.js"></script>
   <script>
     const activeFiltersEl = document.getElementById('active-filters');
     const clearAllBtn = document.getElementById('clear-all');
     const sidebarTags = document.querySelectorAll('.sidebar .tag');
+    const discoverResultsEl = document.getElementById('discover-results');
+    const discoverStatusEl = document.getElementById('discover-status');
+    const discoverCountEl = document.getElementById('discover-count');
+    const discoverGenreInput = document.getElementById('discover-genre-input');
+    const discoverLocationEl = document.getElementById('discover-location');
+    const discoverDaysEl = document.getElementById('discover-days');
+    const btnDigger = document.getElementById('btn-digger');
+    const searchQueryEl = document.getElementById('search-query');
+    const btnChercher = document.getElementById('btn-chercher');
+    const searchResultsEl = document.getElementById('search-results');
+    const searchEmptyEl = document.getElementById('search-empty');
+    const searchStatusEl = document.getElementById('search-status');
 
     const activeFilters = new Set(
       [...document.querySelectorAll('.sidebar .tag.active')].map(t => t.textContent.trim())
     );
+
+    let discoverLoading = false;
+    let searchLoading = false;
+    let lastSearchQuery = '';
+
+    function getActiveTabLabel() {
+      return document.querySelector('.tab.active')?.textContent.trim() || 'Nouveautés';
+    }
+
+    function getActiveScopeLabel() {
+      return document.querySelector('.scope-btn.active')?.textContent.trim() || 'Tout';
+    }
+
+    function normalizeTag(value) {
+      return value.trim().toLowerCase().replace(/\s+/g, '-');
+    }
+
+    function showStatus(el, message, isError = false) {
+      if (!message) {
+        el.hidden = true;
+        el.textContent = '';
+        el.classList.remove('error');
+        return;
+      }
+      el.hidden = false;
+      el.textContent = message;
+      el.classList.toggle('error', isError);
+    }
+
+    function isProxyError(err) {
+      return err instanceof TypeError || /fetch/i.test(err.message);
+    }
+
+    function proxyHelpMessage() {
+      return 'Impossible de joindre l\'API Bandcamp. Lance le proxy : node bandcamp-proxy/server.mjs';
+    }
+
+    function renderDiscoverAlbums(results) {
+      discoverResultsEl.innerHTML = results.map(item => {
+        const img = BandcampAPI.albumImageUrl(item);
+        const price = BandcampAPI.formatPrice(item.price);
+        const artist = item.album_artist || item.band_name || '';
+        const url = BandcampAPI.cleanUrl(item.item_url);
+        return `
+          <a class="album-card" href="${url}" target="_blank" rel="noopener noreferrer">
+            <div class="album-cover-wrap">
+              <img class="album-cover" src="${img}" alt="" loading="lazy">
+              <span class="album-price">${price}</span>
+            </div>
+            <div class="album-title">${item.title}</div>
+            <div class="album-artist">${artist}</div>
+          </a>`;
+      }).join('');
+    }
+
+    function renderSearchResults(results) {
+      searchResultsEl.innerHTML = results.map(item => {
+        const url = BandcampAPI.cleanUrl(item.url);
+        const isArtist = item.type === 'b';
+        const title = item.name || item.title || '';
+        const subtitle = isArtist
+          ? (item.location || item.genre_name || (item.is_label ? 'Label' : 'Artiste'))
+          : (item.band_name || '');
+        const img = item.img || '';
+        return `
+          <a class="album-card" href="${url}" target="_blank" rel="noopener noreferrer">
+            <div class="album-cover-wrap">
+              <img class="album-cover" src="${img}" alt="" loading="lazy">
+            </div>
+            <div class="album-title">${title}</div>
+            <div class="album-artist">${subtitle}</div>
+          </a>`;
+      }).join('');
+    }
+
+    async function runDiscover() {
+      if (discoverLoading) return;
+      if (!activeFilters.size) {
+        showStatus(discoverStatusEl, 'Sélectionne au moins un genre dans Les Bacs.', true);
+        discoverResultsEl.innerHTML = '';
+        discoverCountEl.textContent = '0 résultat';
+        return;
+      }
+
+      discoverLoading = true;
+      discoverResultsEl.classList.add('is-loading');
+      showStatus(discoverStatusEl, 'Exploration en cours…');
+
+      try {
+        const data = await BandcampAPI.discover({
+          tags: [...activeFilters],
+          slice: getActiveTabLabel(),
+          location: discoverLocationEl.value,
+          days: discoverDaysEl.value,
+        });
+
+        const results = data.results || [];
+        const total = data.result_count ?? results.length;
+        discoverCountEl.textContent = `${total} résultat${total > 1 ? 's' : ''}`;
+        renderDiscoverAlbums(results);
+        showStatus(discoverStatusEl, results.length ? '' : 'Aucun album trouvé pour ces critères.');
+      } catch (err) {
+        discoverResultsEl.innerHTML = '';
+        discoverCountEl.textContent = '—';
+        showStatus(
+          discoverStatusEl,
+          isProxyError(err) ? proxyHelpMessage() : (err.message || 'Erreur lors de la recherche.'),
+          true,
+        );
+      } finally {
+        discoverLoading = false;
+        discoverResultsEl.classList.remove('is-loading');
+      }
+    }
+
+    async function runSearch() {
+      const query = searchQueryEl.value.trim();
+      if (!query || searchLoading) return;
+
+      searchLoading = true;
+      lastSearchQuery = query;
+      searchEmptyEl.hidden = true;
+      searchResultsEl.hidden = true;
+      showStatus(searchStatusEl, 'Recherche en cours…');
+
+      try {
+        const data = await BandcampAPI.search(query);
+        const filtered = BandcampAPI.filterSearchResults(data.results || [], getActiveScopeLabel());
+
+        if (!filtered.length) {
+          searchResultsEl.innerHTML = '';
+          searchResultsEl.hidden = true;
+          searchEmptyEl.hidden = false;
+          searchEmptyEl.querySelector('p').textContent = `Aucun résultat pour « ${query} ».`;
+          showStatus(searchStatusEl, '');
+        } else {
+          renderSearchResults(filtered);
+          searchResultsEl.hidden = false;
+          searchEmptyEl.hidden = true;
+          showStatus(searchStatusEl, `${filtered.length} résultat${filtered.length > 1 ? 's' : ''}`);
+        }
+      } catch (err) {
+        searchResultsEl.hidden = true;
+        searchEmptyEl.hidden = true;
+        showStatus(
+          searchStatusEl,
+          isProxyError(err) ? proxyHelpMessage() : (err.message || 'Erreur lors de la recherche.'),
+          true,
+        );
+      } finally {
+        searchLoading = false;
+      }
+    }
 
     function syncSidebar() {
       sidebarTags.forEach(tag => {
@@ -888,13 +931,25 @@
       renderActiveFilters();
     });
 
-    renderActiveFilters();
+    discoverGenreInput.addEventListener('keydown', (e) => {
+      if (e.key !== 'Enter') return;
+      e.preventDefault();
+      const tag = normalizeTag(discoverGenreInput.value);
+      if (!tag) return;
+      activeFilters.add(tag);
+      syncSidebar();
+      renderActiveFilters();
+      discoverGenreInput.value = '';
+    });
+
+    btnDigger.addEventListener('click', runDiscover);
 
     const tabs = document.querySelectorAll('.tab');
     tabs.forEach(tab => {
       tab.addEventListener('click', () => {
         tabs.forEach(t => t.classList.remove('active'));
         tab.classList.add('active');
+        runDiscover();
       });
     });
 
@@ -918,8 +973,20 @@
       btn.addEventListener('click', () => {
         scopeButtons.forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
+        if (lastSearchQuery) runSearch();
       });
     });
+
+    btnChercher.addEventListener('click', runSearch);
+    searchQueryEl.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') {
+        e.preventDefault();
+        runSearch();
+      }
+    });
+
+    renderActiveFilters();
+    runDiscover();
   </script>
 
 </body>

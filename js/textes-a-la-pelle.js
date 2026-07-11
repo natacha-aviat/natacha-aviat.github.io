@@ -395,6 +395,18 @@ function getSelectableAudienceFilterOptions() {
   return audienceFilterOptions.filter((option) => option.value);
 }
 
+function isNoEffectiveFilter(selected, options) {
+  if (selected.size === 0) {
+    return true;
+  }
+
+  const selectableValues = options
+    .filter((option) => option.value)
+    .map((option) => option.value);
+  return selectableValues.length > 0
+    && selectableValues.every((value) => selected.has(value));
+}
+
 function syncFilterButtonStates() {
   filterButtonsEl.querySelectorAll(".filter-btn").forEach((button) => {
     const isSelected = selectedFilters.has(button.dataset.filter);
@@ -489,6 +501,25 @@ function selectAllAudienceFilters() {
   }
   syncAudienceFilterButtonStates();
   renderAnnouncements();
+}
+
+function selectAllFiltersOnLoad() {
+  selectedFilters.clear();
+  for (const option of getSelectableFilterOptions()) {
+    selectedFilters.add(option.value);
+  }
+
+  selectedFeeFilters.clear();
+  for (const option of getSelectableFeeFilterOptions()) {
+    selectedFeeFilters.add(option.value);
+  }
+
+  selectedAudienceFilters.clear();
+  for (const option of getSelectableAudienceFilterOptions()) {
+    selectedAudienceFilters.add(option.value);
+  }
+
+  syncAllFilterButtonStates();
 }
 
 function deselectAllAudienceFilters() {
@@ -683,7 +714,7 @@ function passesPublicationConstraints(categories, selected) {
 }
 
 function passesAudienceConstraints(categories, selected) {
-  if (selected.size === 0) {
+  if (isNoEffectiveFilter(selected, audienceFilterOptions)) {
     return true;
   }
 
@@ -694,7 +725,7 @@ function passesAudienceConstraints(categories, selected) {
 }
 
 function passesFeeConstraints(item, selected) {
-  if (selected.size === 0) {
+  if (isNoEffectiveFilter(selected, feeFilterOptions)) {
     return true;
   }
 
@@ -707,7 +738,7 @@ function passesFeeConstraints(item, selected) {
 }
 
 function passesTagConstraints(item, selected) {
-  if (selected.size === 0) {
+  if (isNoEffectiveFilter(selected, filterOptions)) {
     return true;
   }
 
@@ -815,6 +846,7 @@ async function loadData() {
     populateFilterButtons(filterOptions);
     populateFeeFilterButtons(feeFilterOptions);
     populateAudienceFilterButtons(audienceFilterOptions);
+    selectAllFiltersOnLoad();
 
     const updatedLabel = formatUpdatedAt(data.updatedAt);
     setStatus(

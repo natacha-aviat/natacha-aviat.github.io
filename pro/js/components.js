@@ -229,7 +229,9 @@ function getLanguageSwitchUrl(targetLang) {
         'fiche-pharmamama.html': { fr: 'fiches/fiche-pharmamama.html', en: 'en/fiches/sheet-pharmamama.html' },
         'sheet-pharmamama.html': { fr: 'fiches/fiche-pharmamama.html', en: 'en/fiches/sheet-pharmamama.html' },
         'fiche-medlex.html': { fr: 'fiches/fiche-medlex.html', en: 'en/fiches/sheet-medlex.html' },
-        'sheet-medlex.html': { fr: 'fiches/fiche-medlex.html', en: 'en/fiches/sheet-medlex.html' }
+        'sheet-medlex.html': { fr: 'fiches/fiche-medlex.html', en: 'en/fiches/sheet-medlex.html' },
+        'fiche-textes-a-la-pelle.html': { fr: 'fiches/fiche-textes-a-la-pelle.html', en: 'en/fiches/sheet-textes-a-la-pelle.html' },
+        'sheet-textes-a-la-pelle.html': { fr: 'fiches/fiche-textes-a-la-pelle.html', en: 'en/fiches/sheet-textes-a-la-pelle.html' }
     };
     
     let targetPage = '';

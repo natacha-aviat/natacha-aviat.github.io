@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- SEO Meta Tags -->
+    <title>Textes à la pelle — Concours d'écriture francophones | Gratuit - Natacha Aviat</title>
+    <meta name="description" content="Liste interactive des concours d'écriture et appels à textes francophones. Données synchronisées depuis textes-a-la-pelle.fr, filtres par genre, frais et public, tri par date.">
+    <meta name="keywords" content="concours écriture, appels à textes, nouvelles, Textes à la pelle, concours francophones">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://natacha-aviat.github.io/pro/fiches/fiche-textes-a-la-pelle.html">
+    <link rel="alternate" hreflang="fr" href="https://natacha-aviat.github.io/pro/fiches/fiche-textes-a-la-pelle.html">
+    <link rel="alternate" hreflang="en" href="https://natacha-aviat.github.io/pro/en/fiches/sheet-textes-a-la-pelle.html">
+    
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://natacha-aviat.github.io/pro/fiches/fiche-textes-a-la-pelle.html">
+    <meta property="og:title" content="Textes à la pelle — Concours d'écriture francophones">
+    <meta property="og:description" content="Liste interactive des concours d'écriture et appels à textes francophones, synchronisée quotidiennement.">
+    <meta property="og:image" content="https://natacha-aviat.github.io/pro/images/Textes_a_la_pelle.png">
+    
+    <!-- Schema.org Product pour indexation IA -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "Textes à la pelle — Concours d'écriture",
+        "description": "Liste interactive des concours d'écriture et appels à textes francophones, avec filtres et tri. Données synchronisées depuis textes-a-la-pelle.fr.",
+        "image": "https://natacha-aviat.github.io/pro/images/Textes_a_la_pelle.png",
+        "applicationCategory": "UtilitiesApplication",
+        "operatingSystem": "Web",
+        "url": "https://natacha-aviat.github.io/textes-a-la-pelle.html",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "EUR",
+            "availability": "https://schema.org/InStock"
+        },
+        "creator": {
+            "@type": "Person",
+            "name": "Natacha Aviat"
+        },
+        "keywords": "concours écriture, appels à textes, Textes à la pelle"
+    }
+    </script>
+    
+    <!-- Meta tags pour indexation IA -->
+    <meta name="AI:ProductType" content="Outil web">
+    <meta name="AI:Price" content="Gratuit">
+    <meta name="AI:DataSource" content="textes-a-la-pelle.fr">
+    <meta name="AI:Technologies" content="JavaScript">
+    <meta name="AI:UseCase" content="Trouver et filtrer les concours d'écriture et appels à textes francophones">
+    
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/components.css">
+</head>
+<body>
+    <!-- Header -->
+    <header data-include="../partials/header.html"></header>
+
+    <!-- Fiche détaillée -->
+    <section class="section">
+        <div class="container">
+            <div data-include="../partials/fiche-back-link.html"></div>
+            <div class="fiche-container">
+                <div>
+                    <div class="fiche-image-container-tool">
+                        <img src="../images/Textes_a_la_pelle.png" alt="Textes à la pelle — liste des concours d'écriture francophones avec filtres" loading="lazy">
+                    </div>
+                </div>
+
+                <div>
+                    <h1 class="mb-2">Textes à la pelle</h1>
+                    
+                    <div class="fiche-content-section">
+                        <p>Page web qui agrège les concours d'écriture, concours de nouvelles et appels à textes francophones. Les annonces sont synchronisées quotidiennement depuis <a href="https://textes-a-la-pelle.fr/" target="_blank" rel="noopener">textes-a-la-pelle.fr</a>, avec une interface de filtrage et de tri pensée pour repérer rapidement les opportunités pertinentes.</p>
+                    </div>
+
+                    <div class="fiche-before-after">
+                        <div>
+                            <h4 class="fiche-before-title">❌ Avant</h4>
+                            <ul>
+                                <li>Annonces éparpillées sur plusieurs sites</li>
+                                <li>Difficile de filtrer par genre, frais ou public cible</li>
+                                <li>Pas de vue consolidée à jour</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 class="fiche-after-title">✅ Après</h4>
+                            <ul>
+                                <li>Liste unique, mise à jour quotidiennement</li>
+                                <li>Filtres par type, genre, frais d'inscription et public</li>
+                                <li>Tri par date d'ajout ou date d'échéance</li>
+                                <li>Compteur de résultats en temps réel</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="fiche-content-section">
+                        <h3 class="fiche-methodology-title">Fonctionnement</h3>
+                        <div class="fiche-methodology-section">
+                            <h4 class="fiche-methodology-subtitle">1. Synchronisation des données :</h4>
+                            <p class="fiche-methodology-text">Un workflow GitHub Actions récupère régulièrement les annonces depuis textes-a-la-pelle.fr et les stocke dans un fichier JSON local.</p>
+                        </div>
+                        <div class="fiche-methodology-section">
+                            <h4 class="fiche-methodology-subtitle">2. Interface interactive :</h4>
+                            <p class="fiche-methodology-text-small">En <strong>JavaScript</strong>, la page charge les annonces, génère les filtres dynamiquement et affiche les résultats triés sans rechargement.</p>
+                        </div>
+                    </div>
+
+                    <div class="fiche-content-section">
+                        <div class="fiche-badges">
+                            <span class="badge badge-secondary">JavaScript</span>
+                        </div>
+                    </div>
+
+                    <div class="fiche-content-section">
+                        <p class="fiche-data-source">Données issues de <a href="https://textes-a-la-pelle.fr/" target="_blank" rel="noopener" class="fiche-link-external">textes-a-la-pelle.fr</a></p>
+                    </div>
+
+                    <div class="fiche-price-box">
+                        <p class="fiche-price">Gratuit</p>
+                    </div>
+
+                    <div class="fiche-form">
+                        <a href="https://natacha-aviat.github.io/textes-a-la-pelle.html" target="_blank" rel="noopener" class="btn btn-primary fiche-form-submit">Accéder au projet</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer data-include="../partials/footer.html"></footer>
+
+    <script src="../js/main.js"></script>
+    <script src="../js/components.js"></script>
+</body>
+</html>

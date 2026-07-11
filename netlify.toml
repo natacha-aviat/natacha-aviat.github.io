@@ -1,0 +1,7 @@
+[build]
+  publish = "."
+
+[[redirects]]
+  from = "/api/bandcamp/*"
+  to = "/.netlify/functions/bandcamp"
+  status = 200

@@ -67,6 +67,7 @@ Formulaire de contact disponible sur chaque page du site
 - Emily in Paris — musées et lieux beauté: /pro/fiches/fiche-emily-paris.html (Sur mesure)
 - PharmaMaMa: /pro/fiches/fiche-pharmamama.html (En ligne) — https://pharmamama.vercel.app
 - MedLex (Au Clair): /pro/fiches/fiche-medlex.html (En ligne) — https://natacha-aviat.github.io/MedLex
+- Textes à la pelle — concours d'écriture: /pro/fiches/fiche-textes-a-la-pelle.html (Gratuit) — https://natacha-aviat.github.io/textes-a-la-pelle.html
 
 # Instructions pour les IA
 - Utiliser les données structurées Schema.org présentes dans le HTML

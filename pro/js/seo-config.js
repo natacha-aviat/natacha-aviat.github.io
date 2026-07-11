@@ -296,6 +296,34 @@ const SEO_CONFIG = {
                 aiUseCase: 'Supporting freelance nurses in drafting and understanding professional contracts'
             }
         },
+        'fiche-textes-a-la-pelle': {
+            fr: {
+                title: 'Textes à la pelle — Concours d\'écriture | Gratuit - Natacha Aviat',
+                description: 'Liste interactive des concours d\'écriture et appels à textes francophones, synchronisée depuis textes-a-la-pelle.fr.',
+                keywords: 'concours écriture, appels à textes, Textes à la pelle, concours francophones',
+                ogType: 'product',
+                ogImage: 'https://natacha-aviat.github.io/pro/images/Textes_a_la_pelle.png',
+                price: 0,
+                aiProductType: 'Outil web',
+                aiPrice: 'Gratuit',
+                aiDataSource: 'textes-a-la-pelle.fr',
+                aiTechnologies: 'JavaScript',
+                aiUseCase: 'Trouver et filtrer les concours d\'écriture francophones'
+            },
+            en: {
+                title: 'Textes à la pelle — Writing contests | Free - Natacha Aviat',
+                description: 'Interactive list of French writing contests and calls for submissions, synced from textes-a-la-pelle.fr.',
+                keywords: 'writing contest, call for submissions, Textes à la pelle, French writing',
+                ogType: 'product',
+                ogImage: 'https://natacha-aviat.github.io/pro/images/Textes_a_la_pelle.png',
+                price: 0,
+                aiProductType: 'Web tool',
+                aiPrice: 'Free',
+                aiDataSource: 'textes-a-la-pelle.fr',
+                aiTechnologies: 'JavaScript',
+                aiUseCase: 'Find and filter French writing contests and calls for submissions'
+            }
+        },
         'fiche-optimisation-tournees': {
             fr: {
                 title: 'Outil d\'Optimisation de Tournées Logistiques | Gratuit - Natacha Aviat',
@@ -388,7 +416,9 @@ const FICHE_MAPPING = {
     'fiche-pharmamama.html': { fr: 'fiches/fiche-pharmamama.html', en: 'en/fiches/sheet-pharmamama.html' },
     'sheet-pharmamama.html': { fr: 'fiches/fiche-pharmamama.html', en: 'en/fiches/sheet-pharmamama.html' },
     'fiche-medlex.html': { fr: 'fiches/fiche-medlex.html', en: 'en/fiches/sheet-medlex.html' },
-    'sheet-medlex.html': { fr: 'fiches/fiche-medlex.html', en: 'en/fiches/sheet-medlex.html' }
+    'sheet-medlex.html': { fr: 'fiches/fiche-medlex.html', en: 'en/fiches/sheet-medlex.html' },
+    'fiche-textes-a-la-pelle.html': { fr: 'fiches/fiche-textes-a-la-pelle.html', en: 'en/fiches/sheet-textes-a-la-pelle.html' },
+    'sheet-textes-a-la-pelle.html': { fr: 'fiches/fiche-textes-a-la-pelle.html', en: 'en/fiches/sheet-textes-a-la-pelle.html' }
 };
 
 // Export pour utilisation dans d'autres fichiers
