@@ -228,65 +228,97 @@ function getAudienceCategories(item) {
   return classifyAudience(item.audience || "");
 }
 
+const AUDIENCE_FILTER_LABELS = {
+  audience_under_18: "Moins de 18 ans",
+  audience_minors_and_up: "Mineurs (à partir de X ans)",
+  audience_12_18: "12-18 ans",
+  audience_18_plus: "18 ans et plus",
+  audience_young_adult: "Jeunes adultes (âge maximum)",
+  audience_published: "Publié / professionnel",
+  audience_unpublished: "Non publié",
+  audience_specific: "Femmes",
+  geo_france_metropolitaine: "France métropolitaine",
+  geo_france: "France",
+  geo_nouvelle_aquitaine: "Nouvelle-Aquitaine",
+  geo_hauts_de_france: "Hauts-de-France",
+  geo_champagne_ardenne: "Champagne-Ardenne",
+  geo_morbihan: "Morbihan",
+  geo_belgique: "Belgique et communes frontalières",
+  geo_francophonie: "Francophonie (hors Île-de-France)",
+  geo_afrique_haiti: "Afrique et Haïti",
+  geo_alsace: "Alsace",
+};
+
+const AUDIENCE_FILTER_GROUPS = [
+  {
+    group: "Âge",
+    values: [
+      "audience_under_18",
+      "audience_minors_and_up",
+      "audience_12_18",
+      "audience_18_plus",
+      "audience_young_adult",
+    ],
+  },
+  {
+    group: "Publication",
+    values: [
+      "audience_published",
+      "audience_unpublished",
+    ],
+  },
+  {
+    group: "Genre",
+    values: ["audience_specific"],
+  },
+  {
+    group: "Localisation",
+    values: [
+      "geo_france_metropolitaine",
+      "geo_france",
+      "geo_nouvelle_aquitaine",
+      "geo_hauts_de_france",
+      "geo_champagne_ardenne",
+      "geo_morbihan",
+      "geo_belgique",
+      "geo_francophonie",
+      "geo_afrique_haiti",
+      "geo_alsace",
+    ],
+  },
+];
+
+const HIDDEN_AUDIENCE_FILTER_VALUES = new Set([
+  "audience_no_age_constraint",
+  "audience_no_geo_constraint",
+]);
+
 function buildAudienceFilterOptionsFromAnnouncements(items) {
-  const labels = {
-    audience_no_age_constraint: "Pas de contrainte d'âge",
-    audience_no_geo_constraint: "Pas de contrainte géographique",
-    audience_under_18: "Moins de 18 ans",
-    audience_minors_and_up: "Mineurs (à partir de X ans)",
-    audience_12_18: "12-18 ans",
-    audience_18_plus: "18 ans et plus",
-    audience_young_adult: "Jeunes adultes (âge maximum)",
-    audience_published: "Publié / professionnel",
-    audience_unpublished: "Non publié",
-    audience_specific: "Femmes",
-    geo_france_metropolitaine: "France métropolitaine",
-    geo_france: "France",
-    geo_nouvelle_aquitaine: "Nouvelle-Aquitaine",
-    geo_hauts_de_france: "Hauts-de-France",
-    geo_champagne_ardenne: "Champagne-Ardenne",
-    geo_morbihan: "Morbihan",
-    geo_belgique: "Belgique et communes frontalières",
-    geo_francophonie: "Francophonie (hors Île-de-France)",
-    geo_afrique_haiti: "Afrique et Haïti",
-    geo_alsace: "Alsace",
-  };
-  const order = [
-    "audience_no_age_constraint",
-    "audience_no_geo_constraint",
-    "audience_under_18",
-    "audience_minors_and_up",
-    "audience_12_18",
-    "audience_18_plus",
-    "audience_young_adult",
-    "audience_published",
-    "audience_unpublished",
-    "audience_specific",
-    "geo_france_metropolitaine",
-    "geo_france",
-    "geo_nouvelle_aquitaine",
-    "geo_hauts_de_france",
-    "geo_champagne_ardenne",
-    "geo_morbihan",
-    "geo_belgique",
-    "geo_francophonie",
-    "geo_afrique_haiti",
-    "geo_alsace",
-  ];
   const counts = new Map();
 
   for (const item of items) {
     for (const category of getAudienceCategories(item)) {
+      if (HIDDEN_AUDIENCE_FILTER_VALUES.has(category)) {
+        continue;
+      }
       counts.set(category, (counts.get(category) || 0) + 1);
     }
   }
 
-  return order
-    .filter((value) => counts.has(value))
-    .map((value) => ({
-      value,
-      label: `${labels[value]} (${counts.get(value)})`,
-    }));
+  const options = [];
+  for (const { group, values } of AUDIENCE_FILTER_GROUPS) {
+    for (const value of values) {
+      if (counts.has(value)) {
+        options.push({
+          group,
+          value,
+          label: `${AUDIENCE_FILTER_LABELS[value]} (${counts.get(value)})`,
+        });
+      }
+    }
+  }
+
+  return options;
 }
 
 function formatUpdatedAt(isoDate) {
@@ -591,15 +623,43 @@ function populateFeeFilterButtons(options) {
 function populateAudienceFilterButtons(options) {
   audienceFilterButtonsEl.innerHTML = "";
 
+  const groups = [];
   for (const option of options) {
-    const button = document.createElement("button");
-    button.type = "button";
-    button.className = "filter-btn audience-filter-btn";
-    button.dataset.audienceFilter = option.value;
-    button.textContent = option.label;
-    button.setAttribute("aria-pressed", "false");
-    button.addEventListener("click", () => toggleAudienceFilter(option.value));
-    audienceFilterButtonsEl.appendChild(button);
+    const lastGroup = groups[groups.length - 1];
+    if (!lastGroup || lastGroup.label !== option.group) {
+      groups.push({ label: option.group, options: [option] });
+    } else {
+      lastGroup.options.push(option);
+    }
+  }
+
+  for (const group of groups) {
+    const groupEl = document.createElement("div");
+    groupEl.className = "filter-group";
+
+    if (group.label) {
+      const titleEl = document.createElement("p");
+      titleEl.className = "filter-group-title";
+      titleEl.textContent = group.label;
+      groupEl.appendChild(titleEl);
+    }
+
+    const buttonsEl = document.createElement("div");
+    buttonsEl.className = "filter-group-buttons";
+
+    for (const option of group.options) {
+      const button = document.createElement("button");
+      button.type = "button";
+      button.className = "filter-btn audience-filter-btn";
+      button.dataset.audienceFilter = option.value;
+      button.textContent = option.label;
+      button.setAttribute("aria-pressed", "false");
+      button.addEventListener("click", () => toggleAudienceFilter(option.value));
+      buttonsEl.appendChild(button);
+    }
+
+    groupEl.appendChild(buttonsEl);
+    audienceFilterButtonsEl.appendChild(groupEl);
   }
 }
 
@@ -607,10 +667,7 @@ function getSelectedFilterSubset(selected, allowed) {
   return new Set([...selected].filter((value) => allowed.has(value)));
 }
 
-const AGE_FILTER_IDS = new Set([
-  ...AGE_AUDIENCE_CATEGORIES,
-  "audience_no_age_constraint",
-]);
+const AGE_FILTER_IDS = new Set([...AGE_AUDIENCE_CATEGORIES]);
 
 const GEO_FILTER_IDS = new Set([
   "geo_france_metropolitaine",
@@ -623,7 +680,6 @@ const GEO_FILTER_IDS = new Set([
   "geo_francophonie",
   "geo_afrique_haiti",
   "geo_alsace",
-  "audience_no_geo_constraint",
 ]);
 
 const PUBLICATION_FILTER_IDS = new Set([
@@ -647,17 +703,11 @@ function passesAgeConstraints(categories, selected) {
     return true;
   }
 
-  if (ageSelected.size === 1 && ageSelected.has("audience_no_age_constraint")) {
-    return categories.includes("audience_no_age_constraint");
-  }
-
   if (categories.includes("audience_no_age_constraint")) {
     return true;
   }
 
-  return [...ageSelected].some(
-    (filter) => filter !== "audience_no_age_constraint" && categories.includes(filter),
-  );
+  return [...ageSelected].some((filter) => categories.includes(filter));
 }
 
 function passesGenderConstraints(categories, selected) {
@@ -685,17 +735,11 @@ function passesGeoConstraints(categories, selected) {
     return true;
   }
 
-  if (geoSelected.size === 1 && geoSelected.has("audience_no_geo_constraint")) {
-    return categories.includes("audience_no_geo_constraint");
-  }
-
   if (categories.includes("audience_no_geo_constraint")) {
     return true;
   }
 
-  return [...geoSelected].some(
-    (filter) => filter.startsWith("geo_") && categories.includes(filter),
-  );
+  return [...geoSelected].some((filter) => categories.includes(filter));
 }
 
 function passesPublicationConstraints(categories, selected) {
