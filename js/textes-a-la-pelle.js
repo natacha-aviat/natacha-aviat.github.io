@@ -428,15 +428,18 @@ function getSelectableAudienceFilterOptions() {
 }
 
 function isNoEffectiveFilter(selected, options) {
-  if (selected.size === 0) {
-    return true;
-  }
-
   const selectableValues = options
     .filter((option) => option.value)
     .map((option) => option.value);
-  return selectableValues.length > 0
-    && selectableValues.every((value) => selected.has(value));
+  if (selectableValues.length === 0) {
+    return true;
+  }
+
+  return selectableValues.every((value) => selected.has(value));
+}
+
+function getFilterableTagValues() {
+  return new Set(getSelectableFilterOptions().map((option) => option.value));
 }
 
 function syncFilterButtonStates() {
@@ -700,7 +703,7 @@ const FEE_FILTER_IDS = new Set([
 function passesAgeConstraints(categories, selected) {
   const ageSelected = getSelectedFilterSubset(selected, AGE_FILTER_IDS);
   if (ageSelected.size === 0) {
-    return true;
+    return categories.includes("audience_no_age_constraint");
   }
 
   if (categories.includes("audience_no_age_constraint")) {
@@ -713,7 +716,7 @@ function passesAgeConstraints(categories, selected) {
 function passesGenderConstraints(categories, selected) {
   const genderSelected = getSelectedFilterSubset(selected, GENDER_FILTER_IDS);
   if (genderSelected.size === 0) {
-    return true;
+    return !categories.includes("audience_specific");
   }
 
   if (genderSelected.has("audience_specific")) {
@@ -732,7 +735,7 @@ function passesGenderConstraints(categories, selected) {
 function passesGeoConstraints(categories, selected) {
   const geoSelected = getSelectedFilterSubset(selected, GEO_FILTER_IDS);
   if (geoSelected.size === 0) {
-    return true;
+    return categories.includes("audience_no_geo_constraint");
   }
 
   if (categories.includes("audience_no_geo_constraint")) {
@@ -745,7 +748,8 @@ function passesGeoConstraints(categories, selected) {
 function passesPublicationConstraints(categories, selected) {
   const publicationSelected = getSelectedFilterSubset(selected, PUBLICATION_FILTER_IDS);
   if (publicationSelected.size === 0) {
-    return true;
+    return !categories.includes("audience_published")
+      && !categories.includes("audience_unpublished");
   }
 
   const hasPublicationConstraint = categories.includes("audience_published")
@@ -773,6 +777,11 @@ function passesFeeConstraints(item, selected) {
     return true;
   }
 
+  if (selected.size === 0) {
+    const category = getFeeCategory(item);
+    return !category || category === "unknown";
+  }
+
   const feeSelected = getSelectedFilterSubset(selected, FEE_FILTER_IDS);
   if (feeSelected.size === 0) {
     return true;
@@ -784,6 +793,11 @@ function passesFeeConstraints(item, selected) {
 function passesTagConstraints(item, selected) {
   if (isNoEffectiveFilter(selected, filterOptions)) {
     return true;
+  }
+
+  if (selected.size === 0) {
+    const filterableTags = getFilterableTagValues();
+    return !item.tags.some((tag) => filterableTags.has(tag));
   }
 
   return [...selected].every((tag) => item.tags.includes(tag));
