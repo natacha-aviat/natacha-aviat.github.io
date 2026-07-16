@@ -524,16 +524,16 @@
   <header class="header">
     <div class="header-left">
       <h1>Bandcamp <span class="gold">Advanced Discovery</span> World</h1>
-      <p class="tagline">Digging chirurgical : explore ou recherche.</p>
+      <p class="tagline" data-i18n="tagline">Digging chirurgical : explore ou recherche.</p>
     </div>
     <div class="header-right">
-      <div class="lang-toggle">
-        <span class="active">FR</span>
-        <span>EN</span>
+      <div class="lang-toggle" id="lang-toggle">
+        <span class="active" data-lang="fr">FR</span>
+        <span data-lang="en">EN</span>
       </div>
       <div class="nav-mode">
-        <button class="active" data-mode="decouvrir">Découvrir</button>
-        <button data-mode="rechercher">Rechercher</button>
+        <button class="active" data-mode="decouvrir" data-i18n="modeDiscover">Découvrir</button>
+        <button data-mode="rechercher" data-i18n="modeSearch">Rechercher</button>
       </div>
     </div>
   </header>
@@ -542,10 +542,10 @@
 
     <!-- Sidebar : Les Bacs -->
     <aside class="sidebar">
-      <h2>Les Bacs</h2>
+      <h2 data-i18n="bacs">Les Bacs</h2>
 
       <div class="category">
-        <h3>Électronique</h3>
+        <h3 data-i18n="catElectronic">Électronique</h3>
         <div class="tags">
           <span class="tag">techno</span>
           <span class="tag">house</span>
@@ -564,7 +564,7 @@
       </div>
 
       <div class="category">
-        <h3>Hip-Hop / Beats</h3>
+        <h3 data-i18n="catHipHop">Hip-Hop / Beats</h3>
         <div class="tags">
           <span class="tag">hip-hop</span>
           <span class="tag">instrumental-hip-hop</span>
@@ -577,7 +577,7 @@
       </div>
 
       <div class="category">
-        <h3>Soul / Funk / Disco</h3>
+        <h3 data-i18n="catSoul">Soul / Funk / Disco</h3>
         <div class="tags">
           <span class="tag">soul</span>
           <span class="tag">funk</span>
@@ -590,7 +590,7 @@
       </div>
 
       <div class="category">
-        <h3>Dub / Reggae / Global</h3>
+        <h3 data-i18n="catDub">Dub / Reggae / Global</h3>
         <div class="tags">
           <span class="tag">dub</span>
           <span class="tag">reggae</span>
@@ -602,7 +602,7 @@
       </div>
 
       <div class="category">
-        <h3>Rock / Indie</h3>
+        <h3 data-i18n="catRock">Rock / Indie</h3>
         <div class="tags">
           <span class="tag">rock</span>
           <span class="tag">indie</span>
@@ -615,7 +615,7 @@
       </div>
 
       <div class="category">
-        <h3>Expérimental</h3>
+        <h3 data-i18n="catExperimental">Expérimental</h3>
         <div class="tags">
           <span class="tag">experimental</span>
           <span class="tag">noise</span>
@@ -633,9 +633,9 @@
       <!-- Tabs -->
       <div class="tabs-row">
         <div class="tabs">
-          <button class="tab active">Nouveautés</button>
-          <button class="tab">Tendances</button>
-          <button class="tab">Sélection</button>
+          <button class="tab active" data-slice="new" data-i18n="tabNew">Nouveautés</button>
+          <button class="tab" data-slice="top" data-i18n="tabTrending">Tendances</button>
+          <button class="tab" data-slice="rand" data-i18n="tabSelection">Sélection</button>
         </div>
         <span class="results-count" id="discover-count">—</span>
       </div>
@@ -643,24 +643,24 @@
       <!-- Search panel -->
       <div class="search-panel">
         <div class="search-row">
-          <input class="search-input" id="discover-genre-input" type="text" placeholder="Ajoute un genre (ex : deep-house, broken-beat...)">
+          <input class="search-input" id="discover-genre-input" type="text" data-i18n-placeholder="genrePlaceholder" placeholder="Ajoute un genre (ex : deep-house, broken-beat...)">
           <div class="select-wrap">
             <select id="discover-location">
-              <option selected>Monde entier</option>
-              <option>Paris</option>
-              <option>Londres</option>
-              <option>Berlin</option>
-              <option>Amsterdam</option>
-              <option>Lisbonne</option>
-              <option>Manchester</option>
-              <option>Bristol</option>
-              <option>Glasgow</option>
-              <option>New York</option>
-              <option>Detroit</option>
-              <option>Chicago</option>
-              <option>Los Angeles</option>
-              <option>Montréal</option>
-              <option>Tokyo</option>
+              <option value="Monde entier" selected data-i18n="locWorldwide">Monde entier</option>
+              <option value="Paris">Paris</option>
+              <option value="Londres" data-i18n="locLondon">Londres</option>
+              <option value="Berlin">Berlin</option>
+              <option value="Amsterdam">Amsterdam</option>
+              <option value="Lisbonne" data-i18n="locLisbon">Lisbonne</option>
+              <option value="Manchester">Manchester</option>
+              <option value="Bristol">Bristol</option>
+              <option value="Glasgow">Glasgow</option>
+              <option value="New York">New York</option>
+              <option value="Detroit">Detroit</option>
+              <option value="Chicago">Chicago</option>
+              <option value="Los Angeles">Los Angeles</option>
+              <option value="Montréal" data-i18n="locMontreal">Montréal</option>
+              <option value="Tokyo">Tokyo</option>
             </select>
           </div>
           <div class="select-wrap select-days">
@@ -673,7 +673,7 @@
           <button class="btn-digger" id="btn-digger">Digger</button>
         </div>
         <div class="active-filters" id="active-filters">
-          <a class="clear-all" href="#" id="clear-all">tout effacer</a>
+          <a class="clear-all" href="#" id="clear-all" data-i18n="clearAll">tout effacer</a>
         </div>
       </div>
 
@@ -687,13 +687,13 @@
   <div class="search-layout" id="view-rechercher" hidden>
     <div class="search-view-panel">
       <div class="search-row">
-        <input class="search-input" id="search-query" type="text" placeholder="Cherche un album, un artiste, un label...">
-        <button class="btn-chercher" id="btn-chercher">Chercher</button>
+        <input class="search-input" id="search-query" type="text" data-i18n-placeholder="searchPlaceholder" placeholder="Cherche un album, un artiste, un label...">
+        <button class="btn-chercher" id="btn-chercher" data-i18n="btnSearch">Chercher</button>
       </div>
       <div class="scope-filters">
-        <button class="scope-btn active">Tout</button>
-        <button class="scope-btn">Albums / Titres</button>
-        <button class="scope-btn">Artistes / Labels</button>
+        <button class="scope-btn active" data-scope="all" data-i18n="scopeAll">Tout</button>
+        <button class="scope-btn" data-scope="albums" data-i18n="scopeAlbums">Albums / Titres</button>
+        <button class="scope-btn" data-scope="artists" data-i18n="scopeArtists">Artistes / Labels</button>
       </div>
     </div>
     <div class="empty-state" id="search-empty">
@@ -702,7 +702,7 @@
         <path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3z"/>
         <path d="M3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/>
       </svg>
-      <p>Aucun résultat pour l'instant. Lance une recherche.</p>
+      <p data-i18n="searchEmpty">Aucun résultat pour l'instant. Lance une recherche.</p>
     </div>
     <div class="search-results" id="search-results" hidden></div>
     <div class="status-message" id="search-status" hidden></div>
@@ -710,6 +710,116 @@
 
   <script src="bandcamp-api.js"></script>
   <script>
+    const I18N = {
+      fr: {
+        tagline: 'Digging chirurgical : explore ou recherche.',
+        modeDiscover: 'Découvrir',
+        modeSearch: 'Rechercher',
+        bacs: 'Les Bacs',
+        catElectronic: 'Électronique',
+        catHipHop: 'Hip-Hop / Beats',
+        catSoul: 'Soul / Funk / Disco',
+        catDub: 'Dub / Reggae / Global',
+        catRock: 'Rock / Indie',
+        catExperimental: 'Expérimental',
+        tabNew: 'Nouveautés',
+        tabTrending: 'Tendances',
+        tabSelection: 'Sélection',
+        genrePlaceholder: 'Ajoute un genre (ex : deep-house, broken-beat...)',
+        locWorldwide: 'Monde entier',
+        locLondon: 'Londres',
+        locLisbon: 'Lisbonne',
+        locMontreal: 'Montréal',
+        clearAll: 'tout effacer',
+        searchPlaceholder: 'Cherche un album, un artiste, un label...',
+        btnSearch: 'Chercher',
+        scopeAll: 'Tout',
+        scopeAlbums: 'Albums / Titres',
+        scopeArtists: 'Artistes / Labels',
+        searchEmpty: "Aucun résultat pour l'instant. Lance une recherche.",
+        startHint: 'Choisis un genre dans Les Bacs, puis lance Digger.',
+        needGenre: 'Sélectionne au moins un genre dans Les Bacs.',
+        digging: 'Exploration en cours…',
+        noAlbums: 'Aucun album trouvé pour ces critères.',
+        searching: 'Recherche en cours…',
+        searchError: 'Erreur lors de la recherche.',
+        noResultsFor: (q) => `Aucun résultat pour « ${q} ».`,
+        results: (n) => `${n} résultat${n > 1 ? 's' : ''}`,
+        zeroResults: '0 résultat',
+        artist: 'Artiste',
+        label: 'Label',
+        removeFilter: (name) => `Retirer ${name}`,
+        proxyHelp: "Impossible de joindre l'API Bandcamp. Lance le proxy : node bandcamp-proxy/server.mjs",
+      },
+      en: {
+        tagline: 'Surgical digging: explore or search.',
+        modeDiscover: 'Discover',
+        modeSearch: 'Search',
+        bacs: 'The Bins',
+        catElectronic: 'Electronic',
+        catHipHop: 'Hip-Hop / Beats',
+        catSoul: 'Soul / Funk / Disco',
+        catDub: 'Dub / Reggae / Global',
+        catRock: 'Rock / Indie',
+        catExperimental: 'Experimental',
+        tabNew: 'New releases',
+        tabTrending: 'Trending',
+        tabSelection: 'Selection',
+        genrePlaceholder: 'Add a genre (e.g. deep-house, broken-beat...)',
+        locWorldwide: 'Anywhere',
+        locLondon: 'London',
+        locLisbon: 'Lisbon',
+        locMontreal: 'Montreal',
+        clearAll: 'clear all',
+        searchPlaceholder: 'Search for an album, artist, or label...',
+        btnSearch: 'Search',
+        scopeAll: 'All',
+        scopeAlbums: 'Albums / Tracks',
+        scopeArtists: 'Artists / Labels',
+        searchEmpty: 'No results yet. Start a search.',
+        startHint: 'Pick a genre from The Bins, then hit Digger.',
+        needGenre: 'Select at least one genre from The Bins.',
+        digging: 'Digging…',
+        noAlbums: 'No albums found for these criteria.',
+        searching: 'Searching…',
+        searchError: 'Search error.',
+        noResultsFor: (q) => `No results for “${q}”.`,
+        results: (n) => `${n} result${n > 1 ? 's' : ''}`,
+        zeroResults: '0 results',
+        artist: 'Artist',
+        label: 'Label',
+        removeFilter: (name) => `Remove ${name}`,
+        proxyHelp: 'Could not reach the Bandcamp API. Start the proxy: node bandcamp-proxy/server.mjs',
+      },
+    };
+
+    let lang = localStorage.getItem('badw-lang') || 'fr';
+    const t = () => I18N[lang];
+
+    function applyLanguage() {
+      document.documentElement.lang = lang;
+      document.querySelectorAll('#lang-toggle [data-lang]').forEach(el => {
+        el.classList.toggle('active', el.dataset.lang === lang);
+      });
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.dataset.i18n;
+        const value = t()[key];
+        if (typeof value === 'string') el.textContent = value;
+      });
+      document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+        const key = el.dataset.i18nPlaceholder;
+        const value = t()[key];
+        if (typeof value === 'string') el.placeholder = value;
+      });
+      if (!discoverResultsEl.innerHTML && !discoverLoading) {
+        showStatus(discoverStatusEl, t().startHint);
+      }
+      if (!lastSearchQuery && searchEmptyEl && !searchEmptyEl.hidden) {
+        const emptyP = searchEmptyEl.querySelector('p');
+        if (emptyP) emptyP.textContent = t().searchEmpty;
+      }
+    }
+
     const activeFiltersEl = document.getElementById('active-filters');
     const clearAllBtn = document.getElementById('clear-all');
     const sidebarTags = document.querySelectorAll('.sidebar .tag');
@@ -727,19 +837,20 @@
     const searchStatusEl = document.getElementById('search-status');
 
     const activeFilters = new Set(
-      [...document.querySelectorAll('.sidebar .tag.active')].map(t => t.textContent.trim())
+      [...document.querySelectorAll('.sidebar .tag.active')].map(tag => tag.textContent.trim())
     );
 
     let discoverLoading = false;
     let searchLoading = false;
     let lastSearchQuery = '';
+    let lastSearchCount = 0;
 
-    function getActiveTabLabel() {
-      return document.querySelector('.tab.active')?.textContent.trim() || 'Nouveautés';
+    function getActiveSlice() {
+      return document.querySelector('.tab.active')?.dataset.slice || 'new';
     }
 
-    function getActiveScopeLabel() {
-      return document.querySelector('.scope-btn.active')?.textContent.trim() || 'Tout';
+    function getActiveScope() {
+      return document.querySelector('.scope-btn.active')?.dataset.scope || 'all';
     }
 
     function normalizeTag(value) {
@@ -760,10 +871,6 @@
 
     function isProxyError(err) {
       return err instanceof TypeError || /fetch/i.test(err.message);
-    }
-
-    function proxyHelpMessage() {
-      return 'Impossible de joindre l\'API Bandcamp. Lance le proxy : node bandcamp-proxy/server.mjs';
     }
 
     function renderDiscoverAlbums(results) {
@@ -790,7 +897,7 @@
         const isArtist = item.type === 'b';
         const title = item.name || item.title || '';
         const subtitle = isArtist
-          ? (item.location || item.genre_name || (item.is_label ? 'Label' : 'Artiste'))
+          ? (item.location || item.genre_name || (item.is_label ? t().label : t().artist))
           : (item.band_name || '');
         const img = item.img || '';
         return `
@@ -807,35 +914,35 @@
     async function runDiscover() {
       if (discoverLoading) return;
       if (!activeFilters.size) {
-        showStatus(discoverStatusEl, 'Sélectionne au moins un genre dans Les Bacs.', true);
+        showStatus(discoverStatusEl, t().needGenre, true);
         discoverResultsEl.innerHTML = '';
-        discoverCountEl.textContent = '0 résultat';
+        discoverCountEl.textContent = t().zeroResults;
         return;
       }
 
       discoverLoading = true;
       discoverResultsEl.classList.add('is-loading');
-      showStatus(discoverStatusEl, 'Exploration en cours…');
+      showStatus(discoverStatusEl, t().digging);
 
       try {
         const data = await BandcampAPI.discover({
           tags: [...activeFilters],
-          slice: getActiveTabLabel(),
+          slice: getActiveSlice(),
           location: discoverLocationEl.value,
           days: discoverDaysEl.value,
         });
 
         const results = data.results || [];
         const total = data.result_count ?? results.length;
-        discoverCountEl.textContent = `${total} résultat${total > 1 ? 's' : ''}`;
+        discoverCountEl.textContent = t().results(total);
         renderDiscoverAlbums(results);
-        showStatus(discoverStatusEl, results.length ? '' : 'Aucun album trouvé pour ces critères.');
+        showStatus(discoverStatusEl, results.length ? '' : t().noAlbums);
       } catch (err) {
         discoverResultsEl.innerHTML = '';
         discoverCountEl.textContent = '—';
         showStatus(
           discoverStatusEl,
-          isProxyError(err) ? proxyHelpMessage() : (err.message || 'Erreur lors de la recherche.'),
+          isProxyError(err) ? t().proxyHelp : (err.message === 'NO_TAGS' ? t().needGenre : (err.message || t().searchError)),
           true,
         );
       } finally {
@@ -852,30 +959,31 @@
       lastSearchQuery = query;
       searchEmptyEl.hidden = true;
       searchResultsEl.hidden = true;
-      showStatus(searchStatusEl, 'Recherche en cours…');
+      showStatus(searchStatusEl, t().searching);
 
       try {
         const data = await BandcampAPI.search(query);
-        const filtered = BandcampAPI.filterSearchResults(data.results || [], getActiveScopeLabel());
+        const filtered = BandcampAPI.filterSearchResults(data.results || [], getActiveScope());
+        lastSearchCount = filtered.length;
 
         if (!filtered.length) {
           searchResultsEl.innerHTML = '';
           searchResultsEl.hidden = true;
           searchEmptyEl.hidden = false;
-          searchEmptyEl.querySelector('p').textContent = `Aucun résultat pour « ${query} ».`;
+          searchEmptyEl.querySelector('p').textContent = t().noResultsFor(query);
           showStatus(searchStatusEl, '');
         } else {
           renderSearchResults(filtered);
           searchResultsEl.hidden = false;
           searchEmptyEl.hidden = true;
-          showStatus(searchStatusEl, `${filtered.length} résultat${filtered.length > 1 ? 's' : ''}`);
+          showStatus(searchStatusEl, t().results(filtered.length));
         }
       } catch (err) {
         searchResultsEl.hidden = true;
         searchEmptyEl.hidden = true;
         showStatus(
           searchStatusEl,
-          isProxyError(err) ? proxyHelpMessage() : (err.message || 'Erreur lors de la recherche.'),
+          isProxyError(err) ? t().proxyHelp : (err.message || t().searchError),
           true,
         );
       } finally {
@@ -896,7 +1004,7 @@
       [...activeFilters].sort().forEach(name => {
         const pill = document.createElement('span');
         pill.className = 'filter-pill';
-        pill.innerHTML = `${name} <span class="remove" aria-label="Retirer ${name}">×</span>`;
+        pill.innerHTML = `${name} <span class="remove" aria-label="${t().removeFilter(name)}">×</span>`;
 
         pill.querySelector('.remove').addEventListener('click', (e) => {
           e.stopPropagation();
@@ -910,6 +1018,28 @@
 
       activeFiltersEl.classList.toggle('has-filters', activeFilters.size > 0);
     }
+
+    document.querySelectorAll('#lang-toggle [data-lang]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        lang = btn.dataset.lang;
+        localStorage.setItem('badw-lang', lang);
+        applyLanguage();
+
+        if (discoverResultsEl.innerHTML) {
+          const totalMatch = discoverCountEl.textContent.match(/\d+/);
+          if (totalMatch) discoverCountEl.textContent = t().results(Number(totalMatch[0]));
+        } else if (!discoverLoading) {
+          showStatus(discoverStatusEl, t().startHint);
+        }
+
+        if (lastSearchQuery && lastSearchCount > 0 && !searchResultsEl.hidden) {
+          showStatus(searchStatusEl, t().results(lastSearchCount));
+        }
+        if (lastSearchQuery && searchEmptyEl && !searchEmptyEl.hidden) {
+          searchEmptyEl.querySelector('p').textContent = t().noResultsFor(lastSearchQuery);
+        }
+      });
+    });
 
     sidebarTags.forEach(tag => {
       tag.addEventListener('click', () => {
@@ -947,7 +1077,7 @@
     const tabs = document.querySelectorAll('.tab');
     tabs.forEach(tab => {
       tab.addEventListener('click', () => {
-        tabs.forEach(t => t.classList.remove('active'));
+        tabs.forEach(item => item.classList.remove('active'));
         tab.classList.add('active');
         runDiscover();
       });
@@ -959,7 +1089,7 @@
 
     modeButtons.forEach(btn => {
       btn.addEventListener('click', () => {
-        modeButtons.forEach(b => b.classList.remove('active'));
+        modeButtons.forEach(item => item.classList.remove('active'));
         btn.classList.add('active');
 
         const isRechercher = btn.dataset.mode === 'rechercher';
@@ -971,7 +1101,7 @@
     const scopeButtons = document.querySelectorAll('.scope-btn');
     scopeButtons.forEach(btn => {
       btn.addEventListener('click', () => {
-        scopeButtons.forEach(b => b.classList.remove('active'));
+        scopeButtons.forEach(item => item.classList.remove('active'));
         btn.classList.add('active');
         if (lastSearchQuery) runSearch();
       });
@@ -986,8 +1116,9 @@
     });
 
     renderActiveFilters();
+    applyLanguage();
     discoverCountEl.textContent = '—';
-    showStatus(discoverStatusEl, 'Choisis un genre dans Les Bacs, puis lance Digger.');
+    showStatus(discoverStatusEl, t().startHint);
   </script>
 
 </body>

@@ -33,9 +33,15 @@
   const TIME_FACETS = { '30': 1, '60': 2, '90': 3 };
 
   const SLICE_MAP = {
+    new: 'new',
+    top: 'top',
+    rand: 'rand',
     'Nouveautés': 'new',
     'Tendances': 'top',
     'Sélection': 'rand',
+    'New releases': 'new',
+    'Trending': 'top',
+    'Selection': 'rand',
   };
 
   async function request(path, options = {}) {
@@ -72,7 +78,7 @@
 
   async function discover({ tags, slice, location, days, size = 40 }) {
     const tagList = [...tags];
-    if (!tagList.length) throw new Error('Ajoute au moins un genre.');
+    if (!tagList.length) throw new Error('NO_TAGS');
 
     const timeFacetId = TIME_FACETS[days] ?? null;
     const geonameId = GEONAMES[location] ?? 0;
@@ -83,7 +89,7 @@
       geoname_id: geonameId,
       include_result_types: ['a'],
       size,
-      slice: SLICE_MAP[slice] || 'new',
+      slice: SLICE_MAP[slice] || slice || 'new',
       tag_norm_names: tagList,
       time_facet_id: timeFacetId,
     };
@@ -118,10 +124,10 @@
   }
 
   function filterSearchResults(results, scope) {
-    if (scope === 'Albums / Titres') {
+    if (scope === 'albums' || scope === 'Albums / Titres' || scope === 'Albums / Tracks') {
       return results.filter(r => r.type === 'a' || r.type === 't');
     }
-    if (scope === 'Artistes / Labels') {
+    if (scope === 'artists' || scope === 'Artistes / Labels' || scope === 'Artists / Labels') {
       return results.filter(r => r.type === 'b');
     }
     return results;
