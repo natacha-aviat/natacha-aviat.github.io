@@ -58,7 +58,9 @@
   function albumImageUrl(result) {
     const img = result.primary_image;
     if (!img?.image_id) return '';
-    return `https://f4.bcbits.com/img/${img.image_id}_10.jpg`;
+    // Les pochettes (is_art) utilisent le préfixe "a" ; sinon l'id seul.
+    const prefix = img.is_art === false ? '' : 'a';
+    return `https://f4.bcbits.com/img/${prefix}${img.image_id}_10.jpg`;
   }
 
   function cleanUrl(url) {
