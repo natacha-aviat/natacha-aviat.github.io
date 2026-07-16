@@ -523,7 +523,7 @@
   <!-- Header -->
   <header class="header">
     <div class="header-left">
-      <h1>Bandcamp <span class="gold">Advanced Discovery World</span></h1>
+      <h1>Bandcamp <span class="gold">Advanced Discovery</span> World</h1>
       <p class="tagline">Digging chirurgical : explore ou recherche.</p>
     </div>
     <div class="header-right">
@@ -559,7 +559,7 @@
           <span class="tag">downtempo</span>
           <span class="tag">synthwave</span>
           <span class="tag">acid</span>
-          <span class="tag active">minimal</span>
+          <span class="tag">minimal</span>
         </div>
       </div>
 
@@ -571,7 +571,7 @@
           <span class="tag">boom-bap</span>
           <span class="tag">trap</span>
           <span class="tag">lo-fi</span>
-          <span class="tag active">beat-tape</span>
+          <span class="tag">beat-tape</span>
           <span class="tag">trip-hop</span>
         </div>
       </div>
@@ -986,7 +986,8 @@
     });
 
     renderActiveFilters();
-    runDiscover();
+    discoverCountEl.textContent = '—';
+    showStatus(discoverStatusEl, 'Choisis un genre dans Les Bacs, puis lance Digger.');
   </script>
 
 </body>
