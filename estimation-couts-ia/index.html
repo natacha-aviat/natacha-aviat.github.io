@@ -1,0 +1,1567 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Estimateur de coûts IA — Combien coûterait votre outil ?</title>
+  <meta name="description" content="Estimez le coût de création et d'exploitation d'un outil IA pour votre PME. Fourchettes réalistes, scénarios, et export PDF.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700&family=Source+Serif+4:opsz,ital,wght@8..60,400;8..60,600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --ink: #14221c;
+      --ink-soft: #3a4a42;
+      --muted: #6b7a72;
+      --paper: #f3f6f2;
+      --paper-2: #e8eee8;
+      --line: #c9d4cc;
+      --accent: #c45c26;
+      --accent-deep: #9a3f12;
+      --teal: #1f6f5b;
+      --teal-soft: #d7ebe3;
+      --warn: #a85b00;
+      --warn-bg: #fff3df;
+      --ok: #1f6f5b;
+      --ok-bg: #e3f2ec;
+      --shadow: 0 1px 0 rgba(20, 34, 28, 0.06);
+      --radius: 14px;
+      --font-display: "Bricolage Grotesque", sans-serif;
+      --font-body: "Source Serif 4", Georgia, serif;
+      --max: 920px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--font-body);
+      color: var(--ink);
+      background:
+        radial-gradient(ellipse 80% 50% at 10% -10%, #dce8e0 0%, transparent 55%),
+        radial-gradient(ellipse 60% 40% at 100% 0%, #f0e6dc 0%, transparent 50%),
+        linear-gradient(180deg, #f7faf7 0%, var(--paper) 40%, #eef3ee 100%);
+      min-height: 100vh;
+      line-height: 1.55;
+    }
+
+    .noise {
+      pointer-events: none;
+      position: fixed;
+      inset: 0;
+      opacity: 0.035;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      z-index: 0;
+    }
+
+    .wrap {
+      position: relative;
+      z-index: 1;
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 1.25rem 1.25rem 4rem;
+    }
+
+    /* —— Intro —— */
+    .intro {
+      padding: 2.5rem 0 2rem;
+      animation: rise 0.7s ease both;
+    }
+    .brand {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: clamp(1.85rem, 5vw, 2.6rem);
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+      color: var(--ink);
+    }
+    .brand span { color: var(--teal); }
+    .lede {
+      margin-top: 0.85rem;
+      max-width: 36rem;
+      font-size: 1.12rem;
+      color: var(--ink-soft);
+    }
+    .intro-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-top: 1.4rem;
+      font-family: var(--font-display);
+      font-weight: 600;
+      font-size: 0.95rem;
+      color: var(--accent-deep);
+      text-decoration: none;
+      border-bottom: 2px solid var(--accent);
+      padding-bottom: 2px;
+      transition: gap 0.2s ease;
+    }
+    .intro-cta:hover { gap: 0.75rem; }
+
+    .visual-strip {
+      margin-top: 2rem;
+      height: 140px;
+      border-radius: var(--radius);
+      background:
+        linear-gradient(135deg, rgba(31,111,91,0.12) 0%, transparent 40%),
+        linear-gradient(225deg, rgba(196,92,38,0.15) 0%, transparent 45%),
+        repeating-linear-gradient(
+          -12deg,
+          transparent,
+          transparent 18px,
+          rgba(20,34,28,0.04) 18px,
+          rgba(20,34,28,0.04) 19px
+        ),
+        var(--paper-2);
+      border: 1px solid var(--line);
+      position: relative;
+      overflow: hidden;
+      animation: fadein 1s ease 0.2s both;
+    }
+    .visual-strip::after {
+      content: "";
+      position: absolute;
+      right: 8%;
+      bottom: -20%;
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(31,111,91,0.25), transparent 70%);
+      animation: pulse 4s ease-in-out infinite;
+    }
+    .visual-strip .bars {
+      position: absolute;
+      left: 10%;
+      bottom: 18%;
+      display: flex;
+      align-items: flex-end;
+      gap: 8px;
+      height: 70%;
+    }
+    .visual-strip .bars i {
+      display: block;
+      width: 14px;
+      border-radius: 4px 4px 0 0;
+      background: var(--teal);
+      opacity: 0.55;
+      animation: barGrow 1.2s ease both;
+    }
+    .visual-strip .bars i:nth-child(1) { height: 35%; animation-delay: 0.3s; }
+    .visual-strip .bars i:nth-child(2) { height: 55%; animation-delay: 0.4s; background: var(--accent); opacity: 0.7; }
+    .visual-strip .bars i:nth-child(3) { height: 80%; animation-delay: 0.5s; }
+    .visual-strip .bars i:nth-child(4) { height: 48%; animation-delay: 0.6s; opacity: 0.4; }
+    .visual-strip .label {
+      position: absolute;
+      right: 12%;
+      top: 28%;
+      font-family: var(--font-display);
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--muted);
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    @keyframes rise {
+      from { opacity: 0; transform: translateY(12px); }
+      to { opacity: 1; transform: none; }
+    }
+    @keyframes fadein {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    @keyframes barGrow {
+      from { transform: scaleY(0); transform-origin: bottom; }
+      to { transform: scaleY(1); }
+    }
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); opacity: 0.8; }
+      50% { transform: scale(1.08); opacity: 1; }
+    }
+
+    /* —— Layout —— */
+    section.block {
+      margin-top: 1.75rem;
+      padding: 1.5rem 0 0;
+      border-top: 1px solid var(--line);
+      animation: rise 0.5s ease both;
+    }
+    .block-num {
+      font-family: var(--font-display);
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: 0.35rem;
+    }
+    h2 {
+      font-family: var(--font-display);
+      font-size: clamp(1.35rem, 3vw, 1.65rem);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.35rem;
+    }
+    .block-desc {
+      color: var(--muted);
+      font-size: 0.98rem;
+      margin-bottom: 1.25rem;
+      max-width: 40rem;
+    }
+
+    label.field {
+      display: block;
+      margin-bottom: 1.1rem;
+    }
+    .field-name {
+      display: flex;
+      align-items: baseline;
+      gap: 0.4rem;
+      font-family: var(--font-display);
+      font-weight: 600;
+      font-size: 0.92rem;
+      margin-bottom: 0.4rem;
+    }
+
+    input[type="text"],
+    input[type="number"],
+    select {
+      width: 100%;
+      padding: 0.7rem 0.85rem;
+      font-family: var(--font-body);
+      font-size: 1rem;
+      color: var(--ink);
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      outline: none;
+      transition: border-color 0.15s, box-shadow 0.15s;
+    }
+    input:focus, select:focus {
+      border-color: var(--teal);
+      box-shadow: 0 0 0 3px rgba(31,111,91,0.15);
+    }
+
+    .choice-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 0.55rem;
+    }
+    .choice {
+      position: relative;
+      cursor: pointer;
+    }
+    .choice input {
+      position: absolute;
+      opacity: 0;
+      pointer-events: none;
+    }
+    .choice span {
+      display: block;
+      padding: 0.85rem 0.9rem;
+      background: #fff;
+      border: 1.5px solid var(--line);
+      border-radius: 10px;
+      font-family: var(--font-display);
+      font-size: 0.88rem;
+      font-weight: 600;
+      text-align: center;
+      transition: border-color 0.15s, background 0.15s, color 0.15s;
+    }
+    .choice input:checked + span {
+      border-color: var(--teal);
+      background: var(--teal-soft);
+      color: var(--teal);
+    }
+    .choice:hover span { border-color: var(--muted); }
+
+    .slider-row {
+      display: grid;
+      gap: 0.5rem;
+    }
+    .slider-labels {
+      display: flex;
+      justify-content: space-between;
+      font-family: var(--font-display);
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--muted);
+    }
+    .slider-labels .active { color: var(--accent-deep); }
+    input[type="range"] {
+      width: 100%;
+      accent-color: var(--accent);
+      height: 0.4rem;
+    }
+
+    .row-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+    @media (max-width: 640px) {
+      .row-2 { grid-template-columns: 1fr; }
+    }
+
+    /* —— Results —— */
+    .result-panel {
+      margin-top: 1rem;
+      padding: 1.15rem 1.25rem;
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+    .range-out {
+      display: flex;
+      align-items: baseline;
+      flex-wrap: wrap;
+      gap: 0.35rem 0.6rem;
+      font-family: var(--font-display);
+    }
+    .range-out .lo, .range-out .hi {
+      font-size: clamp(1.5rem, 4vw, 2rem);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: var(--ink);
+    }
+    .range-out .sep { color: var(--muted); font-weight: 600; }
+    .range-out .unit {
+      font-size: 0.9rem;
+      color: var(--muted);
+      font-weight: 600;
+    }
+    .why {
+      margin-top: 0.65rem;
+      font-size: 0.95rem;
+      color: var(--ink-soft);
+      font-style: italic;
+    }
+    .hint {
+      margin-top: 0.5rem;
+      font-size: 0.85rem;
+      color: var(--muted);
+    }
+
+    .sensibility {
+      margin-top: 1rem;
+      display: grid;
+      gap: 0.4rem;
+    }
+    .sens-row {
+      display: grid;
+      grid-template-columns: 7rem 1fr auto;
+      gap: 0.75rem;
+      align-items: center;
+      font-family: var(--font-display);
+      font-size: 0.85rem;
+    }
+    .sens-bar {
+      height: 8px;
+      background: var(--paper-2);
+      border-radius: 4px;
+      overflow: hidden;
+    }
+    .sens-bar i {
+      display: block;
+      height: 100%;
+      background: var(--teal);
+      border-radius: 4px;
+      transition: width 0.4s ease;
+    }
+    .sens-row:nth-child(2) .sens-bar i { background: var(--accent); opacity: 0.85; }
+    .sens-row:nth-child(3) .sens-bar i { background: var(--accent-deep); }
+
+    /* —— Synthèse —— */
+    .kpi-pair {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      margin-top: 0.5rem;
+    }
+    @media (max-width: 560px) { .kpi-pair { grid-template-columns: 1fr; } }
+    .kpi {
+      padding: 1.2rem 1.25rem;
+      border-radius: var(--radius);
+      border: 1px solid var(--line);
+      background: #fff;
+    }
+    .kpi.once { border-top: 3px solid var(--accent); }
+    .kpi.month { border-top: 3px solid var(--teal); }
+    .kpi-label {
+      font-family: var(--font-display);
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .kpi-value {
+      margin-top: 0.35rem;
+      font-family: var(--font-display);
+      font-size: clamp(1.35rem, 3.5vw, 1.75rem);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+    .kpi-sub {
+      margin-top: 0.25rem;
+      font-size: 0.85rem;
+      color: var(--muted);
+    }
+
+    .chart-wrap {
+      margin-top: 1.25rem;
+      padding: 1.15rem 1.25rem 1rem;
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+    }
+    .chart-wrap h3 {
+      font-family: var(--font-display);
+      font-size: 0.95rem;
+      font-weight: 600;
+      margin-bottom: 0.75rem;
+    }
+    #cumulChart {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+    .chart-legend {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-top: 0.65rem;
+      font-family: var(--font-display);
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--muted);
+    }
+    .chart-legend span::before {
+      content: "";
+      display: inline-block;
+      width: 12px;
+      height: 3px;
+      margin-right: 0.4rem;
+      vertical-align: middle;
+      border-radius: 2px;
+    }
+    .leg-create::before { background: var(--accent); }
+    .leg-ops::before { background: var(--teal); }
+    .leg-cross {
+      color: var(--warn);
+      font-weight: 600;
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.65rem;
+      margin-top: 1.25rem;
+    }
+    button, .btn {
+      font-family: var(--font-display);
+      font-weight: 600;
+      font-size: 0.92rem;
+      padding: 0.7rem 1.15rem;
+      border-radius: 10px;
+      border: 1.5px solid transparent;
+      cursor: pointer;
+      transition: background 0.15s, color 0.15s, border-color 0.15s, transform 0.1s;
+    }
+    button:active { transform: scale(0.98); }
+    .btn-primary {
+      background: var(--ink);
+      color: #fff;
+    }
+    .btn-primary:hover { background: #0d1612; }
+    .btn-secondary {
+      background: #fff;
+      color: var(--ink);
+      border-color: var(--line);
+    }
+    .btn-secondary:hover { border-color: var(--muted); }
+    .btn-ghost {
+      background: transparent;
+      color: var(--teal);
+      border-color: var(--teal);
+    }
+
+    /* —— Alerts & tips —— */
+    .alert {
+      margin-top: 1rem;
+      padding: 0.9rem 1rem;
+      border-radius: 10px;
+      font-size: 0.95rem;
+    }
+    .alert-warn { background: var(--warn-bg); color: #5c3a00; border-left: 3px solid var(--warn); }
+    .alert-ok { background: var(--ok-bg); color: #134838; border-left: 3px solid var(--ok); }
+    .alert strong {
+      font-family: var(--font-display);
+      font-weight: 600;
+    }
+
+    .tips {
+      margin-top: 1rem;
+      list-style: none;
+      display: grid;
+      gap: 0.55rem;
+    }
+    .tips li {
+      padding: 0.75rem 0.9rem;
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      font-size: 0.92rem;
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 0.65rem;
+      align-items: start;
+    }
+    .tips .tag {
+      font-family: var(--font-display);
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--teal);
+      background: var(--teal-soft);
+      padding: 0.2rem 0.45rem;
+      border-radius: 4px;
+      white-space: nowrap;
+    }
+
+    .market-list {
+      margin-top: 0.75rem;
+      display: grid;
+      gap: 0.5rem;
+    }
+    .market-item {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 0.5rem;
+      padding: 0.75rem 0.9rem;
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      align-items: center;
+    }
+    .market-item .name {
+      font-family: var(--font-display);
+      font-weight: 600;
+      font-size: 0.92rem;
+    }
+    .market-item .desc {
+      font-size: 0.82rem;
+      color: var(--muted);
+    }
+    .market-item .price {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 0.95rem;
+      color: var(--ink);
+      white-space: nowrap;
+    }
+
+    /* —— Advanced —— */
+    details.advanced {
+      margin-top: 1.75rem;
+      border-top: 1px solid var(--line);
+      padding-top: 1rem;
+    }
+    details.advanced > summary {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 1.05rem;
+      cursor: pointer;
+      list-style: none;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--ink-soft);
+    }
+    details.advanced > summary::-webkit-details-marker { display: none; }
+    details.advanced > summary::before {
+      content: "+";
+      font-size: 1.2rem;
+      color: var(--teal);
+      width: 1.2rem;
+    }
+    details.advanced[open] > summary::before { content: "−"; }
+    .advanced-body { margin-top: 1.25rem; }
+
+    .scenario-tabs {
+      display: flex;
+      gap: 0.4rem;
+      flex-wrap: wrap;
+      margin-bottom: 1rem;
+    }
+    .scenario-tabs button {
+      padding: 0.45rem 0.85rem;
+      font-size: 0.85rem;
+      background: #fff;
+      border: 1.5px solid var(--line);
+      color: var(--ink-soft);
+    }
+    .scenario-tabs button.active {
+      background: var(--ink);
+      color: #fff;
+      border-color: var(--ink);
+    }
+
+    .compare-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.65rem;
+      margin-top: 0.75rem;
+    }
+    @media (max-width: 700px) { .compare-grid { grid-template-columns: 1fr; } }
+    .compare-card {
+      padding: 0.9rem;
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+    }
+    .compare-card h4 {
+      font-family: var(--font-display);
+      font-size: 0.88rem;
+      margin-bottom: 0.5rem;
+    }
+    .compare-card .val {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 1.1rem;
+    }
+    .compare-card .sub { font-size: 0.8rem; color: var(--muted); margin-top: 0.2rem; }
+
+    .history {
+      margin-top: 0.75rem;
+      display: grid;
+      gap: 0.4rem;
+    }
+    .history-item {
+      display: grid;
+      grid-template-columns: 1fr auto auto;
+      gap: 0.5rem;
+      align-items: center;
+      padding: 0.6rem 0.75rem;
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      font-size: 0.88rem;
+    }
+    .history-item button {
+      padding: 0.3rem 0.6rem;
+      font-size: 0.78rem;
+    }
+
+    /* —— Tooltip —— */
+    .tip {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 1.05rem;
+      height: 1.05rem;
+      border-radius: 50%;
+      background: var(--paper-2);
+      color: var(--muted);
+      font-family: var(--font-display);
+      font-size: 0.7rem;
+      font-weight: 700;
+      cursor: help;
+      position: relative;
+      border: 1px solid var(--line);
+      flex-shrink: 0;
+    }
+    .tip:hover, .tip:focus {
+      background: var(--teal);
+      color: #fff;
+      border-color: var(--teal);
+    }
+    .tip .tip-box {
+      display: none;
+      position: absolute;
+      left: 50%;
+      bottom: calc(100% + 8px);
+      transform: translateX(-50%);
+      width: min(260px, 70vw);
+      padding: 0.65rem 0.75rem;
+      background: var(--ink);
+      color: #f3f6f2;
+      font-family: var(--font-body);
+      font-size: 0.82rem;
+      font-weight: 400;
+      line-height: 1.4;
+      border-radius: 8px;
+      z-index: 20;
+      text-align: left;
+      box-shadow: 0 8px 24px rgba(20,34,28,0.2);
+    }
+    .tip:hover .tip-box, .tip:focus .tip-box { display: block; }
+
+    .share-box {
+      margin-top: 0.75rem;
+      display: none;
+      gap: 0.5rem;
+      align-items: stretch;
+    }
+    .share-box.show { display: flex; }
+    .share-box input {
+      flex: 1;
+      font-size: 0.85rem;
+    }
+
+    footer {
+      margin-top: 3rem;
+      padding-top: 1.25rem;
+      border-top: 1px solid var(--line);
+      font-size: 0.82rem;
+      color: var(--muted);
+      text-align: center;
+    }
+    footer a { color: var(--teal); }
+
+    /* —— Print / PDF —— */
+    @media print {
+      .noise, .intro-cta, .actions, details.advanced > summary,
+      .scenario-tabs, .share-box, .visual-strip, .tip { display: none !important; }
+      details.advanced { display: none; }
+      body { background: #fff; }
+      .wrap { max-width: 100%; padding: 0; }
+      .result-panel, .kpi, .chart-wrap, .market-item, .tips li {
+        box-shadow: none;
+        break-inside: avoid;
+      }
+      section.block { break-inside: avoid; }
+      @page { margin: 1.5cm; }
+    }
+
+    .print-only { display: none; }
+    @media print { .print-only { display: block; margin-bottom: 1rem; } }
+  </style>
+</head>
+<body>
+  <div class="noise" aria-hidden="true"></div>
+  <div class="wrap">
+    <header class="intro">
+      <p class="brand">Coûts<span>IA</span></p>
+      <p class="lede">Vous avez une idée d’outil avec de l’IA. Estimez en quelques minutes ce que ça coûterait de le créer — puis de le faire tourner chaque mois.</p>
+      <a class="intro-cta" href="#projet">Commencer l’estimation →</a>
+      <div class="visual-strip" aria-hidden="true">
+        <div class="bars"><i></i><i></i><i></i><i></i></div>
+        <div class="label">Création · Usage · Cumul</div>
+      </div>
+    </header>
+
+    <p class="print-only" id="printTitle"></p>
+
+    <!-- 1. Projet -->
+    <section class="block" id="projet">
+      <p class="block-num">Étape 1</p>
+      <h2>Décrire le projet</h2>
+      <p class="block-desc">Pas de jargon : décrivez ce que vous voulez faire, comme vous le diriez à un associé.</p>
+
+      <label class="field">
+        <span class="field-name">Nom de l’application / cas d’usage</span>
+        <input type="text" id="appName" placeholder="Ex. : assistant client pour mon e-commerce" maxlength="120">
+      </label>
+
+      <div class="field">
+        <span class="field-name">Type d’outil</span>
+        <div class="choice-grid" id="appType">
+          <label class="choice"><input type="radio" name="appType" value="chatbot" checked><span>Chatbot / FAQ</span></label>
+          <label class="choice"><input type="radio" name="appType" value="interne"><span>Outil interne</span></label>
+          <label class="choice"><input type="radio" name="appType" value="client"><span>Appli clients</span></label>
+          <label class="choice"><input type="radio" name="appType" value="auto"><span>Automatisation</span></label>
+        </div>
+      </div>
+
+      <div class="field">
+        <span class="field-name">
+          Complexité estimée
+          <button type="button" class="tip" aria-label="Aide">?
+            <span class="tip-box">Formulaire simple = questions / réponses. Logique métier = règles, dossiers, calculs. Intégrations = connexion à votre CRM, site, e-mail, stock…</span>
+          </button>
+        </span>
+        <div class="choice-grid" id="complexity">
+          <label class="choice"><input type="radio" name="complexity" value="simple" checked><span>Formulaire simple</span></label>
+          <label class="choice"><input type="radio" name="complexity" value="metier"><span>Logique métier</span></label>
+          <label class="choice"><input type="radio" name="complexity" value="multi"><span>Plusieurs connexions</span></label>
+        </div>
+      </div>
+
+      <div class="field">
+        <span class="field-name">
+          L’outil utilisera-t-il l’IA au quotidien ?
+          <button type="button" class="tip" aria-label="Aide token">?
+            <span class="tip-box"><strong>Token</strong> : petite unité de texte facturée par les modèles IA (environ ¾ d’un mot en français). Plus l’échange est long, plus il y a de tokens.</span>
+          </button>
+        </span>
+        <div class="choice-grid">
+          <label class="choice"><input type="radio" name="usesAI" value="yes" checked><span>Oui, à chaque usage</span></label>
+          <label class="choice"><input type="radio" name="usesAI" value="no"><span>Non (ou très peu)</span></label>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. Coût de génération -->
+    <section class="block" id="creation">
+      <p class="block-num">Étape 2</p>
+      <h2>Coût de création</h2>
+      <p class="block-desc">Une fois : concevoir et livrer l’outil. Choisissez comment vous le feriez développer.</p>
+
+      <div class="field">
+        <span class="field-name">Mode de développement</span>
+        <div class="choice-grid">
+          <label class="choice"><input type="radio" name="devMode" value="nocode"><span>No-code / low-code</span></label>
+          <label class="choice"><input type="radio" name="devMode" value="ai" checked><span>Dev assisté par IA</span></label>
+          <label class="choice"><input type="radio" name="devMode" value="classic"><span>Développement classique</span></label>
+        </div>
+      </div>
+
+      <div class="field">
+        <span class="field-name">Niveau de finition</span>
+        <div class="slider-row">
+          <input type="range" id="finish" min="0" max="2" step="1" value="1">
+          <div class="slider-labels" id="finishLabels">
+            <span data-i="0">MVP</span>
+            <span data-i="1" class="active">Production</span>
+            <span data-i="2">+ maintenance an 1</span>
+          </div>
+        </div>
+        <p class="hint" id="finishHint">Version solide pour de vrais utilisateurs, avec tests et mise en production.</p>
+      </div>
+
+      <div class="result-panel" id="creationResult">
+        <div class="range-out">
+          <span class="lo" id="createLo">—</span>
+          <span class="sep">à</span>
+          <span class="hi" id="createHi">—</span>
+          <span class="unit">€ (une fois)</span>
+        </div>
+        <p class="hint" id="createDays">—</p>
+        <p class="why" id="createWhy"></p>
+      </div>
+    </section>
+
+    <!-- 3. Coût d'usage -->
+    <section class="block" id="usage" data-ai-only>
+      <p class="block-num">Étape 3</p>
+      <h2>Coût d’usage IA</h2>
+      <p class="block-desc">Récurrent : ce que vous payez chaque mois aux fournisseurs de modèles (OpenAI, Anthropic…).</p>
+
+      <div class="field">
+        <span class="field-name">
+          Modèle IA
+          <button type="button" class="tip" aria-label="Aide modèle">?
+            <span class="tip-box"><strong>Contexte</strong> : quantité de texte que le modèle « voit » en une fois (votre question + historique). Un grand contexte coûte plus cher. <strong>Fine-tuning</strong> : entraînement sur vos données — rare pour un premier MVP.</span>
+          </button>
+        </span>
+        <select id="model">
+          <option value="auto">Je ne sais pas — recommandez-moi</option>
+          <option value="mini">Modèle économique (ex. GPT-4.1 mini, Haiku)</option>
+          <option value="standard">Modèle standard (ex. GPT-4.1, Claude Sonnet)</option>
+          <option value="premium">Modèle premium (ex. Claude Opus, o3)</option>
+        </select>
+        <p class="hint" id="modelHint"></p>
+      </div>
+
+      <div class="row-2">
+        <label class="field">
+          <span class="field-name">Utilisateurs / mois</span>
+          <input type="number" id="users" min="1" max="100000" value="50">
+        </label>
+        <label class="field">
+          <span class="field-name">Usages par personne / mois</span>
+          <input type="number" id="freq" min="1" max="500" value="8">
+        </label>
+      </div>
+
+      <div class="field">
+        <span class="field-name">
+          Longueur moyenne d’un échange
+          <button type="button" class="tip" aria-label="Aide longueur">?
+            <span class="tip-box">Court ≈ 1 réponse courte. Moyen ≈ une conversation de quelques allers-retours. Long ≈ analyse de documents ou réponses détaillées.</span>
+          </button>
+        </span>
+        <div class="choice-grid">
+          <label class="choice"><input type="radio" name="length" value="short"><span>Court</span></label>
+          <label class="choice"><input type="radio" name="length" value="medium" checked><span>Moyen</span></label>
+          <label class="choice"><input type="radio" name="length" value="long"><span>Long</span></label>
+        </div>
+      </div>
+
+      <div class="field">
+        <span class="field-name">
+          Documents / base de connaissances ?
+          <button type="button" class="tip" aria-label="Aide RAG">?
+            <span class="tip-box"><strong>RAG</strong> : l’outil cherche dans vos documents avant de répondre. Utile pour un catalogue ou un règlement interne — ajoute un peu de stockage et de calcul.</span>
+          </button>
+        </span>
+        <div class="choice-grid">
+          <label class="choice"><input type="radio" name="rag" value="no" checked><span>Non</span></label>
+          <label class="choice"><input type="radio" name="rag" value="yes"><span>Oui (RAG)</span></label>
+        </div>
+      </div>
+
+      <div class="field">
+        <span class="field-name">Scénario de croissance (12 mois)</span>
+        <div class="scenario-tabs" id="growthTabs" role="tablist">
+          <button type="button" data-g="pessimiste">Pessimiste</button>
+          <button type="button" data-g="realiste" class="active">Réaliste</button>
+          <button type="button" data-g="optimiste">Optimiste</button>
+        </div>
+      </div>
+
+      <div class="result-panel" id="usageResult">
+        <div class="range-out">
+          <span class="lo" id="usageLo">—</span>
+          <span class="sep">à</span>
+          <span class="hi" id="usageHi">—</span>
+          <span class="unit">€ / mois (mois 1)</span>
+        </div>
+        <p class="why" id="usageWhy"></p>
+        <div class="sensibility" id="sensibility"></div>
+        <div class="alert alert-warn" id="hiddenCosts" style="display:none"></div>
+      </div>
+    </section>
+
+    <!-- 4. Synthèse -->
+    <section class="block" id="synthese">
+      <p class="block-num">Étape 4</p>
+      <h2>Vue de synthèse</h2>
+      <p class="block-desc">Deux enveloppes distinctes : ce que vous investissez une fois, et ce que vous dépensez chaque mois.</p>
+
+      <div class="kpi-pair">
+        <div class="kpi once">
+          <div class="kpi-label">Coût de création</div>
+          <div class="kpi-value" id="kpiCreate">—</div>
+          <div class="kpi-sub">Investissement unique</div>
+        </div>
+        <div class="kpi month">
+          <div class="kpi-label">Coût d’exploitation</div>
+          <div class="kpi-value" id="kpiOps">—</div>
+          <div class="kpi-sub">Par mois (mois 1, fourchette médiane)</div>
+        </div>
+      </div>
+
+      <div class="chart-wrap">
+        <h3>Coût cumulé sur 12 mois</h3>
+        <svg id="cumulChart" viewBox="0 0 640 240" role="img" aria-label="Graphique du coût cumulé sur 12 mois"></svg>
+        <div class="chart-legend">
+          <span class="leg-create">Création (fixe)</span>
+          <span class="leg-ops">Cumul création + usage</span>
+          <span class="leg-cross" id="crossHint"></span>
+        </div>
+      </div>
+
+      <div class="alert" id="breakeven" style="display:none"></div>
+
+      <div id="buildBuy" style="margin-top:1.25rem">
+        <h3 style="font-family:var(--font-display);font-size:1rem;margin-bottom:0.35rem">Build vs buy</h3>
+        <p class="hint" style="margin-bottom:0.5rem">Outils du marché qui font déjà quelque chose de proche — à comparer avant de tout construire.</p>
+        <div class="market-list" id="marketList"></div>
+      </div>
+
+      <div style="margin-top:1.25rem">
+        <h3 style="font-family:var(--font-display);font-size:1rem;margin-bottom:0.35rem">Pour réduire la facture</h3>
+        <ul class="tips" id="tipsList"></ul>
+      </div>
+
+      <div class="actions">
+        <button type="button" class="btn-primary" id="btnPdf">Exporter en PDF</button>
+        <button type="button" class="btn-secondary" id="btnShare">Générer un lien à partager</button>
+        <button type="button" class="btn-ghost" id="btnSave">Sauver cette version</button>
+      </div>
+      <div class="share-box" id="shareBox">
+        <input type="text" id="shareUrl" readonly>
+        <button type="button" class="btn-secondary" id="btnCopy">Copier</button>
+      </div>
+    </section>
+
+    <!-- 5. Avancé -->
+    <details class="advanced" id="advanced">
+      <summary>Options avancées</summary>
+      <div class="advanced-body">
+        <div class="row-2">
+          <label class="field">
+            <span class="field-name">Prix entrée (USD / 1M tokens)</span>
+            <input type="number" id="priceIn" min="0" step="0.01" value="0.4">
+          </label>
+          <label class="field">
+            <span class="field-name">Prix sortie (USD / 1M tokens)</span>
+            <input type="number" id="priceOut" min="0" step="0.01" value="1.6">
+          </label>
+        </div>
+        <label class="field">
+          <span class="field-name">Marge d’erreur (± %)</span>
+          <input type="range" id="margin" min="10" max="50" step="5" value="25">
+          <div class="slider-labels"><span>10 %</span><span id="marginVal">25 %</span><span>50 %</span></div>
+        </label>
+        <label class="field">
+          <span class="field-name">Taux journalier prestataire (€)</span>
+          <input type="number" id="dayRate" min="200" max="1200" step="50" value="550">
+        </label>
+
+        <h3 style="font-family:var(--font-display);font-size:1rem;margin:1rem 0 0.5rem">Comparateur de scénarios de développement</h3>
+        <div class="compare-grid" id="compareGrid"></div>
+
+        <h3 style="font-family:var(--font-display);font-size:1rem;margin:1.25rem 0 0.5rem">Historique des estimations</h3>
+        <p class="hint">Utile pour comparer « avant / après » quand le projet évolue. Stocké uniquement sur cet appareil.</p>
+        <div class="history" id="historyList"></div>
+      </div>
+    </details>
+
+    <footer>
+      Ordres de grandeur indicatifs — pas un devis. Les prix IA évoluent vite.
+      <br><a href="../pro/index.html">natacha-aviat.github.io</a>
+    </footer>
+  </div>
+
+  <script>
+(function () {
+  "use strict";
+
+  const EUR_USD = 0.92;
+
+  const MODELS = {
+    mini:     { label: "économique", in: 0.40, out: 1.60, name: "classe GPT-4.1 mini / Haiku" },
+    standard: { label: "standard",   in: 2.50, out: 10.0, name: "classe GPT-4.1 / Claude Sonnet" },
+    premium:  { label: "premium",    in: 15.0, out: 75.0, name: "classe Claude Opus / o3" }
+  };
+
+  const LENGTH_TOKENS = {
+    short:  { in: 400,  out: 250,  label: "courts" },
+    medium: { in: 1200, out: 800,  label: "moyens" },
+    long:   { in: 4000, out: 2000, label: "longs" }
+  };
+
+  const DAYS = {
+    // [low, high] jours-homme selon complexité × mode
+    nocode:  { simple: [3, 6],   metier: [8, 15],  multi: [15, 28] },
+    ai:      { simple: [5, 10],  metier: [12, 25], multi: [25, 50] },
+    classic: { simple: [10, 20], metier: [30, 55], multi: [55, 110] }
+  };
+
+  const DAY_RATE_DEFAULT = { nocode: 400, ai: 550, classic: 650 };
+  const FINISH_MULT = [0.7, 1.0, 1.45];
+  const FINISH_HINTS = [
+    "Version minimale pour tester l’idée rapidement — peu de polish, peu de sécurité avancée.",
+    "Version solide pour de vrais utilisateurs, avec tests et mise en production.",
+    "Production + suivi / correctifs sur 12 mois (forfait maintenance indicative)."
+  ];
+
+  const GROWTH = {
+    pessimiste: { label: "Pessimiste", monthly: [1, 1.02, 1.03, 1.04, 1.05, 1.05, 1.06, 1.06, 1.07, 1.07, 1.08, 1.08] },
+    realiste:   { label: "Réaliste",   monthly: [1, 1.08, 1.15, 1.22, 1.30, 1.38, 1.45, 1.52, 1.58, 1.64, 1.70, 1.75] },
+    optimiste:  { label: "Optimiste",  monthly: [1, 1.15, 1.35, 1.55, 1.80, 2.10, 2.40, 2.70, 3.00, 3.30, 3.60, 4.00] }
+  };
+
+  const MARKET = {
+    chatbot: [
+      { name: "Intercom Fin / Zendesk AI", desc: "Support client automatisé", price: "à partir de ~29–99 €/agent/mois" },
+      { name: "Chatbase / CustomGPT", desc: "Chatbot sur vos documents", price: "~19–99 €/mois" },
+      { name: "Crisp / Tidio", desc: "Messagerie + bot simple", price: "~25–95 €/mois" }
+    ],
+    interne: [
+      { name: "Notion AI / Mem", desc: "Aide à la rédaction & recherche interne", price: "~10–20 €/user/mois" },
+      { name: "Microsoft Copilot 365", desc: "IA dans la suite Office", price: "~28 €/user/mois" },
+      { name: "Claude / ChatGPT Team", desc: "Espace équipe prêt à l’emploi", price: "~25–30 €/user/mois" }
+    ],
+    client: [
+      { name: "Bubble + plugins IA", desc: "Appli no-code avec IA", price: "~32–129 €/mois + usage" },
+      { name: "Webflow + Memberstack", desc: "Site / app clients (sans IA native)", price: "~29–99 €/mois" },
+      { name: "Solutions verticales SaaS", desc: "Outils métiers déjà spécialisés", price: "souvent 50–300 €/mois" }
+    ],
+    auto: [
+      { name: "Make / Zapier", desc: "Automatisations + modules IA", price: "~19–99 €/mois + usage" },
+      { name: "n8n Cloud", desc: "Automatisation open-source hébergée", price: "~20–50 €/mois" },
+      { name: "Power Automate", desc: "Flux Microsoft + Copilot", price: "selon licence 365" }
+    ]
+  };
+
+  const SAAS_BENCH = {
+    chatbot: 79,
+    interne: 45,
+    client: 99,
+    auto: 49
+  };
+
+  // —— DOM helpers ——
+  const $ = (s, el = document) => el.querySelector(s);
+  const $$ = (s, el = document) => [...el.querySelectorAll(s)];
+  const radio = (name) => { const el = $(`input[name="${name}"]:checked`); return el ? el.value : null; };
+  const fmt = (n) => {
+    if (!isFinite(n)) return "—";
+    return Math.round(n).toLocaleString("fr-FR");
+  };
+  const fmtRange = (lo, hi) => `${fmt(lo)} – ${fmt(hi)} €`;
+
+  let growthKey = "realiste";
+  let customPrices = false;
+
+  // —— State read ——
+  function readState() {
+    return {
+      appName: $("#appName").value.trim() || "Mon outil IA",
+      appType: radio("appType"),
+      complexity: radio("complexity"),
+      usesAI: radio("usesAI") === "yes",
+      devMode: radio("devMode"),
+      finish: +$("#finish").value,
+      model: $("#model").value,
+      users: Math.max(1, +$("#users").value || 1),
+      freq: Math.max(1, +$("#freq").value || 1),
+      length: radio("length"),
+      rag: radio("rag") === "yes",
+      growth: growthKey,
+      priceIn: +$("#priceIn").value,
+      priceOut: +$("#priceOut").value,
+      margin: +$("#margin").value / 100,
+      dayRate: +$("#dayRate").value || 550
+    };
+  }
+
+  function resolveModel(s) {
+    if (s.model !== "auto") return s.model;
+    if (s.appType === "chatbot" && s.complexity === "simple") return "mini";
+    if (s.length === "long" || s.complexity === "multi") return "standard";
+    if (s.appType === "client" && s.complexity !== "simple") return "standard";
+    return "mini";
+  }
+
+  function creationCost(s, modeOverride) {
+    const mode = modeOverride || s.devMode;
+    const [dLo, dHi] = DAYS[mode][s.complexity];
+    const rate = modeOverride ? DAY_RATE_DEFAULT[mode] : (s.dayRate || DAY_RATE_DEFAULT[mode]);
+    const m = FINISH_MULT[s.finish];
+    const lo = dLo * rate * m;
+    const hi = dHi * rate * m;
+    return { lo, hi, mid: (lo + hi) / 2, dLo: dLo * m, dHi: dHi * m, rate, mode };
+  }
+
+  function usageCost(s, usersOverride) {
+    if (!s.usesAI) return { lo: 0, hi: 0, mid: 0, tokens: 0, modelKey: null, hidden: null };
+
+    const modelKey = resolveModel(s);
+    const model = MODELS[modelKey];
+    const tok = LENGTH_TOKENS[s.length];
+    const users = usersOverride ?? s.users;
+    const sessions = users * s.freq;
+
+    const inPrice = customPrices ? s.priceIn : model.in;
+    const outPrice = customPrices ? s.priceOut : model.out;
+
+    const costIn = (sessions * tok.in / 1e6) * inPrice * EUR_USD;
+    const costOut = (sessions * tok.out / 1e6) * outPrice * EUR_USD;
+    let base = costIn + costOut;
+
+    // Coûts cachés
+    let hiddenPct = 0.12; // retries + fallback
+    const hiddenParts = ["retries / erreurs (~8 %)", "modération (~4 %)"];
+    if (s.rag) {
+      hiddenPct += 0.10;
+      hiddenParts.push("stockage / recherche documents RAG (~10 %)");
+    }
+    if (s.appType === "chatbot" || s.appType === "client") {
+      hiddenPct += 0.05;
+      hiddenParts.push("pics de charge / fallback modèle (~5 %)");
+    }
+
+    const withHidden = base * (1 + hiddenPct);
+    const m = s.margin;
+    return {
+      lo: withHidden * (1 - m),
+      hi: withHidden * (1 + m),
+      mid: withHidden,
+      base,
+      hiddenPct,
+      hiddenParts,
+      tokens: sessions * (tok.in + tok.out),
+      modelKey,
+      model,
+      sessions
+    };
+  }
+
+  function whyCreate(s, c) {
+    const modeLabel = { nocode: "no-code", ai: "développement assisté par IA", classic: "développement classique" }[s.devMode];
+    const cx = { simple: "un formulaire simple", metier: "de la logique métier", multi: "plusieurs connexions systèmes" }[s.complexity];
+    const fin = ["un MVP", "une mise en production", "production + maintenance an 1"][s.finish];
+    return `Fourchette basée sur ${cx}, en ${modeLabel}, pour ${fin} (≈ ${Math.round(c.dLo)}–${Math.round(c.dHi)} j·h à ${c.rate} €/j).`;
+  }
+
+  function whyUsage(s, u) {
+    if (!s.usesAI) return "Pas d’usage IA récurrent significatif dans vos hypothèses.";
+    const parts = [];
+    if (s.length === "long") parts.push("vos échanges sont longs, donc chaque usage coûte plus cher");
+    if (s.users >= 200) parts.push("le volume d’utilisateurs tire la facture vers le haut");
+    if (s.freq >= 20) parts.push("la fréquence d’usage est élevée");
+    if (u.modelKey === "premium") parts.push("le modèle premium est nettement plus cher au token");
+    if (u.modelKey === "mini") parts.push("un modèle économique garde le coût au token bas");
+    if (s.rag) parts.push("la recherche dans vos documents (RAG) ajoute un surcoût");
+    if (!parts.length) parts.push("volume et longueur d’échange dans la moyenne");
+    const rec = s.model === "auto" ? ` Recommandation : modèle ${u.model.label} (${u.model.name}).` : "";
+    return `Pourquoi ce prix ? Parce que ${parts.join(" ; ")}.${rec}`;
+  }
+
+  function tipsFor(s, u) {
+    const tips = [];
+    if (s.usesAI && u.modelKey !== "mini") {
+      tips.push({ tag: "Modèle", text: "Passer à un modèle plus petit pour les tâches simples (classement, reformulation), et garder le modèle puissant pour les cas difficiles." });
+    }
+    if (s.length === "long") {
+      tips.push({ tag: "Longueur", text: "Limiter la longueur des réponses et découper les documents plutôt que tout envoyer d’un coup." });
+    }
+    tips.push({ tag: "Cache", text: "Mettre en cache les réponses aux questions fréquentes pour éviter de rappeler le modèle." });
+    if (s.rag) {
+      tips.push({ tag: "RAG", text: "Indexer seulement les documents utiles et rafraîchir la base moins souvent pour réduire stockage et requêtes." });
+    }
+    if (s.freq >= 15) {
+      tips.push({ tag: "Usage", text: "Plafonner le nombre d’échanges par utilisateur ou proposer un mode « sans IA » pour les actions triviales." });
+    }
+    tips.push({ tag: "Observabilité", text: "Suivre le coût par fonctionnalité dès le MVP — c’est souvent 1–2 écrans qui mangent 80 % du budget tokens." });
+    return tips.slice(0, 4);
+  }
+
+  // —— Render ——
+  function render() {
+    const s = readState();
+    const usesAI = s.usesAI;
+
+    $$("[data-ai-only]").forEach((el) => {
+      el.style.opacity = usesAI ? "1" : "0.45";
+      el.querySelectorAll("input, select, button").forEach((i) => {
+        if (i.closest(".scenario-tabs")) return;
+        if (el.contains(i)) i.disabled = !usesAI && i.name !== "usesAI";
+      });
+    });
+
+    // Sync model prices when not custom-edited recently via model change
+    if (!customPrices) {
+      const mk = resolveModel(s);
+      $("#priceIn").value = MODELS[mk].in;
+      $("#priceOut").value = MODELS[mk].out;
+    }
+
+    const c = creationCost(s);
+    $("#createLo").textContent = fmt(c.lo) + " €";
+    $("#createHi").textContent = fmt(c.hi) + " €";
+    $("#createDays").textContent = `Soit environ ${Math.round(c.dLo)} à ${Math.round(c.dHi)} jours-homme.`;
+    $("#createWhy").textContent = whyCreate(s, c);
+
+    const u = usageCost(s);
+    if (!usesAI) {
+      $("#usageLo").textContent = "0 €";
+      $("#usageHi").textContent = "0 €";
+      $("#usageWhy").textContent = whyUsage(s, u);
+      $("#sensibility").innerHTML = "";
+      $("#hiddenCosts").style.display = "none";
+      $("#modelHint").textContent = "";
+    } else {
+      $("#usageLo").textContent = fmt(u.lo) + " €";
+      $("#usageHi").textContent = fmt(u.hi) + " €";
+      $("#usageWhy").textContent = whyUsage(s, u);
+      if (s.model === "auto") {
+        $("#modelHint").textContent = `Recommandé pour votre cas : modèle ${u.model.label} (${u.model.name}).`;
+      } else {
+        $("#modelHint").textContent = `Tarifs indicatifs : ${u.model.in} / ${u.model.out} USD pour 1M tokens (entrée / sortie).`;
+      }
+
+      const s2 = usageCost(s, s.users * 2);
+      const s3 = usageCost(s, s.users * 3);
+      const max = s3.mid || 1;
+      $("#sensibility").innerHTML = `
+        <div class="sens-row"><span>Volume actuel</span><div class="sens-bar"><i style="width:${(u.mid/max)*100}%"></i></div><strong>${fmt(u.mid)} €</strong></div>
+        <div class="sens-row"><span>Si ×2</span><div class="sens-bar"><i style="width:${(s2.mid/max)*100}%"></i></div><strong>${fmt(s2.mid)} €</strong></div>
+        <div class="sens-row"><span>Si ×3</span><div class="sens-bar"><i style="width:100%"></i></div><strong>${fmt(s3.mid)} €</strong></div>
+      `;
+
+      $("#hiddenCosts").style.display = "block";
+      $("#hiddenCosts").innerHTML = `<strong>Coûts cachés inclus (~${Math.round(u.hiddenPct * 100)} %)</strong> : ${u.hiddenParts.join(", ")}. Hors hébergement serveur classique.`;
+    }
+
+    $("#kpiCreate").textContent = fmtRange(c.lo, c.hi);
+    $("#kpiOps").textContent = usesAI ? fmtRange(u.lo, u.hi) : "0 €";
+
+    drawChart(s, c, u);
+    renderBreakeven(s, u);
+    renderMarket(s);
+    renderTips(s, u);
+    renderCompare(s);
+    $("#printTitle").textContent = `Estimation — ${s.appName}`;
+  }
+
+  function monthFactors(key) {
+    return GROWTH[key].monthly;
+  }
+
+  function drawChart(s, c, u) {
+    const svg = $("#cumulChart");
+    const W = 640, H = 240, pad = { t: 20, r: 20, b: 36, l: 52 };
+    const factors = monthFactors(s.growth);
+    const createMid = c.mid;
+    const points = [];
+    let cumulOps = 0;
+    for (let m = 1; m <= 12; m++) {
+      const monthUsage = s.usesAI ? u.mid * factors[m - 1] : 0;
+      cumulOps += monthUsage;
+      points.push({ m, total: createMid + cumulOps, opsOnly: cumulOps, usage: monthUsage });
+    }
+    const maxY = Math.max(createMid * 1.15, ...points.map((p) => p.total), 1);
+    const x = (m) => pad.l + ((m - 1) / 11) * (W - pad.l - pad.r);
+    const y = (v) => pad.t + (1 - v / maxY) * (H - pad.t - pad.b);
+
+    let path = "";
+    points.forEach((p, i) => {
+      path += `${i ? "L" : "M"}${x(p.m).toFixed(1)},${y(p.total).toFixed(1)} `;
+    });
+
+    // Cross month: when cumulative usage exceeds creation
+    let cross = null;
+    for (const p of points) {
+      if (p.opsOnly >= createMid) { cross = p.m; break; }
+    }
+
+    const grid = [];
+    for (let i = 0; i <= 4; i++) {
+      const v = (maxY / 4) * i;
+      const yy = y(v);
+      grid.push(`<line x1="${pad.l}" y1="${yy}" x2="${W - pad.r}" y2="${yy}" stroke="#c9d4cc" stroke-width="1"/>`);
+      grid.push(`<text x="${pad.l - 8}" y="${yy + 4}" text-anchor="end" font-size="11" fill="#6b7a72" font-family="Bricolage Grotesque,sans-serif">${fmt(v)}</text>`);
+    }
+
+    const xLabels = points.map((p) =>
+      `<text x="${x(p.m)}" y="${H - 10}" text-anchor="middle" font-size="11" fill="#6b7a72" font-family="Bricolage Grotesque,sans-serif">M${p.m}</text>`
+    ).join("");
+
+    svg.innerHTML = `
+      ${grid.join("")}
+      <line x1="${pad.l}" y1="${y(createMid)}" x2="${W - pad.r}" y2="${y(createMid)}" stroke="#c45c26" stroke-width="2" stroke-dasharray="6 4"/>
+      <path d="${path}" fill="none" stroke="#1f6f5b" stroke-width="2.5" stroke-linejoin="round"/>
+      ${points.map((p) => `<circle cx="${x(p.m)}" cy="${y(p.total)}" r="3.5" fill="#1f6f5b"/>`).join("")}
+      ${cross ? `<line x1="${x(cross)}" y1="${pad.t}" x2="${x(cross)}" y2="${H - pad.b}" stroke="#a85b00" stroke-width="1.5" stroke-dasharray="3 3"/>` : ""}
+      ${xLabels}
+    `;
+
+    if (!s.usesAI) {
+      $("#crossHint").textContent = "Sans usage IA récurrent, le cumul reste plat après la création.";
+    } else if (cross) {
+      $("#crossHint").textContent = `Vers le mois ${cross}, le cumul d’usage dépasse le coût de création.`;
+    } else {
+      $("#crossHint").textContent = "Sur 12 mois, l’usage reste sous le coût de création (avec ces hypothèses).";
+    }
+  }
+
+  function renderBreakeven(s, u) {
+    const el = $("#breakeven");
+    if (!s.usesAI || u.mid <= 0) {
+      el.style.display = "none";
+      return;
+    }
+    const saas = SAAS_BENCH[s.appType];
+    // users où coût IA mid ≈ saas
+    const perUser = u.mid / s.users;
+    const threshold = Math.ceil(saas / perUser);
+    el.style.display = "block";
+    el.className = "alert " + (s.users >= threshold ? "alert-warn" : "alert-ok");
+    el.innerHTML = `<strong>Seuil de rentabilité (build vs abonnement type ~${saas} €/mois)</strong> : à partir d’environ <strong>${threshold} utilisateurs/mois</strong>, votre coût IA seul dépasse un abonnement SaaS comparable. Aujourd’hui : ${s.users} utilisateurs → ~${fmt(u.mid)} €/mois d’IA.`;
+  }
+
+  function renderMarket(s) {
+    const list = MARKET[s.appType] || [];
+    $("#marketList").innerHTML = list.map((m) => `
+      <div class="market-item">
+        <div><div class="name">${m.name}</div><div class="desc">${m.desc}</div></div>
+        <div class="price">${m.price}</div>
+      </div>
+    `).join("");
+  }
+
+  function renderTips(s, u) {
+    $("#tipsList").innerHTML = tipsFor(s, u).map((t) =>
+      `<li><span class="tag">${t.tag}</span><span>${t.text}</span></li>`
+    ).join("");
+  }
+
+  function renderCompare(s) {
+    const modes = [
+      { key: "nocode", title: "No-code" },
+      { key: "ai", title: "Assisté IA" },
+      { key: "classic", title: "Classique" }
+    ];
+    $("#compareGrid").innerHTML = modes.map((m) => {
+      const c = creationCost(s, m.key);
+      const selected = s.devMode === m.key;
+      return `<div class="compare-card" style="${selected ? "border-color:var(--teal);background:var(--teal-soft)" : ""}">
+        <h4>${m.title}${selected ? " ← choisi" : ""}</h4>
+        <div class="val">${fmt(c.lo)} – ${fmt(c.hi)} €</div>
+        <div class="sub">${Math.round(c.dLo)}–${Math.round(c.dHi)} j·h · ${DAY_RATE_DEFAULT[m.key]} €/j</div>
+      </div>`;
+    }).join("");
+  }
+
+  // —— Share / history ——
+  function encodeState(s) {
+    try {
+      return btoa(unescape(encodeURIComponent(JSON.stringify(s))));
+    } catch (e) { return ""; }
+  }
+  function decodeState(str) {
+    try {
+      return JSON.parse(decodeURIComponent(escape(atob(str))));
+    } catch (e) { return null; }
+  }
+
+  function applyState(s) {
+    if (!s) return;
+    if (s.appName) $("#appName").value = s.appName;
+    const setRadio = (name, val) => {
+      const el = $(`input[name="${name}"][value="${val}"]`);
+      if (el) el.checked = true;
+    };
+    setRadio("appType", s.appType);
+    setRadio("complexity", s.complexity);
+    setRadio("usesAI", s.usesAI ? "yes" : "no");
+    setRadio("devMode", s.devMode);
+    setRadio("length", s.length);
+    setRadio("rag", s.rag ? "yes" : "no");
+    if (s.finish != null) $("#finish").value = s.finish;
+    if (s.model) $("#model").value = s.model;
+    if (s.users) $("#users").value = s.users;
+    if (s.freq) $("#freq").value = s.freq;
+    if (s.growth && GROWTH[s.growth]) {
+      growthKey = s.growth;
+      $$("#growthTabs button").forEach((b) => b.classList.toggle("active", b.dataset.g === growthKey));
+    }
+    if (s.priceIn != null) { $("#priceIn").value = s.priceIn; customPrices = true; }
+    if (s.priceOut != null) { $("#priceOut").value = s.priceOut; customPrices = true; }
+    if (s.margin != null) { $("#margin").value = Math.round(s.margin * 100); $("#marginVal").textContent = Math.round(s.margin * 100) + " %"; }
+    if (s.dayRate) $("#dayRate").value = s.dayRate;
+    updateFinishUI();
+  }
+
+  function saveHistory() {
+    const s = readState();
+    const c = creationCost(s);
+    const u = usageCost(s);
+    const entry = {
+      id: Date.now(),
+      date: new Date().toLocaleString("fr-FR"),
+      name: s.appName,
+      create: [c.lo, c.hi],
+      ops: [u.lo, u.hi],
+      state: s
+    };
+    const hist = JSON.parse(localStorage.getItem("coutsia_hist") || "[]");
+    hist.unshift(entry);
+    localStorage.setItem("coutsia_hist", JSON.stringify(hist.slice(0, 12)));
+    renderHistory();
+  }
+
+  function renderHistory() {
+    const hist = JSON.parse(localStorage.getItem("coutsia_hist") || "[]");
+    const box = $("#historyList");
+    if (!hist.length) {
+      box.innerHTML = `<p class="hint">Aucune version sauvegardée pour l’instant.</p>`;
+      return;
+    }
+    box.innerHTML = hist.map((h) => `
+      <div class="history-item">
+        <div><strong>${h.name}</strong><br><span style="color:var(--muted);font-size:0.8rem">${h.date} · création ${fmt(h.create[0])}–${fmt(h.create[1])} € · ops ${fmt(h.ops[0])}–${fmt(h.ops[1])} €</span></div>
+        <button type="button" class="btn-secondary" data-load="${h.id}">Charger</button>
+        <button type="button" class="btn-ghost" data-del="${h.id}">Suppr.</button>
+      </div>
+    `).join("");
+    box.querySelectorAll("[data-load]").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const item = hist.find((x) => x.id === +btn.dataset.load);
+        if (item) { applyState(item.state); render(); }
+      });
+    });
+    box.querySelectorAll("[data-del]").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const next = hist.filter((x) => x.id !== +btn.dataset.del);
+        localStorage.setItem("coutsia_hist", JSON.stringify(next));
+        renderHistory();
+      });
+    });
+  }
+
+  function updateFinishUI() {
+    const v = +$("#finish").value;
+    $$("#finishLabels span").forEach((span) => span.classList.toggle("active", +span.dataset.i === v));
+    $("#finishHint").textContent = FINISH_HINTS[v];
+  }
+
+  // —— Events ——
+  document.addEventListener("input", (e) => {
+    if (e.target.id === "finish") updateFinishUI();
+    if (e.target.id === "margin") $("#marginVal").textContent = e.target.value + " %";
+    if (e.target.id === "priceIn" || e.target.id === "priceOut") customPrices = true;
+    if (e.target.id === "model") customPrices = false;
+    render();
+  });
+  document.addEventListener("change", () => render());
+
+  $$("#growthTabs button").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      growthKey = btn.dataset.g;
+      $$("#growthTabs button").forEach((b) => b.classList.toggle("active", b === btn));
+      render();
+    });
+  });
+
+  $("#btnPdf").addEventListener("click", () => window.print());
+
+  $("#btnShare").addEventListener("click", () => {
+    const s = readState();
+    const url = `${location.origin}${location.pathname}#${encodeState(s)}`;
+    $("#shareUrl").value = url;
+    $("#shareBox").classList.add("show");
+    history.replaceState(null, "", `#${encodeState(s)}`);
+  });
+
+  $("#btnCopy").addEventListener("click", async () => {
+    const v = $("#shareUrl").value;
+    try {
+      await navigator.clipboard.writeText(v);
+      $("#btnCopy").textContent = "Copié !";
+      setTimeout(() => { $("#btnCopy").textContent = "Copier"; }, 1500);
+    } catch (e) {
+      $("#shareUrl").select();
+    }
+  });
+
+  $("#btnSave").addEventListener("click", () => {
+    saveHistory();
+    const adv = $("#advanced");
+    if (!adv.open) adv.open = true;
+    $("#btnSave").textContent = "Version sauvée";
+    setTimeout(() => { $("#btnSave").textContent = "Sauver cette version"; }, 1600);
+  });
+
+  // Load from hash
+  if (location.hash.length > 1) {
+    const s = decodeState(location.hash.slice(1));
+    if (s) applyState(s);
+  }
+
+  // Defaults by app type
+  $$('input[name="appType"]').forEach((el) => {
+    el.addEventListener("change", () => {
+      const t = radio("appType");
+      if (t === "chatbot") { $("#users").value = 80; $("#freq").value = 12; }
+      if (t === "interne") { $("#users").value = 15; $("#freq").value = 20; }
+      if (t === "client") { $("#users").value = 200; $("#freq").value = 4; }
+      if (t === "auto") { $("#users").value = 5; $("#freq").value = 60; }
+      render();
+    });
+  });
+
+  updateFinishUI();
+  renderHistory();
+  render();
+})();
+  </script>
+</body>
+</html>
