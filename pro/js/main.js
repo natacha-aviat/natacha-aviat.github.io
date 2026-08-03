@@ -71,9 +71,9 @@ function loadIncludes() {
                 } else if (path.includes('fiche-back-link.html')) {
                     const isEn = window.location.pathname.includes('/en/');
                     if (isEn) {
-                        target.innerHTML = '<div class="fiche-back-link"><a href="../maps-available.html"><span>←</span><span>Back to maps</span></a></div>';
+                        target.innerHTML = '<div class="fiche-back-link"><a href="../projects.html"><span>←</span><span>Back to projects</span></a></div>';
                     } else {
-                        target.innerHTML = '<div class="fiche-back-link"><a href="../cartes-disponibles.html"><span>←</span><span>Retour aux cartes</span></a></div>';
+                        target.innerHTML = '<div class="fiche-back-link"><a href="../projets.html"><span>←</span><span>Retour aux projets</span></a></div>';
                     }
                 } else {
                     target.innerHTML = '';
@@ -103,8 +103,10 @@ function getLanguagePaths() {
         // Fallback si la fonction n'est pas encore chargée
         const pageMapping = {
             'index.html': { fr: 'index.html', en: 'en/index.html' },
-            'cartes-disponibles.html': { fr: 'cartes-disponibles.html', en: 'en/maps-available.html' },
-            'maps-available.html': { fr: 'cartes-disponibles.html', en: 'en/maps-available.html' },
+            'projets.html': { fr: 'projets.html', en: 'en/projects.html' },
+            'projects.html': { fr: 'projets.html', en: 'en/projects.html' },
+            'cartes-disponibles.html': { fr: 'projets.html', en: 'en/projects.html' },
+            'maps-available.html': { fr: 'projets.html', en: 'en/projects.html' },
             'services.html': { fr: 'services.html', en: 'en/services.html' },
             'cgv.html': { fr: 'cgv.html', en: 'en/terms.html' },
             'terms.html': { fr: 'cgv.html', en: 'en/terms.html' }
@@ -115,7 +117,7 @@ function getLanguagePaths() {
     }
     
     const indexPath = isFiche ? '../index.html' : (isEn ? '../index.html' : 'index.html');
-    const cartesPath = isFiche ? '../cartes-disponibles.html' : (isEn ? 'maps-available.html' : 'cartes-disponibles.html');
+    const cartesPath = isFiche ? '../projets.html' : (isEn ? 'projects.html' : 'projets.html');
     const servicesPath = isFiche ? '../services.html' : (isEn ? 'services.html' : 'services.html');
     
     return { indexPath, cartesPath, servicesPath, enPath, frPath };
@@ -134,7 +136,7 @@ function getHeaderFallback() {
         <nav>
             <ul>
                 <li><a href="${indexPath}" data-nav="index">Home</a></li>
-                <li><a href="${cartesPath}" data-nav="cartes">Maps</a></li>
+                <li><a href="${cartesPath}" data-nav="projets">Projects</a></li>
                 <li><a href="${servicesPath}" data-nav="services">Services</a></li>
             </ul>
             <div class="language-switcher" title="Switch to French version">
@@ -154,7 +156,7 @@ function getHeaderFallback() {
         <nav>
             <ul>
                 <li><a href="${indexPath}" data-nav="index">Accueil</a></li>
-                <li><a href="${cartesPath}" data-nav="cartes">Cartes</a></li>
+                <li><a href="${cartesPath}" data-nav="projets">Projets</a></li>
                 <li><a href="${servicesPath}" data-nav="services">Services</a></li>
             </ul>
             <div class="language-switcher" title="Switch to English version">
@@ -242,7 +244,7 @@ document.addEventListener('DOMContentLoaded', function() {
             initNavigation();
         }
         
-        // Initialiser les filtres (si sur la page cartes-disponibles.html)
+        // Initialiser les filtres (si sur la page projets.html)
         if (typeof initFilters === 'function') {
             initFilters();
         }

@@ -4,7 +4,7 @@
  * ============================================================================
  * Ce fichier contient toutes les fonctions réutilisables pour :
  * - Navigation active
- * - Filtres de la page cartes-disponibles.html
+ * - Filtres de la page projets.html
  * - Scroll vers ancres
  */
 
@@ -23,8 +23,8 @@ function initNavigation() {
         
         if (currentPath.endsWith('index.html') || currentPath.endsWith('/') || currentPath.endsWith('/pro/')) {
             isActive = navKey === 'index';
-        } else if (currentPath.includes('cartes-disponibles.html') || currentPath.includes('fiches/')) {
-            isActive = navKey === 'cartes';
+        } else if (currentPath.includes('projets.html') || currentPath.includes('projects.html') || currentPath.includes('fiches/')) {
+            isActive = navKey === 'projets';
         } else if (currentPath.includes('services.html')) {
             isActive = navKey === 'services';
         }
@@ -38,7 +38,7 @@ function initNavigation() {
 }
 
 /**
- * Initialise les filtres de la page cartes-disponibles.html
+ * Initialise les filtres de la page projets.html
  */
 function initFilters() {
     const filterButtons = document.querySelectorAll('.filter-btn[data-filter]');
@@ -204,8 +204,10 @@ function getLanguageSwitchUrl(targetLang) {
     // Utiliser les mappings centralisés (définis dans seo-config.js ou ici en fallback)
     const pageMapping = typeof PAGE_MAPPING !== 'undefined' ? PAGE_MAPPING : {
         'index.html': { fr: 'index.html', en: 'en/index.html' },
-        'cartes-disponibles.html': { fr: 'cartes-disponibles.html', en: 'en/maps-available.html' },
-        'maps-available.html': { fr: 'cartes-disponibles.html', en: 'en/maps-available.html' },
+        'projets.html': { fr: 'projets.html', en: 'en/projects.html' },
+        'projects.html': { fr: 'projets.html', en: 'en/projects.html' },
+        'cartes-disponibles.html': { fr: 'projets.html', en: 'en/projects.html' },
+        'maps-available.html': { fr: 'projets.html', en: 'en/projects.html' },
         'services.html': { fr: 'services.html', en: 'en/services.html' },
         'cgv.html': { fr: 'cgv.html', en: 'en/terms.html' },
         'terms.html': { fr: 'cgv.html', en: 'en/terms.html' }

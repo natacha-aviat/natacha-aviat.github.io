@@ -438,8 +438,10 @@ const SEO_CONFIG = {
  */
 const PAGE_MAPPING = {
     'index.html': { fr: 'index.html', en: 'en/index.html' },
-    'cartes-disponibles.html': { fr: 'cartes-disponibles.html', en: 'en/maps-available.html' },
-    'maps-available.html': { fr: 'cartes-disponibles.html', en: 'en/maps-available.html' },
+    'projets.html': { fr: 'projets.html', en: 'en/projects.html' },
+    'projects.html': { fr: 'projets.html', en: 'en/projects.html' },
+    'cartes-disponibles.html': { fr: 'projets.html', en: 'en/projects.html' },
+    'maps-available.html': { fr: 'projets.html', en: 'en/projects.html' },
     'services.html': { fr: 'services.html', en: 'en/services.html' },
     'cgv.html': { fr: 'cgv.html', en: 'en/terms.html' },
     'terms.html': { fr: 'cgv.html', en: 'en/terms.html' }
