@@ -1178,10 +1178,18 @@
           <div class="kpi-sub" id="kpiCreateSub">Investissement total</div>
         </div>
         <div class="kpi month">
-          <div class="kpi-label">Coût d’exploitation</div>
+          <div class="kpi-label">Coût d’exploitation IA</div>
           <div class="kpi-value" id="kpiOps">—</div>
           <div class="kpi-sub" id="kpiOpsSub">Moyenne mensuelle sur 12 mois</div>
         </div>
+      </div>
+
+      <div class="alert alert-warn" style="margin-top:1rem">
+        <strong>À prévoir en plus — non chiffré ici</strong><br>
+        Les montants ci-dessus couvrent la création et l’usage des modèles IA.
+        Il faudra aussi budgéter les <strong>coûts annexes d’exploitation</strong> :
+        hébergement, nom de domaine, stockage, base de données, e-mails transactionnels, monitoring, etc.
+        Ces postes ne sont pas évalués dans cette version de l’outil.
       </div>
 
       <div class="chart-wrap">
@@ -2207,6 +2215,12 @@
           <div class="val">${usesAI ? fmtRange(g.avgLo, g.avgHi) : "0 €"}</div>
           <div class="sub">${usesAI ? `Moyenne / mois · scénario ${g.label.toLowerCase()} · an 1 : ${fmt(g.yearLo)}–${fmt(g.yearHi)} €` : "Pas d’usage IA récurrent"}</div>
         </div>
+      </div>
+
+      <div class="pr-box warn">
+        <strong>À prévoir en plus — non chiffré ici.</strong>
+        Hébergement, nom de domaine, stockage, base de données, e-mails transactionnels, monitoring, etc.
+        Ces coûts annexes d’exploitation ne sont pas évalués dans cette estimation.
       </div>
 
       <section class="pr-section">
