@@ -22,13 +22,12 @@
       --teal-soft: #d7ebe3;
       --warn: #a85b00;
       --warn-bg: #fff3df;
-      --ok: #1f6f5b;
       --ok-bg: #e3f2ec;
       --shadow: 0 1px 0 rgba(20, 34, 28, 0.06);
       --radius: 14px;
       --font-display: "Bricolage Grotesque", sans-serif;
       --font-body: "Source Serif 4", Georgia, serif;
-      --max: 920px;
+      --max: 760px;
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -61,130 +60,59 @@
       padding: 1.25rem 1.25rem 4rem;
     }
 
-    /* —— Intro —— */
-    .intro {
-      padding: 2.5rem 0 2rem;
-      animation: rise 0.7s ease both;
+    .topbar {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-bottom: 1.25rem;
     }
     .brand {
       font-family: var(--font-display);
       font-weight: 700;
-      font-size: clamp(1.85rem, 5vw, 2.6rem);
+      font-size: 1.35rem;
       letter-spacing: -0.03em;
-      line-height: 1.1;
-      color: var(--ink);
     }
     .brand span { color: var(--teal); }
-    .lede {
-      margin-top: 0.85rem;
-      max-width: 36rem;
-      font-size: 1.12rem;
-      color: var(--ink-soft);
-    }
-    .intro-cta {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      margin-top: 1.4rem;
-      font-family: var(--font-display);
-      font-weight: 600;
-      font-size: 0.95rem;
-      color: var(--accent-deep);
-      text-decoration: none;
-      border-bottom: 2px solid var(--accent);
-      padding-bottom: 2px;
-      transition: gap 0.2s ease;
-    }
-    .intro-cta:hover { gap: 0.75rem; }
 
-    .visual-strip {
-      margin-top: 2rem;
-      height: 140px;
-      border-radius: var(--radius);
-      background:
-        linear-gradient(135deg, rgba(31,111,91,0.12) 0%, transparent 40%),
-        linear-gradient(225deg, rgba(196,92,38,0.15) 0%, transparent 45%),
-        repeating-linear-gradient(
-          -12deg,
-          transparent,
-          transparent 18px,
-          rgba(20,34,28,0.04) 18px,
-          rgba(20,34,28,0.04) 19px
-        ),
-        var(--paper-2);
-      border: 1px solid var(--line);
-      position: relative;
-      overflow: hidden;
-      animation: fadein 1s ease 0.2s both;
-    }
-    .visual-strip::after {
-      content: "";
-      position: absolute;
-      right: 8%;
-      bottom: -20%;
-      width: 180px;
-      height: 180px;
-      border-radius: 50%;
-      background: radial-gradient(circle, rgba(31,111,91,0.25), transparent 70%);
-      animation: pulse 4s ease-in-out infinite;
-    }
-    .visual-strip .bars {
-      position: absolute;
-      left: 10%;
-      bottom: 18%;
+    .steps {
       display: flex;
-      align-items: flex-end;
-      gap: 8px;
-      height: 70%;
+      gap: 0.35rem;
+      flex-wrap: wrap;
+      margin-bottom: 1.5rem;
     }
-    .visual-strip .bars i {
-      display: block;
-      width: 14px;
-      border-radius: 4px 4px 0 0;
-      background: var(--teal);
-      opacity: 0.55;
-      animation: barGrow 1.2s ease both;
-    }
-    .visual-strip .bars i:nth-child(1) { height: 35%; animation-delay: 0.3s; }
-    .visual-strip .bars i:nth-child(2) { height: 55%; animation-delay: 0.4s; background: var(--accent); opacity: 0.7; }
-    .visual-strip .bars i:nth-child(3) { height: 80%; animation-delay: 0.5s; }
-    .visual-strip .bars i:nth-child(4) { height: 48%; animation-delay: 0.6s; opacity: 0.4; }
-    .visual-strip .label {
-      position: absolute;
-      right: 12%;
-      top: 28%;
+    .step-dot {
       font-family: var(--font-display);
-      font-size: 0.8rem;
+      font-size: 0.72rem;
       font-weight: 600;
-      color: var(--muted);
       letter-spacing: 0.04em;
       text-transform: uppercase;
+      color: var(--muted);
+      padding: 0.35rem 0.65rem;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      background: transparent;
+      cursor: pointer;
     }
+    .step-dot.done { color: var(--teal); }
+    .step-dot.active {
+      color: var(--ink);
+      background: #fff;
+      border-color: var(--line);
+    }
+    .step-dot:disabled { cursor: default; opacity: 0.45; }
+
+    .panel {
+      display: none;
+      animation: rise 0.45s ease both;
+    }
+    .panel.active { display: block; }
 
     @keyframes rise {
-      from { opacity: 0; transform: translateY(12px); }
+      from { opacity: 0; transform: translateY(10px); }
       to { opacity: 1; transform: none; }
     }
-    @keyframes fadein {
-      from { opacity: 0; }
-      to { opacity: 1; }
-    }
-    @keyframes barGrow {
-      from { transform: scaleY(0); transform-origin: bottom; }
-      to { transform: scaleY(1); }
-    }
-    @keyframes pulse {
-      0%, 100% { transform: scale(1); opacity: 0.8; }
-      50% { transform: scale(1.08); opacity: 1; }
-    }
 
-    /* —— Layout —— */
-    section.block {
-      margin-top: 1.75rem;
-      padding: 1.5rem 0 0;
-      border-top: 1px solid var(--line);
-      animation: rise 0.5s ease both;
-    }
     .block-num {
       font-family: var(--font-display);
       font-size: 0.75rem;
@@ -194,23 +122,23 @@
       color: var(--teal);
       margin-bottom: 0.35rem;
     }
-    h2 {
+    h1, h2 {
       font-family: var(--font-display);
-      font-size: clamp(1.35rem, 3vw, 1.65rem);
+      font-size: clamp(1.4rem, 3.5vw, 1.75rem);
       font-weight: 700;
       letter-spacing: -0.02em;
-      margin-bottom: 0.35rem;
+      margin-bottom: 0.4rem;
     }
     .block-desc {
       color: var(--muted);
       font-size: 0.98rem;
-      margin-bottom: 1.25rem;
+      margin-bottom: 1.35rem;
       max-width: 40rem;
     }
 
-    label.field {
+    label.field, .field {
       display: block;
-      margin-bottom: 1.1rem;
+      margin-bottom: 1.25rem;
     }
     .field-name {
       display: flex;
@@ -219,14 +147,15 @@
       font-family: var(--font-display);
       font-weight: 600;
       font-size: 0.92rem;
-      margin-bottom: 0.4rem;
+      margin-bottom: 0.45rem;
     }
 
     input[type="text"],
     input[type="number"],
+    textarea,
     select {
       width: 100%;
-      padding: 0.7rem 0.85rem;
+      padding: 0.75rem 0.9rem;
       font-family: var(--font-body);
       font-size: 1rem;
       color: var(--ink);
@@ -236,7 +165,12 @@
       outline: none;
       transition: border-color 0.15s, box-shadow 0.15s;
     }
-    input:focus, select:focus {
+    textarea {
+      min-height: 160px;
+      resize: vertical;
+      line-height: 1.5;
+    }
+    input:focus, textarea:focus, select:focus {
       border-color: var(--teal);
       box-shadow: 0 0 0 3px rgba(31,111,91,0.15);
     }
@@ -246,16 +180,25 @@
       grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
       gap: 0.55rem;
     }
+    .choice-grid.models {
+      grid-template-columns: 1fr;
+    }
+    @media (min-width: 560px) {
+      .choice-grid.models { grid-template-columns: 1fr 1fr; }
+    }
     .choice {
       position: relative;
       cursor: pointer;
+      display: block;
     }
     .choice input {
       position: absolute;
       opacity: 0;
-      pointer-events: none;
+      width: 0;
+      height: 0;
+      margin: 0;
     }
-    .choice span {
+    .choice > span {
       display: block;
       padding: 0.85rem 0.9rem;
       background: #fff;
@@ -264,29 +207,45 @@
       font-family: var(--font-display);
       font-size: 0.88rem;
       font-weight: 600;
-      text-align: center;
+      text-align: left;
       transition: border-color 0.15s, background 0.15s, color 0.15s;
+      pointer-events: none;
     }
     .choice input:checked + span {
       border-color: var(--teal);
       background: var(--teal-soft);
       color: var(--teal);
     }
-    .choice:hover span { border-color: var(--muted); }
-
-    .slider-row {
-      display: grid;
-      gap: 0.5rem;
+    .choice:hover > span { border-color: var(--muted); }
+    .choice .sub {
+      display: block;
+      margin-top: 0.25rem;
+      font-family: var(--font-body);
+      font-size: 0.78rem;
+      font-weight: 400;
+      color: var(--muted);
+      line-height: 1.35;
     }
+    .choice input:checked + span .sub { color: var(--ink-soft); }
+
+    .slider-row { display: grid; gap: 0.45rem; }
     .slider-labels {
       display: flex;
       justify-content: space-between;
       font-family: var(--font-display);
-      font-size: 0.78rem;
+      font-size: 0.75rem;
       font-weight: 600;
       color: var(--muted);
+      gap: 0.5rem;
     }
     .slider-labels .active { color: var(--accent-deep); }
+    .slider-value {
+      font-family: var(--font-display);
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--teal);
+      margin-top: 0.15rem;
+    }
     input[type="range"] {
       width: 100%;
       accent-color: var(--accent);
@@ -298,13 +257,10 @@
       grid-template-columns: 1fr 1fr;
       gap: 1rem;
     }
-    @media (max-width: 640px) {
-      .row-2 { grid-template-columns: 1fr; }
-    }
+    @media (max-width: 640px) { .row-2 { grid-template-columns: 1fr; } }
 
-    /* —— Results —— */
     .result-panel {
-      margin-top: 1rem;
+      margin-top: 0.5rem;
       padding: 1.15rem 1.25rem;
       background: #fff;
       border: 1px solid var(--line);
@@ -319,10 +275,9 @@
       font-family: var(--font-display);
     }
     .range-out .lo, .range-out .hi {
-      font-size: clamp(1.5rem, 4vw, 2rem);
+      font-size: clamp(1.4rem, 4vw, 1.85rem);
       font-weight: 700;
       letter-spacing: -0.02em;
-      color: var(--ink);
     }
     .range-out .sep { color: var(--muted); font-weight: 600; }
     .range-out .unit {
@@ -337,16 +292,29 @@
       font-style: italic;
     }
     .hint {
-      margin-top: 0.5rem;
+      margin-top: 0.45rem;
       font-size: 0.85rem;
       color: var(--muted);
     }
 
-    .sensibility {
-      margin-top: 1rem;
+    .schedule {
+      margin-top: 0.9rem;
       display: grid;
       gap: 0.4rem;
     }
+    .schedule-row {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 0.75rem;
+      font-family: var(--font-display);
+      font-size: 0.88rem;
+      padding: 0.55rem 0.7rem;
+      background: var(--paper);
+      border-radius: 8px;
+    }
+    .schedule-row strong { font-weight: 700; }
+
+    .sensibility { margin-top: 1rem; display: grid; gap: 0.4rem; }
     .sens-row {
       display: grid;
       grid-template-columns: 7rem 1fr auto;
@@ -371,7 +339,6 @@
     .sens-row:nth-child(2) .sens-bar i { background: var(--accent); opacity: 0.85; }
     .sens-row:nth-child(3) .sens-bar i { background: var(--accent-deep); }
 
-    /* —— Synthèse —— */
     .kpi-pair {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -398,7 +365,7 @@
     .kpi-value {
       margin-top: 0.35rem;
       font-family: var(--font-display);
-      font-size: clamp(1.35rem, 3.5vw, 1.75rem);
+      font-size: clamp(1.2rem, 3.2vw, 1.55rem);
       font-weight: 700;
       letter-spacing: -0.02em;
     }
@@ -421,11 +388,7 @@
       font-weight: 600;
       margin-bottom: 0.75rem;
     }
-    #cumulChart {
-      width: 100%;
-      height: auto;
-      display: block;
-    }
+    #cumulChart { width: 100%; height: auto; display: block; }
     .chart-legend {
       display: flex;
       flex-wrap: wrap;
@@ -447,17 +410,18 @@
     }
     .leg-create::before { background: var(--accent); }
     .leg-ops::before { background: var(--teal); }
-    .leg-cross {
-      color: var(--warn);
-      font-weight: 600;
-    }
+    .leg-cross { color: var(--warn); }
 
-    .actions {
+    .nav {
       display: flex;
       flex-wrap: wrap;
       gap: 0.65rem;
-      margin-top: 1.25rem;
+      margin-top: 1.75rem;
+      padding-top: 1.25rem;
+      border-top: 1px solid var(--line);
     }
+    .nav .spacer { flex: 1; }
+
     button, .btn {
       font-family: var(--font-display);
       font-weight: 600;
@@ -469,10 +433,7 @@
       transition: background 0.15s, color 0.15s, border-color 0.15s, transform 0.1s;
     }
     button:active { transform: scale(0.98); }
-    .btn-primary {
-      background: var(--ink);
-      color: #fff;
-    }
+    .btn-primary { background: var(--ink); color: #fff; }
     .btn-primary:hover { background: #0d1612; }
     .btn-secondary {
       background: #fff;
@@ -486,7 +447,6 @@
       border-color: var(--teal);
     }
 
-    /* —— Alerts & tips —— */
     .alert {
       margin-top: 1rem;
       padding: 0.9rem 1rem;
@@ -494,11 +454,8 @@
       font-size: 0.95rem;
     }
     .alert-warn { background: var(--warn-bg); color: #5c3a00; border-left: 3px solid var(--warn); }
-    .alert-ok { background: var(--ok-bg); color: #134838; border-left: 3px solid var(--ok); }
-    .alert strong {
-      font-family: var(--font-display);
-      font-weight: 600;
-    }
+    .alert-ok { background: var(--ok-bg); color: #134838; border-left: 3px solid var(--teal); }
+    .alert strong { font-family: var(--font-display); font-weight: 600; }
 
     .tips {
       margin-top: 1rem;
@@ -530,11 +487,7 @@
       white-space: nowrap;
     }
 
-    .market-list {
-      margin-top: 0.75rem;
-      display: grid;
-      gap: 0.5rem;
-    }
+    .market-list { margin-top: 0.75rem; display: grid; gap: 0.5rem; }
     .market-item {
       display: grid;
       grid-template-columns: 1fr auto;
@@ -550,21 +503,16 @@
       font-weight: 600;
       font-size: 0.92rem;
     }
-    .market-item .desc {
-      font-size: 0.82rem;
-      color: var(--muted);
-    }
+    .market-item .desc { font-size: 0.82rem; color: var(--muted); }
     .market-item .price {
       font-family: var(--font-display);
       font-weight: 700;
       font-size: 0.95rem;
-      color: var(--ink);
       white-space: nowrap;
     }
 
-    /* —— Advanced —— */
     details.advanced {
-      margin-top: 1.75rem;
+      margin-top: 1.5rem;
       border-top: 1px solid var(--line);
       padding-top: 1rem;
     }
@@ -574,26 +522,21 @@
       font-size: 1.05rem;
       cursor: pointer;
       list-style: none;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
       color: var(--ink-soft);
     }
     details.advanced > summary::-webkit-details-marker { display: none; }
     details.advanced > summary::before {
-      content: "+";
-      font-size: 1.2rem;
+      content: "+ ";
       color: var(--teal);
-      width: 1.2rem;
     }
-    details.advanced[open] > summary::before { content: "−"; }
+    details.advanced[open] > summary::before { content: "− "; }
     .advanced-body { margin-top: 1.25rem; }
 
     .scenario-tabs {
       display: flex;
       gap: 0.4rem;
       flex-wrap: wrap;
-      margin-bottom: 1rem;
+      margin-bottom: 0.25rem;
     }
     .scenario-tabs button {
       padding: 0.45rem 0.85rem;
@@ -629,15 +572,11 @@
     .compare-card .val {
       font-family: var(--font-display);
       font-weight: 700;
-      font-size: 1.1rem;
+      font-size: 1.05rem;
     }
     .compare-card .sub { font-size: 0.8rem; color: var(--muted); margin-top: 0.2rem; }
 
-    .history {
-      margin-top: 0.75rem;
-      display: grid;
-      gap: 0.4rem;
-    }
+    .history { margin-top: 0.75rem; display: grid; gap: 0.4rem; }
     .history-item {
       display: grid;
       grid-template-columns: 1fr auto auto;
@@ -649,12 +588,8 @@
       border-radius: 8px;
       font-size: 0.88rem;
     }
-    .history-item button {
-      padding: 0.3rem 0.6rem;
-      font-size: 0.78rem;
-    }
+    .history-item button { padding: 0.3rem 0.6rem; font-size: 0.78rem; }
 
-    /* —— Tooltip —— */
     .tip {
       display: inline-flex;
       align-items: center;
@@ -683,19 +618,27 @@
       left: 50%;
       bottom: calc(100% + 8px);
       transform: translateX(-50%);
-      width: min(260px, 70vw);
-      padding: 0.65rem 0.75rem;
+      width: min(280px, 75vw);
+      padding: 0.7rem 0.8rem;
       background: var(--ink);
       color: #f3f6f2;
       font-family: var(--font-body);
       font-size: 0.82rem;
       font-weight: 400;
-      line-height: 1.4;
+      line-height: 1.45;
       border-radius: 8px;
-      z-index: 20;
+      z-index: 30;
       text-align: left;
+      white-space: normal;
       box-shadow: 0 8px 24px rgba(20,34,28,0.2);
     }
+    .tip .tip-box b {
+      font-family: var(--font-display);
+      font-weight: 600;
+      display: block;
+      margin-top: 0.45rem;
+    }
+    .tip .tip-box b:first-child { margin-top: 0; }
     .tip:hover .tip-box, .tip:focus .tip-box { display: block; }
 
     .share-box {
@@ -705,13 +648,23 @@
       align-items: stretch;
     }
     .share-box.show { display: flex; }
-    .share-box input {
-      flex: 1;
-      font-size: 0.85rem;
+    .share-box input { flex: 1; font-size: 0.85rem; }
+
+    .recap {
+      margin-bottom: 1rem;
+      padding: 0.85rem 1rem;
+      background: var(--teal-soft);
+      border-radius: 10px;
+      font-size: 0.9rem;
+      color: var(--ink-soft);
+    }
+    .recap strong {
+      font-family: var(--font-display);
+      color: var(--ink);
     }
 
     footer {
-      margin-top: 3rem;
+      margin-top: 2.5rem;
       padding-top: 1.25rem;
       border-top: 1px solid var(--line);
       font-size: 0.82rem;
@@ -720,94 +673,310 @@
     }
     footer a { color: var(--teal); }
 
-    /* —— Print / PDF —— */
-    @media print {
-      .noise, .intro-cta, .actions, details.advanced > summary,
-      .scenario-tabs, .share-box, .visual-strip, .tip { display: none !important; }
-      details.advanced { display: none; }
-      body { background: #fff; }
-      .wrap { max-width: 100%; padding: 0; }
-      .result-panel, .kpi, .chart-wrap, .market-item, .tips li {
-        box-shadow: none;
-        break-inside: avoid;
-      }
-      section.block { break-inside: avoid; }
-      @page { margin: 1.5cm; }
+    .welcome {
+      padding: 1.5rem 0 0.5rem;
+    }
+    .welcome .lede {
+      margin: 0.75rem 0 1.25rem;
+      font-size: 1.08rem;
+      color: var(--ink-soft);
+      max-width: 36rem;
     }
 
-    .print-only { display: none; }
-    @media print { .print-only { display: block; margin-bottom: 1rem; } }
+    /* —— Rapport PDF (écran masqué) —— */
+    #printReport { display: none; }
+
+    @media print {
+      @page {
+        size: A4;
+        margin: 1.2cm 1.4cm;
+      }
+
+      html, body {
+        background: #fff !important;
+        color: #14221c;
+        font-size: 10.5pt;
+        line-height: 1.4;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+
+      .noise,
+      .wrap,
+      .tip {
+        display: none !important;
+      }
+
+      #printReport {
+        display: block !important;
+        max-width: 100%;
+        margin: 0;
+        padding: 0;
+      }
+
+      #printReport * {
+        box-shadow: none !important;
+        animation: none !important;
+      }
+
+      .pr-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+        gap: 1rem;
+        border-bottom: 2.5px solid #1f6f5b;
+        padding-bottom: 0.65rem;
+        margin-bottom: 1rem;
+      }
+      .pr-brand {
+        font-family: "Bricolage Grotesque", sans-serif;
+        font-weight: 700;
+        font-size: 1.55rem;
+        letter-spacing: -0.03em;
+        line-height: 1.1;
+      }
+      .pr-brand span { color: #1f6f5b; }
+      .pr-meta {
+        text-align: right;
+        font-size: 0.78rem;
+        color: #6b7a72;
+        font-family: "Bricolage Grotesque", sans-serif;
+      }
+      .pr-title {
+        font-family: "Bricolage Grotesque", sans-serif;
+        font-size: 1.25rem;
+        font-weight: 700;
+        margin: 0.35rem 0 0.15rem;
+        letter-spacing: -0.02em;
+      }
+      .pr-desc {
+        color: #3a4a42;
+        font-size: 0.92rem;
+        margin-bottom: 1rem;
+        white-space: pre-wrap;
+      }
+
+      .pr-kpis {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 0.65rem;
+        margin-bottom: 1rem;
+        break-inside: avoid;
+      }
+      .pr-kpi {
+        border: 1px solid #c9d4cc;
+        border-radius: 8px;
+        padding: 0.7rem 0.85rem;
+        background: #f7faf7;
+      }
+      .pr-kpi.once { border-top: 3px solid #c45c26; }
+      .pr-kpi.ops { border-top: 3px solid #1f6f5b; }
+      .pr-kpi .lbl {
+        font-family: "Bricolage Grotesque", sans-serif;
+        font-size: 0.68rem;
+        font-weight: 600;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        color: #6b7a72;
+      }
+      .pr-kpi .val {
+        font-family: "Bricolage Grotesque", sans-serif;
+        font-size: 1.2rem;
+        font-weight: 700;
+        margin-top: 0.15rem;
+      }
+      .pr-kpi .sub { font-size: 0.78rem; color: #6b7a72; margin-top: 0.15rem; }
+
+      .pr-section {
+        margin-top: 0.85rem;
+        padding-top: 0.65rem;
+        border-top: 1px solid #c9d4cc;
+        break-inside: avoid;
+      }
+      .pr-section h2 {
+        font-family: "Bricolage Grotesque", sans-serif;
+        font-size: 0.95rem;
+        font-weight: 700;
+        margin: 0 0 0.45rem;
+        color: #1f6f5b;
+      }
+      .pr-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 0.35rem 1rem;
+      }
+      .pr-row {
+        display: grid;
+        grid-template-columns: 42% 58%;
+        gap: 0.35rem;
+        padding: 0.28rem 0;
+        border-bottom: 1px dotted #d5ddd7;
+        font-size: 0.86rem;
+      }
+      .pr-row .k {
+        font-family: "Bricolage Grotesque", sans-serif;
+        font-weight: 600;
+        color: #6b7a72;
+        font-size: 0.78rem;
+      }
+      .pr-row .v { color: #14221c; }
+
+      .pr-note {
+        margin-top: 0.45rem;
+        font-size: 0.82rem;
+        color: #3a4a42;
+        font-style: italic;
+      }
+      .pr-box {
+        margin-top: 0.45rem;
+        padding: 0.55rem 0.7rem;
+        background: #e3f2ec;
+        border-left: 3px solid #1f6f5b;
+        border-radius: 4px;
+        font-size: 0.84rem;
+      }
+      .pr-box.warn {
+        background: #fff3df;
+        border-left-color: #a85b00;
+      }
+      .pr-chart {
+        margin-top: 0.5rem;
+        break-inside: avoid;
+      }
+      .pr-chart svg {
+        width: 100%;
+        height: auto;
+        max-height: 180px;
+      }
+      .pr-footer {
+        margin-top: 1rem;
+        padding-top: 0.5rem;
+        border-top: 1px solid #c9d4cc;
+        font-size: 0.72rem;
+        color: #6b7a72;
+        text-align: center;
+      }
+      .pr-tips {
+        margin: 0.35rem 0 0;
+        padding-left: 1.1rem;
+        font-size: 0.84rem;
+      }
+      .pr-tips li { margin-bottom: 0.2rem; }
+    }
   </style>
 </head>
 <body>
   <div class="noise" aria-hidden="true"></div>
   <div class="wrap">
-    <header class="intro">
+    <div class="topbar">
       <p class="brand">Coûts<span>IA</span></p>
-      <p class="lede">Vous avez une idée d’outil avec de l’IA. Estimez en quelques minutes ce que ça coûterait de le créer — puis de le faire tourner chaque mois.</p>
-      <a class="intro-cta" href="#projet">Commencer l’estimation →</a>
-      <div class="visual-strip" aria-hidden="true">
-        <div class="bars"><i></i><i></i><i></i><i></i></div>
-        <div class="label">Création · Usage · Cumul</div>
-      </div>
-    </header>
+      <span class="hint" id="stepLabel">Accueil</span>
+    </div>
 
-    <p class="print-only" id="printTitle"></p>
+    <nav class="steps" id="stepNav" aria-label="Étapes"></nav>
 
-    <!-- 1. Projet -->
-    <section class="block" id="projet">
-      <p class="block-num">Étape 1</p>
-      <h2>Décrire le projet</h2>
-      <p class="block-desc">Pas de jargon : décrivez ce que vous voulez faire, comme vous le diriez à un associé.</p>
-
-      <label class="field">
-        <span class="field-name">Nom de l’application / cas d’usage</span>
-        <input type="text" id="appName" placeholder="Ex. : assistant client pour mon e-commerce" maxlength="120">
-      </label>
-
-      <div class="field">
-        <span class="field-name">Type d’outil</span>
-        <div class="choice-grid" id="appType">
-          <label class="choice"><input type="radio" name="appType" value="chatbot" checked><span>Chatbot / FAQ</span></label>
-          <label class="choice"><input type="radio" name="appType" value="interne"><span>Outil interne</span></label>
-          <label class="choice"><input type="radio" name="appType" value="client"><span>Appli clients</span></label>
-          <label class="choice"><input type="radio" name="appType" value="auto"><span>Automatisation</span></label>
-        </div>
-      </div>
-
-      <div class="field">
-        <span class="field-name">
-          Complexité estimée
-          <button type="button" class="tip" aria-label="Aide">?
-            <span class="tip-box">Formulaire simple = questions / réponses. Logique métier = règles, dossiers, calculs. Intégrations = connexion à votre CRM, site, e-mail, stock…</span>
-          </button>
-        </span>
-        <div class="choice-grid" id="complexity">
-          <label class="choice"><input type="radio" name="complexity" value="simple" checked><span>Formulaire simple</span></label>
-          <label class="choice"><input type="radio" name="complexity" value="metier"><span>Logique métier</span></label>
-          <label class="choice"><input type="radio" name="complexity" value="multi"><span>Plusieurs connexions</span></label>
-        </div>
-      </div>
-
-      <div class="field">
-        <span class="field-name">
-          L’outil utilisera-t-il l’IA au quotidien ?
-          <button type="button" class="tip" aria-label="Aide token">?
-            <span class="tip-box"><strong>Token</strong> : petite unité de texte facturée par les modèles IA (environ ¾ d’un mot en français). Plus l’échange est long, plus il y a de tokens.</span>
-          </button>
-        </span>
-        <div class="choice-grid">
-          <label class="choice"><input type="radio" name="usesAI" value="yes" checked><span>Oui, à chaque usage</span></label>
-          <label class="choice"><input type="radio" name="usesAI" value="no"><span>Non (ou très peu)</span></label>
-        </div>
+    <!-- 0 Accueil -->
+    <section class="panel active" id="panel-0" data-title="Accueil">
+      <div class="welcome">
+        <h1>Combien coûterait votre outil IA&nbsp;?</h1>
+        <p class="lede">Décrivez votre idée comme à un associé. À chaque étape, vos réponses sont enregistrées et font évoluer l’estimation de création et d’exploitation.</p>
+        <button type="button" class="btn-primary" id="btnStart">Commencer l’estimation →</button>
       </div>
     </section>
 
-    <!-- 2. Coût de génération -->
-    <section class="block" id="creation">
-      <p class="block-num">Étape 2</p>
+    <!-- 1 Projet -->
+    <section class="panel" id="panel-1" data-title="Projet">
+      <p class="block-num">Étape 1 / 4</p>
+      <h2>Décrire le projet</h2>
+      <p class="block-desc">Plus votre description est concrète, plus l’estimation peut s’ajuster (intégrations, documents, volume…).</p>
+
+      <label class="field">
+        <span class="field-name">Nom et description du cas d’usage</span>
+        <textarea id="appDesc" placeholder="Ex. : Un assistant qui répond aux questions clients sur mon catalogue, récupère le statut des commandes dans mon outil e-commerce, et propose une réponse par e-mail quand le bot n’est pas sûr…"></textarea>
+        <p class="hint"><span id="descLen">0</span> caractères — plus c’est concret (outils branchés, documents, volume), plus l’estimation s’affine.</p>
+        <p class="slider-value" id="descTitlePreview" style="margin-top:0.35rem"></p>
+        <p class="hint" id="descAnalysisHint"></p>
+      </label>
+
+      <div class="field">
+        <span class="field-name">
+          Logique métier
+          <button type="button" class="tip" aria-label="Aide logique métier">?
+            <span class="tip-box">
+              <b>Quelques règles simples</b>
+              Ex. : si le client demande les horaires → afficher les horaires.
+              <b>Beaucoup de règles complexes</b>
+              Ex. : tarifs, exceptions, validations, calculs selon le profil, le stock, la zone…
+            </span>
+          </button>
+        </span>
+        <div class="slider-row">
+          <input type="range" id="rules" min="0" max="4" step="1" value="1">
+          <div class="slider-labels">
+            <span>Quelques règles simples</span>
+            <span>Beaucoup de règles complexes</span>
+          </div>
+          <p class="slider-value" id="rulesLabel"></p>
+        </div>
+      </div>
+
+      <div class="field">
+        <span class="field-name">
+          Connexions (site, e-mails, base de données, API…)
+          <button type="button" class="tip" aria-label="Aide connexions">?
+            <span class="tip-box">
+              <b>Zéro</b>
+              L’outil vit tout seul, sans brancher d’autres systèmes.
+              <b>+ de 10</b>
+              Plusieurs logiciels métier, API, bases, boîtes mail, etc. Chaque connexion ajoute du temps et du risque.
+            </span>
+          </button>
+        </span>
+        <div class="slider-row">
+          <input type="range" id="connections" min="0" max="10" step="1" value="2">
+          <div class="slider-labels">
+            <span>Zéro</span>
+            <span>+ de 10</span>
+          </div>
+          <p class="slider-value" id="connLabel"></p>
+        </div>
+      </div>
+
+      <div class="field">
+        <span class="field-name">
+          L’outil utilisera-t-il l’IA&nbsp;?
+          <button type="button" class="tip" aria-label="Aide token">?
+            <span class="tip-box">
+              <b>Token</b>
+              Petite unité de texte facturée par les modèles IA (environ ¾ d’un mot en français). Plus l’échange est long, plus il y a de tokens.
+              <b>Jamais → cœur du moteur</b>
+              Cela change surtout le coût d’usage mensuel, et un peu le coût de création (garde-fous, prompts, tests).
+            </span>
+          </button>
+        </span>
+        <div class="slider-row">
+          <input type="range" id="aiIntensity" min="0" max="4" step="1" value="2">
+          <div class="slider-labels">
+            <span>Jamais</span>
+            <span>C’est le cœur du moteur</span>
+          </div>
+          <p class="slider-value" id="aiLabel"></p>
+        </div>
+      </div>
+
+      <div class="nav">
+        <button type="button" class="btn-secondary" data-goto="0">← Retour</button>
+        <span class="spacer"></span>
+        <button type="button" class="btn-primary" data-next>Continuer →</button>
+      </div>
+    </section>
+
+    <!-- 2 Création -->
+    <section class="panel" id="panel-2" data-title="Création">
+      <p class="block-num">Étape 2 / 4</p>
       <h2>Coût de création</h2>
-      <p class="block-desc">Une fois : concevoir et livrer l’outil. Choisissez comment vous le feriez développer.</p>
+      <p class="block-desc">Investissement pour concevoir et livrer l’outil. Le total est aussi réparti sur la durée estimée du projet.</p>
+      <div class="recap" id="recapCreate"></div>
 
       <div class="field">
         <span class="field-name">Mode de développement</span>
@@ -828,7 +997,31 @@
             <span data-i="2">+ maintenance an 1</span>
           </div>
         </div>
-        <p class="hint" id="finishHint">Version solide pour de vrais utilisateurs, avec tests et mise en production.</p>
+        <p class="hint" id="finishHint"></p>
+      </div>
+
+      <div class="field">
+        <span class="field-name">
+          Prix d’une journée de prestataire (TJM)
+          <button type="button" class="tip" aria-label="Aide TJM">?
+            <span class="tip-box">
+              <b>TJM</b>
+              Tarif journalier moyen : ce que vous payez un freelance ou une agence pour une journée.
+              <b>Calcul</b>
+              Coût de création ≈ nombre de jours-homme × ce tarif.
+            </span>
+          </button>
+        </span>
+        <div class="row-2">
+          <input type="number" id="dayRate" min="0" max="2000" step="10" value="750" inputmode="numeric">
+          <div class="choice-grid" style="grid-template-columns:repeat(4,1fr)">
+            <button type="button" class="btn-secondary" data-tjm="0" style="padding:0.55rem">0 € (moi)</button>
+            <button type="button" class="btn-secondary" data-tjm="600" style="padding:0.55rem">600 €</button>
+            <button type="button" class="btn-secondary" data-tjm="750" style="padding:0.55rem">750 €</button>
+            <button type="button" class="btn-secondary" data-tjm="900" style="padding:0.55rem">900 €</button>
+          </div>
+        </div>
+        <p class="hint">0 € = vous le faites vous-même (pas de facture externe). Le temps estimé en jours reste affiché.</p>
       </div>
 
       <div class="result-panel" id="creationResult">
@@ -836,111 +1029,158 @@
           <span class="lo" id="createLo">—</span>
           <span class="sep">à</span>
           <span class="hi" id="createHi">—</span>
-          <span class="unit">€ (une fois)</span>
+          <span class="unit">€ au total</span>
         </div>
-        <p class="hint" id="createDays">—</p>
+        <p class="hint" id="createDays"></p>
+        <div class="schedule" id="createSchedule"></div>
         <p class="why" id="createWhy"></p>
+      </div>
+
+      <div class="nav">
+        <button type="button" class="btn-secondary" data-prev>← Retour</button>
+        <span class="spacer"></span>
+        <button type="button" class="btn-primary" data-next>Continuer →</button>
       </div>
     </section>
 
-    <!-- 3. Coût d'usage -->
-    <section class="block" id="usage" data-ai-only>
-      <p class="block-num">Étape 3</p>
+    <!-- 3 Usage -->
+    <section class="panel" id="panel-3" data-title="Usage IA">
+      <p class="block-num">Étape 3 / 4</p>
       <h2>Coût d’usage IA</h2>
-      <p class="block-desc">Récurrent : ce que vous payez chaque mois aux fournisseurs de modèles (OpenAI, Anthropic…).</p>
+      <p class="block-desc">Ce que vous payez chaque mois aux fournisseurs de modèles, selon le volume et l’intensité IA choisie.</p>
+      <div class="recap" id="recapUsage"></div>
 
-      <div class="field">
-        <span class="field-name">
-          Modèle IA
-          <button type="button" class="tip" aria-label="Aide modèle">?
-            <span class="tip-box"><strong>Contexte</strong> : quantité de texte que le modèle « voit » en une fois (votre question + historique). Un grand contexte coûte plus cher. <strong>Fine-tuning</strong> : entraînement sur vos données — rare pour un premier MVP.</span>
-          </button>
-        </span>
-        <select id="model">
-          <option value="auto">Je ne sais pas — recommandez-moi</option>
-          <option value="mini">Modèle économique (ex. GPT-4.1 mini, Haiku)</option>
-          <option value="standard">Modèle standard (ex. GPT-4.1, Claude Sonnet)</option>
-          <option value="premium">Modèle premium (ex. Claude Opus, o3)</option>
-        </select>
-        <p class="hint" id="modelHint"></p>
+      <div id="usageDisabled" class="alert alert-ok" style="display:none">
+        Vous avez indiqué que l’IA n’est pas utilisée. Le coût d’usage mensuel est donc proche de zéro. Vous pouvez revenir à l’étape 1 pour ajuster le curseur.
       </div>
 
-      <div class="row-2">
-        <label class="field">
-          <span class="field-name">Utilisateurs / mois</span>
-          <input type="number" id="users" min="1" max="100000" value="50">
-        </label>
-        <label class="field">
-          <span class="field-name">Usages par personne / mois</span>
-          <input type="number" id="freq" min="1" max="500" value="8">
-        </label>
-      </div>
+      <div id="usageFields">
+        <div class="field">
+          <span class="field-name">
+            Modèle IA
+            <button type="button" class="tip" aria-label="Aide modèle">?
+              <span class="tip-box">
+                <b>Contexte</b>
+                Quantité de texte que le modèle « voit » en une fois (question + historique). Un grand contexte coûte plus cher.
+                <b>Fine-tuning</b>
+                Entraînement sur vos données — rare pour un premier MVP, souvent remplacé par des documents (RAG).
+              </span>
+            </button>
+          </span>
+          <div class="choice-grid models" id="modelChoices"></div>
+          <p class="hint" id="modelHint"></p>
+        </div>
 
-      <div class="field">
-        <span class="field-name">
-          Longueur moyenne d’un échange
-          <button type="button" class="tip" aria-label="Aide longueur">?
-            <span class="tip-box">Court ≈ 1 réponse courte. Moyen ≈ une conversation de quelques allers-retours. Long ≈ analyse de documents ou réponses détaillées.</span>
-          </button>
-        </span>
-        <div class="choice-grid">
-          <label class="choice"><input type="radio" name="length" value="short"><span>Court</span></label>
-          <label class="choice"><input type="radio" name="length" value="medium" checked><span>Moyen</span></label>
-          <label class="choice"><input type="radio" name="length" value="long"><span>Long</span></label>
+        <div class="row-2">
+          <label class="field">
+            <span class="field-name">Utilisateurs / mois</span>
+            <input type="number" id="users" min="1" max="100000" value="50">
+          </label>
+          <label class="field">
+            <span class="field-name">Usages par personne / mois</span>
+            <input type="number" id="freq" min="1" max="500" value="8">
+          </label>
+        </div>
+
+        <div class="field">
+          <span class="field-name">
+            Longueur moyenne d’un échange
+            <button type="button" class="tip" aria-label="Aide longueur">?
+              <span class="tip-box">
+                <b>Court</b>
+                Une question, une réponse courte.
+                <b>Moyen</b>
+                Quelques allers-retours.
+                <b>Long</b>
+                Analyse de documents ou réponses détaillées.
+              </span>
+            </button>
+          </span>
+          <div class="choice-grid">
+            <label class="choice"><input type="radio" name="length" value="short"><span>Court</span></label>
+            <label class="choice"><input type="radio" name="length" value="medium" checked><span>Moyen</span></label>
+            <label class="choice"><input type="radio" name="length" value="long"><span>Long</span></label>
+          </div>
+        </div>
+
+        <div class="field">
+          <span class="field-name">
+            Documents / base de connaissances&nbsp;?
+            <button type="button" class="tip" aria-label="Aide RAG">?
+              <span class="tip-box">
+                <b>RAG</b>
+                L’outil cherche dans vos documents avant de répondre.
+                <b>À quoi ça sert</b>
+                Catalogue, règlement interne, FAQ longue — ajoute un peu de stockage et de calcul.
+              </span>
+            </button>
+          </span>
+          <div class="choice-grid">
+            <label class="choice"><input type="radio" name="rag" value="no" checked><span>Non</span></label>
+            <label class="choice"><input type="radio" name="rag" value="yes"><span>Oui (documents)</span></label>
+          </div>
+        </div>
+
+        <div class="field">
+          <span class="field-name">
+            Scénario de croissance (12 mois)
+            <button type="button" class="tip" aria-label="Aide croissance">?
+              <span class="tip-box">
+                <b>Pessimiste</b>
+                Le volume progresse très peu sur l’année.
+                <b>Réaliste</b>
+                Croissance progressive typique d’une PME qui déploie l’outil.
+                <b>Optimiste</b>
+                Adoption rapide : le volume peut quadrupler en un an.
+              </span>
+            </button>
+          </span>
+          <div class="scenario-tabs" id="growthTabs" role="tablist">
+            <button type="button" data-g="pessimiste">Pessimiste</button>
+            <button type="button" data-g="realiste" class="active">Réaliste</button>
+            <button type="button" data-g="optimiste">Optimiste</button>
+          </div>
+          <p class="hint" id="growthHint"></p>
         </div>
       </div>
 
-      <div class="field">
-        <span class="field-name">
-          Documents / base de connaissances ?
-          <button type="button" class="tip" aria-label="Aide RAG">?
-            <span class="tip-box"><strong>RAG</strong> : l’outil cherche dans vos documents avant de répondre. Utile pour un catalogue ou un règlement interne — ajoute un peu de stockage et de calcul.</span>
-          </button>
-        </span>
-        <div class="choice-grid">
-          <label class="choice"><input type="radio" name="rag" value="no" checked><span>Non</span></label>
-          <label class="choice"><input type="radio" name="rag" value="yes"><span>Oui (RAG)</span></label>
-        </div>
-      </div>
-
-      <div class="field">
-        <span class="field-name">Scénario de croissance (12 mois)</span>
-        <div class="scenario-tabs" id="growthTabs" role="tablist">
-          <button type="button" data-g="pessimiste">Pessimiste</button>
-          <button type="button" data-g="realiste" class="active">Réaliste</button>
-          <button type="button" data-g="optimiste">Optimiste</button>
-        </div>
-      </div>
-
-      <div class="result-panel" id="usageResult">
+      <div class="result-panel">
         <div class="range-out">
           <span class="lo" id="usageLo">—</span>
           <span class="sep">à</span>
           <span class="hi" id="usageHi">—</span>
-          <span class="unit">€ / mois (mois 1)</span>
+          <span class="unit" id="usageUnit">€ / mois en moyenne sur l’année</span>
         </div>
+        <div class="schedule" id="usageSchedule"></div>
         <p class="why" id="usageWhy"></p>
         <div class="sensibility" id="sensibility"></div>
         <div class="alert alert-warn" id="hiddenCosts" style="display:none"></div>
       </div>
+
+      <div class="nav">
+        <button type="button" class="btn-secondary" data-prev>← Retour</button>
+        <span class="spacer"></span>
+        <button type="button" class="btn-primary" data-next>Voir la synthèse →</button>
+      </div>
     </section>
 
-    <!-- 4. Synthèse -->
-    <section class="block" id="synthese">
-      <p class="block-num">Étape 4</p>
+    <!-- 4 Synthèse -->
+    <section class="panel" id="panel-4" data-title="Synthèse">
+      <p class="block-num">Étape 4 / 4</p>
       <h2>Vue de synthèse</h2>
-      <p class="block-desc">Deux enveloppes distinctes : ce que vous investissez une fois, et ce que vous dépensez chaque mois.</p>
+      <p class="block-desc">Deux enveloppes distinctes : investissement de création (étalé dans le temps) et coût d’exploitation mensuel.</p>
+      <div class="recap" id="recapSynth"></div>
 
       <div class="kpi-pair">
         <div class="kpi once">
           <div class="kpi-label">Coût de création</div>
           <div class="kpi-value" id="kpiCreate">—</div>
-          <div class="kpi-sub">Investissement unique</div>
+          <div class="kpi-sub" id="kpiCreateSub">Investissement total</div>
         </div>
         <div class="kpi month">
           <div class="kpi-label">Coût d’exploitation</div>
           <div class="kpi-value" id="kpiOps">—</div>
-          <div class="kpi-sub">Par mois (mois 1, fourchette médiane)</div>
+          <div class="kpi-sub" id="kpiOpsSub">Moyenne mensuelle sur 12 mois</div>
         </div>
       </div>
 
@@ -948,17 +1188,15 @@
         <h3>Coût cumulé sur 12 mois</h3>
         <svg id="cumulChart" viewBox="0 0 640 240" role="img" aria-label="Graphique du coût cumulé sur 12 mois"></svg>
         <div class="chart-legend">
-          <span class="leg-create">Création (fixe)</span>
-          <span class="leg-ops">Cumul création + usage</span>
+          <span class="leg-create">Création (étalée)</span>
+          <span class="leg-ops">Cumul total</span>
           <span class="leg-cross" id="crossHint"></span>
         </div>
       </div>
 
-      <div class="alert" id="breakeven" style="display:none"></div>
-
-      <div id="buildBuy" style="margin-top:1.25rem">
+      <div style="margin-top:1.25rem">
         <h3 style="font-family:var(--font-display);font-size:1rem;margin-bottom:0.35rem">Build vs buy</h3>
-        <p class="hint" style="margin-bottom:0.5rem">Outils du marché qui font déjà quelque chose de proche — à comparer avant de tout construire.</p>
+        <p class="hint" style="margin-bottom:0.5rem">Outils du marché proches de votre description — à comparer avant de tout construire.</p>
         <div class="market-list" id="marketList"></div>
       </div>
 
@@ -967,49 +1205,90 @@
         <ul class="tips" id="tipsList"></ul>
       </div>
 
-      <div class="actions">
+      <div class="nav">
+        <button type="button" class="btn-secondary" data-prev>← Retour</button>
+        <span class="spacer"></span>
         <button type="button" class="btn-primary" id="btnPdf">Exporter en PDF</button>
-        <button type="button" class="btn-secondary" id="btnShare">Générer un lien à partager</button>
+        <button type="button" class="btn-secondary" id="btnShare">Lien à partager</button>
         <button type="button" class="btn-ghost" id="btnSave">Sauver cette version</button>
       </div>
       <div class="share-box" id="shareBox">
         <input type="text" id="shareUrl" readonly>
         <button type="button" class="btn-secondary" id="btnCopy">Copier</button>
       </div>
-    </section>
 
-    <!-- 5. Avancé -->
-    <details class="advanced" id="advanced">
-      <summary>Options avancées</summary>
-      <div class="advanced-body">
-        <div class="row-2">
+      <details class="advanced" id="advanced">
+        <summary>Options avancées</summary>
+        <div class="advanced-body">
+          <p class="hint" style="margin-bottom:1rem">
+            En général, inutile de toucher à cette section : les prix se remplissent automatiquement selon le modèle choisi à l’étape 3. Réservé si vous avez un tarif négocié avec un fournisseur.
+          </p>
+
+          <h3 style="font-family:var(--font-display);font-size:1rem;margin:0 0 0.5rem">Tarif du modèle IA (expert)</h3>
+          <p class="hint" style="margin-bottom:0.85rem">
+            Les fournisseurs facturent le texte en « tokens » (environ ¾ d’un mot).
+            <strong>Lire</strong> ce que l’utilisateur envoie coûte moins cher que
+            <strong>écrire</strong> la réponse. Les montants sont en dollars pour 1 million de tokens — l’unité affichée sur les grilles tarifaires OpenAI, Anthropic, etc.
+          </p>
+          <div class="row-2">
+            <label class="field">
+              <span class="field-name">
+                Prix pour lire le texte (entrée)
+                <button type="button" class="tip" aria-label="Aide prix entrée">?
+                  <span class="tip-box">
+                    <b>Entrée = ce que le modèle lit</b>
+                    La question de l’utilisateur, l’historique de conversation, et éventuellement vos documents.
+                    <b>Exemple</b>
+                    0,40 $ pour 1 million de tokens ≈ le coût de lecture d’environ 750&nbsp;000 mots.
+                  </span>
+                </button>
+              </span>
+              <input type="number" id="priceIn" min="0" step="0.01" value="0.4">
+              <p class="hint">en USD pour 1 million de tokens lus</p>
+            </label>
+            <label class="field">
+              <span class="field-name">
+                Prix pour écrire la réponse (sortie)
+                <button type="button" class="tip" aria-label="Aide prix sortie">?
+                  <span class="tip-box">
+                    <b>Sortie = ce que le modèle écrit</b>
+                    La réponse générée. C’est presque toujours plus cher que la lecture.
+                    <b>Exemple</b>
+                    1,60 $ pour 1 million de tokens ≈ le coût d’écriture d’environ 750&nbsp;000 mots de réponse.
+                  </span>
+                </button>
+              </span>
+              <input type="number" id="priceOut" min="0" step="0.01" value="1.6">
+              <p class="hint">en USD pour 1 million de tokens écrits</p>
+            </label>
+          </div>
+          <p class="hint" id="priceExplain" style="margin-bottom:1.25rem"></p>
+
           <label class="field">
-            <span class="field-name">Prix entrée (USD / 1M tokens)</span>
-            <input type="number" id="priceIn" min="0" step="0.01" value="0.4">
+            <span class="field-name">
+              Marge d’incertitude (± %)
+              <button type="button" class="tip" aria-label="Aide marge">?
+                <span class="tip-box">
+                  <b>À quoi ça sert</b>
+                  Élargit la fourchette basse / haute. Utile car les volumes réels varient toujours un peu.
+                </span>
+              </button>
+            </span>
+            <input type="range" id="margin" min="10" max="50" step="5" value="25">
+            <div class="slider-labels"><span>10 %</span><span id="marginVal">25 %</span><span>50 %</span></div>
           </label>
-          <label class="field">
-            <span class="field-name">Prix sortie (USD / 1M tokens)</span>
-            <input type="number" id="priceOut" min="0" step="0.01" value="1.6">
-          </label>
+          <h3 style="font-family:var(--font-display);font-size:1rem;margin:1rem 0 0.5rem">Comparateur de scénarios de développement</h3>
+          <p class="hint" style="margin-bottom:0.5rem">Les 3 scénarios utilisent le TJM défini à l’étape 2.</p>
+          <div class="compare-grid" id="compareGrid"></div>
         </div>
-        <label class="field">
-          <span class="field-name">Marge d’erreur (± %)</span>
-          <input type="range" id="margin" min="10" max="50" step="5" value="25">
-          <div class="slider-labels"><span>10 %</span><span id="marginVal">25 %</span><span>50 %</span></div>
-        </label>
-        <label class="field">
-          <span class="field-name">Taux journalier prestataire (€)</span>
-          <input type="number" id="dayRate" min="200" max="1200" step="50" value="550">
-        </label>
+      </details>
 
-        <h3 style="font-family:var(--font-display);font-size:1rem;margin:1rem 0 0.5rem">Comparateur de scénarios de développement</h3>
-        <div class="compare-grid" id="compareGrid"></div>
-
-        <h3 style="font-family:var(--font-display);font-size:1rem;margin:1.25rem 0 0.5rem">Historique des estimations</h3>
-        <p class="hint">Utile pour comparer « avant / après » quand le projet évolue. Stocké uniquement sur cet appareil.</p>
+      <div class="history-section" style="margin-top:1.75rem;padding-top:1.25rem;border-top:1px solid var(--line)">
+        <h3 style="font-family:var(--font-display);font-size:1.05rem;margin-bottom:0.35rem">Historique des estimations</h3>
+        <p class="hint">Stocké uniquement sur cet appareil. Utile pour comparer « avant / après » quand le projet évolue.</p>
         <div class="history" id="historyList"></div>
       </div>
-    </details>
+    </section>
 
     <footer>
       Ordres de grandeur indicatifs — pas un devis. Les prix IA évoluent vite.
@@ -1017,154 +1296,575 @@
     </footer>
   </div>
 
+  <!-- Rapport PDF dédié (visible uniquement à l’impression) -->
+  <div id="printReport" aria-hidden="true"></div>
+
   <script>
 (function () {
   "use strict";
 
   const EUR_USD = 0.92;
+  const STORAGE_KEY = "coutsia_state_v3";
+  const HIST_KEY = "coutsia_hist_v3";
+
+  const RULES_LABELS = [
+    "Quelques règles simples",
+    "Règles modérées",
+    "Logique métier claire",
+    "Règles nombreuses",
+    "Beaucoup de règles complexes"
+  ];
+  const AI_LABELS = [
+    "Jamais",
+    "Ponctuellement",
+    "Souvent, sur certaines tâches",
+    "Très présent au quotidien",
+    "C’est le cœur du moteur"
+  ];
+  const FINISH_HINTS = [
+    "Version minimale pour tester l’idée rapidement.",
+    "Version solide pour de vrais utilisateurs, avec tests et mise en production.",
+    "Production + suivi / correctifs sur 12 mois (maintenance indicative)."
+  ];
+  const FINISH_MULT = [0.7, 1.0, 1.45];
+  const DAY_RATE_DEFAULT = { nocode: 600, ai: 750, classic: 900 };
 
   const MODELS = {
-    mini:     { label: "économique", in: 0.40, out: 1.60, name: "classe GPT-4.1 mini / Haiku" },
-    standard: { label: "standard",   in: 2.50, out: 10.0, name: "classe GPT-4.1 / Claude Sonnet" },
-    premium:  { label: "premium",    in: 15.0, out: 75.0, name: "classe Claude Opus / o3" }
+    auto: {
+      id: "auto", label: "Je ne sais pas — recommandez-moi",
+      sub: "On choisit selon votre description et l’intensité IA.",
+      in: 0.4, out: 1.6
+    },
+    "gpt-mini": {
+      id: "gpt-mini", label: "GPT-4.1 mini",
+      sub: "Économique · FAQ, reformulation, tâches simples · ~0,40 / 1,60 $/1M tokens",
+      in: 0.40, out: 1.60, tier: "mini"
+    },
+    "claude-haiku": {
+      id: "claude-haiku", label: "Claude Haiku",
+      sub: "Économique · rapide, bon pour volume · ~0,80 / 4 $/1M tokens",
+      in: 0.80, out: 4.00, tier: "mini"
+    },
+    "gpt-41": {
+      id: "gpt-41", label: "GPT-4.1",
+      sub: "Standard · raisonnement solide, usages généraux · ~2 / 8 $/1M tokens",
+      in: 2.00, out: 8.00, tier: "standard"
+    },
+    "claude-sonnet": {
+      id: "claude-sonnet", label: "Claude Sonnet",
+      sub: "Standard · excellent sur textes longs et outils · ~3 / 15 $/1M tokens",
+      in: 3.00, out: 15.00, tier: "standard"
+    },
+    "claude-opus": {
+      id: "claude-opus", label: "Claude Opus",
+      sub: "Premium · cas difficiles, haute exigence · ~15 / 75 $/1M tokens",
+      in: 15.00, out: 75.00, tier: "premium"
+    },
+    "o3": {
+      id: "o3", label: "o3 (raisonnement)",
+      sub: "Premium · analyses complexes, décisions · tarifs élevés",
+      in: 10.00, out: 40.00, tier: "premium"
+    }
   };
 
   const LENGTH_TOKENS = {
-    short:  { in: 400,  out: 250,  label: "courts" },
-    medium: { in: 1200, out: 800,  label: "moyens" },
-    long:   { in: 4000, out: 2000, label: "longs" }
+    short:  { in: 800,   out: 400 },
+    medium: { in: 2500,  out: 1200 },
+    long:   { in: 8000,  out: 3000 }
   };
-
-  const DAYS = {
-    // [low, high] jours-homme selon complexité × mode
-    nocode:  { simple: [3, 6],   metier: [8, 15],  multi: [15, 28] },
-    ai:      { simple: [5, 10],  metier: [12, 25], multi: [25, 50] },
-    classic: { simple: [10, 20], metier: [30, 55], multi: [55, 110] }
-  };
-
-  const DAY_RATE_DEFAULT = { nocode: 400, ai: 550, classic: 650 };
-  const FINISH_MULT = [0.7, 1.0, 1.45];
-  const FINISH_HINTS = [
-    "Version minimale pour tester l’idée rapidement — peu de polish, peu de sécurité avancée.",
-    "Version solide pour de vrais utilisateurs, avec tests et mise en production.",
-    "Production + suivi / correctifs sur 12 mois (forfait maintenance indicative)."
-  ];
 
   const GROWTH = {
-    pessimiste: { label: "Pessimiste", monthly: [1, 1.02, 1.03, 1.04, 1.05, 1.05, 1.06, 1.06, 1.07, 1.07, 1.08, 1.08] },
-    realiste:   { label: "Réaliste",   monthly: [1, 1.08, 1.15, 1.22, 1.30, 1.38, 1.45, 1.52, 1.58, 1.64, 1.70, 1.75] },
-    optimiste:  { label: "Optimiste",  monthly: [1, 1.15, 1.35, 1.55, 1.80, 2.10, 2.40, 2.70, 3.00, 3.30, 3.60, 4.00] }
+    pessimiste: {
+      label: "Pessimiste",
+      hint: "Volume presque stable : +8 % environ sur l’année.",
+      monthly: [1, 1.02, 1.03, 1.04, 1.05, 1.05, 1.06, 1.06, 1.07, 1.07, 1.08, 1.08]
+    },
+    realiste: {
+      label: "Réaliste",
+      hint: "Montée en charge progressive : environ ×1,75 en fin d’année.",
+      monthly: [1, 1.08, 1.15, 1.22, 1.30, 1.38, 1.45, 1.52, 1.58, 1.64, 1.70, 1.75]
+    },
+    optimiste: {
+      label: "Optimiste",
+      hint: "Forte adoption : jusqu’à ×4 le volume d’ici 12 mois.",
+      monthly: [1, 1.15, 1.35, 1.55, 1.80, 2.10, 2.40, 2.70, 3.00, 3.30, 3.60, 4.00]
+    }
   };
 
-  const MARKET = {
-    chatbot: [
-      { name: "Intercom Fin / Zendesk AI", desc: "Support client automatisé", price: "à partir de ~29–99 €/agent/mois" },
+  function growthSeries(s, u) {
+    const factors = (GROWTH[s.growth] || GROWTH.realiste).monthly;
+    const months = factors.map((f, i) => ({
+      m: i + 1,
+      factor: f,
+      lo: u.lo * f,
+      mid: u.mid * f,
+      hi: u.hi * f
+    }));
+    const yearLo = months.reduce((a, x) => a + x.lo, 0);
+    const yearMid = months.reduce((a, x) => a + x.mid, 0);
+    const yearHi = months.reduce((a, x) => a + x.hi, 0);
+    return {
+      months,
+      m1: months[0],
+      m6: months[5],
+      m12: months[11],
+      yearLo,
+      yearMid,
+      yearHi,
+      avgLo: yearLo / 12,
+      avgMid: yearMid / 12,
+      avgHi: yearHi / 12,
+      label: (GROWTH[s.growth] || GROWTH.realiste).label,
+      hint: (GROWTH[s.growth] || GROWTH.realiste).hint
+    };
+  }
+
+  const MARKET_POOL = [
+    { keys: ["chat", "faq", "support", "client", "sav", "assistant"], items: [
+      { name: "Intercom Fin / Zendesk AI", desc: "Support client automatisé", price: "~29–99 €/agent/mois" },
       { name: "Chatbase / CustomGPT", desc: "Chatbot sur vos documents", price: "~19–99 €/mois" },
       { name: "Crisp / Tidio", desc: "Messagerie + bot simple", price: "~25–95 €/mois" }
-    ],
-    interne: [
-      { name: "Notion AI / Mem", desc: "Aide à la rédaction & recherche interne", price: "~10–20 €/user/mois" },
+    ]},
+    { keys: ["interne", "équipe", "rh", "document", "notion", "connaissance"], items: [
+      { name: "Notion AI", desc: "Aide rédaction & recherche interne", price: "~10–20 €/user/mois" },
       { name: "Microsoft Copilot 365", desc: "IA dans la suite Office", price: "~28 €/user/mois" },
-      { name: "Claude / ChatGPT Team", desc: "Espace équipe prêt à l’emploi", price: "~25–30 €/user/mois" }
-    ],
-    client: [
-      { name: "Bubble + plugins IA", desc: "Appli no-code avec IA", price: "~32–129 €/mois + usage" },
-      { name: "Webflow + Memberstack", desc: "Site / app clients (sans IA native)", price: "~29–99 €/mois" },
-      { name: "Solutions verticales SaaS", desc: "Outils métiers déjà spécialisés", price: "souvent 50–300 €/mois" }
-    ],
-    auto: [
+      { name: "ChatGPT Team / Claude Team", desc: "Espace équipe prêt à l’emploi", price: "~25–30 €/user/mois" }
+    ]},
+    { keys: ["automat", "workflow", "zapier", "make", "email", "relance"], items: [
       { name: "Make / Zapier", desc: "Automatisations + modules IA", price: "~19–99 €/mois + usage" },
-      { name: "n8n Cloud", desc: "Automatisation open-source hébergée", price: "~20–50 €/mois" },
-      { name: "Power Automate", desc: "Flux Microsoft + Copilot", price: "selon licence 365" }
-    ]
-  };
+      { name: "n8n Cloud", desc: "Automatisation hébergée", price: "~20–50 €/mois" },
+      { name: "Power Automate", desc: "Flux Microsoft", price: "selon licence 365" }
+    ]},
+    { keys: ["app", "mobile", "portail", "espace client", "saas"], items: [
+      { name: "Bubble + plugins IA", desc: "Appli no-code avec IA", price: "~32–129 €/mois + usage" },
+      { name: "Solutions verticales SaaS", desc: "Outils métiers spécialisés", price: "souvent 50–300 €/mois" },
+      { name: "Webflow + Memberstack", desc: "Site / espace membres", price: "~29–99 €/mois" }
+    ]}
+  ];
 
-  const SAAS_BENCH = {
-    chatbot: 79,
-    interne: 45,
-    client: 99,
-    auto: 49
-  };
-
-  // —— DOM helpers ——
   const $ = (s, el = document) => el.querySelector(s);
   const $$ = (s, el = document) => [...el.querySelectorAll(s)];
-  const radio = (name) => { const el = $(`input[name="${name}"]:checked`); return el ? el.value : null; };
+  const radio = (name) => {
+    const el = $(`input[name="${name}"]:checked`);
+    return el ? el.value : null;
+  };
   const fmt = (n) => {
     if (!isFinite(n)) return "—";
+    const abs = Math.abs(n);
+    if (abs > 0 && abs < 1) {
+      return n.toLocaleString("fr-FR", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+    }
+    if (abs < 100) {
+      return n.toLocaleString("fr-FR", { minimumFractionDigits: 0, maximumFractionDigits: 1 });
+    }
     return Math.round(n).toLocaleString("fr-FR");
   };
   const fmtRange = (lo, hi) => `${fmt(lo)} – ${fmt(hi)} €`;
+  const fmtEuro = (n) => `${fmt(n)} €`;
 
+  let step = 0;
+  let maxReached = 0;
   let growthKey = "realiste";
   let customPrices = false;
+  let selectedModel = "auto";
+  let dayRateTouched = false;
 
-  // —— State read ——
+  function getDayRate() {
+    const el = document.getElementById("dayRate");
+    if (!el) return 750;
+    const raw = String(el.value).trim();
+    if (raw === "") return 750;
+    const n = parseFloat(raw.replace(/\s/g, "").replace(",", "."));
+    if (!Number.isFinite(n) || n < 0) return 750;
+    return Math.min(5000, n); // 0 autorisé (fait soi-même)
+  }
+
+  function shortTitle(desc) {
+    const raw = (desc || "").trim().replace(/\s+/g, " ");
+    if (raw.length < 12) return "Mon outil IA";
+
+    // Première phrase utile
+    let sentence = (raw.split(/(?<=[.!?…])\s+/)[0] || raw)
+      .replace(/[.!?…]+$/g, "")
+      .trim();
+
+    // Enlever les intros vagues
+    sentence = sentence
+      .replace(/^(?:bonjour[, ]*)?/i, "")
+      .replace(/^(?:alors[, ]*)?/i, "")
+      .replace(/^(?:en fait[, ]*)?/i, "")
+      .replace(/^(?:voilà[, ]*)?/i, "")
+      .replace(/^(?:idée\s*(?:d['’]|:)\s*)/i, "")
+      .replace(/^(?:je|nous)\s+(?:veux|voudrais|souhaite|souhaitons|voulons|aimerais|aimerions)\s+(?:créer|faire|développer|construire|mettre en place|avoir)?\s*/i, "")
+      .replace(/^(?:il\s+s['’]agit\s+d['’])\s*/i, "")
+      .replace(/^(?:c['’]est\s+)/i, "")
+      .trim();
+
+    // "Un assistant qui…" → garder le cœur utile
+    const typed = sentence.match(
+      /^(?:un|une|l['’]|le|la)\s+((?:assistant|chatbot|outil|application|appli|bot|agent|portail|plateforme|service|module|système|espace|interface)[\s\S]{6,})$/i
+    );
+    if (typed) sentence = typed[1].trim();
+
+    // Si trop long, couper proprement sur un mot
+    if (sentence.length > 68) {
+      const cut = sentence.slice(0, 68);
+      const sp = cut.lastIndexOf(" ");
+      sentence = (sp > 36 ? cut.slice(0, sp) : cut).trim() + "…";
+    }
+
+    if (sentence.length < 8) return "Mon outil IA";
+    return sentence.charAt(0).toUpperCase() + sentence.slice(1);
+  }
+
+  function analyzeDescription(text) {
+    const raw = (text || "").trim();
+    const t = raw.toLowerCase();
+    const hits = [];
+    let createBoost = 0;   // multiplicateur création
+    let extraDays = 0;     // jours-homme ajoutés
+    let usageMult = 1;     // multiplicateur usage
+    let tokenMult = 1;     // longueur implicite des échanges
+    let connSignal = 0;    // connexions détectées dans le texte
+    let rulesSignal = 0;
+    let aiSignal = 0;
+    let ragSignal = false;
+    let lengthHint = null; // short|medium|long
+    let profile = "general";
+
+    if (raw.length < 40) {
+      return {
+        createBoost: 0,
+        extraDays: 0,
+        usageMult: 1,
+        tokenMult: 1,
+        connSignal: 0,
+        rulesSignal: 0,
+        aiSignal: 0,
+        ragSignal: false,
+        lengthHint: null,
+        profile: "general",
+        hits: [],
+        thin: true,
+        summary: "Description trop courte pour affiner l’estimation."
+      };
+    }
+
+    // —— Type d’outil (profil) ——
+    const profiles = [
+      { re: /chatbot|assistant|faq|sav|support client|service client|répond(?:re)? aux questions/, id: "chatbot", label: "assistant / support", create: 0.08, usage: 1.15, ai: 1 },
+      { re: /automatis|relance|workflow|planif|cron|zapier|make\.com|n8n/, id: "auto", label: "automatisation", create: 0.1, usage: 1.25, ai: 1 },
+      { re: /espace client|portail|application|appli mobile|saas|tableau de bord|dashboard/, id: "client", label: "appli / portail", create: 0.18, usage: 1.05, ai: 0 },
+      { re: /interne|équipe|rh|collaborateur|connaissance|wiki|notion/, id: "interne", label: "outil interne", create: 0.06, usage: 0.95, ai: 0 }
+    ];
+    for (const p of profiles) {
+      if (p.re.test(t)) {
+        profile = p.id;
+        createBoost += p.create;
+        usageMult *= p.usage;
+        aiSignal = Math.max(aiSignal, p.ai);
+        hits.push(p.label);
+        break;
+      }
+    }
+
+    // —— Intégrations citées (chaque système compte) ——
+    const systems = [
+      [/shopify|woocommerce|prestashop|magento|e-?commerce|boutique en ligne/, "e-commerce", 1.2],
+      [/salesforce|hubspot|pipedrive|crm/, "CRM", 1.3],
+      [/sap|odoo|erp|pennylane|quickbooks|sage/, "ERP / compta", 1.5],
+      [/stripe|paypal|paiement|encaiss/, "paiements", 1.2],
+      [/gmail|outlook|smtp|e-?mails?|mailchimp|brevo|sendinblue/, "e-mail", 1],
+      [/slack|teams|whatsapp|sms|twilio/, "messagerie", 1],
+      [/google sheet|airtable|notion|excel|base de donn|postgres|mysql|sql/, "données", 1.1],
+      [/api|webhook|zapier|make|n8n/, "API / automatisation", 1],
+      [/calendly|agenda|google calendar|prise de rendez-vous/, "agenda", 0.8],
+      [/linkedin|instagram|facebook|réseaux sociaux/, "réseaux sociaux", 0.8]
+    ];
+    systems.forEach(([re, label, weight]) => {
+      if (re.test(t)) {
+        connSignal += weight;
+        extraDays += 1.8 * weight;
+        createBoost += 0.04;
+        hits.push(label);
+      }
+    });
+
+    // —— Documents / RAG ——
+    if (/document|pdf|catalogue|base de connaissance|connaissance|fichier|fiche produit|réglement|cgv|faq longue|manuel|procédure/.test(t)) {
+      ragSignal = true;
+      createBoost += 0.1;
+      extraDays += 3;
+      tokenMult *= 1.35;
+      usageMult *= 1.12;
+      lengthHint = "long";
+      hits.push("documents / base de connaissance");
+    }
+
+    // —— Logique métier ——
+    const rulesPatterns = [
+      [/tarif|prix|devis|facture|calcul|barème|remise|commission/, 1.2, "calculs / tarifs"],
+      [/stock|commande|livraison|statut|suivi/, 1, "suivi commandes / stock"],
+      [/règle|validation|exception|selon le profil|condition|si le client/, 1.1, "règles métier"],
+      [/multi.?langue|plusieurs langues|traduction/, 1, "multilingue"],
+      [/rgpd|données personnelles|consentement/, 0.8, "RGPD"],
+      [/authentification|connexion|sso|compte utilisateur|rôle|permission|admin/, 1.3, "comptes & droits"],
+      [/temps réel|notification|alerte|push/, 0.9, "temps réel / alertes"],
+      [/mobile|ios|android|responsive/, 0.7, "mobile"]
+    ];
+    rulesPatterns.forEach(([re, w, label]) => {
+      if (re.test(t)) {
+        rulesSignal += w;
+        extraDays += 2.2 * w;
+        createBoost += 0.05 * w;
+        hits.push(label);
+      }
+    });
+
+    // —— Signaux IA ——
+    if (/gpt|claude|llm|modèle|intelligence artificielle|\bia\b|générati|prompt|agent conversationnel/.test(t)) {
+      aiSignal = Math.max(aiSignal, 2);
+      createBoost += 0.08;
+      hits.push("IA explicitement prévue");
+    }
+    if (/résume|rédige|reformul|analyse|classifi|extrait|recommand/.test(t)) {
+      aiSignal = Math.max(aiSignal, 2);
+      usageMult *= 1.1;
+      hits.push("tâches génératives");
+    }
+    if (/cœur|au centre|principal|moteur|à chaque|systématiquement/.test(t)) {
+      aiSignal = Math.max(aiSignal, 3);
+      usageMult *= 1.15;
+    }
+
+    // —— Volume évoqué ——
+    const volMatch = t.match(/(\d[\d\s.]{0,6})\s*(?:clients?|utilisateurs?|commandes?|tickets?|demandes?|visiteurs?)/);
+    if (volMatch) {
+      const n = parseInt(volMatch[1].replace(/[\s.]/g, ""), 10);
+      if (n >= 5000) { usageMult *= 1.35; hits.push("fort volume évoqué"); }
+      else if (n >= 500) { usageMult *= 1.15; hits.push("volume significatif"); }
+      else if (n >= 50) { usageMult *= 1.05; }
+    }
+
+    // —— Longueur implicite ——
+    if (/long(?:ue)?(?:s)? (?:réponse|échange|conversation)|analyse (?:de |des )?(?:document|texte|contrat)|rapport détaillé/.test(t)) {
+      lengthHint = "long";
+      tokenMult *= 1.4;
+    } else if (/réponse courte|oui\/non|simple faq|une phrase/.test(t)) {
+      lengthHint = "short";
+      tokenMult *= 0.75;
+    } else if (!lengthHint) {
+      lengthHint = "medium";
+    }
+
+    // Richesse de la description
+    const wordCount = t.split(/\s+/).filter(Boolean).length;
+    if (wordCount >= 40) {
+      createBoost += 0.08;
+      hits.push("description détaillée");
+    } else if (wordCount >= 20) {
+      createBoost += 0.04;
+    }
+
+    // Dédupliquer les hits
+    const uniq = [];
+    hits.forEach((h) => { if (!uniq.includes(h)) uniq.push(h); });
+
+    createBoost = Math.min(0.85, createBoost);
+    extraDays = Math.min(40, extraDays);
+    usageMult = Math.min(2.2, Math.max(0.7, usageMult));
+    tokenMult = Math.min(2, Math.max(0.6, tokenMult));
+
+    const summary = uniq.length
+      ? `Détecté dans votre description : ${uniq.slice(0, 6).join(" · ")}.`
+      : "Description prise en compte (peu de signaux techniques explicites).";
+
+    return {
+      createBoost,
+      extraDays,
+      usageMult,
+      tokenMult,
+      connSignal: Math.min(10, Math.round(connSignal)),
+      rulesSignal: Math.min(4, Math.round(rulesSignal)),
+      aiSignal: Math.min(4, aiSignal),
+      ragSignal,
+      lengthHint,
+      profile,
+      hits: uniq,
+      thin: false,
+      summary
+    };
+  }
+
   function readState() {
     return {
-      appName: $("#appName").value.trim() || "Mon outil IA",
-      appType: radio("appType"),
-      complexity: radio("complexity"),
-      usesAI: radio("usesAI") === "yes",
-      devMode: radio("devMode"),
+      appDesc: ($("#appDesc") && $("#appDesc").value) || "",
+      rules: +$("#rules").value,
+      connections: +$("#connections").value,
+      aiIntensity: +$("#aiIntensity").value,
+      devMode: radio("devMode") || "ai",
       finish: +$("#finish").value,
-      model: $("#model").value,
+      model: selectedModel,
       users: Math.max(1, +$("#users").value || 1),
       freq: Math.max(1, +$("#freq").value || 1),
-      length: radio("length"),
+      length: radio("length") || "medium",
       rag: radio("rag") === "yes",
       growth: growthKey,
       priceIn: +$("#priceIn").value,
       priceOut: +$("#priceOut").value,
       margin: +$("#margin").value / 100,
-      dayRate: +$("#dayRate").value || 550
+      dayRate: getDayRate()
     };
   }
 
+  function persist() {
+    const s = readState();
+    s.step = step;
+    s.maxReached = maxReached;
+    s.growth = growthKey;
+    s.model = selectedModel;
+    s.customPrices = customPrices;
+    try { localStorage.setItem(STORAGE_KEY, JSON.stringify(s)); } catch (e) {}
+  }
+
   function resolveModel(s) {
-    if (s.model !== "auto") return s.model;
-    if (s.appType === "chatbot" && s.complexity === "simple") return "mini";
-    if (s.length === "long" || s.complexity === "multi") return "standard";
-    if (s.appType === "client" && s.complexity !== "simple") return "standard";
-    return "mini";
+    if (s.model && s.model !== "auto" && MODELS[s.model]) return s.model;
+    const a = analyzeDescription(s.appDesc);
+    if (s.aiIntensity >= 4 || s.length === "long" || a.lengthHint === "long") return "claude-sonnet";
+    if (s.aiIntensity >= 3 || s.rules >= 3 || a.rulesSignal >= 3 || a.profile === "client") return "gpt-41";
+    if (s.rag || a.ragSignal || s.connections >= 4 || a.connSignal >= 3) return "claude-haiku";
+    if (a.profile === "chatbot" && a.hits.length <= 2) return "gpt-mini";
+    return "gpt-mini";
   }
 
   function creationCost(s, modeOverride) {
     const mode = modeOverride || s.devMode;
-    const [dLo, dHi] = DAYS[mode][s.complexity];
-    const rate = modeOverride ? DAY_RATE_DEFAULT[mode] : (s.dayRate || DAY_RATE_DEFAULT[mode]);
+    const baseDays = { nocode: [2, 5], ai: [1.5, 6], classic: [8, 16] }[mode];
+    const rulesDays = s.rules * ({ nocode: 2.2, ai: 3.2, classic: 7 }[mode]);
+    const connDays = s.connections * ({ nocode: 1.2, ai: 1.6, classic: 3.2 }[mode]);
+    const aiDays = s.aiIntensity * ({ nocode: 0.8, ai: 1.1, classic: 2.2 }[mode]);
+    const analysis = analyzeDescription(s.appDesc);
+
+    // Prototype web simple (estimateur, simulateur, page unique…) : moins de jours
+    const lightWeb = /estim|co[uû]t|simulateur|calculateur|compteur|wizard|formulaire|page (html|web)|single.?page|mvp rapide/.test((s.appDesc || "").toLowerCase());
+    const lightFactor = lightWeb && s.rules <= 2 && s.connections <= 3 ? 0.55 : 1;
+
+    // Les curseurs + ce qui est lu dans la description (jours supplémentaires + multiplicateur)
+    const modeExtra = { nocode: 0.7, ai: 1, classic: 1.35 }[mode];
+    const descDaysLo = analysis.extraDays * 0.65 * modeExtra;
+    const descDaysHi = analysis.extraDays * 1.25 * modeExtra;
+    const descFactor = 1 + analysis.createBoost;
+
+    let dLo = (baseDays[0] + rulesDays * 0.7 + connDays * 0.7 + aiDays * 0.6 + descDaysLo) * descFactor * lightFactor;
+    let dHi = (baseDays[1] + rulesDays * 1.35 + connDays * 1.35 + aiDays * 1.2 + descDaysHi) * descFactor * lightFactor;
+
+    // Si description riche mais curseurs bas, on ne laisse pas l’estimation ignorer le texte
+    if (!analysis.thin && analysis.hits.length >= 3 && !lightWeb) {
+      const floorLo = 6 + analysis.extraDays * 0.5;
+      const floorHi = 12 + analysis.extraDays * 0.9;
+      dLo = Math.max(dLo, floorLo * ({ nocode: 0.75, ai: 1, classic: 1.4 }[mode]));
+      dHi = Math.max(dHi, floorHi * ({ nocode: 0.75, ai: 1, classic: 1.4 }[mode]));
+    }
+
+    // TJM saisi à l’étape 2 : main-d’œuvre (jours × tarif) — peut être 0 si fait soi-même
+    const rate = getDayRate();
     const m = FINISH_MULT[s.finish];
-    const lo = dLo * rate * m;
-    const hi = dHi * rate * m;
-    return { lo, hi, mid: (lo + hi) / 2, dLo: dLo * m, dHi: dHi * m, rate, mode };
+    dLo *= m;
+    dHi *= m;
+
+    const laborLo = dLo * rate;
+    const laborHi = dHi * rate;
+
+    const calendarWeeksLo = Math.max(1, Math.ceil(dLo / 4));
+    const calendarWeeksHi = Math.max(calendarWeeksLo, Math.ceil(dHi / 3.5));
+    const monthsLo = Math.max(1, Math.ceil(calendarWeeksLo / 4.3));
+    const monthsHi = Math.max(monthsLo, Math.ceil(calendarWeeksHi / 4.3));
+    const monthsMid = Math.max(1, Math.round((monthsLo + monthsHi) / 2));
+
+    // Outils IA pendant la création (Cursor ~20 €/mois, ChatGPT, crédits…)
+    // L’abonnement est au prorata des jours travaillés (pas un mois entier pour 2 h de build).
+    let toolsLo = 0;
+    let toolsHi = 0;
+    let toolsNote = "";
+    if (mode === "ai") {
+      const workingDaysPerMonth = 20;
+      const subMonthLo = 20; // Cursor / ChatGPT Plus (ordre de grandeur)
+      const subMonthHi = 40; // abo un peu plus cher ou combo outils
+      const subLo = subMonthLo * Math.min(1, dLo / workingDaysPerMonth);
+      const subHi = subMonthHi * Math.min(1.25, dHi / workingDaysPerMonth);
+      // Au-delà de l’abo : surplus éventuel (souvent proche de 0 avec Cursor Pro)
+      const useLo = dLo * 0.5;
+      const useHi = dHi * 3;
+      toolsLo = Math.max(2, subLo + useLo);
+      toolsHi = Math.max(toolsLo, subHi + useHi);
+      // MVP / proto court : plafonds réalistes
+      if (s.finish === 0 || lightWeb) {
+        toolsLo = Math.min(toolsLo, 25);
+        toolsHi = Math.min(toolsHi, 80);
+      }
+      if (dHi <= 2) toolsHi = Math.min(toolsHi, 35);
+      toolsNote = "abonnement d’outil IA de dev au prorata + éventuels crédits";
+    } else if (mode === "nocode") {
+      const subLo = 10 * Math.min(1, dLo / 20);
+      const subHi = 30 * Math.min(1, dHi / 20) + dHi * 1;
+      toolsLo = subLo;
+      toolsHi = Math.max(subLo, subHi);
+      if (s.finish === 0) toolsHi = Math.min(toolsHi, 40);
+      toolsNote = "options IA éventuelles des outils no-code (au prorata)";
+    }
+
+    const lo = laborLo + toolsLo;
+    const hi = laborHi + toolsHi;
+    const mid = (lo + hi) / 2;
+
+    return {
+      lo, hi, mid, dLo, dHi, rate, mode,
+      laborLo, laborHi,
+      toolsLo, toolsHi, toolsNote,
+      monthsLo, monthsHi, monthsMid,
+      perMonthLo: lo / monthsMid,
+      perMonthHi: hi / monthsMid,
+      analysis
+    };
   }
 
   function usageCost(s, usersOverride) {
-    if (!s.usesAI) return { lo: 0, hi: 0, mid: 0, tokens: 0, modelKey: null, hidden: null };
+    const analysis = analyzeDescription(s.appDesc);
+    const intensityFactor = [0, 0.3, 0.65, 0.9, 1.15][s.aiIntensity] ?? 0;
+    if (intensityFactor <= 0 || s.aiIntensity <= 0) {
+      return { lo: 0, hi: 0, mid: 0, tokens: 0, modelKey: null, model: null, hiddenPct: 0, hiddenParts: [], sessions: 0, intensityFactor: 0, analysis };
+    }
 
     const modelKey = resolveModel(s);
     const model = MODELS[modelKey];
-    const tok = LENGTH_TOKENS[s.length];
+    const baseTok = LENGTH_TOKENS[s.length] || LENGTH_TOKENS.medium;
+    // La description allonge ou raccourcit les échanges (documents, analyses…)
+    const tok = {
+      in: Math.round(baseTok.in * analysis.tokenMult),
+      out: Math.round(baseTok.out * analysis.tokenMult)
+    };
     const users = usersOverride ?? s.users;
-    const sessions = users * s.freq;
+    const sessions = users * s.freq * intensityFactor * (analysis.usageMult > 1 ? Math.sqrt(analysis.usageMult) : analysis.usageMult);
 
     const inPrice = customPrices ? s.priceIn : model.in;
     const outPrice = customPrices ? s.priceOut : model.out;
 
     const costIn = (sessions * tok.in / 1e6) * inPrice * EUR_USD;
     const costOut = (sessions * tok.out / 1e6) * outPrice * EUR_USD;
-    let base = costIn + costOut;
+    let base = (costIn + costOut) * analysis.usageMult;
 
-    // Coûts cachés
-    let hiddenPct = 0.12; // retries + fallback
+    let hiddenPct = 0.12;
     const hiddenParts = ["retries / erreurs (~8 %)", "modération (~4 %)"];
-    if (s.rag) {
+    if (s.rag || analysis.ragSignal) {
       hiddenPct += 0.10;
-      hiddenParts.push("stockage / recherche documents RAG (~10 %)");
+      hiddenParts.push("stockage / recherche documents (~10 %)");
     }
-    if (s.appType === "chatbot" || s.appType === "client") {
+    if (s.aiIntensity >= 3 || analysis.aiSignal >= 3) {
       hiddenPct += 0.05;
-      hiddenParts.push("pics de charge / fallback modèle (~5 %)");
+      hiddenParts.push("pics de charge / fallback (~5 %)");
+    }
+    if (!analysis.thin && analysis.hits.length >= 2) {
+      hiddenParts.push("complexité lue dans la description");
     }
 
     const withHidden = base * (1 + hiddenPct);
@@ -1179,147 +1879,451 @@
       tokens: sessions * (tok.in + tok.out),
       modelKey,
       model,
-      sessions
+      sessions,
+      intensityFactor,
+      analysis
     };
   }
 
   function whyCreate(s, c) {
     const modeLabel = { nocode: "no-code", ai: "développement assisté par IA", classic: "développement classique" }[s.devMode];
-    const cx = { simple: "un formulaire simple", metier: "de la logique métier", multi: "plusieurs connexions systèmes" }[s.complexity];
     const fin = ["un MVP", "une mise en production", "production + maintenance an 1"][s.finish];
-    return `Fourchette basée sur ${cx}, en ${modeLabel}, pour ${fin} (≈ ${Math.round(c.dLo)}–${Math.round(c.dHi)} j·h à ${c.rate} €/j).`;
+    const bits = [];
+    if (s.rules >= 3) bits.push("logique métier dense");
+    if (s.connections >= 5) bits.push("nombreuses connexions");
+    if (s.aiIntensity >= 3) bits.push("IA très centrale");
+    if (c.analysis.hits.length) bits.push(...c.analysis.hits.slice(0, 3));
+    if (c.analysis.thin) bits.push("description encore légère");
+    const because = bits.length ? `Parce que : ${bits.join(" · ")}. ` : "";
+    return `${because}Fourchette en ${modeLabel}, pour ${fin} (≈ ${Math.round(c.dLo)}–${Math.round(c.dHi)} j·h à ${c.rate} €/j), étalée sur ~${c.monthsLo}–${c.monthsHi} mois.`;
   }
 
   function whyUsage(s, u) {
-    if (!s.usesAI) return "Pas d’usage IA récurrent significatif dans vos hypothèses.";
+    if (s.aiIntensity === 0) return "Pas d’usage IA récurrent dans vos hypothèses.";
     const parts = [];
-    if (s.length === "long") parts.push("vos échanges sont longs, donc chaque usage coûte plus cher");
+    const a = u.analysis || analyzeDescription(s.appDesc);
+    if (s.aiIntensity >= 4) parts.push("l’IA est le cœur du moteur");
+    else if (s.aiIntensity === 1) parts.push("l’IA n’intervient que ponctuellement (facteur réduit)");
+    if (s.length === "long" || a.lengthHint === "long") parts.push("vos échanges / documents allongent chaque appel");
     if (s.users >= 200) parts.push("le volume d’utilisateurs tire la facture vers le haut");
     if (s.freq >= 20) parts.push("la fréquence d’usage est élevée");
-    if (u.modelKey === "premium") parts.push("le modèle premium est nettement plus cher au token");
-    if (u.modelKey === "mini") parts.push("un modèle économique garde le coût au token bas");
-    if (s.rag) parts.push("la recherche dans vos documents (RAG) ajoute un surcoût");
+    if (u.model && u.model.tier === "premium") parts.push("le modèle premium est nettement plus cher au token");
+    if (u.model && u.model.tier === "mini") parts.push("un modèle économique garde le coût au token bas");
+    if (s.rag || a.ragSignal) parts.push("la recherche dans vos documents ajoute un surcoût");
+    if (a.usageMult > 1.1) parts.push("votre description implique un usage IA plus intensif");
     if (!parts.length) parts.push("volume et longueur d’échange dans la moyenne");
-    const rec = s.model === "auto" ? ` Recommandation : modèle ${u.model.label} (${u.model.name}).` : "";
+    const rec = s.model === "auto" && u.model ? ` Recommandation : ${u.model.label}.` : "";
     return `Pourquoi ce prix ? Parce que ${parts.join(" ; ")}.${rec}`;
   }
 
   function tipsFor(s, u) {
     const tips = [];
-    if (s.usesAI && u.modelKey !== "mini") {
-      tips.push({ tag: "Modèle", text: "Passer à un modèle plus petit pour les tâches simples (classement, reformulation), et garder le modèle puissant pour les cas difficiles." });
+    if (s.aiIntensity > 0 && u.model && u.model.tier !== "mini") {
+      tips.push({ tag: "Modèle", text: "Passer à un modèle plus petit pour les tâches simples, et garder le modèle puissant pour les cas difficiles." });
     }
     if (s.length === "long") {
       tips.push({ tag: "Longueur", text: "Limiter la longueur des réponses et découper les documents plutôt que tout envoyer d’un coup." });
     }
     tips.push({ tag: "Cache", text: "Mettre en cache les réponses aux questions fréquentes pour éviter de rappeler le modèle." });
     if (s.rag) {
-      tips.push({ tag: "RAG", text: "Indexer seulement les documents utiles et rafraîchir la base moins souvent pour réduire stockage et requêtes." });
+      tips.push({ tag: "Documents", text: "Indexer seulement les documents utiles et rafraîchir la base moins souvent." });
     }
-    if (s.freq >= 15) {
-      tips.push({ tag: "Usage", text: "Plafonner le nombre d’échanges par utilisateur ou proposer un mode « sans IA » pour les actions triviales." });
+    if (s.connections >= 6) {
+      tips.push({ tag: "Connexions", text: "Prioriser 2–3 intégrations critiques pour le MVP ; les autres peuvent attendre." });
     }
-    tips.push({ tag: "Observabilité", text: "Suivre le coût par fonctionnalité dès le MVP — c’est souvent 1–2 écrans qui mangent 80 % du budget tokens." });
+    tips.push({ tag: "Observabilité", text: "Suivre le coût par fonctionnalité dès le MVP — souvent 1–2 écrans mangent 80 % du budget tokens." });
     return tips.slice(0, 4);
   }
 
-  // —— Render ——
-  function render() {
-    const s = readState();
-    const usesAI = s.usesAI;
+  function inferMarket(s) {
+    const t = (s.appDesc || "").toLowerCase();
+    let best = MARKET_POOL[0].items;
+    let score = 0;
+    MARKET_POOL.forEach((pack) => {
+      const sc = pack.keys.reduce((n, k) => n + (t.includes(k) ? 1 : 0), 0);
+      if (sc > score) { score = sc; best = pack.items; }
+    });
+    if (score === 0 && s.aiIntensity >= 3) best = MARKET_POOL[0].items;
+    if (score === 0 && s.connections >= 5) best = MARKET_POOL[2].items;
+    return best;
+  }
 
-    $$("[data-ai-only]").forEach((el) => {
-      el.style.opacity = usesAI ? "1" : "0.45";
-      el.querySelectorAll("input, select, button").forEach((i) => {
-        if (i.closest(".scenario-tabs")) return;
-        if (el.contains(i)) i.disabled = !usesAI && i.name !== "usesAI";
+  function renderModelChoices() {
+    const box = $("#modelChoices");
+    box.innerHTML = Object.values(MODELS).map((m) => `
+      <label class="choice">
+        <input type="radio" name="model" value="${m.id}" ${selectedModel === m.id ? "checked" : ""}>
+        <span>${m.label}<span class="sub">${m.sub}</span></span>
+      </label>
+    `).join("");
+    box.querySelectorAll('input[name="model"]').forEach((inp) => {
+      inp.addEventListener("change", () => {
+        selectedModel = inp.value;
+        customPrices = false;
+        persist();
+        render();
       });
     });
+  }
 
-    // Sync model prices when not custom-edited recently via model change
+  function updateSliderLabels() {
+    const rules = +$("#rules").value;
+    const conn = +$("#connections").value;
+    const ai = +$("#aiIntensity").value;
+    $("#rulesLabel").textContent = RULES_LABELS[rules];
+    $("#connLabel").textContent = conn === 0 ? "Zéro connexion" : conn >= 10 ? "10 connexions ou plus" : `${conn} connexion${conn > 1 ? "s" : ""}`;
+    $("#aiLabel").textContent = AI_LABELS[ai];
+    const descVal = ($("#appDesc").value || "");
+    $("#descLen").textContent = descVal.length;
+    const titlePrev = shortTitle(descVal);
+    const analysisPrev = analyzeDescription(descVal);
+    $("#descTitlePreview").textContent = descVal.trim().length >= 12
+      ? `Nom retenu pour l’historique : « ${titlePrev} »`
+      : "Écrivez ce que fait l’outil — un nom clair sera proposé automatiquement.";
+    $("#descAnalysisHint").textContent = analysisPrev.thin
+      ? analysisPrev.summary
+      : `${analysisPrev.summary} Impact estimé : +${Math.round(analysisPrev.createBoost * 100)} % sur la création` +
+        (analysisPrev.extraDays > 0 ? `, ≈ +${Math.round(analysisPrev.extraDays)} j·h liés au texte` : "") +
+        (analysisPrev.usageMult !== 1 ? `, ×${analysisPrev.usageMult.toFixed(2)} sur l’usage IA` : "") + ".";
+
+    const fin = +$("#finish").value;
+    $$("#finishLabels span").forEach((span) => span.classList.toggle("active", +span.dataset.i === fin));
+    $("#finishHint").textContent = FINISH_HINTS[fin];
+    $("#marginVal").textContent = $("#margin").value + " %";
+  }
+
+  function setStep(n) {
+    step = Math.max(0, Math.min(4, n));
+    maxReached = Math.max(maxReached, step);
+    $$(".panel").forEach((p) => p.classList.toggle("active", p.id === `panel-${step}`));
+    const titles = ["Accueil", "Projet", "Création", "Usage IA", "Synthèse"];
+    $("#stepLabel").textContent = titles[step];
+    renderStepNav();
+    persist();
+    render();
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }
+
+  function renderStepNav() {
+    const labels = ["Accueil", "1 Projet", "2 Création", "3 Usage", "4 Synthèse"];
+    $("#stepNav").innerHTML = labels.map((label, i) => {
+      const active = i === step;
+      const done = i < step;
+      const enabled = i <= maxReached || i === 0;
+      return `<button type="button" class="step-dot ${active ? "active" : ""} ${done ? "done" : ""}" data-step="${i}" ${enabled ? "" : "disabled"}>${label}</button>`;
+    }).join("");
+    $$("#stepNav [data-step]").forEach((btn) => {
+      btn.addEventListener("click", () => setStep(+btn.dataset.step));
+    });
+  }
+
+  function render() {
+    updateSliderLabels();
+    const s = readState();
+    const title = shortTitle(s.appDesc);
+    const c = creationCost(s);
+    const u = usageCost(s);
+    const usesAI = s.aiIntensity > 0;
+
+    const analysis = c.analysis || analyzeDescription(s.appDesc);
+    const recapHtml = `<strong>${title}</strong> — ${RULES_LABELS[s.rules].toLowerCase()}, ${s.connections} connexion${s.connections > 1 ? "s" : ""}, IA : ${AI_LABELS[s.aiIntensity].toLowerCase()}.`
+      + (analysis.hits.length
+        ? `<br><span style="font-size:0.85rem">D’après la description : ${analysis.hits.slice(0, 5).join(" · ")}</span>`
+        : `<br><span style="font-size:0.85rem">Précisez davantage la description (étape 1) pour affiner le chiffrage.</span>`);
+    $("#recapCreate").innerHTML = recapHtml;
+    $("#recapUsage").innerHTML = recapHtml;
+    $("#recapSynth").innerHTML = recapHtml;
+
+    $("#createLo").textContent = fmt(c.lo) + " €";
+    $("#createHi").textContent = fmt(c.hi) + " €";
+    {
+      const laborLine = c.rate === 0
+        ? `<div class="schedule-row"><span>Main-d’œuvre (TJM 0 € — vous)</span><strong>0 €</strong></div>
+           <div class="schedule-row"><span>Temps à prévoir</span><strong>${Math.round(c.dLo)}–${Math.round(c.dHi)} j·h</strong></div>`
+        : `<div class="schedule-row"><span>Main-d’œuvre (j·h × TJM)</span><strong>${fmt(c.laborLo)} – ${fmt(c.laborHi)} € <span style="font-weight:500;color:var(--muted)">(${Math.round(c.dLo)}–${Math.round(c.dHi)} j × ${fmt(c.rate)} €)</span></strong></div>`;
+
+      const toolsLine = (c.toolsHi > 0)
+        ? `<div class="schedule-row"><span>Outils IA de création</span><strong>${fmt(c.toolsLo)} – ${fmt(c.toolsHi)} €</strong></div>
+           <p class="hint" style="margin:0.15rem 0 0.35rem">Inclut ${c.toolsNote} (ex. Cursor, ChatGPT, Claude) pendant ~${c.monthsLo}–${c.monthsHi} mois de build.</p>`
+        : `<div class="schedule-row"><span>Outils IA de création</span><strong>0 €</strong></div>`;
+
+      $("#createDays").textContent = c.rate === 0 && c.toolsHi > 0
+        ? `TJM 0 €, mais outils IA de dev : ${fmt(c.toolsLo)}–${fmt(c.toolsHi)} € · ${Math.round(c.dLo)}–${Math.round(c.dHi)} j·h · ~${c.monthsLo}–${c.monthsHi} mois`
+        : c.rate === 0
+          ? `Fait soi-même sans outils IA de dev facturés · ${Math.round(c.dLo)}–${Math.round(c.dHi)} j·h · ~${c.monthsLo}–${c.monthsHi} mois`
+          : `${Math.round(c.dLo)}–${Math.round(c.dHi)} j·h × ${fmt(c.rate)} €/j` +
+            (c.toolsHi > 0 ? ` + outils IA ${fmt(c.toolsLo)}–${fmt(c.toolsHi)} €` : "") +
+            ` = ${fmt(c.lo)}–${fmt(c.hi)} € · ~${c.monthsLo}–${c.monthsHi} mois`;
+
+      $("#createSchedule").innerHTML = `
+        ${laborLine}
+        ${toolsLine}
+        <div class="schedule-row"><span>Budget total de création</span><strong>${fmt(c.lo)} – ${fmt(c.hi)} €</strong></div>
+        <div class="schedule-row"><span>Réparti sur ~${c.monthsMid} mois</span><strong>${fmt(c.perMonthLo)} – ${fmt(c.perMonthHi)} € / mois</strong></div>
+      `;
+
+      if (c.rate === 0 && c.toolsHi > 0) {
+        $("#createWhy").textContent = "Même sans prestataire, le développement assisté par IA implique des abonnements et crédits (Cursor, ChatGPT, Claude…). Ce poste est inclus dans le coût de création.";
+      } else if (c.rate === 0) {
+        $("#createWhy").textContent = "TJM à 0 € et pas d’outils IA de développement facturés dans ce mode. Le temps de travail reste une charge réelle.";
+      } else {
+        $("#createWhy").textContent = whyCreate(s, c) +
+          (c.toolsHi > 0 ? " S’y ajoutent les outils IA utilisés pendant le build." : "");
+      }
+    }
+
+    $("#usageDisabled").style.display = usesAI ? "none" : "block";
+    $("#usageFields").style.opacity = usesAI ? "1" : "0.5";
+    $("#usageFields").style.pointerEvents = usesAI ? "auto" : "none";
+
     if (!customPrices) {
       const mk = resolveModel(s);
       $("#priceIn").value = MODELS[mk].in;
       $("#priceOut").value = MODELS[mk].out;
     }
+    {
+      const pin = +$("#priceIn").value;
+      const pout = +$("#priceOut").value;
+      // Exemple concret : 1 échange moyen (~2500 in + 1200 out tokens)
+      const ex = ((2500 / 1e6) * pin + (1200 / 1e6) * pout) * EUR_USD;
+      $("#priceExplain").textContent =
+        `En pratique : avec ces tarifs, un échange de longueur moyenne coûte environ ${fmt(ex)} € (hors volume). ` +
+        (customPrices
+          ? "Vous avez personnalisé ces prix (tarif négocié ou autre fournisseur)."
+          : "Ces valeurs suivent automatiquement le modèle choisi — pas besoin de les modifier.");
+    }
 
-    const c = creationCost(s);
-    $("#createLo").textContent = fmt(c.lo) + " €";
-    $("#createHi").textContent = fmt(c.hi) + " €";
-    $("#createDays").textContent = `Soit environ ${Math.round(c.dLo)} à ${Math.round(c.dHi)} jours-homme.`;
-    $("#createWhy").textContent = whyCreate(s, c);
+    const g = growthSeries(s, u);
+    $("#growthHint").textContent = usesAI ? g.hint : "";
 
-    const u = usageCost(s);
     if (!usesAI) {
       $("#usageLo").textContent = "0 €";
       $("#usageHi").textContent = "0 €";
+      $("#usageUnit").textContent = "€ / mois";
+      $("#usageSchedule").innerHTML = "";
       $("#usageWhy").textContent = whyUsage(s, u);
       $("#sensibility").innerHTML = "";
       $("#hiddenCosts").style.display = "none";
-      $("#modelHint").textContent = "";
+      $("#modelHint").textContent = "Revenez à l’étape 1 et augmentez le curseur « L’outil utilisera-t-il l’IA ? » pour activer ce calcul.";
     } else {
-      $("#usageLo").textContent = fmt(u.lo) + " €";
-      $("#usageHi").textContent = fmt(u.hi) + " €";
-      $("#usageWhy").textContent = whyUsage(s, u);
-      if (s.model === "auto") {
-        $("#modelHint").textContent = `Recommandé pour votre cas : modèle ${u.model.label} (${u.model.name}).`;
-      } else {
-        $("#modelHint").textContent = `Tarifs indicatifs : ${u.model.in} / ${u.model.out} USD pour 1M tokens (entrée / sortie).`;
-      }
-
-      const s2 = usageCost(s, s.users * 2);
-      const s3 = usageCost(s, s.users * 3);
-      const max = s3.mid || 1;
-      $("#sensibility").innerHTML = `
-        <div class="sens-row"><span>Volume actuel</span><div class="sens-bar"><i style="width:${(u.mid/max)*100}%"></i></div><strong>${fmt(u.mid)} €</strong></div>
-        <div class="sens-row"><span>Si ×2</span><div class="sens-bar"><i style="width:${(s2.mid/max)*100}%"></i></div><strong>${fmt(s2.mid)} €</strong></div>
-        <div class="sens-row"><span>Si ×3</span><div class="sens-bar"><i style="width:100%"></i></div><strong>${fmt(s3.mid)} €</strong></div>
+      $("#usageLo").textContent = fmtEuro(g.avgLo);
+      $("#usageHi").textContent = fmtEuro(g.avgHi);
+      $("#usageUnit").textContent = `€ / mois en moyenne · scénario ${g.label.toLowerCase()}`;
+      $("#usageSchedule").innerHTML = `
+        <div class="schedule-row"><span>Mois 1 (démarrage)</span><strong>${fmt(g.m1.lo)} – ${fmt(g.m1.hi)} €</strong></div>
+        <div class="schedule-row"><span>Mois 6</span><strong>${fmt(g.m6.lo)} – ${fmt(g.m6.hi)} €</strong></div>
+        <div class="schedule-row"><span>Mois 12</span><strong>${fmt(g.m12.lo)} – ${fmt(g.m12.hi)} €</strong></div>
+        <div class="schedule-row"><span>Total sur 12 mois</span><strong>${fmt(g.yearLo)} – ${fmt(g.yearHi)} €</strong></div>
       `;
+      $("#usageWhy").textContent = whyUsage(s, u) + ` Scénario ${g.label.toLowerCase()} : le volume évolue dans le temps, donc la facture aussi.`;
+      const resolved = MODELS[resolveModel(s)];
+      const lengthLabel = { short: "courts", medium: "moyens", long: "longs" }[s.length] || "moyens";
+      $("#modelHint").textContent =
+        (s.model === "auto"
+          ? `Recommandé pour votre cas : ${resolved.label}. `
+          : `Tarifs : ${u.model.in} / ${u.model.out} USD pour 1M tokens. `) +
+        `Base mois 1 : ${s.users} utilisateurs × ${s.freq} usages × intensité IA ${Math.round(u.intensityFactor * 100)} % ≈ ${fmt(u.sessions)} appels, échanges ${lengthLabel}` +
+        (s.rag ? ", avec documents. " : ". ") +
+        `Puis croissance « ${g.label.toLowerCase()} » appliquée sur 12 mois.`;
 
+      const max = Math.max(g.m12.mid, g.m1.mid, 0.01);
+      $("#sensibility").innerHTML = `
+        <div class="sens-row"><span>Mois 1</span><div class="sens-bar"><i style="width:${(g.m1.mid / max) * 100}%"></i></div><strong>${fmtEuro(g.m1.mid)}</strong></div>
+        <div class="sens-row"><span>Mois 6</span><div class="sens-bar"><i style="width:${(g.m6.mid / max) * 100}%"></i></div><strong>${fmtEuro(g.m6.mid)}</strong></div>
+        <div class="sens-row"><span>Mois 12</span><div class="sens-bar"><i style="width:100%"></i></div><strong>${fmtEuro(g.m12.mid)}</strong></div>
+      `;
       $("#hiddenCosts").style.display = "block";
       $("#hiddenCosts").innerHTML = `<strong>Coûts cachés inclus (~${Math.round(u.hiddenPct * 100)} %)</strong> : ${u.hiddenParts.join(", ")}. Hors hébergement serveur classique.`;
     }
 
     $("#kpiCreate").textContent = fmtRange(c.lo, c.hi);
-    $("#kpiOps").textContent = usesAI ? fmtRange(u.lo, u.hi) : "0 €";
+    $("#kpiCreateSub").textContent = c.rate === 0 && c.toolsHi > 0
+      ? `Dont outils IA de dev ${fmt(c.toolsLo)}–${fmt(c.toolsHi)} € · ${Math.round(c.dLo)}–${Math.round(c.dHi)} j·h`
+      : c.rate === 0
+        ? `Fait soi-même · ${Math.round(c.dLo)}–${Math.round(c.dHi)} j·h à prévoir`
+        : `TJM ${fmt(c.rate)} €/j` +
+          (c.toolsHi > 0 ? ` + outils IA` : "") +
+          ` · ~${fmt(c.perMonthLo)}–${fmt(c.perMonthHi)} €/mois sur ${c.monthsMid} mois`;
+    $("#kpiOps").textContent = usesAI ? fmtRange(g.avgLo, g.avgHi) : "0 €";
+    $("#kpiOpsSub").textContent = usesAI
+      ? `Moyenne / mois sur 1 an · ${g.label.toLowerCase()} · total an 1 : ${fmt(g.yearLo)}–${fmt(g.yearHi)} €`
+      : "Pas d’usage IA récurrent";
 
     drawChart(s, c, u);
-    renderBreakeven(s, u);
     renderMarket(s);
     renderTips(s, u);
     renderCompare(s);
-    $("#printTitle").textContent = `Estimation — ${s.appName}`;
   }
 
-  function monthFactors(key) {
-    return GROWTH[key].monthly;
+  function escapeHtml(str) {
+    return String(str || "")
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;");
+  }
+
+  function buildPrintReport() {
+    const s = readState();
+    const title = shortTitle(s.appDesc);
+    const c = creationCost(s);
+    const u = usageCost(s);
+    const g = growthSeries(s, u);
+    const usesAI = s.aiIntensity > 0;
+    const model = MODELS[resolveModel(s)];
+    const lengthLabel = { short: "Court", medium: "Moyen", long: "Long" }[s.length] || "Moyen";
+    const modeLabel = { nocode: "No-code / low-code", ai: "Développement assisté par IA", classic: "Développement classique" }[s.devMode];
+    const finishLabel = ["MVP", "Production", "Production + maintenance an 1"][s.finish];
+    const market = inferMarket(s);
+    const tips = tipsFor(s, u);
+    const date = new Date().toLocaleString("fr-FR", { dateStyle: "long", timeStyle: "short" });
+
+    // Clone chart SVG for print
+    const chartSrc = $("#cumulChart");
+    const chartHtml = chartSrc ? chartSrc.outerHTML : "";
+
+    $("#printReport").innerHTML = `
+      <header class="pr-header">
+        <div>
+          <div class="pr-brand">Coûts<span>IA</span></div>
+          <div class="pr-title">${escapeHtml(title)}</div>
+        </div>
+        <div class="pr-meta">
+          Estimation générée le ${escapeHtml(date)}<br>
+          Document à usage indicatif
+        </div>
+      </header>
+
+      ${s.appDesc.trim() ? `<p class="pr-desc">${escapeHtml(s.appDesc.trim())}</p>` : ""}
+
+      <div class="pr-kpis">
+        <div class="pr-kpi once">
+          <div class="lbl">Coût de création</div>
+          <div class="val">${fmtRange(c.lo, c.hi)}</div>
+          <div class="sub">Total · ~${fmt(c.perMonthLo)}–${fmt(c.perMonthHi)} €/mois sur ${c.monthsMid} mois</div>
+        </div>
+        <div class="pr-kpi ops">
+          <div class="lbl">Coût d’exploitation IA</div>
+          <div class="val">${usesAI ? fmtRange(g.avgLo, g.avgHi) : "0 €"}</div>
+          <div class="sub">${usesAI ? `Moyenne / mois · scénario ${g.label.toLowerCase()} · an 1 : ${fmt(g.yearLo)}–${fmt(g.yearHi)} €` : "Pas d’usage IA récurrent"}</div>
+        </div>
+      </div>
+
+      <section class="pr-section">
+        <h2>1 · Hypothèses projet</h2>
+        <div class="pr-grid">
+          <div class="pr-row"><span class="k">Logique métier</span><span class="v">${escapeHtml(RULES_LABELS[s.rules])}</span></div>
+          <div class="pr-row"><span class="k">Connexions</span><span class="v">${s.connections >= 10 ? "10 ou plus" : s.connections}</span></div>
+          <div class="pr-row"><span class="k">Rôle de l’IA</span><span class="v">${escapeHtml(AI_LABELS[s.aiIntensity])}</span></div>
+          <div class="pr-row"><span class="k">Documents (RAG)</span><span class="v">${s.rag || c.analysis.ragSignal ? "Oui" : "Non"}</span></div>
+        </div>
+        ${c.analysis.hits.length ? `<p class="pr-note">Signaux lus dans la description : ${escapeHtml(c.analysis.hits.join(" · "))}</p>` : ""}
+      </section>
+
+      <section class="pr-section">
+        <h2>2 · Hypothèses de création</h2>
+        <div class="pr-grid">
+          <div class="pr-row"><span class="k">Mode de développement</span><span class="v">${escapeHtml(modeLabel)}</span></div>
+          <div class="pr-row"><span class="k">Niveau de finition</span><span class="v">${escapeHtml(finishLabel)}</span></div>
+          <div class="pr-row"><span class="k">Charge estimée</span><span class="v">${Math.round(c.dLo)}–${Math.round(c.dHi)} jours-homme</span></div>
+          <div class="pr-row"><span class="k">Durée calendaire</span><span class="v">${c.monthsLo}–${c.monthsHi} mois</span></div>
+          <div class="pr-row"><span class="k">Taux journalier</span><span class="v">${c.rate === 0 ? "0 € / jour (fait soi-même)" : `${fmt(c.rate)} € / jour`}</span></div>
+          <div class="pr-row"><span class="k">Main-d’œuvre</span><span class="v">${fmt(c.laborLo)} – ${fmt(c.laborHi)} €</span></div>
+          <div class="pr-row"><span class="k">Outils IA de création</span><span class="v">${c.toolsHi > 0 ? `${fmt(c.toolsLo)} – ${fmt(c.toolsHi)} €` : "0 €"}</span></div>
+          <div class="pr-row"><span class="k">Budget total</span><span class="v">${fmtRange(c.lo, c.hi)}</span></div>
+        </div>
+        <p class="pr-note">${c.toolsHi > 0
+          ? `Dont ${escapeHtml(c.toolsNote)} pendant le build — même avec un TJM à 0 €.`
+          : escapeHtml(whyCreate(s, c))}</p>
+      </section>
+
+      <section class="pr-section">
+        <h2>3 · Hypothèses d’usage IA</h2>
+        ${usesAI ? `
+          <div class="pr-grid">
+            <div class="pr-row"><span class="k">Modèle</span><span class="v">${escapeHtml(model.label)}${s.model === "auto" ? " (recommandé)" : ""}</span></div>
+            <div class="pr-row"><span class="k">Utilisateurs au démarrage</span><span class="v">${s.users} / mois</span></div>
+            <div class="pr-row"><span class="k">Usages par personne</span><span class="v">${s.freq} / mois</span></div>
+            <div class="pr-row"><span class="k">Longueur des échanges</span><span class="v">${lengthLabel}</span></div>
+            <div class="pr-row"><span class="k">Scénario de croissance</span><span class="v">${escapeHtml(g.label)} — ${escapeHtml(g.hint)}</span></div>
+            <div class="pr-row"><span class="k">Appels estimés (mois 1)</span><span class="v">≈ ${fmt(u.sessions)}</span></div>
+          </div>
+          <div class="pr-grid" style="margin-top:0.35rem">
+            <div class="pr-row"><span class="k">Coût mois 1</span><span class="v">${fmt(g.m1.lo)} – ${fmt(g.m1.hi)} €</span></div>
+            <div class="pr-row"><span class="k">Coût mois 6</span><span class="v">${fmt(g.m6.lo)} – ${fmt(g.m6.hi)} €</span></div>
+            <div class="pr-row"><span class="k">Coût mois 12</span><span class="v">${fmt(g.m12.lo)} – ${fmt(g.m12.hi)} €</span></div>
+            <div class="pr-row"><span class="k">Total année 1</span><span class="v">${fmt(g.yearLo)} – ${fmt(g.yearHi)} €</span></div>
+          </div>
+          <p class="pr-note">${escapeHtml(whyUsage(s, u))}</p>
+        ` : `
+          <p class="pr-note">L’IA n’est pas utilisée de façon récurrente dans ces hypothèses — coût d’usage ≈ 0 €.</p>
+        `}
+      </section>
+
+      <section class="pr-section">
+        <h2>4 · Synthèse sur 12 mois</h2>
+        <div class="pr-chart">${chartHtml}</div>
+        <p class="pr-note">${escapeHtml($("#crossHint") ? $("#crossHint").textContent : "")}</p>
+      </section>
+
+      <section class="pr-section">
+        <h2>Alternatives du marché (build vs buy)</h2>
+        <div class="pr-grid">
+          ${market.map((m) => `
+            <div class="pr-row">
+              <span class="k">${escapeHtml(m.name)}</span>
+              <span class="v">${escapeHtml(m.desc)} — ${escapeHtml(m.price)}</span>
+            </div>
+          `).join("")}
+        </div>
+      </section>
+
+      <section class="pr-section">
+        <h2>Pistes pour réduire la facture</h2>
+        <ul class="pr-tips">
+          ${tips.map((t) => `<li><strong>${escapeHtml(t.tag)} :</strong> ${escapeHtml(t.text)}</li>`).join("")}
+        </ul>
+      </section>
+
+      <footer class="pr-footer">
+        Ordres de grandeur indicatifs — ce document n’est pas un devis.
+        Les prix des modèles IA évoluent rapidement. · CoûtsIA · natacha-aviat.github.io
+      </footer>
+    `;
   }
 
   function drawChart(s, c, u) {
     const svg = $("#cumulChart");
     const W = 640, H = 240, pad = { t: 20, r: 20, b: 36, l: 52 };
-    const factors = monthFactors(s.growth);
-    const createMid = c.mid;
+    const factors = (GROWTH[s.growth] || GROWTH.realiste).monthly;
+    const createMonths = c.monthsMid;
+    const createPerMonth = c.mid / createMonths;
     const points = [];
+    let cumulCreate = 0;
     let cumulOps = 0;
+
     for (let m = 1; m <= 12; m++) {
-      const monthUsage = s.usesAI ? u.mid * factors[m - 1] : 0;
+      if (m <= createMonths) cumulCreate += createPerMonth;
+      else cumulCreate = c.mid;
+      const monthUsage = s.aiIntensity > 0 ? u.mid * factors[m - 1] : 0;
       cumulOps += monthUsage;
-      points.push({ m, total: createMid + cumulOps, opsOnly: cumulOps, usage: monthUsage });
+      points.push({ m, total: cumulCreate + cumulOps, create: cumulCreate, opsOnly: cumulOps });
     }
-    const maxY = Math.max(createMid * 1.15, ...points.map((p) => p.total), 1);
+
+    const maxY = Math.max(...points.map((p) => p.total), c.mid * 1.1, 1);
     const x = (m) => pad.l + ((m - 1) / 11) * (W - pad.l - pad.r);
     const y = (v) => pad.t + (1 - v / maxY) * (H - pad.t - pad.b);
 
-    let path = "";
+    let pathTotal = "";
+    let pathCreate = "";
     points.forEach((p, i) => {
-      path += `${i ? "L" : "M"}${x(p.m).toFixed(1)},${y(p.total).toFixed(1)} `;
+      pathTotal += `${i ? "L" : "M"}${x(p.m).toFixed(1)},${y(p.total).toFixed(1)} `;
+      pathCreate += `${i ? "L" : "M"}${x(p.m).toFixed(1)},${y(p.create).toFixed(1)} `;
     });
 
-    // Cross month: when cumulative usage exceeds creation
     let cross = null;
     for (const p of points) {
-      if (p.opsOnly >= createMid) { cross = p.m; break; }
+      if (p.opsOnly >= c.mid) { cross = p.m; break; }
     }
 
     const grid = [];
@@ -1329,46 +2333,30 @@
       grid.push(`<line x1="${pad.l}" y1="${yy}" x2="${W - pad.r}" y2="${yy}" stroke="#c9d4cc" stroke-width="1"/>`);
       grid.push(`<text x="${pad.l - 8}" y="${yy + 4}" text-anchor="end" font-size="11" fill="#6b7a72" font-family="Bricolage Grotesque,sans-serif">${fmt(v)}</text>`);
     }
-
     const xLabels = points.map((p) =>
       `<text x="${x(p.m)}" y="${H - 10}" text-anchor="middle" font-size="11" fill="#6b7a72" font-family="Bricolage Grotesque,sans-serif">M${p.m}</text>`
     ).join("");
 
     svg.innerHTML = `
       ${grid.join("")}
-      <line x1="${pad.l}" y1="${y(createMid)}" x2="${W - pad.r}" y2="${y(createMid)}" stroke="#c45c26" stroke-width="2" stroke-dasharray="6 4"/>
-      <path d="${path}" fill="none" stroke="#1f6f5b" stroke-width="2.5" stroke-linejoin="round"/>
+      <path d="${pathCreate}" fill="none" stroke="#c45c26" stroke-width="2" stroke-dasharray="6 4"/>
+      <path d="${pathTotal}" fill="none" stroke="#1f6f5b" stroke-width="2.5" stroke-linejoin="round"/>
       ${points.map((p) => `<circle cx="${x(p.m)}" cy="${y(p.total)}" r="3.5" fill="#1f6f5b"/>`).join("")}
       ${cross ? `<line x1="${x(cross)}" y1="${pad.t}" x2="${x(cross)}" y2="${H - pad.b}" stroke="#a85b00" stroke-width="1.5" stroke-dasharray="3 3"/>` : ""}
       ${xLabels}
     `;
 
-    if (!s.usesAI) {
-      $("#crossHint").textContent = "Sans usage IA récurrent, le cumul reste plat après la création.";
+    if (s.aiIntensity === 0) {
+      $("#crossHint").textContent = "Sans usage IA, le cumul suit surtout l’étalement de la création.";
     } else if (cross) {
-      $("#crossHint").textContent = `Vers le mois ${cross}, le cumul d’usage dépasse le coût de création.`;
+      $("#crossHint").textContent = `Vers le mois ${cross}, le cumul d’usage dépasse le coût total de création.`;
     } else {
       $("#crossHint").textContent = "Sur 12 mois, l’usage reste sous le coût de création (avec ces hypothèses).";
     }
   }
 
-  function renderBreakeven(s, u) {
-    const el = $("#breakeven");
-    if (!s.usesAI || u.mid <= 0) {
-      el.style.display = "none";
-      return;
-    }
-    const saas = SAAS_BENCH[s.appType];
-    // users où coût IA mid ≈ saas
-    const perUser = u.mid / s.users;
-    const threshold = Math.ceil(saas / perUser);
-    el.style.display = "block";
-    el.className = "alert " + (s.users >= threshold ? "alert-warn" : "alert-ok");
-    el.innerHTML = `<strong>Seuil de rentabilité (build vs abonnement type ~${saas} €/mois)</strong> : à partir d’environ <strong>${threshold} utilisateurs/mois</strong>, votre coût IA seul dépasse un abonnement SaaS comparable. Aujourd’hui : ${s.users} utilisateurs → ~${fmt(u.mid)} €/mois d’IA.`;
-  }
-
   function renderMarket(s) {
-    const list = MARKET[s.appType] || [];
+    const list = inferMarket(s);
     $("#marketList").innerHTML = list.map((m) => `
       <div class="market-item">
         <div><div class="name">${m.name}</div><div class="desc">${m.desc}</div></div>
@@ -1395,49 +2383,53 @@
       return `<div class="compare-card" style="${selected ? "border-color:var(--teal);background:var(--teal-soft)" : ""}">
         <h4>${m.title}${selected ? " ← choisi" : ""}</h4>
         <div class="val">${fmt(c.lo)} – ${fmt(c.hi)} €</div>
-        <div class="sub">${Math.round(c.dLo)}–${Math.round(c.dHi)} j·h · ${DAY_RATE_DEFAULT[m.key]} €/j</div>
+        <div class="sub">${Math.round(c.dLo)}–${Math.round(c.dHi)} j·h · ${fmt(c.rate)} €/j · ~${c.monthsMid} mois</div>
       </div>`;
     }).join("");
   }
 
-  // —— Share / history ——
   function encodeState(s) {
-    try {
-      return btoa(unescape(encodeURIComponent(JSON.stringify(s))));
-    } catch (e) { return ""; }
+    try { return btoa(unescape(encodeURIComponent(JSON.stringify(s)))); }
+    catch (e) { return ""; }
   }
   function decodeState(str) {
-    try {
-      return JSON.parse(decodeURIComponent(escape(atob(str))));
-    } catch (e) { return null; }
+    try { return JSON.parse(decodeURIComponent(escape(atob(str)))); }
+    catch (e) { return null; }
   }
 
   function applyState(s) {
     if (!s) return;
-    if (s.appName) $("#appName").value = s.appName;
+    if (s.appDesc != null) $("#appDesc").value = s.appDesc;
+    if (s.rules != null) $("#rules").value = s.rules;
+    if (s.connections != null) $("#connections").value = s.connections;
+    if (s.aiIntensity != null) $("#aiIntensity").value = s.aiIntensity;
     const setRadio = (name, val) => {
       const el = $(`input[name="${name}"][value="${val}"]`);
       if (el) el.checked = true;
     };
-    setRadio("appType", s.appType);
-    setRadio("complexity", s.complexity);
-    setRadio("usesAI", s.usesAI ? "yes" : "no");
-    setRadio("devMode", s.devMode);
-    setRadio("length", s.length);
-    setRadio("rag", s.rag ? "yes" : "no");
+    if (s.devMode) setRadio("devMode", s.devMode);
+    if (s.length) setRadio("length", s.length);
+    if (s.rag != null) setRadio("rag", s.rag ? "yes" : "no");
     if (s.finish != null) $("#finish").value = s.finish;
-    if (s.model) $("#model").value = s.model;
+    if (s.model) selectedModel = s.model;
     if (s.users) $("#users").value = s.users;
     if (s.freq) $("#freq").value = s.freq;
     if (s.growth && GROWTH[s.growth]) {
       growthKey = s.growth;
-      $$("#growthTabs button").forEach((b) => b.classList.toggle("active", b.dataset.g === growthKey));
     }
-    if (s.priceIn != null) { $("#priceIn").value = s.priceIn; customPrices = true; }
-    if (s.priceOut != null) { $("#priceOut").value = s.priceOut; customPrices = true; }
-    if (s.margin != null) { $("#margin").value = Math.round(s.margin * 100); $("#marginVal").textContent = Math.round(s.margin * 100) + " %"; }
-    if (s.dayRate) $("#dayRate").value = s.dayRate;
-    updateFinishUI();
+    if (s.priceIn != null) { $("#priceIn").value = s.priceIn; }
+    if (s.priceOut != null) { $("#priceOut").value = s.priceOut; }
+    if (s.customPrices) customPrices = true;
+    if (s.margin != null) $("#margin").value = Math.round(s.margin * 100);
+    if (s.dayRate != null && s.dayRate !== "") {
+      const el = document.getElementById("dayRate");
+      if (el) el.value = s.dayRate;
+      dayRateTouched = true;
+    }
+    if (s.step != null) step = s.step;
+    if (s.maxReached != null) maxReached = s.maxReached;
+    $$("#growthTabs button").forEach((b) => b.classList.toggle("active", b.dataset.g === growthKey));
+    renderModelChoices();
   }
 
   function saveHistory() {
@@ -1447,19 +2439,19 @@
     const entry = {
       id: Date.now(),
       date: new Date().toLocaleString("fr-FR"),
-      name: s.appName,
+      name: shortTitle(s.appDesc),
       create: [c.lo, c.hi],
       ops: [u.lo, u.hi],
-      state: s
+      state: Object.assign({}, s, { model: selectedModel, customPrices, growth: growthKey })
     };
-    const hist = JSON.parse(localStorage.getItem("coutsia_hist") || "[]");
+    const hist = JSON.parse(localStorage.getItem(HIST_KEY) || "[]");
     hist.unshift(entry);
-    localStorage.setItem("coutsia_hist", JSON.stringify(hist.slice(0, 12)));
+    localStorage.setItem(HIST_KEY, JSON.stringify(hist.slice(0, 12)));
     renderHistory();
   }
 
   function renderHistory() {
-    const hist = JSON.parse(localStorage.getItem("coutsia_hist") || "[]");
+    const hist = JSON.parse(localStorage.getItem(HIST_KEY) || "[]");
     const box = $("#historyList");
     if (!hist.length) {
       box.innerHTML = `<p class="hint">Aucune version sauvegardée pour l’instant.</p>`;
@@ -1475,56 +2467,96 @@
     box.querySelectorAll("[data-load]").forEach((btn) => {
       btn.addEventListener("click", () => {
         const item = hist.find((x) => x.id === +btn.dataset.load);
-        if (item) { applyState(item.state); render(); }
+        if (item) {
+          applyState(item.state);
+          setStep(4);
+        }
       });
     });
     box.querySelectorAll("[data-del]").forEach((btn) => {
       btn.addEventListener("click", () => {
         const next = hist.filter((x) => x.id !== +btn.dataset.del);
-        localStorage.setItem("coutsia_hist", JSON.stringify(next));
+        localStorage.setItem(HIST_KEY, JSON.stringify(next));
         renderHistory();
       });
     });
   }
 
-  function updateFinishUI() {
-    const v = +$("#finish").value;
-    $$("#finishLabels span").forEach((span) => span.classList.toggle("active", +span.dataset.i === v));
-    $("#finishHint").textContent = FINISH_HINTS[v];
-  }
-
   // —— Events ——
   document.addEventListener("input", (e) => {
-    if (e.target.id === "finish") updateFinishUI();
-    if (e.target.id === "margin") $("#marginVal").textContent = e.target.value + " %";
+    if (!e.target) return;
     if (e.target.id === "priceIn" || e.target.id === "priceOut") customPrices = true;
-    if (e.target.id === "model") customPrices = false;
+    if (e.target.id === "dayRate") dayRateTouched = true;
+    persist();
     render();
   });
-  document.addEventListener("change", () => render());
+  document.addEventListener("change", (e) => {
+    if (!e.target) return;
+    if (e.target.name === "model") {
+      selectedModel = e.target.value;
+      customPrices = false;
+    }
+    if (e.target.id === "dayRate") dayRateTouched = true;
+    // Suggestion de TJM selon le mode, seulement si l’utilisateur n’a pas encore choisi
+    if (e.target.name === "devMode" && !dayRateTouched) {
+      const el = document.getElementById("dayRate");
+      if (el) el.value = DAY_RATE_DEFAULT[e.target.value] || 750;
+    }
+    persist();
+    render();
+  });
+
+  $$("[data-tjm]").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      dayRateTouched = true;
+      const el = document.getElementById("dayRate");
+      if (el) el.value = btn.dataset.tjm;
+      persist();
+      render();
+      const panel = $("#creationResult");
+      if (panel) {
+        panel.style.outline = "2px solid var(--teal)";
+        setTimeout(() => { panel.style.outline = ""; }, 500);
+      }
+    });
+  });
 
   $$("#growthTabs button").forEach((btn) => {
     btn.addEventListener("click", () => {
       growthKey = btn.dataset.g;
       $$("#growthTabs button").forEach((b) => b.classList.toggle("active", b === btn));
+      persist();
       render();
     });
   });
 
-  $("#btnPdf").addEventListener("click", () => window.print());
+  $("#btnStart").addEventListener("click", () => setStep(1));
+  $$("[data-next]").forEach((btn) => btn.addEventListener("click", () => { persist(); setStep(step + 1); }));
+  $$("[data-prev]").forEach((btn) => btn.addEventListener("click", () => setStep(step - 1)));
+  $$("[data-goto]").forEach((btn) => btn.addEventListener("click", () => setStep(+btn.dataset.goto)));
+
+  function exportPdf() {
+    buildPrintReport();
+    // Laisser le DOM se peindre avant d’ouvrir la boîte d’impression
+    requestAnimationFrame(() => {
+      setTimeout(() => window.print(), 50);
+    });
+  }
+  $("#btnPdf").addEventListener("click", exportPdf);
+  window.addEventListener("beforeprint", buildPrintReport);
 
   $("#btnShare").addEventListener("click", () => {
-    const s = readState();
-    const url = `${location.origin}${location.pathname}#${encodeState(s)}`;
+    const s = Object.assign({}, readState(), { model: selectedModel, customPrices, growth: growthKey, step, maxReached });
+    const hash = encodeState(s);
+    const url = `${location.origin}${location.pathname}#${hash}`;
     $("#shareUrl").value = url;
     $("#shareBox").classList.add("show");
-    history.replaceState(null, "", `#${encodeState(s)}`);
+    history.replaceState(null, "", `#${hash}`);
   });
 
   $("#btnCopy").addEventListener("click", async () => {
-    const v = $("#shareUrl").value;
     try {
-      await navigator.clipboard.writeText(v);
+      await navigator.clipboard.writeText($("#shareUrl").value);
       $("#btnCopy").textContent = "Copié !";
       setTimeout(() => { $("#btnCopy").textContent = "Copier"; }, 1500);
     } catch (e) {
@@ -1534,33 +2566,28 @@
 
   $("#btnSave").addEventListener("click", () => {
     saveHistory();
-    const adv = $("#advanced");
-    if (!adv.open) adv.open = true;
+    $("#historyList").scrollIntoView({ behavior: "smooth", block: "nearest" });
     $("#btnSave").textContent = "Version sauvée";
     setTimeout(() => { $("#btnSave").textContent = "Sauver cette version"; }, 1600);
   });
 
-  // Load from hash
-  if (location.hash.length > 1) {
-    const s = decodeState(location.hash.slice(1));
-    if (s) applyState(s);
+  // Bootstrap
+  renderModelChoices();
+
+  let boot = null;
+  if (location.hash.length > 1) boot = decodeState(location.hash.slice(1));
+  if (!boot) {
+    try { boot = JSON.parse(localStorage.getItem(STORAGE_KEY) || "null"); } catch (e) { boot = null; }
+  }
+  if (boot) {
+    applyState(boot);
+    if (boot.step != null) step = boot.step;
+    if (boot.maxReached != null) maxReached = boot.maxReached;
   }
 
-  // Defaults by app type
-  $$('input[name="appType"]').forEach((el) => {
-    el.addEventListener("change", () => {
-      const t = radio("appType");
-      if (t === "chatbot") { $("#users").value = 80; $("#freq").value = 12; }
-      if (t === "interne") { $("#users").value = 15; $("#freq").value = 20; }
-      if (t === "client") { $("#users").value = 200; $("#freq").value = 4; }
-      if (t === "auto") { $("#users").value = 5; $("#freq").value = 60; }
-      render();
-    });
-  });
-
-  updateFinishUI();
+  renderStepNav();
   renderHistory();
-  render();
+  setStep(step || 0);
 })();
   </script>
 </body>
