@@ -72,7 +72,7 @@ const SEO_CONFIG = {
                 description: 'Portfolio UX/UI × Data : outils digitaux, visualisations, parcours guidés et cartes interactives.',
                 ogType: 'website',
                 aiPageType: 'Portfolio UX/UI × Data',
-                aiProductCount: '11',
+                aiProductCount: '12',
                 aiProductTypes: 'Outils digitaux, Visualisations, Parcours guidés, Cartes interactives',
                 aiPricingRange: 'Gratuit à sur devis'
             },
@@ -81,7 +81,7 @@ const SEO_CONFIG = {
                 description: 'UX/UI × Data portfolio: digital tools, visualizations, guided journeys and interactive maps.',
                 ogType: 'website',
                 aiPageType: 'UX/UI × Data portfolio',
-                aiProductCount: '11',
+                aiProductCount: '12',
                 aiProductTypes: 'Digital tools, Visualizations, Guided journeys, Interactive maps',
                 aiPricingRange: 'Free to custom quote'
             }
@@ -350,6 +350,30 @@ const SEO_CONFIG = {
                 aiUseCase: 'Estimate build and running costs of an AI tool before investing'
             }
         },
+        'fiche-bandcamp-discovery': {
+            fr: {
+                title: 'Bandcamp Advanced Discovery — Digging pour DJ HoldTight | Sur mesure - Natacha Aviat',
+                description: 'Outil de découverte Bandcamp avancé pour le DJ HoldTight : digging par genres, villes, nouveautés et tendances.',
+                keywords: 'Bandcamp Advanced Discovery, digging Bandcamp, outil DJ, HoldTight, découverte musicale',
+                ogType: 'product',
+                ogImage: 'https://natacha-aviat.github.io/pro/images/Bandcamp_Advanced_Discovery.png',
+                aiProductType: 'Outil web sur mesure',
+                aiPrice: 'Sur mesure',
+                aiTechnologies: 'JavaScript, UX/UI',
+                aiUseCase: 'Accélérer le digging Bandcamp pour un DJ'
+            },
+            en: {
+                title: 'Bandcamp Advanced Discovery — Digging for DJ HoldTight | Custom - Natacha Aviat',
+                description: 'Advanced Bandcamp discovery tool for DJ HoldTight: dig by genres, cities, new releases and trends.',
+                keywords: 'Bandcamp Advanced Discovery, Bandcamp digging, DJ tool, HoldTight, music discovery',
+                ogType: 'product',
+                ogImage: 'https://natacha-aviat.github.io/pro/images/Bandcamp_Advanced_Discovery.png',
+                aiProductType: 'Custom web tool',
+                aiPrice: 'Custom quote',
+                aiTechnologies: 'JavaScript, UX/UI',
+                aiUseCase: 'Speed up Bandcamp digging for a DJ'
+            }
+        },
         'fiche-optimisation-tournees': {
             fr: {
                 title: 'Outil d\'Optimisation de Tournées Logistiques | Gratuit - Natacha Aviat',
@@ -446,7 +470,9 @@ const FICHE_MAPPING = {
     'fiche-textes-a-la-pelle.html': { fr: 'fiches/fiche-textes-a-la-pelle.html', en: 'en/fiches/sheet-textes-a-la-pelle.html' },
     'sheet-textes-a-la-pelle.html': { fr: 'fiches/fiche-textes-a-la-pelle.html', en: 'en/fiches/sheet-textes-a-la-pelle.html' },
     'fiche-coutsia.html': { fr: 'fiches/fiche-coutsia.html', en: 'en/fiches/sheet-coutsia.html' },
-    'sheet-coutsia.html': { fr: 'fiches/fiche-coutsia.html', en: 'en/fiches/sheet-coutsia.html' }
+    'sheet-coutsia.html': { fr: 'fiches/fiche-coutsia.html', en: 'en/fiches/sheet-coutsia.html' },
+    'fiche-bandcamp-discovery.html': { fr: 'fiches/fiche-bandcamp-discovery.html', en: 'en/fiches/sheet-bandcamp-discovery.html' },
+    'sheet-bandcamp-discovery.html': { fr: 'fiches/fiche-bandcamp-discovery.html', en: 'en/fiches/sheet-bandcamp-discovery.html' }
 };
 
 // Export pour utilisation dans d'autres fichiers

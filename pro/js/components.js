@@ -233,7 +233,9 @@ function getLanguageSwitchUrl(targetLang) {
         'fiche-textes-a-la-pelle.html': { fr: 'fiches/fiche-textes-a-la-pelle.html', en: 'en/fiches/sheet-textes-a-la-pelle.html' },
         'sheet-textes-a-la-pelle.html': { fr: 'fiches/fiche-textes-a-la-pelle.html', en: 'en/fiches/sheet-textes-a-la-pelle.html' },
         'fiche-coutsia.html': { fr: 'fiches/fiche-coutsia.html', en: 'en/fiches/sheet-coutsia.html' },
-        'sheet-coutsia.html': { fr: 'fiches/fiche-coutsia.html', en: 'en/fiches/sheet-coutsia.html' }
+        'sheet-coutsia.html': { fr: 'fiches/fiche-coutsia.html', en: 'en/fiches/sheet-coutsia.html' },
+        'fiche-bandcamp-discovery.html': { fr: 'fiches/fiche-bandcamp-discovery.html', en: 'en/fiches/sheet-bandcamp-discovery.html' },
+        'sheet-bandcamp-discovery.html': { fr: 'fiches/fiche-bandcamp-discovery.html', en: 'en/fiches/sheet-bandcamp-discovery.html' }
     };
     
     let targetPage = '';
