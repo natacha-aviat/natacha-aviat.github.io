@@ -57,20 +57,14 @@
 			<li><a href="carte-taux-mentions-lycees.html">Le taux de mentions</a> : sur 100 élèves ayant obtenu le bac, combien ont eu une mention</li>
 		</ul>
 		<p>A partir de ces 3 indicateurs, nous pouvons calculer pour chaque lycée le taux d'élèves entrés en seconde obtenant le bac avec mention.</p>
-		<p><b>La couleur des marqueurs indique la valeur ajoutée "globale" du lycée</b> : s'il a fait mieux ou moins bien qu'un lycée moyen étant donné le profil des élèves entrés en seconde. <br>
-			Le nombre dans le marqueur correspond au taux d'élèves entrés en seconde obtenant le bac avec mention.</p>
-
-		<!--<table>
-			<tr>
-				<td style="background-color:rgb(250,50,250);">Valeur ajoutée négative</td>
-			</tr>
-			<tr>
-				<td style="background-color:rgb(250,129,250);">Valeur ajoutée nulle</td>
-			</tr>
-			<tr>
-				<td style="background-color:rgb(250,200,250);">Valeur ajoutée positive</td>
-			</tr>
-		</table>-->
+		<p><b>Chaque lycée est représenté par un camembert</b> qui compare le taux réel d'élèves entrés en seconde obtenant le bac avec mention au taux attendu :</p>
+		<ul>
+			<li><span style="display:inline-block;width:14px;height:14px;background:#fff;border:1px solid #333;vertical-align:middle;"></span> blanc : de 0 % jusqu'au plus bas des deux taux (réel ou attendu)</li>
+			<li><span style="display:inline-block;width:14px;height:14px;background:#2ecc71;border:1px solid #333;vertical-align:middle;"></span> vert : valeur ajoutée positive (du taux attendu au taux réel)</li>
+			<li><span style="display:inline-block;width:14px;height:14px;background:#e74c3c;border:1px solid #333;vertical-align:middle;"></span> rouge : valeur ajoutée négative (du taux réel au taux attendu)</li>
+			<li><span style="display:inline-block;width:14px;height:14px;background:#111;border:1px solid #333;vertical-align:middle;"></span> noir : le reste jusqu'à 100 %</li>
+		</ul>
+		<p>La taille du camembert dépend de l'effectif du lycée (nombre de candidats au bac).</p>
 		
 		<p>Il est possible de sélectionner les établissements "Publics" / "Privés sous contrats" via les calques en haut à droite.</p>
 

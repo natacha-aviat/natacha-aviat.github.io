@@ -35,20 +35,14 @@
 					 <li>le sexe</li>						 
 				     </ul>
 
-		<p><b>La couleur des marqueurs indique la valeur ajoutée du lycée sur son taux de mentions</b> : la proportion de bacheliers issus de ce lycée qui ont obtenu une mention, quelle qu'elle soit.<br> 
-		Le nombre dans le marqueur correspond au taux de mentions du lycée.</p>
-	<table>
-			<tr>
-				<td style="background-color:rgb(255,200,150);">Valeur ajoutée positive</td>
-            </tr>
-			<tr>
-				<td style="background-color:rgb(255,129,150);">Valeur ajoutée nulle</td>
-			</tr>
-        <tr>
-				<td style="background-color:rgb(255,50,150);">Valeur ajoutée négative</td>
-			</tr>
-
-		</table>
+		<p><b>Chaque lycée est représenté par un camembert</b> qui compare le taux de mentions réel au taux attendu (proportion de bacheliers ayant obtenu une mention) :</p>
+		<ul>
+			<li><span style="display:inline-block;width:14px;height:14px;background:#fff;border:1px solid #333;vertical-align:middle;"></span> blanc : de 0 % jusqu'au plus bas des deux taux (réel ou attendu)</li>
+			<li><span style="display:inline-block;width:14px;height:14px;background:#2ecc71;border:1px solid #333;vertical-align:middle;"></span> vert : valeur ajoutée positive (du taux attendu au taux réel)</li>
+			<li><span style="display:inline-block;width:14px;height:14px;background:#e74c3c;border:1px solid #333;vertical-align:middle;"></span> rouge : valeur ajoutée négative (du taux réel au taux attendu)</li>
+			<li><span style="display:inline-block;width:14px;height:14px;background:#111;border:1px solid #333;vertical-align:middle;"></span> noir : le reste jusqu'à 100 %</li>
+		</ul>
+		<p>La taille du camembert dépend de l'effectif du lycée (nombre de candidats au bac).</p>
 		
 		<p>Il est possible de sélectionner les établissements "Publics" / "Privés sous contrats" via les calques en haut à droite.</p>
 
