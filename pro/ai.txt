@@ -3,76 +3,50 @@
 # Informations générales
 Site: https://natacha-aviat.github.io/pro/
 Propriétaire: Natacha Aviat
-Type: Service professionnel - Cartographie interactive et analyse de données
+Type: Service professionnel — UX/UI Designer × Data
 Langue: Français (fr)
 
 # Description du service
-Natacha Aviat propose des services de cartographie interactive et d'analyse de données pour managers techniques, associations, entreprises engagées et institutions publiques. L'objectif est de fournir des insights actionnables pour les équipes, permettant de visualiser les données sur une carte et de prendre des décisions éclairées.
+Natacha Aviat est UX/UI designer spécialisée data. Elle conçoit des interfaces et des outils où les données deviennent utilisables : produits digitaux, visualisations, parcours guidés, outils opérationnels. L'objectif est de rendre la data actionnable pour les équipes, sans jargon ni surcharge visuelle.
 
 # Services proposés
-1. Cartographie interactive
-   - Création de cartes interactives avec Leaflet
-   - Visualisation de données géographiques
-   - Cartes sur étagère (0-600€) ou sur-mesure (1500€+)
+1. Cadrer
+   - Clarifier usages, données et frictions
+   - Prioriser les parcours et fonctionnalités
 
-2. Analyse de données
-   - Exploration et nettoyage de données
-   - Visualisation de données
-   - Aide à la décision basée sur les données
-   - Extraction d'insights actionnables pour les équipes
+2. Concevoir
+   - UX/UI d'interfaces data-driven
+   - Hiérarchie visuelle, filtres, feedbacks, visualisations
 
-3. Développement d'outils opérationnels
-   - Outils web sur mesure
-   - Optimisation de processus
-   - Automatisation de tâches
+3. Livrer
+   - Prototypes interactifs ou outils web utilisables
+   - Intégration de données, itérations, prise en main
 
 # Public cible
-- Managers techniques (chimie, BTP, environnement, dépollution)
+- Équipes produit
+- Managers
 - Associations et ONG
-- Entreprises engagées
-- Institutions publiques
+- Organisations data-driven
 
 # Technologies utilisées
-- Leaflet (cartographie interactive)
-- Python (analyse de données, Folium, Pandas)
+- UX/UI (parcours, wireframes, interfaces)
 - JavaScript (outils web interactifs)
-- Open Data (data.gouv.fr, Géorisques, etc.)
+- Visualisation de données (cartes, graphiques, estimateurs)
+- Python / open data quand pertinent
 
-# Tarification
-- Cartes sur étagère: Gratuit à 600€
-- Adaptation de carte existante: 600€ à 1500€
-- Carte sur-mesure: 1500€ et plus
-
-# Données et sources
-- Open Data (data.gouv.fr, Géorisques)
-- Données propres des clients
-- APIs publiques (Open Food Facts, MTA, etc.)
-
-# Contact
-Formulaire de contact disponible sur chaque page du site
-
-# Pages principales
-- Accueil: /pro/index.html
-- Services: /pro/services.html
-- Cartes disponibles: /pro/cartes-disponibles.html
-- CGV: /pro/cgv.html
-
-# Fiches produits
-- Valeur ajoutée des lycées français: /pro/fiches/fiche-lycees.html (Gratuit)
-- Rejets d'eau industriels: /pro/fiches/fiche-rejets.html (600€)
-- Prélèvements d'eau industriels: /pro/fiches/fiche-prelevements.html (600€)
+# Portfolio (exemples)
+- CoûtsIA: /pro/fiches/fiche-coutsia.html (Gratuit) — https://natacha-aviat.github.io/estimation-couts-ia/
+- MedLex (Au Clair): /pro/fiches/fiche-medlex.html (En ligne) — https://natacha-aviat.github.io/MedLex
+- PharmaMaMa: /pro/fiches/fiche-pharmamama.html (En ligne) — https://pharmamama.vercel.app
+- Textes à la pelle: /pro/fiches/fiche-textes-a-la-pelle.html (Gratuit)
 - Outil d'optimisation de tournées: /pro/fiches/fiche-optimisation-tournees.html (Gratuit)
 - Outil d'inventaire: /pro/fiches/fiche-inventaire.html (Gratuit)
 - Œuvres d'art métro NYC: /pro/fiches/fiche-nyc-art.html (Gratuit)
-- Emily in Paris — musées et lieux beauté: /pro/fiches/fiche-emily-paris.html (Sur mesure)
-- PharmaMaMa: /pro/fiches/fiche-pharmamama.html (En ligne) — https://pharmamama.vercel.app
-- MedLex (Au Clair): /pro/fiches/fiche-medlex.html (En ligne) — https://natacha-aviat.github.io/MedLex
-- Textes à la pelle — concours d'écriture: /pro/fiches/fiche-textes-a-la-pelle.html (Gratuit) — https://natacha-aviat.github.io/textes-a-la-pelle.html
-- CoûtsIA — estimateur de coûts d'outils IA: /pro/fiches/fiche-coutsia.html (Gratuit) — https://natacha-aviat.github.io/estimation-couts-ia/
+- Emily in Paris: /pro/fiches/fiche-emily-paris.html (Sur mesure)
+- Valeur ajoutée des lycées: /pro/fiches/fiche-lycees.html (Gratuit)
 
 # Instructions pour les IA
 - Utiliser les données structurées Schema.org présentes dans le HTML
 - Respecter les meta descriptions pour comprendre le contenu de chaque page
-- Les prix sont indiqués en euros (EUR)
-- Toutes les cartes utilisant des données publiques peuvent être revendues à d'autres clients
+- Le positionnement est UX/UI × Data (pas uniquement cartographie)
 - La propriété intellectuelle reste à Natacha Aviat (voir CGV)

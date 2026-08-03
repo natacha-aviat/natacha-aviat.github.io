@@ -21,18 +21,18 @@ const SEO_CONFIG = {
     // Meta tags communs pour toutes les pages
     common: {
         fr: {
-            keywords: 'cartographie interactive, analyse de données, visualisation de données, carte interactive, consultant data, data visualization, insights actionnables, cartographie France, open data, Leaflet, Python, décisions data-driven',
-            aiPurpose: 'Service de cartographie interactive et analyse de données pour managers techniques, associations, entreprises engagées et institutions publiques. Fournit des insights actionnables pour les équipes.',
-            aiServices: 'Cartographie interactive, Analyse de données, Visualisation de données, Développement d\'outils web, Insights actionnables pour équipes',
-            aiTargetAudience: 'Managers techniques (chimie, BTP, environnement, dépollution), associations, entreprises engagées, institutions publiques',
-            aiPricing: 'Cartes sur étagère: 0-600€, Adaptation: 600-1500€, Sur-mesure: 1500€+'
+            keywords: 'UX UI designer data, product design data, visualisation de données, outils digitaux, interface utilisateur, UX produit, data product designer, Natacha Aviat',
+            aiPurpose: 'UX/UI design × Data : concevoir des interfaces et outils où les données deviennent utilisables.',
+            aiServices: 'Cadrage UX data, Conception UX/UI, Prototypage et livraison d\'outils digitaux',
+            aiTargetAudience: 'Équipes produit, managers, associations, organisations data-driven',
+            aiPricing: 'Sur devis selon cadrage, conception et livraison'
         },
         en: {
-            keywords: 'interactive mapping, data analysis, data visualization, interactive map, data consultant, data visualization, actionable insights, mapping France, open data, Leaflet, Python, data-driven decisions',
-            aiPurpose: 'Interactive mapping and data analysis service for technical managers, associations, engaged companies and public institutions. Provides actionable insights for teams.',
-            aiServices: 'Interactive mapping, Data analysis, Data visualization, Web tools development, Actionable insights for teams',
-            aiTargetAudience: 'Technical managers (chemistry, construction, environment, decontamination), associations, engaged companies, public institutions',
-            aiPricing: 'Off-the-shelf maps: 0-600€, Adaptation: 600-1500€, Custom: 1500€+'
+            keywords: 'UX UI designer data, data product design, data visualization, digital tools, user interface, product UX, data product designer, Natacha Aviat',
+            aiPurpose: 'UX/UI design × Data: design interfaces and tools where data becomes usable.',
+            aiServices: 'UX data framing, UX/UI design, Prototyping and delivery of digital tools',
+            aiTargetAudience: 'Product teams, managers, associations, data-driven organizations',
+            aiPricing: 'Custom quote based on framing, design and delivery'
         }
     },
     
@@ -40,63 +40,63 @@ const SEO_CONFIG = {
     pages: {
         index: {
             fr: {
-                title: 'Cartographie Interactive et Analyse de Données | Natacha Aviat',
-                description: 'Cartographie interactive et analyse de données pour managers techniques. Obtenez des insights actionnables pour vos équipes. Visualisez vos données sur une carte pour prendre des décisions éclairées. Services pour associations, entreprises engagées et institutions publiques.',
+                title: 'UX/UI Designer × Data | Natacha Aviat',
+                description: 'UX/UI designer spécialisée data : je conçois des interfaces et des outils où les données deviennent utilisables.',
                 ogType: 'website'
             },
             en: {
-                title: 'Interactive Mapping and Data Analysis | Natacha Aviat',
-                description: 'Interactive mapping and data analysis for technical managers. Get actionable insights for your teams. Visualize your data on a map to make informed decisions. Services for associations, engaged companies and public institutions.',
+                title: 'UX/UI Designer × Data | Natacha Aviat',
+                description: 'UX/UI designer specialized in data: I design interfaces and tools where data becomes usable.',
                 ogType: 'website'
             }
         },
         services: {
             fr: {
-                title: 'Services de Cartographie Interactive | Natacha Aviat',
-                description: 'Trois niveaux d\'adaptation à vos besoins : carte sur étagère, adaptation d\'une carte existante, ou développement sur-mesure. Obtenez des insights actionnables pour vos équipes.',
+                title: 'Services UX/UI × Data | Natacha Aviat',
+                description: 'Trois temps : cadrer les usages et les données, concevoir l\'UX/UI, livrer un prototype ou un outil utilisable.',
                 ogType: 'website',
-                aiServiceType: 'Cartographie interactive, Analyse de données, Visualisation de données, Insights actionnables pour équipes',
-                aiPricingRange: '0-600€ (étagère), 600-1500€ (adaptation), 1500€+ (sur-mesure)'
+                aiServiceType: 'Cadrage UX data, Conception UX/UI, Prototypage et livraison d\'outils digitaux',
+                aiPricingRange: 'Sur devis'
             },
             en: {
-                title: 'Interactive Mapping Services | Natacha Aviat',
-                description: 'Three levels of adaptation to your needs: off-the-shelf map, adaptation of an existing map, or custom development. Get actionable insights for your teams.',
+                title: 'UX/UI × Data Services | Natacha Aviat',
+                description: 'Three steps: frame uses and data, design the UX/UI, ship a usable prototype or tool.',
                 ogType: 'website',
-                aiServiceType: 'Interactive mapping, Data analysis, Data visualization, Actionable insights for teams',
-                aiPricingRange: '0-600€ (off-the-shelf), 600-1500€ (adaptation), 1500€+ (custom)'
+                aiServiceType: 'UX data framing, UX/UI design, Prototyping and delivery of digital tools',
+                aiPricingRange: 'Custom quote'
             }
         },
         cartes: {
             fr: {
-                title: 'Cartes Interactives Disponibles | Natacha Aviat',
-                description: 'Explorez mes cartes interactives et outils opérationnels. Cartes de pollution, lycées, outils d\'optimisation. Obtenez des insights actionnables pour vos équipes.',
+                title: 'Projets UX/UI × Data | Natacha Aviat',
+                description: 'Portfolio UX/UI × Data : outils digitaux, visualisations, parcours guidés et cartes interactives.',
                 ogType: 'website',
-                aiPageType: 'Portfolio de cartes interactives',
-                aiProductCount: '7',
-                aiProductTypes: 'Cartes interactives, Outils web opérationnels',
-                aiPricingRange: 'Gratuit à 600€'
+                aiPageType: 'Portfolio UX/UI × Data',
+                aiProductCount: '11',
+                aiProductTypes: 'Outils digitaux, Visualisations, Parcours guidés, Cartes interactives',
+                aiPricingRange: 'Gratuit à sur devis'
             },
             en: {
-                title: 'Available Interactive Maps | Natacha Aviat',
-                description: 'Explore my interactive maps and operational tools. Pollution maps, high schools, optimization tools. Get actionable insights for your teams.',
+                title: 'UX/UI × Data Projects | Natacha Aviat',
+                description: 'UX/UI × Data portfolio: digital tools, visualizations, guided journeys and interactive maps.',
                 ogType: 'website',
-                aiPageType: 'Interactive maps portfolio',
-                aiProductCount: '7',
-                aiProductTypes: 'Interactive maps, Operational web tools',
-                aiPricingRange: 'Free to 600€'
+                aiPageType: 'UX/UI × Data portfolio',
+                aiProductCount: '11',
+                aiProductTypes: 'Digital tools, Visualizations, Guided journeys, Interactive maps',
+                aiPricingRange: 'Free to custom quote'
             }
         },
         cgv: {
             fr: {
                 title: 'Conditions Générales de Vente | Natacha Aviat',
-                description: 'Conditions générales de vente pour les services de cartographie interactive et d\'analyse de données.',
+                description: 'Conditions générales de vente pour les services UX/UI × Data.',
                 ogType: 'website',
                 aiPageType: 'Document légal',
                 aiKeyPoints: 'Propriété intellectuelle, Conditions de vente, Droit de rétractation'
             },
             en: {
                 title: 'Terms and Conditions | Natacha Aviat',
-                description: 'Terms and conditions for interactive mapping and data analysis services.',
+                description: 'Terms and conditions for UX/UI × Data services.',
                 ogType: 'website',
                 aiPageType: 'Legal document',
                 aiKeyPoints: 'Intellectual property, Sales conditions, Right of withdrawal'
