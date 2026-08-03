@@ -112,6 +112,18 @@
       from { opacity: 0; transform: translateY(10px); }
       to { opacity: 1; transform: none; }
     }
+    @keyframes fadein {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    @keyframes heroDraw {
+      from { opacity: 0; transform: translateY(14px) scale(0.985); }
+      to { opacity: 1; transform: none; }
+    }
+
+    body.on-home .steps { display: none; }
+    body.on-home .topbar .brand { opacity: 0; pointer-events: none; }
+    body.on-home .topbar { margin-bottom: 0.35rem; }
 
     .block-num {
       font-family: var(--font-display);
@@ -674,13 +686,72 @@
     footer a { color: var(--teal); }
 
     .welcome {
-      padding: 1.5rem 0 0.5rem;
+      padding: 0.35rem 0 1rem;
+      animation: rise 0.65s ease both;
+    }
+    .welcome-brand {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: clamp(2.35rem, 7vw, 3.15rem);
+      letter-spacing: -0.035em;
+      line-height: 1.05;
+      margin-bottom: 1.1rem;
+    }
+    .welcome-brand span { color: var(--teal); }
+
+    .hero-visual {
+      position: relative;
+      width: calc(100% + 2.5rem);
+      margin: 0 -1.25rem 1.35rem;
+      padding: 1.35rem 1rem 0.85rem;
+      background:
+        radial-gradient(ellipse 70% 80% at 80% 20%, rgba(196, 92, 38, 0.1), transparent 55%),
+        radial-gradient(ellipse 60% 70% at 15% 80%, rgba(31, 111, 91, 0.12), transparent 50%),
+        linear-gradient(165deg, #ffffff 0%, #eef3ee 100%);
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      overflow: hidden;
+      animation: heroDraw 0.85s ease 0.12s both;
+    }
+    .hero-visual::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: repeating-linear-gradient(
+        -18deg,
+        transparent,
+        transparent 22px,
+        rgba(20, 34, 28, 0.025) 22px,
+        rgba(20, 34, 28, 0.025) 23px
+      );
+      pointer-events: none;
+    }
+    .hero-visual img {
+      position: relative;
+      z-index: 1;
+      display: block;
+      width: 100%;
+      height: auto;
+      max-height: min(300px, 48vw);
+      object-fit: contain;
+      filter: drop-shadow(0 10px 24px rgba(20, 34, 28, 0.06));
+    }
+    .welcome h1 {
+      font-family: var(--font-display);
+      font-size: clamp(1.35rem, 3.8vw, 1.7rem);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.45rem;
+      max-width: 22rem;
     }
     .welcome .lede {
-      margin: 0.75rem 0 1.25rem;
-      font-size: 1.08rem;
+      margin: 0 0 1.35rem;
+      font-size: 1.05rem;
       color: var(--ink-soft);
-      max-width: 36rem;
+      max-width: 34rem;
+    }
+    .welcome .btn-primary {
+      animation: rise 0.55s ease 0.25s both;
     }
 
     /* —— Rapport PDF (écran masqué) —— */
@@ -878,8 +949,17 @@
     <!-- 0 Accueil -->
     <section class="panel active" id="panel-0" data-title="Accueil">
       <div class="welcome">
+        <p class="welcome-brand">Coûts<span>IA</span></p>
+        <div class="hero-visual">
+          <img
+            src="hero-courbes.svg"
+            width="640"
+            height="220"
+            alt="Courbes : coût de création fixe face au coût d’usage IA qui augmente dans le temps, jusqu’au seuil de croisement."
+          >
+        </div>
         <h1>Combien coûterait votre outil IA&nbsp;?</h1>
-        <p class="lede">Décrivez votre idée comme à un associé. À chaque étape, vos réponses sont enregistrées et font évoluer l’estimation de création et d’exploitation.</p>
+        <p class="lede">Estimez la création, puis l’exploitation mois après mois — pour décider avant d’investir.</p>
         <button type="button" class="btn-primary" id="btnStart">Commencer l’estimation →</button>
       </div>
     </section>
@@ -2004,6 +2084,7 @@
     step = Math.max(0, Math.min(4, n));
     maxReached = Math.max(maxReached, step);
     $$(".panel").forEach((p) => p.classList.toggle("active", p.id === `panel-${step}`));
+    document.body.classList.toggle("on-home", step === 0);
     const titles = ["Accueil", "Projet", "Création", "Usage IA", "Synthèse"];
     $("#stepLabel").textContent = titles[step];
     renderStepNav();

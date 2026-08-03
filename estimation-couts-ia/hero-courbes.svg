@@ -1,0 +1,39 @@
+<svg viewBox="0 0 640 220" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Illustration : coût de création fixe comparé au coût d'usage IA qui augmente avec le temps">
+  <defs>
+    <linearGradient id="usageFill" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#1f6f5b" stop-opacity="0.18"/>
+      <stop offset="100%" stop-color="#1f6f5b" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+
+  <!-- grille discrète -->
+  <g stroke="#c9d4cc" stroke-width="1">
+    <line x1="40" y1="170" x2="600" y2="170"/>
+    <line x1="40" y1="120" x2="600" y2="120"/>
+    <line x1="40" y1="70" x2="600" y2="70"/>
+  </g>
+
+  <!-- zone sous la courbe usage -->
+  <path d="M40,150 C160,145 260,120 360,95 C460,68 540,40 600,20 L600,170 L40,170 Z"
+        fill="url(#usageFill)"/>
+
+  <!-- ligne création : plate -->
+  <line x1="40" y1="150" x2="600" y2="150" stroke="#c45c26" stroke-width="3" stroke-dasharray="7 6" stroke-linecap="round"/>
+
+  <!-- ligne usage : montée -->
+  <path d="M40,150 C160,145 260,120 360,95 C460,68 540,40 600,20"
+        fill="none" stroke="#1f6f5b" stroke-width="3" stroke-linecap="round"/>
+
+  <!-- point de croisement -->
+  <circle cx="330" cy="103" r="6" fill="#a85b00"/>
+  <line x1="330" y1="20" x2="330" y2="185" stroke="#a85b00" stroke-width="1.5" stroke-dasharray="3 3"/>
+  <text x="330" y="200" text-anchor="middle" font-family="Bricolage Grotesque, sans-serif" font-size="12" font-weight="600" fill="#a85b00">seuil</text>
+
+  <!-- points de départ -->
+  <circle cx="40" cy="150" r="4.5" fill="#c45c26"/>
+  <circle cx="600" cy="20" r="4.5" fill="#1f6f5b"/>
+
+  <!-- labels -->
+  <text x="48" y="140" font-family="Bricolage Grotesque, sans-serif" font-size="13" font-weight="700" fill="#9a3f12">Création (une fois)</text>
+  <text x="500" y="15" font-family="Bricolage Grotesque, sans-serif" font-size="13" font-weight="700" fill="#134838">Usage IA (cumulé)</text>
+</svg>
