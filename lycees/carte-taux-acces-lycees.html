@@ -37,25 +37,24 @@
 
 		<p><b>Chaque lycée est représenté par un camembert</b> qui compare le taux d'accès au bac réel au taux attendu (proportion d'élèves entrés en seconde qui obtiennent le bac) :</p>
 		<ul>
-			<li><span style="display:inline-block;width:14px;height:14px;background:#fff;border:1px solid #333;vertical-align:middle;"></span> blanc : de 0 % jusqu'au plus bas des deux taux (réel ou attendu)</li>
-			<li><span style="display:inline-block;width:14px;height:14px;background:#2ecc71;border:1px solid #333;vertical-align:middle;"></span> vert : valeur ajoutée positive (du taux attendu au taux réel)</li>
-			<li><span style="display:inline-block;width:14px;height:14px;background:#e74c3c;border:1px solid #333;vertical-align:middle;"></span> rouge : valeur ajoutée négative (du taux réel au taux attendu)</li>
-			<li><span style="display:inline-block;width:14px;height:14px;background:#111;border:1px solid #333;vertical-align:middle;"></span> noir : le reste jusqu'à 100 %</li>
+			<li><span style="display:inline-block;width:14px;height:14px;background:#c5cbd3;border:1px solid #999;vertical-align:middle;"></span> gris clair : partie structurelle (hors valeur ajoutée)</li>
+			<li><span style="display:inline-block;width:14px;height:14px;background:#2563eb;border:1px solid #333;vertical-align:middle;"></span> bleu : valeur ajoutée positive (du taux attendu au taux réel)</li>
+			<li><span style="display:inline-block;width:14px;height:14px;background:#e11d48;border:1px solid #333;vertical-align:middle;"></span> rouge : valeur ajoutée négative (du taux réel au taux attendu)</li>
 		</ul>
 		<figure class="va-schema" style="margin:1.2rem 0;padding:1rem 1.2rem;background:#f7f7f7;border:1px solid #ddd;border-radius:6px;">
   <figcaption style="font-weight:600;margin-bottom:0.8rem;">Comment lire un camembert</figcaption>
   <div style="display:flex;flex-wrap:wrap;gap:1.5rem;justify-content:center;align-items:flex-start;">
     <div style="text-align:center;max-width:220px;">
-      <svg xmlns="http://www.w3.org/2000/svg" width="90" height="90" viewBox="0 0 90 90" aria-hidden="true" style="display:block;margin:0 auto"><path d="M45.00,45.00 L45.00,2.00 A43.0,43.0 0 0,1 45.00,88.00 Z" fill="#ffffff" stroke="none"/><path d="M45.00,45.00 L45.00,88.00 A43.0,43.0 0 0,1 4.10,58.29 Z" fill="#2ecc71" stroke="none"/><path d="M45.00,45.00 L4.10,58.29 A43.0,43.0 0 0,1 45.00,2.00 Z" fill="#111111" stroke="none"/></svg>
+      <svg xmlns="http://www.w3.org/2000/svg" width="90" height="90" viewBox="0 0 90 90" aria-hidden="true" style="display:block;margin:0 auto"><path d="M45.00,45.00 L45.00,2.00 A43.0,43.0 0 0,1 45.00,88.00 Z" fill="#c5cbd3" stroke="none"/><path d="M45.00,45.00 L45.00,88.00 A43.0,43.0 0 0,1 4.10,58.29 Z" fill="#2563eb" stroke="none"/><path d="M45.00,45.00 L4.10,58.29 A43.0,43.0 0 0,1 45.00,2.00 Z" fill="#c5cbd3" stroke="none"/></svg>
       <p style="margin:0.6rem 0 0;font-size:0.95rem;"><strong>Valeur ajoutée positive</strong></p>
       <p style="margin:0.25rem 0 0;font-size:0.85rem;line-height:1.35;color:#333;">Exemple : réel <strong>70&nbsp;%</strong>, attendu <strong>50&nbsp;%</strong><br>
-      blanc → attendu · <span style="color:#2ecc71;font-weight:600;">vert = +20 pts</span></p>
+      gris → attendu · <span style="color:#2563eb;font-weight:600;">bleu = +20 pts</span></p>
     </div>
     <div style="text-align:center;max-width:220px;">
-      <svg xmlns="http://www.w3.org/2000/svg" width="90" height="90" viewBox="0 0 90 90" aria-hidden="true" style="display:block;margin:0 auto"><path d="M45.00,45.00 L45.00,2.00 A43.0,43.0 0 0,1 70.27,79.79 Z" fill="#ffffff" stroke="none"/><path d="M45.00,45.00 L70.27,79.79 A43.0,43.0 0 0,1 19.73,79.79 Z" fill="#e74c3c" stroke="none"/><path d="M45.00,45.00 L19.73,79.79 A43.0,43.0 0 0,1 45.00,2.00 Z" fill="#111111" stroke="none"/></svg>
+      <svg xmlns="http://www.w3.org/2000/svg" width="90" height="90" viewBox="0 0 90 90" aria-hidden="true" style="display:block;margin:0 auto"><path d="M45.00,45.00 L45.00,2.00 A43.0,43.0 0 0,1 70.27,79.79 Z" fill="#c5cbd3" stroke="none"/><path d="M45.00,45.00 L70.27,79.79 A43.0,43.0 0 0,1 19.73,79.79 Z" fill="#e11d48" stroke="none"/><path d="M45.00,45.00 L19.73,79.79 A43.0,43.0 0 0,1 45.00,2.00 Z" fill="#c5cbd3" stroke="none"/></svg>
       <p style="margin:0.6rem 0 0;font-size:0.95rem;"><strong>Valeur ajoutée négative</strong></p>
       <p style="margin:0.25rem 0 0;font-size:0.85rem;line-height:1.35;color:#333;">Exemple : réel <strong>40&nbsp;%</strong>, attendu <strong>60&nbsp;%</strong><br>
-      blanc → réel · <span style="color:#e74c3c;font-weight:600;">rouge = −20 pts</span></p>
+      gris → réel · <span style="color:#e11d48;font-weight:600;">rouge = −20 pts</span></p>
     </div>
   </div>
 </figure>
