@@ -231,7 +231,9 @@ function getLanguageSwitchUrl(targetLang) {
         'fiche-medlex.html': { fr: 'fiches/fiche-medlex.html', en: 'en/fiches/sheet-medlex.html' },
         'sheet-medlex.html': { fr: 'fiches/fiche-medlex.html', en: 'en/fiches/sheet-medlex.html' },
         'fiche-textes-a-la-pelle.html': { fr: 'fiches/fiche-textes-a-la-pelle.html', en: 'en/fiches/sheet-textes-a-la-pelle.html' },
-        'sheet-textes-a-la-pelle.html': { fr: 'fiches/fiche-textes-a-la-pelle.html', en: 'en/fiches/sheet-textes-a-la-pelle.html' }
+        'sheet-textes-a-la-pelle.html': { fr: 'fiches/fiche-textes-a-la-pelle.html', en: 'en/fiches/sheet-textes-a-la-pelle.html' },
+        'fiche-coutsia.html': { fr: 'fiches/fiche-coutsia.html', en: 'en/fiches/sheet-coutsia.html' },
+        'sheet-coutsia.html': { fr: 'fiches/fiche-coutsia.html', en: 'en/fiches/sheet-coutsia.html' }
     };
     
     let targetPage = '';

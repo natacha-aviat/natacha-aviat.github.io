@@ -324,6 +324,32 @@ const SEO_CONFIG = {
                 aiUseCase: 'Find and filter French writing contests and calls for submissions'
             }
         },
+        'fiche-coutsia': {
+            fr: {
+                title: 'CoûtsIA — Estimateur de coûts d\'outils IA | Gratuit - Natacha Aviat',
+                description: 'Estimez le coût de création et d\'exploitation d\'un outil IA pour votre PME. Fourchettes réalistes, scénarios et export PDF.',
+                keywords: 'CoûtsIA, estimation coûts IA, coût outil IA, budget IA PME',
+                ogType: 'product',
+                ogImage: 'https://natacha-aviat.github.io/pro/images/CoutsIA.svg',
+                price: 0,
+                aiProductType: 'Outil web',
+                aiPrice: 'Gratuit',
+                aiTechnologies: 'JavaScript, HTML',
+                aiUseCase: 'Estimer le coût de création et d\'exploitation d\'un outil IA avant d\'investir'
+            },
+            en: {
+                title: 'CoûtsIA — AI tool cost estimator | Free - Natacha Aviat',
+                description: 'Estimate the build and running costs of an AI tool for your SME. Realistic ranges, scenarios and PDF export.',
+                keywords: 'CoûtsIA, AI cost estimate, AI tool budget, SME AI pricing',
+                ogType: 'product',
+                ogImage: 'https://natacha-aviat.github.io/pro/images/CoutsIA.svg',
+                price: 0,
+                aiProductType: 'Web tool',
+                aiPrice: 'Free',
+                aiTechnologies: 'JavaScript, HTML',
+                aiUseCase: 'Estimate build and running costs of an AI tool before investing'
+            }
+        },
         'fiche-optimisation-tournees': {
             fr: {
                 title: 'Outil d\'Optimisation de Tournées Logistiques | Gratuit - Natacha Aviat',
@@ -418,7 +444,9 @@ const FICHE_MAPPING = {
     'fiche-medlex.html': { fr: 'fiches/fiche-medlex.html', en: 'en/fiches/sheet-medlex.html' },
     'sheet-medlex.html': { fr: 'fiches/fiche-medlex.html', en: 'en/fiches/sheet-medlex.html' },
     'fiche-textes-a-la-pelle.html': { fr: 'fiches/fiche-textes-a-la-pelle.html', en: 'en/fiches/sheet-textes-a-la-pelle.html' },
-    'sheet-textes-a-la-pelle.html': { fr: 'fiches/fiche-textes-a-la-pelle.html', en: 'en/fiches/sheet-textes-a-la-pelle.html' }
+    'sheet-textes-a-la-pelle.html': { fr: 'fiches/fiche-textes-a-la-pelle.html', en: 'en/fiches/sheet-textes-a-la-pelle.html' },
+    'fiche-coutsia.html': { fr: 'fiches/fiche-coutsia.html', en: 'en/fiches/sheet-coutsia.html' },
+    'sheet-coutsia.html': { fr: 'fiches/fiche-coutsia.html', en: 'en/fiches/sheet-coutsia.html' }
 };
 
 // Export pour utilisation dans d'autres fichiers

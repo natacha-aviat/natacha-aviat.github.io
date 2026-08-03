@@ -124,6 +124,12 @@
         <priority>0.7</priority>
     </url>
     <url>
+        <loc>https://natacha-aviat.github.io/pro/fiches/fiche-coutsia.html</loc>
+        <lastmod>2026-08-03</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    <url>
         <loc>https://natacha-aviat.github.io/pro/cgv.html</loc>
         <lastmod>2025-01-28</lastmod>
         <changefreq>yearly</changefreq>
@@ -220,6 +226,14 @@
         <xhtml:link rel="alternate" hreflang="en" href="https://natacha-aviat.github.io/pro/en/fiches/sheet-textes-a-la-pelle.html"/>
         <xhtml:link rel="alternate" hreflang="fr" href="https://natacha-aviat.github.io/pro/fiches/fiche-textes-a-la-pelle.html"/>
     </url>
+    <url>
+        <loc>https://natacha-aviat.github.io/pro/fiches/fiche-coutsia.html</loc>
+        <lastmod>2026-08-03</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+        <xhtml:link rel="alternate" hreflang="en" href="https://natacha-aviat.github.io/pro/en/fiches/sheet-coutsia.html"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://natacha-aviat.github.io/pro/fiches/fiche-coutsia.html"/>
+    </url>
     <!-- English fiches -->
     <url>
         <loc>https://natacha-aviat.github.io/pro/en/fiches/sheet-high-schools.html</loc>
@@ -300,5 +314,13 @@
         <priority>0.7</priority>
         <xhtml:link rel="alternate" hreflang="en" href="https://natacha-aviat.github.io/pro/en/fiches/sheet-textes-a-la-pelle.html"/>
         <xhtml:link rel="alternate" hreflang="fr" href="https://natacha-aviat.github.io/pro/fiches/fiche-textes-a-la-pelle.html"/>
+    </url>
+    <url>
+        <loc>https://natacha-aviat.github.io/pro/en/fiches/sheet-coutsia.html</loc>
+        <lastmod>2026-08-03</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+        <xhtml:link rel="alternate" hreflang="en" href="https://natacha-aviat.github.io/pro/en/fiches/sheet-coutsia.html"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://natacha-aviat.github.io/pro/fiches/fiche-coutsia.html"/>
     </url>
 </urlset>
