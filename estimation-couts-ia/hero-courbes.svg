@@ -24,11 +24,6 @@
   <path d="M40,150 C160,145 260,120 360,95 C460,68 540,40 600,20"
         fill="none" stroke="#1f6f5b" stroke-width="3" stroke-linecap="round"/>
 
-  <!-- point de croisement -->
-  <circle cx="330" cy="103" r="6" fill="#a85b00"/>
-  <line x1="330" y1="20" x2="330" y2="185" stroke="#a85b00" stroke-width="1.5" stroke-dasharray="3 3"/>
-  <text x="330" y="200" text-anchor="middle" font-family="Bricolage Grotesque, sans-serif" font-size="12" font-weight="600" fill="#a85b00">seuil</text>
-
   <!-- points de départ -->
   <circle cx="40" cy="150" r="4.5" fill="#c45c26"/>
   <circle cx="600" cy="20" r="4.5" fill="#1f6f5b"/>
