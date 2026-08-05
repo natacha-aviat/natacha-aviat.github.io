@@ -374,6 +374,30 @@ const SEO_CONFIG = {
                 aiUseCase: 'Speed up Bandcamp digging for a DJ'
             }
         },
+        'fiche-myfairstory': {
+            fr: {
+                title: 'MyFairStory — Score d\'équilibre de genre dans les histoires | Natacha Aviat',
+                description: 'Un score visuel inspiré du test de Bechdel pour voir en un coup d\'œil si femmes et hommes sont représentés de manière équivalente.',
+                keywords: 'MyFairStory, test de Bechdel, représentation des femmes, équilibre de genre, visualisation',
+                ogType: 'product',
+                ogImage: 'https://natacha-aviat.github.io/pro/images/MyFairStory.png',
+                aiProductType: 'Concept de visualisation',
+                aiPrice: 'Concept',
+                aiTechnologies: 'UX/UI, Data viz, Design de score',
+                aiUseCase: 'Visualiser l\'équilibre de représentation des genres dans un récit'
+            },
+            en: {
+                title: 'MyFairStory — Gender-balance score for stories | Natacha Aviat',
+                description: 'A Bechdel-inspired visual score to see at a glance whether women and men are represented equally in a story.',
+                keywords: 'MyFairStory, Bechdel test, gender representation, data visualization',
+                ogType: 'product',
+                ogImage: 'https://natacha-aviat.github.io/pro/images/MyFairStory.png',
+                aiProductType: 'Visualization concept',
+                aiPrice: 'Concept',
+                aiTechnologies: 'UX/UI, Data viz, Score design',
+                aiUseCase: 'Visualize gender representation balance in a story'
+            }
+        },
         'fiche-optimisation-tournees': {
             fr: {
                 title: 'Outil d\'Optimisation de Tournées Logistiques | Gratuit - Natacha Aviat',
@@ -474,7 +498,9 @@ const FICHE_MAPPING = {
     'fiche-coutsia.html': { fr: 'fiches/fiche-coutsia.html', en: 'en/fiches/sheet-coutsia.html' },
     'sheet-coutsia.html': { fr: 'fiches/fiche-coutsia.html', en: 'en/fiches/sheet-coutsia.html' },
     'fiche-bandcamp-discovery.html': { fr: 'fiches/fiche-bandcamp-discovery.html', en: 'en/fiches/sheet-bandcamp-discovery.html' },
-    'sheet-bandcamp-discovery.html': { fr: 'fiches/fiche-bandcamp-discovery.html', en: 'en/fiches/sheet-bandcamp-discovery.html' }
+    'sheet-bandcamp-discovery.html': { fr: 'fiches/fiche-bandcamp-discovery.html', en: 'en/fiches/sheet-bandcamp-discovery.html' },
+    'fiche-myfairstory.html': { fr: 'fiches/fiche-myfairstory.html', en: 'en/fiches/sheet-myfairstory.html' },
+    'sheet-myfairstory.html': { fr: 'fiches/fiche-myfairstory.html', en: 'en/fiches/sheet-myfairstory.html' }
 };
 
 // Export pour utilisation dans d'autres fichiers

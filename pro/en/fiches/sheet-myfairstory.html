@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>MyFairStory — Gender-balance score for stories | Natacha Aviat</title>
+    <meta name="description" content="MyFairStory: a Bechdel-inspired visual score to see at a glance whether women and men are represented equally in a book or film.">
+    <meta name="keywords" content="MyFairStory, Bechdel test, gender representation, data visualization, storytelling, Natacha Aviat">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://natacha-aviat.github.io/pro/en/fiches/sheet-myfairstory.html">
+    <link rel="alternate" hreflang="fr" href="https://natacha-aviat.github.io/pro/fiches/fiche-myfairstory.html">
+    <link rel="alternate" hreflang="en" href="https://natacha-aviat.github.io/pro/en/fiches/sheet-myfairstory.html">
+    
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://natacha-aviat.github.io/pro/en/fiches/sheet-myfairstory.html">
+    <meta property="og:title" content="MyFairStory — Gender-balance score for stories">
+    <meta property="og:description" content="A violet / blue / pink score to visualize gender representation in stories at a glance.">
+    <meta property="og:image" content="https://natacha-aviat.github.io/pro/images/MyFairStory.png">
+    
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "CreativeWork",
+        "name": "MyFairStory",
+        "description": "Visual scoring system inspired by the Bechdel test to measure and show gender representation balance in stories (books, films, and more).",
+        "image": "https://natacha-aviat.github.io/pro/images/MyFairStory.png",
+        "url": "https://natacha-aviat.github.io/pro/en/fiches/sheet-myfairstory.html",
+        "creator": {
+            "@type": "Person",
+            "name": "Natacha Aviat"
+        },
+        "keywords": "MyFairStory, Bechdel, gender, visualization, storytelling"
+    }
+    </script>
+    
+    <meta name="AI:ProductType" content="Data visualization concept">
+    <meta name="AI:Price" content="Concept">
+    <meta name="AI:Technologies" content="UX/UI, Data visualization, Score design">
+    <meta name="AI:UseCase" content="Visualize gender representation balance in a story via a color score">
+    
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="../../css/components.css">
+</head>
+<body>
+    <header data-include="../partials/header.html"></header>
+
+    <section class="section">
+        <div class="container">
+            <div data-include="../partials/fiche-back-link.html"></div>
+            <div class="fiche-container">
+                <div>
+                    <div class="fiche-image-container-tool project-image-contain" style="height:auto;min-height:280px;padding:1rem;display:flex;align-items:center;">
+                        <img src="../../images/MyFairStory.png" alt="MyFairStory — gender-balance score, violet balanced state" loading="lazy" style="height:auto;object-fit:contain;">
+                    </div>
+                    <div class="fiche-score-stack" aria-label="MyFairStory score scale">
+                        <figure>
+                            <img src="../../images/MyFairStory/score-uniquement-masculin.jpg" alt="Male-only score — we only see male characters" loading="lazy">
+                            <figcaption>Male only → saturated blue</figcaption>
+                        </figure>
+                        <figure>
+                            <img src="../../images/MyFairStory/score-surtout-masculin.jpg" alt="Mostly male score — we mostly see male characters" loading="lazy">
+                            <figcaption>Mostly male → leans blue</figcaption>
+                        </figure>
+                        <figure>
+                            <img src="../../images/MyFairStory/score-equilibre.jpg" alt="Balanced score — we see characters of each gender equally" loading="lazy">
+                            <figcaption>Balance → violet (midpoint)</figcaption>
+                        </figure>
+                        <figure>
+                            <img src="../../images/MyFairStory/score-surtout-feminin.jpg" alt="Mostly female score — we mostly see female characters" loading="lazy">
+                            <figcaption>Mostly female → leans pink</figcaption>
+                        </figure>
+                        <figure>
+                            <img src="../../images/MyFairStory/score-uniquement-feminin.jpg" alt="Female-only score — we only see female characters" loading="lazy">
+                            <figcaption>Female only → saturated pink</figcaption>
+                        </figure>
+                    </div>
+                </div>
+
+                <div>
+                    <h1 class="mb-2">MyFairStory</h1>
+                    
+                    <div class="fiche-content-section">
+                        <p>A system invented to <strong>see at a glance</strong> how equally women and men are represented in a story — book, film, series…</p>
+                        <p>The score builds on a symmetrical reading of the <strong>Bechdel test</strong>, applied to both genders.</p>
+                    </div>
+
+                    <div class="fiche-before-after">
+                        <div>
+                            <h4 class="fiche-before-title">❌ Before</h4>
+                            <ul>
+                                <li>Gender bias in stories stays invisible or anecdotal</li>
+                                <li>The Bechdel test is binary (pass / fail)</li>
+                                <li>Hard to compare books, films and series with one shared lens</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 class="fiche-after-title">✅ After</h4>
+                            <ul>
+                                <li>A color score readable instantly</li>
+                                <li>Violet = equivalent representation</li>
+                                <li>Blue / pink = imbalance toward male or female</li>
+                                <li>Works across story formats</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="fiche-content-section">
+                        <h3 class="fiche-methodology-title">How the score works</h3>
+                        <div class="fiche-methodology-section">
+                            <h4 class="fiche-methodology-subtitle">1. The test, for each gender:</h4>
+                            <p class="fiche-methodology-text">At least 2 characters of that gender have a first name; those two characters talk to each other; and the conversation is about something other than the other gender.</p>
+                        </div>
+                        <div class="fiche-methodology-section">
+                            <h4 class="fiche-methodology-subtitle">2. Compare both results:</h4>
+                            <p class="fiche-methodology-text-small">If both genders pass (or fail) equivalently — none, partial, or full — the score is <strong>violet</strong>. Otherwise it leans toward <strong>blue</strong> (male more represented) or <strong>pink</strong> (female more represented).</p>
+                        </div>
+                        <div class="fiche-methodology-section">
+                            <h4 class="fiche-methodology-subtitle">3. What it reveals:</h4>
+                            <p class="fiche-methodology-text-small">Applied to contemporary stories, the score very often leans blue: today’s narratives still center male characters.</p>
+                        </div>
+                    </div>
+
+                    <div class="fiche-content-section">
+                        <div class="fiche-badges">
+                            <span class="badge badge-secondary">UX/UI</span>
+                            <span class="badge badge-secondary">Data viz</span>
+                            <span class="badge badge-secondary">Score design</span>
+                            <span class="badge badge-secondary">Bechdel</span>
+                        </div>
+                    </div>
+
+                    <div class="fiche-content-section">
+                        <p class="fiche-data-source">Original concept — visualizing a narrative equity indicator</p>
+                    </div>
+
+                    <div class="fiche-price-box">
+                        <p class="fiche-price">Concept</p>
+                    </div>
+
+                    <div class="fiche-form">
+                        <a href="mailto:natacha.aviat+map@gmail.com?subject=MyFairStory&body=Hello,%0D%0A%0D%0AI would like to know more about MyFairStory.%0D%0A%0D%0AThank you!" class="btn btn-primary fiche-form-submit">Let's talk</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer data-include="../partials/footer.html"></footer>
+
+    <script src="../../js/main.js"></script>
+    <script src="../../js/components.js"></script>
+</body>
+</html>

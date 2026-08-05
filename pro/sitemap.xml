@@ -136,6 +136,12 @@
         <priority>0.7</priority>
     </url>
     <url>
+        <loc>https://natacha-aviat.github.io/pro/fiches/fiche-myfairstory.html</loc>
+        <lastmod>2026-08-05</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    <url>
         <loc>https://natacha-aviat.github.io/pro/cgv.html</loc>
         <lastmod>2025-01-28</lastmod>
         <changefreq>yearly</changefreq>
@@ -248,6 +254,14 @@
         <xhtml:link rel="alternate" hreflang="en" href="https://natacha-aviat.github.io/pro/en/fiches/sheet-bandcamp-discovery.html"/>
         <xhtml:link rel="alternate" hreflang="fr" href="https://natacha-aviat.github.io/pro/fiches/fiche-bandcamp-discovery.html"/>
     </url>
+    <url>
+        <loc>https://natacha-aviat.github.io/pro/fiches/fiche-myfairstory.html</loc>
+        <lastmod>2026-08-05</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+        <xhtml:link rel="alternate" hreflang="en" href="https://natacha-aviat.github.io/pro/en/fiches/sheet-myfairstory.html"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://natacha-aviat.github.io/pro/fiches/fiche-myfairstory.html"/>
+    </url>
     <!-- English fiches -->
     <url>
         <loc>https://natacha-aviat.github.io/pro/en/fiches/sheet-high-schools.html</loc>
@@ -344,5 +358,13 @@
         <priority>0.7</priority>
         <xhtml:link rel="alternate" hreflang="en" href="https://natacha-aviat.github.io/pro/en/fiches/sheet-bandcamp-discovery.html"/>
         <xhtml:link rel="alternate" hreflang="fr" href="https://natacha-aviat.github.io/pro/fiches/fiche-bandcamp-discovery.html"/>
+    </url>
+    <url>
+        <loc>https://natacha-aviat.github.io/pro/en/fiches/sheet-myfairstory.html</loc>
+        <lastmod>2026-08-05</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+        <xhtml:link rel="alternate" hreflang="en" href="https://natacha-aviat.github.io/pro/en/fiches/sheet-myfairstory.html"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://natacha-aviat.github.io/pro/fiches/fiche-myfairstory.html"/>
     </url>
 </urlset>
