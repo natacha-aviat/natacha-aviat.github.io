@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Équipe sans chef — Organisation collective sans hiérarchie | Natacha Aviat</title>
+    <meta name="description" content="Design d'une équipe sans chef : triage lundi, rôles tournants, coaching peer-to-peer, NPS client, consensus d'augmentations. Une organisation flat qui a convaincu l'équipe et les clients.">
+    <meta name="keywords" content="équipe sans chef, organisation sans hiérarchie, self-management, rôles tournants, holacratie, collective, UX organisationnel, Natacha Aviat">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://natacha-aviat.github.io/pro/fiches/fiche-sans-chef.html">
+    <link rel="alternate" hreflang="fr" href="https://natacha-aviat.github.io/pro/fiches/fiche-sans-chef.html">
+    <link rel="alternate" hreflang="en" href="https://natacha-aviat.github.io/pro/en/fiches/sheet-boss-less-team.html">
+    
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://natacha-aviat.github.io/pro/fiches/fiche-sans-chef.html">
+    <meta property="og:title" content="Équipe sans chef — Organisation collective sans hiérarchie">
+    <meta property="og:description" content="Remplacer le chef d'équipe par des rituels collectifs : triage lundi, rôles tournants, feedback client. L'équipe et les clients y ont vu des avantages concrets.">
+    <meta property="og:image" content="https://natacha-aviat.github.io/pro/images/SansChef.svg">
+    
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "CreativeWork",
+        "name": "Équipe sans chef",
+        "description": "Design organisationnel d'une équipe sans hiérarchie : chaque responsabilité classique du chef est remplacée par un mécanisme collectif (triage, rôles tournants, coaching peer-to-peer, NPS client, etc.).",
+        "image": "https://natacha-aviat.github.io/pro/images/SansChef.svg",
+        "url": "https://natacha-aviat.github.io/pro/fiches/fiche-sans-chef.html",
+        "creator": {
+            "@type": "Person",
+            "name": "Natacha Aviat"
+        },
+        "keywords": "sans chef, self-management, organisation flat, rôles tournants"
+    }
+    </script>
+    
+    <meta name="AI:ProductType" content="Design organisationnel">
+    <meta name="AI:Price" content="Concept / cas réel">
+    <meta name="AI:Technologies" content="UX organisationnel, rituels d'équipe, self-management">
+    <meta name="AI:UseCase" content="Faire fonctionner une équipe bilocalisée sans chef d'équipe, avec des mécanismes collectifs">
+    
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/components.css">
+    <style>
+        .swap-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.95rem;
+            margin: 1rem 0 1.5rem;
+        }
+        .swap-table th,
+        .swap-table td {
+            padding: 0.85rem 1rem;
+            text-align: left;
+            vertical-align: top;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .swap-table th {
+            background: var(--bg-light);
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+        .swap-table td:first-child {
+            color: #777;
+            width: 38%;
+        }
+        .swap-table td:last-child {
+            color: var(--text-color);
+        }
+        .swap-table tr:last-child td {
+            border-bottom: none;
+        }
+        @media (max-width: 720px) {
+            .swap-table,
+            .swap-table thead,
+            .swap-table tbody,
+            .swap-table th,
+            .swap-table td,
+            .swap-table tr {
+                display: block;
+            }
+            .swap-table thead { display: none; }
+            .swap-table tr {
+                margin-bottom: 1rem;
+                border: 1px solid var(--border-color);
+                border-radius: 8px;
+                overflow: hidden;
+            }
+            .swap-table td {
+                width: 100%;
+                border-bottom: 1px solid var(--border-color);
+            }
+            .swap-table td:first-child {
+                background: var(--bg-light);
+                font-weight: 600;
+                color: var(--primary-color);
+            }
+        }
+    </style>
+</head>
+<body>
+    <header data-include="../partials/header.html"></header>
+
+    <section class="section">
+        <div class="container">
+            <div data-include="../partials/fiche-back-link.html"></div>
+            <div class="fiche-container">
+                <div>
+                    <div class="fiche-image-container-tool project-image-contain" style="height:auto;min-height:280px;padding:0;background:#2C3E50;">
+                        <img src="../images/SansChef.svg" alt="Équipe sans chef — collectif en cercle avec rôles tournants" loading="lazy" style="height:auto;object-fit:contain;">
+                    </div>
+                </div>
+
+                <div>
+                    <h1 class="mb-2">Équipe sans chef</h1>
+                    
+                    <div class="fiche-content-section">
+                        <p>J’ai conçu le fonctionnement d’une équipe <strong>sans chef</strong> : chaque activité classique du management de proximité est remplacée par un mécanisme collectif clair.</p>
+                        <p>Même les membres au départ réticents ont fini par trouver ça génial — et les clients y ont vu des avantages concrets (réponses fiables, confiance).</p>
+                    </div>
+
+                    <div class="fiche-before-after">
+                        <div>
+                            <h4 class="fiche-before-title">❌ Avant</h4>
+                            <ul>
+                                <li>Goulot d’étranglement côté chef d’équipe</li>
+                                <li>Clients qui relancent pour avoir une réponse</li>
+                                <li>Pouvoir et charge concentrés sur une personne</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 class="fiche-after-title">✅ Après</h4>
+                            <ul>
+                                <li>Triage collectif chaque lundi → réponse le soir même</li>
+                                <li>Rôles tournants, entraide et binômes</li>
+                                <li>Évaluation et augmentations portées par le collectif</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="fiche-content-section" style="margin-top:2.5rem;">
+                <h3 class="fiche-methodology-title">Du chef… au collectif</h3>
+                <p class="fiche-methodology-text-small" style="margin-bottom:1rem;">Chaque responsabilité du chef d’équipe a une contrepartie sans hiérarchie.</p>
+                <div style="overflow-x:auto;">
+                    <table class="swap-table" role="table">
+                        <thead>
+                            <tr>
+                                <th>Rôle classique du chef</th>
+                                <th>Remplacement collectif</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Recevoir les demandes clients et les attribuer</td>
+                                <td>Formulaire + boîtes mail individuelles (au choix du client), puis <strong>réunion de triage chaque lundi</strong>. Les clients savent qu’ils auront une réponse le lundi soir suivant — sans relancer.</td>
+                            </tr>
+                            <tr>
+                                <td>Contact hiérarchie / RH</td>
+                                <td><strong>Rôle tournant</strong> par mandat de 3 ou 6 mois.</td>
+                            </tr>
+                            <tr>
+                                <td>Aide au quotidien, déblocage</td>
+                                <td><strong>Coaching peer-to-peer</strong> (tournant) toutes les 2 semaines + entraide en réunion et hors réunion + travail en binôme + co-développement régulier.</td>
+                            </tr>
+                            <tr>
+                                <td>Évaluation de performance, axes de progression</td>
+                                <td><strong>NPS de l’équipe</strong> (c’est le client qui évalue) + réunion annuelle de feedback collectif par personne.</td>
+                            </tr>
+                            <tr>
+                                <td>Répartition de l’enveloppe d’augmentation</td>
+                                <td>Réunion d’équipe structurée annuelle, <strong>consensus</strong> (avec des personnes matures).</td>
+                            </tr>
+                            <tr>
+                                <td>Validation des notes de frais</td>
+                                <td>Chaîne circulaire : chacun valide les notes d’un autre, qui valide celles d’un autre, etc.</td>
+                            </tr>
+                            <tr>
+                                <td>Communication, mise en valeur du travail</td>
+                                <td>Chacun est aussi responsable que les autres de <strong>faire briller l’équipe</strong>.</td>
+                            </tr>
+                            <tr>
+                                <td>Amélioration continue du fonctionnement</td>
+                                <td><strong>Revue trimestrielle</strong> des règles, modes de fonctionnement et rôles.</td>
+                            </tr>
+                            <tr>
+                                <td>Organiser les journées d’équipe</td>
+                                <td>Rôle tournant, chacun son tour — en alternance Paris / Bruxelles pour une équipe bilocalisée.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="fiche-content-section">
+                <div class="fiche-badges">
+                    <span class="badge badge-secondary">UX organisationnel</span>
+                    <span class="badge badge-secondary">Self-management</span>
+                    <span class="badge badge-secondary">Rituels d’équipe</span>
+                    <span class="badge badge-secondary">Facilitation</span>
+                </div>
+            </div>
+
+            <div class="fiche-content-section">
+                <p class="fiche-data-source">Cas réel — équipe bilocalisée Paris / Bruxelles</p>
+            </div>
+
+            <div class="fiche-price-box">
+                <p class="fiche-price">Cas réel</p>
+            </div>
+
+            <div class="fiche-form">
+                <a href="mailto:natacha.aviat+map@gmail.com?subject=%C3%89quipe%20sans%20chef&body=Bonjour,%0D%0A%0D%0AJe souhaite en savoir plus sur le design d'équipe sans chef.%0D%0A%0D%0AMerci !" class="btn btn-primary fiche-form-submit">En parler</a>
+            </div>
+        </div>
+    </section>
+
+    <footer data-include="../partials/footer.html"></footer>
+
+    <script src="../js/main.js"></script>
+    <script src="../js/components.js"></script>
+</body>
+</html>

@@ -398,6 +398,30 @@ const SEO_CONFIG = {
                 aiUseCase: 'Visualize gender representation balance in a story'
             }
         },
+        'fiche-sans-chef': {
+            fr: {
+                title: 'Équipe sans chef — Organisation collective sans hiérarchie | Natacha Aviat',
+                description: 'Design d\'une équipe sans chef : triage lundi, rôles tournants, coaching peer-to-peer, NPS client. Un cas réel qui a convaincu l\'équipe et les clients.',
+                keywords: 'équipe sans chef, organisation sans hiérarchie, self-management, rôles tournants',
+                ogType: 'product',
+                ogImage: 'https://natacha-aviat.github.io/pro/images/SansChef.svg',
+                aiProductType: 'Design organisationnel',
+                aiPrice: 'Cas réel',
+                aiTechnologies: 'UX organisationnel, rituels, self-management',
+                aiUseCase: 'Faire fonctionner une équipe sans chef via des mécanismes collectifs'
+            },
+            en: {
+                title: 'Boss-less team — Collective organization without hierarchy | Natacha Aviat',
+                description: 'Design of a boss-less team: Monday triage, rotating roles, peer coaching, client NPS. A real case that convinced the team and clients.',
+                keywords: 'boss-less team, self-management, flat organization, rotating roles',
+                ogType: 'product',
+                ogImage: 'https://natacha-aviat.github.io/pro/images/SansChef.svg',
+                aiProductType: 'Organizational design',
+                aiPrice: 'Real case',
+                aiTechnologies: 'Organizational UX, rituals, self-management',
+                aiUseCase: 'Run a team without a boss via collective mechanisms'
+            }
+        },
         'fiche-optimisation-tournees': {
             fr: {
                 title: 'Outil d\'Optimisation de Tournées Logistiques | Gratuit - Natacha Aviat',
@@ -500,7 +524,9 @@ const FICHE_MAPPING = {
     'fiche-bandcamp-discovery.html': { fr: 'fiches/fiche-bandcamp-discovery.html', en: 'en/fiches/sheet-bandcamp-discovery.html' },
     'sheet-bandcamp-discovery.html': { fr: 'fiches/fiche-bandcamp-discovery.html', en: 'en/fiches/sheet-bandcamp-discovery.html' },
     'fiche-myfairstory.html': { fr: 'fiches/fiche-myfairstory.html', en: 'en/fiches/sheet-myfairstory.html' },
-    'sheet-myfairstory.html': { fr: 'fiches/fiche-myfairstory.html', en: 'en/fiches/sheet-myfairstory.html' }
+    'sheet-myfairstory.html': { fr: 'fiches/fiche-myfairstory.html', en: 'en/fiches/sheet-myfairstory.html' },
+    'fiche-sans-chef.html': { fr: 'fiches/fiche-sans-chef.html', en: 'en/fiches/sheet-boss-less-team.html' },
+    'sheet-boss-less-team.html': { fr: 'fiches/fiche-sans-chef.html', en: 'en/fiches/sheet-boss-less-team.html' }
 };
 
 // Export pour utilisation dans d'autres fichiers

@@ -38,6 +38,7 @@ Natacha Aviat est UX/UI designer spécialisée data. Elle conçoit des interface
 - CoûtsIA — estimateur de coûts d'outils IA: /pro/fiches/fiche-coutsia.html (Gratuit) — https://natacha-aviat.github.io/estimation-couts-ia/
 - Bandcamp Advanced Discovery: /pro/fiches/fiche-bandcamp-discovery.html (Sur mesure) — https://natacha-aviat-github-io-2jk3.vercel.app/bandcamp-advanced-discovery — client DJ HoldTight
 - MyFairStory: /pro/fiches/fiche-myfairstory.html (Concept) — score d'équilibre de genre dans les histoires (Bechdel symétrique)
+- Équipe sans chef: /pro/fiches/fiche-sans-chef.html (Cas réel) — organisation collective sans hiérarchie, triage lundi, rôles tournants
 - MedLex (Au Clair): /pro/fiches/fiche-medlex.html (En ligne) — https://natacha-aviat.github.io/MedLex
 - PharmaMaMa: /pro/fiches/fiche-pharmamama.html (En ligne) — https://pharmamama.vercel.app
 - Textes à la pelle: /pro/fiches/fiche-textes-a-la-pelle.html (Gratuit)

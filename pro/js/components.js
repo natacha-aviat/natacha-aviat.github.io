@@ -239,7 +239,9 @@ function getLanguageSwitchUrl(targetLang) {
         'fiche-bandcamp-discovery.html': { fr: 'fiches/fiche-bandcamp-discovery.html', en: 'en/fiches/sheet-bandcamp-discovery.html' },
         'sheet-bandcamp-discovery.html': { fr: 'fiches/fiche-bandcamp-discovery.html', en: 'en/fiches/sheet-bandcamp-discovery.html' },
         'fiche-myfairstory.html': { fr: 'fiches/fiche-myfairstory.html', en: 'en/fiches/sheet-myfairstory.html' },
-        'sheet-myfairstory.html': { fr: 'fiches/fiche-myfairstory.html', en: 'en/fiches/sheet-myfairstory.html' }
+        'sheet-myfairstory.html': { fr: 'fiches/fiche-myfairstory.html', en: 'en/fiches/sheet-myfairstory.html' },
+        'fiche-sans-chef.html': { fr: 'fiches/fiche-sans-chef.html', en: 'en/fiches/sheet-boss-less-team.html' },
+        'sheet-boss-less-team.html': { fr: 'fiches/fiche-sans-chef.html', en: 'en/fiches/sheet-boss-less-team.html' }
     };
     
     let targetPage = '';
