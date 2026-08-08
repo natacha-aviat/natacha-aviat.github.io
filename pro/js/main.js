@@ -43,6 +43,68 @@ function getContactFormFallback() {
 /**
  * Charge les partials HTML (header, footer, contact-form)
  */
+/**
+ * Préfixes relatifs vers /pro/ et /pro/en/ selon la page courante
+ */
+function getSitePathPrefixes() {
+    const pathname = window.location.pathname;
+    const isEn = pathname.includes('/en/');
+    const isFiche = pathname.includes('/fiches/');
+
+    if (isEn && isFiche) {
+        return { toProRoot: '../../', toEnRoot: '../', isEn: true };
+    }
+    if (isFiche) {
+        return { toProRoot: '../', toEnRoot: '../en/', isEn: false };
+    }
+    if (isEn) {
+        return { toProRoot: '../', toEnRoot: '', isEn: true };
+    }
+    return { toProRoot: '', toEnRoot: 'en/', isEn: false };
+}
+
+/**
+ * Corrige les liens header/footer après injection des partials
+ * (les href relatifs du partial cassent depuis /fiches/ ou /en/fiches/)
+ */
+function applyContextualNavPaths() {
+    const { toProRoot, toEnRoot, isEn } = getSitePathPrefixes();
+    const home = (isEn ? toEnRoot : toProRoot) + 'index.html';
+    const projects = isEn ? toEnRoot + 'projects.html' : toProRoot + 'projets.html';
+    const services = (isEn ? toEnRoot : toProRoot) + 'services.html';
+
+    document.querySelectorAll('header a.logo').forEach((a) => {
+        a.setAttribute('href', home);
+    });
+    document.querySelectorAll('header nav a[data-nav="index"]').forEach((a) => {
+        a.setAttribute('href', home);
+    });
+    document.querySelectorAll('header nav a[data-nav="projets"]').forEach((a) => {
+        a.setAttribute('href', projects);
+    });
+    document.querySelectorAll('header nav a[data-nav="services"]').forEach((a) => {
+        a.setAttribute('href', services);
+    });
+
+    const footer = document.querySelector('footer');
+    if (!footer) return;
+
+    footer.querySelectorAll('a').forEach((a) => {
+        const href = a.getAttribute('href') || '';
+        if (href === 'cgv.html' || href === '../cgv.html') {
+            a.setAttribute('href', toProRoot + 'cgv.html');
+        } else if (href === 'terms.html' || href === '../terms.html') {
+            a.setAttribute('href', toEnRoot + 'terms.html');
+        } else if (href === 'index.html#contact' || href.endsWith('index.html#contact')) {
+            a.setAttribute('href', home + '#contact');
+        } else if (href === 'en/index.html' || href.endsWith('/en/index.html')) {
+            a.setAttribute('href', toEnRoot + 'index.html');
+        } else if (href === '../index.html' && a.classList.contains('footer-lang-link')) {
+            a.setAttribute('href', isEn ? toProRoot + 'index.html' : toEnRoot + 'index.html');
+        }
+    });
+}
+
 function loadIncludes() {
     const includeTargets = document.querySelectorAll('[data-include]');
     const requests = Array.from(includeTargets).map((target) => {
@@ -51,7 +113,12 @@ function loadIncludes() {
             return Promise.resolve();
         }
         return fetch(path)
-            .then((response) => response.text())
+            .then((response) => {
+                if (!response.ok) {
+                    throw new Error('Partial fetch failed');
+                }
+                return response.text();
+            })
             .then((html) => {
                 // Pour header et footer, utiliser outerHTML pour remplacer complètement
                 if (path.includes('header.html') || path.includes('footer.html')) {
@@ -81,7 +148,9 @@ function loadIncludes() {
             });
     });
 
-    return Promise.all(requests);
+    return Promise.all(requests).then(() => {
+        applyContextualNavPaths();
+    });
 }
 
 /**
@@ -89,8 +158,7 @@ function loadIncludes() {
  * (réutilise la logique centralisée)
  */
 function getLanguagePaths() {
-    const isFiche = window.location.pathname.includes('/fiches/');
-    const isEn = window.location.pathname.includes('/en/');
+    const { toProRoot, toEnRoot, isEn } = getSitePathPrefixes();
     const currentPath = window.location.pathname;
     const fileName = currentPath.split('/').pop();
     
@@ -112,13 +180,13 @@ function getLanguagePaths() {
             'terms.html': { fr: 'cgv.html', en: 'en/terms.html' }
         };
         const mapping = pageMapping[fileName] || { fr: 'index.html', en: 'en/index.html' };
-        enPath = isEn ? mapping.en : (isFiche ? '../' + mapping.en : mapping.en);
-        frPath = isEn ? (isFiche ? '../../' + mapping.fr : '../' + mapping.fr) : (isFiche ? '../' + mapping.fr : mapping.fr);
+        enPath = mapping.en.startsWith('en/') ? toProRoot + mapping.en : toEnRoot + mapping.en.replace(/^en\//, '');
+        frPath = toProRoot + mapping.fr;
     }
     
-    const indexPath = isFiche ? '../index.html' : (isEn ? '../index.html' : 'index.html');
-    const cartesPath = isFiche ? '../projets.html' : (isEn ? 'projects.html' : 'projets.html');
-    const servicesPath = isFiche ? '../services.html' : (isEn ? 'services.html' : 'services.html');
+    const indexPath = (isEn ? toEnRoot : toProRoot) + 'index.html';
+    const cartesPath = isEn ? toEnRoot + 'projects.html' : toProRoot + 'projets.html';
+    const servicesPath = (isEn ? toEnRoot : toProRoot) + 'services.html';
     
     return { indexPath, cartesPath, servicesPath, enPath, frPath };
 }
@@ -172,12 +240,11 @@ function getHeaderFallback() {
 }
 
 function getFooterFallback() {
-    const isFiche = window.location.pathname.includes('/fiches/');
-    const isEn = window.location.pathname.includes('/en/');
+    const { toProRoot, toEnRoot, isEn } = getSitePathPrefixes();
     const { enPath, frPath } = getLanguagePaths();
     
-    const cgvPath = isFiche ? '../cgv.html' : (isEn ? 'terms.html' : 'cgv.html');
-    const contactPath = isFiche ? '../index.html#contact' : (isEn ? 'index.html#contact' : 'index.html#contact');
+    const cgvPath = isEn ? toEnRoot + 'terms.html' : toProRoot + 'cgv.html';
+    const contactPath = (isEn ? toEnRoot : toProRoot) + 'index.html#contact';
     
     if (isEn) {
         return `
