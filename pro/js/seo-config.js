@@ -422,6 +422,54 @@ const SEO_CONFIG = {
                 aiUseCase: 'Run a team without a boss via collective mechanisms'
             }
         },
+        'fiche-assopilot': {
+            fr: {
+                title: 'AssoPilot — Financement des associations | Natacha Aviat',
+                description: 'SaaS pour associations : veille des appels à projets, candidatures assistées, suivi des financements et fléchage des dépenses.',
+                keywords: 'AssoPilot, association, appels à projets, financement, ESS',
+                ogType: 'product',
+                ogImage: 'https://natacha-aviat.github.io/pro/images/AssoPilot.svg',
+                aiProductType: 'SaaS / outil web',
+                aiPrice: 'En développement',
+                aiTechnologies: 'Next.js, Supabase, TypeScript, Tailwind',
+                aiUseCase: 'Piloter le cycle de financement d\'une association'
+            },
+            en: {
+                title: 'AssoPilot — Funding for nonprofits | Natacha Aviat',
+                description: 'SaaS for associations: funding-call watch, AI-assisted applications, grant tracking and expense allocation.',
+                keywords: 'AssoPilot, nonprofit, funding calls, grants',
+                ogType: 'product',
+                ogImage: 'https://natacha-aviat.github.io/pro/images/AssoPilot.svg',
+                aiProductType: 'SaaS / web tool',
+                aiPrice: 'In development',
+                aiTechnologies: 'Next.js, Supabase, TypeScript, Tailwind',
+                aiUseCase: 'Run an association funding cycle'
+            }
+        },
+        'fiche-mamacollecte': {
+            fr: {
+                title: 'MaMaCollecte — Inscriptions aux collectes | Natacha Aviat',
+                description: 'Outil pour MaMaMa : inscription des bénévoles aux créneaux de collecte en supermarché, par lieu et capacité.',
+                keywords: 'MaMaCollecte, MaMaMa, collecte, bénévoles, créneaux',
+                ogType: 'product',
+                ogImage: 'https://natacha-aviat.github.io/pro/images/MaMaCollecte.svg',
+                aiProductType: 'Outil web opérationnel',
+                aiPrice: 'En développement',
+                aiTechnologies: 'JavaScript, HTML, CSS, API',
+                aiUseCase: 'Inscrire des bénévoles aux créneaux de collecte'
+            },
+            en: {
+                title: 'MaMaCollecte — Collection slot sign-up | Natacha Aviat',
+                description: 'Tool for MaMaMa: volunteer sign-up for supermarket collection slots, by location and capacity.',
+                keywords: 'MaMaCollecte, MaMaMa, food drive, volunteers, slots',
+                ogType: 'product',
+                ogImage: 'https://natacha-aviat.github.io/pro/images/MaMaCollecte.svg',
+                aiProductType: 'Operational web tool',
+                aiPrice: 'In development',
+                aiTechnologies: 'JavaScript, HTML, CSS, API',
+                aiUseCase: 'Sign volunteers up for collection slots'
+            }
+        },
         'fiche-optimisation-tournees': {
             fr: {
                 title: 'Outil d\'Optimisation de Tournées Logistiques | Gratuit - Natacha Aviat',
@@ -526,7 +574,11 @@ const FICHE_MAPPING = {
     'fiche-myfairstory.html': { fr: 'fiches/fiche-myfairstory.html', en: 'en/fiches/sheet-myfairstory.html' },
     'sheet-myfairstory.html': { fr: 'fiches/fiche-myfairstory.html', en: 'en/fiches/sheet-myfairstory.html' },
     'fiche-sans-chef.html': { fr: 'fiches/fiche-sans-chef.html', en: 'en/fiches/sheet-boss-less-team.html' },
-    'sheet-boss-less-team.html': { fr: 'fiches/fiche-sans-chef.html', en: 'en/fiches/sheet-boss-less-team.html' }
+    'sheet-boss-less-team.html': { fr: 'fiches/fiche-sans-chef.html', en: 'en/fiches/sheet-boss-less-team.html' },
+    'fiche-assopilot.html': { fr: 'fiches/fiche-assopilot.html', en: 'en/fiches/sheet-assopilot.html' },
+    'sheet-assopilot.html': { fr: 'fiches/fiche-assopilot.html', en: 'en/fiches/sheet-assopilot.html' },
+    'fiche-mamacollecte.html': { fr: 'fiches/fiche-mamacollecte.html', en: 'en/fiches/sheet-mamacollecte.html' },
+    'sheet-mamacollecte.html': { fr: 'fiches/fiche-mamacollecte.html', en: 'en/fiches/sheet-mamacollecte.html' }
 };
 
 // Export pour utilisation dans d'autres fichiers

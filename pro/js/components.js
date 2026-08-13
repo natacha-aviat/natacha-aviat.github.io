@@ -241,7 +241,11 @@ function getLanguageSwitchUrl(targetLang) {
         'fiche-myfairstory.html': { fr: 'fiches/fiche-myfairstory.html', en: 'en/fiches/sheet-myfairstory.html' },
         'sheet-myfairstory.html': { fr: 'fiches/fiche-myfairstory.html', en: 'en/fiches/sheet-myfairstory.html' },
         'fiche-sans-chef.html': { fr: 'fiches/fiche-sans-chef.html', en: 'en/fiches/sheet-boss-less-team.html' },
-        'sheet-boss-less-team.html': { fr: 'fiches/fiche-sans-chef.html', en: 'en/fiches/sheet-boss-less-team.html' }
+        'sheet-boss-less-team.html': { fr: 'fiches/fiche-sans-chef.html', en: 'en/fiches/sheet-boss-less-team.html' },
+        'fiche-assopilot.html': { fr: 'fiches/fiche-assopilot.html', en: 'en/fiches/sheet-assopilot.html' },
+        'sheet-assopilot.html': { fr: 'fiches/fiche-assopilot.html', en: 'en/fiches/sheet-assopilot.html' },
+        'fiche-mamacollecte.html': { fr: 'fiches/fiche-mamacollecte.html', en: 'en/fiches/sheet-mamacollecte.html' },
+        'sheet-mamacollecte.html': { fr: 'fiches/fiche-mamacollecte.html', en: 'en/fiches/sheet-mamacollecte.html' }
     };
     
     let targetPage = '';

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" role="img" aria-labelledby="t d">
+  <title id="t">AssoPilot</title>
+  <desc id="d">Veille, candidatures et suivi de financement pour associations</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#2a2466"/>
+      <stop offset="55%" stop-color="#534AB7"/>
+      <stop offset="100%" stop-color="#7b73d4"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="800" fill="url(#bg)"/>
+  <rect x="80" y="90" width="1040" height="620" rx="28" fill="#ffffff" fill-opacity="0.12"/>
+  <text x="600" y="200" text-anchor="middle" font-family="Georgia, serif" font-size="64" fill="#FFFFFF" font-weight="700">AssoPilot</text>
+  <text x="600" y="260" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="26" fill="#EDE9FC">Le copilote financement des associations</text>
+
+  <!-- 4 module cards -->
+  <g font-family="Arial, Helvetica, sans-serif">
+    <rect x="140" y="340" width="210" height="220" rx="18" fill="#FFFFFF"/>
+    <text x="245" y="420" text-anchor="middle" font-size="42" fill="#534AB7">1</text>
+    <text x="245" y="480" text-anchor="middle" font-size="22" fill="#2a2466" font-weight="700">Veille</text>
+    <text x="245" y="515" text-anchor="middle" font-size="16" fill="#666">Appels a projets</text>
+
+    <rect x="380" y="340" width="210" height="220" rx="18" fill="#FFFFFF"/>
+    <text x="485" y="420" text-anchor="middle" font-size="42" fill="#534AB7">2</text>
+    <text x="485" y="480" text-anchor="middle" font-size="22" fill="#2a2466" font-weight="700">Candidature</text>
+    <text x="485" y="515" text-anchor="middle" font-size="16" fill="#666">Dossiers IA</text>
+
+    <rect x="620" y="340" width="210" height="220" rx="18" fill="#FFFFFF"/>
+    <text x="725" y="420" text-anchor="middle" font-size="42" fill="#534AB7">3</text>
+    <text x="725" y="480" text-anchor="middle" font-size="22" fill="#2a2466" font-weight="700">Suivi</text>
+    <text x="725" y="515" text-anchor="middle" font-size="16" fill="#666">Dons &amp; versements</text>
+
+    <rect x="860" y="340" width="210" height="220" rx="18" fill="#FFFFFF"/>
+    <text x="965" y="420" text-anchor="middle" font-size="42" fill="#534AB7">4</text>
+    <text x="965" y="480" text-anchor="middle" font-size="22" fill="#2a2466" font-weight="700">Flechage</text>
+    <text x="965" y="515" text-anchor="middle" font-size="16" fill="#666">Depenses / fonds</text>
+  </g>
+</svg>

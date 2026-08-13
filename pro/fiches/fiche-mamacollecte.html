@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>MaMaCollecte — Inscriptions aux collectes | Natacha Aviat</title>
+    <meta name="description" content="MaMaCollecte : outil web pour l'association MaMaMa — inscription des bénévoles aux créneaux de collecte en supermarché, par lieu et capacité.">
+    <meta name="keywords" content="MaMaCollecte, MaMaMa, collecte alimentaire, bénévoles, créneaux, association, Natacha Aviat">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://natacha-aviat.github.io/pro/fiches/fiche-mamacollecte.html">
+    <link rel="alternate" hreflang="fr" href="https://natacha-aviat.github.io/pro/fiches/fiche-mamacollecte.html">
+    <link rel="alternate" hreflang="en" href="https://natacha-aviat.github.io/pro/en/fiches/sheet-mamacollecte.html">
+    
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://natacha-aviat.github.io/pro/fiches/fiche-mamacollecte.html">
+    <meta property="og:title" content="MaMaCollecte — Inscriptions aux collectes">
+    <meta property="og:description" content="Inscription des bénévoles aux créneaux de collecte : lieux, calendrier et capacité.">
+    <meta property="og:image" content="https://natacha-aviat.github.io/pro/images/MaMaCollecte.svg">
+    
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "MaMaCollecte",
+        "description": "Outil web pour l'association MaMaMa : inscription des bénévoles aux créneaux de collecte en supermarché, avec filtres par lieu et gestion des capacités.",
+        "image": "https://natacha-aviat.github.io/pro/images/MaMaCollecte.svg",
+        "applicationCategory": "ProductivityApplication",
+        "operatingSystem": "Web",
+        "url": "https://github.com/natacha-aviat/MaMaCollecte",
+        "offers": {
+            "@type": "Offer",
+            "priceCurrency": "EUR",
+            "availability": "https://schema.org/PreOrder"
+        },
+        "creator": {
+            "@type": "Person",
+            "name": "Natacha Aviat"
+        },
+        "keywords": "MaMaCollecte, MaMaMa, collecte, bénévoles, créneaux",
+        "additionalProperty": [
+            {
+                "@type": "PropertyValue",
+                "name": "Client",
+                "value": "Association MaMaMa"
+            }
+        ]
+    }
+    </script>
+    
+    <meta name="AI:ProductType" content="Outil web opérationnel">
+    <meta name="AI:Price" content="En développement">
+    <meta name="AI:Technologies" content="JavaScript, HTML, CSS, API Vercel">
+    <meta name="AI:UseCase" content="Inscrire des bénévoles aux créneaux de collecte alimentaire">
+    
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/components.css">
+</head>
+<body>
+    <header data-include="../partials/header.html"></header>
+
+    <section class="section">
+        <div class="container">
+            <div data-include="../partials/fiche-back-link.html"></div>
+            <div class="fiche-container">
+                <div>
+                    <div class="fiche-image-container-tool project-image-contain" style="height:auto;min-height:280px;padding:0;background:#2C3E50;">
+                        <img src="../images/MaMaCollecte.svg" alt="MaMaCollecte — lieux, créneaux et inscriptions" loading="lazy" style="height:auto;object-fit:contain;">
+                    </div>
+                </div>
+
+                <div>
+                    <h1 class="mb-2">MaMaCollecte</h1>
+                    
+                    <div class="fiche-content-section">
+                        <p>Outil web pour <a href="https://www.asso-mamama.fr" target="_blank" rel="noopener">l'association MaMaMa</a> : permettre aux bénévoles de s'inscrire aux <strong>créneaux de collecte</strong> en supermarché (produits bébé et hygiène), avec filtre par lieu et suivi des places restantes.</p>
+                    </div>
+
+                    <div class="fiche-before-after">
+                        <div>
+                            <h4 class="fiche-before-title">❌ Avant</h4>
+                            <ul>
+                                <li>Inscriptions gérées à la main (messages, tableaux)</li>
+                                <li>Créneaux surbookés ou vides selon les lieux</li>
+                                <li>Peu de visibilité sur ses propres inscriptions</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 class="fiche-after-title">✅ Après</h4>
+                            <ul>
+                                <li>Choix du lieu + calendrier des créneaux disponibles</li>
+                                <li>Capacité restante affichée en direct</li>
+                                <li>Confirmation et suivi des inscriptions par téléphone</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="fiche-content-section">
+                        <h3 class="fiche-methodology-title">Parcours bénévole</h3>
+                        <div class="fiche-methodology-section">
+                            <h4 class="fiche-methodology-subtitle">1. Lieux</h4>
+                            <p class="fiche-methodology-text">Sélectionner un ou plusieurs points de collecte.</p>
+                        </div>
+                        <div class="fiche-methodology-section">
+                            <h4 class="fiche-methodology-subtitle">2. Créneaux</h4>
+                            <p class="fiche-methodology-text-small">Parcourir le calendrier et voir la capacité restante.</p>
+                        </div>
+                        <div class="fiche-methodology-section">
+                            <h4 class="fiche-methodology-subtitle">3. Inscription</h4>
+                            <p class="fiche-methodology-text-small">Renseigner identité et contact, confirmer le créneau.</p>
+                        </div>
+                    </div>
+
+                    <div class="fiche-content-section">
+                        <div class="fiche-badges">
+                            <span class="badge badge-secondary">JavaScript</span>
+                            <span class="badge badge-secondary">HTML/CSS</span>
+                            <span class="badge badge-secondary">API</span>
+                            <span class="badge badge-secondary">UX/UI</span>
+                        </div>
+                    </div>
+
+                    <div class="fiche-content-section">
+                        <p class="fiche-data-source">Projet porté par MaMaMa — dépôt GitHub</p>
+                    </div>
+
+                    <div class="fiche-price-box">
+                        <p class="fiche-price">En développement</p>
+                    </div>
+
+                    <div class="fiche-form">
+                        <a href="https://github.com/natacha-aviat/MaMaCollecte" target="_blank" rel="noopener" class="btn btn-primary fiche-form-submit">Voir le dépôt</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer data-include="../partials/footer.html"></footer>
+
+    <script src="../js/main.js"></script>
+    <script src="../js/components.js"></script>
+</body>
+</html>

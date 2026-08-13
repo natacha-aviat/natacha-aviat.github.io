@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DecimalClock — l’heure en .beat</title>
+  <meta name="description" content="Horloge décimale : l’heure classique et son équivalent en .beat, le dixième de journée.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <div class="noise" aria-hidden="true"></div>
+
+  <div class="wrap">
+    <header class="topbar">
+      <p class="brand">Decimal<span>Clock</span></p>
+      <p class="hint" id="dateLabel"></p>
+    </header>
+
+    <main>
+      <p class="pair" id="pairLine" aria-live="polite">—</p>
+
+      <div class="clocks">
+        <section class="face" aria-labelledby="classicTitle">
+          <h2 id="classicTitle">Heure classique</h2>
+          <p class="digits" id="classicTime">—</p>
+          <p class="unit">24 heures · 60 minutes</p>
+        </section>
+
+        <div class="ring-wrap" aria-hidden="true">
+          <svg class="ring" viewBox="0 0 200 200" role="img">
+            <title>Progression de la journée en dix .beat</title>
+            <circle class="ring-track" cx="100" cy="100" r="82" />
+            <circle class="ring-progress" id="ringProgress" cx="100" cy="100" r="82" />
+          </svg>
+          <ol class="ring-marks" id="ringMarks"></ol>
+        </div>
+
+        <section class="face beat" aria-labelledby="beatTitle">
+          <h2 id="beatTitle">Temps décimal</h2>
+          <p class="digits" id="beatTime">—</p>
+          <p class="unit">.beat · dixième de journée</p>
+        </section>
+      </div>
+
+      <p class="lede">
+        Une journée = <strong>10 .beat</strong>.
+        Minuit vaut <span class="mono">0:00</span>, midi <span class="mono">5:00</span>.
+        Chaque .beat dure 2&nbsp;h&nbsp;24, chaque centième 1&nbsp;min&nbsp;26,4&nbsp;s.
+      </p>
+    </main>
+
+    <footer>
+      <a href="../pro/index.html">natacha-aviat.github.io</a>
+    </footer>
+  </div>
+
+  <script src="js/clock.js" defer></script>
+</body>
+</html>

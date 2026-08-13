@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" role="img" aria-labelledby="t d">
+  <title id="t">MaMaCollecte</title>
+  <desc id="d">Inscriptions aux créneaux de collecte pour l'association MaMaMa</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#1a2836"/>
+      <stop offset="55%" stop-color="#2C3E50"/>
+      <stop offset="100%" stop-color="#3d566e"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="800" fill="url(#bg)"/>
+  <rect x="80" y="90" width="1040" height="620" rx="28" fill="#ffffff" fill-opacity="0.1"/>
+  <text x="600" y="200" text-anchor="middle" font-family="Georgia, serif" font-size="64" fill="#FFFFFF" font-weight="700">MaMaCollecte</text>
+  <text x="600" y="260" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="26" fill="#FFE082">Créneaux de collecte pour bénévoles</text>
+
+  <g font-family="Arial, Helvetica, sans-serif">
+    <rect x="160" y="340" width="260" height="220" rx="18" fill="#FFFFFF"/>
+    <rect x="190" y="375" width="200" height="36" rx="8" fill="#FFC107"/>
+    <text x="290" y="400" text-anchor="middle" font-size="18" fill="#2C3E50" font-weight="700">Lieux</text>
+    <text x="290" y="470" text-anchor="middle" font-size="20" fill="#2C3E50" font-weight="700">Choisir un magasin</text>
+    <text x="290" y="505" text-anchor="middle" font-size="15" fill="#666">Filtres multi-sites</text>
+
+    <rect x="470" y="340" width="260" height="220" rx="18" fill="#FFFFFF"/>
+    <rect x="500" y="375" width="200" height="36" rx="8" fill="#FFC107"/>
+    <text x="600" y="400" text-anchor="middle" font-size="18" fill="#2C3E50" font-weight="700">Créneaux</text>
+    <text x="600" y="470" text-anchor="middle" font-size="20" fill="#2C3E50" font-weight="700">Calendrier</text>
+    <text x="600" y="505" text-anchor="middle" font-size="15" fill="#666">Capacité restante</text>
+
+    <rect x="780" y="340" width="260" height="220" rx="18" fill="#FFFFFF"/>
+    <rect x="810" y="375" width="200" height="36" rx="8" fill="#FFC107"/>
+    <text x="910" y="400" text-anchor="middle" font-size="18" fill="#2C3E50" font-weight="700">Inscription</text>
+    <text x="910" y="470" text-anchor="middle" font-size="20" fill="#2C3E50" font-weight="700">Confirmer</text>
+    <text x="910" y="505" text-anchor="middle" font-size="15" fill="#666">Suivi des créneaux</text>
+  </g>
+</svg>

@@ -148,6 +148,18 @@
         <priority>0.7</priority>
     </url>
     <url>
+        <loc>https://natacha-aviat.github.io/pro/fiches/fiche-assopilot.html</loc>
+        <lastmod>2026-08-08</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    <url>
+        <loc>https://natacha-aviat.github.io/pro/fiches/fiche-mamacollecte.html</loc>
+        <lastmod>2026-08-08</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    <url>
         <loc>https://natacha-aviat.github.io/pro/cgv.html</loc>
         <lastmod>2025-01-28</lastmod>
         <changefreq>yearly</changefreq>
@@ -276,6 +288,22 @@
         <xhtml:link rel="alternate" hreflang="en" href="https://natacha-aviat.github.io/pro/en/fiches/sheet-boss-less-team.html"/>
         <xhtml:link rel="alternate" hreflang="fr" href="https://natacha-aviat.github.io/pro/fiches/fiche-sans-chef.html"/>
     </url>
+    <url>
+        <loc>https://natacha-aviat.github.io/pro/fiches/fiche-assopilot.html</loc>
+        <lastmod>2026-08-08</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+        <xhtml:link rel="alternate" hreflang="en" href="https://natacha-aviat.github.io/pro/en/fiches/sheet-assopilot.html"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://natacha-aviat.github.io/pro/fiches/fiche-assopilot.html"/>
+    </url>
+    <url>
+        <loc>https://natacha-aviat.github.io/pro/fiches/fiche-mamacollecte.html</loc>
+        <lastmod>2026-08-08</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+        <xhtml:link rel="alternate" hreflang="en" href="https://natacha-aviat.github.io/pro/en/fiches/sheet-mamacollecte.html"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://natacha-aviat.github.io/pro/fiches/fiche-mamacollecte.html"/>
+    </url>
     <!-- English fiches -->
     <url>
         <loc>https://natacha-aviat.github.io/pro/en/fiches/sheet-high-schools.html</loc>
@@ -388,5 +416,21 @@
         <priority>0.7</priority>
         <xhtml:link rel="alternate" hreflang="en" href="https://natacha-aviat.github.io/pro/en/fiches/sheet-boss-less-team.html"/>
         <xhtml:link rel="alternate" hreflang="fr" href="https://natacha-aviat.github.io/pro/fiches/fiche-sans-chef.html"/>
+    </url>
+    <url>
+        <loc>https://natacha-aviat.github.io/pro/en/fiches/sheet-assopilot.html</loc>
+        <lastmod>2026-08-08</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+        <xhtml:link rel="alternate" hreflang="en" href="https://natacha-aviat.github.io/pro/en/fiches/sheet-assopilot.html"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://natacha-aviat.github.io/pro/fiches/fiche-assopilot.html"/>
+    </url>
+    <url>
+        <loc>https://natacha-aviat.github.io/pro/en/fiches/sheet-mamacollecte.html</loc>
+        <lastmod>2026-08-08</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+        <xhtml:link rel="alternate" hreflang="en" href="https://natacha-aviat.github.io/pro/en/fiches/sheet-mamacollecte.html"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://natacha-aviat.github.io/pro/fiches/fiche-mamacollecte.html"/>
     </url>
 </urlset>
