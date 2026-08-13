@@ -33,7 +33,7 @@ body {
 .wrap {
   position: relative;
   z-index: 1;
-  max-width: 720px;
+  max-width: 780px;
   margin: 0 auto;
   padding: 1.5rem 1.25rem 3rem;
   min-height: 100vh;
@@ -74,8 +74,8 @@ body {
 
 .clocks {
   display: grid;
-  grid-template-columns: 1fr auto 1fr;
-  align-items: center;
+  grid-template-columns: 1fr 1fr;
+  align-items: stretch;
   gap: 1.25rem;
   margin-bottom: 2.5rem;
 }
@@ -84,9 +84,12 @@ body {
   background: var(--paper-2);
   border: 1px solid var(--line);
   border-radius: 16px;
-  padding: 1.25rem 1rem 1.35rem;
+  padding: 1.25rem 1rem 1.5rem;
   text-align: center;
   min-width: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .face.decimal { border-color: #5a4630; }
@@ -116,22 +119,28 @@ body {
   color: var(--muted);
 }
 
-.ring-wrap {
-  position: relative;
-  width: 176px;
-  height: 176px;
+.dial-wrap {
+  width: min(220px, 100%);
+  aspect-ratio: 1;
+  margin-top: 1.15rem;
 }
 
-.ring {
+.dial {
   width: 100%;
   height: 100%;
-  transform: rotate(-90deg);
+  display: block;
+}
+
+.dial-disc {
+  fill: #161910;
+  stroke: var(--line);
+  stroke-width: 1.25;
 }
 
 .ring-track,
 .ring-progress {
   fill: none;
-  stroke-width: 7;
+  stroke-width: 5;
 }
 
 .ring-track { stroke: var(--line); }
@@ -144,48 +153,74 @@ body {
 }
 
 .tick-unit,
-.tick-tenth {
+.tick-tenth,
+.tick-hour,
+.tick-minute {
   stroke-linecap: square;
 }
 
-.tick-unit {
+.tick-unit,
+.tick-hour {
   stroke: var(--ink);
   stroke-width: 1.5;
 }
 
-.tick-tenth {
+.tick-tenth,
+.tick-minute {
   stroke: var(--muted);
   stroke-width: 0.85;
 }
 
-.ring-marks {
-  position: absolute;
-  inset: 0;
-  list-style: none;
-}
-
-.ring-marks li {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  width: 1.1rem;
-  margin-left: -0.55rem;
-  margin-top: -0.55rem;
+.dial-num {
+  fill: var(--muted);
   font-family: var(--font-mono);
-  font-size: 0.62rem;
-  color: var(--muted);
-  text-align: center;
-  line-height: 1.1rem;
+  font-size: 11px;
 }
 
-.ring-marks li.now { color: var(--gold); font-weight: 500; }
+.dial-num.now { fill: var(--gold); font-weight: 500; }
+
+.hand {
+  stroke-linecap: round;
+  transform-origin: 100px 100px;
+}
+
+.hand.hour {
+  stroke: var(--ink);
+  stroke-width: 3.2;
+}
+
+.hand.minute {
+  stroke: var(--ink);
+  stroke-width: 2;
+}
+
+.hand.second {
+  stroke: #c45c4a;
+  stroke-width: 1.1;
+}
+
+.hand.unit {
+  stroke: var(--gold-soft);
+  stroke-width: 3.2;
+}
+
+.hand.hundredth {
+  stroke: var(--gold);
+  stroke-width: 2;
+}
+
+.dial-cap {
+  fill: var(--ink);
+}
+
+.dial-cap.gold { fill: var(--gold); }
 
 .lede {
   color: var(--muted);
   font-size: 0.95rem;
   text-align: center;
   max-width: 36rem;
-  margin: 0 auto;
+  margin: 0 auto 1rem;
 }
 
 .lede strong { color: var(--ink); font-weight: 700; }
@@ -193,6 +228,36 @@ body {
 .mono {
   font-family: var(--font-mono);
   color: var(--gold-soft);
+}
+
+.durations {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.65rem;
+  max-width: 36rem;
+  margin: 0 auto;
+}
+
+.durations li {
+  background: var(--paper-2);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 0.7rem 0.5rem;
+  text-align: center;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  color: var(--ink);
+}
+
+.durations span {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 0.68rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 0.25rem;
 }
 
 footer {
@@ -210,12 +275,10 @@ footer a {
 footer a:hover { color: var(--ink); }
 
 @media (max-width: 640px) {
-  .clocks {
+  .clocks,
+  .durations {
     grid-template-columns: 1fr;
-    justify-items: center;
   }
 
   .face { width: 100%; }
-
-  .ring-wrap { order: -1; }
 }

@@ -27,30 +27,49 @@
           <h2 id="classicTitle">Heure classique</h2>
           <p class="digits" id="classicTime">—</p>
           <p class="unit">24 heures · 60 minutes</p>
+          <div class="dial-wrap">
+            <svg class="dial" viewBox="0 0 200 200" role="img">
+              <title>Horloge analogique</title>
+              <circle class="dial-disc" cx="100" cy="100" r="96" />
+              <g id="classicTicks"></g>
+              <g id="classicNums"></g>
+              <line id="handHour" class="hand hour" x1="100" y1="100" x2="100" y2="52" />
+              <line id="handMinute" class="hand minute" x1="100" y1="100" x2="100" y2="34" />
+              <line id="handSecond" class="hand second" x1="100" y1="110" x2="100" y2="28" />
+              <circle class="dial-cap" cx="100" cy="100" r="3.5" />
+            </svg>
+          </div>
         </section>
-
-        <div class="ring-wrap" aria-hidden="true">
-          <svg class="ring" viewBox="0 0 200 200" role="img">
-            <title>Progression de la journée en dix unités</title>
-            <circle class="ring-track" cx="100" cy="100" r="82" />
-            <circle class="ring-progress" id="ringProgress" cx="100" cy="100" r="82" />
-            <g id="ringTicks"></g>
-          </svg>
-          <ol class="ring-marks" id="ringMarks"></ol>
-        </div>
 
         <section class="face decimal" aria-labelledby="decimalTitle">
           <h2 id="decimalTitle">Temps décimal</h2>
           <p class="digits" id="decimalTime">—</p>
           <p class="unit">10 unités par journée</p>
+          <div class="dial-wrap">
+            <svg class="dial" viewBox="0 0 200 200" role="img">
+              <title>Horloge décimale</title>
+              <circle class="dial-disc" cx="100" cy="100" r="96" />
+              <circle class="ring-track" cx="100" cy="100" r="82" transform="rotate(-90 100 100)" />
+              <circle class="ring-progress" id="ringProgress" cx="100" cy="100" r="82" transform="rotate(-90 100 100)" />
+              <g id="ringTicks"></g>
+              <g id="ringMarks"></g>
+              <line id="handUnit" class="hand unit" x1="100" y1="100" x2="100" y2="48" />
+              <line id="handHundredth" class="hand hundredth" x1="100" y1="100" x2="100" y2="32" />
+              <circle class="dial-cap gold" cx="100" cy="100" r="3.5" />
+            </svg>
+          </div>
         </section>
       </div>
 
       <p class="lede">
         Une journée = <strong>10 unités</strong>.
         Minuit vaut <span class="mono">0•00</span>, midi <span class="mono">5•00</span>.
-        Chaque unité dure 2&nbsp;h&nbsp;24, chaque centième 1&nbsp;min&nbsp;26,4&nbsp;s.
       </p>
+      <ul class="durations">
+        <li><span>1 unité</span> 2&nbsp;h&nbsp;24</li>
+        <li><span>1 dixième d’unité</span> 14&nbsp;min&nbsp;24&nbsp;s</li>
+        <li><span>1 centième d’unité</span> 1&nbsp;min&nbsp;26,4&nbsp;s</li>
+      </ul>
     </main>
 
     <footer>
@@ -58,6 +77,6 @@
     </footer>
   </div>
 
-  <script src="js/clock.js?v=3" defer></script>
+  <script src="js/clock.js?v=4" defer></script>
 </body>
 </html>

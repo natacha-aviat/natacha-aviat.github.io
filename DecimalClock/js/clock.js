@@ -30,7 +30,7 @@
       minor = 0;
     }
     if (major >= 10) major = 0;
-    return { major: major, minor: minor };
+    return { major: major, minor: minor, raw: tenths };
   }
 
   function formatClassic(now) {
@@ -53,41 +53,86 @@
     if (el) el.textContent = value;
   }
 
-  function placeTicks(ringTicks) {
-    if (!ringTicks) return;
-    while (ringTicks.firstChild) {
-      ringTicks.removeChild(ringTicks.firstChild);
+  function rotateHand(el, degrees) {
+    if (el) el.setAttribute("transform", "rotate(" + degrees + " 100 100)");
+  }
+
+  function addLine(parent, className, x1, y1, x2, y2) {
+    var line = document.createElementNS(SVG_NS, "line");
+    line.setAttribute("class", className);
+    line.setAttribute("x1", x1.toFixed(2));
+    line.setAttribute("y1", y1.toFixed(2));
+    line.setAttribute("x2", x2.toFixed(2));
+    line.setAttribute("y2", y2.toFixed(2));
+    parent.appendChild(line);
+  }
+
+  function addNum(parent, label, x, y) {
+    var text = document.createElementNS(SVG_NS, "text");
+    text.setAttribute("class", "dial-num");
+    text.setAttribute("x", x.toFixed(2));
+    text.setAttribute("y", y.toFixed(2));
+    text.setAttribute("text-anchor", "middle");
+    text.setAttribute("dominant-baseline", "middle");
+    text.textContent = String(label);
+    parent.appendChild(text);
+  }
+
+  function clear(el) {
+    if (!el) return;
+    while (el.firstChild) el.removeChild(el.firstChild);
+  }
+
+  function placeClassicFace(ticks, nums) {
+    if (!ticks || !nums) return;
+    clear(ticks);
+    clear(nums);
+    var cx = 100;
+    var cy = 100;
+    for (var i = 0; i < 60; i++) {
+      var isHour = i % 5 === 0;
+      var angle = (i / 60) * 2 * Math.PI - Math.PI / 2;
+      var inner = isHour ? 78 : 84;
+      var outer = 92;
+      addLine(
+        ticks,
+        isHour ? "tick-hour" : "tick-minute",
+        cx + Math.cos(angle) * inner,
+        cy + Math.sin(angle) * inner,
+        cx + Math.cos(angle) * outer,
+        cy + Math.sin(angle) * outer
+      );
     }
+    for (var h = 1; h <= 12; h++) {
+      var a = (h / 12) * 2 * Math.PI - Math.PI / 2;
+      addNum(nums, h, cx + Math.cos(a) * 66, cy + Math.sin(a) * 66);
+    }
+  }
+
+  function placeDecimalFace(ticks, marks) {
+    if (!ticks || !marks) return;
+    clear(ticks);
+    clear(marks);
     var cx = 100;
     var cy = 100;
     for (var i = 0; i < 100; i++) {
       var isUnit = i % 10 === 0;
-      var angle = (i / 100) * 2 * Math.PI;
-      var inner = isUnit ? 73 : 78;
-      var outer = isUnit ? 94 : 88;
-      var line = document.createElementNS(SVG_NS, "line");
-      line.setAttribute("class", isUnit ? "tick-unit" : "tick-tenth");
-      line.setAttribute("x1", (cx + Math.cos(angle) * inner).toFixed(2));
-      line.setAttribute("y1", (cy + Math.sin(angle) * inner).toFixed(2));
-      line.setAttribute("x2", (cx + Math.cos(angle) * outer).toFixed(2));
-      line.setAttribute("y2", (cy + Math.sin(angle) * outer).toFixed(2));
-      ringTicks.appendChild(line);
+      var angle = (i / 100) * 2 * Math.PI - Math.PI / 2;
+      var inner = isUnit ? 74 : 80;
+      var outer = isUnit ? 93 : 88;
+      addLine(
+        ticks,
+        isUnit ? "tick-unit" : "tick-tenth",
+        cx + Math.cos(angle) * inner,
+        cy + Math.sin(angle) * inner,
+        cx + Math.cos(angle) * outer,
+        cy + Math.sin(angle) * outer
+      );
     }
-  }
-
-  function placeMarks(ringMarks) {
-    if (!ringMarks) return;
-    var html = "";
-    for (var i = 0; i < 10; i++) {
-      var angle = (i / 10) * 2 * Math.PI - Math.PI / 2;
-      var x = 50 + Math.cos(angle) * 32;
-      var y = 50 + Math.sin(angle) * 32;
-      html +=
-        '<li data-unit="' + i + '" style="left:' + x + "%;top:" + y + '%">' +
-        i +
-        "</li>";
+    for (var u = 0; u < 10; u++) {
+      var ua = (u / 10) * 2 * Math.PI - Math.PI / 2;
+      addNum(marks, u, cx + Math.cos(ua) * 62, cy + Math.sin(ua) * 62);
     }
-    ringMarks.innerHTML = html;
   }
 
   function start() {
@@ -98,20 +143,37 @@
     var ringProgress = document.getElementById("ringProgress");
     var ringTicks = document.getElementById("ringTicks");
     var ringMarks = document.getElementById("ringMarks");
+    var classicTicks = document.getElementById("classicTicks");
+    var classicNums = document.getElementById("classicNums");
+    var handHour = document.getElementById("handHour");
+    var handMinute = document.getElementById("handMinute");
+    var handSecond = document.getElementById("handSecond");
+    var handUnit = document.getElementById("handUnit");
+    var handHundredth = document.getElementById("handHundredth");
 
-    placeTicks(ringTicks);
-    placeMarks(ringMarks);
+    placeClassicFace(classicTicks, classicNums);
+    placeDecimalFace(ringTicks, ringMarks);
 
     function tick() {
       var now = new Date();
       var fraction = fractionOfDay(now);
       var decimal = toDecimal(fraction);
       var decimalLabel = formatDecimal(decimal);
+      var ms = now.getMilliseconds();
+      var seconds = now.getSeconds() + ms / 1000;
+      var minutes = now.getMinutes() + seconds / 60;
+      var hours = (now.getHours() % 12) + minutes / 60;
 
       setText(classicTime, formatClassicFull(now));
       setText(decimalTime, decimalLabel);
       setText(pairLine, formatClassic(now) + "  —  " + decimalLabel);
       setText(dateLabel, formatDate(now));
+
+      rotateHand(handHour, hours * 30);
+      rotateHand(handMinute, minutes * 6);
+      rotateHand(handSecond, seconds * 6);
+      rotateHand(handUnit, (decimal.raw % 10) * 36);
+      rotateHand(handHundredth, (decimal.raw % 1) * 360);
 
       if (ringProgress) {
         ringProgress.style.strokeDashoffset = String(CIRCUMFERENCE * (1 - fraction));
@@ -126,7 +188,7 @@
     }
 
     tick();
-    setInterval(tick, 200);
+    setInterval(tick, 50);
   }
 
   if (document.readyState === "loading") {
