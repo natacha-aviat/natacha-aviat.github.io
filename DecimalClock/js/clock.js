@@ -10,6 +10,7 @@
   var decimalTime = document.getElementById("decimalTime");
   var dateLabel = document.getElementById("dateLabel");
   var ringProgress = document.getElementById("ringProgress");
+  var ringTicks = document.getElementById("ringTicks");
   var ringMarks = document.getElementById("ringMarks");
 
   function pad(n) {
@@ -48,19 +49,42 @@
   }
 
   function formatDecimal(decimal) {
-    return decimal.major + "•" + pad(decimal.minor);
+    return decimal.major + "\u2022" + pad(decimal.minor);
   }
 
   function formatDate(now) {
     return now.getDate() + " " + MONTHS[now.getMonth()] + " " + now.getFullYear();
   }
 
+  function placeTicks() {
+    if (!ringTicks) return;
+    var svgNS = "http://www.w3.org/2000/svg";
+    while (ringTicks.firstChild) {
+      ringTicks.removeChild(ringTicks.firstChild);
+    }
+    var cx = 100;
+    var cy = 100;
+    for (var i = 0; i < 100; i++) {
+      var isUnit = i % 10 === 0;
+      var angle = (i / 100) * 2 * Math.PI;
+      var inner = isUnit ? 73 : 78;
+      var outer = isUnit ? 94 : 88;
+      var line = document.createElementNS(svgNS, "line");
+      line.setAttribute("class", isUnit ? "tick-unit" : "tick-tenth");
+      line.setAttribute("x1", (cx + Math.cos(angle) * inner).toFixed(2));
+      line.setAttribute("y1", (cy + Math.sin(angle) * inner).toFixed(2));
+      line.setAttribute("x2", (cx + Math.cos(angle) * outer).toFixed(2));
+      line.setAttribute("y2", (cy + Math.sin(angle) * outer).toFixed(2));
+      ringTicks.appendChild(line);
+    }
+  }
+
   function placeMarks() {
     var html = "";
     for (var i = 0; i < 10; i++) {
       var angle = (i / 10) * 2 * Math.PI - Math.PI / 2;
-      var x = 50 + Math.cos(angle) * 38;
-      var y = 50 + Math.sin(angle) * 38;
+      var x = 50 + Math.cos(angle) * 32;
+      var y = 50 + Math.sin(angle) * 32;
       html +=
         '<li data-unit="' + i + '" style="left:' + x + "%;top:" + y + '%">' +
         i +
@@ -73,21 +97,31 @@
     var now = new Date();
     var fraction = fractionOfDay(now);
     var decimal = toDecimal(fraction);
+    var decimalLabel = formatDecimal(decimal);
 
-    classicTime.textContent = formatClassicFull(now);
-    decimalTime.textContent = formatDecimal(decimal);
-    pairLine.textContent = formatClassic(now) + "  —  " + formatDecimal(decimal);
-    dateLabel.textContent = formatDate(now);
+    if (classicTime) classicTime.textContent = formatClassicFull(now);
+    if (decimalTime) decimalTime.textContent = decimalLabel;
+    if (pairLine) pairLine.textContent = formatClassic(now) + "  —  " + decimalLabel;
+    if (dateLabel) dateLabel.textContent = formatDate(now);
 
-    ringProgress.style.strokeDashoffset = String(CIRCUMFERENCE * (1 - fraction));
+    if (ringProgress) {
+      ringProgress.style.strokeDashoffset = String(CIRCUMFERENCE * (1 - fraction));
+    }
 
-    var marks = ringMarks.children;
-    for (var i = 0; i < marks.length; i++) {
-      marks[i].classList.toggle("now", i === decimal.major);
+    if (ringMarks) {
+      var marks = ringMarks.children;
+      for (var i = 0; i < marks.length; i++) {
+        marks[i].classList.toggle("now", i === decimal.major);
+      }
     }
   }
 
-  placeMarks();
+  try {
+    placeTicks();
+    placeMarks();
+  } catch (err) {
+    /* l’horloge continue même si les graduations échouent */
+  }
   tick();
   setInterval(tick, 200);
 })();

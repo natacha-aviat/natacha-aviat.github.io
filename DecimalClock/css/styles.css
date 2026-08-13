@@ -118,8 +118,8 @@ body {
 
 .ring-wrap {
   position: relative;
-  width: 148px;
-  height: 148px;
+  width: 176px;
+  height: 176px;
 }
 
 .ring {
@@ -141,6 +141,21 @@ body {
   stroke-linecap: round;
   stroke-dasharray: 515.22;
   stroke-dashoffset: 515.22;
+}
+
+.tick-unit,
+.tick-tenth {
+  stroke-linecap: square;
+}
+
+.tick-unit {
+  stroke: var(--ink);
+  stroke-width: 1.5;
+}
+
+.tick-tenth {
+  stroke: var(--muted);
+  stroke-width: 0.85;
 }
 
 .ring-marks {
