@@ -4,14 +4,7 @@
     "janvier", "février", "mars", "avril", "mai", "juin",
     "juillet", "août", "septembre", "octobre", "novembre", "décembre"
   ];
-
-  var pairLine = document.getElementById("pairLine");
-  var classicTime = document.getElementById("classicTime");
-  var decimalTime = document.getElementById("decimalTime");
-  var dateLabel = document.getElementById("dateLabel");
-  var ringProgress = document.getElementById("ringProgress");
-  var ringTicks = document.getElementById("ringTicks");
-  var ringMarks = document.getElementById("ringMarks");
+  var SVG_NS = "http://www.w3.org/2000/svg";
 
   function pad(n) {
     return n < 10 ? "0" + n : String(n);
@@ -37,7 +30,7 @@
       minor = 0;
     }
     if (major >= 10) major = 0;
-    return { major: major, minor: minor, raw: tenths };
+    return { major: major, minor: minor };
   }
 
   function formatClassic(now) {
@@ -56,9 +49,12 @@
     return now.getDate() + " " + MONTHS[now.getMonth()] + " " + now.getFullYear();
   }
 
-  function placeTicks() {
+  function setText(el, value) {
+    if (el) el.textContent = value;
+  }
+
+  function placeTicks(ringTicks) {
     if (!ringTicks) return;
-    var svgNS = "http://www.w3.org/2000/svg";
     while (ringTicks.firstChild) {
       ringTicks.removeChild(ringTicks.firstChild);
     }
@@ -69,7 +65,7 @@
       var angle = (i / 100) * 2 * Math.PI;
       var inner = isUnit ? 73 : 78;
       var outer = isUnit ? 94 : 88;
-      var line = document.createElementNS(svgNS, "line");
+      var line = document.createElementNS(SVG_NS, "line");
       line.setAttribute("class", isUnit ? "tick-unit" : "tick-tenth");
       line.setAttribute("x1", (cx + Math.cos(angle) * inner).toFixed(2));
       line.setAttribute("y1", (cy + Math.sin(angle) * inner).toFixed(2));
@@ -79,7 +75,8 @@
     }
   }
 
-  function placeMarks() {
+  function placeMarks(ringMarks) {
+    if (!ringMarks) return;
     var html = "";
     for (var i = 0; i < 10; i++) {
       var angle = (i / 10) * 2 * Math.PI - Math.PI / 2;
@@ -93,35 +90,48 @@
     ringMarks.innerHTML = html;
   }
 
-  function tick() {
-    var now = new Date();
-    var fraction = fractionOfDay(now);
-    var decimal = toDecimal(fraction);
-    var decimalLabel = formatDecimal(decimal);
+  function start() {
+    var pairLine = document.getElementById("pairLine");
+    var classicTime = document.getElementById("classicTime");
+    var decimalTime = document.getElementById("decimalTime");
+    var dateLabel = document.getElementById("dateLabel");
+    var ringProgress = document.getElementById("ringProgress");
+    var ringTicks = document.getElementById("ringTicks");
+    var ringMarks = document.getElementById("ringMarks");
 
-    if (classicTime) classicTime.textContent = formatClassicFull(now);
-    if (decimalTime) decimalTime.textContent = decimalLabel;
-    if (pairLine) pairLine.textContent = formatClassic(now) + "  —  " + decimalLabel;
-    if (dateLabel) dateLabel.textContent = formatDate(now);
+    placeTicks(ringTicks);
+    placeMarks(ringMarks);
 
-    if (ringProgress) {
-      ringProgress.style.strokeDashoffset = String(CIRCUMFERENCE * (1 - fraction));
-    }
+    function tick() {
+      var now = new Date();
+      var fraction = fractionOfDay(now);
+      var decimal = toDecimal(fraction);
+      var decimalLabel = formatDecimal(decimal);
 
-    if (ringMarks) {
-      var marks = ringMarks.children;
-      for (var i = 0; i < marks.length; i++) {
-        marks[i].classList.toggle("now", i === decimal.major);
+      setText(classicTime, formatClassicFull(now));
+      setText(decimalTime, decimalLabel);
+      setText(pairLine, formatClassic(now) + "  —  " + decimalLabel);
+      setText(dateLabel, formatDate(now));
+
+      if (ringProgress) {
+        ringProgress.style.strokeDashoffset = String(CIRCUMFERENCE * (1 - fraction));
+      }
+
+      if (ringMarks) {
+        var marks = ringMarks.children;
+        for (var i = 0; i < marks.length; i++) {
+          marks[i].classList.toggle("now", i === decimal.major);
+        }
       }
     }
+
+    tick();
+    setInterval(tick, 200);
   }
 
-  try {
-    placeTicks();
-    placeMarks();
-  } catch (err) {
-    /* l’horloge continue même si les graduations échouent */
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", start);
+  } else {
+    start();
   }
-  tick();
-  setInterval(tick, 200);
 })();
