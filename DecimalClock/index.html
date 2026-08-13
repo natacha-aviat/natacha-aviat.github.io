@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>DecimalClock — l’heure en .beat</title>
-  <meta name="description" content="Horloge décimale : l’heure classique et son équivalent en .beat, le dixième de journée.">
+  <title>DecimalClock — l’heure décimale</title>
+  <meta name="description" content="Horloge décimale : l’heure classique et son équivalent en dix unités par journée.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -31,24 +31,24 @@
 
         <div class="ring-wrap" aria-hidden="true">
           <svg class="ring" viewBox="0 0 200 200" role="img">
-            <title>Progression de la journée en dix .beat</title>
+            <title>Progression de la journée en dix unités</title>
             <circle class="ring-track" cx="100" cy="100" r="82" />
             <circle class="ring-progress" id="ringProgress" cx="100" cy="100" r="82" />
           </svg>
           <ol class="ring-marks" id="ringMarks"></ol>
         </div>
 
-        <section class="face beat" aria-labelledby="beatTitle">
-          <h2 id="beatTitle">Temps décimal</h2>
-          <p class="digits" id="beatTime">—</p>
-          <p class="unit">.beat · dixième de journée</p>
+        <section class="face decimal" aria-labelledby="decimalTitle">
+          <h2 id="decimalTitle">Temps décimal</h2>
+          <p class="digits" id="decimalTime">—</p>
+          <p class="unit">10 unités par journée</p>
         </section>
       </div>
 
       <p class="lede">
-        Une journée = <strong>10 .beat</strong>.
-        Minuit vaut <span class="mono">0:00</span>, midi <span class="mono">5:00</span>.
-        Chaque .beat dure 2&nbsp;h&nbsp;24, chaque centième 1&nbsp;min&nbsp;26,4&nbsp;s.
+        Une journée = <strong>10 unités</strong>.
+        Minuit vaut <span class="mono">0•00</span>, midi <span class="mono">5•00</span>.
+        Chaque unité dure 2&nbsp;h&nbsp;24, chaque centième 1&nbsp;min&nbsp;26,4&nbsp;s.
       </p>
     </main>
 

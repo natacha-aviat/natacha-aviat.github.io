@@ -89,7 +89,7 @@ body {
   min-width: 0;
 }
 
-.face.beat { border-color: #5a4630; }
+.face.decimal { border-color: #5a4630; }
 
 .face h2 {
   font-size: 0.72rem;
@@ -108,7 +108,7 @@ body {
   font-variant-numeric: tabular-nums;
 }
 
-.face.beat .digits { color: var(--gold); }
+.face.decimal .digits { color: var(--gold); }
 
 .unit {
   margin-top: 0.45rem;

@@ -7,7 +7,7 @@
 
   var pairLine = document.getElementById("pairLine");
   var classicTime = document.getElementById("classicTime");
-  var beatTime = document.getElementById("beatTime");
+  var decimalTime = document.getElementById("decimalTime");
   var dateLabel = document.getElementById("dateLabel");
   var ringProgress = document.getElementById("ringProgress");
   var ringMarks = document.getElementById("ringMarks");
@@ -25,7 +25,7 @@
     return ms / 86400000;
   }
 
-  function toBeat(fraction) {
+  function toDecimal(fraction) {
     var tenths = fraction * 10;
     var rounded = Math.round(tenths * 100) / 100;
     if (rounded >= 10) rounded = 0;
@@ -47,8 +47,8 @@
     return pad(now.getHours()) + ":" + pad(now.getMinutes()) + ":" + pad(now.getSeconds());
   }
 
-  function formatBeat(beat) {
-    return beat.major + ":" + pad(beat.minor);
+  function formatDecimal(decimal) {
+    return decimal.major + "•" + pad(decimal.minor);
   }
 
   function formatDate(now) {
@@ -62,7 +62,7 @@
       var x = 50 + Math.cos(angle) * 38;
       var y = 50 + Math.sin(angle) * 38;
       html +=
-        '<li data-beat="' + i + '" style="left:' + x + "%;top:" + y + '%">' +
+        '<li data-unit="' + i + '" style="left:' + x + "%;top:" + y + '%">' +
         i +
         "</li>";
     }
@@ -72,18 +72,18 @@
   function tick() {
     var now = new Date();
     var fraction = fractionOfDay(now);
-    var beat = toBeat(fraction);
+    var decimal = toDecimal(fraction);
 
     classicTime.textContent = formatClassicFull(now);
-    beatTime.textContent = formatBeat(beat) + " .beat";
-    pairLine.textContent = formatClassic(now) + "  —  " + formatBeat(beat) + " .beat";
+    decimalTime.textContent = formatDecimal(decimal);
+    pairLine.textContent = formatClassic(now) + "  —  " + formatDecimal(decimal);
     dateLabel.textContent = formatDate(now);
 
     ringProgress.style.strokeDashoffset = String(CIRCUMFERENCE * (1 - fraction));
 
     var marks = ringMarks.children;
     for (var i = 0; i < marks.length; i++) {
-      marks[i].classList.toggle("now", i === beat.major);
+      marks[i].classList.toggle("now", i === decimal.major);
     }
   }
 
