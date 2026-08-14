@@ -36,8 +36,15 @@
                 <circle class="ring-progress pm" id="ringPm" cx="100" cy="100" r="62" transform="rotate(-90 100 100)" />
                 <g id="classicTicks"></g>
                 <g id="classicNums"></g>
-                <text class="ring-label am" x="100" y="190" text-anchor="middle" dominant-baseline="middle">AM</text>
-                <text class="ring-label pm" x="100" y="158" text-anchor="middle" dominant-baseline="middle">PM</text>
+                <!-- AM / PM : pastilles sur chaque anneau, hors du 6 et du centre -->
+                <g class="ring-tag" transform="translate(42 158)">
+                  <rect class="ring-tag-bg am" x="-13" y="-8" width="26" height="16" rx="4"/>
+                  <text class="ring-label am" x="0" y="1" text-anchor="middle" dominant-baseline="middle">AM</text>
+                </g>
+                <g class="ring-tag" transform="translate(58 138)">
+                  <rect class="ring-tag-bg pm" x="-13" y="-8" width="26" height="16" rx="4"/>
+                  <text class="ring-label pm" x="0" y="1" text-anchor="middle" dominant-baseline="middle">PM</text>
+                </g>
               </svg>
             </div>
           </section>
@@ -92,6 +99,6 @@
     </footer>
   </div>
 
-  <script src="js/clock.js?v=8" defer></script>
+  <script src="js/clock.js?v=9" defer></script>
 </body>
 </html>

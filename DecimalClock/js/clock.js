@@ -129,12 +129,13 @@
     var cy = 100;
     for (var i = 0; i < 100; i++) {
       var isUnit = i % 10 === 0;
+      var isHalf = i % 10 === 5;
       var angle = (i / 100) * 2 * Math.PI - Math.PI / 2;
-      var inner = isUnit ? 74 : 80;
-      var outer = isUnit ? 93 : 88;
+      var inner = isUnit ? 74 : isHalf ? 77 : 80;
+      var outer = isUnit ? 93 : isHalf ? 90 : 88;
       addLine(
         ticks,
-        isUnit ? "tick-unit" : "tick-tenth",
+        isUnit ? "tick-unit" : isHalf ? "tick-half" : "tick-tenth",
         cx + Math.cos(angle) * inner,
         cy + Math.sin(angle) * inner,
         cx + Math.cos(angle) * outer,
