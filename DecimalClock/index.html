@@ -20,23 +20,23 @@
     </header>
 
     <main>
-      <p class="pair" id="pairLine" aria-live="polite">—</p>
-
       <div class="clocks">
         <section class="face" aria-labelledby="classicTitle">
           <h2 id="classicTitle">Heure classique</h2>
           <p class="digits" id="classicTime">—</p>
-          <p class="unit">24 heures · 60 minutes</p>
+          <p class="digits-sub" id="classicAmPm">—</p>
+          <p class="unit">12 h AM · 12 h PM</p>
           <div class="dial-wrap">
             <svg class="dial" viewBox="0 0 200 200" role="img">
-              <title>Horloge analogique</title>
+              <title>Horloge classique AM / PM</title>
               <circle class="dial-disc" cx="100" cy="100" r="96" />
+              <circle class="ring-track" cx="100" cy="100" r="82" transform="rotate(-90 100 100)" />
+              <circle class="ring-progress am" id="ringAm" cx="100" cy="100" r="82" transform="rotate(-90 100 100)" />
+              <circle class="ring-track inner" cx="100" cy="100" r="62" transform="rotate(-90 100 100)" />
+              <circle class="ring-progress pm" id="ringPm" cx="100" cy="100" r="62" transform="rotate(-90 100 100)" />
               <g id="classicTicks"></g>
               <g id="classicNums"></g>
-              <line id="handHour" class="hand hour" x1="100" y1="100" x2="100" y2="52" />
-              <line id="handMinute" class="hand minute" x1="100" y1="100" x2="100" y2="34" />
-              <line id="handSecond" class="hand second" x1="100" y1="110" x2="100" y2="28" />
-              <circle class="dial-cap" cx="100" cy="100" r="3.5" />
+              <text class="period-label" id="classicPeriod" x="100" y="104">AM</text>
             </svg>
           </div>
         </section>
@@ -53,9 +53,6 @@
               <circle class="ring-progress" id="ringProgress" cx="100" cy="100" r="82" transform="rotate(-90 100 100)" />
               <g id="ringTicks"></g>
               <g id="ringMarks"></g>
-              <line id="handUnit" class="hand unit" x1="100" y1="100" x2="100" y2="48" />
-              <line id="handHundredth" class="hand hundredth" x1="100" y1="100" x2="100" y2="32" />
-              <circle class="dial-cap gold" cx="100" cy="100" r="3.5" />
             </svg>
           </div>
         </section>
@@ -77,6 +74,6 @@
     </footer>
   </div>
 
-  <script src="js/clock.js?v=4" defer></script>
+  <script src="js/clock.js?v=6" defer></script>
 </body>
 </html>

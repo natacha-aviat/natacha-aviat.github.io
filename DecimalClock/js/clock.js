@@ -1,5 +1,7 @@
 (function () {
-  var CIRCUMFERENCE = 2 * Math.PI * 82;
+  var RING_OUTER = 2 * Math.PI * 82;
+  var RING_INNER = 2 * Math.PI * 62;
+  var HALF_DAY_MS = 12 * 3600000;
   var MONTHS = [
     "janvier", "février", "mars", "avril", "mai", "juin",
     "juillet", "août", "septembre", "octobre", "novembre", "décembre"
@@ -10,13 +12,17 @@
     return n < 10 ? "0" + n : String(n);
   }
 
-  function fractionOfDay(now) {
-    var ms =
+  function msSinceMidnight(now) {
+    return (
       now.getHours() * 3600000 +
       now.getMinutes() * 60000 +
       now.getSeconds() * 1000 +
-      now.getMilliseconds();
-    return ms / 86400000;
+      now.getMilliseconds()
+    );
+  }
+
+  function fractionOfDay(now) {
+    return msSinceMidnight(now) / 86400000;
   }
 
   function toDecimal(fraction) {
@@ -30,15 +36,18 @@
       minor = 0;
     }
     if (major >= 10) major = 0;
-    return { major: major, minor: minor, raw: tenths };
-  }
-
-  function formatClassic(now) {
-    return now.getHours() + "h" + pad(now.getMinutes());
+    return { major: major, minor: minor };
   }
 
   function formatClassicFull(now) {
-    return pad(now.getHours()) + ":" + pad(now.getMinutes()) + ":" + pad(now.getSeconds());
+    return pad(now.getHours()) + ":" + pad(now.getMinutes());
+  }
+
+  function formatAmerican(now) {
+    var hours = now.getHours() % 12;
+    if (hours === 0) hours = 12;
+    var period = now.getHours() < 12 ? "AM" : "PM";
+    return hours + ":" + pad(now.getMinutes()) + " " + period;
   }
 
   function formatDecimal(decimal) {
@@ -53,8 +62,11 @@
     if (el) el.textContent = value;
   }
 
-  function rotateHand(el, degrees) {
-    if (el) el.setAttribute("transform", "rotate(" + degrees + " 100 100)");
+  function setRing(el, circumference, fraction) {
+    if (!el) return;
+    var clamped = Math.max(0, Math.min(1, fraction));
+    el.style.strokeDasharray = String(circumference);
+    el.style.strokeDashoffset = String(circumference * (1 - clamped));
   }
 
   function addLine(parent, className, x1, y1, x2, y2) {
@@ -105,7 +117,7 @@
     }
     for (var h = 1; h <= 12; h++) {
       var a = (h / 12) * 2 * Math.PI - Math.PI / 2;
-      addNum(nums, h, cx + Math.cos(a) * 66, cy + Math.sin(a) * 66);
+      addNum(nums, h, cx + Math.cos(a) * 48, cy + Math.sin(a) * 48);
     }
   }
 
@@ -136,47 +148,51 @@
   }
 
   function start() {
-    var pairLine = document.getElementById("pairLine");
     var classicTime = document.getElementById("classicTime");
+    var classicAmPm = document.getElementById("classicAmPm");
+    var classicPeriod = document.getElementById("classicPeriod");
     var decimalTime = document.getElementById("decimalTime");
     var dateLabel = document.getElementById("dateLabel");
     var ringProgress = document.getElementById("ringProgress");
+    var ringAm = document.getElementById("ringAm");
+    var ringPm = document.getElementById("ringPm");
     var ringTicks = document.getElementById("ringTicks");
     var ringMarks = document.getElementById("ringMarks");
     var classicTicks = document.getElementById("classicTicks");
     var classicNums = document.getElementById("classicNums");
-    var handHour = document.getElementById("handHour");
-    var handMinute = document.getElementById("handMinute");
-    var handSecond = document.getElementById("handSecond");
-    var handUnit = document.getElementById("handUnit");
-    var handHundredth = document.getElementById("handHundredth");
 
     placeClassicFace(classicTicks, classicNums);
     placeDecimalFace(ringTicks, ringMarks);
 
     function tick() {
       var now = new Date();
+      var elapsed = msSinceMidnight(now);
       var fraction = fractionOfDay(now);
       var decimal = toDecimal(fraction);
       var decimalLabel = formatDecimal(decimal);
-      var ms = now.getMilliseconds();
-      var seconds = now.getSeconds() + ms / 1000;
-      var minutes = now.getMinutes() + seconds / 60;
-      var hours = (now.getHours() % 12) + minutes / 60;
+      var classicLabel = formatClassicFull(now);
+      var americanLabel = formatAmerican(now);
+      var isPm = now.getHours() >= 12;
+      var amFraction = Math.min(elapsed / HALF_DAY_MS, 1);
+      var pmFraction = Math.max((elapsed - HALF_DAY_MS) / HALF_DAY_MS, 0);
+      var hour12 = now.getHours() % 12;
+      if (hour12 === 0) hour12 = 12;
 
-      setText(classicTime, formatClassicFull(now));
+      setText(classicTime, classicLabel);
+      setText(classicAmPm, americanLabel);
+      setText(classicPeriod, isPm ? "PM" : "AM");
       setText(decimalTime, decimalLabel);
-      setText(pairLine, formatClassic(now) + "  —  " + decimalLabel);
       setText(dateLabel, formatDate(now));
 
-      rotateHand(handHour, hours * 30);
-      rotateHand(handMinute, minutes * 6);
-      rotateHand(handSecond, seconds * 6);
-      rotateHand(handUnit, (decimal.raw % 10) * 36);
-      rotateHand(handHundredth, (decimal.raw % 1) * 360);
+      setRing(ringAm, RING_OUTER, amFraction);
+      setRing(ringPm, RING_INNER, pmFraction);
+      setRing(ringProgress, RING_OUTER, fraction);
 
-      if (ringProgress) {
-        ringProgress.style.strokeDashoffset = String(CIRCUMFERENCE * (1 - fraction));
+      if (classicNums) {
+        var hourMarks = classicNums.children;
+        for (var h = 0; h < hourMarks.length; h++) {
+          hourMarks[h].classList.toggle("now", Number(hourMarks[h].textContent) === hour12);
+        }
       }
 
       if (ringMarks) {
@@ -188,7 +204,7 @@
     }
 
     tick();
-    setInterval(tick, 50);
+    setInterval(tick, 200);
   }
 
   if (document.readyState === "loading") {
