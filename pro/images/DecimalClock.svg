@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" role="img" aria-labelledby="t d">
+  <title id="t">DecimalClock</title>
+  <desc id="d">Horloge classique et heure décimale côte à côte</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0c0e0a"/>
+      <stop offset="55%" stop-color="#12140f"/>
+      <stop offset="100%" stop-color="#1c1f18"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="800" fill="url(#bg)"/>
+  <text x="600" y="120" text-anchor="middle" font-family="Georgia, serif" font-size="56" fill="#e8e2d4" font-weight="700">Decimal<tspan fill="#d4a054">Clock</tspan></text>
+  <text x="600" y="170" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="22" fill="#8a8478">24 heures ” 10 unités</text>
+
+  <!-- Classic dial -->
+  <g transform="translate(220,220)">
+    <circle cx="180" cy="180" r="160" fill="#1c1f18" stroke="#3a3d34" stroke-width="3"/>
+    <circle cx="180" cy="180" r="130" fill="none" stroke="#3a3d34" stroke-width="10"/>
+    <circle cx="180" cy="180" r="130" fill="none" stroke="#d4a054" stroke-width="10"
+            stroke-dasharray="272 545" stroke-linecap="round" transform="rotate(-90 180 180)"/>
+    <text x="180" y="175" text-anchor="middle" font-family="ui-monospace, monospace" font-size="36" fill="#e8e2d4" font-weight="700">12:00</text>
+    <text x="180" y="215" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="18" fill="#8a8478">Classique</text>
+  </g>
+
+  <!-- Decimal dial -->
+  <g transform="translate(620,220)">
+    <circle cx="180" cy="180" r="160" fill="#1c1f18" stroke="#3a3d34" stroke-width="3"/>
+    <circle cx="180" cy="180" r="130" fill="none" stroke="#3a3d34" stroke-width="10"/>
+    <circle cx="180" cy="180" r="130" fill="none" stroke="#d4a054" stroke-width="10"
+            stroke-dasharray="408 408" stroke-linecap="round" transform="rotate(-90 180 180)"/>
+    <text x="180" y="175" text-anchor="middle" font-family="ui-monospace, monospace" font-size="36" fill="#e8e2d4" font-weight="700">5"00</text>
+    <text x="180" y="215" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="18" fill="#d4a054">Décimal</text>
+  </g>
+
+  <text x="600" y="720" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="20" fill="#8a8478">Minuit = 0"00 · Midi = 5"00</text>
+</svg>

@@ -104,8 +104,8 @@
     for (var i = 0; i < 60; i++) {
       var isHour = i % 5 === 0;
       var angle = (i / 60) * 2 * Math.PI - Math.PI / 2;
-      var inner = isHour ? 78 : 84;
-      var outer = 92;
+      var inner = isHour ? 86 : 88;
+      var outer = 94;
       addLine(
         ticks,
         isHour ? "tick-hour" : "tick-minute",
@@ -117,7 +117,7 @@
     }
     for (var h = 1; h <= 12; h++) {
       var a = (h / 12) * 2 * Math.PI - Math.PI / 2;
-      addNum(nums, h, cx + Math.cos(a) * 48, cy + Math.sin(a) * 48);
+      addNum(nums, h, cx + Math.cos(a) * 72, cy + Math.sin(a) * 72);
     }
   }
 

@@ -21,52 +21,63 @@
 
     <main>
       <div class="clocks">
-        <section class="face" aria-labelledby="classicTitle">
-          <h2 id="classicTitle">Heure classique</h2>
-          <p class="digits" id="classicTime">—</p>
-          <p class="digits-sub" id="classicAmPm">—</p>
-          <p class="unit">12 h AM · 12 h PM</p>
-          <div class="dial-wrap">
-            <svg class="dial" viewBox="0 0 200 200" role="img">
-              <title>Horloge classique AM / PM</title>
-              <circle class="dial-disc" cx="100" cy="100" r="96" />
-              <circle class="ring-track" cx="100" cy="100" r="82" transform="rotate(-90 100 100)" />
-              <circle class="ring-progress am" id="ringAm" cx="100" cy="100" r="82" transform="rotate(-90 100 100)" />
-              <circle class="ring-track inner" cx="100" cy="100" r="62" transform="rotate(-90 100 100)" />
-              <circle class="ring-progress pm" id="ringPm" cx="100" cy="100" r="62" transform="rotate(-90 100 100)" />
-              <g id="classicTicks"></g>
-              <g id="classicNums"></g>
-              <text class="period-label" id="classicPeriod" x="100" y="104">AM</text>
-            </svg>
-          </div>
-        </section>
+        <div class="col">
+          <section class="face" aria-labelledby="classicTitle">
+            <h2 id="classicTitle">Heure classique</h2>
+            <p class="digits" id="classicTime">—</p>
+            <p class="digits-sub" id="classicAmPm">—</p>
+            <div class="dial-wrap">
+              <svg class="dial" viewBox="0 0 200 200" role="img">
+                <title>Horloge classique AM / PM</title>
+                <circle class="dial-disc" cx="100" cy="100" r="96" />
+                <circle class="ring-track" cx="100" cy="100" r="82" transform="rotate(-90 100 100)" />
+                <circle class="ring-progress am" id="ringAm" cx="100" cy="100" r="82" transform="rotate(-90 100 100)" />
+                <circle class="ring-track inner" cx="100" cy="100" r="62" transform="rotate(-90 100 100)" />
+                <circle class="ring-progress pm" id="ringPm" cx="100" cy="100" r="62" transform="rotate(-90 100 100)" />
+                <g id="classicTicks"></g>
+                <g id="classicNums"></g>
+                <text class="period-label" id="classicPeriod" x="100" y="104">AM</text>
+              </svg>
+            </div>
+          </section>
+          <p class="lede">
+            Une journée = <strong>24 heures</strong>.
+            Minuit vaut <span class="mono">0h00</span>, midi <span class="mono">12h00</span>.
+          </p>
+          <ul class="durations">
+            <li><span>1 heure</span> 0,42 unité</li>
+            <li><span>12 heures</span> 5 unités</li>
+            <li><span>1 minute</span> 0,007 unité</li>
+          </ul>
+        </div>
 
-        <section class="face decimal" aria-labelledby="decimalTitle">
-          <h2 id="decimalTitle">Temps décimal</h2>
-          <p class="digits" id="decimalTime">—</p>
-          <p class="unit">10 unités par journée</p>
-          <div class="dial-wrap">
-            <svg class="dial" viewBox="0 0 200 200" role="img">
-              <title>Horloge décimale</title>
-              <circle class="dial-disc" cx="100" cy="100" r="96" />
-              <circle class="ring-track" cx="100" cy="100" r="82" transform="rotate(-90 100 100)" />
-              <circle class="ring-progress" id="ringProgress" cx="100" cy="100" r="82" transform="rotate(-90 100 100)" />
-              <g id="ringTicks"></g>
-              <g id="ringMarks"></g>
-            </svg>
-          </div>
-        </section>
+        <div class="col">
+          <section class="face decimal" aria-labelledby="decimalTitle">
+            <h2 id="decimalTitle">Temps décimal</h2>
+            <p class="digits" id="decimalTime">—</p>
+            <p class="unit">10 unités par journée</p>
+            <div class="dial-wrap">
+              <svg class="dial" viewBox="0 0 200 200" role="img">
+                <title>Horloge décimale</title>
+                <circle class="dial-disc" cx="100" cy="100" r="96" />
+                <circle class="ring-track" cx="100" cy="100" r="82" transform="rotate(-90 100 100)" />
+                <circle class="ring-progress" id="ringProgress" cx="100" cy="100" r="82" transform="rotate(-90 100 100)" />
+                <g id="ringTicks"></g>
+                <g id="ringMarks"></g>
+              </svg>
+            </div>
+          </section>
+          <p class="lede">
+            Une journée = <strong>10 unités</strong>.
+            Minuit vaut <span class="mono">0•00</span>, midi <span class="mono">5•00</span>.
+          </p>
+          <ul class="durations">
+            <li><span>1 unité</span> 2&nbsp;h&nbsp;24</li>
+            <li><span>1 dixième d’unité</span> 14&nbsp;min&nbsp;24&nbsp;s</li>
+            <li><span>1 centième d’unité</span> 1&nbsp;min&nbsp;26,4&nbsp;s</li>
+          </ul>
+        </div>
       </div>
-
-      <p class="lede">
-        Une journée = <strong>10 unités</strong>.
-        Minuit vaut <span class="mono">0•00</span>, midi <span class="mono">5•00</span>.
-      </p>
-      <ul class="durations">
-        <li><span>1 unité</span> 2&nbsp;h&nbsp;24</li>
-        <li><span>1 dixième d’unité</span> 14&nbsp;min&nbsp;24&nbsp;s</li>
-        <li><span>1 centième d’unité</span> 1&nbsp;min&nbsp;26,4&nbsp;s</li>
-      </ul>
     </main>
 
     <footer>
@@ -74,6 +85,6 @@
     </footer>
   </div>
 
-  <script src="js/clock.js?v=6" defer></script>
+  <script src="js/clock.js?v=7" defer></script>
 </body>
 </html>

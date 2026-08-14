@@ -470,6 +470,32 @@ const SEO_CONFIG = {
                 aiUseCase: 'Sign volunteers up for collection slots'
             }
         },
+        'fiche-decimalclock': {
+            fr: {
+                title: 'DecimalClock — L\'heure décimale | Gratuit - Natacha Aviat',
+                description: 'Horloge web : heure classique et équivalent décimal — 10 unités par journée.',
+                keywords: 'DecimalClock, horloge décimale, temps décimal',
+                ogType: 'product',
+                ogImage: 'https://natacha-aviat.github.io/pro/images/DecimalClock.svg',
+                price: 0,
+                aiProductType: 'Outil web',
+                aiPrice: 'Gratuit',
+                aiTechnologies: 'JavaScript, HTML, CSS, SVG',
+                aiUseCase: 'Visualiser l\'heure décimale en parallèle de l\'heure classique'
+            },
+            en: {
+                title: 'DecimalClock — Decimal time | Free - Natacha Aviat',
+                description: 'Web clock: classic time and its decimal equivalent — 10 units per day.',
+                keywords: 'DecimalClock, decimal time, decimal clock',
+                ogType: 'product',
+                ogImage: 'https://natacha-aviat.github.io/pro/images/DecimalClock.svg',
+                price: 0,
+                aiProductType: 'Web tool',
+                aiPrice: 'Free',
+                aiTechnologies: 'JavaScript, HTML, CSS, SVG',
+                aiUseCase: 'Visualize decimal time alongside classic time'
+            }
+        },
         'fiche-optimisation-tournees': {
             fr: {
                 title: 'Outil d\'Optimisation de Tournées Logistiques | Gratuit - Natacha Aviat',
@@ -578,7 +604,9 @@ const FICHE_MAPPING = {
     'fiche-assopilot.html': { fr: 'fiches/fiche-assopilot.html', en: 'en/fiches/sheet-assopilot.html' },
     'sheet-assopilot.html': { fr: 'fiches/fiche-assopilot.html', en: 'en/fiches/sheet-assopilot.html' },
     'fiche-mamacollecte.html': { fr: 'fiches/fiche-mamacollecte.html', en: 'en/fiches/sheet-mamacollecte.html' },
-    'sheet-mamacollecte.html': { fr: 'fiches/fiche-mamacollecte.html', en: 'en/fiches/sheet-mamacollecte.html' }
+    'sheet-mamacollecte.html': { fr: 'fiches/fiche-mamacollecte.html', en: 'en/fiches/sheet-mamacollecte.html' },
+    'fiche-decimalclock.html': { fr: 'fiches/fiche-decimalclock.html', en: 'en/fiches/sheet-decimalclock.html' },
+    'sheet-decimalclock.html': { fr: 'fiches/fiche-decimalclock.html', en: 'en/fiches/sheet-decimalclock.html' }
 };
 
 // Export pour utilisation dans d'autres fichiers

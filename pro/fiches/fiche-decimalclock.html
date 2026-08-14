@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>DecimalClock — L'heure décimale | Gratuit - Natacha Aviat</title>
+    <meta name="description" content="DecimalClock : horloge web qui affiche l'heure classique et son équivalent décimal — 10 unités par journée.">
+    <meta name="keywords" content="DecimalClock, horloge décimale, temps décimal, 10 unités, UX, Natacha Aviat">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://natacha-aviat.github.io/pro/fiches/fiche-decimalclock.html">
+    <link rel="alternate" hreflang="fr" href="https://natacha-aviat.github.io/pro/fiches/fiche-decimalclock.html">
+    <link rel="alternate" hreflang="en" href="https://natacha-aviat.github.io/pro/en/fiches/sheet-decimalclock.html">
+    
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://natacha-aviat.github.io/pro/fiches/fiche-decimalclock.html">
+    <meta property="og:title" content="DecimalClock — L'heure décimale">
+    <meta property="og:description" content="Voir l'heure classique et l'heure décimale côte à côte — 10 unités par journée.">
+    <meta property="og:image" content="https://natacha-aviat.github.io/pro/images/DecimalClock.svg">
+    
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "DecimalClock",
+        "description": "Horloge web qui affiche l'heure classique (24 h) et son équivalent décimal (10 unités par journée), avec cadrans et conversions.",
+        "image": "https://natacha-aviat.github.io/pro/images/DecimalClock.svg",
+        "applicationCategory": "LifestyleApplication",
+        "operatingSystem": "Web",
+        "url": "https://natacha-aviat.github.io/DecimalClock/",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "EUR",
+            "availability": "https://schema.org/InStock"
+        },
+        "creator": {
+            "@type": "Person",
+            "name": "Natacha Aviat"
+        },
+        "keywords": "DecimalClock, horloge décimale, temps décimal"
+    }
+    </script>
+    
+    <meta name="AI:ProductType" content="Outil web">
+    <meta name="AI:Price" content="Gratuit">
+    <meta name="AI:Technologies" content="JavaScript, HTML, CSS, SVG">
+    <meta name="AI:UseCase" content="Visualiser et comprendre l'heure décimale en parallèle de l'heure classique">
+    
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/components.css">
+</head>
+<body>
+    <header data-include="../partials/header.html"></header>
+
+    <section class="section">
+        <div class="container">
+            <div data-include="../partials/fiche-back-link.html"></div>
+            <div class="fiche-container">
+                <div>
+                    <div class="fiche-image-container-tool project-image-contain" style="height:auto;min-height:280px;padding:0;background:#12140f;">
+                        <img src="../images/DecimalClock.svg" alt="DecimalClock — heure classique et temps décimal" loading="lazy" style="height:auto;object-fit:contain;">
+                    </div>
+                </div>
+
+                <div>
+                    <h1 class="mb-2">DecimalClock</h1>
+                    
+                    <div class="fiche-content-section">
+                        <p>Horloge web qui affiche <strong>l'heure classique</strong> et son <strong>équivalent décimal</strong> côte à côte. Une journée = 10 unités : minuit vaut <span style="font-family:monospace">0•00</span>, midi <span style="font-family:monospace">5•00</span>.</p>
+                    </div>
+
+                    <div class="fiche-before-after">
+                        <div>
+                            <h4 class="fiche-before-title">❌ Avant</h4>
+                            <ul>
+                                <li>Le temps décimal reste abstrait (révolution française, curiosité)</li>
+                                <li>Pas de repère visuel face à 24&nbsp;h / 60&nbsp;min</li>
+                                <li>Conversions manuelles peu intuitives</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 class="fiche-after-title">✅ Après</h4>
+                            <ul>
+                                <li>Deux cadrans synchronisés en temps réel</li>
+                                <li>Échelles de durée affichées (unité ↔ heures / minutes)</li>
+                                <li>Lecture immédiate : 12&nbsp;h = 5 unités</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="fiche-content-section">
+                        <h3 class="fiche-methodology-title">Le principe</h3>
+                        <div class="fiche-methodology-section">
+                            <h4 class="fiche-methodology-subtitle">Côté classique</h4>
+                            <p class="fiche-methodology-text">24 heures, avec anneaux AM / PM et lecture habituelle.</p>
+                        </div>
+                        <div class="fiche-methodology-section">
+                            <h4 class="fiche-methodology-subtitle">Côté décimal</h4>
+                            <p class="fiche-methodology-text-small">10 unités par journée ; 1 unité = 2&nbsp;h&nbsp;24 ; 1 dixième = 14&nbsp;min&nbsp;24&nbsp;s.</p>
+                        </div>
+                    </div>
+
+                    <div class="fiche-content-section">
+                        <div class="fiche-badges">
+                            <span class="badge badge-secondary">JavaScript</span>
+                            <span class="badge badge-secondary">SVG</span>
+                            <span class="badge badge-secondary">UX/UI</span>
+                        </div>
+                    </div>
+
+                    <div class="fiche-price-box">
+                        <p class="fiche-price">Gratuit</p>
+                    </div>
+
+                    <div class="fiche-form">
+                        <a href="https://natacha-aviat.github.io/DecimalClock/" target="_blank" rel="noopener" class="btn btn-primary fiche-form-submit">Accéder au projet</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer data-include="../partials/footer.html"></footer>
+
+    <script src="../js/main.js"></script>
+    <script src="../js/components.js"></script>
+</body>
+</html>
