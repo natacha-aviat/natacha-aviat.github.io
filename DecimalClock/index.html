@@ -36,18 +36,22 @@
                 <circle class="ring-progress pm" id="ringPm" cx="100" cy="100" r="62" transform="rotate(-90 100 100)" />
                 <g id="classicTicks"></g>
                 <g id="classicNums"></g>
-                <text class="period-label" id="classicPeriod" x="100" y="104">AM</text>
+                <text class="ring-label am" x="100" y="190" text-anchor="middle" dominant-baseline="middle">AM</text>
+                <text class="ring-label pm" x="100" y="158" text-anchor="middle" dominant-baseline="middle">PM</text>
               </svg>
             </div>
           </section>
           <p class="lede">
             Une journée = <strong>24 heures</strong>.
-            Minuit vaut <span class="mono">0h00</span>, midi <span class="mono">12h00</span>.
+            <br><br>
+            Minuit vaut <span class="mono">0h00</span>,
+            <br><br>
+            midi <span class="mono">12h00</span>.
           </p>
           <ul class="durations">
             <li><span>1 heure</span> 0,42 unité</li>
-            <li><span>12 heures</span> 5 unités</li>
-            <li><span>1 minute</span> 0,007 unité</li>
+            <li><span>1 minute</span> 0,0069 unité</li>
+            <li><span>1 seconde</span> 0,00012 unité</li>
           </ul>
         </div>
 
@@ -69,7 +73,10 @@
           </section>
           <p class="lede">
             Une journée = <strong>10 unités</strong>.
-            Minuit vaut <span class="mono">0•00</span>, midi <span class="mono">5•00</span>.
+            <br><br>
+            Minuit vaut <span class="mono">0•00</span>,
+            <br><br>
+            midi <span class="mono">5•00</span>.
           </p>
           <ul class="durations">
             <li><span>1 unité</span> 2&nbsp;h&nbsp;24</li>
@@ -85,6 +92,6 @@
     </footer>
   </div>
 
-  <script src="js/clock.js?v=7" defer></script>
+  <script src="js/clock.js?v=8" defer></script>
 </body>
 </html>

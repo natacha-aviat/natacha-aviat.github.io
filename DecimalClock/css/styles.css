@@ -168,12 +168,19 @@ body {
   stroke-dashoffset: 389.56;
 }
 
-.period-label {
-  fill: var(--gold-soft);
+.ring-label {
   font-family: var(--font-mono);
-  font-size: 13px;
-  text-anchor: middle;
-  letter-spacing: 0.08em;
+  font-size: 9px;
+  letter-spacing: 0.1em;
+  dominant-baseline: middle;
+}
+
+.ring-label.am {
+  fill: var(--gold);
+}
+
+.ring-label.pm {
+  fill: var(--ink);
 }
 
 .tick-unit,

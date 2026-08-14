@@ -150,7 +150,6 @@
   function start() {
     var classicTime = document.getElementById("classicTime");
     var classicAmPm = document.getElementById("classicAmPm");
-    var classicPeriod = document.getElementById("classicPeriod");
     var decimalTime = document.getElementById("decimalTime");
     var dateLabel = document.getElementById("dateLabel");
     var ringProgress = document.getElementById("ringProgress");
@@ -172,7 +171,6 @@
       var decimalLabel = formatDecimal(decimal);
       var classicLabel = formatClassicFull(now);
       var americanLabel = formatAmerican(now);
-      var isPm = now.getHours() >= 12;
       var amFraction = Math.min(elapsed / HALF_DAY_MS, 1);
       var pmFraction = Math.max((elapsed - HALF_DAY_MS) / HALF_DAY_MS, 0);
       var hour12 = now.getHours() % 12;
@@ -180,7 +178,6 @@
 
       setText(classicTime, classicLabel);
       setText(classicAmPm, americanLabel);
-      setText(classicPeriod, isPm ? "PM" : "AM");
       setText(decimalTime, decimalLabel);
       setText(dateLabel, formatDate(now));
 
