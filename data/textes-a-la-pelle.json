@@ -1,11 +1,11 @@
 {
-  "updatedAt": "2026-09-19T10:36:27.729Z",
+  "updatedAt": "2026-09-20T10:59:33.517Z",
   "source": "https://textes-a-la-pelle.fr/",
   "filterOptions": [
     {
       "group": "",
       "value": "",
-      "label": "tout afficher (93)"
+      "label": "tout afficher (92)"
     },
     {
       "group": "type de texte :",
@@ -30,12 +30,12 @@
     {
       "group": "type de texte :",
       "value": "format_essai",
-      "label": "essai (4)"
+      "label": "essai (3)"
     },
     {
       "group": "type de texte :",
       "value": "format_fiction",
-      "label": "fiction (2)"
+      "label": "fiction (1)"
     },
     {
       "group": "type de texte :",
@@ -50,12 +50,12 @@
     {
       "group": "type de texte :",
       "value": "format_lettre",
-      "label": "lettre (3)"
+      "label": "lettre (2)"
     },
     {
       "group": "type de texte :",
       "value": "format_nouvelle",
-      "label": "nouvelle (49)"
+      "label": "nouvelle (48)"
     },
     {
       "group": "type de texte :",
@@ -69,13 +69,18 @@
     },
     {
       "group": "type de texte :",
+      "value": "format_pantoun",
+      "label": "pantoun (1)"
+    },
+    {
+      "group": "type de texte :",
       "value": "format_pièce de théâtre",
-      "label": "pièce de théâtre (1)"
+      "label": "pièce de théâtre (2)"
     },
     {
       "group": "type de texte :",
       "value": "format_poème",
-      "label": "poème (25)"
+      "label": "poème (24)"
     },
     {
       "group": "type de texte :",
@@ -109,13 +114,8 @@
     },
     {
       "group": "type de texte :",
-      "value": "format_témoignage",
-      "label": "témoignage (1)"
-    },
-    {
-      "group": "type de texte :",
       "value": "format_texte",
-      "label": "texte (20)"
+      "label": "texte (19)"
     },
     {
       "group": "genre littéraire :",
@@ -160,7 +160,7 @@
     {
       "group": "genre littéraire :",
       "value": "genre_policier",
-      "label": "policier (5)"
+      "label": "policier (4)"
     },
     {
       "group": "genre littéraire :",
@@ -180,10 +180,59 @@
     {
       "group": "genre littéraire :",
       "value": "genre_thriller",
-      "label": "thriller (2)"
+      "label": "thriller (1)"
     }
   ],
   "announcements": [
+    {
+      "id": "4999",
+      "publisher": "Écrivains Associés du Théâtre Atlantique",
+      "title": "Appel à textes dramatiques",
+      "url": "https://www.facebook.com/EATAtlantique",
+      "image": "/assets/screenshots/4999.png",
+      "tags": [
+        "format_pièce de théâtre"
+      ],
+      "added": "il y a 12 heures",
+      "addedAt": "2026-09-19T22:59:33.518Z",
+      "deadline": "15/10/2026",
+      "deadlineAt": "2026-10-15T00:00:00.000Z",
+      "audience": "Tous",
+      "audienceCategories": [
+        "audience_no_age_constraint",
+        "audience_no_geo_constraint"
+      ],
+      "fee": "0 €",
+      "feeCategory": "fee_free",
+      "theme": "La liberté.",
+      "length": "20 000 sec",
+      "reward": "590 €, mise en maquette"
+    },
+    {
+      "id": "5001",
+      "publisher": "Pantun Sayang. Les Amis Francophones du Pantoun.",
+      "title": "Appel à textes - Pantouns",
+      "url": "https://pantun-sayang-afp.fr/2026/09/plat-pays-et-hauts-sommets/",
+      "image": "/assets/screenshots/5001.png",
+      "tags": [
+        "format_pantoun",
+        "format_poème"
+      ],
+      "added": "il y a 12 heures",
+      "addedAt": "2026-09-19T22:59:33.518Z",
+      "deadline": "31/10/2026",
+      "deadlineAt": "2026-10-31T00:00:00.000Z",
+      "audience": "Tous",
+      "audienceCategories": [
+        "audience_no_age_constraint",
+        "audience_no_geo_constraint"
+      ],
+      "fee": "0 €",
+      "feeCategory": "fee_free",
+      "theme": "Plat pays et hauts sommets.",
+      "length": "",
+      "reward": "Publication dans la revue semestrielle Pantouns et Genres Brefs"
+    },
     {
       "id": "4995",
       "publisher": "Association ADELI – explorateurs des espaces numériques",
@@ -193,8 +242,8 @@
       "tags": [
         "format_nouvelle"
       ],
-      "added": "il y a 12 heures",
-      "addedAt": "2026-09-18T22:36:27.730Z",
+      "added": "il y a 1 jour",
+      "addedAt": "2026-09-19T10:59:33.518Z",
       "deadline": "30/11/2026",
       "deadlineAt": "2026-11-30T00:00:00.000Z",
       "audience": "18 ans minimum",
@@ -218,8 +267,8 @@
         "format_roman",
         "genre_romance"
       ],
-      "added": "il y a 12 heures",
-      "addedAt": "2026-09-18T22:36:27.730Z",
+      "added": "il y a 1 jour",
+      "addedAt": "2026-09-19T10:59:33.518Z",
       "deadline": "30/10/2026",
       "deadlineAt": "2026-10-30T00:00:00.000Z",
       "audience": "Auteurs et autrices majeurs, débutants ou confirmés",
@@ -243,8 +292,8 @@
       "tags": [
         "format_nouvelle"
       ],
-      "added": "il y a 1 jour",
-      "addedAt": "2026-09-18T10:36:27.730Z",
+      "added": "il y a 2 jours",
+      "addedAt": "2026-09-18T10:59:33.518Z",
       "deadline": "31/10/2026",
       "deadlineAt": "2026-10-31T00:00:00.000Z",
       "audience": "18 ans minimum",
@@ -267,8 +316,8 @@
       "tags": [
         "format_nouvelle"
       ],
-      "added": "il y a 1 jour",
-      "addedAt": "2026-09-18T10:36:27.730Z",
+      "added": "il y a 2 jours",
+      "addedAt": "2026-09-18T10:59:33.518Z",
       "deadline": "15/01/2027",
       "deadlineAt": "2027-01-15T00:00:00.000Z",
       "audience": "18 ans minimum",
@@ -293,8 +342,8 @@
         "genre_fantastique",
         "genre_science-fiction"
       ],
-      "added": "il y a 2 jours",
-      "addedAt": "2026-09-17T10:36:27.730Z",
+      "added": "il y a 3 jours",
+      "addedAt": "2026-09-17T10:59:33.518Z",
       "deadline": "31/12/2026",
       "deadlineAt": "2026-12-31T00:00:00.000Z",
       "audience": "Tous",
@@ -304,7 +353,7 @@
       ],
       "fee": "0 €",
       "feeCategory": "fee_free",
-      "theme": "Un monde nous attend où la frontière entre le réel et la fiction ne sera plus très nette.",
+      "theme": "Nous pensions que certaines choses étaient impossibles. Nous avions simplement oublié de les imaginer.",
       "length": "25 000 sec",
       "reward": "200 €, 100 €, 50 € x 2, publication dans un recueil chez un éditeur professionnel"
     },
@@ -318,8 +367,8 @@
         "format_novella",
         "genre_fantasy"
       ],
-      "added": "il y a 2 jours",
-      "addedAt": "2026-09-17T10:36:27.730Z",
+      "added": "il y a 3 jours",
+      "addedAt": "2026-09-17T10:59:33.518Z",
       "deadline": "31/01/2027",
       "deadlineAt": "2027-01-31T00:00:00.000Z",
       "audience": "18 ans minimum",
@@ -342,8 +391,8 @@
       "tags": [
         "format_poème"
       ],
-      "added": "il y a 3 jours",
-      "addedAt": "2026-09-16T10:36:27.730Z",
+      "added": "il y a 4 jours",
+      "addedAt": "2026-09-16T10:59:33.518Z",
       "deadline": "11/12/2026",
       "deadlineAt": "2026-12-11T00:00:00.000Z",
       "audience": "8-12 ans, individuel, collectif ou scolaire",
@@ -366,8 +415,8 @@
       "tags": [
         "format_nouvelle"
       ],
-      "added": "il y a 4 jours",
-      "addedAt": "2026-09-15T10:36:27.730Z",
+      "added": "il y a 5 jours",
+      "addedAt": "2026-09-15T10:59:33.518Z",
       "deadline": "15/10/2026",
       "deadlineAt": "2026-10-15T00:00:00.000Z",
       "audience": "Tous",
@@ -391,8 +440,8 @@
         "format_nouvelle",
         "genre_policier"
       ],
-      "added": "il y a 4 jours",
-      "addedAt": "2026-09-15T10:36:27.730Z",
+      "added": "il y a 5 jours",
+      "addedAt": "2026-09-15T10:59:33.518Z",
       "deadline": "01/03/2027",
       "deadlineAt": "2027-03-01T00:00:00.000Z",
       "audience": "12 ans minimum",
@@ -415,8 +464,8 @@
       "tags": [
         "format_nouvelle"
       ],
-      "added": "il y a 5 jours",
-      "addedAt": "2026-09-14T10:36:27.730Z",
+      "added": "il y a 6 jours",
+      "addedAt": "2026-09-14T10:59:33.518Z",
       "deadline": "05/12/2026",
       "deadlineAt": "2026-12-05T00:00:00.000Z",
       "audience": "Tous",
@@ -439,8 +488,8 @@
       "tags": [
         "format_nouvelle"
       ],
-      "added": "il y a 6 jours",
-      "addedAt": "2026-09-13T10:36:27.730Z",
+      "added": "il y a 7 jours",
+      "addedAt": "2026-09-13T10:59:33.518Z",
       "deadline": "10/11/2026",
       "deadlineAt": "2026-11-10T00:00:00.000Z",
       "audience": "15-20 ans, résidents de France (métropole et Outre-mer)",
@@ -464,8 +513,8 @@
         "format_nouvelle",
         "genre_nouvelle"
       ],
-      "added": "il y a 6 jours",
-      "addedAt": "2026-09-13T10:36:27.730Z",
+      "added": "il y a 7 jours",
+      "addedAt": "2026-09-13T10:59:33.518Z",
       "deadline": "01/10/2026",
       "deadlineAt": "2026-10-01T00:00:00.000Z",
       "audience": "Résidents de Belgique ou du département français des Hauts-de-France",
@@ -488,8 +537,8 @@
       "tags": [
         "format_histoire"
       ],
-      "added": "il y a 7 jours",
-      "addedAt": "2026-09-12T10:36:27.730Z",
+      "added": "il y a 8 jours",
+      "addedAt": "2026-09-12T10:59:33.518Z",
       "deadline": "01/10/2026",
       "deadlineAt": "2026-10-01T00:00:00.000Z",
       "audience": "8-14 ans",
@@ -512,8 +561,8 @@
       "tags": [
         "format_poème"
       ],
-      "added": "il y a 7 jours",
-      "addedAt": "2026-09-12T10:36:27.730Z",
+      "added": "il y a 8 jours",
+      "addedAt": "2026-09-12T10:59:33.518Z",
       "deadline": "18/10/2026",
       "deadlineAt": "2026-10-18T00:00:00.000Z",
       "audience": "Tous",
@@ -537,8 +586,8 @@
         "format_roman",
         "genre_contemporain"
       ],
-      "added": "il y a 8 jours",
-      "addedAt": "2026-09-11T10:36:27.730Z",
+      "added": "il y a 9 jours",
+      "addedAt": "2026-09-11T10:59:33.518Z",
       "deadline": "30/09/2026",
       "deadlineAt": "2026-09-30T00:00:00.000Z",
       "audience": "18 ans minimum, primo-romanciers et primo-romancières,",
@@ -561,8 +610,8 @@
       "tags": [
         "format_texte"
       ],
-      "added": "il y a 9 jours",
-      "addedAt": "2026-09-10T10:36:27.730Z",
+      "added": "il y a 10 jours",
+      "addedAt": "2026-09-10T10:59:33.518Z",
       "deadline": "15/10/2026",
       "deadlineAt": "2026-10-15T00:00:00.000Z",
       "audience": "Tous",
@@ -586,8 +635,8 @@
         "format_conte",
         "format_poème"
       ],
-      "added": "il y a 10 jours",
-      "addedAt": "2026-09-09T10:36:27.730Z",
+      "added": "il y a 11 jours",
+      "addedAt": "2026-09-09T10:59:33.518Z",
       "deadline": "15/10/2026",
       "deadlineAt": "2026-10-15T00:00:00.000Z",
       "audience": "Tous",
@@ -611,8 +660,8 @@
         "format_essai",
         "format_texte"
       ],
-      "added": "il y a 10 jours",
-      "addedAt": "2026-09-09T10:36:27.730Z",
+      "added": "il y a 11 jours",
+      "addedAt": "2026-09-09T10:59:33.518Z",
       "deadline": "30/09/2026",
       "deadlineAt": "2026-09-30T00:00:00.000Z",
       "audience": "Tous",
@@ -641,8 +690,8 @@
         "genre_réaliste",
         "genre_science-fiction"
       ],
-      "added": "il y a 11 jours",
-      "addedAt": "2026-09-08T10:36:27.730Z",
+      "added": "il y a 12 jours",
+      "addedAt": "2026-09-08T10:59:33.518Z",
       "deadline": "10/11/2026",
       "deadlineAt": "2026-11-10T00:00:00.000Z",
       "audience": "18 ans minimum",
@@ -667,8 +716,8 @@
         "format_récit",
         "format_texte"
       ],
-      "added": "il y a 11 jours",
-      "addedAt": "2026-09-08T10:36:27.730Z",
+      "added": "il y a 12 jours",
+      "addedAt": "2026-09-08T10:59:33.518Z",
       "deadline": "30/09/2026",
       "deadlineAt": "2026-09-30T00:00:00.000Z",
       "audience": "Tous",
@@ -691,8 +740,8 @@
       "tags": [
         "format_nouvelle"
       ],
-      "added": "il y a 12 jours",
-      "addedAt": "2026-09-07T10:36:27.730Z",
+      "added": "il y a 13 jours",
+      "addedAt": "2026-09-07T10:59:33.518Z",
       "deadline": "27/09/2026",
       "deadlineAt": "2026-09-27T00:00:00.000Z",
       "audience": "Tous",
@@ -715,8 +764,8 @@
       "tags": [
         "format_poème"
       ],
-      "added": "il y a 12 jours",
-      "addedAt": "2026-09-07T10:36:27.730Z",
+      "added": "il y a 13 jours",
+      "addedAt": "2026-09-07T10:59:33.518Z",
       "deadline": "30/09/2026",
       "deadlineAt": "2026-09-30T00:00:00.000Z",
       "audience": "Tout le monde peut jouer, tout le monde peut voter. Un seul gagnant.",
@@ -739,8 +788,8 @@
       "tags": [
         "format_nouvelle"
       ],
-      "added": "il y a 13 jours",
-      "addedAt": "2026-09-06T10:36:27.730Z",
+      "added": "il y a 14 jours",
+      "addedAt": "2026-09-06T10:59:33.518Z",
       "deadline": "10/11/2026",
       "deadlineAt": "2026-11-10T00:00:00.000Z",
       "audience": "18 ans minimum",
@@ -776,8 +825,8 @@
         "genre_science-fiction",
         "genre_thriller"
       ],
-      "added": "il y a 14 jours",
-      "addedAt": "2026-09-05T10:36:27.730Z",
+      "added": "il y a 15 jours",
+      "addedAt": "2026-09-05T10:59:33.518Z",
       "deadline": "21/09/2026",
       "deadlineAt": "2026-09-21T00:00:00.000Z",
       "audience": "Autrices et auteurs francophones, débutants comme confirmés, la participation nécessite la création gratuite d’un compte sur Le Labo des Auteurs",
@@ -801,8 +850,8 @@
       "tags": [
         "format_nouvelle"
       ],
-      "added": "il y a 15 jours",
-      "addedAt": "2026-09-04T10:36:27.730Z",
+      "added": "il y a 16 jours",
+      "addedAt": "2026-09-04T10:59:33.518Z",
       "deadline": "31/12/2026",
       "deadlineAt": "2026-12-31T00:00:00.000Z",
       "audience": "18 ans minimum, résidents de France",
@@ -828,8 +877,8 @@
         "format_nouvelle",
         "format_poème"
       ],
-      "added": "il y a 15 jours",
-      "addedAt": "2026-09-04T10:36:27.730Z",
+      "added": "il y a 16 jours",
+      "addedAt": "2026-09-04T10:59:33.518Z",
       "deadline": "10/01/2027",
       "deadlineAt": "2027-01-10T00:00:00.000Z",
       "audience": "Tous",
@@ -855,8 +904,8 @@
         "format_saynète",
         "format_texte"
       ],
-      "added": "il y a 16 jours",
-      "addedAt": "2026-09-03T10:36:27.730Z",
+      "added": "il y a 17 jours",
+      "addedAt": "2026-09-03T10:59:33.518Z",
       "deadline": "31/01/2027",
       "deadlineAt": "2027-01-31T00:00:00.000Z",
       "audience": "Tous",
@@ -879,8 +928,8 @@
       "tags": [
         "format_haïku"
       ],
-      "added": "il y a 17 jours",
-      "addedAt": "2026-09-02T10:36:27.730Z",
+      "added": "il y a 18 jours",
+      "addedAt": "2026-09-02T10:59:33.518Z",
       "deadline": "25/09/2026",
       "deadlineAt": "2026-09-25T00:00:00.000Z",
       "audience": "Tous",
@@ -903,8 +952,8 @@
       "tags": [
         "format_poème"
       ],
-      "added": "il y a 18 jours",
-      "addedAt": "2026-09-01T10:36:27.730Z",
+      "added": "il y a 19 jours",
+      "addedAt": "2026-09-01T10:59:33.518Z",
       "deadline": "07/10/2026",
       "deadlineAt": "2026-10-07T00:00:00.000Z",
       "audience": "18 ans minimum",
@@ -928,8 +977,8 @@
         "format_bande dessinée",
         "format_nouvelle"
       ],
-      "added": "il y a 19 jours",
-      "addedAt": "2026-08-31T10:36:27.730Z",
+      "added": "il y a 20 jours",
+      "addedAt": "2026-08-31T10:59:33.518Z",
       "deadline": "28/02/2027",
       "deadlineAt": "2027-02-28T00:00:00.000Z",
       "audience": "6 ans minimum",
@@ -955,8 +1004,8 @@
         "genre_fantasy",
         "genre_science-fiction"
       ],
-      "added": "il y a 20 jours",
-      "addedAt": "2026-08-30T10:36:27.730Z",
+      "added": "il y a 21 jours",
+      "addedAt": "2026-08-30T10:59:33.518Z",
       "deadline": "30/09/2026",
       "deadlineAt": "2026-09-30T00:00:00.000Z",
       "audience": "Auteurs et autrices majeurs, débutants ou confirmés",
@@ -980,8 +1029,8 @@
       "tags": [
         "format_nouvelle"
       ],
-      "added": "il y a 21 jours",
-      "addedAt": "2026-08-29T10:36:27.730Z",
+      "added": "il y a 22 jours",
+      "addedAt": "2026-08-29T10:59:33.518Z",
       "deadline": "05/04/2027",
       "deadlineAt": "2027-04-05T00:00:00.000Z",
       "audience": "16 ans minimum",
@@ -1007,8 +1056,8 @@
         "format_poème",
         "format_texte"
       ],
-      "added": "il y a 22 jours",
-      "addedAt": "2026-08-28T10:36:27.730Z",
+      "added": "il y a 23 jours",
+      "addedAt": "2026-08-28T10:59:33.518Z",
       "deadline": "06/01/2027",
       "deadlineAt": "2027-01-06T00:00:00.000Z",
       "audience": "Tous, individuel, collectif (établissements scolaires, structures intergénérationnelles, hôpitaux)",
@@ -1031,8 +1080,8 @@
       "tags": [
         "format_texte"
       ],
-      "added": "il y a 23 jours",
-      "addedAt": "2026-08-27T10:36:27.730Z",
+      "added": "il y a 24 jours",
+      "addedAt": "2026-08-27T10:59:33.518Z",
       "deadline": "01/10/2026",
       "deadlineAt": "2026-10-01T00:00:00.000Z",
       "audience": "Auteurs non résidents de Tarn-et-Garonne ayant publié au moins un livre à compte d’éditeur",
@@ -1056,8 +1105,8 @@
       "tags": [
         "format_texte"
       ],
-      "added": "il y a 24 jours",
-      "addedAt": "2026-08-26T10:36:27.730Z",
+      "added": "il y a 25 jours",
+      "addedAt": "2026-08-26T10:59:33.518Z",
       "deadline": "31/03/2027",
       "deadlineAt": "2027-03-31T00:00:00.000Z",
       "audience": "Tous",
@@ -1080,8 +1129,8 @@
       "tags": [
         "format_poème"
       ],
-      "added": "il y a 25 jours",
-      "addedAt": "2026-08-25T10:36:27.730Z",
+      "added": "il y a 26 jours",
+      "addedAt": "2026-08-25T10:59:33.518Z",
       "deadline": "31/10/2026",
       "deadlineAt": "2026-10-31T00:00:00.000Z",
       "audience": "12 ans minimum",
@@ -1106,8 +1155,8 @@
         "format_poème",
         "format_texte"
       ],
-      "added": "il y a 26 jours",
-      "addedAt": "2026-08-24T10:36:27.730Z",
+      "added": "il y a 27 jours",
+      "addedAt": "2026-08-24T10:59:33.518Z",
       "deadline": "05/10/2026",
       "deadlineAt": "2026-10-05T00:00:00.000Z",
       "audience": "Tous, résidents canadiens en priorité",
@@ -1130,8 +1179,8 @@
       "tags": [
         "format_poème"
       ],
-      "added": "il y a 27 jours",
-      "addedAt": "2026-08-23T10:36:27.730Z",
+      "added": "il y a 28 jours",
+      "addedAt": "2026-08-23T10:59:33.518Z",
       "deadline": "24/09/2026",
       "deadlineAt": "2026-09-24T00:00:00.000Z",
       "audience": "Tous",
@@ -1154,8 +1203,8 @@
       "tags": [
         "format_nouvelle"
       ],
-      "added": "il y a 28 jours",
-      "addedAt": "2026-08-22T10:36:27.730Z",
+      "added": "il y a 29 jours",
+      "addedAt": "2026-08-22T10:59:33.518Z",
       "deadline": "05/10/2026",
       "deadlineAt": "2026-10-05T00:00:00.000Z",
       "audience": "7 ans minimum",
@@ -1178,8 +1227,8 @@
       "tags": [
         "format_nouvelle"
       ],
-      "added": "il y a 29 jours",
-      "addedAt": "2026-08-21T10:36:27.730Z",
+      "added": "il y a 30 jours",
+      "addedAt": "2026-08-21T10:59:33.518Z",
       "deadline": "14/02/2027",
       "deadlineAt": "2027-02-14T00:00:00.000Z",
       "audience": "Tous",
@@ -1204,7 +1253,7 @@
         "genre_érotique"
       ],
       "added": "il y a 1 mois",
-      "addedAt": "2026-08-20T10:36:27.730Z",
+      "addedAt": "2026-08-21T10:59:33.518Z",
       "deadline": "01/11/2026",
       "deadlineAt": "2026-11-01T00:00:00.000Z",
       "audience": "18 ans minimum",
@@ -1228,7 +1277,7 @@
         "format_nouvelle"
       ],
       "added": "il y a 1 mois",
-      "addedAt": "2026-08-20T10:36:27.730Z",
+      "addedAt": "2026-08-21T10:59:33.518Z",
       "deadline": "22/11/2026",
       "deadlineAt": "2026-11-22T00:00:00.000Z",
       "audience": "18 ans minimum",
@@ -1253,7 +1302,7 @@
         "format_poème"
       ],
       "added": "il y a 1 mois",
-      "addedAt": "2026-08-20T10:36:27.730Z",
+      "addedAt": "2026-08-21T10:59:33.518Z",
       "deadline": "18/10/2026",
       "deadlineAt": "2026-10-18T00:00:00.000Z",
       "audience": "15-18 ans, individuel, collectif ou scolaire",
@@ -1277,7 +1326,7 @@
         "format_poème"
       ],
       "added": "il y a 1 mois",
-      "addedAt": "2026-08-20T10:36:27.730Z",
+      "addedAt": "2026-08-21T10:59:33.518Z",
       "deadline": "30/09/2026",
       "deadlineAt": "2026-09-30T00:00:00.000Z",
       "audience": "Tous",
@@ -1301,7 +1350,7 @@
         "format_nouvelle"
       ],
       "added": "il y a 1 mois",
-      "addedAt": "2026-08-20T10:36:27.730Z",
+      "addedAt": "2026-08-21T10:59:33.518Z",
       "deadline": "30/06/2027",
       "deadlineAt": "2027-06-30T00:00:00.000Z",
       "audience": "Tous : écrivains confirmés, débutants et jeunes auteurs",
@@ -1327,7 +1376,7 @@
         "genre_science-fiction"
       ],
       "added": "il y a 1 mois",
-      "addedAt": "2026-08-20T10:36:27.730Z",
+      "addedAt": "2026-08-21T10:59:33.518Z",
       "deadline": "13/10/2026",
       "deadlineAt": "2026-10-13T00:00:00.000Z",
       "audience": "8-18 ans, individuel, collectif ou scolaire",
@@ -1351,7 +1400,7 @@
         "format_recueil de poèmes"
       ],
       "added": "il y a 1 mois",
-      "addedAt": "2026-08-20T10:36:27.730Z",
+      "addedAt": "2026-08-21T10:59:33.518Z",
       "deadline": "31/10/2026",
       "deadlineAt": "2026-10-31T00:00:00.000Z",
       "audience": "Tous",
@@ -1375,7 +1424,7 @@
         "format_nouvelle"
       ],
       "added": "il y a 1 mois",
-      "addedAt": "2026-08-20T10:36:27.730Z",
+      "addedAt": "2026-08-21T10:59:33.518Z",
       "deadline": "15/02/2027",
       "deadlineAt": "2027-02-15T00:00:00.000Z",
       "audience": "Collégiens et lycéens, individuel, collectif ou scolaire",
@@ -1399,7 +1448,7 @@
         "format_texte"
       ],
       "added": "il y a 1 mois",
-      "addedAt": "2026-08-20T10:36:27.730Z",
+      "addedAt": "2026-08-21T10:59:33.518Z",
       "deadline": "30/09/2026",
       "deadlineAt": "2026-09-30T00:00:00.000Z",
       "audience": "7-14 ans",
@@ -1423,7 +1472,7 @@
         "format_nouvelle"
       ],
       "added": "il y a 1 mois",
-      "addedAt": "2026-08-20T10:36:27.730Z",
+      "addedAt": "2026-08-21T10:59:33.518Z",
       "deadline": "30/09/2026",
       "deadlineAt": "2026-09-30T00:00:00.000Z",
       "audience": "18 ans minimum",
@@ -1447,7 +1496,7 @@
         "format_nouvelle"
       ],
       "added": "il y a 1 mois",
-      "addedAt": "2026-08-20T10:36:27.730Z",
+      "addedAt": "2026-08-21T10:59:33.518Z",
       "deadline": "30/11/2026",
       "deadlineAt": "2026-11-30T00:00:00.000Z",
       "audience": "Tous",
@@ -1470,8 +1519,8 @@
       "tags": [
         "format_poème"
       ],
-      "added": "il y a 1 mois",
-      "addedAt": "2026-08-20T10:36:27.730Z",
+      "added": "il y a 2 mois",
+      "addedAt": "2026-07-22T10:59:33.518Z",
       "deadline": "30/01/2027",
       "deadlineAt": "2027-01-30T00:00:00.000Z",
       "audience": "Tous",
@@ -1494,8 +1543,8 @@
       "tags": [
         "format_poème"
       ],
-      "added": "il y a 1 mois",
-      "addedAt": "2026-08-20T10:36:27.730Z",
+      "added": "il y a 2 mois",
+      "addedAt": "2026-07-22T10:59:33.518Z",
       "deadline": "15/03/2027",
       "deadlineAt": "2027-03-15T00:00:00.000Z",
       "audience": "CM2-20 ans",
@@ -1520,7 +1569,7 @@
         "format_texte"
       ],
       "added": "il y a 2 mois",
-      "addedAt": "2026-07-21T10:36:27.730Z",
+      "addedAt": "2026-07-22T10:59:33.518Z",
       "deadline": "30/09/2026",
       "deadlineAt": "2026-09-30T00:00:00.000Z",
       "audience": "16-30 ans",
@@ -1544,7 +1593,7 @@
         "format_texte"
       ],
       "added": "il y a 2 mois",
-      "addedAt": "2026-07-21T10:36:27.730Z",
+      "addedAt": "2026-07-22T10:59:33.518Z",
       "deadline": "30/09/2026",
       "deadlineAt": "2026-09-30T00:00:00.000Z",
       "audience": "Auteur.es de langue française, photographes",
@@ -1568,7 +1617,7 @@
         "format_texte"
       ],
       "added": "il y a 2 mois",
-      "addedAt": "2026-07-21T10:36:27.730Z",
+      "addedAt": "2026-07-22T10:59:33.518Z",
       "deadline": "28/02/2027",
       "deadlineAt": "2027-02-28T00:00:00.000Z",
       "audience": "18 ans minimum",
@@ -1592,7 +1641,7 @@
         "format_nouvelle"
       ],
       "added": "il y a 2 mois",
-      "addedAt": "2026-07-21T10:36:27.730Z",
+      "addedAt": "2026-07-22T10:59:33.518Z",
       "deadline": "30/09/2026",
       "deadlineAt": "2026-09-30T00:00:00.000Z",
       "audience": "16 ans minimum",
@@ -1616,7 +1665,7 @@
         "format_texte"
       ],
       "added": "il y a 2 mois",
-      "addedAt": "2026-07-21T10:36:27.730Z",
+      "addedAt": "2026-07-22T10:59:33.518Z",
       "deadline": "06/10/2026",
       "deadlineAt": "2026-10-06T00:00:00.000Z",
       "audience": "18 ans minimum",
@@ -1642,7 +1691,7 @@
         "genre_romance"
       ],
       "added": "il y a 2 mois",
-      "addedAt": "2026-07-21T10:36:27.730Z",
+      "addedAt": "2026-07-22T10:59:33.518Z",
       "deadline": "01/11/2026",
       "deadlineAt": "2026-11-01T00:00:00.000Z",
       "audience": "Tous",
@@ -1667,7 +1716,7 @@
         "format_roman"
       ],
       "added": "il y a 2 mois",
-      "addedAt": "2026-07-21T10:36:27.730Z",
+      "addedAt": "2026-07-22T10:59:33.518Z",
       "deadline": "31/12/2026",
       "deadlineAt": "2026-12-31T00:00:00.000Z",
       "audience": "Tous",
@@ -1695,7 +1744,7 @@
         "genre_science-fiction"
       ],
       "added": "il y a 2 mois",
-      "addedAt": "2026-07-21T10:36:27.730Z",
+      "addedAt": "2026-07-22T10:59:33.518Z",
       "deadline": "31/10/2026",
       "deadlineAt": "2026-10-31T00:00:00.000Z",
       "audience": "18 ans minimum",
@@ -1719,7 +1768,7 @@
         "format_poème"
       ],
       "added": "il y a 2 mois",
-      "addedAt": "2026-07-21T10:36:27.730Z",
+      "addedAt": "2026-07-22T10:59:33.518Z",
       "deadline": "31/12/2026",
       "deadlineAt": "2026-12-31T00:00:00.000Z",
       "audience": "18 ans minimum",
@@ -1743,7 +1792,7 @@
         "format_texte"
       ],
       "added": "il y a 2 mois",
-      "addedAt": "2026-07-21T10:36:27.730Z",
+      "addedAt": "2026-07-22T10:59:33.518Z",
       "deadline": "31/12/2026",
       "deadlineAt": "2026-12-31T00:00:00.000Z",
       "audience": "Tous",
@@ -1768,7 +1817,7 @@
         "genre_historique"
       ],
       "added": "il y a 2 mois",
-      "addedAt": "2026-07-21T10:36:27.730Z",
+      "addedAt": "2026-07-22T10:59:33.518Z",
       "deadline": "11/11/2026",
       "deadlineAt": "2026-11-11T00:00:00.000Z",
       "audience": "11 ans minimum",
@@ -1792,7 +1841,7 @@
         "format_nouvelle"
       ],
       "added": "il y a 2 mois",
-      "addedAt": "2026-07-21T10:36:27.730Z",
+      "addedAt": "2026-07-22T10:59:33.518Z",
       "deadline": "31/01/2027",
       "deadlineAt": "2027-01-31T00:00:00.000Z",
       "audience": "Pour tout public qui aime écrire et raconter des histoires",
@@ -1816,7 +1865,7 @@
         "format_nouvelle"
       ],
       "added": "il y a 2 mois",
-      "addedAt": "2026-07-21T10:36:27.730Z",
+      "addedAt": "2026-07-22T10:59:33.518Z",
       "deadline": "30/09/2026",
       "deadlineAt": "2026-09-30T00:00:00.000Z",
       "audience": "Tous",
@@ -1843,7 +1892,7 @@
         "format_texte"
       ],
       "added": "il y a 2 mois",
-      "addedAt": "2026-07-21T10:36:27.730Z",
+      "addedAt": "2026-07-22T10:59:33.518Z",
       "deadline": "31/10/2026",
       "deadlineAt": "2026-10-31T00:00:00.000Z",
       "audience": "Tous",
@@ -1867,7 +1916,7 @@
         "format_nouvelle"
       ],
       "added": "il y a 2 mois",
-      "addedAt": "2026-07-21T10:36:27.730Z",
+      "addedAt": "2026-07-22T10:59:33.518Z",
       "deadline": "31/10/2026",
       "deadlineAt": "2026-10-31T00:00:00.000Z",
       "audience": "15 ans minimum",
@@ -1882,30 +1931,6 @@
       "reward": "Prix, lots, publication dans le Bulletin Annuel de l'Association"
     },
     {
-      "id": "4888",
-      "publisher": "Association Ad verba",
-      "title": "Appel à textes - Faire courir le paysage",
-      "url": "https://adverbaeditions.com/",
-      "image": "/assets/screenshots/4888.png",
-      "tags": [
-        "format_poème"
-      ],
-      "added": "il y a 2 mois",
-      "addedAt": "2026-07-21T10:36:27.730Z",
-      "deadline": "20/09/2026",
-      "deadlineAt": "2026-09-20T00:00:00.000Z",
-      "audience": "Tous",
-      "audienceCategories": [
-        "audience_no_age_constraint",
-        "audience_no_geo_constraint"
-      ],
-      "fee": "0 €",
-      "feeCategory": "fee_free",
-      "theme": "Écrire des poèmes en lien avec les œuvres et leurs artistes.",
-      "length": "40 lignes maximum.",
-      "reward": "Publication livresque, lot de 2 ouvrages, rétribution financière si équilibre budgétaire de l’association"
-    },
-    {
       "id": "4877",
       "publisher": "Muséum national d’Histoire naturelle de Toulouse",
       "title": "Concours de nouvelles",
@@ -1915,7 +1940,7 @@
         "format_nouvelle"
       ],
       "added": "il y a 2 mois",
-      "addedAt": "2026-07-21T10:36:27.730Z",
+      "addedAt": "2026-07-22T10:59:33.518Z",
       "deadline": "05/01/2027",
       "deadlineAt": "2027-01-05T00:00:00.000Z",
       "audience": "15 ans minimum",
@@ -1939,7 +1964,7 @@
         "format_nouvelle"
       ],
       "added": "il y a 2 mois",
-      "addedAt": "2026-07-21T10:36:27.730Z",
+      "addedAt": "2026-07-22T10:59:33.518Z",
       "deadline": "26/03/2027",
       "deadlineAt": "2027-03-26T00:00:00.000Z",
       "audience": "12-17 ans",
@@ -1963,7 +1988,7 @@
         "format_nouvelle"
       ],
       "added": "il y a 2 mois",
-      "addedAt": "2026-07-21T10:36:27.730Z",
+      "addedAt": "2026-07-22T10:59:33.518Z",
       "deadline": "30/09/2026",
       "deadlineAt": "2026-09-30T00:00:00.000Z",
       "audience": "Tous",
@@ -1988,7 +2013,7 @@
         "format_récit"
       ],
       "added": "il y a 2 mois",
-      "addedAt": "2026-07-21T10:36:27.730Z",
+      "addedAt": "2026-07-22T10:59:33.518Z",
       "deadline": "30/09/2026",
       "deadlineAt": "2026-09-30T00:00:00.000Z",
       "audience": "Tous, bédéistes débutants, émergents et professionnels, écrivain(es)",
@@ -2013,7 +2038,7 @@
         "format_nouvelle"
       ],
       "added": "il y a 2 mois",
-      "addedAt": "2026-07-21T10:36:27.730Z",
+      "addedAt": "2026-07-22T10:59:33.518Z",
       "deadline": "15/11/2026",
       "deadlineAt": "2026-11-15T00:00:00.000Z",
       "audience": "18 ans minimum",
@@ -2028,35 +2053,6 @@
       "reward": "Prix, publication dans la revue du Parc national, journée en montagne accompagnée par un garde du Parc national, place pour le spectacle du vendredi ou samedi soir du 7e festival Murmure du Monde, livre sur les Pyrénées, publication des textes sur le site web du Parc national"
     },
     {
-      "id": "4869",
-      "publisher": "Panodyssey, réseau social littéraire",
-      "title": "Concours d’écriture - Chat Sans Frontières",
-      "url": "https://panodyssey.com/fr/article/culture/chat-sans-frontieres-un-concours-d-ecriture-inedit-au-monde-entre-plumes-et-chats-grace-a-panodyssey-emueh4qba35a",
-      "image": "/assets/screenshots/4869.png",
-      "tags": [
-        "format_essai",
-        "format_fiction",
-        "format_lettre",
-        "format_poème",
-        "format_témoignage",
-        "format_texte"
-      ],
-      "added": "il y a 2 mois",
-      "addedAt": "2026-07-21T10:36:27.730Z",
-      "deadline": "20/09/2026",
-      "deadlineAt": "2026-09-20T00:00:00.000Z",
-      "audience": "Tous, à partir de la création d'un compte gratuit sur Panodyssey, ouvert aux auteurs déjà inscrits comme aux nouveaux participants",
-      "audienceCategories": [
-        "audience_no_age_constraint",
-        "audience_no_geo_constraint"
-      ],
-      "fee": "0 €",
-      "feeCategory": "fee_free",
-      "theme": "Parlez aux chats. Thème libre et ouvert : le chat animal, les chats des IA génératives ou toute interprétation créative du mot « chat ».",
-      "length": "5 minutes maximum de lecture par publication",
-      "reward": "Prix, parcours éditorial d'un an sur Panodyssey (mise en avant régulière, accompagnement éditorial, échanges réguliers avec le fondateur)"
-    },
-    {
       "id": "4866",
       "publisher": "Association Cycliste Associés pour le Droit de Rouler en sécurité, Ateliers d'écriture Écrire à Mulhouse",
       "title": "Concours de nouvelles - Le vélo sous toutes ses formes",
@@ -2066,7 +2062,7 @@
         "format_nouvelle"
       ],
       "added": "il y a 3 mois",
-      "addedAt": "2026-06-21T10:36:27.730Z",
+      "addedAt": "2026-06-22T10:59:33.518Z",
       "deadline": "04/11/2026",
       "deadlineAt": "2026-11-04T00:00:00.000Z",
       "audience": "Tous",
@@ -2090,7 +2086,7 @@
         "format_nouvelle"
       ],
       "added": "il y a 3 mois",
-      "addedAt": "2026-06-21T10:36:27.730Z",
+      "addedAt": "2026-06-22T10:59:33.518Z",
       "deadline": "28/09/2026",
       "deadlineAt": "2026-09-28T00:00:00.000Z",
       "audience": "16 ans minimum",
@@ -2119,7 +2115,7 @@
         "format_scénario"
       ],
       "added": "il y a 3 mois",
-      "addedAt": "2026-06-21T10:36:27.730Z",
+      "addedAt": "2026-06-22T10:59:33.518Z",
       "deadline": "27/09/2026",
       "deadlineAt": "2026-09-27T00:00:00.000Z",
       "audience": "Étudiant·es inscrit·es dans un établissement d’enseignement supérieur public en Nouvelle-Aquitaine (universités, écoles d’art publiques, autres établissements publics), lycéen·nes de Pessac",
@@ -2134,32 +2130,6 @@
       "reward": "1 000 € x 4, 700 € , 500 € x 4, 300 €, résidence d’écriture à la Villa Valmont"
     },
     {
-      "id": "4854",
-      "publisher": "Festival Sang d’encre, MJC de Vienne",
-      "title": "Concours de nouvelles - Brèves de Sang d’encre 2026",
-      "url": "https://atelierdescarmes.o80.fr/category/breves-sang-encre/edition-actuelle-sang-encre/",
-      "image": "/assets/screenshots/4854.png",
-      "tags": [
-        "format_nouvelle",
-        "genre_policier",
-        "genre_thriller"
-      ],
-      "added": "il y a 3 mois",
-      "addedAt": "2026-06-21T10:36:27.730Z",
-      "deadline": "20/09/2026",
-      "deadlineAt": "2026-09-20T00:00:00.000Z",
-      "audience": "Tous",
-      "audienceCategories": [
-        "audience_no_age_constraint",
-        "audience_no_geo_constraint"
-      ],
-      "fee": "0 €",
-      "feeCategory": "fee_free",
-      "theme": "Première et dernière phrases imposées.",
-      "length": "2-3 pages",
-      "reward": "Prix, publication en recueil, lecture publique lors du festival"
-    },
-    {
       "id": "4850",
       "publisher": "Maison d'édition associative Les Mondes d'Après",
       "title": "Concours de novellas - Kesk'IA, t'aimes pas mon cyberstyle ?",
@@ -2170,7 +2140,7 @@
         "genre_science-fiction"
       ],
       "added": "il y a 3 mois",
-      "addedAt": "2026-06-21T10:36:27.730Z",
+      "addedAt": "2026-06-22T10:59:33.518Z",
       "deadline": "30/09/2026",
       "deadlineAt": "2026-09-30T00:00:00.000Z",
       "audience": "26 ans maximum",
@@ -2194,7 +2164,7 @@
         "format_nouvelle"
       ],
       "added": "il y a 4 mois",
-      "addedAt": "2026-05-22T10:36:27.730Z",
+      "addedAt": "2026-05-23T10:59:33.518Z",
       "deadline": "01/11/2026",
       "deadlineAt": "2026-11-01T00:00:00.000Z",
       "audience": "Tous",
@@ -2218,7 +2188,7 @@
         "format_nouvelle"
       ],
       "added": "il y a 4 mois",
-      "addedAt": "2026-05-22T10:36:27.730Z",
+      "addedAt": "2026-05-23T10:59:33.518Z",
       "deadline": "30/09/2026",
       "deadlineAt": "2026-09-30T00:00:00.000Z",
       "audience": "18 ans minimum",
@@ -2242,7 +2212,7 @@
         "format_nouvelle"
       ],
       "added": "il y a 5 mois",
-      "addedAt": "2026-04-22T10:36:27.730Z",
+      "addedAt": "2026-04-23T10:59:33.518Z",
       "deadline": "31/10/2026",
       "deadlineAt": "2026-10-31T00:00:00.000Z",
       "audience": "16 ans minimum",
@@ -2266,7 +2236,7 @@
         "format_poème"
       ],
       "added": "il y a 5 mois",
-      "addedAt": "2026-04-22T10:36:27.730Z",
+      "addedAt": "2026-04-23T10:59:33.518Z",
       "deadline": "28/09/2026",
       "deadlineAt": "2026-09-28T00:00:00.000Z",
       "audience": "Tous",
@@ -2290,7 +2260,7 @@
         "format_nouvelle"
       ],
       "added": "il y a 5 mois",
-      "addedAt": "2026-04-22T10:36:27.730Z",
+      "addedAt": "2026-04-23T10:59:33.518Z",
       "deadline": "30/09/2026",
       "deadlineAt": "2026-09-30T00:00:00.000Z",
       "audience": "Tous",
@@ -2314,7 +2284,7 @@
         "format_nouvelle"
       ],
       "added": "il y a 5 mois",
-      "addedAt": "2026-04-22T10:36:27.730Z",
+      "addedAt": "2026-04-23T10:59:33.518Z",
       "deadline": "18/12/2026",
       "deadlineAt": "2026-12-18T00:00:00.000Z",
       "audience": "tous",
@@ -2338,7 +2308,7 @@
         "format_nouvelle"
       ],
       "added": "il y a 6 mois",
-      "addedAt": "2026-03-23T10:36:27.730Z",
+      "addedAt": "2026-03-24T10:59:33.518Z",
       "deadline": "30/06/2028",
       "deadlineAt": "2028-06-30T00:00:00.000Z",
       "audience": "Tous",
@@ -2362,7 +2332,7 @@
         "format_poème"
       ],
       "added": "il y a 6 mois",
-      "addedAt": "2026-03-23T10:36:27.730Z",
+      "addedAt": "2026-03-24T10:59:33.518Z",
       "deadline": "01/10/2026",
       "deadlineAt": "2026-10-01T00:00:00.000Z",
       "audience": "Tous",
@@ -2386,7 +2356,7 @@
         "format_poème"
       ],
       "added": "il y a 7 mois",
-      "addedAt": "2026-02-21T10:36:27.730Z",
+      "addedAt": "2026-02-22T10:59:33.518Z",
       "deadline": "31/01/2027",
       "deadlineAt": "2027-01-31T00:00:00.000Z",
       "audience": "Tous",
@@ -2411,7 +2381,7 @@
         "genre_fantastique"
       ],
       "added": "il y a 8 mois",
-      "addedAt": "2026-01-22T10:36:27.730Z",
+      "addedAt": "2026-01-23T10:59:33.518Z",
       "deadline": "31/01/2027",
       "deadlineAt": "2027-01-31T00:00:00.000Z",
       "audience": "18 ans minimum (toute personne majeure au 02/01/2027), résidents de France métropolitaine",
@@ -2435,7 +2405,7 @@
         "format_texte"
       ],
       "added": "il y a 9 mois",
-      "addedAt": "2025-12-23T10:36:27.730Z",
+      "addedAt": "2025-12-24T10:59:33.518Z",
       "deadline": "31/12/2026",
       "deadlineAt": "2026-12-31T00:00:00.000Z",
       "audience": "Tous",
@@ -2459,7 +2429,7 @@
         "format_nouvelle"
       ],
       "added": "il y a 10 mois",
-      "addedAt": "2025-11-23T10:36:27.730Z",
+      "addedAt": "2025-11-24T10:59:33.518Z",
       "deadline": "01/12/2026",
       "deadlineAt": "2026-12-01T00:00:00.000Z",
       "audience": "Tous",
@@ -2487,7 +2457,7 @@
         "format_texte"
       ],
       "added": "il y a 11 mois",
-      "addedAt": "2025-10-24T10:36:27.730Z",
+      "addedAt": "2025-10-25T10:59:33.518Z",
       "deadline": "26/10/2026",
       "deadlineAt": "2026-10-26T00:00:00.000Z",
       "audience": "Tous",
@@ -2505,7 +2475,7 @@
   "feeFilterOptions": [
     {
       "value": "fee_free",
-      "label": "gratuit (0 €) (77)"
+      "label": "gratuit (0 €) (76)"
     },
     {
       "value": "fee_variable",
