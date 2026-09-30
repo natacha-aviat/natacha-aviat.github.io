@@ -1,16 +1,16 @@
 {
-  "updatedAt": "2026-09-29T12:28:19.388Z",
+  "updatedAt": "2026-09-30T12:13:34.129Z",
   "source": "https://textes-a-la-pelle.fr/",
   "filterOptions": [
     {
       "group": "",
       "value": "",
-      "label": "tout afficher (96)"
+      "label": "tout afficher (80)"
     },
     {
       "group": "type de texte :",
       "value": "format_bande dessinée",
-      "label": "bande dessinée (2)"
+      "label": "bande dessinée (1)"
     },
     {
       "group": "type de texte :",
@@ -35,7 +35,7 @@
     {
       "group": "type de texte :",
       "value": "format_essai",
-      "label": "essai (4)"
+      "label": "essai (2)"
     },
     {
       "group": "type de texte :",
@@ -60,12 +60,12 @@
     {
       "group": "type de texte :",
       "value": "format_nouvelle",
-      "label": "nouvelle (47)"
+      "label": "nouvelle (42)"
     },
     {
       "group": "type de texte :",
       "value": "format_novella",
-      "label": "novella (2)"
+      "label": "novella (1)"
     },
     {
       "group": "type de texte :",
@@ -80,12 +80,7 @@
     {
       "group": "type de texte :",
       "value": "format_poème",
-      "label": "poème (26)"
-    },
-    {
-      "group": "type de texte :",
-      "value": "format_récit",
-      "label": "récit (2)"
+      "label": "poème (23)"
     },
     {
       "group": "type de texte :",
@@ -100,7 +95,7 @@
     {
       "group": "type de texte :",
       "value": "format_roman",
-      "label": "roman (7)"
+      "label": "roman (5)"
     },
     {
       "group": "type de texte :",
@@ -115,12 +110,7 @@
     {
       "group": "type de texte :",
       "value": "format_texte",
-      "label": "texte (21)"
-    },
-    {
-      "group": "genre littéraire :",
-      "value": "genre_contemporain",
-      "label": "contemporain (1)"
+      "label": "texte (16)"
     },
     {
       "group": "genre littéraire :",
@@ -130,12 +120,12 @@
     {
       "group": "genre littéraire :",
       "value": "genre_fantastique",
-      "label": "fantastique (5)"
+      "label": "fantastique (4)"
     },
     {
       "group": "genre littéraire :",
       "value": "genre_fantasy",
-      "label": "fantasy (3)"
+      "label": "fantasy (2)"
     },
     {
       "group": "genre littéraire :",
@@ -146,11 +136,6 @@
       "group": "genre littéraire :",
       "value": "genre_humoristique",
       "label": "humoristique (1)"
-    },
-    {
-      "group": "genre littéraire :",
-      "value": "genre_nouvelle",
-      "label": "nouvelle (1)"
     },
     {
       "group": "genre littéraire :",
@@ -170,7 +155,7 @@
     {
       "group": "genre littéraire :",
       "value": "genre_science-fiction",
-      "label": "science-fiction (6)"
+      "label": "science-fiction (4)"
     },
     {
       "group": "genre littéraire :",
@@ -179,6 +164,30 @@
     }
   ],
   "announcements": [
+    {
+      "id": "5011",
+      "publisher": "Association RÉCITALIS",
+      "title": "Concours de nouvelles - Concours francophone de nouvelles 2027",
+      "url": "https://sites.google.com/view/recitalis/concours-2026-2027",
+      "image": "/assets/screenshots/5011.png",
+      "tags": [
+        "format_nouvelle"
+      ],
+      "added": "il y a 14 heures",
+      "addedAt": "2026-09-29T22:13:34.130Z",
+      "deadline": "31/12/2026",
+      "deadlineAt": "2026-12-31T00:00:00.000Z",
+      "audience": "10 ans minimum",
+      "audienceCategories": [
+        "audience_minors_and_up",
+        "audience_no_geo_constraint"
+      ],
+      "fee": "0 €",
+      "feeCategory": "fee_free",
+      "theme": "L'eau qui nous relie – Une histoire qui nous rassemble.",
+      "length": "2 500-6 000 sec",
+      "reward": "Prix, valise de voyage, livres, publication dans la revue"
+    },
     {
       "id": "5010",
       "publisher": "Association Le Château des Livres, Maison d'édition associative La Bouinotte",
@@ -190,8 +199,8 @@
         "genre_policier",
         "genre_thriller"
       ],
-      "added": "il y a 14 heures",
-      "addedAt": "2026-09-28T22:28:19.389Z",
+      "added": "il y a 1 jour",
+      "addedAt": "2026-09-29T12:13:34.130Z",
       "deadline": "31/12/2026",
       "deadlineAt": "2026-12-31T00:00:00.000Z",
       "audience": "Tous",
@@ -217,20 +226,20 @@
         "format_poème",
         "format_texte"
       ],
-      "added": "il y a 2 jours",
-      "addedAt": "2026-09-27T12:28:19.389Z",
+      "added": "il y a 3 jours",
+      "addedAt": "2026-09-27T12:13:34.130Z",
       "deadline": "01/06/2027",
       "deadlineAt": "2027-06-01T00:00:00.000Z",
-      "audience": "Tous, individuel, collectif (établissements scolaires, structures intergénérationnelles, hôpitaux, EHPAD, crèches, garderies, centres sociaux)",
+      "audience": "18 ans maximum, individuel, scolaire ou collectif",
       "audienceCategories": [
-        "audience_no_age_constraint",
+        "audience_young_adult",
         "audience_no_geo_constraint"
       ],
       "fee": "0 €",
       "feeCategory": "fee_free",
       "theme": "La croisade des enfants.",
       "length": "2 pages maximum",
-      "reward": "Publication dans un recueil anthologique, exposition des oeuvres au festival, diplômes remis aux enfants participants au festival"
+      "reward": "Publication dans un recueil anthologique, exposition des oeuvres au festival"
     },
     {
       "id": "5007",
@@ -241,8 +250,8 @@
       "tags": [
         "format_poème"
       ],
-      "added": "il y a 3 jours",
-      "addedAt": "2026-09-26T12:28:19.389Z",
+      "added": "il y a 4 jours",
+      "addedAt": "2026-09-26T12:13:34.130Z",
       "deadline": "15/11/2026",
       "deadlineAt": "2026-11-15T00:00:00.000Z",
       "audience": "Tous",
@@ -267,8 +276,8 @@
         "format_poème",
         "format_tanka"
       ],
-      "added": "il y a 4 jours",
-      "addedAt": "2026-09-25T12:28:19.389Z",
+      "added": "il y a 5 jours",
+      "addedAt": "2026-09-25T12:13:34.130Z",
       "deadline": "16/11/2026",
       "deadlineAt": "2026-11-16T00:00:00.000Z",
       "audience": "18 ans minimum",
@@ -291,8 +300,8 @@
       "tags": [
         "format_pièce de théâtre"
       ],
-      "added": "il y a 5 jours",
-      "addedAt": "2026-09-24T12:28:19.389Z",
+      "added": "il y a 6 jours",
+      "addedAt": "2026-09-24T12:13:34.130Z",
       "deadline": "22/11/2026",
       "deadlineAt": "2026-11-22T00:00:00.000Z",
       "audience": "dans la section auteurs émergents : n'importe qui n'ayant jamais écrit de pièce jouée dans des conditions professionnelles, dans la section auteurs dramatiques : les membres des EAT Méd",
@@ -321,8 +330,8 @@
         "format_poème",
         "format_texte"
       ],
-      "added": "il y a 5 jours",
-      "addedAt": "2026-09-24T12:28:19.389Z",
+      "added": "il y a 6 jours",
+      "addedAt": "2026-09-24T12:13:34.130Z",
       "deadline": "15/11/2026",
       "deadlineAt": "2026-11-15T00:00:00.000Z",
       "audience": "Toute personne souhaitant contribuer à la revue par une création, un texte, une critique ou une proposition éditoriale",
@@ -345,8 +354,8 @@
       "tags": [
         "format_nouvelle"
       ],
-      "added": "il y a 6 jours",
-      "addedAt": "2026-09-23T12:28:19.389Z",
+      "added": "il y a 7 jours",
+      "addedAt": "2026-09-23T12:13:34.130Z",
       "deadline": "14/12/2026",
       "deadlineAt": "2026-12-14T00:00:00.000Z",
       "audience": "Résidents de Seine-et-Marne, individuel ou scolaire",
@@ -369,8 +378,8 @@
       "tags": [
         "format_texte"
       ],
-      "added": "il y a 7 jours",
-      "addedAt": "2026-09-22T12:28:19.389Z",
+      "added": "il y a 8 jours",
+      "addedAt": "2026-09-22T12:13:34.130Z",
       "deadline": "16/10/2026",
       "deadlineAt": "2026-10-16T00:00:00.000Z",
       "audience": "18 ans minimum, auteurs professionnels",
@@ -395,8 +404,8 @@
         "format_roman",
         "genre_romance"
       ],
-      "added": "il y a 7 jours",
-      "addedAt": "2026-09-22T12:28:19.389Z",
+      "added": "il y a 8 jours",
+      "addedAt": "2026-09-22T12:13:34.130Z",
       "deadline": "04/10/2026",
       "deadlineAt": "2026-10-04T00:00:00.000Z",
       "audience": "Tous",
@@ -419,8 +428,8 @@
       "tags": [
         "format_nouvelle"
       ],
-      "added": "il y a 8 jours",
-      "addedAt": "2026-09-21T12:28:19.389Z",
+      "added": "il y a 9 jours",
+      "addedAt": "2026-09-21T12:13:34.130Z",
       "deadline": "15/12/2026",
       "deadlineAt": "2026-12-15T00:00:00.000Z",
       "audience": "Tous, individuel, collectif ou scolaire",
@@ -443,8 +452,8 @@
       "tags": [
         "format_poème"
       ],
-      "added": "il y a 8 jours",
-      "addedAt": "2026-09-21T12:28:19.389Z",
+      "added": "il y a 9 jours",
+      "addedAt": "2026-09-21T12:13:34.130Z",
       "deadline": "12/12/2026",
       "deadlineAt": "2026-12-12T00:00:00.000Z",
       "audience": "Tous",
@@ -467,8 +476,8 @@
       "tags": [
         "format_pièce de théâtre"
       ],
-      "added": "il y a 9 jours",
-      "addedAt": "2026-09-20T12:28:19.389Z",
+      "added": "il y a 10 jours",
+      "addedAt": "2026-09-20T12:13:34.130Z",
       "deadline": "15/10/2026",
       "deadlineAt": "2026-10-15T00:00:00.000Z",
       "audience": "Tous",
@@ -492,8 +501,8 @@
         "format_pantoun",
         "format_poème"
       ],
-      "added": "il y a 9 jours",
-      "addedAt": "2026-09-20T12:28:19.389Z",
+      "added": "il y a 10 jours",
+      "addedAt": "2026-09-20T12:13:34.130Z",
       "deadline": "31/10/2026",
       "deadlineAt": "2026-10-31T00:00:00.000Z",
       "audience": "Tous",
@@ -516,8 +525,8 @@
       "tags": [
         "format_nouvelle"
       ],
-      "added": "il y a 10 jours",
-      "addedAt": "2026-09-19T12:28:19.389Z",
+      "added": "il y a 11 jours",
+      "addedAt": "2026-09-19T12:13:34.130Z",
       "deadline": "30/11/2026",
       "deadlineAt": "2026-11-30T00:00:00.000Z",
       "audience": "18 ans minimum",
@@ -541,8 +550,8 @@
         "format_roman",
         "genre_romance"
       ],
-      "added": "il y a 10 jours",
-      "addedAt": "2026-09-19T12:28:19.389Z",
+      "added": "il y a 11 jours",
+      "addedAt": "2026-09-19T12:13:34.130Z",
       "deadline": "30/10/2026",
       "deadlineAt": "2026-10-30T00:00:00.000Z",
       "audience": "Auteurs et autrices majeurs, débutants ou confirmés",
@@ -566,8 +575,8 @@
       "tags": [
         "format_nouvelle"
       ],
-      "added": "il y a 11 jours",
-      "addedAt": "2026-09-18T12:28:19.389Z",
+      "added": "il y a 12 jours",
+      "addedAt": "2026-09-18T12:13:34.130Z",
       "deadline": "31/10/2026",
       "deadlineAt": "2026-10-31T00:00:00.000Z",
       "audience": "18 ans minimum",
@@ -590,8 +599,8 @@
       "tags": [
         "format_nouvelle"
       ],
-      "added": "il y a 11 jours",
-      "addedAt": "2026-09-18T12:28:19.389Z",
+      "added": "il y a 12 jours",
+      "addedAt": "2026-09-18T12:13:34.130Z",
       "deadline": "15/01/2027",
       "deadlineAt": "2027-01-15T00:00:00.000Z",
       "audience": "18 ans minimum",
@@ -616,8 +625,8 @@
         "genre_fantastique",
         "genre_science-fiction"
       ],
-      "added": "il y a 12 jours",
-      "addedAt": "2026-09-17T12:28:19.389Z",
+      "added": "il y a 13 jours",
+      "addedAt": "2026-09-17T12:13:34.130Z",
       "deadline": "31/12/2026",
       "deadlineAt": "2026-12-31T00:00:00.000Z",
       "audience": "Tous",
@@ -641,8 +650,8 @@
         "format_novella",
         "genre_fantasy"
       ],
-      "added": "il y a 12 jours",
-      "addedAt": "2026-09-17T12:28:19.389Z",
+      "added": "il y a 13 jours",
+      "addedAt": "2026-09-17T12:13:34.130Z",
       "deadline": "31/01/2027",
       "deadlineAt": "2027-01-31T00:00:00.000Z",
       "audience": "18 ans minimum",
@@ -665,8 +674,8 @@
       "tags": [
         "format_poème"
       ],
-      "added": "il y a 13 jours",
-      "addedAt": "2026-09-16T12:28:19.389Z",
+      "added": "il y a 14 jours",
+      "addedAt": "2026-09-16T12:13:34.130Z",
       "deadline": "11/12/2026",
       "deadlineAt": "2026-12-11T00:00:00.000Z",
       "audience": "8-12 ans, individuel, collectif ou scolaire",
@@ -689,8 +698,8 @@
       "tags": [
         "format_nouvelle"
       ],
-      "added": "il y a 14 jours",
-      "addedAt": "2026-09-15T12:28:19.389Z",
+      "added": "il y a 15 jours",
+      "addedAt": "2026-09-15T12:13:34.130Z",
       "deadline": "15/10/2026",
       "deadlineAt": "2026-10-15T00:00:00.000Z",
       "audience": "Tous",
@@ -714,8 +723,8 @@
         "format_nouvelle",
         "genre_policier"
       ],
-      "added": "il y a 14 jours",
-      "addedAt": "2026-09-15T12:28:19.389Z",
+      "added": "il y a 15 jours",
+      "addedAt": "2026-09-15T12:13:34.130Z",
       "deadline": "01/03/2027",
       "deadlineAt": "2027-03-01T00:00:00.000Z",
       "audience": "12 ans minimum",
@@ -738,8 +747,8 @@
       "tags": [
         "format_nouvelle"
       ],
-      "added": "il y a 15 jours",
-      "addedAt": "2026-09-14T12:28:19.389Z",
+      "added": "il y a 16 jours",
+      "addedAt": "2026-09-14T12:13:34.130Z",
       "deadline": "05/12/2026",
       "deadlineAt": "2026-12-05T00:00:00.000Z",
       "audience": "Tous",
@@ -762,8 +771,8 @@
       "tags": [
         "format_nouvelle"
       ],
-      "added": "il y a 16 jours",
-      "addedAt": "2026-09-13T12:28:19.389Z",
+      "added": "il y a 17 jours",
+      "addedAt": "2026-09-13T12:13:34.130Z",
       "deadline": "10/11/2026",
       "deadlineAt": "2026-11-10T00:00:00.000Z",
       "audience": "15-20 ans, résidents de France (métropole et Outre-mer)",
@@ -784,11 +793,10 @@
       "url": "https://www.mmdd.be/fr/activites/evenements/en-cours/concours-de-nouvelles-lamour-a-la-mine",
       "image": "/assets/screenshots/4984.png",
       "tags": [
-        "format_nouvelle",
-        "genre_nouvelle"
+        "format_nouvelle"
       ],
-      "added": "il y a 16 jours",
-      "addedAt": "2026-09-13T12:28:19.389Z",
+      "added": "il y a 17 jours",
+      "addedAt": "2026-09-13T12:13:34.130Z",
       "deadline": "01/10/2026",
       "deadlineAt": "2026-10-01T00:00:00.000Z",
       "audience": "Résidents de Belgique ou du département français des Hauts-de-France",
@@ -811,8 +819,8 @@
       "tags": [
         "format_histoire"
       ],
-      "added": "il y a 17 jours",
-      "addedAt": "2026-09-12T12:28:19.389Z",
+      "added": "il y a 18 jours",
+      "addedAt": "2026-09-12T12:13:34.130Z",
       "deadline": "01/10/2026",
       "deadlineAt": "2026-10-01T00:00:00.000Z",
       "audience": "8-14 ans",
@@ -835,8 +843,8 @@
       "tags": [
         "format_poème"
       ],
-      "added": "il y a 17 jours",
-      "addedAt": "2026-09-12T12:28:19.389Z",
+      "added": "il y a 18 jours",
+      "addedAt": "2026-09-12T12:13:34.130Z",
       "deadline": "18/10/2026",
       "deadlineAt": "2026-10-18T00:00:00.000Z",
       "audience": "Tous",
@@ -851,31 +859,6 @@
       "reward": "Publication dans le numéro 19 de la revue"
     },
     {
-      "id": "4973",
-      "publisher": "City Éditions, Éditions Lizzie, Éditions J’ai lu, Cosmopolitan",
-      "title": "Appel à textes - Prix du Roman de l’Été 2027",
-      "url": "https://www.prixduromandelete.fr/",
-      "image": "/assets/screenshots/4973.png",
-      "tags": [
-        "format_roman",
-        "genre_contemporain"
-      ],
-      "added": "il y a 18 jours",
-      "addedAt": "2026-09-11T12:28:19.389Z",
-      "deadline": "30/09/2026",
-      "deadlineAt": "2026-09-30T00:00:00.000Z",
-      "audience": "18 ans minimum, primo-romanciers et primo-romancières,",
-      "audienceCategories": [
-        "audience_18_plus",
-        "audience_no_geo_constraint"
-      ],
-      "fee": "0 €",
-      "feeCategory": "fee_free",
-      "theme": "Libre.",
-      "length": "200 000-500 000 sec",
-      "reward": "Contrat d'édition"
-    },
-    {
       "id": "4981",
       "publisher": "Association les Tisseurs de Mots",
       "title": "Appel à textes",
@@ -884,8 +867,8 @@
       "tags": [
         "format_texte"
       ],
-      "added": "il y a 19 jours",
-      "addedAt": "2026-09-10T12:28:19.389Z",
+      "added": "il y a 20 jours",
+      "addedAt": "2026-09-10T12:13:34.130Z",
       "deadline": "15/10/2026",
       "deadlineAt": "2026-10-15T00:00:00.000Z",
       "audience": "Tous",
@@ -909,8 +892,8 @@
         "format_conte",
         "format_poème"
       ],
-      "added": "il y a 20 jours",
-      "addedAt": "2026-09-09T12:28:19.389Z",
+      "added": "il y a 21 jours",
+      "addedAt": "2026-09-09T12:13:34.130Z",
       "deadline": "15/10/2026",
       "deadlineAt": "2026-10-15T00:00:00.000Z",
       "audience": "Tous",
@@ -923,31 +906,6 @@
       "theme": "Écrire pour la Terre.",
       "length": "10 pages maximum",
       "reward": "Prix, publication"
-    },
-    {
-      "id": "4976",
-      "publisher": "Revue Bloganozart",
-      "title": "Appel à textes - Rubrique À la loupe cinéma",
-      "url": "https://www.instagram.com/p/DcmFdyTsyal/",
-      "image": "/assets/screenshots/4976.png",
-      "tags": [
-        "format_essai",
-        "format_texte"
-      ],
-      "added": "il y a 20 jours",
-      "addedAt": "2026-09-09T12:28:19.389Z",
-      "deadline": "30/09/2026",
-      "deadlineAt": "2026-09-30T00:00:00.000Z",
-      "audience": "Tous",
-      "audienceCategories": [
-        "audience_no_age_constraint",
-        "audience_no_geo_constraint"
-      ],
-      "fee": "0 €",
-      "feeCategory": "fee_free",
-      "theme": "À travers le cinéma, explorez ce qui circule et se répond : entre deux êtres, entre images et émotions, entre différents arts, entre intérieur et extérieur, entre mémoire et présent.",
-      "length": "1-2 pages",
-      "reward": "Publication dans le n°10"
     },
     {
       "id": "4978",
@@ -964,8 +922,8 @@
         "genre_réaliste",
         "genre_science-fiction"
       ],
-      "added": "il y a 21 jours",
-      "addedAt": "2026-09-08T12:28:19.389Z",
+      "added": "il y a 22 jours",
+      "addedAt": "2026-09-08T12:13:34.130Z",
       "deadline": "10/11/2026",
       "deadlineAt": "2026-11-10T00:00:00.000Z",
       "audience": "18 ans minimum",
@@ -980,56 +938,6 @@
       "reward": "Prix, publication dans la revue"
     },
     {
-      "id": "4975",
-      "publisher": "Revue Bloganozart",
-      "title": "Appel à textes - Rubrique Champ libre",
-      "url": "https://www.instagram.com/p/DcmFdyTsyal/",
-      "image": "/assets/screenshots/4975.png",
-      "tags": [
-        "format_poème",
-        "format_récit",
-        "format_texte"
-      ],
-      "added": "il y a 21 jours",
-      "addedAt": "2026-09-08T12:28:19.389Z",
-      "deadline": "30/09/2026",
-      "deadlineAt": "2026-09-30T00:00:00.000Z",
-      "audience": "Tous",
-      "audienceCategories": [
-        "audience_no_age_constraint",
-        "audience_no_geo_constraint"
-      ],
-      "fee": "0 €",
-      "feeCategory": "fee_free",
-      "theme": "Correspondances.",
-      "length": "1-2 pages",
-      "reward": "Publication dans le n°10"
-    },
-    {
-      "id": "4980",
-      "publisher": "Rime academy",
-      "title": "Appel à textes – Nouvelle querelle des anciens et des modernes",
-      "url": "https://rime.academy/tutos/appel-a-textes2",
-      "image": "/assets/screenshots/4980.png",
-      "tags": [
-        "format_poème"
-      ],
-      "added": "il y a 22 jours",
-      "addedAt": "2026-09-07T12:28:19.389Z",
-      "deadline": "30/09/2026",
-      "deadlineAt": "2026-09-30T00:00:00.000Z",
-      "audience": "Tout le monde peut jouer, tout le monde peut voter. Un seul gagnant.",
-      "audienceCategories": [
-        "audience_no_age_constraint",
-        "audience_no_geo_constraint"
-      ],
-      "fee": "0 €",
-      "feeCategory": "fee_free",
-      "theme": "Le papillon.",
-      "length": "10 vers",
-      "reward": "Entrez dans l'Histoire, pour avoir participé à la plus grande battle de poésie de notre temps."
-    },
-    {
       "id": "4974",
       "publisher": "Association L’Esquisse et le Mot",
       "title": "Concours de nouvelles 2026",
@@ -1038,8 +946,8 @@
       "tags": [
         "format_nouvelle"
       ],
-      "added": "il y a 23 jours",
-      "addedAt": "2026-09-06T12:28:19.389Z",
+      "added": "il y a 24 jours",
+      "addedAt": "2026-09-06T12:13:34.130Z",
       "deadline": "10/11/2026",
       "deadlineAt": "2026-11-10T00:00:00.000Z",
       "audience": "18 ans minimum",
@@ -1062,8 +970,8 @@
       "tags": [
         "format_nouvelle"
       ],
-      "added": "il y a 25 jours",
-      "addedAt": "2026-09-04T12:28:19.389Z",
+      "added": "il y a 26 jours",
+      "addedAt": "2026-09-04T12:13:34.130Z",
       "deadline": "31/12/2026",
       "deadlineAt": "2026-12-31T00:00:00.000Z",
       "audience": "18 ans minimum, résidents de France",
@@ -1089,8 +997,8 @@
         "format_nouvelle",
         "format_poème"
       ],
-      "added": "il y a 25 jours",
-      "addedAt": "2026-09-04T12:28:19.389Z",
+      "added": "il y a 26 jours",
+      "addedAt": "2026-09-04T12:13:34.130Z",
       "deadline": "10/01/2027",
       "deadlineAt": "2027-01-10T00:00:00.000Z",
       "audience": "Tous",
@@ -1116,8 +1024,8 @@
         "format_saynète",
         "format_texte"
       ],
-      "added": "il y a 26 jours",
-      "addedAt": "2026-09-03T12:28:19.389Z",
+      "added": "il y a 27 jours",
+      "addedAt": "2026-09-03T12:13:34.130Z",
       "deadline": "31/01/2027",
       "deadlineAt": "2027-01-31T00:00:00.000Z",
       "audience": "Tous",
@@ -1140,8 +1048,8 @@
       "tags": [
         "format_poème"
       ],
-      "added": "il y a 28 jours",
-      "addedAt": "2026-09-01T12:28:19.389Z",
+      "added": "il y a 29 jours",
+      "addedAt": "2026-09-01T12:13:34.130Z",
       "deadline": "07/10/2026",
       "deadlineAt": "2026-10-07T00:00:00.000Z",
       "audience": "18 ans minimum",
@@ -1165,8 +1073,8 @@
         "format_bande dessinée",
         "format_nouvelle"
       ],
-      "added": "il y a 29 jours",
-      "addedAt": "2026-08-31T12:28:19.389Z",
+      "added": "il y a 30 jours",
+      "addedAt": "2026-08-31T12:13:34.130Z",
       "deadline": "28/02/2027",
       "deadlineAt": "2027-02-28T00:00:00.000Z",
       "audience": "6 ans minimum",
@@ -1181,34 +1089,6 @@
       "reward": "Prix, bons d'achats"
     },
     {
-      "id": "4967",
-      "publisher": "Le Lys Bleu Éditions",
-      "title": "Appel à textes – Imaginaires : faites-nous rêver !",
-      "url": "https://www.lysbleueditions.com/etre-edite-fantastique/",
-      "image": "/assets/screenshots/4967.png",
-      "tags": [
-        "format_roman",
-        "genre_fantastique",
-        "genre_fantasy",
-        "genre_science-fiction"
-      ],
-      "added": "il y a 30 jours",
-      "addedAt": "2026-08-30T12:28:19.389Z",
-      "deadline": "30/09/2026",
-      "deadlineAt": "2026-09-30T00:00:00.000Z",
-      "audience": "Auteurs et autrices majeurs, débutants ou confirmés",
-      "audienceCategories": [
-        "audience_published",
-        "audience_no_age_constraint",
-        "audience_no_geo_constraint"
-      ],
-      "fee": "0 €",
-      "feeCategory": "fee_free",
-      "theme": "L’imaginaire sous toutes ses formes : mondes fantastiques, magie, créatures, univers parallèles, futurs imaginés, phénomènes surnaturels, etc. Genres attendus : fantasy, fantastique, science-fiction, dystopie, romantasy, paranormal, merveilleux, conte et, plus largement, toutes les formes de littérature de l’imaginaire.",
-      "length": "",
-      "reward": "Livre publié"
-    },
-    {
       "id": "4964",
       "publisher": "Ville de Mennecy",
       "title": "Concours de nouvelles - Prix Jean Jacques Robert de la nouvelle",
@@ -1218,7 +1098,7 @@
         "format_nouvelle"
       ],
       "added": "il y a 1 mois",
-      "addedAt": "2026-08-30T12:28:19.389Z",
+      "addedAt": "2026-08-31T12:13:34.130Z",
       "deadline": "05/04/2027",
       "deadlineAt": "2027-04-05T00:00:00.000Z",
       "audience": "16 ans minimum",
@@ -1245,7 +1125,7 @@
         "format_texte"
       ],
       "added": "il y a 1 mois",
-      "addedAt": "2026-08-30T12:28:19.389Z",
+      "addedAt": "2026-08-31T12:13:34.130Z",
       "deadline": "06/01/2027",
       "deadlineAt": "2027-01-06T00:00:00.000Z",
       "audience": "Tous, individuel, collectif (établissements scolaires, structures intergénérationnelles, hôpitaux)",
@@ -1269,7 +1149,7 @@
         "format_texte"
       ],
       "added": "il y a 1 mois",
-      "addedAt": "2026-08-30T12:28:19.389Z",
+      "addedAt": "2026-08-31T12:13:34.130Z",
       "deadline": "01/10/2026",
       "deadlineAt": "2026-10-01T00:00:00.000Z",
       "audience": "Auteurs non résidents de Tarn-et-Garonne ayant publié au moins un livre à compte d’éditeur",
@@ -1294,7 +1174,7 @@
         "format_texte"
       ],
       "added": "il y a 1 mois",
-      "addedAt": "2026-08-30T12:28:19.389Z",
+      "addedAt": "2026-08-31T12:13:34.130Z",
       "deadline": "31/03/2027",
       "deadlineAt": "2027-03-31T00:00:00.000Z",
       "audience": "Tous",
@@ -1318,7 +1198,7 @@
         "format_poème"
       ],
       "added": "il y a 1 mois",
-      "addedAt": "2026-08-30T12:28:19.389Z",
+      "addedAt": "2026-08-31T12:13:34.130Z",
       "deadline": "31/10/2026",
       "deadlineAt": "2026-10-31T00:00:00.000Z",
       "audience": "12 ans minimum",
@@ -1344,7 +1224,7 @@
         "format_texte"
       ],
       "added": "il y a 1 mois",
-      "addedAt": "2026-08-30T12:28:19.389Z",
+      "addedAt": "2026-08-31T12:13:34.130Z",
       "deadline": "05/10/2026",
       "deadlineAt": "2026-10-05T00:00:00.000Z",
       "audience": "Tous, résidents canadiens en priorité",
@@ -1368,7 +1248,7 @@
         "format_nouvelle"
       ],
       "added": "il y a 1 mois",
-      "addedAt": "2026-08-30T12:28:19.389Z",
+      "addedAt": "2026-08-31T12:13:34.130Z",
       "deadline": "05/10/2026",
       "deadlineAt": "2026-10-05T00:00:00.000Z",
       "audience": "7 ans minimum",
@@ -1392,7 +1272,7 @@
         "format_nouvelle"
       ],
       "added": "il y a 1 mois",
-      "addedAt": "2026-08-30T12:28:19.389Z",
+      "addedAt": "2026-08-31T12:13:34.130Z",
       "deadline": "14/02/2027",
       "deadlineAt": "2027-02-14T00:00:00.000Z",
       "audience": "Tous",
@@ -1417,7 +1297,7 @@
         "genre_érotique"
       ],
       "added": "il y a 1 mois",
-      "addedAt": "2026-08-30T12:28:19.389Z",
+      "addedAt": "2026-08-31T12:13:34.130Z",
       "deadline": "01/11/2026",
       "deadlineAt": "2026-11-01T00:00:00.000Z",
       "audience": "18 ans minimum",
@@ -1441,7 +1321,7 @@
         "format_nouvelle"
       ],
       "added": "il y a 1 mois",
-      "addedAt": "2026-08-30T12:28:19.389Z",
+      "addedAt": "2026-08-31T12:13:34.130Z",
       "deadline": "22/11/2026",
       "deadlineAt": "2026-11-22T00:00:00.000Z",
       "audience": "18 ans minimum",
@@ -1466,7 +1346,7 @@
         "format_poème"
       ],
       "added": "il y a 1 mois",
-      "addedAt": "2026-08-30T12:28:19.389Z",
+      "addedAt": "2026-08-31T12:13:34.130Z",
       "deadline": "18/10/2026",
       "deadlineAt": "2026-10-18T00:00:00.000Z",
       "audience": "15-18 ans, individuel, collectif ou scolaire",
@@ -1481,30 +1361,6 @@
       "reward": "Prix"
     },
     {
-      "id": "4951",
-      "publisher": "Rime academy",
-      "title": "Appel à textes – Défi des deux vers",
-      "url": "https://rime.academy/tutos/appel-a-textes",
-      "image": "/assets/screenshots/4951.png",
-      "tags": [
-        "format_poème"
-      ],
-      "added": "il y a 1 mois",
-      "addedAt": "2026-08-30T12:28:19.389Z",
-      "deadline": "30/09/2026",
-      "deadlineAt": "2026-09-30T00:00:00.000Z",
-      "audience": "Tous",
-      "audienceCategories": [
-        "audience_no_age_constraint",
-        "audience_no_geo_constraint"
-      ],
-      "fee": "0 €",
-      "feeCategory": "fee_free",
-      "theme": "Révélé chaque soir à minuit. Écrivez un poème de deux vers avec une rime imposée.",
-      "length": "2 vers",
-      "reward": "Avoir la satisfaction de comprendre la raison de ce défi insolite"
-    },
-    {
       "id": "4946",
       "publisher": "Académie littéraire d’espéranto",
       "title": "Concours de nouvelles - Concours interculturel de nouvelles (INK), 7e édition",
@@ -1514,7 +1370,7 @@
         "format_nouvelle"
       ],
       "added": "il y a 1 mois",
-      "addedAt": "2026-08-30T12:28:19.389Z",
+      "addedAt": "2026-08-31T12:13:34.130Z",
       "deadline": "30/06/2027",
       "deadlineAt": "2027-06-30T00:00:00.000Z",
       "audience": "Tous : écrivains confirmés, débutants et jeunes auteurs",
@@ -1540,7 +1396,7 @@
         "genre_science-fiction"
       ],
       "added": "il y a 1 mois",
-      "addedAt": "2026-08-30T12:28:19.389Z",
+      "addedAt": "2026-08-31T12:13:34.130Z",
       "deadline": "13/10/2026",
       "deadlineAt": "2026-10-13T00:00:00.000Z",
       "audience": "8-18 ans, individuel, collectif ou scolaire",
@@ -1564,7 +1420,7 @@
         "format_recueil de poèmes"
       ],
       "added": "il y a 1 mois",
-      "addedAt": "2026-08-30T12:28:19.389Z",
+      "addedAt": "2026-08-31T12:13:34.130Z",
       "deadline": "31/10/2026",
       "deadlineAt": "2026-10-31T00:00:00.000Z",
       "audience": "Tous",
@@ -1588,7 +1444,7 @@
         "format_nouvelle"
       ],
       "added": "il y a 2 mois",
-      "addedAt": "2026-07-31T12:28:19.389Z",
+      "addedAt": "2026-08-01T12:13:34.130Z",
       "deadline": "15/02/2027",
       "deadlineAt": "2027-02-15T00:00:00.000Z",
       "audience": "Collégiens et lycéens, individuel, collectif ou scolaire",
@@ -1603,54 +1459,6 @@
       "reward": "200 € x 2, 50 € x 2, publication sur le site"
     },
     {
-      "id": "4932",
-      "publisher": "Médiathèque La Malle d'Allionis de Châtelaillon-Plage",
-      "title": "Concours d’écriture et d’illustration jeunesse - Prix Graine de Voyageur 2026",
-      "url": "https://mediatheque-chatelaillonplage.fr/agenda/les-concours-decriture-2026",
-      "image": "/assets/screenshots/4932.png",
-      "tags": [
-        "format_texte"
-      ],
-      "added": "il y a 2 mois",
-      "addedAt": "2026-07-31T12:28:19.389Z",
-      "deadline": "30/09/2026",
-      "deadlineAt": "2026-09-30T00:00:00.000Z",
-      "audience": "7-14 ans",
-      "audienceCategories": [
-        "audience_under_18",
-        "audience_no_geo_constraint"
-      ],
-      "fee": "0 €",
-      "feeCategory": "fee_free",
-      "theme": "Imagine ton propre héros de manga… ou ton yōkai légendaire !",
-      "length": "",
-      "reward": "Prix, carte cadeau pour un abonnement KUBE de 3 mois (soit 3 box livres personnalisés avec leurs surprises), publication sur le site et dans Châtel Mag"
-    },
-    {
-      "id": "4928",
-      "publisher": "Médiathèque La Malle d'Allionis de Châtelaillon-Plage",
-      "title": "Concours de nouvelles - Prix du Voyageur 2026",
-      "url": "https://mediatheque-chatelaillonplage.fr/agenda/les-concours-decriture-2026",
-      "image": "/assets/screenshots/4928.png",
-      "tags": [
-        "format_nouvelle"
-      ],
-      "added": "il y a 2 mois",
-      "addedAt": "2026-07-31T12:28:19.389Z",
-      "deadline": "30/09/2026",
-      "deadlineAt": "2026-09-30T00:00:00.000Z",
-      "audience": "18 ans minimum",
-      "audienceCategories": [
-        "audience_18_plus",
-        "audience_no_geo_constraint"
-      ],
-      "fee": "0 €",
-      "feeCategory": "fee_free",
-      "theme": "Le monde n’attend pas toujours des héros. Parfois, il attend juste quelqu’un qui ose.",
-      "length": "1 350-1 650 mots",
-      "reward": "Prix, week-end en demi-pension pour deux personnes au sein de la station balnéaire, publication sur le site et dans Châtel Mag"
-    },
-    {
       "id": "4929",
       "publisher": "Ville de Mably",
       "title": "Concours de nouvelles - 35e concours de nouvelles de la ville de Mably",
@@ -1660,7 +1468,7 @@
         "format_nouvelle"
       ],
       "added": "il y a 2 mois",
-      "addedAt": "2026-07-31T12:28:19.389Z",
+      "addedAt": "2026-08-01T12:13:34.130Z",
       "deadline": "30/11/2026",
       "deadlineAt": "2026-11-30T00:00:00.000Z",
       "audience": "Tous",
@@ -1684,7 +1492,7 @@
         "format_poème"
       ],
       "added": "il y a 2 mois",
-      "addedAt": "2026-07-31T12:28:19.389Z",
+      "addedAt": "2026-08-01T12:13:34.130Z",
       "deadline": "30/01/2027",
       "deadlineAt": "2027-01-30T00:00:00.000Z",
       "audience": "Tous",
@@ -1708,7 +1516,7 @@
         "format_poème"
       ],
       "added": "il y a 2 mois",
-      "addedAt": "2026-07-31T12:28:19.389Z",
+      "addedAt": "2026-08-01T12:13:34.130Z",
       "deadline": "15/03/2027",
       "deadlineAt": "2027-03-15T00:00:00.000Z",
       "audience": "CM2-20 ans",
@@ -1723,55 +1531,6 @@
       "reward": "Prix, diplôme, publication dans la revue L’Agora et en recueil"
     },
     {
-      "id": "4922",
-      "publisher": "Revue On vous entend pas",
-      "title": "Appel à textes - « ON VOUS ENTEND PAS » lance son premier appel à textes",
-      "url": "https://onvousentendpas.squarespace.com/",
-      "image": "/assets/screenshots/4922.png",
-      "tags": [
-        "format_essai",
-        "format_texte"
-      ],
-      "added": "il y a 2 mois",
-      "addedAt": "2026-07-31T12:28:19.389Z",
-      "deadline": "30/09/2026",
-      "deadlineAt": "2026-09-30T00:00:00.000Z",
-      "audience": "16-30 ans",
-      "audienceCategories": [
-        "audience_12_18",
-        "audience_no_geo_constraint"
-      ],
-      "fee": "0 €",
-      "feeCategory": "fee_free",
-      "theme": "Peau (mais surtout amuse-toi).",
-      "length": "1 page",
-      "reward": "Publication dans la revue en ligne"
-    },
-    {
-      "id": "4930",
-      "publisher": "Revue Interstice, Association L’Eau Penchée",
-      "title": "Appel à textes",
-      "url": "https://www.revueinterstice.fr/#Appel",
-      "image": "/assets/screenshots/4930.png",
-      "tags": [
-        "format_texte"
-      ],
-      "added": "il y a 2 mois",
-      "addedAt": "2026-07-31T12:28:19.389Z",
-      "deadline": "30/09/2026",
-      "deadlineAt": "2026-09-30T00:00:00.000Z",
-      "audience": "Auteur.es de langue française, photographes",
-      "audienceCategories": [
-        "audience_no_age_constraint",
-        "audience_no_geo_constraint"
-      ],
-      "fee": "5 €",
-      "feeCategory": "fee_1_10",
-      "theme": "Regain.",
-      "length": "3 000-5 000 sec",
-      "reward": "100 € pour le texte sélectionné, publication dans le second numéro de la revue"
-    },
-    {
       "id": "4921",
       "publisher": "Association Éditions du Doggerland, revue Cosmos",
       "title": "Concours d'écriture - Concours littéraire Fragments du Techno-Futur",
@@ -1781,7 +1540,7 @@
         "format_texte"
       ],
       "added": "il y a 2 mois",
-      "addedAt": "2026-07-31T12:28:19.389Z",
+      "addedAt": "2026-08-01T12:13:34.130Z",
       "deadline": "28/02/2027",
       "deadlineAt": "2027-02-28T00:00:00.000Z",
       "audience": "18 ans minimum",
@@ -1796,30 +1555,6 @@
       "reward": "150 €, publication dans Cosmos IV (septembre 2027)"
     },
     {
-      "id": "4915",
-      "publisher": "Médiathèque Amikuze de Saint Palais",
-      "title": "Concours de nouvelles",
-      "url": "https://www.mediateka-paysbasque.fr/accueil/concours_de_nouvelles",
-      "image": "/assets/screenshots/4915.png",
-      "tags": [
-        "format_nouvelle"
-      ],
-      "added": "il y a 2 mois",
-      "addedAt": "2026-07-31T12:28:19.389Z",
-      "deadline": "30/09/2026",
-      "deadlineAt": "2026-09-30T00:00:00.000Z",
-      "audience": "16 ans minimum",
-      "audienceCategories": [
-        "audience_minors_and_up",
-        "audience_no_geo_constraint"
-      ],
-      "fee": "0 €",
-      "feeCategory": "fee_free",
-      "theme": "La rencontre.",
-      "length": "2-7 pages",
-      "reward": "Prix, lot de livres, publication sur le site et en recueil, lecture publique par une compagnie de théâtre lors de la remise de prix en décembre"
-    },
-    {
       "id": "4912",
       "publisher": "Site La Zone",
       "title": "Appel à textes",
@@ -1829,7 +1564,7 @@
         "format_texte"
       ],
       "added": "il y a 2 mois",
-      "addedAt": "2026-07-31T12:28:19.389Z",
+      "addedAt": "2026-08-01T12:13:34.130Z",
       "deadline": "06/10/2026",
       "deadlineAt": "2026-10-06T00:00:00.000Z",
       "audience": "18 ans minimum",
@@ -1855,7 +1590,7 @@
         "genre_romance"
       ],
       "added": "il y a 2 mois",
-      "addedAt": "2026-07-31T12:28:19.389Z",
+      "addedAt": "2026-08-01T12:13:34.130Z",
       "deadline": "01/11/2026",
       "deadlineAt": "2026-11-01T00:00:00.000Z",
       "audience": "Tous",
@@ -1880,7 +1615,7 @@
         "format_roman"
       ],
       "added": "il y a 2 mois",
-      "addedAt": "2026-07-31T12:28:19.389Z",
+      "addedAt": "2026-08-01T12:13:34.130Z",
       "deadline": "31/12/2026",
       "deadlineAt": "2026-12-31T00:00:00.000Z",
       "audience": "Tous",
@@ -1908,7 +1643,7 @@
         "genre_science-fiction"
       ],
       "added": "il y a 2 mois",
-      "addedAt": "2026-07-31T12:28:19.389Z",
+      "addedAt": "2026-08-01T12:13:34.130Z",
       "deadline": "31/10/2026",
       "deadlineAt": "2026-10-31T00:00:00.000Z",
       "audience": "18 ans minimum",
@@ -1932,7 +1667,7 @@
         "format_poème"
       ],
       "added": "il y a 2 mois",
-      "addedAt": "2026-07-31T12:28:19.389Z",
+      "addedAt": "2026-08-01T12:13:34.130Z",
       "deadline": "31/12/2026",
       "deadlineAt": "2026-12-31T00:00:00.000Z",
       "audience": "18 ans minimum",
@@ -1956,7 +1691,7 @@
         "format_texte"
       ],
       "added": "il y a 2 mois",
-      "addedAt": "2026-07-31T12:28:19.389Z",
+      "addedAt": "2026-08-01T12:13:34.130Z",
       "deadline": "31/12/2026",
       "deadlineAt": "2026-12-31T00:00:00.000Z",
       "audience": "Tous",
@@ -1981,7 +1716,7 @@
         "genre_historique"
       ],
       "added": "il y a 2 mois",
-      "addedAt": "2026-07-31T12:28:19.389Z",
+      "addedAt": "2026-08-01T12:13:34.130Z",
       "deadline": "11/11/2026",
       "deadlineAt": "2026-11-11T00:00:00.000Z",
       "audience": "11 ans minimum",
@@ -2005,7 +1740,7 @@
         "format_nouvelle"
       ],
       "added": "il y a 2 mois",
-      "addedAt": "2026-07-31T12:28:19.389Z",
+      "addedAt": "2026-08-01T12:13:34.130Z",
       "deadline": "31/01/2027",
       "deadlineAt": "2027-01-31T00:00:00.000Z",
       "audience": "Pour tout public qui aime écrire et raconter des histoires",
@@ -2020,30 +1755,6 @@
       "reward": "Prix, bon d'achat de 480 € à dépenser au Relais du Bois Saint-Georges, bons d'achat en librairie de 120 €, 80 €"
     },
     {
-      "id": "4896",
-      "publisher": "Association des Amis d’Alain Spiess",
-      "title": "Concours de nouvelles 2026",
-      "url": "https://prixalainspiess2.wordpress.com/concours-de-nouvelles/",
-      "image": "/assets/screenshots/4896.png",
-      "tags": [
-        "format_nouvelle"
-      ],
-      "added": "il y a 2 mois",
-      "addedAt": "2026-07-31T12:28:19.389Z",
-      "deadline": "30/09/2026",
-      "deadlineAt": "2026-09-30T00:00:00.000Z",
-      "audience": "Tous",
-      "audienceCategories": [
-        "audience_no_age_constraint",
-        "audience_no_geo_constraint"
-      ],
-      "fee": "0-10 €",
-      "feeCategory": "fee_variable",
-      "theme": "Anniversaire.",
-      "length": "20 000 sec maximum",
-      "reward": "Prix, publication, lecture publique"
-    },
-    {
       "id": "4890",
       "publisher": "Association Rature et Brouillon",
       "title": "Appel à textes - Rattus Bibliothecam n°04, Joyeuse Camaraderie",
@@ -2056,7 +1767,7 @@
         "format_texte"
       ],
       "added": "il y a 3 mois",
-      "addedAt": "2026-07-01T12:28:19.389Z",
+      "addedAt": "2026-07-02T12:13:34.130Z",
       "deadline": "31/10/2026",
       "deadlineAt": "2026-10-31T00:00:00.000Z",
       "audience": "Tous",
@@ -2080,7 +1791,7 @@
         "format_nouvelle"
       ],
       "added": "il y a 3 mois",
-      "addedAt": "2026-07-01T12:28:19.389Z",
+      "addedAt": "2026-07-02T12:13:34.130Z",
       "deadline": "31/10/2026",
       "deadlineAt": "2026-10-31T00:00:00.000Z",
       "audience": "15 ans minimum",
@@ -2104,7 +1815,7 @@
         "format_nouvelle"
       ],
       "added": "il y a 3 mois",
-      "addedAt": "2026-07-01T12:28:19.389Z",
+      "addedAt": "2026-07-02T12:13:34.130Z",
       "deadline": "05/01/2027",
       "deadlineAt": "2027-01-05T00:00:00.000Z",
       "audience": "15 ans minimum",
@@ -2128,7 +1839,7 @@
         "format_nouvelle"
       ],
       "added": "il y a 3 mois",
-      "addedAt": "2026-07-01T12:28:19.389Z",
+      "addedAt": "2026-07-02T12:13:34.130Z",
       "deadline": "26/03/2027",
       "deadlineAt": "2027-03-26T00:00:00.000Z",
       "audience": "12-17 ans",
@@ -2143,56 +1854,6 @@
       "reward": "Prix, publication dans la revue du Parc national, journée en montagne accompagnée par un garde du Parc national, place pour le spectacle du vendredi ou samedi soir du 7e festival Murmure du Monde, livre sur les Pyrénées"
     },
     {
-      "id": "4876",
-      "publisher": "Association Les Amis de la Place Clichy",
-      "title": "Concours de nouvelles - Festival Mix!Cité",
-      "url": "https://festivalplaceclichy.fr/concours-2025-de-nouvelles/",
-      "image": "/assets/screenshots/4876.png",
-      "tags": [
-        "format_nouvelle"
-      ],
-      "added": "il y a 3 mois",
-      "addedAt": "2026-07-01T12:28:19.389Z",
-      "deadline": "30/09/2026",
-      "deadlineAt": "2026-09-30T00:00:00.000Z",
-      "audience": "Tous",
-      "audienceCategories": [
-        "audience_no_age_constraint",
-        "audience_no_geo_constraint"
-      ],
-      "fee": "0 €",
-      "feeCategory": "fee_free",
-      "theme": "Le message caché de Joséphine Baker.",
-      "length": "4 000-8 000 sec",
-      "reward": "Prix"
-    },
-    {
-      "id": "4882",
-      "publisher": "Nouvelle planche, Revue anthologique francophone de bande dessinée",
-      "title": "Appel à textes",
-      "url": "https://www.instagram.com/nouvelleplanchebd",
-      "image": "/assets/screenshots/4882.png",
-      "tags": [
-        "format_bande dessinée",
-        "format_récit"
-      ],
-      "added": "il y a 3 mois",
-      "addedAt": "2026-07-01T12:28:19.389Z",
-      "deadline": "30/09/2026",
-      "deadlineAt": "2026-09-30T00:00:00.000Z",
-      "audience": "Tous, bédéistes débutants, émergents et professionnels, écrivain(es)",
-      "audienceCategories": [
-        "audience_published",
-        "audience_no_age_constraint",
-        "audience_no_geo_constraint"
-      ],
-      "fee": "5 €",
-      "feeCategory": "fee_1_10",
-      "theme": "Inflation. Le prix des aliments grimpe. Les loyers augmentent. Les rêves coûtent-ils plus cher eux aussi ? À travers un récit court ou mise en BD avec l'humour, le drame, la satire, la science-fiction ou le fantastique, racontez comment l'inflation transforme le quotidien, les relations humaines et notre vision de l'avenir.",
-      "length": "3-5 pages",
-      "reward": "Publication dans l’anthologie francophone de bande dessinée Nouvelle Planche, exemplaire papier, et prix en argent pour les lauréates des catégories BD et récits courts"
-    },
-    {
       "id": "4872",
       "publisher": "Parc national des Pyrénées, Agence de l'Eau Adour-Garonne, Café-librairie du Kairn, Association Le murmure du monde, Bibliothèque d’Arrens-Marsous, Association Entre plumes",
       "title": "Concours de nouvelles - Deuxième édition du concours de nouvelles du Parc national des Pyrénées",
@@ -2202,7 +1863,7 @@
         "format_nouvelle"
       ],
       "added": "il y a 3 mois",
-      "addedAt": "2026-07-01T12:28:19.389Z",
+      "addedAt": "2026-07-02T12:13:34.130Z",
       "deadline": "15/11/2026",
       "deadlineAt": "2026-11-15T00:00:00.000Z",
       "audience": "18 ans minimum",
@@ -2226,7 +1887,7 @@
         "format_nouvelle"
       ],
       "added": "il y a 3 mois",
-      "addedAt": "2026-07-01T12:28:19.389Z",
+      "addedAt": "2026-07-02T12:13:34.130Z",
       "deadline": "04/11/2026",
       "deadlineAt": "2026-11-04T00:00:00.000Z",
       "audience": "Tous",
@@ -2241,31 +1902,6 @@
       "reward": "Prix, bon d'achat de 100 € à la FNAC, panier gourmand (présence obligatoire à la remise des prix)"
     },
     {
-      "id": "4850",
-      "publisher": "Maison d'édition associative Les Mondes d'Après",
-      "title": "Concours de novellas - Kesk'IA, t'aimes pas mon cyberstyle ?",
-      "url": "https://lesmondesdapres.fr/keskia/",
-      "image": "/assets/screenshots/4850.png",
-      "tags": [
-        "format_novella",
-        "genre_science-fiction"
-      ],
-      "added": "il y a 3 mois",
-      "addedAt": "2026-07-01T12:28:19.389Z",
-      "deadline": "30/09/2026",
-      "deadlineAt": "2026-09-30T00:00:00.000Z",
-      "audience": "26 ans maximum",
-      "audienceCategories": [
-        "audience_young_adult",
-        "audience_no_geo_constraint"
-      ],
-      "fee": "0 €",
-      "feeCategory": "fee_free",
-      "theme": "Créativité, intelligence artificielle, effondrements écologiques et sociétaux, et futurs désirables.",
-      "length": "120 000-180 000 sec",
-      "reward": "Publication dans une collection dédiée"
-    },
-    {
       "id": "4815",
       "publisher": "Association Le Loir Littéraire",
       "title": "Concours de nouvelles 2026",
@@ -2275,7 +1911,7 @@
         "format_nouvelle"
       ],
       "added": "il y a 4 mois",
-      "addedAt": "2026-06-01T12:28:19.389Z",
+      "addedAt": "2026-06-02T12:13:34.130Z",
       "deadline": "01/11/2026",
       "deadlineAt": "2026-11-01T00:00:00.000Z",
       "audience": "Tous",
@@ -2290,30 +1926,6 @@
       "reward": "800 €, 600 €, 400 €, 300 €, 200 €, publication sur le site et en recueil, exemplaires offerts"
     },
     {
-      "id": "4814",
-      "publisher": "Asbl Play Again",
-      "title": "Concours de nouvelles - Réinventer la Terre, concours international francophone",
-      "url": "https://www.play-again.be/",
-      "image": "/assets/screenshots/4814.png",
-      "tags": [
-        "format_nouvelle"
-      ],
-      "added": "il y a 4 mois",
-      "addedAt": "2026-06-01T12:28:19.389Z",
-      "deadline": "30/09/2026",
-      "deadlineAt": "2026-09-30T00:00:00.000Z",
-      "audience": "18 ans minimum",
-      "audienceCategories": [
-        "audience_18_plus",
-        "audience_no_geo_constraint"
-      ],
-      "fee": "0 €",
-      "feeCategory": "fee_free",
-      "theme": "Des récits qui regardent la réalité en face sans céder au désespoir. Des situations où subsiste la possibilité d’un sursaut capable de remettre le monde du côté de l’humain.",
-      "length": "10 000-15 000 sec",
-      "reward": "Prix, publication en recueil pour les 15 lauréats, promotion sur réseaux et salons du livre"
-    },
-    {
       "id": "4765",
       "publisher": "Association J'écris… J'm'édite",
       "title": "Concours de nouvelles",
@@ -2323,7 +1935,7 @@
         "format_nouvelle"
       ],
       "added": "il y a 5 mois",
-      "addedAt": "2026-05-02T12:28:19.389Z",
+      "addedAt": "2026-05-03T12:13:34.130Z",
       "deadline": "31/10/2026",
       "deadlineAt": "2026-10-31T00:00:00.000Z",
       "audience": "16 ans minimum",
@@ -2338,30 +1950,6 @@
       "reward": "Prix, publication en recueil, exemplaires offerts"
     },
     {
-      "id": "4725",
-      "publisher": "Association Compostelle 2000",
-      "title": "Concours de nouvelles - Cinquième Concours de Nouvelles de Compostelle 2000",
-      "url": "https://compostelle2000.org/cinquieme-concours-de-nouvelles/",
-      "image": "/assets/screenshots/4725.png",
-      "tags": [
-        "format_nouvelle"
-      ],
-      "added": "il y a 6 mois",
-      "addedAt": "2026-04-02T12:28:19.389Z",
-      "deadline": "30/09/2026",
-      "deadlineAt": "2026-09-30T00:00:00.000Z",
-      "audience": "Tous",
-      "audienceCategories": [
-        "audience_no_age_constraint",
-        "audience_no_geo_constraint"
-      ],
-      "fee": "7 €",
-      "feeCategory": "fee_1_10",
-      "theme": "Quelque part en chemin, vers midi…",
-      "length": "1 500-6 000 sec",
-      "reward": "Prix, chèques livres de 150 €, 100 €, 50 €, publication en recueil, exemplaires offerts"
-    },
-    {
       "id": "4722",
       "publisher": "Association des Amis de Corinne Vuillaume",
       "title": "Concours de nouvelles - Prix Corinne Vuillaume, 10ème édition",
@@ -2371,7 +1959,7 @@
         "format_nouvelle"
       ],
       "added": "il y a 6 mois",
-      "addedAt": "2026-04-02T12:28:19.389Z",
+      "addedAt": "2026-04-03T12:13:34.130Z",
       "deadline": "18/12/2026",
       "deadlineAt": "2026-12-18T00:00:00.000Z",
       "audience": "tous",
@@ -2395,7 +1983,7 @@
         "format_nouvelle"
       ],
       "added": "il y a 6 mois",
-      "addedAt": "2026-04-02T12:28:19.389Z",
+      "addedAt": "2026-04-03T12:13:34.130Z",
       "deadline": "30/06/2028",
       "deadlineAt": "2028-06-30T00:00:00.000Z",
       "audience": "Tous",
@@ -2419,7 +2007,7 @@
         "format_poème"
       ],
       "added": "il y a 6 mois",
-      "addedAt": "2026-04-02T12:28:19.389Z",
+      "addedAt": "2026-04-03T12:13:34.130Z",
       "deadline": "01/10/2026",
       "deadlineAt": "2026-10-01T00:00:00.000Z",
       "audience": "Tous",
@@ -2443,7 +2031,7 @@
         "format_poème"
       ],
       "added": "il y a 7 mois",
-      "addedAt": "2026-03-03T12:28:19.389Z",
+      "addedAt": "2026-03-04T12:13:34.130Z",
       "deadline": "31/01/2027",
       "deadlineAt": "2027-01-31T00:00:00.000Z",
       "audience": "Tous",
@@ -2468,7 +2056,7 @@
         "genre_fantastique"
       ],
       "added": "il y a 9 mois",
-      "addedAt": "2026-01-02T12:28:19.389Z",
+      "addedAt": "2026-01-03T12:13:34.130Z",
       "deadline": "31/01/2027",
       "deadlineAt": "2027-01-31T00:00:00.000Z",
       "audience": "18 ans minimum (toute personne majeure au 02/01/2027), résidents de France métropolitaine",
@@ -2492,7 +2080,7 @@
         "format_texte"
       ],
       "added": "il y a 9 mois",
-      "addedAt": "2026-01-02T12:28:19.389Z",
+      "addedAt": "2026-01-03T12:13:34.130Z",
       "deadline": "31/12/2026",
       "deadlineAt": "2026-12-31T00:00:00.000Z",
       "audience": "Tous",
@@ -2516,7 +2104,7 @@
         "format_nouvelle"
       ],
       "added": "il y a 10 mois",
-      "addedAt": "2025-12-03T12:28:19.389Z",
+      "addedAt": "2025-12-04T12:13:34.130Z",
       "deadline": "01/12/2026",
       "deadlineAt": "2026-12-01T00:00:00.000Z",
       "audience": "Tous",
@@ -2562,15 +2150,11 @@
   "feeFilterOptions": [
     {
       "value": "fee_free",
-      "label": "gratuit (0 €) (82)"
-    },
-    {
-      "value": "fee_variable",
-      "label": "variable (0 € – X €) (1)"
+      "label": "gratuit (0 €) (70)"
     },
     {
       "value": "fee_1_10",
-      "label": "1 € à 10 € (10)"
+      "label": "1 € à 10 € (7)"
     },
     {
       "value": "fee_11_20",
@@ -2581,7 +2165,7 @@
     {
       "group": "Âge",
       "value": "audience_under_18",
-      "label": "Moins de 18 ans (4)"
+      "label": "Moins de 18 ans (3)"
     },
     {
       "group": "Âge",
@@ -2591,12 +2175,12 @@
     {
       "group": "Âge",
       "value": "audience_12_18",
-      "label": "12-18 ans (5)"
+      "label": "12-18 ans (4)"
     },
     {
       "group": "Âge",
       "value": "audience_18_plus",
-      "label": "18 ans et plus (21)"
+      "label": "18 ans et plus (18)"
     },
     {
       "group": "Âge",
@@ -2606,7 +2190,7 @@
     {
       "group": "Publication",
       "value": "audience_published",
-      "label": "Publié / professionnel (7)"
+      "label": "Publié / professionnel (5)"
     },
     {
       "group": "Localisation",
