@@ -68,7 +68,7 @@ L’IA doit **conserver ces chemins relatifs** entre fichiers du même dossier p
 
 ### 4.2 Design tokens (CSS inline dans `<style>`)
 
-- Palette indicative : fond `#f3f6fc` / dégradés clairs, texte `#0f1f3d`, muté `#55637f`, primaire `#245fda`, primaire foncé `#1a47a5`, bordure `#d8e2f4`, ombres discrètes.
+- Palette : voir `palette.txt` (planche `images/2026-10-05_MedLex_Palette.png`). Fond cream `#F2F2F0`, texte dorian `#465C71`, titres duck `#073D3D`, primaire navy `#18334E`, accent cherry `#A3125A`, succès médi green `#12A3A3`.
 - Typo : `Inter`, `Segoe UI`, `Roboto`, `Arial`, sans-serif.
 - Header **sticky** avec léger flou (`backdrop-filter`).
 

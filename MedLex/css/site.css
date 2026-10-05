@@ -1,16 +1,31 @@
 :root {
-  --bg: #fbfcfd;
-  --teal: #0fa3a3;
-  --teal-dark: #0c8585;
-  --ink: #16314d;
-  --ok: #34c759;
-  --gray: #e8edf1;
-  --gray-text: #5f6b7a;
+  /* Palette : palette.txt — images/2026-10-05_MedLex_Palette.png */
+  --navy: #18334e;
+  --navy-hover: #13293e;
+  --cherry: #a3125a;
+  --mustard: #ecbd30;
+  --mustard-ink: #5a4810;
+  --duck: #073d3d;
+  --medi: #12a3a3;
+  --medi-ink: #0b6464;
+  --dorian: #465c71;
+  --mouse: #748595;
+  --cream: #f2f2f0;
   --white: #ffffff;
+  --bg: var(--cream);
+  --teal: var(--navy);
+  --teal-dark: var(--navy-hover);
+  --ink: var(--duck);
+  --text: var(--dorian);
+  --ok: var(--medi);
+  --ok-ink: var(--medi-ink);
+  --gray: #e0e4e8;
+  --gray-mid: #cad1d7;
+  --gray-text: var(--mouse);
   --radius: 14px;
   --radius-lg: 16px;
-  --shadow: 0 4px 24px rgba(22, 49, 77, 0.06);
-  --shadow-lg: 0 20px 50px rgba(22, 49, 77, 0.1);
+  --shadow: 0 4px 24px rgba(7, 61, 61, 0.06);
+  --shadow-lg: 0 20px 50px rgba(7, 61, 61, 0.1);
   --font: "Inter", "Segoe UI", Roboto, Arial, sans-serif;
   --max: 1140px;
   --tabular: "Inter", ui-monospace, monospace;
@@ -31,7 +46,7 @@ body {
   font-family: var(--font);
   font-size: 1rem;
   line-height: 1.58;
-  color: var(--ink);
+  color: var(--text);
   background: var(--bg);
   -webkit-font-smoothing: antialiased;
 }
@@ -42,6 +57,7 @@ h3 {
   margin: 0;
   font-weight: 700;
   letter-spacing: -0.025em;
+  color: var(--ink);
 }
 
 h1 {
@@ -64,7 +80,7 @@ p {
 }
 
 a {
-  color: inherit;
+  color: var(--navy);
 }
 
 .tabular {
@@ -108,7 +124,7 @@ a {
   position: sticky;
   top: 0;
   z-index: 40;
-  background: rgba(251, 252, 253, 0.92);
+  background: rgba(242, 242, 240, 0.92);
   backdrop-filter: blur(10px);
   border-bottom: 1px solid var(--gray);
   padding: 0.5rem 0;
@@ -143,7 +159,7 @@ a {
   width: 10px;
   height: 10px;
   border-radius: 50%;
-  background: var(--teal);
+  background: var(--cherry);
 }
 
 .nav {
@@ -186,7 +202,7 @@ a {
 .btn-primary {
   background: var(--teal);
   color: var(--white);
-  box-shadow: 0 4px 14px rgba(15, 163, 163, 0.35);
+  box-shadow: 0 4px 14px rgba(24, 51, 78, 0.28);
 }
 
 .btn-primary:hover {
@@ -200,7 +216,7 @@ a {
 }
 
 .btn-secondary:hover {
-  border-color: #cdd5dc;
+  border-color: var(--gray-mid);
   box-shadow: var(--shadow);
 }
 
@@ -219,7 +235,7 @@ a {
 .hero-tagline {
   font-size: 1.05rem;
   font-style: italic;
-  color: var(--teal-dark);
+  color: var(--cherry);
   margin-bottom: 0.85rem;
 }
 
@@ -285,7 +301,7 @@ a {
   justify-content: space-between;
   padding: 0.65rem 1rem;
   background: var(--gray);
-  border-bottom: 1px solid #dde3e8;
+  border-bottom: 1px solid var(--gray-mid);
 }
 
 .dash-dots {
@@ -297,14 +313,14 @@ a {
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  background: #c5cdd5;
+  background: var(--gray-mid);
 }
 
 .dash-dots span:first-child {
-  background: #ff6b6b;
+  background: var(--cherry);
 }
 .dash-dots span:nth-child(2) {
-  background: #ffd93d;
+  background: var(--mustard);
 }
 .dash-dots span:nth-child(3) {
   background: var(--ok);
@@ -325,7 +341,7 @@ a {
 .dash-sidebar {
   padding: 1rem 0.75rem;
   border-right: 1px solid var(--gray);
-  background: #f6f8fa;
+  background: var(--cream);
 }
 
 .dash-nav-item {
@@ -341,7 +357,7 @@ a {
 }
 
 .dash-nav-item.active {
-  background: rgba(15, 163, 163, 0.12);
+  background: rgba(24, 51, 78, 0.1);
   color: var(--teal-dark);
 }
 
@@ -383,15 +399,15 @@ a {
 .progress-pill {
   padding: 0.25rem 0.6rem;
   border-radius: 999px;
-  background: rgba(52, 199, 89, 0.12);
-  color: #248a3d;
+  background: rgba(18, 163, 163, 0.14);
+  color: var(--ok-ink);
   font-size: 0.68rem;
   font-weight: 600;
 }
 
 .dash-explain {
   padding: 0.65rem 0.75rem;
-  background: rgba(15, 163, 163, 0.08);
+  background: rgba(24, 51, 78, 0.06);
   border-left: 3px solid var(--teal);
   border-radius: 0 8px 8px 0;
   font-size: 0.72rem;
@@ -420,11 +436,11 @@ a {
 .empathy-quote {
   margin-top: 1.25rem;
   padding: 1rem 1.25rem;
-  background: rgba(15, 163, 163, 0.08);
+  background: rgba(163, 18, 90, 0.08);
   border-radius: var(--radius);
   font-size: 1.05rem;
   font-weight: 500;
-  color: var(--teal-dark);
+  color: var(--cherry);
 }
 
 .section {
@@ -493,14 +509,14 @@ a {
 }
 
 .contract-card:hover {
-  border-color: rgba(15, 163, 163, 0.4);
+  border-color: rgba(24, 51, 78, 0.35);
   box-shadow: var(--shadow-lg);
   transform: translateY(-2px);
 }
 
 .contract-card.live {
-  border-color: rgba(15, 163, 163, 0.35);
-  background: linear-gradient(180deg, rgba(15, 163, 163, 0.04) 0%, var(--white) 100%);
+  border-color: rgba(163, 18, 90, 0.45);
+  background: linear-gradient(180deg, rgba(163, 18, 90, 0.05) 0%, var(--white) 100%);
 }
 
 .badge {
@@ -515,8 +531,8 @@ a {
 }
 
 .badge-live {
-  background: rgba(52, 199, 89, 0.15);
-  color: #248a3d;
+  background: rgba(18, 163, 163, 0.14);
+  color: var(--ok-ink);
 }
 
 .badge-soon {
@@ -550,7 +566,7 @@ a {
   padding: 1.25rem 1.5rem;
   background: var(--white);
   border: 1px solid var(--gray);
-  border-left: 4px solid var(--teal);
+  border-left: 4px solid var(--cherry);
   border-radius: var(--radius);
 }
 
@@ -559,7 +575,7 @@ a {
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.06em;
-  color: var(--teal-dark);
+  color: var(--cherry);
   margin-bottom: 0.5rem;
 }
 
@@ -617,14 +633,14 @@ a {
   border-radius: 50%;
   object-fit: cover;
   object-position: center top;
-  border: 3px solid rgba(15, 163, 163, 0.4);
+  border: 3px solid rgba(163, 18, 90, 0.45);
   margin-bottom: 0.85rem;
 }
 
 .violaine-panel .role {
   font-size: 0.82rem;
   font-weight: 600;
-  color: var(--teal-dark);
+  color: var(--cherry);
   margin-bottom: 0.65rem;
 }
 
@@ -656,12 +672,13 @@ a {
   border-radius: 50%;
   object-fit: cover;
   object-position: center top;
-  border: 3px solid rgba(15, 163, 163, 0.5);
+  border: 3px solid rgba(163, 18, 90, 0.55);
 }
 
 .caution-band h3 {
   font-size: 1.15rem;
   margin-bottom: 0.35rem;
+  color: var(--white);
 }
 
 .caution-band p {
@@ -694,8 +711,8 @@ a {
 }
 
 .price-card.featured {
-  border-color: var(--teal);
-  box-shadow: 0 8px 32px rgba(15, 163, 163, 0.15);
+  border-color: var(--cherry);
+  box-shadow: 0 8px 32px rgba(163, 18, 90, 0.15);
   position: relative;
 }
 
@@ -706,7 +723,7 @@ a {
   left: 50%;
   transform: translateX(-50%);
   padding: 0.2rem 0.65rem;
-  background: var(--teal);
+  background: var(--cherry);
   color: var(--white);
   font-size: 0.65rem;
   font-weight: 700;
@@ -728,6 +745,7 @@ a {
   font-size: 2.25rem;
   font-weight: 700;
   letter-spacing: -0.03em;
+  color: var(--ink);
 }
 
 .price-amount small {
@@ -784,7 +802,7 @@ a {
 .warm-note {
   margin-top: 1rem;
   font-size: 0.82rem;
-  color: var(--teal-dark);
+  color: var(--cherry);
   font-style: italic;
 }
 
@@ -829,7 +847,7 @@ a {
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  background: var(--teal);
+  background: var(--cherry);
 }
 
 .phone-item {

@@ -62,7 +62,7 @@ Publication : dossier `MedLex/` sur GitHub Pages → `https://<user>.github.io/M
 
 ## Charte
 
-Inter, teal `#0FA3A3`, encre `#16314D`, mobile-first, tutoiement (Me Violaine au vouvoiement).
+Inter, navy `#18334E` (actions et liens), cherry `#A3125A` (accents), duck `#073D3D` (titres), dorian `#465C71` (texte), cream `#F2F2F0` (fond). Détail : `palette.txt`. Mobile-first, tutoiement (Me Violaine au vouvoiement).
 
 ## Notes maintenance
 

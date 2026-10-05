@@ -1,0 +1,66 @@
+Palette MedLex
+Source : images/2026-10-05_MedLex_Palette.png
+Date de la planche : 5 octobre 2026
+
+Neuf couleurs nommées. Le rôle indiqué est celui de la planche.
+
+
+NAVY            #18334E
+Marque primaire. Boutons d’action, focus, états actifs, liens.
+
+CHERRY          #A3125A
+Marque secondaire. Accents de marque, mises en avant, illustrations
+et marketing, emphase d’un élément sélectionné.
+
+MUSTARD         #ECBD30
+Marque tertiaire. Accentuation, illustrations, avertissements,
+éléments qui demandent l’attention.
+
+DUCK            #073D3D
+Sombre. Calques, ombres, titres.
+
+MÉDI GREEN      #12A3A3
+Succès. Champs valides, messages de succès.
+
+DORIAN          #465C71
+Texte. Texte courant.
+
+MOUSE           #748595
+Texte discret. Texte d’aide, texte atténué.
+
+WHITE           #FFFFFF
+Accent. Filets, fonds discrets (cartes, champs, surfaces au-dessus du fond).
+
+CREAM           #F2F2F0
+Fond. Fond de page, dialogues et alertes.
+
+
+Teintes dérivées
+Ces valeurs ne figurent pas sur la planche. Elles servent aux états
+et au contraste, à partir des couleurs ci-dessus.
+
+NAVY survol         #13293E   navy assombri (80 % navy, 20 % noir)
+MÉDI GREEN encre    #0B6464   médi green assombri, texte de succès sur fond clair
+MUSTARD encre       #5A4810   mustard assombri, texte d’avertissement sur fond clair
+Filet               #E0E4E8   mouse à 22 % sur blanc
+Filet fort          #CAD1D7   mouse à 38 % sur blanc
+
+Fonds teintés (message sur fond clair) :
+  succès      fond #DEF2F2, texte #0B6464
+  attention   fond #F1E6C6, texte #5A4810
+  information fond #E8EBED, texte #18334E
+  emphase     fond #F4E3EB, texte #A3125A
+
+Ombres : duck #073D3D, très dilué.
+
+
+Correspondance dans l’interface
+  Fond de page            cream
+  Cartes, champs, filets  white et filets dérivés
+  Titres, logo, surfaces sombres   duck
+  Texte courant           dorian
+  Aide, métadonnées       mouse
+  Boutons primaires, liens, focus, état actif   navy
+  Pastille du logo, sélection, mises en avant   cherry
+  Avertissements          mustard
+  Validation, succès      médi green

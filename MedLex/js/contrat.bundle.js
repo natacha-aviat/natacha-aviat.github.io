@@ -2184,7 +2184,7 @@
     const previewTitle = o.previewTitle || "Aper\xE7u contrat de remplacement";
     const pdfOptsLiteral = jsonLiteralForEmbeddedParse(html2PdfOptions({}, pdfFilename));
     const snapLiteral = jsonLiteralForEmbeddedParse(snap);
-    const statusHtml = autoPdf ? '<p id="medlex-pdf-auto-status" class="medlex-no-print" style="margin:0 0 12px;font-size:14px;color:#245fda;font-weight:600">Le contrat s\u2019affiche ci-dessous. Le PDF va se t\xE9l\xE9charger automatiquement\u2026</p>' : "";
+    const statusHtml = autoPdf ? '<p id="medlex-pdf-auto-status" class="medlex-no-print" style="margin:0 0 12px;font-size:14px;color:#18334e;font-weight:600">Le contrat s\u2019affiche ci-dessous. Le PDF va se t\xE9l\xE9charger automatiquement\u2026</p>' : "";
     let qPageUrlStr = o.questionnairePageUrl || "";
     if (!qPageUrlStr && typeof window !== "undefined" && window.location && window.location.href) {
       try {
@@ -2205,31 +2205,31 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>${escapeHtml(previewTitle)}</title>
   <style>
-    body { margin: 0; background: #f3f6fc; font-family: Inter, Segoe UI, Roboto, Arial, sans-serif; color: #111; }
+    body { margin: 0; background: #f2f2f0; font-family: Inter, Segoe UI, Roboto, Arial, sans-serif; color: #465c71; }
     main {
       max-width: 900px;
       margin: 24px auto;
       padding: 24px;
       background: #fff;
-      border: 1px solid #d8e2f4;
+      border: 1px solid #e0e4e8;
       border-radius: 12px;
     }
     .medlex-btn {
       padding: 10px 18px;
       font: inherit;
       cursor: pointer;
-      border: 1px solid #1a5fb4;
-      background: #1a5fb4;
+      border: 1px solid #18334e;
+      background: #18334e;
       color: #fff;
       border-radius: 8px;
       margin: 8px 0;
     }
     .medlex-btn-secondary {
-      border-color: #5b6780;
+      border-color: #748595;
       background: #fff;
-      color: #245fda;
+      color: #18334e;
     }
-    .medlex-btn-secondary:hover { filter: none; background: #eef4ff; }
+    .medlex-btn-secondary:hover { filter: none; background: #e8ebed; }
     .medlex-btn:hover { filter: brightness(1.05); }
     @media print {
       .medlex-no-print { display: none !important; }
@@ -2246,14 +2246,14 @@
         <button type="button" class="medlex-btn" id="medlex-btn-pdf-top">Imprimer</button>
       </div>
       ${statusHtml}
-      <h1 style="margin: 0 0 12px; font-size: 20px">Aper\xE7u du contrat g\xE9n\xE9r\xE9</h1>
+      <h1 style="margin: 0 0 12px; font-size: 20px; color: #073d3d">Aper\xE7u du contrat g\xE9n\xE9r\xE9</h1>
     </div>
     <div id="medlex-print-root">${rendered}</div>
     <div class="medlex-no-print" style="margin-top: 20px; display: flex; flex-wrap: wrap; gap: 10px; align-items: center">
       <button type="button" class="medlex-btn medlex-btn-secondary" id="medlex-btn-edit-bottom">Modifier</button>
       <button type="button" class="medlex-btn" id="medlex-btn-pdf-bottom">Imprimer</button>
     </div>
-    <p id="medlex-modifier-hint" class="medlex-no-print" style="font-size:13px;color:#5b6780;margin-top:12px;line-height:1.45"></p>
+    <p id="medlex-modifier-hint" class="medlex-no-print" style="font-size:13px;color:#748595;margin-top:12px;line-height:1.45"></p>
   </main>
   <script src="${escapeHtml(h2p)}" async data-medlex-html2pdf="1"><\/script>
   <script>

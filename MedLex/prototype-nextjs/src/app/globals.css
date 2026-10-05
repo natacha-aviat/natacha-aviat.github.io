@@ -1,21 +1,40 @@
 @import "tailwindcss";
 
-/* ── Charte Au Clair (index-6) ── */
+/* ── Charte MedLex — voir palette.txt ── */
 :root {
-  --ac-bg: #fbfcfd;
-  --ac-teal: #0fa3a3;
-  --ac-teal-dark: #0c8585;
-  --ac-ink: #16314d;
-  --ac-ok: #34c759;
-  --ac-gray: #e8edf1;
-  --ac-gray-mid: #cdd5dc;
-  --ac-muted: #5f6b7a;
+  --ac-navy: #18334e;
+  --ac-cherry: #a3125a;
+  --ac-mustard: #ecbd30;
+  --ac-duck: #073d3d;
+  --ac-medi: #12a3a3;
+  --ac-dorian: #465c71;
+  --ac-mouse: #748595;
+  --ac-cream: #f2f2f0;
+  --ac-bg: var(--ac-cream);
+  --ac-teal: var(--ac-navy);
+  --ac-teal-dark: #13293e;
+  --ac-ink: var(--ac-dorian);
+  --ac-heading: var(--ac-duck);
+  --ac-ok: var(--ac-medi);
+  --ac-ok-ink: #0b6464;
+  --ac-ok-bg: #def2f2;
+  --ac-warn-bg: #f1e6c6;
+  --ac-warn-ink: #5a4810;
+  --ac-info-bg: #e8ebed;
+  --ac-info-ink: var(--ac-navy);
+  --ac-info-border: #bec6cd;
+  --ac-danger-bg: #f4e3eb;
+  --ac-danger-ink: var(--ac-cherry);
+  --ac-danger-border: #e5bdd1;
+  --ac-gray: #e0e4e8;
+  --ac-gray-mid: #cad1d7;
+  --ac-muted: var(--ac-mouse);
   --ac-white: #ffffff;
   --ac-radius: 14px;
   --ac-radius-lg: 16px;
-  --ac-shadow: 0 4px 24px rgba(22, 49, 77, 0.06);
-  --ac-shadow-sm: 0 2px 8px rgba(22, 49, 77, 0.04);
-  --ac-shadow-teal: 0 4px 14px rgba(15, 163, 163, 0.35);
+  --ac-shadow: 0 4px 24px rgba(7, 61, 61, 0.06);
+  --ac-shadow-sm: 0 2px 8px rgba(7, 61, 61, 0.04);
+  --ac-shadow-teal: 0 4px 14px rgba(24, 51, 78, 0.28);
   --ac-font: var(--font-inter), "Segoe UI", Roboto, Arial, sans-serif;
   --ac-max: 32rem;
 }
@@ -142,7 +161,7 @@ a {
   font-weight: 700;
   font-size: 1.1rem;
   letter-spacing: -0.03em;
-  color: var(--ac-ink);
+  color: var(--ac-heading);
   text-decoration: none;
 }
 
@@ -150,7 +169,7 @@ a {
   width: 0.625rem;
   height: 0.625rem;
   border-radius: 50%;
-  background: var(--ac-teal);
+  background: var(--ac-cherry);
   flex-shrink: 0;
 }
 
@@ -188,7 +207,7 @@ a {
   margin-bottom: 0.5rem;
   font-size: 1rem;
   font-style: italic;
-  color: var(--ac-teal-dark);
+  color: var(--ac-cherry);
 }
 
 .ac-title {
@@ -197,7 +216,7 @@ a {
   font-weight: 700;
   line-height: 1.15;
   letter-spacing: -0.025em;
-  color: var(--ac-ink);
+  color: var(--ac-heading);
 }
 
 .ac-title--sm {
@@ -446,8 +465,8 @@ a {
 }
 
 .ac-choice--selected {
-  border-color: var(--ac-teal);
-  background: color-mix(in srgb, var(--ac-teal) 5%, var(--ac-white));
+  border-color: var(--ac-cherry);
+  background: color-mix(in srgb, var(--ac-cherry) 8%, var(--ac-white));
 }
 
 .ac-choice__title {
@@ -554,23 +573,23 @@ a {
 }
 
 .ac-badge--attente-tiers {
-  background: #fef3c7;
-  color: #92400e;
+  background: var(--ac-warn-bg);
+  color: var(--ac-warn-ink);
 }
 
 .ac-badge--attente-paiement {
-  background: #dbeafe;
-  color: #1e40af;
+  background: var(--ac-info-bg);
+  color: var(--ac-info-ink);
 }
 
 .ac-badge--rembourse {
-  background: #fee2e2;
-  color: #991b1b;
+  background: var(--ac-danger-bg);
+  color: var(--ac-danger-ink);
 }
 
 .ac-badge--signe {
-  background: #dcfce7;
-  color: #166534;
+  background: var(--ac-ok-bg);
+  color: var(--ac-ok-ink);
 }
 
 /* ── Alertes ── */
@@ -587,29 +606,29 @@ a {
 }
 
 .ac-alert--info {
-  border-color: #bfdbfe;
-  background: #eff6ff;
+  border-color: var(--ac-info-border);
+  background: var(--ac-info-bg);
 }
 
 .ac-alert--info p {
-  color: #1e3a8a;
+  color: var(--ac-info-ink);
 }
 
 .ac-alert--danger {
-  border-color: #fecaca;
-  background: #fef2f2;
+  border-color: var(--ac-danger-border);
+  background: var(--ac-danger-bg);
 }
 
 .ac-alert--danger p {
-  color: #991b1b;
+  color: var(--ac-danger-ink);
 }
 
 .ac-highlight {
   margin-bottom: 1rem;
   padding: 1rem;
-  border: 2px solid color-mix(in srgb, var(--ac-teal) 30%, var(--ac-gray));
+  border: 2px solid color-mix(in srgb, var(--ac-cherry) 35%, var(--ac-gray));
   border-radius: var(--ac-radius);
-  background: color-mix(in srgb, var(--ac-teal) 5%, var(--ac-white));
+  background: color-mix(in srgb, var(--ac-cherry) 6%, var(--ac-white));
 }
 
 .ac-highlight p {
@@ -723,7 +742,7 @@ a {
 }
 
 .ac-status-warn {
-  color: #d97706;
+  color: var(--ac-warn-ink);
 }
 
 .ac-status-muted {
@@ -815,7 +834,7 @@ a {
   bottom: 0;
   z-index: 30;
   border-top: 1px dashed color-mix(in srgb, var(--ac-teal) 40%, transparent);
-  background: color-mix(in srgb, var(--ac-ink) 95%, transparent);
+  background: color-mix(in srgb, var(--ac-duck) 95%, transparent);
   padding: 0.5rem 0.75rem;
   color: var(--ac-white);
   backdrop-filter: blur(8px);
@@ -895,8 +914,8 @@ a {
   gap: 0.375rem;
   padding: 0.375rem 0.75rem;
   border-radius: 999px;
-  background: #dcfce7;
-  color: #166534;
+  background: var(--ac-ok-bg);
+  color: var(--ac-ok-ink);
   font-size: 0.75rem;
   font-weight: 600;
 }
