@@ -524,8 +524,8 @@ a {
 }
 
 .contract-card.live {
-  border-color: rgba(163, 18, 90, 0.45);
-  background: linear-gradient(180deg, rgba(163, 18, 90, 0.05) 0%, var(--white) 100%);
+  border: 1.5px solid var(--navy);
+  background: var(--white);
 }
 
 .badge {

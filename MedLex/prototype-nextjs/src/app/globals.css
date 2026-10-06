@@ -475,29 +475,50 @@ a {
 }
 
 .ac-choice {
+  display: grid;
+  grid-template-columns: 1.25rem 1fr;
+  align-items: center;
+  column-gap: 0.85rem;
+  row-gap: 0.15rem;
   width: 100%;
-  padding: 1rem;
-  border: 1px solid var(--ac-gray);
-  border-radius: var(--ac-radius);
+  padding: 0.9rem 1rem;
+  border: 1.5px solid var(--ac-gray-mid);
+  border-radius: 12px;
   background: var(--ac-white);
   text-align: left;
   cursor: pointer;
   font-family: var(--ac-font);
-  transition: border-color 0.15s, background 0.15s;
+  color: var(--ac-ink);
+}
+
+.ac-choice::before {
+  content: "";
+  grid-row: 1 / span 2;
+  width: 1.25rem;
+  height: 1.25rem;
+  border: 2px solid var(--ac-navy);
+  border-radius: 50%;
+  background: var(--ac-white);
+  justify-self: center;
 }
 
 .ac-choice:hover {
-  border-color: var(--ac-gray-mid);
+  border-color: var(--ac-navy);
 }
 
 .ac-choice--selected {
-  border-color: var(--ac-cherry);
-  background: color-mix(in srgb, var(--ac-cherry) 8%, var(--ac-white));
+  border-color: var(--ac-navy);
+  background: var(--ac-white);
+}
+
+.ac-choice--selected::before {
+  background: radial-gradient(circle, var(--ac-navy) 0 3.5px, var(--ac-white) 4px 6px, var(--ac-navy) 6.5px 100%);
+  border-color: var(--ac-navy);
 }
 
 .ac-choice__title {
   font-weight: 600;
-  color: var(--ac-ink);
+  color: var(--ac-heading);
 }
 
 .ac-choice__desc {
@@ -511,10 +532,13 @@ a {
 }
 
 .ac-choice-row .ac-choice {
+  display: grid;
+  grid-template-columns: 1.25rem 1fr;
   flex: 1;
-  text-align: center;
+  align-items: center;
+  text-align: left;
   font-weight: 600;
-  text-transform: capitalize;
+  text-transform: none;
 }
 
 /* ── Progression ── */
@@ -652,9 +676,9 @@ a {
 .ac-highlight {
   margin-bottom: 1rem;
   padding: 1rem;
-  border: 2px solid color-mix(in srgb, var(--ac-cherry) 35%, var(--ac-gray));
+  border: 1.5px solid var(--ac-info-border);
   border-radius: var(--ac-radius);
-  background: color-mix(in srgb, var(--ac-cherry) 6%, var(--ac-white));
+  background: var(--ac-info-bg);
 }
 
 .ac-highlight p {

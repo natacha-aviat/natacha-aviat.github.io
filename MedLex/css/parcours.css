@@ -324,8 +324,8 @@ a {
 
 .ac-btn--secondary {
   background: var(--ac-white);
-  color: var(--ac-ink);
-  border: 1px solid var(--ac-gray);
+  color: var(--ac-heading);
+  border: 1.5px solid var(--ac-gray-mid);
 }
 
 .ac-btn--secondary:hover {
@@ -371,10 +371,19 @@ a {
   min-height: 6rem;
 }
 
+select.ac-input {
+  appearance: none;
+  padding-right: 2.5rem;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2318334e' stroke-width='2' stroke-linecap='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.85rem center;
+  background-size: 1rem;
+}
+
 .ac-input:focus,
 .ac-textarea:focus {
-  border-color: var(--ac-teal);
-  box-shadow: 0 0 0 2px color-mix(in srgb, var(--ac-teal) 25%, transparent);
+  border-color: var(--ac-navy);
+  box-shadow: 0 0 0 3px rgba(24, 51, 78, 0.18);
 }
 
 .ac-card {
@@ -427,28 +436,30 @@ a {
 
 .ac-choice {
   display: grid;
-  grid-template-columns: auto 1fr;
+  grid-template-columns: 1.25rem 1fr;
   align-items: center;
-  column-gap: 0.75rem;
-  row-gap: 0.1rem;
+  column-gap: 0.85rem;
+  row-gap: 0.15rem;
   width: 100%;
-  padding: 1rem;
-  border: 1.5px solid var(--ac-gray);
+  padding: 0.9rem 1rem;
+  border: 1.5px solid var(--ac-gray-mid);
   border-radius: 12px;
   background: var(--ac-white);
   text-align: left;
   cursor: pointer;
   font-family: var(--ac-font);
+  color: var(--ac-ink);
 }
 
 .ac-choice::before {
   content: "";
   grid-row: 1 / span 2;
-  width: 1.15rem;
-  height: 1.15rem;
+  width: 1.25rem;
+  height: 1.25rem;
   border: 2px solid var(--ac-navy);
   border-radius: 50%;
   background: var(--ac-white);
+  justify-self: center;
 }
 
 .ac-choice:hover {
@@ -458,10 +469,12 @@ a {
 .ac-choice--selected {
   border-color: var(--ac-navy);
   background: var(--ac-white);
+  box-shadow: none;
 }
 
-.ac-choice--selected:not([data-value="remplacement"]):not([data-value="collaboration"]):not([data-value="bail-professionnel"]):not([data-value="fin-de-bail"]):not([data-value="mise-en-demeure"])::before {
-  background: radial-gradient(circle, var(--ac-white) 0 3px, var(--ac-navy) 4px 100%);
+.ac-choice--selected::before {
+  background: radial-gradient(circle, var(--ac-navy) 0 3.5px, var(--ac-white) 4px 6px, var(--ac-navy) 6.5px 100%);
+  border-color: var(--ac-navy);
 }
 
 .ac-choice__title {
@@ -480,18 +493,18 @@ a {
 }
 
 .ac-choice-row .ac-choice {
-  display: flex;
+  display: grid;
+  grid-template-columns: 1.25rem 1fr;
   flex: 1;
-  flex-direction: column;
   align-items: center;
-  text-align: center;
+  text-align: left;
   font-weight: 600;
-  text-transform: capitalize;
+  text-transform: none;
 }
 
 .ac-choice-row .ac-choice::before {
-  grid-row: auto;
-  margin-bottom: 0.35rem;
+  grid-row: 1;
+  margin: 0;
 }
 
 .ac-progress {
@@ -560,17 +573,34 @@ a {
 
 .ac-check {
   display: flex;
-  align-items: center;
-  gap: 0.5rem;
+  align-items: flex-start;
+  gap: 0.7rem;
+  padding: 0.7rem 0.85rem;
+  border: 1.5px solid var(--ac-gray-mid);
+  border-radius: 12px;
+  background: var(--ac-white);
   font-size: 0.9375rem;
   color: var(--ac-ink);
   cursor: pointer;
 }
 
+.ac-check:has(input:checked) {
+  border-color: var(--ac-navy);
+}
+
 .ac-check input {
-  width: 1.125rem;
-  height: 1.125rem;
-  accent-color: var(--ac-teal);
+  appearance: none;
+  width: 1.15rem;
+  height: 1.15rem;
+  margin: 0.1rem 0 0;
+  border: 2px solid var(--ac-navy);
+  border-radius: 4px;
+  background: var(--ac-white);
+  flex-shrink: 0;
+}
+
+.ac-check input:checked {
+  background: var(--ac-navy) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12.5l4.5 4.5L19 7'/%3E%3C/svg%3E") center / 0.85rem no-repeat;
 }
 
 .ac-badge {
@@ -635,9 +665,9 @@ a {
 .ac-highlight {
   margin-bottom: 1rem;
   padding: 1rem;
-  border: 2px solid color-mix(in srgb, var(--ac-cherry) 35%, var(--ac-gray));
+  border: 1.5px solid var(--ac-info-border);
   border-radius: var(--ac-radius);
-  background: color-mix(in srgb, var(--ac-cherry) 6%, var(--ac-white));
+  background: var(--ac-info-bg);
 }
 
 .ac-highlight p {
@@ -929,7 +959,7 @@ a {
 
 .ac-view-toggle__btn--active {
   background: var(--ac-white);
-  color: var(--ac-ink);
+  color: var(--ac-navy);
   box-shadow: var(--ac-shadow-sm);
 }
 
@@ -1347,41 +1377,6 @@ a {
   background-color: var(--ac-navy);
 }
 
-.ac-stack-sm > .ac-choice[data-value="remplacement"]::before,
-.ac-stack-sm > .ac-choice[data-value="collaboration"]::before,
-.ac-stack-sm > .ac-choice[data-value="bail-professionnel"]::before,
-.ac-stack-sm > .ac-choice[data-value="fin-de-bail"]::before,
-.ac-stack-sm > .ac-choice[data-value="mise-en-demeure"]::before {
-  width: 2.5rem;
-  height: 2.5rem;
-  margin-top: 0;
-  border: none;
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: 1.15rem;
-}
-
-.ac-stack-sm > .ac-choice[data-value="remplacement"]::before,
-.ac-stack-sm > .ac-choice[data-value="mise-en-demeure"]::before {
-  background-color: var(--ac-navy);
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 3h8l5 5v13H6z'/%3E%3Cpath d='M14 3v5h5'/%3E%3Cpath d='M9 13h6M9 17h4'/%3E%3C/svg%3E");
-}
-
-.ac-stack-sm > .ac-choice[data-value="collaboration"]::before {
-  background-color: var(--ac-medi);
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2' stroke-linecap='round'%3E%3Ccircle cx='9' cy='8' r='2.5'/%3E%3Ccircle cx='16' cy='9' r='2'/%3E%3Cpath d='M4 19c.6-2.6 2.8-4 5-4s4.2 1.4 5 4M14 15.2c1.2-.5 2.6-.4 4 .8'/%3E%3C/svg%3E");
-}
-
-.ac-stack-sm > .ac-choice[data-value="bail-professionnel"]::before {
-  background-color: var(--ac-cherry);
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4 20V9l8-5 8 5v11'/%3E%3Cpath d='M9 20v-6h6v6'/%3E%3C/svg%3E");
-}
-
-.ac-stack-sm > .ac-choice[data-value="fin-de-bail"]::before {
-  background-color: var(--ac-mustard);
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23073d3d' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 3h8l5 5v13H6z'/%3E%3Cpath d='M14 3v5h5'/%3E%3Cpath d='M9 13h6M9 17h4'/%3E%3C/svg%3E");
-}
-
 .ac-btn--pay::before {
   content: "";
   width: 1.05rem;
@@ -1442,5 +1437,48 @@ a {
   font-weight: 500;
   line-height: 1;
   justify-content: center;
+}
+
+@media (min-width: 960px) {
+  :root {
+    --ac-max: 46rem;
+  }
+
+  .ac-main {
+    padding-top: 2.25rem;
+  }
+
+  .ac-stack-sm:has(> .ac-choice) {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(13.25rem, 1fr));
+    align-items: stretch;
+  }
+
+  .ac-stack-sm:has(> .ac-choice) > .ac-choice {
+    height: 100%;
+    align-items: start;
+  }
+
+  .ac-stack-sm:has(> .ac-choice) > .ac-choice::before {
+    margin-top: 0.15rem;
+  }
+
+  .ac-stack-sm:has(> .ac-check) {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .ac-stack-sm:has(> .ac-check) > .ac-label {
+    grid-column: 1 / -1;
+  }
+
+  .ac-choice-row {
+    max-width: 32rem;
+  }
+
+  .ac-btn-row {
+    max-width: 32rem;
+    margin-left: 0;
+  }
 }
 
