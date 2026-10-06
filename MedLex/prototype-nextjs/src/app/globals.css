@@ -494,9 +494,9 @@ a {
 .ac-choice::before {
   content: "";
   grid-row: 1 / span 2;
-  width: 1.25rem;
-  height: 1.25rem;
-  border: 2px solid var(--ac-navy);
+  width: 1.2rem;
+  height: 1.2rem;
+  border: 1.5px solid var(--ac-navy);
   border-radius: 50%;
   background: var(--ac-white);
   justify-self: center;
@@ -511,9 +511,17 @@ a {
   background: var(--ac-white);
 }
 
+.ac-choice--selected,
+.ac-choice:hover,
+.ac-choice:focus,
+.ac-choice:focus-visible {
+  border-width: 1.5px;
+  outline: none;
+}
+
 .ac-choice--selected::before {
-  background: radial-gradient(circle, var(--ac-navy) 0 3.5px, var(--ac-white) 4px 6px, var(--ac-navy) 6.5px 100%);
-  border-color: var(--ac-navy);
+  border: 1.5px solid var(--ac-navy);
+  background: radial-gradient(circle, var(--ac-navy) 0 0.26rem, var(--ac-white) 0.3rem);
 }
 
 .ac-choice__title {

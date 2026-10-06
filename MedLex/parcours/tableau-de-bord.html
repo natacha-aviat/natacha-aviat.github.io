@@ -28,28 +28,42 @@
       <h2 class="ac-section-title">Mes contrats</h2>
       <div class="ac-card-grid">
         <article class="ac-card ac-contract">
-          <span class="ac-type-icon ac-type-icon--remplacement" aria-hidden="true"></span>
-          <div class="ac-contract__body">
-            <h3 class="ac-card__title">Remplacement</h3>
-            <p class="ac-card__desc">Dr. Martin · Signé le 3 juin 2026</p>
-          </div>
-          <span class="ac-badge ac-badge--signe">Signé</span>
-        </article>
-        <article class="ac-card ac-contract">
           <span class="ac-type-icon ac-type-icon--collaboration" aria-hidden="true"></span>
           <div class="ac-contract__body">
             <h3 class="ac-card__title">Collaboration</h3>
-            <p class="ac-card__desc">Cabinet Les Lilas · 28 mai 2026</p>
+            <p class="ac-card__desc">Mme Skerett</p>
+            <p class="ac-status ac-status--cours">En cours</p>
           </div>
-          <span class="ac-badge ac-badge--attente-tiers">En attente</span>
+          <span class="ac-contract__more" aria-hidden="true"><span></span><span></span><span></span></span>
+        </article>
+        <article class="ac-card ac-contract">
+          <span class="ac-type-icon ac-type-icon--remplacement" aria-hidden="true"></span>
+          <div class="ac-contract__body">
+            <h3 class="ac-card__title">Remplacement</h3>
+            <p class="ac-card__desc">Mme Skerett</p>
+            <p class="ac-status">En attente de signature</p>
+          </div>
+          <span class="ac-contract__more" aria-hidden="true"><span></span><span></span><span></span></span>
         </article>
         <article class="ac-card ac-contract">
           <span class="ac-type-icon ac-type-icon--bail" aria-hidden="true"></span>
           <div class="ac-contract__body">
             <h3 class="ac-card__title">Contrat de bail</h3>
-            <p class="ac-card__desc">Mme Dupont · 15 mai 2026</p>
+            <p class="ac-card__desc">Cabinet de Soissons</p>
+            <p class="ac-status ac-status--completer">À compléter</p>
           </div>
-          <span class="ac-badge ac-badge--attente-paiement">À finaliser</span>
+          <a class="ac-contract__go" href="questionnaire-bail-professionnel.html" aria-label="Compléter le contrat de bail">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+        </article>
+        <article class="ac-card ac-contract">
+          <span class="ac-type-icon ac-type-icon--fin" aria-hidden="true"></span>
+          <div class="ac-contract__body">
+            <h3 class="ac-card__title">Fin de bail</h3>
+            <p class="ac-card__desc">Cabinet de Reims</p>
+            <p class="ac-status ac-status--caduque">Caduque</p>
+          </div>
+          <span class="ac-contract__more" aria-hidden="true"><span></span><span></span><span></span></span>
         </article>
       </div>
     </section>
@@ -87,6 +101,13 @@
       <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8"/><path d="M12 11v5M12 8h.01"/></svg>
       Infos
     </a>
-    <a class="ac-bottom-nav__add" href="choix-contrat.html" aria-label="Nouveau contrat">+</a>
+    <a href="profil.html">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="3.2"/><path d="M5.5 19.2c1.1-2.6 3.4-4 6.5-4s5.4 1.4 6.5 4"/></svg>
+      Profil
+    </a>
+    <a class="ac-bottom-nav__add" href="choix-contrat.html">
+      <span class="ac-bottom-nav__plus" aria-hidden="true">+</span>
+      Nouveau
+    </a>
   </nav>
 </body></html>
