@@ -107,9 +107,35 @@ a {
   position: sticky;
   top: 0;
   z-index: 20;
-  border-bottom: 1px solid var(--ac-gray);
-  background: color-mix(in srgb, var(--ac-bg) 95%, transparent);
-  backdrop-filter: blur(8px);
+  background: var(--ac-duck);
+}
+
+.ac-shell-header .ac-logo {
+  color: var(--ac-white);
+}
+
+.ac-shell-header .ac-logo__dot {
+  background: var(--ac-mustard);
+}
+
+.ac-shell-header .ac-back {
+  color: rgba(255, 255, 255, 0.82);
+}
+
+.ac-shell-header .ac-progress__meta {
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.ac-shell-header .ac-progress__pct {
+  color: var(--ac-white);
+}
+
+.ac-shell-header .ac-progress__track {
+  background: rgba(255, 255, 255, 0.22);
+}
+
+.ac-shell-header .ac-progress__fill {
+  background: var(--ac-medi);
 }
 
 .ac-shell-header__row {

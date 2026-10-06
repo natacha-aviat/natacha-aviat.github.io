@@ -11,7 +11,7 @@
     '</div>' +
     '<div class="ac-locked__overlay">' +
     '<span aria-hidden="true">🔒</span>' +
-    '<span class="ac-locked__text">Texte complet débloqué après paiement</span>' +
+    '<span class="ac-locked__text">Contenu masqué jusqu’au paiement</span>' +
     '</div>' +
     '</div>';
 

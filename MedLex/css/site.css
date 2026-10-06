@@ -121,20 +121,18 @@ a {
 }
 
 .trust-bar {
-  position: sticky;
-  top: 0;
-  z-index: 40;
-  background: rgba(242, 242, 240, 0.92);
-  backdrop-filter: blur(10px);
+  background: var(--cream);
   border-bottom: 1px solid var(--gray);
   padding: 0.5rem 0;
   text-align: center;
 }
 
 .site-header {
-  padding: 0.85rem 0;
-  border-bottom: 1px solid var(--gray);
-  background: var(--bg);
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  padding: 0.7rem 0;
+  background: var(--duck);
 }
 
 .header-inner {
@@ -149,7 +147,7 @@ a {
   align-items: center;
   gap: 0.5rem;
   text-decoration: none;
-  color: var(--ink);
+  color: var(--white);
   font-weight: 700;
   font-size: 1.35rem;
   letter-spacing: -0.03em;
@@ -159,7 +157,7 @@ a {
   width: 10px;
   height: 10px;
   border-radius: 50%;
-  background: var(--cherry);
+  background: var(--mustard);
 }
 
 .nav {
@@ -172,11 +170,22 @@ a {
   text-decoration: none;
   font-size: 0.9rem;
   font-weight: 500;
-  color: var(--gray-text);
+  color: rgba(255, 255, 255, 0.82);
 }
 
 .nav a:hover {
-  color: var(--ink);
+  color: var(--white);
+}
+
+.nav a.btn-primary {
+  background: var(--mustard);
+  color: var(--duck);
+  box-shadow: none;
+}
+
+.nav a.btn-primary:hover {
+  background: #f3cc4a;
+  color: var(--duck);
 }
 
 .btn {
@@ -903,8 +912,9 @@ footer {
 
 .nav-toggle {
   display: none;
-  background: var(--white);
-  border: 1px solid var(--gray);
+  background: transparent;
+  color: var(--white);
+  border: 1px solid rgba(255, 255, 255, 0.35);
   border-radius: 8px;
   padding: 0.45rem 0.65rem;
   font: inherit;
@@ -958,13 +968,21 @@ footer {
     top: 100%;
     left: 0;
     right: 0;
-    background: var(--bg);
+    background: var(--cream);
     padding: 1rem;
     border-bottom: 1px solid var(--gray);
   }
 
+  .nav.is-open a {
+    color: var(--dorian);
+  }
+
+  .nav.is-open a.btn-primary {
+    color: var(--duck);
+  }
+
   .site-header {
-    position: relative;
+    position: sticky;
   }
 
   .header-inner {

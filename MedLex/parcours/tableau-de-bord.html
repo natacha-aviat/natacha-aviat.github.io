@@ -9,7 +9,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="../css/parcours.css" />
 </head>
-<body class="ac-page ac-page--padded-bottom">
+<body class="ac-page ac-page--app">
   <header class="ac-dash-header">
     <a class="ac-logo" href="../index.html"><span class="ac-logo__dot" aria-hidden="true"></span>MedLex</a>
     <a href="email.html" class="ac-link">+ Nouveau contrat</a>
@@ -27,32 +27,29 @@
     <section class="ac-spacer-lg">
       <h2 class="ac-section-title">Mes contrats</h2>
       <div class="ac-card-grid">
-        <article class="ac-card ac-card--signed">
-          <div class="ac-contract-row">
-            <div>
-              <h3 class="ac-card__title">Remplacement — Dr. Martin</h3>
-              <p class="ac-card__desc">Signé le 3 juin 2026</p>
-            </div>
-            <span class="ac-badge ac-badge--signe">Signé</span>
+        <article class="ac-card ac-contract">
+          <span class="ac-type-icon ac-type-icon--remplacement" aria-hidden="true"></span>
+          <div class="ac-contract__body">
+            <h3 class="ac-card__title">Remplacement</h3>
+            <p class="ac-card__desc">Dr. Martin · Signé le 3 juin 2026</p>
           </div>
+          <span class="ac-badge ac-badge--signe">Signé</span>
         </article>
-        <article class="ac-card ac-card--flat">
-          <div class="ac-contract-row">
-            <div>
-              <h3 class="ac-card__title">Collaboration — Cabinet Les Lilas</h3>
-              <p class="ac-card__desc">28 mai 2026</p>
-            </div>
-            <span class="ac-badge ac-badge--attente-tiers">En attente de l'autre partie</span>
+        <article class="ac-card ac-contract">
+          <span class="ac-type-icon ac-type-icon--collaboration" aria-hidden="true"></span>
+          <div class="ac-contract__body">
+            <h3 class="ac-card__title">Collaboration</h3>
+            <p class="ac-card__desc">Cabinet Les Lilas · 28 mai 2026</p>
           </div>
+          <span class="ac-badge ac-badge--attente-tiers">En attente</span>
         </article>
-        <article class="ac-card ac-card--flat">
-          <div class="ac-contract-row">
-            <div>
-              <h3 class="ac-card__title">Remplacement — Mme Dupont</h3>
-              <p class="ac-card__desc">15 mai 2026</p>
-            </div>
-            <span class="ac-badge ac-badge--attente-paiement">En attente de paiement</span>
+        <article class="ac-card ac-contract">
+          <span class="ac-type-icon ac-type-icon--bail" aria-hidden="true"></span>
+          <div class="ac-contract__body">
+            <h3 class="ac-card__title">Contrat de bail</h3>
+            <p class="ac-card__desc">Mme Dupont · 15 mai 2026</p>
           </div>
+          <span class="ac-badge ac-badge--attente-paiement">À finaliser</span>
         </article>
       </div>
     </section>
@@ -77,4 +74,19 @@
       <a class="ac-simulate__btn" href="../index.html">Réinitialiser la maquette</a>
     </div>
   </div>
+  <nav class="ac-bottom-nav" aria-label="Navigation principale">
+    <a href="tableau-de-bord.html" aria-current="page">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 10.5 12 4l8 6.5V20a1 1 0 0 1-1 1h-5v-6H10v6H5a1 1 0 0 1-1-1z"/></svg>
+      Accueil
+    </a>
+    <a href="choix-contrat.html">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 3h7l5 5v13H7z"/><path d="M14 3v5h5"/></svg>
+      Contrats
+    </a>
+    <a href="../index.html#empathie">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8"/><path d="M12 11v5M12 8h.01"/></svg>
+      Infos
+    </a>
+    <a class="ac-bottom-nav__add" href="choix-contrat.html" aria-label="Nouveau contrat">+</a>
+  </nav>
 </body></html>

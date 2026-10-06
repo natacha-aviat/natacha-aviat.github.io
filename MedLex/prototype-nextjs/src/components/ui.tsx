@@ -188,7 +188,7 @@ export function LockedClausePreview() {
         <span className="ac-locked__icon" aria-hidden>
           🔒
         </span>
-        <span className="ac-locked__text">Texte complet débloqué après paiement</span>
+        <span className="ac-locked__text">Contenu masqué jusqu’au paiement</span>
       </div>
     </div>
   );
