@@ -1339,7 +1339,7 @@ select.ac-input {
 }
 
 .ac-page--app {
-  padding-bottom: 12rem;
+  padding-bottom: 6.5rem;
 }
 
 .ac-page--app .ac-simulate {
@@ -1535,6 +1535,7 @@ select.ac-input {
   justify-content: center;
   width: 3.75rem;
   height: 3.75rem;
+  border: 5px solid var(--ac-medi);
   border-radius: 50%;
   background: var(--ac-mustard);
   color: var(--ac-duck);

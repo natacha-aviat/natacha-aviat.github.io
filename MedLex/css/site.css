@@ -244,7 +244,7 @@ a {
 .hero-tagline {
   font-size: 1.05rem;
   font-style: italic;
-  color: var(--cherry);
+  color: var(--mustard);
   margin-bottom: 0.85rem;
 }
 
@@ -276,7 +276,7 @@ a {
 }
 
 .care-note::before {
-  content: "💚";
+  content: "💛";
   flex-shrink: 0;
 }
 
@@ -326,7 +326,7 @@ a {
 }
 
 .dash-dots span:first-child {
-  background: var(--cherry);
+  background: var(--mustard);
 }
 .dash-dots span:nth-child(2) {
   background: var(--mustard);
@@ -445,11 +445,11 @@ a {
 .empathy-quote {
   margin-top: 1.25rem;
   padding: 1rem 1.25rem;
-  background: rgba(163, 18, 90, 0.08);
+  background: rgba(236, 189, 48, 0.22);
   border-radius: var(--radius);
   font-size: 1.05rem;
   font-weight: 500;
-  color: var(--cherry);
+  color: var(--mustard);
 }
 
 .section {
@@ -575,7 +575,7 @@ a {
   padding: 1.25rem 1.5rem;
   background: var(--white);
   border: 1px solid var(--gray);
-  border-left: 4px solid var(--cherry);
+  border-left: 4px solid var(--mustard);
   border-radius: var(--radius);
 }
 
@@ -584,7 +584,7 @@ a {
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.06em;
-  color: var(--cherry);
+  color: var(--mustard);
   margin-bottom: 0.5rem;
 }
 
@@ -642,14 +642,14 @@ a {
   border-radius: 50%;
   object-fit: cover;
   object-position: center top;
-  border: 3px solid rgba(163, 18, 90, 0.45);
+  border: 3px solid var(--mustard);
   margin-bottom: 0.85rem;
 }
 
 .violaine-panel .role {
   font-size: 0.82rem;
   font-weight: 600;
-  color: var(--cherry);
+  color: var(--mustard);
   margin-bottom: 0.65rem;
 }
 
@@ -681,7 +681,7 @@ a {
   border-radius: 50%;
   object-fit: cover;
   object-position: center top;
-  border: 3px solid rgba(163, 18, 90, 0.55);
+  border: 3px solid var(--mustard);
 }
 
 .caution-band h3 {
@@ -720,8 +720,8 @@ a {
 }
 
 .price-card.featured {
-  border-color: var(--cherry);
-  box-shadow: 0 8px 32px rgba(163, 18, 90, 0.15);
+  border-color: var(--mustard);
+  box-shadow: 0 8px 32px rgba(236, 189, 48, 0.28);
   position: relative;
 }
 
@@ -732,8 +732,8 @@ a {
   left: 50%;
   transform: translateX(-50%);
   padding: 0.2rem 0.65rem;
-  background: var(--cherry);
-  color: var(--white);
+  background: var(--mustard);
+  color: var(--duck);
   font-size: 0.65rem;
   font-weight: 700;
   border-radius: 999px;
@@ -811,7 +811,7 @@ a {
 .warm-note {
   margin-top: 1rem;
   font-size: 0.82rem;
-  color: var(--cherry);
+  color: var(--mustard);
   font-style: italic;
 }
 
@@ -856,7 +856,7 @@ a {
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  background: var(--cherry);
+  background: var(--mustard);
 }
 
 .phone-item {

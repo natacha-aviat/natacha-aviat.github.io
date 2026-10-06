@@ -6,13 +6,12 @@ import { DEMO_CONTRACTS, LEGAL_LINKS } from "@/lib/demo-data";
 import {
   BtnPrimary,
   Logo,
-  SimulateBar,
   StatusBadge,
   TrustBadge,
 } from "@/components/ui";
 
 export default function TableauDeBordPage() {
-  const { state, dispatch } = useFunnel();
+  const { state } = useFunnel();
 
   return (
     <>
@@ -25,14 +24,13 @@ export default function TableauDeBordPage() {
         </header>
 
         <main className="ac-main">
-          <h1 className="ac-title ac-title--page">Ton tableau de bord</h1>
+          <h1 className="ac-title ac-title--page">Mes contrats</h1>
           <p className="ac-microcopy ac-spacer-sm">
             {state.email ? `Connecté·e en maquette : ${state.email}` : "Maquette — aucune auth réelle"}
           </p>
           <TrustBadge />
 
           <section className="ac-spacer-lg">
-            <h2 className="ac-section-title">Mes contrats</h2>
             <div className="ac-card-grid">
               {state.contractStatus === "signe" && (
                 <article className="ac-card ac-card--signed">
@@ -97,24 +95,6 @@ export default function TableauDeBordPage() {
         </main>
       </div>
 
-      <SimulateBar
-        actions={[
-          {
-            label: "État : en attente tiers",
-            onClick: () => {
-              dispatch({ type: "SEND_INVITATION" });
-            },
-          },
-          {
-            label: "État : remboursement",
-            onClick: () => dispatch({ type: "SIMULATE_REFUND" }),
-          },
-          {
-            label: "Réinitialiser la maquette",
-            onClick: () => dispatch({ type: "RESET" }),
-          },
-        ]}
-      />
     </>
   );
 }

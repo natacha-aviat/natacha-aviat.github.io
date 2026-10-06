@@ -27,7 +27,7 @@ export default function HomePage() {
             Je crée mon contrat
           </BtnPrimary>
           <Link href="/parcours/tableau-de-bord" className="ac-link ac-centre">
-            Voir le tableau de bord (maquette)
+            Voir mes contrats (maquette)
           </Link>
         </div>
 

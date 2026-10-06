@@ -18,9 +18,9 @@ export default function SignaturePage() {
               ✓
             </p>
             <h1 className="ac-title ac-title--page">Contrat signé</h1>
-            <p className="ac-microcopy ac-spacer-lg">Il est dans ton tableau de bord.</p>
+            <p className="ac-microcopy ac-spacer-lg">Il est dans Mes contrats.</p>
             <BtnPrimary href="/parcours/tableau-de-bord" fullWidth>
-              Voir mon tableau de bord
+              Voir mes contrats
             </BtnPrimary>
           </div>
         ) : (
