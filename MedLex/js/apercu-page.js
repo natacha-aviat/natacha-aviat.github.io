@@ -76,13 +76,13 @@
     }
 
     if (parcours === 'collaboration') {
-      document.title = 'Aperçu du contrat de collaboration · Au Clair';
+      document.title = 'Aperçu du contrat de collaboration · MedLex';
     } else if (parcours === 'fin-de-bail') {
-      document.title = 'Aperçu fin de bail · Au Clair';
+      document.title = 'Aperçu fin de bail · MedLex';
     } else if (parcours === 'mise-en-demeure') {
-      document.title = 'Aperçu mise en demeure · Au Clair';
+      document.title = 'Aperçu mise en demeure · MedLex';
     } else if (parcours === 'bail-professionnel') {
-      document.title = 'Aperçu bail professionnel · Au Clair';
+      document.title = 'Aperçu bail professionnel · MedLex';
     }
   }
 

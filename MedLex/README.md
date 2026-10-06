@@ -1,4 +1,4 @@
-# Au Clair — MedLex
+# MedLex
 
 Maquette cliquable pour infirmières libérales (IDEL). **Site statique** : aucun serveur, liens relatifs, GitHub Pages compatible.
 

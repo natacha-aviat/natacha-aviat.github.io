@@ -29,11 +29,11 @@ function html(target) {
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta http-equiv="refresh" content="0; url=${target}" />
   <link rel="canonical" href="${target}" />
-  <title>Redirection · Au Clair</title>
+  <title>Redirection · MedLex</title>
   <script>location.replace("${target}");</script>
 </head>
 <body>
-  <p>Redirection… <a href="${target}">Continuer vers Au Clair</a></p>
+  <p>Redirection… <a href="${target}">Continuer vers MedLex</a></p>
 </body>
 </html>
 `;

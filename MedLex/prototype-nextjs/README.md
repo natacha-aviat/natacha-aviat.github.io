@@ -1,6 +1,6 @@
 # Prototype Next.js — tunnel contrat IDEL
 
-Version **React / Next.js** du parcours Au Clair (optionnelle). La **maquette officielle** est le site statique à la racine de `MedLex/` (`index.html` + `parcours/*.html`). Voir `../README.md`.
+Version **React / Next.js** du parcours MedLex (optionnelle). La **maquette officielle** est le site statique à la racine de `MedLex/` (`index.html` + `parcours/*.html`). Voir `../README.md`.
 
 ## Site statique (référence)
 

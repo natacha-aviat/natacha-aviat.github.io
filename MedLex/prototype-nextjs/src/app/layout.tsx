@@ -8,7 +8,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Au Clair | Contrats IDEL",
+  title: "MedLex | Contrats IDEL",
   description: "Maquette du parcours de génération de contrat pour infirmières libérales.",
 };
 

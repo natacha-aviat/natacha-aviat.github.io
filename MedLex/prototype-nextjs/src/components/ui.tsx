@@ -4,7 +4,7 @@ export function Logo({ href = "/" }: { href?: string }) {
   return (
     <Link href={href} className="ac-logo">
       <span className="ac-logo__dot" aria-hidden />
-      Au Clair
+      MedLex
     </Link>
   );
 }

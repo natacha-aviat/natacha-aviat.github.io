@@ -1,5 +1,5 @@
 /**
- * Charte graphique Au Clair pour l’export PDF (alignée sur parcours.css).
+ * Charte graphique MedLex pour l’export PDF (alignée sur parcours.css).
  */
 
 import { pdfLog, pdfWarn } from './pdf-debug.js';
