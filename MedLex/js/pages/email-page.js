@@ -9,7 +9,7 @@
     window.ParcoursType.initFromQuery();
   }
 
-  if (preset === 'remplacement' || preset === 'collaboration' || preset === 'fin-de-bail' || preset === 'mise-en-demeure' || preset === 'bail-professionnel') {
+  if (window.ParcoursType && window.ParcoursType.known(preset)) {
     var back = document.querySelector('.ac-back');
     if (back) {
       back.setAttribute('href', '../index.html');

@@ -24,35 +24,25 @@ function escapeHtml(s) {
     .replace(/"/g, '&quot;');
 }
 
-var TYPE_LABELS = {
-  continue: 'Remplacement continu',
-  discontinu: 'Remplacement discontinu',
-  planning: 'Planning variable',
-};
+function currentEntry() {
+  if (!window.ParcoursType) return null;
+  return window.ParcoursType.entry();
+}
 
 function showError(message, questionnaireHref) {
   var doc = document.getElementById('contract-doc');
   var guided = document.getElementById('contract-guided');
   var toggle = document.querySelector('.ac-view-toggle');
   if (!doc) return;
-  var href = questionnaireHref || (window.ParcoursType && window.ParcoursType.questionnaireUrl()) || 'questionnaire.html';
-  var parcours = window.ParcoursType && window.ParcoursType.get();
-  var title =
-    parcours === 'collaboration'
-      ? 'Contrat de collaboration infirmier libéral'
-      : parcours === 'fin-de-bail'
-        ? 'Fin de bail professionnel'
-        : parcours === 'mise-en-demeure'
-          ? 'Mise en demeure du bailleur'
-          : parcours === 'bail-professionnel'
-            ? 'Bail professionnel'
-            : 'Contrat de remplacement infirmier libéral';
+  var item = currentEntry();
+  var href = questionnaireHref || (item && item.questionnaire) || 'questionnaire.html';
+  var title = (item && item.documentTitle) || 'Contrat';
   if (guided) guided.innerHTML = '';
   if (toggle) toggle.classList.add('ac-hidden');
   doc.classList.remove('ac-hidden');
   doc.innerHTML =
     '<p class="ac-contract-doc__title">' +
-    title +
+    escapeHtml(title) +
     '</p>' +
     '<p class="ac-microcopy" style="margin-top:1rem;color:var(--ac-ink)">' +
     escapeHtml(message) +
@@ -62,103 +52,19 @@ function showError(message, questionnaireHref) {
     '">Revenir au questionnaire</a></p>';
 }
 
-function renderRemplacementContract(docEl, bodyText, answers, Contract) {
-  var subtitle =
-    escapeHtml(answers.rpNom) +
-    ' et ' +
-    escapeHtml(answers.rNom) +
-    ' · ' +
-    escapeHtml(TYPE_LABELS[answers.typeRemplacement] || 'Remplacement');
-
+function renderContract(docEl, item, bodyText, answers, Contract) {
   var bodyHtml = Contract.buildContractRenderedHtml(bodyText, answers);
+  var subtitle = item.subtitle ? item.subtitle(answers) : '';
   docEl.innerHTML =
-    '<p class="ac-contract-doc__title">Contrat de remplacement infirmier libéral</p>' +
-    '<p class="ac-contract-doc__subtitle">' +
-    subtitle +
+    '<p class="ac-contract-doc__title">' +
+    escapeHtml(item.documentTitle) +
     '</p>' +
-    '<div class="ac-contract-doc__body">' +
-    bodyHtml +
-    '</div>';
-
-  return { bodyText: bodyText, bodyHtml: bodyHtml };
-}
-
-function renderCollaborationContract(docEl, bodyText, answers, Contract) {
-  var subtitle = escapeHtml(answers.tNom) + ' et ' + escapeHtml(answers.cNom);
-
-  var bodyHtml = Contract.buildContractRenderedHtml(bodyText, answers);
-  docEl.innerHTML =
-    '<p class="ac-contract-doc__title">Contrat de collaboration infirmier libéral</p>' +
-    '<p class="ac-contract-doc__subtitle">' +
-    subtitle +
-    '</p>' +
-    '<div class="ac-contract-doc__body">' +
-    bodyHtml +
-    '</div>';
-
-  return { bodyText: bodyText, bodyHtml: bodyHtml };
-}
-
-function renderFinDeBailContract(docEl, bodyText, answers, Contract) {
-  var subtitle =
-    answers.isModeleB
-      ? 'Congé pour non-renouvellement (propriétaire)'
-      : 'Notification de congé (locataire)';
-  var parties =
-    escapeHtml(answers.identitePreneur || '') +
-    ' · ' +
-    escapeHtml(answers.identiteBailleur || '');
-
-  var bodyHtml = Contract.buildContractRenderedHtml(bodyText, answers);
-  docEl.innerHTML =
-    '<p class="ac-contract-doc__title">Fin de bail professionnel</p>' +
     '<p class="ac-contract-doc__subtitle">' +
     escapeHtml(subtitle) +
-    ' — ' +
-    parties +
     '</p>' +
     '<div class="ac-contract-doc__body">' +
     bodyHtml +
     '</div>';
-
-  return { bodyText: bodyText, bodyHtml: bodyHtml };
-}
-
-function renderMiseEnDemeureContract(docEl, bodyText, answers, Contract) {
-  var parties =
-    escapeHtml(answers.identitePreneur || '') +
-    ' → ' +
-    escapeHtml(answers.identiteBailleur || '');
-
-  var bodyHtml = Contract.buildContractRenderedHtml(bodyText, answers);
-  docEl.innerHTML =
-    '<p class="ac-contract-doc__title">Mise en demeure du bailleur</p>' +
-    '<p class="ac-contract-doc__subtitle">' +
-    parties +
-    '</p>' +
-    '<div class="ac-contract-doc__body">' +
-    bodyHtml +
-    '</div>';
-
-  return { bodyText: bodyText, bodyHtml: bodyHtml };
-}
-
-function renderBailProfessionnelContract(docEl, bodyText, answers, Contract) {
-  var subtitle =
-    escapeHtml(answers.identitePreneur || '') +
-    ' · ' +
-    escapeHtml(answers.identiteBailleur || '');
-
-  var bodyHtml = Contract.buildContractRenderedHtml(bodyText, answers);
-  docEl.innerHTML =
-    '<p class="ac-contract-doc__title">Bail professionnel</p>' +
-    '<p class="ac-contract-doc__subtitle">' +
-    subtitle +
-    '</p>' +
-    '<div class="ac-contract-doc__body">' +
-    bodyHtml +
-    '</div>';
-
   return { bodyText: bodyText, bodyHtml: bodyHtml };
 }
 
@@ -172,37 +78,13 @@ function mountGuidedContractView(parcours, bodyText, bodyHtml) {
   window.MedLexContractGuided.initViewToggle();
 }
 
-function updatePageChrome(parcours) {
+function updatePageChrome(item) {
   var docEl = document.getElementById('contract-doc');
-  if (docEl) {
-    var label =
-      parcours === 'collaboration'
-        ? 'Aperçu du contrat de collaboration'
-        : parcours === 'fin-de-bail'
-          ? 'Aperçu du courrier de fin de bail'
-          : parcours === 'mise-en-demeure'
-            ? 'Aperçu de la mise en demeure'
-            : parcours === 'bail-professionnel'
-              ? 'Aperçu du bail professionnel'
-              : 'Aperçu du contrat de remplacement';
-    docEl.setAttribute('aria-label', label);
-  }
+  if (docEl && item.ariaPreview) docEl.setAttribute('aria-label', item.ariaPreview);
   var pageTitle = document.querySelector('.ac-title--page');
-  if (pageTitle && (parcours === 'fin-de-bail' || parcours === 'mise-en-demeure')) {
-    pageTitle.textContent = 'Ton courrier';
-  }
-  if (pageTitle && parcours === 'bail-professionnel') {
-    pageTitle.textContent = 'Ton bail';
-  }
+  if (pageTitle && item.pageHeading) pageTitle.textContent = item.pageHeading;
   var micro = document.querySelector('.ac-main > .ac-microcopy');
-  if (micro && (parcours === 'fin-de-bail' || parcours === 'mise-en-demeure')) {
-    micro.textContent =
-      'Paiement confirmé — parcours le courrier, ou consulte le texte intégral avant la signature.';
-  }
-  if (micro && parcours === 'bail-professionnel') {
-    micro.textContent =
-      'Paiement confirmé — parcours le bail section par section, ou consulte le texte intégral avant la signature.';
-  }
+  if (micro && item.pageLead) micro.textContent = item.pageLead;
 }
 
 var pdfExportModule = null;
@@ -311,251 +193,49 @@ function wirePdfDownload(pdfBtn, docEl, filename, pdfMeta) {
   });
 }
 
-async function initCollaborationContrat(docEl, pdfBtn) {
-  var qHref = 'questionnaire-collaboration.html';
+async function loadContractApi(item) {
+  await loadScript(item.embedded);
+  var mod = await import(item.module);
+  var Contract = item.defaultExport ? mod.default || window[item.contractGlobal] : window[item.contractGlobal] || mod.default;
+  if (!Contract) throw new Error('Module contrat introuvable : ' + item.id);
+  return Contract;
+}
 
-  var snap =
-    window.ParcoursCollaborationSnapshot && window.ParcoursCollaborationSnapshot.load();
-  if (!snap) {
-    showError(
-      'Aucune réponse au questionnaire n’a été trouvée. Complète le questionnaire pour générer ton contrat.',
-      qHref
-    );
+async function initParcours(item, docEl, pdfBtn) {
+  var snapApi = window.ParcoursType && window.ParcoursType.snapshotApi(item.id);
+  var noun = item.noun || 'contrat';
+
+  function fail(message) {
+    showError(message, item.questionnaire);
     if (pdfBtn) pdfBtn.disabled = true;
-    return;
   }
 
-  if (!window.ParcoursCollaborationSnapshot.apply(snap)) {
-    showError('Impossible de restaurer les réponses du questionnaire.', qHref);
-    if (pdfBtn) pdfBtn.disabled = true;
+  var snap = snapApi && snapApi.load();
+  if (!snap) {
+    fail('Aucune réponse au questionnaire n’a été trouvée. Complète le questionnaire pour générer ton ' + noun + '.');
+    return;
+  }
+  if (!snapApi.apply(snap)) {
+    fail('Impossible de restaurer les réponses du questionnaire.');
     return;
   }
 
   try {
-    await loadScript('../medlex-collaboration-template-embedded.js');
-    await import('./contract/collaboration/medlex-collaboration-contract.js');
-    var Contract = window.MedLexCollaborationContract;
-
-    var templateRaw = await Contract.loadTemplate();
-    var answers = Contract.collectAnswers();
+    var Contract = await loadContractApi(item);
+    var answers = item.answersFirst ? Contract.collectAnswers() : null;
+    var templateRaw = item.templateUsesAnswers ? await Contract.loadTemplate(answers) : await Contract.loadTemplate();
+    if (!answers) answers = Contract.collectAnswers();
     var bodyText = Contract.buildContractText(templateRaw, answers);
-    var rendered = renderCollaborationContract(docEl, bodyText, answers, Contract);
+    var rendered = renderContract(docEl, item, bodyText, answers, Contract);
     docEl.removeAttribute('aria-busy');
-    mountGuidedContractView('collaboration', rendered.bodyText, rendered.bodyHtml);
-
-    wirePdfDownload(pdfBtn, docEl, 'contrat-de-collaboration-medlex.pdf', {
+    mountGuidedContractView(item.id, rendered.bodyText, rendered.bodyHtml);
+    wirePdfDownload(pdfBtn, docEl, Contract.PDF_FILENAME || item.pdf, {
       bodyText: rendered.bodyText,
-      parcours: 'collaboration',
+      parcours: item.id,
     });
   } catch (e) {
     console.error(e);
-    showError(
-      e instanceof Error
-        ? 'Erreur lors de la génération : ' + e.message
-        : 'Erreur lors de la génération du contrat.',
-      qHref
-    );
-    if (pdfBtn) pdfBtn.disabled = true;
-  }
-}
-
-async function initRemplacementContrat(docEl, pdfBtn) {
-  var qHref = 'questionnaire.html';
-
-  var snap = window.ParcoursSnapshot && window.ParcoursSnapshot.load();
-  if (!snap) {
-    showError(
-      'Aucune réponse au questionnaire n’a été trouvée. Complète le questionnaire pour générer ton contrat.',
-      qHref
-    );
-    if (pdfBtn) pdfBtn.disabled = true;
-    return;
-  }
-
-  if (!window.ParcoursSnapshot.apply(snap)) {
-    showError('Impossible de restaurer les réponses du questionnaire.', qHref);
-    if (pdfBtn) pdfBtn.disabled = true;
-    return;
-  }
-
-  try {
-    await loadScript('../medlex-contract-template-embedded.js');
-    var mod = await import('./contract/medlex-contract.js');
-    var Contract = mod.default || window.MedLexContract;
-
-    var templateRaw = await Contract.loadTemplate();
-    var answers = Contract.collectAnswers();
-    var bodyText = Contract.buildContractText(templateRaw, answers);
-    var rendered = renderRemplacementContract(docEl, bodyText, answers, Contract);
-    docEl.removeAttribute('aria-busy');
-    mountGuidedContractView('remplacement', rendered.bodyText, rendered.bodyHtml);
-
-    wirePdfDownload(pdfBtn, docEl, 'contrat-de-remplacement-medlex.pdf', {
-      bodyText: rendered.bodyText,
-      parcours: 'remplacement',
-    });
-  } catch (e) {
-    console.error(e);
-    showError(
-      e instanceof Error
-        ? 'Erreur lors de la génération : ' + e.message
-        : 'Erreur lors de la génération du contrat.',
-      qHref
-    );
-    if (pdfBtn) pdfBtn.disabled = true;
-  }
-}
-
-async function initFinDeBailContrat(docEl, pdfBtn) {
-  var qHref = 'questionnaire-fin-de-bail.html';
-
-  var snap = window.ParcoursFinDeBailSnapshot && window.ParcoursFinDeBailSnapshot.load();
-  if (!snap) {
-    showError(
-      'Aucune réponse au questionnaire n’a été trouvée. Complète le questionnaire pour générer ton courrier.',
-      qHref
-    );
-    if (pdfBtn) pdfBtn.disabled = true;
-    return;
-  }
-
-  if (!window.ParcoursFinDeBailSnapshot.apply(snap)) {
-    showError('Impossible de restaurer les réponses du questionnaire.', qHref);
-    if (pdfBtn) pdfBtn.disabled = true;
-    return;
-  }
-
-  try {
-    await loadScript('../medlex-fin-de-bail-templates-embedded.js');
-    await import('./contract/fin-de-bail/medlex-fin-de-bail-contract.js');
-    var Contract = window.MedLexFinDeBailContract;
-
-    var answers = Contract.collectAnswers();
-    var templateRaw = await Contract.loadTemplate(answers);
-    var bodyText = Contract.buildContractText(templateRaw, answers);
-    var rendered = renderFinDeBailContract(docEl, bodyText, answers, Contract);
-    docEl.removeAttribute('aria-busy');
-    mountGuidedContractView('fin-de-bail', rendered.bodyText, rendered.bodyHtml);
-
-    wirePdfDownload(pdfBtn, docEl, Contract.PDF_FILENAME || 'conge-bail-professionnel-medlex.pdf', {
-      bodyText: rendered.bodyText,
-      parcours: 'fin-de-bail',
-    });
-  } catch (e) {
-    console.error(e);
-    showError(
-      e instanceof Error
-        ? 'Erreur lors de la génération : ' + e.message
-        : 'Erreur lors de la génération du courrier.',
-      qHref
-    );
-    if (pdfBtn) pdfBtn.disabled = true;
-  }
-}
-
-async function initMiseEnDemeureContrat(docEl, pdfBtn) {
-  var qHref = 'questionnaire-mise-en-demeure.html';
-
-  var snap =
-    window.ParcoursMiseEnDemeureSnapshot && window.ParcoursMiseEnDemeureSnapshot.load();
-  if (!snap) {
-    showError(
-      'Aucune réponse au questionnaire n’a été trouvée. Complète le questionnaire pour générer ton courrier.',
-      qHref
-    );
-    if (pdfBtn) pdfBtn.disabled = true;
-    return;
-  }
-
-  if (!window.ParcoursMiseEnDemeureSnapshot.apply(snap)) {
-    showError('Impossible de restaurer les réponses du questionnaire.', qHref);
-    if (pdfBtn) pdfBtn.disabled = true;
-    return;
-  }
-
-  try {
-    await loadScript('../medlex-mise-en-demeure-template-embedded.js');
-    await import('./contract/mise-en-demeure/medlex-mise-en-demeure-contract.js');
-    var Contract = window.MedLexMiseEnDemeureContract;
-
-    var answers = Contract.collectAnswers();
-    var templateRaw = await Contract.loadTemplate();
-    var bodyText = Contract.buildContractText(templateRaw, answers);
-    var rendered = renderMiseEnDemeureContract(docEl, bodyText, answers, Contract);
-    docEl.removeAttribute('aria-busy');
-    mountGuidedContractView('mise-en-demeure', rendered.bodyText, rendered.bodyHtml);
-
-    wirePdfDownload(
-      pdfBtn,
-      docEl,
-      Contract.PDF_FILENAME || 'mise-en-demeure-bailleur-medlex.pdf',
-      {
-        bodyText: rendered.bodyText,
-        parcours: 'mise-en-demeure',
-      }
-    );
-  } catch (e) {
-    console.error(e);
-    showError(
-      e instanceof Error
-        ? 'Erreur lors de la génération : ' + e.message
-        : 'Erreur lors de la génération du courrier.',
-      qHref
-    );
-    if (pdfBtn) pdfBtn.disabled = true;
-  }
-}
-
-async function initBailProfessionnelContrat(docEl, pdfBtn) {
-  var qHref = 'questionnaire-bail-professionnel.html';
-
-  var snap =
-    window.ParcoursBailProfessionnelSnapshot && window.ParcoursBailProfessionnelSnapshot.load();
-  if (!snap) {
-    showError(
-      'Aucune réponse au questionnaire n’a été trouvée. Complète le questionnaire pour générer ton bail.',
-      qHref
-    );
-    if (pdfBtn) pdfBtn.disabled = true;
-    return;
-  }
-
-  if (!window.ParcoursBailProfessionnelSnapshot.apply(snap)) {
-    showError('Impossible de restaurer les réponses du questionnaire.', qHref);
-    if (pdfBtn) pdfBtn.disabled = true;
-    return;
-  }
-
-  try {
-    await loadScript('../medlex-bail-professionnel-template-embedded.js');
-    await import('./contract/bail-professionnel/medlex-bail-professionnel-contract.js');
-    var Contract = window.MedLexBailProfessionnelContract;
-
-    var answers = Contract.collectAnswers();
-    var templateRaw = await Contract.loadTemplate();
-    var bodyText = Contract.buildContractText(templateRaw, answers);
-    var rendered = renderBailProfessionnelContract(docEl, bodyText, answers, Contract);
-    docEl.removeAttribute('aria-busy');
-    mountGuidedContractView('bail-professionnel', rendered.bodyText, rendered.bodyHtml);
-
-    wirePdfDownload(
-      pdfBtn,
-      docEl,
-      Contract.PDF_FILENAME || 'bail-professionnel-medlex.pdf',
-      {
-        bodyText: rendered.bodyText,
-        parcours: 'bail-professionnel',
-      }
-    );
-  } catch (e) {
-    console.error(e);
-    showError(
-      e instanceof Error
-        ? 'Erreur lors de la génération : ' + e.message
-        : 'Erreur lors de la génération du bail.',
-      qHref
-    );
-    if (pdfBtn) pdfBtn.disabled = true;
+    fail(e instanceof Error ? 'Erreur lors de la génération : ' + e.message : 'Erreur lors de la génération du ' + noun + '.');
   }
 }
 
@@ -563,21 +243,10 @@ async function initContratPage() {
   var docEl = document.getElementById('contract-doc');
   var pdfBtn = document.getElementById('download-pdf');
   if (!docEl) return;
-
-  var parcours = (window.ParcoursType && window.ParcoursType.get()) || 'remplacement';
-  updatePageChrome(parcours);
-
-  if (parcours === 'collaboration') {
-    await initCollaborationContrat(docEl, pdfBtn);
-  } else if (parcours === 'fin-de-bail') {
-    await initFinDeBailContrat(docEl, pdfBtn);
-  } else if (parcours === 'mise-en-demeure') {
-    await initMiseEnDemeureContrat(docEl, pdfBtn);
-  } else if (parcours === 'bail-professionnel') {
-    await initBailProfessionnelContrat(docEl, pdfBtn);
-  } else {
-    await initRemplacementContrat(docEl, pdfBtn);
-  }
+  var item = currentEntry();
+  if (!item) return;
+  updatePageChrome(item);
+  await initParcours(item, docEl, pdfBtn);
 }
 
 if (document.readyState === 'loading') {

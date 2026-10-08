@@ -84,14 +84,14 @@ export const initialQuestionnaire: QuestionnaireData = {
   motif: "conge-maternite",
   motifAutre: "",
   rCivilite: "Mme",
-  rNom: "Martin Claire",
+  rNom: "",
   rOrdinal: "",
   rRpps: "",
   rAdresse: "12 rue des Lilas, 75011 Paris",
   modeExercice: "seul",
   associes: "oui",
   rpCivilite: "Mme",
-  rpNom: "Marie Dupont",
+  rpNom: "",
   rpOrdinal: "",
   rpRpps: "",
   rpStatut: "Cabinet déjà installé·e",
@@ -111,8 +111,8 @@ export const initialQuestionnaire: QuestionnaireData = {
   nonconcurrence: "non",
   annexes: "non",
   annexesTexte: "",
-  nomRemplace: "Martin Claire",
-  nomRemplacant: "Marie Dupont",
+  nomRemplace: "",
+  nomRemplacant: "",
 };
 
 export const initialOtherParty: OtherParty = {

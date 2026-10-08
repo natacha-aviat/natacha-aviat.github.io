@@ -3,17 +3,9 @@
     window.ParcoursType.initFromQuery();
   }
 
-  var KNOWN = {
-    remplacement: true,
-    collaboration: true,
-    "fin-de-bail": true,
-    "mise-en-demeure": true,
-    "bail-professionnel": true,
-  };
-
   var params = new URLSearchParams(window.location.search);
   var preset = params.get("type");
-  if (KNOWN[preset]) {
+  if (window.ParcoursType && window.ParcoursType.known(preset)) {
     if (window.ParcoursType) {
       window.ParcoursType.set(preset);
     }

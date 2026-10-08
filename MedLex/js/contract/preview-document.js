@@ -7,22 +7,10 @@ import { html2PdfOptions } from './pdf-options.js';
 import { escapeHtml, jsonLiteralForEmbeddedParse } from './utils.js';
 import { collectQuestionnaireSnapshot } from './snapshot.js';
 import { buildContractRenderedHtml } from './render-html.js';
-
-function getMedLexAssetUrl(filename) {
-  if (typeof window !== 'undefined' && window.location && window.location.href) {
-    try {
-      var inParcours = /\/parcours\//.test(window.location.pathname);
-      var rel = inParcours ? '../' + filename : filename;
-      return new URL(rel, window.location.href).href;
-    } catch {
-      /* ignore */
-    }
-  }
-  return './' + filename;
-}
+import { medlexAssetUrl } from './assets.js';
 
 function getHtml2PdfScriptUrl() {
-  return getMedLexAssetUrl('html2pdf.bundle.min.js');
+  return medlexAssetUrl('vendor/html2pdf.bundle.min.js');
 }
 
 export { html2PdfOptions };

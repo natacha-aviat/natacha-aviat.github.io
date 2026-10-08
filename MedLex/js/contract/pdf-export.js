@@ -17,20 +17,12 @@ import {
   interFontsReady,
 } from './pdf-theme.js';
 import { pdfLog, pdfWarn, pdfError } from './pdf-debug.js';
+import { medlexAssetUrl } from './assets.js';
 
 let engineReady = false;
 
 function getJsPdfScriptUrl() {
-  if (typeof window !== 'undefined' && window.location && window.location.href) {
-    try {
-      const inParcours = /\/parcours\//.test(window.location.pathname);
-      const rel = inParcours ? '../jspdf.umd.min.js' : './jspdf.umd.min.js';
-      return new URL(rel, window.location.href).href;
-    } catch {
-      /* ignore */
-    }
-  }
-  return './jspdf.umd.min.js';
+  return medlexAssetUrl('vendor/jspdf.umd.min.js');
 }
 
 function waitForJsPdf(maxMs) {

@@ -108,4 +108,5 @@ window.MedLexContract = {
   buildHtmlPreviewDocument,
   collectQuestionnaireSnapshot,
   applyQuestionnaireSnapshot,
+  PDF_FILENAME,
 };

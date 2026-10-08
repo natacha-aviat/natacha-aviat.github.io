@@ -27,7 +27,7 @@ export default function EmailPage() {
         <label className="ac-label">
           <span>Adresse email</span>
           <input
-            type="email"
+            type="text"
             required
             autoComplete="email"
             placeholder="prenom.nom@email.com"

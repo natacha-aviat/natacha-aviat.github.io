@@ -50,6 +50,7 @@
     window.ParcoursType.applyApercuBackLinks();
 
     var parcours = window.ParcoursType.get();
+    var item = window.ParcoursType.entry(parcours);
     var clauses =
       window.MedLexClauseThemes && window.MedLexClauseThemes.forApercu
         ? window.MedLexClauseThemes.forApercu(parcours)
@@ -61,29 +62,8 @@
     }
 
     var title = document.querySelector('.ac-title--page');
-    if (title) {
-      if (parcours === 'collaboration') {
-        title.textContent = 'Ce qui sera dans ton contrat de collaboration';
-      } else if (parcours === 'fin-de-bail') {
-        title.textContent = 'Ce qui sera dans ton courrier de fin de bail';
-      } else if (parcours === 'mise-en-demeure') {
-        title.textContent = 'Ce qui sera dans ta mise en demeure';
-      } else if (parcours === 'bail-professionnel') {
-        title.textContent = 'Ce qui sera dans ton bail professionnel';
-      } else {
-        title.textContent = 'Ce qui sera dans ton contrat';
-      }
-    }
-
-    if (parcours === 'collaboration') {
-      document.title = 'Aperçu du contrat de collaboration · MedLex';
-    } else if (parcours === 'fin-de-bail') {
-      document.title = 'Aperçu fin de bail · MedLex';
-    } else if (parcours === 'mise-en-demeure') {
-      document.title = 'Aperçu mise en demeure · MedLex';
-    } else if (parcours === 'bail-professionnel') {
-      document.title = 'Aperçu bail professionnel · MedLex';
-    }
+    if (title && item.apercuHeading) title.textContent = item.apercuHeading;
+    if (item.apercuTitle) document.title = item.apercuTitle;
   }
 
   if (document.readyState === 'loading') {

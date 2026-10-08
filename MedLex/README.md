@@ -6,32 +6,29 @@ Maquette cliquable pour infirmières libérales (IDEL). **Site statique** : aucu
 
 ```
 MedLex/
-├── index.html                 # Landing principale (ex index-6)
+├── index.html                      # Landing
 ├── css/
-│   ├── site.css               # Styles landing (index.html)
-│   └── parcours.css           # Styles tunnel (classes ac-*)
+│   ├── medlex.css                  # Couleurs, typo, tokens
+│   ├── modules.css                 # Composants (boutons, champs, barre…)
+│   ├── site.css                    # Mise en page landing
+│   └── parcours.css                # Mise en page du tunnel
 ├── js/
-│   ├── nav.js                 # Menu mobile landing
-│   └── questionnaire.js       # Questionnaire 5 étapes
-├── images/                    # Assets (ex. violaine_avocate.png)
-├── parcours/                  # ★ Tunnel maquette (entrée : email.html)
-│   ├── email.html
-│   ├── verification-email.html
-│   ├── lien-expire.html
-│   ├── questionnaire.html
-│   ├── apercu.html
-│   ├── invitation.html
-│   ├── invitation-attente.html
-│   ├── paiement.html
-│   ├── paiement-rembourse.html
-│   ├── contrat.html
-│   ├── signature.html
-│   ├── signature-terminee.html
-│   └── tableau-de-bord.html
-├── old/                       # Archives landings atelier (index-1…5, index-0)
-├── prototype-nextjs/          # Prototype Next.js optionnel (npm run dev)
-├── questionnaire-remplacement.html  # Legacy → redirige vers parcours/
-└── specs.md                   # Spec MedLex historique (partiellement obsolète)
+│   ├── shell.js                    # Barre du bas (toutes les pages)
+│   ├── questionnaire-runner.js     # Défilement commun des questionnaires
+│   ├── nav.js                      # Menu mobile landing
+│   ├── pages/                      # email, aperçu, choix du contrat
+│   ├── questionnaires/             # Règles propres à chaque parcours
+│   ├── snapshots/                  # Réponses conservées dans le navigateur
+│   └── contract/                   # Génération des contrats et PDF
+│       └── embedded/               # Modèles chargés par la page contrat
+├── vendor/                         # jsPDF, html2pdf
+├── fonts/                          # Inter, pour le PDF
+├── templates/                      # Textes sources des contrats
+├── images/
+├── parcours/                       # Pages du tunnel
+├── old/                            # Archives
+├── prototype-nextjs/               # Prototype Next.js optionnel
+└── questionnaire-remplacement.html # Ancienne adresse → parcours/
 ```
 
 ## Parcours utilisateur
@@ -68,7 +65,7 @@ Inter, navy `#18334E` (actions et liens), cherry `#A3125A` (accents), duck `#073
 
 | Élément | Détail |
 |---------|--------|
-| `index.html` | Charge `./css/site.css` + `./js/nav.js` |
-| `parcours/*.html` | Charge `../css/parcours.css` ; logo → `../index.html` |
-| `prototype-nextjs/` | Prototype React optionnel (questionnaire 13 étapes aligné) ; la maquette officielle est `parcours/*.html` |
+| `index.html` | Charge `./css/site.css`, `./js/nav.js` et `./js/shell.js` (barre du bas) |
+| `parcours/*.html` | Charge `../css/parcours.css` et `../js/shell.js` |
+| `js/parcours-type.js` | Catalogue des parcours : questionnaire, libellés, snapshot, modèle. Point d’entrée pour en ajouter un |
 | `images/violaine_avocate.png` | Référencée par `index.html` — à placer dans `images/` si absente |

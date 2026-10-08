@@ -98,7 +98,7 @@
               <option>Dr</option>
             </select>
           </label>
-          <label class="ac-label">Nom et prénom<input id="r-nom" class="ac-input" value="Martin Claire" /></label>
+          <label class="ac-label">Nom et prénom<input id="r-nom" class="ac-input" data-required="nom" required aria-required="true" placeholder="Ex. Martin Claire" /></label>
           <label class="ac-label">N° ordinal<input id="r-ordinal" class="ac-input" placeholder="Ex. 75 123 456 7" /></label>
           <label class="ac-label">N° RPPS<input id="r-rpps" class="ac-input" placeholder="11 chiffres" /></label>
           <label class="ac-label">Adresse professionnelle<textarea id="r-adresse" rows="2" class="ac-textarea">12 rue des Lilas, 75011 Paris</textarea></label>
@@ -129,7 +129,7 @@
               <option>M.</option>
             </select>
           </label>
-          <label class="ac-label">Nom et prénom<input id="rp-nom" class="ac-input" value="Marie Dupont" /></label>
+          <label class="ac-label">Nom et prénom<input id="rp-nom" class="ac-input" data-required="nom" required aria-required="true" placeholder="Ex. Marie Dupont" /></label>
           <label class="ac-label">N° ordinal<input id="rp-ordinal" class="ac-input" /></label>
           <label class="ac-label">N° RPPS<input id="rp-rpps" class="ac-input" /></label>
           <label class="ac-label">Statut
@@ -260,32 +260,11 @@
   </div>
   <script src="../js/choices.js"></script>
   <script src="../js/parcours-type.js"></script>
-  <script src="../js/parcours-snapshot.js"></script>
-  <script>
-    if (window.ParcoursType) window.ParcoursType.set("remplacement");
-  </script>
-  <script src="../js/questionnaire.js"></script>
-  <nav class="ac-bottom-nav" aria-label="Navigation principale">
-    <a href="tableau-de-bord.html">
-      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 10.5 12 4l8 6.5V20a1 1 0 0 1-1 1h-5v-6H10v6H5a1 1 0 0 1-1-1z"/></svg>
-      MedLex
-    </a>
-    <a href="profil.html">
-      <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="3.2"/><path d="M5.5 19.2c1.1-2.6 3.4-4 6.5-4s5.4 1.4 6.5 4"/></svg>
-      Profil
-    </a>
-    <a href="../index.html">
-      <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8"/><path d="M12 11v5M12 8h.01"/></svg>
-      Infos
-    </a>
-    <a href="tableau-de-bord.html#news">
-      <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="3.5" width="16" height="17" rx="2"/><path d="M8 8.5h8M8 12h8M8 15.5h5"/></svg>
-      News
-    </a>
-    <a class="ac-bottom-nav__add" href="choix-contrat.html">
-      <span class="ac-bottom-nav__plus" aria-hidden="true">+</span>
-      Nouveau
-    </a>
-  </nav>
+  <script src="../js/snapshots/remplacement.js"></script>
+    <script src="../js/questionnaire-runner.js"></script>
+  <script src="../js/questionnaires/remplacement.js"></script>
+  <script src="../js/required-names.js"></script>
+
+  <script src="../js/shell.js"></script>
 </body>
 </html>

@@ -1,0 +1,223 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Old+Standard+TT&display=swap");
+
+/* MedLex — couleurs, typographie, espacements.
+   Les modules d'interface sont dans modules.css. */
+
+:root {
+  /* Marque */
+  --navy: #18334e;
+  --cherry: #a3125a;
+  --mustard: #ecbd30;
+  --duck: #073d3d;
+  --medi: #12a3a3;
+  --green: var(--medi);
+
+  /* Texte et fonds */
+  --dorian: #465c71;
+  --mouse: #748595;
+  --white: #ffffff;
+  --cream: #f2f2f0;
+
+  /* Nuances */
+  --navy-hover: #13293e;
+  --navy-75: #52667a;
+  --navy-50: #8c99a7;
+  --navy-25: #c5ccd2;
+  --cherry-75: #ba4d83;
+  --cherry-50: #d188ac;
+  --cherry-25: #e8c3d5;
+  --cherry-10: #f4e3eb;
+  --mustard-75: #f1ce64;
+  --mustard-50: #f6de98;
+  --mustard-25: #faeecb;
+  --mustard-ink: #5a4810;
+  --medi-ink: #0b6464;
+  --green-75: #4dbaba;
+  --green-50: #89d1d1;
+  --green-25: #c4e8e8;
+
+  /* Filets et fonds de message */
+  --gray: #e0e4e8;
+  --gray-mid: #cad1d7;
+  --ok-bg: #def2f2;
+  --warn-bg: #f1e6c6;
+  --info-bg: #e8ebed;
+  --info-border: #bec6cd;
+  --danger-bg: #f4e3eb;
+  --danger-border: #e5bdd1;
+
+  /* Rôles */
+  --bg: var(--cream);
+  --surface-page: var(--cream);
+  --surface-card: var(--white);
+  --text: var(--dorian);
+  --text-heading: var(--duck);
+  --text-body: var(--dorian);
+  --text-subtle: var(--mouse);
+  --ink: var(--duck);
+  --teal: var(--navy);
+  --teal-dark: var(--navy-hover);
+  --ok: var(--medi);
+  --ok-ink: var(--medi-ink);
+  --gray-text: var(--mouse);
+  --overlay: rgba(7, 61, 61, 0.75);
+
+  /* Alias parcours (ac-) — mêmes couleurs */
+  --ac-navy: var(--navy);
+  --ac-navy-25: var(--navy-25);
+  --ac-cherry: var(--cherry);
+  --ac-mustard: var(--mustard);
+  --ac-duck: var(--duck);
+  --ac-medi: var(--medi);
+  --ac-dorian: var(--dorian);
+  --ac-mouse: var(--mouse);
+  --ac-cream: var(--cream);
+  --ac-white: var(--white);
+  --ac-bg: var(--bg);
+  --ac-teal: var(--teal);
+  --ac-teal-dark: var(--teal-dark);
+  --ac-ink: var(--text);
+  --ac-heading: var(--duck);
+  --ac-ok: var(--ok);
+  --ac-ok-ink: var(--ok-ink);
+  --ac-ok-bg: var(--ok-bg);
+  --ac-warn-bg: var(--warn-bg);
+  --ac-warn-ink: var(--mustard-ink);
+  --ac-info-bg: var(--info-bg);
+  --ac-info-ink: var(--navy);
+  --ac-info-border: var(--info-border);
+  --ac-danger-bg: var(--danger-bg);
+  --ac-danger-ink: var(--cherry);
+  --ac-danger-border: var(--danger-border);
+  --ac-gray: var(--gray);
+  --ac-gray-mid: var(--gray-mid);
+  --ac-muted: var(--mouse);
+
+  /* Polices */
+  --font-sans: "Inter", "Segoe UI", Roboto, Arial, sans-serif;
+  --font-serif: "Old Standard TT", Georgia, serif;
+  --font: var(--font-sans);
+  --ac-font: var(--font-sans);
+  --ac-font-serif: var(--font-serif);
+
+  /* Échelle typographique (planche) */
+  --type-title: 4.25rem;    /* 68 — landing */
+  --type-h1: 2.625rem;      /* 42 */
+  --type-h2: 1.625rem;      /* 26 — question */
+  --type-subtitle: 1.625rem;
+  --type-body: 1rem;        /* 16 */
+  --type-small: 0.625rem;   /* 10 */
+  --track-title: -0.04em;
+  --track-h1: -0.03em;
+
+  /* Espacements */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-12: 48px;
+
+  /* Rayons */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-pill: 999px;
+  --radius: 14px;
+  --ac-radius: var(--radius);
+  --ac-radius-lg: var(--radius-lg);
+
+  /* Ombres, teintées Duck */
+  --shadow-card: 0 1px 2px rgba(7, 61, 61, 0.08), 0 4px 12px rgba(7, 61, 61, 0.08);
+  --shadow-button: 0 2px 4px rgba(7, 61, 61, 0.25);
+  --shadow: 0 4px 24px rgba(7, 61, 61, 0.06);
+  --shadow-sm: 0 2px 8px rgba(7, 61, 61, 0.04);
+  --shadow-lg: 0 20px 50px rgba(7, 61, 61, 0.1);
+  --ac-shadow: var(--shadow);
+  --ac-shadow-sm: var(--shadow-sm);
+  --ac-shadow-card: var(--shadow-card);
+  --ac-shadow-button: var(--shadow-button);
+  --ac-shadow-teal: 0 4px 14px rgba(24, 51, 78, 0.28);
+
+  /* Colonnes */
+  --ac-max: 26rem;
+  --ac-max-wide: 40rem;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  min-height: 100%;
+  font-family: var(--font-sans);
+  font-size: var(--type-body);
+  font-weight: 400;
+  line-height: 1.58;
+  color: var(--text-body);
+  background: var(--surface-page);
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3,
+p {
+  margin: 0;
+}
+
+/* Titres et textes */
+.ac-title {
+  margin-bottom: 0.5rem;
+  font-size: 1.75rem;
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: -0.025em;
+  color: var(--ac-heading);
+}
+
+.ac-title--sm {
+  font-size: 1.625rem;
+  letter-spacing: 0;
+}
+
+.ac-title--page {
+  margin-bottom: 0.5rem;
+}
+
+.ac-microcopy {
+  font-size: 0.875rem;
+  color: var(--ac-muted);
+}
+
+.ac-microcopy--xs {
+  margin-top: 1rem;
+  font-size: 0.75rem;
+  text-align: center;
+}
+
+.ac-field-hint {
+  margin: 0.2rem 0 0.85rem;
+  font-size: 0.75rem;
+  color: var(--ac-mouse);
+  text-align: left;
+}
+
+.ac-section-title {
+  margin-bottom: 0.75rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--ac-muted);
+}
+

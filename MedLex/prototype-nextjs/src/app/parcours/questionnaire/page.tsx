@@ -32,7 +32,11 @@ export default function QuestionnairePage() {
     }
   }
 
+  const nameMissing =
+    (step === 4 && !q.rNom.trim()) || (step === 5 && !q.rpNom.trim());
+
   function next() {
+    if (nameMissing) return;
     if (step < STEPS - 1) setStep(step + 1);
     else router.push("/parcours/apercu");
   }
@@ -189,8 +193,14 @@ export default function QuestionnairePage() {
               <input
                 value={q.rNom}
                 onChange={(e) => patch(dispatch, { rNom: e.target.value })}
-                className="ac-input"
+                className={`ac-input${step === 4 && !q.rNom.trim() ? " is-invalid" : ""}`}
+                required
+                aria-required="true"
+                placeholder="Ex. Martin Claire"
               />
+              {step === 4 && !q.rNom.trim() ? (
+                <p className="ac-required-hint">Indique le nom et le prénom pour continuer.</p>
+              ) : null}
             </label>
             <label className="ac-label">
               N° ordinal
@@ -275,8 +285,14 @@ export default function QuestionnairePage() {
               <input
                 value={q.rpNom}
                 onChange={(e) => patch(dispatch, { rpNom: e.target.value })}
-                className="ac-input"
+                className={`ac-input${step === 5 && !q.rpNom.trim() ? " is-invalid" : ""}`}
+                required
+                aria-required="true"
+                placeholder="Ex. Marie Dupont"
               />
+              {step === 5 && !q.rpNom.trim() ? (
+                <p className="ac-required-hint">Indique le nom et le prénom pour continuer.</p>
+              ) : null}
             </label>
             <label className="ac-label">
               N° ordinal
@@ -548,7 +564,7 @@ export default function QuestionnairePage() {
 
       <div className="ac-btn-row">
         <BtnSecondary onClick={back}>Retour</BtnSecondary>
-        <BtnPrimary onClick={next}>{step === STEPS - 1 ? "Voir l'aperçu" : "Continuer"}</BtnPrimary>
+        <BtnPrimary onClick={next} disabled={nameMissing}>{step === STEPS - 1 ? "Voir l'aperçu" : "Suivant"}</BtnPrimary>
       </div>
     </FunnelShell>
   );

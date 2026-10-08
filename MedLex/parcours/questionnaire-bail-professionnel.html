@@ -30,7 +30,7 @@
         <h1 class="ac-title ac-title--sm ac-title--page">Le Bailleur (propriétaire)</h1>
         <div class="ac-stack-md ac-spacer-lg">
           <label class="ac-label">Qui est le Bailleur ?
-            <textarea id="identite-bailleur" rows="3" class="ac-textarea" placeholder="Nom et prénom, ou dénomination, forme, capital, RCS…"></textarea>
+            <textarea id="identite-bailleur" rows="3" class="ac-textarea" data-required="nom" required aria-required="true" placeholder="Nom et prénom, ou dénomination, forme, capital, RCS…"></textarea>
           </label>
           <label class="ac-label">Adresse complète (ou siège social)
             <textarea id="adresse-bailleur" rows="2" class="ac-textarea"></textarea>
@@ -45,7 +45,7 @@
         <h1 class="ac-title ac-title--sm ac-title--page">Le Preneur (locataire)</h1>
         <div class="ac-stack-md ac-spacer-lg">
           <label class="ac-label">Nom et prénom
-            <input id="identite-preneur" class="ac-input" />
+            <input id="identite-preneur" class="ac-input" data-required="nom" required aria-required="true" placeholder="Nom et prénom" />
           </label>
           <label class="ac-label">N° ordinal
             <input id="ordinal-preneur" class="ac-input" />
@@ -188,29 +188,11 @@
   </div>
   <script src="../js/choices.js"></script>
   <script src="../js/parcours-type.js"></script>
-  <script src="../js/parcours-bail-professionnel-snapshot.js"></script>
-  <script src="../js/questionnaire-bail-professionnel.js"></script>
-  <nav class="ac-bottom-nav" aria-label="Navigation principale">
-    <a href="tableau-de-bord.html">
-      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 10.5 12 4l8 6.5V20a1 1 0 0 1-1 1h-5v-6H10v6H5a1 1 0 0 1-1-1z"/></svg>
-      MedLex
-    </a>
-    <a href="profil.html">
-      <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="3.2"/><path d="M5.5 19.2c1.1-2.6 3.4-4 6.5-4s5.4 1.4 6.5 4"/></svg>
-      Profil
-    </a>
-    <a href="../index.html">
-      <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8"/><path d="M12 11v5M12 8h.01"/></svg>
-      Infos
-    </a>
-    <a href="tableau-de-bord.html#news">
-      <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="3.5" width="16" height="17" rx="2"/><path d="M8 8.5h8M8 12h8M8 15.5h5"/></svg>
-      News
-    </a>
-    <a class="ac-bottom-nav__add" href="choix-contrat.html">
-      <span class="ac-bottom-nav__plus" aria-hidden="true">+</span>
-      Nouveau
-    </a>
-  </nav>
+  <script src="../js/snapshots/bail-professionnel.js"></script>
+    <script src="../js/questionnaire-runner.js"></script>
+  <script src="../js/questionnaires/bail-professionnel.js"></script>
+  <script src="../js/required-names.js"></script>
+
+  <script src="../js/shell.js"></script>
 </body>
 </html>

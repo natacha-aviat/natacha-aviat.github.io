@@ -80,7 +80,7 @@ export default function InvitationPage() {
         <label className="ac-label">
           Email de l&apos;autre partie
           <input
-            type="email"
+            type="text"
             required
             value={email}
             onChange={(e) => setEmail(e.target.value)}

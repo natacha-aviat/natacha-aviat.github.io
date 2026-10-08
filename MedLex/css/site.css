@@ -1,34 +1,10 @@
+@import url("medlex.css");
+@import url("modules.css");
+
+/* Landing. Couleurs et typo : medlex.css. Modules : modules.css. */
 :root {
-  /* Palette : palette.txt — images/2026-10-05_MedLex_Palette.png */
-  --navy: #18334e;
-  --navy-hover: #13293e;
-  --cherry: #a3125a;
-  --mustard: #ecbd30;
-  --mustard-ink: #5a4810;
-  --duck: #073d3d;
-  --medi: #12a3a3;
-  --medi-ink: #0b6464;
-  --dorian: #465c71;
-  --mouse: #748595;
-  --cream: #f2f2f0;
-  --white: #ffffff;
-  --bg: var(--cream);
-  --teal: var(--navy);
-  --teal-dark: var(--navy-hover);
-  --ink: var(--duck);
-  --text: var(--dorian);
-  --ok: var(--medi);
-  --ok-ink: var(--medi-ink);
-  --gray: #e0e4e8;
-  --gray-mid: #cad1d7;
-  --gray-text: var(--mouse);
-  --radius: 14px;
-  --radius-lg: 16px;
-  --shadow: 0 4px 24px rgba(7, 61, 61, 0.06);
-  --shadow-lg: 0 20px 50px rgba(7, 61, 61, 0.1);
-  --font: "Inter", "Segoe UI", Roboto, Arial, sans-serif;
   --max: 1140px;
-  --tabular: "Inter", ui-monospace, monospace;
+  --tabular: var(--font-sans);
 }
 
 *,
@@ -1001,80 +977,4 @@ footer {
 
 body {
   padding-bottom: 8rem;
-}
-
-.ac-bottom-nav {
-  position: fixed;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  z-index: 50;
-  display: flex;
-  align-items: flex-end;
-  justify-content: center;
-  gap: 0.15rem;
-  height: 4.35rem;
-  box-sizing: border-box;
-  overflow: visible;
-  background: var(--duck);
-  padding: 0 0.5rem calc(0.4rem + env(safe-area-inset-bottom));
-}
-
-.ac-bottom-nav a {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-end;
-  gap: 0.18rem;
-  min-width: 4.1rem;
-  height: 100%;
-  color: var(--white);
-  font-size: 0.65rem;
-  font-weight: 500;
-  line-height: 1.1;
-  text-decoration: none;
-}
-
-.ac-bottom-nav svg {
-  width: 1.35rem;
-  height: 1.35rem;
-  fill: none;
-  stroke: currentColor;
-  stroke-width: 1.8;
-  stroke-linejoin: round;
-  stroke-linecap: round;
-}
-
-.ac-bottom-nav a[aria-current="page"] {
-  color: var(--white);
-  font-weight: 700;
-}
-
-.ac-bottom-nav a.ac-bottom-nav__add {
-  position: relative;
-  align-self: stretch;
-  min-width: 4.6rem;
-  color: var(--mustard);
-  font-weight: 600;
-  justify-content: flex-end;
-}
-
-.ac-bottom-nav__plus {
-  position: absolute;
-  top: -1.55rem;
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 4.25rem;
-  height: 4.25rem;
-  border: 6px solid var(--duck);
-  border-radius: 50%;
-  background: var(--mustard);
-  color: var(--duck);
-  font-size: 2.2rem;
-  font-weight: 500;
-  line-height: 1;
-  box-shadow: 0 8px 18px rgba(7, 61, 61, 0.2);
 }

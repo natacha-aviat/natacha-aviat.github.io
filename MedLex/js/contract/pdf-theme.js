@@ -3,6 +3,7 @@
  */
 
 import { pdfLog, pdfWarn } from './pdf-debug.js';
+import { medlexAssetUrl } from './assets.js';
 
 /** @type {{ ink: number[]; muted: number[]; teal: number[]; gray: number[]; white: number[] }} */
 export const PDF_THEME = {
@@ -49,16 +50,7 @@ function isFileProtocol() {
 }
 
 function getLocalFontUrl(filename) {
-  if (typeof window !== 'undefined' && window.location && window.location.href) {
-    try {
-      const inParcours = /\/parcours\//.test(window.location.pathname);
-      const rel = inParcours ? '../fonts/' + filename : './fonts/' + filename;
-      return new URL(rel, window.location.href).href;
-    } catch {
-      /* ignore */
-    }
-  }
-  return './fonts/' + filename;
+  return medlexAssetUrl('fonts/' + filename);
 }
 
 function getFontUrls(filename) {
