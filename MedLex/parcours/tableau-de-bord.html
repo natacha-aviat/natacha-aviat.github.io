@@ -6,17 +6,18 @@
   <title>Mes contrats · MedLex</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="../css/parcours.css" />
 </head>
 <body class="ac-page ac-page--app">
   <header class="ac-dash-header">
-    <a class="ac-logo" href="../index.html"><span class="ac-logo__dot" aria-hidden="true"></span>MedLex</a>
-    <a href="choix-contrat.html" class="ac-link">+ Nouveau contrat</a>
+    <a class="ac-logo" href="tableau-de-bord.html"><span class="ac-logo__dot" aria-hidden="true"></span>MedLex</a>
+    <div class="ac-chips">
+      <button type="button" class="ac-chip">Type de contrat <span class="ac-chip__chev" aria-hidden="true"></span></button>
+      <button type="button" class="ac-chip">Statut du contrat <span class="ac-chip__chev" aria-hidden="true"></span></button>
+    </div>
   </header>
   <main class="ac-main">
-    <h1 class="ac-title ac-title--page">Mes contrats</h1>
-    <p class="ac-microcopy ac-spacer-sm">Maquette — aucune auth réelle</p>
     <span class="ac-trust">
       <svg viewBox="0 0 24 24" aria-hidden="true">
         <path d="M12 3l7 4v6c0 4.5-3.2 8.7-7 9-3.8-.3-7-4.5-7-9V7l7-4z" />
@@ -76,13 +77,13 @@
       </div>
     </section>
     <div class="ac-spacer-lg">
-      <a class="ac-btn ac-btn--primary ac-btn--full" href="choix-contrat.html">Créer un autre contrat</a>
+      <a class="ac-btn ac-btn--mustard" href="choix-contrat.html">Créer un autre contrat</a>
     </div>
   </main>
   <nav class="ac-bottom-nav" aria-label="Navigation principale">
     <a href="tableau-de-bord.html" aria-current="page">
       <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 10.5 12 4l8 6.5V20a1 1 0 0 1-1 1h-5v-6H10v6H5a1 1 0 0 1-1-1z"/></svg>
-      Mes contrats
+      MedLex
     </a>
     <a href="profil.html">
       <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="3.2"/><path d="M5.5 19.2c1.1-2.6 3.4-4 6.5-4s5.4 1.4 6.5 4"/></svg>

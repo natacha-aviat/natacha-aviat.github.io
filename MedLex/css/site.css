@@ -179,13 +179,13 @@ a {
 
 .nav a.btn-primary {
   background: var(--mustard);
-  color: var(--duck);
+  color: var(--white);
   box-shadow: none;
 }
 
 .nav a.btn-primary:hover {
   background: #f3cc4a;
-  color: var(--duck);
+  color: var(--white);
 }
 
 .btn {
@@ -209,13 +209,13 @@ a {
 }
 
 .btn-primary {
-  background: var(--teal);
+  background: var(--mustard);
   color: var(--white);
-  box-shadow: 0 4px 14px rgba(24, 51, 78, 0.28);
+  box-shadow: 0 2px 4px rgba(7, 61, 61, 0.25);
 }
 
 .btn-primary:hover {
-  background: var(--teal-dark);
+  background: #f3cc4a;
 }
 
 .btn-secondary {

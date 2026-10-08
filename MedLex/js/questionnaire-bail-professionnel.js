@@ -82,8 +82,8 @@
     steps.forEach(function (el, i) {
       el.classList.toggle('is-active', i === step);
     });
-    if (label) label.textContent = 'Question ' + (step + 1) + ' sur ' + STEPS;
-    if (pct) pct.textContent = progress + ' %';
+    if (label) label.textContent = '';
+    if (pct) pct.textContent = (step + 1) + '/' + STEPS;
     if (fill) fill.style.width = progress + '%';
     if (backLink) {
       if (fromContrat && step === 0) {
@@ -108,7 +108,7 @@
           ? fromContrat
             ? 'Enregistrer et retour au contrat'
             : "Voir l'aperçu"
-          : 'Continuer';
+          : 'Suivant';
     }
     updateConditionals();
     window.scrollTo({ top: 0, behavior: 'smooth' });

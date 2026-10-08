@@ -6,25 +6,28 @@
   <title>Profil · MedLex</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="../css/parcours.css" />
 </head>
-<body class="ac-page ac-page--app">
+<body class="ac-page ac-page--app ac-page--profil">
   <header class="ac-dash-header">
     <a class="ac-logo" href="../index.html"><span class="ac-logo__dot" aria-hidden="true"></span>MedLex</a>
   </header>
   <main class="ac-main">
-    <h1 class="ac-title ac-title--page">Profil</h1>
-    <p class="ac-microcopy ac-spacer-sm">Maquette — le compte n’est pas encore branché.</p>
-    <article class="ac-card ac-spacer-lg">
-      <h2 class="ac-card__title">Ton espace</h2>
-      <p class="ac-card__desc">Ici tu retrouveras tes informations, tes contrats et tes réglages.</p>
-    </article>
+    <div class="ac-avatar" role="img" aria-label="Avatar"></div>
+    <label class="ac-label">Nom<input class="ac-input" type="text" name="nom" placeholder="Ton nom de famille" /></label>
+    <p class="ac-field-hint">Ex : Macron</p>
+    <label class="ac-label ac-spacer-sm">Prénom<input class="ac-input" type="text" name="prenom" placeholder="Tous tes prénoms" /></label>
+    <p class="ac-field-hint">Ex : Brigitte Caroline</p>
+    <label class="ac-label ac-spacer-sm">Adresse<input class="ac-input" type="text" name="adresse" placeholder="L'adresse de ton cabinet" /></label>
+    <label class="ac-label ac-spacer-sm">Ville<input class="ac-input" type="text" name="ville" placeholder="La ville de ton cabinet" /></label>
+    <label class="ac-check ac-spacer-lg"><input type="checkbox" checked /> Abonnement à la newsletter</label>
+    <label class="ac-check"><input type="checkbox" /> Police dyslexie</label>
   </main>
   <nav class="ac-bottom-nav" aria-label="Navigation principale">
     <a href="tableau-de-bord.html">
       <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 10.5 12 4l8 6.5V20a1 1 0 0 1-1 1h-5v-6H10v6H5a1 1 0 0 1-1-1z"/></svg>
-      Mes contrats
+      MedLex
     </a>
     <a href="profil.html" aria-current="page">
       <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="3.2"/><path d="M5.5 19.2c1.1-2.6 3.4-4 6.5-4s5.4 1.4 6.5 4"/></svg>
