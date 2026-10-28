@@ -1,9 +1,9 @@
 <!doctype html>
-<html lang="fr">
+<html lang="fr" data-brand-title="suffix">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Mentions légales · LibéLex</title>
+    <title>Mentions légales</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -15,7 +15,7 @@
   <body class="lead-page">
     <header class="site-header lead-header">
       <div class="container header-inner">
-        <a class="logo" href="./index.html"><span class="logo-dot" aria-hidden="true"></span>LibéLex</a>
+        <a class="logo" href="./index.html"><span class="logo-dot" aria-hidden="true"></span><span data-brand="name"></span></a>
         <a class="lead-header__back" href="./index.html">Retour à l’accueil</a>
       </div>
     </header>
@@ -24,8 +24,8 @@
       <p class="lead-kicker">Informations</p>
       <h1>Mentions légales</h1>
       <p class="lead-intro">
-        Le site LibéLex présente les services du cabinet. Pour toute question :
-        <a href="mailto:contact@libelex.fr">contact@libelex.fr</a>.
+        Le site <span data-brand="name"></span> présente les services du cabinet. Pour toute question :
+        <a data-brand="email" href="mailto:contact@libelex.fr">contact@libelex.fr</a>.
       </p>
 
       <h2>Publicité et sollicitation</h2>
@@ -44,19 +44,20 @@
       </p>
       <p class="lead-offer">
         Vous pouvez demander l’accès, la rectification ou l’effacement de ces informations en
-        écrivant à <a href="mailto:contact@libelex.fr">contact@libelex.fr</a>.
+        écrivant à <a data-brand="email" href="mailto:contact@libelex.fr">contact@libelex.fr</a>.
       </p>
     </main>
 
     <footer id="footer">
       <div class="container footer-inner">
-        <span>© LibéLex 2026</span>
+        <span data-brand="copyright"></span>
         <div class="footer-links">
           <a href="./test-selarl.html">Test SELARL</a>
-          <a href="mailto:contact@libelex.fr">contact@libelex.fr</a>
+          <a data-brand="email" href="mailto:contact@libelex.fr">contact@libelex.fr</a>
         </div>
       </div>
     </footer>
+    <script src="./js/brand.js"></script>
     <script src="./js/shell.js"></script>
   </body>
 </html>

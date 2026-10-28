@@ -63,7 +63,11 @@
 
     var title = document.querySelector('.ac-title--page');
     if (title && item.apercuHeading) title.textContent = item.apercuHeading;
-    if (item.apercuTitle) document.title = item.apercuTitle;
+    if (item.apercuTitle) {
+      document.title = window.LibéLexBrand
+        ? item.apercuTitle + " · " + window.LibéLexBrand.name
+        : item.apercuTitle;
+    }
   }
 
   if (document.readyState === 'loading') {

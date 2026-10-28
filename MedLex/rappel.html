@@ -1,9 +1,9 @@
 <!doctype html>
-<html lang="fr">
+<html lang="fr" data-brand-title="suffix">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Rappel gratuit · LibéLex</title>
+    <title>Rappel gratuit</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -15,7 +15,7 @@
   <body class="lead-page">
     <header class="site-header lead-header">
       <div class="container header-inner">
-        <a class="logo" href="./index.html"><span class="logo-dot" aria-hidden="true"></span>LibéLex</a>
+        <a class="logo" href="./index.html"><span class="logo-dot" aria-hidden="true"></span><span data-brand="name"></span></a>
         <a class="lead-header__back" href="./test-selarl.html">Retour au test</a>
       </div>
     </header>
@@ -68,15 +68,16 @@
 
     <footer id="footer">
       <div class="container footer-inner">
-        <span>© LibéLex 2026</span>
+        <span data-brand="copyright"></span>
         <div class="footer-links">
           <a href="./mentions-legales.html">Mentions légales</a>
-          <a href="mailto:contact@libelex.fr">contact@libelex.fr</a>
+          <a data-brand="email" href="mailto:contact@libelex.fr">contact@libelex.fr</a>
         </div>
       </div>
     </footer>
     <script src="./js/selarl-lead.js"></script>
     <script src="./js/demande-contact.js"></script>
+    <script src="./js/brand.js"></script>
     <script src="./js/shell.js"></script>
   </body>
 </html>

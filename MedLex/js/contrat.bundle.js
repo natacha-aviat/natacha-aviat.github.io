@@ -893,7 +893,7 @@
       pdf.circle(marginLeft + 1.4, headerY, 1.1, "F");
       setFont("bold", PDF_TYPO.brand);
       pdf.setTextColor(PDF_THEME.ink[0], PDF_THEME.ink[1], PDF_THEME.ink[2]);
-      pdf.text("Lib\xE9Lex", marginLeft + 4.5, headerY + 1.1);
+      pdf.text(window.Lib\u00E9LexBrand.name, marginLeft + 4.5, headerY + 1.1);
       pdf.setDrawColor(PDF_THEME.gray[0], PDF_THEME.gray[1], PDF_THEME.gray[2]);
       pdf.setLineWidth(0.35);
       pdf.line(marginLeft, headerY + 5, pageWidth - marginRight, headerY + 5);

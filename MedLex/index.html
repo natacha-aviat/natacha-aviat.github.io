@@ -1,12 +1,13 @@
 <!doctype html>
-<html lang="fr">
+<html lang="fr" data-brand-title="prefix">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>LibéLex | Le juridique, expliqué comme par une collègue</title>
+    <title>Le juridique, expliqué comme par une collègue</title>
     <meta
       name="description"
-      content="LibéLex t'accompagne pas à pas dans tes contrats d'infirmière libérale. Pédagogie, bienveillance et rédaction par Me Violaine, avocate en droit de la santé."
+      data-brand-fill
+      content="{name} t'accompagne pas à pas dans tes contrats d'infirmière libérale. Pédagogie, bienveillance et rédaction par Me Violaine, avocate en droit de la santé."
     />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -19,7 +20,7 @@
   <body>
     <header class="site-header">
       <div class="container header-inner">
-        <a class="logo" href="#top"><span class="logo-dot" aria-hidden="true"></span>LibéLex</a>
+        <a class="logo" href="#top"><span class="logo-dot" aria-hidden="true"></span><span data-brand="name"></span></a>
         <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="main-nav">
           Menu
         </button>
@@ -55,7 +56,7 @@
             <h1>Tu n'es pas seule face aux papiers.</h1>
             <p class="hero-lede">
               Entre deux tournées, entre deux patients, le contrat attend souvent dans un coin de ton
-              bureau. LibéLex te guide pas à pas — avec des mots simples, et une avocate derrière
+              bureau. <span data-brand="name"></span> te guide pas à pas — avec des mots simples, et une avocate derrière
               chaque clause.
             </p>
             <div class="hero-actions">
@@ -74,7 +75,7 @@
             <div class="dashboard">
               <div class="dash-topbar">
                 <div class="dash-dots"><span></span><span></span><span></span></div>
-                <span class="dash-title">libelex.fr — Contrat de remplacement</span>
+                <span class="dash-title"><span data-brand="domain"></span> — Contrat de remplacement</span>
               </div>
               <div class="dash-body">
                 <aside class="dash-sidebar">
@@ -263,7 +264,7 @@
             <p class="role">Me Violaine · Avocate au barreau</p>
             <p class="violaine-voice">
               Je ne suis pas là pour vous faire sentir petite face au droit. Je suis là pour que vous
-              compreniez ce que vous signez — et que vous vous sentiez protégée. Chaque contrat LibéLex
+              compreniez ce que vous signez — et que vous vous sentiez protégée. Chaque contrat <span data-brand="name"></span>
               passe par ma relecture : c'est ma signature professionnelle qui garantit le fond.
             </p>
           </aside>
@@ -320,7 +321,7 @@
               <a class="btn btn-secondary" href="./parcours/choix-contrat.html">Je crée mon contrat</a>
             </article>
             <article class="price-card featured">
-              <p class="price-name">Abonnement LibéLex</p>
+              <p class="price-name">Abonnement <span data-brand="name"></span></p>
               <p class="price-amount tabular">19 €<small>/mois</small></p>
               <ul class="price-features">
                 <li>Contrats illimités</li>
@@ -329,7 +330,7 @@
                 <li>Veille ordinale &amp; législative</li>
                 <li>Accès prioritaire à Me Violaine</li>
               </ul>
-              <a class="btn btn-primary" href="mailto:contact@libelex.fr?subject=Abonnement%20Lib%C3%A9Lex"
+              <a class="btn btn-primary" data-brand-mailto="Abonnement {name}" href="mailto:contact@libelex.fr"
                 >Découvrir l'abonnement</a
               >
             </article>
@@ -369,7 +370,7 @@
           <div class="phone-wrap" aria-hidden="true">
             <div class="phone">
               <div class="phone-screen">
-                <div class="phone-head">LibéLex</div>
+                <div class="phone-head" data-brand="name"></div>
                 <div class="phone-item">
                   Remplacement — collègue
                   <div class="s">✓ PDF prêt · Clause expliquée</div>
@@ -392,12 +393,12 @@
 
     <footer id="footer">
       <div class="container footer-inner">
-        <span>© LibéLex 2026</span>
+        <span data-brand="copyright"></span>
         <div class="footer-links">
           <a href="./parcours/choix-contrat.html">Créer mon contrat</a>
           <a href="./mentions-legales.html">Mentions légales</a>
           <a href="./mentions-legales.html#donnees">Politique de confidentialité</a>
-          <a href="mailto:contact@libelex.fr">contact@libelex.fr</a>
+          <a data-brand="email" href="mailto:contact@libelex.fr">contact@libelex.fr</a>
         </div>
       </div>
     </footer>
@@ -405,6 +406,7 @@
 
     <script src="./js/nav.js"></script>
   
+    <script src="./js/brand.js"></script>
     <script src="./js/shell.js"></script>
   </body>
 </html>

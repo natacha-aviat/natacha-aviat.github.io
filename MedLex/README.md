@@ -66,7 +66,8 @@ Inter, navy `#18334E` (actions et liens), cherry `#A3125A` (accents), duck `#073
 
 | Élément | Détail |
 |---------|--------|
-| `index.html` | Charge `./css/site.css`, `./js/nav.js` et `./js/shell.js` (barre du bas) |
+| `js/brand.js` | Nom, e-mail, année. Logo, titres, footer et PDF lisent ce fichier |
+| `index.html` | Charge `./css/site.css`, `./js/nav.js`, `./js/brand.js` et `./js/shell.js` |
 | `parcours/*.html` | Charge `../css/parcours.css` et `../js/shell.js` |
 | `js/parcours-type.js` | Catalogue des parcours : questionnaire, libellés, snapshot, modèle. Point d’entrée pour en ajouter un |
 | `images/violaine_avocate.png` | Référencée par `index.html` — à placer dans `images/` si absente |

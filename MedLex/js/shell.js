@@ -29,7 +29,7 @@
   nav.className = "ac-bottom-nav";
   nav.setAttribute("aria-label", "Navigation principale");
   nav.innerHTML =
-    item(prefix + "tableau-de-bord.html", "LibéLex", house, "libelex") +
+    item(prefix + "tableau-de-bord.html", window.LibéLexBrand.name, house, "libelex") +
     item(prefix + "profil.html", "Profil", person, "profil") +
     item(infosHref, "Infos", info, "infos") +
     item(prefix + "tableau-de-bord.html#news", "News", news, "news") +
