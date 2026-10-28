@@ -1,9 +1,9 @@
 /**
  * Logs console pour diagnostiquer l’export PDF.
- * Filtrer la console avec : MedLex PDF
+ * Filtrer la console avec : LibéLex PDF
  */
 
-const PREFIX = '[MedLex PDF]';
+const PREFIX = '[LibéLex PDF]';
 
 export function pdfLog(message, detail) {
   if (detail !== undefined) {

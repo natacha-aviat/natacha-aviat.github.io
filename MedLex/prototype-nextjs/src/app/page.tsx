@@ -18,7 +18,7 @@ export default function HomePage() {
         </p>
         <h1 className="ac-title">Tu n&apos;es pas seule face aux papiers.</h1>
         <p className="ac-lede">
-          Entre deux tournées, le contrat attend souvent dans un coin de ton bureau. MedLex te guide
+          Entre deux tournées, le contrat attend souvent dans un coin de ton bureau. LibéLex te guide
           pas à pas — avec des mots simples, et une avocate derrière chaque clause.
         </p>
 
@@ -52,8 +52,8 @@ export default function HomePage() {
       </main>
 
       <footer className="ac-footer">
-        <p>© MedLex 2026</p>
-        <a href="mailto:contact@medlex.fr">contact@medlex.fr</a>
+        <p>© LibéLex 2026</p>
+        <a href="mailto:contact@libelex.fr">contact@libelex.fr</a>
       </footer>
     </div>
   );

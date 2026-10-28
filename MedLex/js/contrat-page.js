@@ -69,13 +69,13 @@ function renderContract(docEl, item, bodyText, answers, Contract) {
 }
 
 function mountGuidedContractView(parcours, bodyText, bodyHtml) {
-  if (!window.MedLexContractGuided) return;
-  window.MedLexContractGuided.mount({
+  if (!window.LibéLexContractGuided) return;
+  window.LibéLexContractGuided.mount({
     bodyText: bodyText,
     bodyHtml: bodyHtml,
     parcours: parcours,
   });
-  window.MedLexContractGuided.initViewToggle();
+  window.LibéLexContractGuided.initViewToggle();
 }
 
 function updatePageChrome(item) {
@@ -94,21 +94,21 @@ function preloadPdfEngine() {
   if (pdfPreloadPromise) {
     return pdfPreloadPromise;
   }
-  console.log('[MedLex PDF]', 'contrat-page : démarrage préchargement…');
+  console.log('[LibéLex PDF]', 'contrat-page : démarrage préchargement…');
   pdfPreloadPromise = import('./contract/pdf-export.js')
     .then(function (mod) {
-      console.log('[MedLex PDF]', 'contrat-page : module pdf-export importé');
+      console.log('[LibéLex PDF]', 'contrat-page : module pdf-export importé');
       pdfExportModule = mod;
       return mod.preloadPdfEngine();
     })
     .then(function () {
-      console.log('[MedLex PDF]', 'contrat-page : préchargement terminé', {
+      console.log('[LibéLex PDF]', 'contrat-page : préchargement terminé', {
         pret: pdfExportModule && pdfExportModule.isPdfEngineReady(),
       });
     })
     .catch(function (e) {
       pdfPreloadPromise = null;
-      console.error('[MedLex PDF]', 'contrat-page : échec préchargement', e);
+      console.error('[LibéLex PDF]', 'contrat-page : échec préchargement', e);
       throw e;
     });
   return pdfPreloadPromise;
@@ -137,7 +137,7 @@ function wirePdfDownload(pdfBtn, docEl, filename, pdfMeta) {
     var prev = pdfBtn.textContent;
     pdfBtn.disabled = true;
     pdfBtn.textContent = 'Téléchargement…';
-    console.log('[MedLex PDF]', 'contrat-page : clic bouton', {
+    console.log('[LibéLex PDF]', 'contrat-page : clic bouton', {
       filename: filename,
       moduleCharge: Boolean(pdfExportModule),
       pret: pdfExportModule ? pdfExportModule.isPdfEngineReady() : false,
@@ -162,7 +162,7 @@ function wirePdfDownload(pdfBtn, docEl, filename, pdfMeta) {
       try {
         runDownload();
       } catch (e) {
-        console.error('[MedLex PDF]', 'contrat-page : erreur au clic', e);
+        console.error('[LibéLex PDF]', 'contrat-page : erreur au clic', e);
         alert(
           e instanceof Error
             ? 'Impossible de générer le PDF : ' + e.message
@@ -182,7 +182,7 @@ function wirePdfDownload(pdfBtn, docEl, filename, pdfMeta) {
         runDownload();
       })
       .catch(function (e) {
-        console.error('[MedLex PDF]', 'contrat-page : erreur au clic', e);
+        console.error('[LibéLex PDF]', 'contrat-page : erreur au clic', e);
         alert(
           e instanceof Error
             ? 'Impossible de générer le PDF : ' + e.message

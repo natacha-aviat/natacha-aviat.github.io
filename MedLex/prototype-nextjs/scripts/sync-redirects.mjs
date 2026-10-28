@@ -2,10 +2,10 @@ import { mkdirSync, readdirSync, rmSync, statSync, writeFileSync } from "node:fs
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 
-const medlex = join(dirname(fileURLToPath(import.meta.url)), "..", "..");
-const tunnel = join(medlex, "tunnel");
+const libelex = join(dirname(fileURLToPath(import.meta.url)), "..", "..");
+const tunnel = join(libelex, "tunnel");
 
-/** Anciennes routes Next (/MedLex/tunnel/...) → pages statiques parcours/ */
+/** Anciennes routes Next (/LibéLex/tunnel/...) → pages statiques parcours/ */
 const redirects = [
   { from: "index.html", to: "../index.html" },
   { from: "parcours/index.html", to: "../../parcours/email.html" },
@@ -29,11 +29,11 @@ function html(target) {
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta http-equiv="refresh" content="0; url=${target}" />
   <link rel="canonical" href="${target}" />
-  <title>Redirection · MedLex</title>
+  <title>Redirection · LibéLex</title>
   <script>location.replace("${target}");</script>
 </head>
 <body>
-  <p>Redirection… <a href="${target}">Continuer vers MedLex</a></p>
+  <p>Redirection… <a href="${target}">Continuer vers LibéLex</a></p>
 </body>
 </html>
 `;

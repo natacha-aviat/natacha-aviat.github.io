@@ -45,7 +45,7 @@
   }
 
   function buildArticleSections(bodyText, parcours) {
-    var guide = window.MedLexArticleGuide;
+    var guide = window.LibéLexArticleGuide;
     return splitSections(bodyText).map(function (section, index) {
       var meta = guide ? guide.getArticleMeta(parcours, section) : {};
       return {
@@ -78,7 +78,7 @@
         return '<p>' + escapeHtml(line) + '</p>';
       });
 
-    var guide = window.MedLexArticleGuide;
+    var guide = window.LibéLexArticleGuide;
     var editBtn = '';
     if (guide && article.editSteps && article.editSteps.length) {
       editBtn =
@@ -100,11 +100,11 @@
     }
 
     var avocateHtml = '';
-    if (window.MedLexAvocateComments && window.MedLexAvocateComments.getCommentsForArticleSection) {
-      avocateHtml = window.MedLexAvocateComments
+    if (window.LibéLexAvocateComments && window.LibéLexAvocateComments.getCommentsForArticleSection) {
+      avocateHtml = window.LibéLexAvocateComments
         .getCommentsForArticleSection(sec)
         .map(function (note) {
-          return window.MedLexAvocateComments.renderCommentHtml(note.comment);
+          return window.LibéLexAvocateComments.renderCommentHtml(note.comment);
         })
         .join('');
     }
@@ -306,7 +306,7 @@
     });
   }
 
-  window.MedLexContractGuided = {
+  window.LibéLexContractGuided = {
     mount: mountGuidedView,
     initViewToggle: initViewToggle,
     buildArticleSections: buildArticleSections,

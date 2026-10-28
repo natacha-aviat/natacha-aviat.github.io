@@ -1,7 +1,7 @@
-@import url("medlex.css");
+@import url("libelex.css");
 @import url("modules.css");
 
-/* Landing. Couleurs et typo : medlex.css. Modules : modules.css. */
+/* Landing. Couleurs et typo : libelex.css. Modules : modules.css. */
 :root {
   --max: 1140px;
   --tabular: var(--font-sans);
@@ -977,4 +977,271 @@ footer {
 
 body {
   padding-bottom: 8rem;
+}
+
+/* Test SELARL et pages de contact associées */
+.lead-page {
+  background: var(--cream);
+}
+
+.lead-header .header-inner {
+  justify-content: space-between;
+}
+
+.lead-header__back {
+  color: rgba(255, 255, 255, 0.82);
+  font-size: 0.9rem;
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.lead-header__back:hover {
+  color: var(--white);
+}
+
+.lead-main {
+  width: min(42rem, 92%);
+  margin: 0 auto;
+  padding: 2.25rem 0 1rem;
+}
+
+.lead-kicker {
+  margin: 0 0 0.65rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--teal);
+}
+
+.lead-main h1 {
+  margin-bottom: 0.85rem;
+}
+
+.lead-intro {
+  color: var(--gray-text);
+  font-size: 1.02rem;
+}
+
+.lead-card {
+  margin-top: 1.5rem;
+  padding: 1.35rem 1.25rem 1.5rem;
+  background: var(--white);
+  border: 1px solid var(--gray);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow);
+}
+
+.lead-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.9rem;
+}
+
+.lead-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.lead-field input,
+.lead-field textarea {
+  width: 100%;
+  min-height: 2.75rem;
+  padding: 0.65rem 0.8rem;
+  border: 1px solid var(--gray-mid);
+  border-radius: 8px;
+  background: var(--white);
+  font-family: var(--font);
+  font-size: 1rem;
+  font-weight: 400;
+  color: var(--ink);
+}
+
+.lead-field textarea {
+  min-height: 7rem;
+  resize: vertical;
+}
+
+.lead-field input:focus,
+.lead-field textarea:focus {
+  outline: 2px solid var(--mustard);
+  border-color: var(--navy);
+}
+
+.lead-field input.is-invalid,
+.lead-field textarea.is-invalid {
+  border-color: var(--cherry);
+}
+
+.lead-error {
+  margin: 0.75rem 0 0;
+  color: var(--cherry);
+  font-size: 0.88rem;
+  font-weight: 600;
+}
+
+.lead-submit {
+  width: 100%;
+  margin-top: 1.1rem;
+}
+
+.lead-legal,
+.lead-links,
+.lead-offer {
+  margin: 1.15rem 0 0;
+  font-size: 0.84rem;
+  line-height: 1.55;
+  color: var(--gray-text);
+}
+
+.lead-offer {
+  font-size: 0.95rem;
+}
+
+.lead-progress {
+  margin-bottom: 1rem;
+}
+
+.lead-progress__meta {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.4rem;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--gray-text);
+}
+
+.lead-progress__track {
+  height: 6px;
+  border-radius: 999px;
+  background: var(--gray);
+  overflow: hidden;
+}
+
+.lead-progress__fill {
+  height: 100%;
+  width: 0;
+  background: var(--teal);
+  border-radius: inherit;
+  transition: width 0.2s ease;
+}
+
+.lead-question {
+  margin: 0 0 1rem;
+  font-size: clamp(1.35rem, 3vw, 1.75rem);
+  line-height: 1.25;
+}
+
+.lead-choices {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+
+.lead-choice {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  width: 100%;
+  padding: 0.95rem 1rem;
+  border: 1px solid var(--gray);
+  border-radius: 10px;
+  background: var(--white);
+  font-family: var(--font);
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--ink);
+  text-align: left;
+  cursor: pointer;
+}
+
+.lead-choice::before {
+  content: "";
+  flex: 0 0 auto;
+  width: 1.15rem;
+  height: 1.15rem;
+  border: 1.5px solid var(--navy);
+  border-radius: 50%;
+  background: var(--white);
+}
+
+.lead-choice:hover,
+.lead-choice:focus-visible {
+  border-color: var(--navy);
+  outline: none;
+}
+
+.lead-choice.is-selected {
+  border-color: var(--navy);
+  background: #f7f4ea;
+}
+
+.lead-choice.is-selected::before {
+  background: radial-gradient(circle, var(--navy) 0 0.28rem, var(--white) 0.32rem);
+}
+
+.lead-nav {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-top: 1.25rem;
+}
+
+.lead-nav .btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.lead-main h2 {
+  margin: 2rem 0 0.75rem;
+}
+
+.lead-stack {
+  margin-top: 0.9rem;
+}
+
+.lead-result {
+  padding: 0.25rem 0 0.5rem;
+}
+
+.lead-result h1 {
+  margin-bottom: 0.75rem;
+}
+
+.lead-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 1.25rem;
+}
+
+.lead-quiet {
+  margin-top: 1rem;
+  background: none;
+  border: none;
+  padding: 0;
+  color: var(--navy);
+  font-family: var(--font);
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+@media (min-width: 640px) {
+  .lead-grid--pair {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .lead-card {
+    padding: 1.75rem 1.75rem 1.85rem;
+  }
+
+  .lead-submit {
+    width: auto;
+  }
 }

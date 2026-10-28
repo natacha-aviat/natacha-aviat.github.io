@@ -169,13 +169,13 @@ export function stripRedevanceIfNone(text, a) {
 
 export async function loadTemplate() {
   const embedded =
-    typeof window.__MEDLEX_CONTRACT_TEMPLATE__ === 'string' ? window.__MEDLEX_CONTRACT_TEMPLATE__ : '';
+    typeof window.__LIBELEX_CONTRACT_TEMPLATE__ === 'string' ? window.__LIBELEX_CONTRACT_TEMPLATE__ : '';
   if (embedded.length > EMBEDDED_TEMPLATE_MIN_LENGTH) {
     return embedded;
   }
   if (isFileProtocol()) {
     throw new Error(
-      'Modèle embarqué manquant (fichier medlex-contract-template-embedded.js). Rechargez la page ou ouvrez le site via GitHub Pages.'
+      'Modèle embarqué manquant (fichier libelex-contract-template-embedded.js). Rechargez la page ou ouvrez le site via GitHub Pages.'
     );
   }
   const res = await fetch(TEMPLATE_URL, { cache: 'no-store' });

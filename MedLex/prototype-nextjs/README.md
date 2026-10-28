@@ -1,11 +1,11 @@
 # Prototype Next.js — tunnel contrat IDEL
 
-Version **React / Next.js** du parcours MedLex (optionnelle). La **maquette officielle** est le site statique à la racine de `MedLex/` (`index.html` + `parcours/*.html`). Voir `../README.md`.
+Version **React / Next.js** du parcours LibéLex (optionnelle). La **maquette officielle** est le site statique à la racine de `LibéLex/` (`index.html` + `parcours/*.html`). Voir `../README.md`.
 
 ## Site statique (référence)
 
 ```
-MedLex/
+LibéLex/
   index.html
   css/site.css, css/parcours.css
   js/nav.js, js/questionnaire.js
@@ -17,7 +17,7 @@ MedLex/
 État en mémoire (`useReducer`), pas d'auth ni paiement réels.
 
 ```bash
-cd MedLex/prototype-nextjs
+cd LibéLex/prototype-nextjs
 npm install
 npm run dev
 ```

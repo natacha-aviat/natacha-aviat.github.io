@@ -7,7 +7,7 @@
 
   var current = "";
   if (file === "profil.html") current = "profil";
-  else if (file === "tableau-de-bord.html") current = "medlex";
+  else if (file === "tableau-de-bord.html") current = "libelex";
   else if (!inParcours) current = "infos";
 
   function item(href, label, icon, key, extraClass) {
@@ -29,7 +29,7 @@
   nav.className = "ac-bottom-nav";
   nav.setAttribute("aria-label", "Navigation principale");
   nav.innerHTML =
-    item(prefix + "tableau-de-bord.html", "MedLex", house, "medlex") +
+    item(prefix + "tableau-de-bord.html", "LibéLex", house, "libelex") +
     item(prefix + "profil.html", "Profil", person, "profil") +
     item(infosHref, "Infos", info, "infos") +
     item(prefix + "tableau-de-bord.html#news", "News", news, "news") +

@@ -1,6 +1,6 @@
 /**
- * Point d’entrée : expose `window.MedLexContract` après chargement de
- * `medlex-contract-template-embedded.js` (variable globale du template).
+ * Point d’entrée : expose `window.LibéLexContract` après chargement de
+ * `libelex-contract-template-embedded.js` (variable globale du template).
  */
 
 import { $ } from './utils.js';
@@ -79,7 +79,7 @@ async function openHtmlPreview(previewWindow) {
   if (!win) {
     throw new Error("Impossible d'ouvrir l'aperçu (fenêtre bloquée par le navigateur).");
   }
-  window.medlexLastPreviewWindow = win;
+  window.libelexLastPreviewWindow = win;
   try {
     const templateRaw = await loadTemplate();
     const answers = collectAnswers();
@@ -98,7 +98,7 @@ async function openHtmlPreview(previewWindow) {
   }
 }
 
-window.MedLexContract = {
+window.LibéLexContract = {
   openHtmlPreview,
   downloadPdf,
   loadTemplate,

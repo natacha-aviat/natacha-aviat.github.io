@@ -2,8 +2,8 @@
  * Capture / restauration des réponses du questionnaire bail professionnel.
  */
 (function () {
-  var STORAGE_KEY = 'medlex-parcours-bail-professionnel-snapshot';
-  var PENDING_KEY = 'medlex-pending-restore-bail-professionnel-json';
+  var STORAGE_KEY = 'libelex-parcours-bail-professionnel-snapshot';
+  var PENDING_KEY = 'libelex-pending-restore-bail-professionnel-json';
 
   var RADIO_GROUPS = [
     'nature-immeuble',

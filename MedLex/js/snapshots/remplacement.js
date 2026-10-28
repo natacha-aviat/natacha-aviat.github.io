@@ -3,7 +3,7 @@
  * Stockage sessionStorage pour alimenter la génération du contrat sur contrat.html.
  */
 (function () {
-  var STORAGE_KEY = 'medlex-parcours-questionnaire-snapshot';
+  var STORAGE_KEY = 'libelex-parcours-questionnaire-snapshot';
 
   function selectedValue(group) {
     var btn = document.querySelector('[data-select="' + group + '"].ac-choice--selected');
@@ -285,7 +285,7 @@
   }
 
   function restorePending() {
-    var pendingKey = 'medlex-pending-restore-json';
+    var pendingKey = 'libelex-pending-restore-json';
     var raw = null;
     try {
       raw = sessionStorage.getItem(pendingKey) || localStorage.getItem(pendingKey);

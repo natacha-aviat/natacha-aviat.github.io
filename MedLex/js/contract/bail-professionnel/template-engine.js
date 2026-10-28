@@ -74,14 +74,14 @@ export function applyConditionals(raw, a) {
 export async function loadTemplate() {
   const embedded =
     typeof window !== 'undefined'
-      ? String(window.__MEDLEX_BAIL_PROFESSIONNEL_TEMPLATE__ || '')
+      ? String(window.__LIBELEX_BAIL_PROFESSIONNEL_TEMPLATE__ || '')
       : '';
   if (embedded.length >= EMBEDDED_TEMPLATE_MIN_LENGTH) {
     return embedded;
   }
   if (isFileProtocol()) {
     throw new Error(
-      'Modèle embarqué manquant (medlex-bail-professionnel-template-embedded.js). Rechargez la page ou ouvrez le site via GitHub Pages.'
+      'Modèle embarqué manquant (libelex-bail-professionnel-template-embedded.js). Rechargez la page ou ouvrez le site via GitHub Pages.'
     );
   }
   const res = await fetch(TEMPLATE_URL);

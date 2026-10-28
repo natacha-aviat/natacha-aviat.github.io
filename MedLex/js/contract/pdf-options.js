@@ -9,7 +9,7 @@
 export function html2PdfOptions(html2canvasExtra, filename) {
   return {
     margin: [12, 12, 12, 12],
-    filename: filename || 'contrat-medlex.pdf',
+    filename: filename || 'contrat-libelex.pdf',
     image: { type: 'jpeg', quality: 0.95 },
     html2canvas: Object.assign(
       {
@@ -24,7 +24,7 @@ export function html2PdfOptions(html2canvasExtra, filename) {
     jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' },
     pagebreak: {
       mode: ['avoid-all', 'css', 'legacy'],
-      avoid: '.medlex-pdf-visual-line',
+      avoid: '.libelex-pdf-visual-line',
     },
   };
 }

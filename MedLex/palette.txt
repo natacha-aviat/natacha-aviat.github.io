@@ -1,5 +1,5 @@
-Palette MedLex
-Source : images/2026-10-05_MedLex_Palette.png
+Palette LibéLex
+Source : images/2026-10-05_LibéLex_Palette.png
 Date de la planche : 5 octobre 2026
 
 Neuf couleurs nommées. Le rôle indiqué est celui de la planche.

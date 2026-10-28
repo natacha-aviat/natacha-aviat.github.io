@@ -113,15 +113,15 @@ export function applyReplacements(text, a) {
 
 export async function loadTemplate() {
   const embedded =
-    typeof window.__MEDLEX_COLLABORATION_TEMPLATE__ === 'string'
-      ? window.__MEDLEX_COLLABORATION_TEMPLATE__
+    typeof window.__LIBELEX_COLLABORATION_TEMPLATE__ === 'string'
+      ? window.__LIBELEX_COLLABORATION_TEMPLATE__
       : '';
   if (embedded.length > EMBEDDED_TEMPLATE_MIN_LENGTH) {
     return embedded;
   }
   if (isFileProtocol()) {
     throw new Error(
-      'Modèle embarqué manquant (medlex-collaboration-template-embedded.js). Rechargez la page ou ouvrez le site via GitHub Pages.'
+      'Modèle embarqué manquant (libelex-collaboration-template-embedded.js). Rechargez la page ou ouvrez le site via GitHub Pages.'
     );
   }
   const res = await fetch(TEMPLATE_URL, { cache: 'no-store' });

@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Rappel gratuit · LibéLex</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./css/site.css" />
+  </head>
+  <body class="lead-page">
+    <header class="site-header lead-header">
+      <div class="container header-inner">
+        <a class="logo" href="./index.html"><span class="logo-dot" aria-hidden="true"></span>LibéLex</a>
+        <a class="lead-header__back" href="./test-selarl.html">Retour au test</a>
+      </div>
+    </header>
+
+    <main class="lead-main">
+      <section id="demande-form-panel">
+        <p class="lead-kicker">Sans engagement</p>
+        <h1>Nous vous rappelons gratuitement</h1>
+        <p class="lead-intro">
+          Une question sur nos prestations ? Laissez vos coordonnées, le cabinet vous rappelle.
+        </p>
+        <form id="demande-form" class="lead-card" novalidate>
+          <div class="lead-grid lead-grid--pair">
+            <label class="lead-field" for="demande-prenom">
+              Prénom
+              <input id="demande-prenom" name="prenom" type="text" autocomplete="given-name" />
+            </label>
+            <label class="lead-field" for="demande-nom">
+              Nom
+              <input id="demande-nom" name="nom" type="text" autocomplete="family-name" />
+            </label>
+          </div>
+          <div class="lead-grid lead-stack">
+            <label class="lead-field" for="demande-telephone">
+              Téléphone *
+              <input id="demande-telephone" name="telephone" type="tel" autocomplete="tel" required />
+            </label>
+            <label class="lead-field" for="demande-email">
+              E-mail
+              <input id="demande-email" name="email" type="email" autocomplete="email" />
+            </label>
+            <label class="lead-field" for="demande-message">
+              Votre question
+              <textarea id="demande-message" name="message" rows="4"></textarea>
+            </label>
+          </div>
+          <p id="demande-error" class="lead-error" hidden></p>
+          <button class="btn btn-primary lead-submit" type="submit">Demander un rappel</button>
+        </form>
+      </section>
+      <section id="demande-done" hidden>
+        <p class="lead-kicker">Demande envoyée</p>
+        <h1>Le cabinet vous rappelle.</h1>
+        <p class="lead-intro">Votre demande de rappel gratuit est enregistrée. À très vite.</p>
+        <p style="margin-top: 1.25rem">
+          <a class="btn btn-secondary" href="./index.html">Retour à l’accueil</a>
+        </p>
+      </section>
+    </main>
+
+    <footer id="footer">
+      <div class="container footer-inner">
+        <span>© LibéLex 2026</span>
+        <div class="footer-links">
+          <a href="./mentions-legales.html">Mentions légales</a>
+          <a href="mailto:contact@libelex.fr">contact@libelex.fr</a>
+        </div>
+      </div>
+    </footer>
+    <script src="./js/selarl-lead.js"></script>
+    <script src="./js/demande-contact.js"></script>
+    <script src="./js/shell.js"></script>
+  </body>
+</html>

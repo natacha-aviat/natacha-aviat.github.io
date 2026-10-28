@@ -44,7 +44,7 @@
     if (window.ParcoursMiseEnDemeureSnapshot) window.ParcoursMiseEnDemeureSnapshot.save();
   }
 
-  window.MedLexQuestionnaire({
+  window.LibéLexQuestionnaire({
     steps: 10,
     type: "mise-en-demeure",
     saveLabel: saveLabel,

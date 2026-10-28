@@ -1,7 +1,7 @@
-@import url("medlex.css");
+@import url("libelex.css");
 @import url("modules.css");
 
-/* Mise en page du parcours. Couleurs, typo : medlex.css. Modules : modules.css. */
+/* Mise en page du parcours. Couleurs, typo : libelex.css. Modules : modules.css. */
 .ac-page {
   min-height: 100dvh;
   background: var(--ac-bg);

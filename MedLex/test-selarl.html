@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Devriez-vous passer en SELARL ? · LibéLex</title>
+    <meta
+      name="description"
+      content="Test gratuit LibéLex : obtenez une première réponse sur votre passage en SELARL. Sans engagement et sans pièces à fournir."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./css/site.css" />
+  </head>
+  <body class="lead-page">
+    <header class="site-header lead-header">
+      <div class="container header-inner">
+        <a class="logo" href="./index.html"><span class="logo-dot" aria-hidden="true"></span>LibéLex</a>
+        <a class="lead-header__back" href="./index.html">Retour à l’accueil</a>
+      </div>
+    </header>
+
+    <main class="lead-main">
+      <section id="lead-form-panel">
+        <p class="lead-kicker">Test gratuit</p>
+        <h1>Devriez-vous passer en SELARL ?</h1>
+        <p class="lead-intro">
+          Obtenez une première réponse immédiatement grâce à ce test en ligne.
+        </p>
+        <p class="lead-intro">
+          Remplissez simplement ce formulaire pour accéder au test. C’est gratuit, sans engagement
+          et sans pièces à fournir.
+        </p>
+
+        <form id="lead-form" class="lead-card" novalidate>
+          <div class="lead-grid lead-grid--pair">
+            <label class="lead-field" for="lead-prenom">
+              Prénom
+              <input id="lead-prenom" name="prenom" type="text" autocomplete="given-name" />
+            </label>
+            <label class="lead-field" for="lead-nom">
+              Nom
+              <input id="lead-nom" name="nom" type="text" autocomplete="family-name" />
+            </label>
+          </div>
+          <div class="lead-grid lead-stack">
+            <label class="lead-field" for="lead-email">
+              E-mail *
+              <input id="lead-email" name="email" type="email" autocomplete="email" required />
+            </label>
+            <label class="lead-field" for="lead-telephone">
+              Téléphone *
+              <input id="lead-telephone" name="telephone" type="tel" autocomplete="tel" required />
+            </label>
+            <label class="lead-field" for="lead-profession">
+              Profession *
+              <input
+                id="lead-profession"
+                name="profession"
+                type="text"
+                autocomplete="organization-title"
+                placeholder="Ex. infirmier·ère, médecin, kinésithérapeute"
+                required
+              />
+            </label>
+          </div>
+          <p id="lead-form-error" class="lead-error" hidden></p>
+          <button class="btn btn-primary lead-submit" type="submit">Accéder au test</button>
+        </form>
+
+        <p class="lead-legal">
+          Conformément à la réglementation en vigueur, et en application de l’article 13 de la loi
+          n° 2014-344 du 17 mars 2014 et l’article 3 bis de la loi n° 71-1130 du 31 décembre 1971,
+          les cabinets d’avocats sont autorisés à recourir à la publicité ainsi qu’à la
+          sollicitation personnalisée. En accédant au test vous acceptez que vos données soient
+          utilisées aux fins de vous recontacter. Pour consulter les mentions légales complètes
+          <a href="./mentions-legales.html">cliquez ici</a>.
+        </p>
+        <p class="lead-links">
+          Si vous avez d’autres questions sur nos prestations,
+          <a href="./rappel.html">cliquez ici</a> pour que nous vous rappelions gratuitement. Si
+          vous souhaitez prendre un rendez-vous de consultation avec le cabinet,
+          <a href="./rendez-vous.html">cliquez ici</a>.
+        </p>
+        <p class="lead-offer">
+          Vous vous demandez comment créer votre structure d’exercice ou passer en SELARL ? Notre
+          cabinet propose notamment la prise en charge de votre transition en SELARL, avec des
+          forfaits clé en main. Nous nous occupons de tout, vous n’avez qu’à vous consacrer à vos
+          patients, permettant ainsi une transition fluide et sans stress, jusqu’à la commande et
+          la vérification de l’activation de votre CPS. En outre, nous offrons une gamme de
+          services adaptés aux besoins spécifiques des professionnels de santé (contrats, baux,
+          etc.). Nos experts sont là pour vous guider à chaque étape, vous permettant de vous
+          concentrer sur ce qui compte vraiment : le bien-être de vos patients et la qualité de
+          vos soins.
+        </p>
+      </section>
+
+      <section id="lead-quiz-panel" hidden>
+        <p class="lead-kicker">Test gratuit</p>
+        <div class="lead-progress" aria-hidden="true">
+          <div class="lead-progress__meta">
+            <span id="lead-progress-label">Question 1 sur 6</span>
+          </div>
+          <div class="lead-progress__track">
+            <div class="lead-progress__fill" id="lead-progress-fill"></div>
+          </div>
+        </div>
+        <div class="lead-card">
+          <h1 class="lead-question" id="lead-question"></h1>
+          <div class="lead-choices" id="lead-choices" role="group" aria-labelledby="lead-question"></div>
+          <div class="lead-nav">
+            <button class="btn btn-secondary" type="button" id="lead-prev">Précédent</button>
+            <button class="btn btn-primary" type="button" id="lead-next" disabled>Suivant</button>
+          </div>
+        </div>
+      </section>
+
+      <section id="lead-result-panel" class="lead-result" hidden>
+        <p class="lead-kicker">Première réponse</p>
+        <h1 id="lead-result-title"></h1>
+        <p class="lead-intro" id="lead-result-body"></p>
+        <p class="lead-intro" id="lead-result-extra" hidden></p>
+        <p class="lead-offer">
+          Notre cabinet propose la prise en charge de votre transition en SELARL, avec des forfaits
+          clé en main. Nous nous occupons de tout, jusqu’à la commande et la vérification de
+          l’activation de votre CPS.
+        </p>
+        <div class="lead-actions">
+          <a class="btn btn-primary" href="./rappel.html">Être rappelé gratuitement</a>
+          <a class="btn btn-secondary" href="./rendez-vous.html">Prendre rendez-vous</a>
+        </div>
+        <button class="lead-quiet" type="button" id="lead-edit">Modifier mes réponses</button>
+      </section>
+    </main>
+
+    <footer id="footer">
+      <div class="container footer-inner">
+        <span>© LibéLex 2026</span>
+        <div class="footer-links">
+          <a href="./mentions-legales.html">Mentions légales</a>
+          <a href="mailto:contact@libelex.fr">contact@libelex.fr</a>
+        </div>
+      </div>
+    </footer>
+
+    <script src="./js/selarl-lead.js"></script>
+    <script src="./js/test-selarl.js"></script>
+    <script src="./js/shell.js"></script>
+  </body>
+</html>

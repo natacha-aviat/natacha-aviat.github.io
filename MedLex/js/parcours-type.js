@@ -1,5 +1,5 @@
 /**
- * Catalogue des parcours MedLex.
+ * Catalogue des parcours LibéLex.
  *
  * Pour en ajouter un : une entrée ici, une page parcours/questionnaire-….html,
  * un fichier js/questionnaires/, un snapshot js/snapshots/,
@@ -24,14 +24,14 @@
       documentTitle: "Contrat de remplacement infirmier libéral",
       noun: "contrat",
       apercuHeading: "Ce qui sera dans ton contrat",
-      apercuTitle: "Aperçu du contrat · MedLex",
+      apercuTitle: "Aperçu du contrat · LibéLex",
       ariaPreview: "Aperçu du contrat de remplacement",
       snapshot: "ParcoursSnapshot",
-      embedded: "../js/contract/embedded/medlex-contract-template-embedded.js",
-      module: "./contract/medlex-contract.js",
-      contractGlobal: "MedLexContract",
+      embedded: "../js/contract/embedded/libelex-contract-template-embedded.js",
+      module: "./contract/libelex-contract.js",
+      contractGlobal: "LibéLexContract",
       defaultExport: true,
-      pdf: "contrat-de-remplacement-medlex.pdf",
+      pdf: "contrat-de-remplacement-libelex.pdf",
       subtitle: function (answers) {
         return (
           (answers.rpNom || "") +
@@ -50,13 +50,13 @@
       documentTitle: "Contrat de collaboration infirmier libéral",
       noun: "contrat",
       apercuHeading: "Ce qui sera dans ton contrat de collaboration",
-      apercuTitle: "Aperçu du contrat de collaboration · MedLex",
+      apercuTitle: "Aperçu du contrat de collaboration · LibéLex",
       ariaPreview: "Aperçu du contrat de collaboration",
       snapshot: "ParcoursCollaborationSnapshot",
-      embedded: "../js/contract/embedded/medlex-collaboration-template-embedded.js",
-      module: "./contract/collaboration/medlex-collaboration-contract.js",
-      contractGlobal: "MedLexCollaborationContract",
-      pdf: "contrat-de-collaboration-medlex.pdf",
+      embedded: "../js/contract/embedded/libelex-collaboration-template-embedded.js",
+      module: "./contract/collaboration/libelex-collaboration-contract.js",
+      contractGlobal: "LibéLexCollaborationContract",
+      pdf: "contrat-de-collaboration-libelex.pdf",
       subtitle: function (answers) {
         return (answers.tNom || "") + " et " + (answers.cNom || "");
       },
@@ -72,13 +72,13 @@
       pageLead:
         "Paiement confirmé — parcours le courrier, ou consulte le texte intégral avant la signature.",
       apercuHeading: "Ce qui sera dans ton courrier de fin de bail",
-      apercuTitle: "Aperçu fin de bail · MedLex",
+      apercuTitle: "Aperçu fin de bail · LibéLex",
       ariaPreview: "Aperçu du courrier de fin de bail",
       snapshot: "ParcoursFinDeBailSnapshot",
-      embedded: "../js/contract/embedded/medlex-fin-de-bail-templates-embedded.js",
-      module: "./contract/fin-de-bail/medlex-fin-de-bail-contract.js",
-      contractGlobal: "MedLexFinDeBailContract",
-      pdf: "conge-bail-professionnel-medlex.pdf",
+      embedded: "../js/contract/embedded/libelex-fin-de-bail-templates-embedded.js",
+      module: "./contract/fin-de-bail/libelex-fin-de-bail-contract.js",
+      contractGlobal: "LibéLexFinDeBailContract",
+      pdf: "conge-bail-professionnel-libelex.pdf",
       answersFirst: true,
       templateUsesAnswers: true,
       subtitle: function (answers) {
@@ -99,13 +99,13 @@
       pageLead:
         "Paiement confirmé — parcours le courrier, ou consulte le texte intégral avant la signature.",
       apercuHeading: "Ce qui sera dans ta mise en demeure",
-      apercuTitle: "Aperçu mise en demeure · MedLex",
+      apercuTitle: "Aperçu mise en demeure · LibéLex",
       ariaPreview: "Aperçu de la mise en demeure",
       snapshot: "ParcoursMiseEnDemeureSnapshot",
-      embedded: "../js/contract/embedded/medlex-mise-en-demeure-template-embedded.js",
-      module: "./contract/mise-en-demeure/medlex-mise-en-demeure-contract.js",
-      contractGlobal: "MedLexMiseEnDemeureContract",
-      pdf: "mise-en-demeure-bailleur-medlex.pdf",
+      embedded: "../js/contract/embedded/libelex-mise-en-demeure-template-embedded.js",
+      module: "./contract/mise-en-demeure/libelex-mise-en-demeure-contract.js",
+      contractGlobal: "LibéLexMiseEnDemeureContract",
+      pdf: "mise-en-demeure-bailleur-libelex.pdf",
       answersFirst: true,
       subtitle: function (answers) {
         return (answers.identitePreneur || "") + " → " + (answers.identiteBailleur || "");
@@ -122,13 +122,13 @@
       pageLead:
         "Paiement confirmé — parcours le bail section par section, ou consulte le texte intégral avant la signature.",
       apercuHeading: "Ce qui sera dans ton bail professionnel",
-      apercuTitle: "Aperçu bail professionnel · MedLex",
+      apercuTitle: "Aperçu bail professionnel · LibéLex",
       ariaPreview: "Aperçu du bail professionnel",
       snapshot: "ParcoursBailProfessionnelSnapshot",
-      embedded: "../js/contract/embedded/medlex-bail-professionnel-template-embedded.js",
-      module: "./contract/bail-professionnel/medlex-bail-professionnel-contract.js",
-      contractGlobal: "MedLexBailProfessionnelContract",
-      pdf: "bail-professionnel-medlex.pdf",
+      embedded: "../js/contract/embedded/libelex-bail-professionnel-template-embedded.js",
+      module: "./contract/bail-professionnel/libelex-bail-professionnel-contract.js",
+      contractGlobal: "LibéLexBailProfessionnelContract",
+      pdf: "bail-professionnel-libelex.pdf",
       answersFirst: true,
       subtitle: function (answers) {
         return (answers.identitePreneur || "") + " · " + (answers.identiteBailleur || "");

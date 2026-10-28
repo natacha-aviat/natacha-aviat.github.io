@@ -1,5 +1,5 @@
 /**
- * Export PDF direct — texte vectoriel jsPDF, charte MedLex.
+ * Export PDF direct — texte vectoriel jsPDF, charte LibéLex.
  */
 
 import { html2PdfOptions } from './pdf-options.js';
@@ -17,12 +17,12 @@ import {
   interFontsReady,
 } from './pdf-theme.js';
 import { pdfLog, pdfWarn, pdfError } from './pdf-debug.js';
-import { medlexAssetUrl } from './assets.js';
+import { libelexAssetUrl } from './assets.js';
 
 let engineReady = false;
 
 function getJsPdfScriptUrl() {
-  return medlexAssetUrl('vendor/jspdf.umd.min.js');
+  return libelexAssetUrl('vendor/jspdf.umd.min.js');
 }
 
 function waitForJsPdf(maxMs) {
@@ -64,8 +64,8 @@ function loadJsPdf() {
   pdfLog('Chargement jsPDF…', scriptUrl);
 
   const existing =
-    document.querySelector('script[data-medlex-jspdf="1"]') ||
-    document.querySelector('script[data-medlex-html2pdf="1"]');
+    document.querySelector('script[data-libelex-jspdf="1"]') ||
+    document.querySelector('script[data-libelex-html2pdf="1"]');
 
   if (existing) {
     pdfLog('Balise script jsPDF déjà présente', { src: existing.src });
@@ -76,7 +76,7 @@ function loadJsPdf() {
     const s = document.createElement('script');
     s.src = scriptUrl;
     s.async = false;
-    s.setAttribute('data-medlex-jspdf', '1');
+    s.setAttribute('data-libelex-jspdf', '1');
     s.onload = function () {
       waitForJsPdf(3000).then(resolve).catch(reject);
     };
@@ -162,17 +162,17 @@ function buildRootFromHtml(title, subtitle, bodyHtml) {
 function collectPdfBlocks(root) {
   const blocks = [];
 
-  const titleEl = root.querySelector('.ac-contract-doc__title, .medlex-pdf-root__title');
+  const titleEl = root.querySelector('.ac-contract-doc__title, .libelex-pdf-root__title');
   if (titleEl && titleEl.innerText.trim()) {
     blocks.push({ type: 'title', text: titleEl.innerText.trim() });
   }
 
-  const subEl = root.querySelector('.ac-contract-doc__subtitle, .medlex-pdf-root__subtitle');
+  const subEl = root.querySelector('.ac-contract-doc__subtitle, .libelex-pdf-root__subtitle');
   if (subEl && subEl.innerText.trim()) {
     blocks.push({ type: 'subtitle', text: subEl.innerText.trim() });
   }
 
-  const body = root.querySelector('.ac-contract-doc__body, .medlex-pdf-root__body');
+  const body = root.querySelector('.ac-contract-doc__body, .libelex-pdf-root__body');
   if (body) {
     body.childNodes.forEach(function (node) {
       if (node.nodeType !== Node.ELEMENT_NODE) return;
@@ -282,7 +282,7 @@ function buildPdfBlob(root, filename, pdfMeta) {
     pdf.circle(marginLeft + 1.4, headerY, 1.1, 'F');
     setFont('bold', PDF_TYPO.brand);
     pdf.setTextColor(PDF_THEME.ink[0], PDF_THEME.ink[1], PDF_THEME.ink[2]);
-    pdf.text('MedLex', marginLeft + 4.5, headerY + 1.1);
+    pdf.text('LibéLex', marginLeft + 4.5, headerY + 1.1);
     pdf.setDrawColor(PDF_THEME.gray[0], PDF_THEME.gray[1], PDF_THEME.gray[2]);
     pdf.setLineWidth(0.35);
     pdf.line(marginLeft, headerY + 5, pageWidth - marginRight, headerY + 5);
@@ -738,7 +738,7 @@ export function downloadContractPdfNow(opts) {
     throw new Error('Le moteur PDF n’est pas prêt. Réessayez dans quelques secondes.');
   }
 
-  const filename = opts.filename || 'contrat-medlex.pdf';
+  const filename = opts.filename || 'contrat-libelex.pdf';
   const resolved = resolveRoot(opts);
   pdfLog('Source contrat', {
     filename: filename,

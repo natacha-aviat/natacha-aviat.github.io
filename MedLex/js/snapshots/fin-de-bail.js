@@ -2,8 +2,8 @@
  * Capture / restauration des réponses du questionnaire fin de bail.
  */
 (function () {
-  var STORAGE_KEY = 'medlex-parcours-fin-de-bail-snapshot';
-  var PENDING_KEY = 'medlex-pending-restore-fin-de-bail-json';
+  var STORAGE_KEY = 'libelex-parcours-fin-de-bail-snapshot';
+  var PENDING_KEY = 'libelex-pending-restore-fin-de-bail-json';
 
   var RADIO_GROUPS = [
     'usage-pro',

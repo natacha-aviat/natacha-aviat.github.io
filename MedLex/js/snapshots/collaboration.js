@@ -2,7 +2,7 @@
  * Capture / restauration des réponses du questionnaire collaboration.
  */
 (function () {
-  var STORAGE_KEY = 'medlex-parcours-collaboration-snapshot';
+  var STORAGE_KEY = 'libelex-parcours-collaboration-snapshot';
 
   var MOYENS_VALUES = [
     'salle-attente',
@@ -185,7 +185,7 @@
   }
 
   function restorePending() {
-    var pendingKey = 'medlex-pending-restore-collaboration-json';
+    var pendingKey = 'libelex-pending-restore-collaboration-json';
     var raw = null;
     try {
       raw = sessionStorage.getItem(pendingKey) || localStorage.getItem(pendingKey);

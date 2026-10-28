@@ -2,8 +2,8 @@
  * Capture / restauration des réponses du questionnaire mise en demeure.
  */
 (function () {
-  var STORAGE_KEY = 'medlex-parcours-mise-en-demeure-snapshot';
-  var PENDING_KEY = 'medlex-pending-restore-mise-en-demeure-json';
+  var STORAGE_KEY = 'libelex-parcours-mise-en-demeure-snapshot';
+  var PENDING_KEY = 'libelex-pending-restore-mise-en-demeure-json';
 
   var RADIO_GROUPS = [
     'usage-pro',

@@ -56,7 +56,7 @@
     if (window.ParcoursSnapshot) window.ParcoursSnapshot.save();
   }
 
-  var q = window.MedLexQuestionnaire({
+  var q = window.LibéLexQuestionnaire({
     steps: 13,
     type: "remplacement",
     onSelect: function (btn) {

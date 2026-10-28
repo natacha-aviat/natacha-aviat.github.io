@@ -21,15 +21,15 @@
   function renderAvocateNotes(q) {
     var host = document.getElementById("q-avocate-notes");
     if (!host) return;
-    if (!window.MedLexAvocateComments) {
+    if (!window.LibéLexAvocateComments) {
       host.innerHTML = "";
       return;
     }
     var ctx = { dureeType: q.selectedValue("duree-type") || "indeterminee" };
-    var notes = window.MedLexAvocateComments.getCommentsForQuestionnaireStep(q.step, ctx);
+    var notes = window.LibéLexAvocateComments.getCommentsForQuestionnaireStep(q.step, ctx);
     host.innerHTML = notes
       .map(function (note) {
-        return window.MedLexAvocateComments.renderCommentHtml(note.comment);
+        return window.LibéLexAvocateComments.renderCommentHtml(note.comment);
       })
       .join("");
   }
@@ -38,7 +38,7 @@
     if (window.ParcoursCollaborationSnapshot) window.ParcoursCollaborationSnapshot.save();
   }
 
-  var q = window.MedLexQuestionnaire({
+  var q = window.LibéLexQuestionnaire({
     steps: 10,
     type: "collaboration",
     onStep: function (api) {

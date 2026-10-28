@@ -16,7 +16,7 @@
     '</div>';
 
   function renderClauses(clauses) {
-    var avocate = window.MedLexAvocateComments;
+    var avocate = window.LibéLexAvocateComments;
     return clauses
       .map(function (c) {
         var notesHtml = '';
@@ -52,8 +52,8 @@
     var parcours = window.ParcoursType.get();
     var item = window.ParcoursType.entry(parcours);
     var clauses =
-      window.MedLexClauseThemes && window.MedLexClauseThemes.forApercu
-        ? window.MedLexClauseThemes.forApercu(parcours)
+      window.LibéLexClauseThemes && window.LibéLexClauseThemes.forApercu
+        ? window.LibéLexClauseThemes.forApercu(parcours)
         : [];
 
     var list = document.getElementById('apercu-clauses');

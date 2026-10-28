@@ -1,5 +1,5 @@
 /**
- * Questionnaire MedLex — formulaire, préremplissage Supabase, chargement paresseux du générateur de contrat.
+ * Questionnaire LibéLex — formulaire, préremplissage Supabase, chargement paresseux du générateur de contrat.
  * Charger après le DOM (`type="module"` en fin de document).
  */
 import { STORAGE_KEY_PENDING_RESTORE } from './contract/constants.js';
@@ -46,11 +46,11 @@ import { STORAGE_KEY_PENDING_RESTORE } from './contract/constants.js';
   const form = document.getElementById('questionnaire-form');
 
   window.addEventListener('message', function (ev) {
-    if (ev.source === window || !ev.data || ev.data.type !== 'medlex-restore-form') return;
+    if (ev.source === window || !ev.data || ev.data.type !== 'libelex-restore-form') return;
     var payload = ev.data.payload;
     if (!payload) return;
     /** Fenêtre ouverte pour l’aperçu / PDF (évite de rejeter ev.origin === "null" avec parent https). */
-    var previewRef = window.medlexLastPreviewWindow;
+    var previewRef = window.libelexLastPreviewWindow;
     var fromOurPreview = previewRef && ev.source === previewRef;
     var originMatches =
       !window.location.origin ||
@@ -58,8 +58,8 @@ import { STORAGE_KEY_PENDING_RESTORE } from './contract/constants.js';
       ev.origin === window.location.origin ||
       (ev.origin === 'null' && window.location.origin === 'null');
     if (!fromOurPreview && !originMatches) return;
-    if (window.MedLexContract && typeof window.MedLexContract.applyQuestionnaireSnapshot === 'function') {
-      window.MedLexContract.applyQuestionnaireSnapshot(payload);
+    if (window.LibéLexContract && typeof window.LibéLexContract.applyQuestionnaireSnapshot === 'function') {
+      window.LibéLexContract.applyQuestionnaireSnapshot(payload);
       window.scrollTo({ top: 0, behavior: 'smooth' });
       return;
     }
@@ -401,7 +401,7 @@ import { STORAGE_KEY_PENDING_RESTORE } from './contract/constants.js';
       blocDiscontinu.classList.toggle('hidden', v === 'continue' || v === '');
     });
   } else {
-    console.error('MedLex questionnaire: élément du formulaire introuvable.');
+    console.error('LibéLex questionnaire: élément du formulaire introuvable.');
   }
 
   if (modeExercice && blocAssocies) {
@@ -667,13 +667,13 @@ import { STORAGE_KEY_PENDING_RESTORE } from './contract/constants.js';
   var btnPdf = document.getElementById('download-pdf');
   var btnPreviewHtml = document.getElementById('preview-html');
   async function ensureContractScripts(buttonToUpdate) {
-    if (!window.MedLexContract) {
+    if (!window.LibéLexContract) {
       if (buttonToUpdate) buttonToUpdate.disabled = true;
       var label = buttonToUpdate ? buttonToUpdate.textContent : '';
       if (buttonToUpdate) buttonToUpdate.textContent = 'Chargement…';
       try {
-        await loadScript('./medlex-contract-template-embedded.js');
-        await import('./contract/medlex-contract.js');
+        await loadScript('./libelex-contract-template-embedded.js');
+        await import('./contract/libelex-contract.js');
       } finally {
         if (buttonToUpdate) {
           buttonToUpdate.disabled = false;
@@ -690,11 +690,11 @@ import { STORAGE_KEY_PENDING_RESTORE } from './contract/constants.js';
         alert('Impossible d’ouvrir la fenêtre d’aperçu. Autorisez les popups puis réessayez.');
         return;
       }
-      window.medlexLastPreviewWindow = previewWin;
+      window.libelexLastPreviewWindow = previewWin;
       try {
         await ensureContractScripts(btnPreviewHtml);
-        if (window.MedLexContract) {
-          await window.MedLexContract.openHtmlPreview(previewWin);
+        if (window.LibéLexContract) {
+          await window.LibéLexContract.openHtmlPreview(previewWin);
         }
       } catch (e) {
         console.error(e);
@@ -708,8 +708,8 @@ import { STORAGE_KEY_PENDING_RESTORE } from './contract/constants.js';
     btnPdf.addEventListener('click', async function () {
       try {
         await ensureContractScripts(btnPdf);
-        if (window.MedLexContract) {
-          await window.MedLexContract.downloadPdf();
+        if (window.LibéLexContract) {
+          await window.LibéLexContract.downloadPdf();
         }
       } catch (e) {
         console.error(e);
@@ -719,20 +719,20 @@ import { STORAGE_KEY_PENDING_RESTORE } from './contract/constants.js';
   }
 
   /** Reprise du formulaire après « Modifier » depuis l’aperçu du contrat. */
-  async function medlexRestoreFromPendingStorage() {
+  async function libelexRestoreFromPendingStorage() {
     try {
       var raw =
         sessionStorage.getItem(STORAGE_KEY_PENDING_RESTORE) ||
         localStorage.getItem(STORAGE_KEY_PENDING_RESTORE);
       if (!raw) return;
-      if (!window.MedLexContract) {
-        await loadScript('./medlex-contract-template-embedded.js');
-        await import('./contract/medlex-contract.js');
+      if (!window.LibéLexContract) {
+        await loadScript('./libelex-contract-template-embedded.js');
+        await import('./contract/libelex-contract.js');
       }
-      if (!window.MedLexContract || typeof window.MedLexContract.applyQuestionnaireSnapshot !== 'function') {
+      if (!window.LibéLexContract || typeof window.LibéLexContract.applyQuestionnaireSnapshot !== 'function') {
         return;
       }
-      window.MedLexContract.applyQuestionnaireSnapshot(JSON.parse(raw));
+      window.LibéLexContract.applyQuestionnaireSnapshot(JSON.parse(raw));
       try {
         sessionStorage.removeItem(STORAGE_KEY_PENDING_RESTORE);
       } catch (_) {}
@@ -751,7 +751,7 @@ import { STORAGE_KEY_PENDING_RESTORE } from './contract/constants.js';
     }
   }
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', medlexRestoreFromPendingStorage);
+    document.addEventListener('DOMContentLoaded', libelexRestoreFromPendingStorage);
   } else {
-    medlexRestoreFromPendingStorage();
+    libelexRestoreFromPendingStorage();
   }

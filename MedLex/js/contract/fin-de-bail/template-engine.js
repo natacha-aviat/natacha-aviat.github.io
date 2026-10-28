@@ -11,9 +11,9 @@ import { isFileProtocol } from '../utils.js';
 
 function getEmbedded(modele) {
   if (modele === 'B') {
-    return typeof window !== 'undefined' ? window.__MEDLEX_FIN_DE_BAIL_TEMPLATE_B__ : '';
+    return typeof window !== 'undefined' ? window.__LIBELEX_FIN_DE_BAIL_TEMPLATE_B__ : '';
   }
-  return typeof window !== 'undefined' ? window.__MEDLEX_FIN_DE_BAIL_TEMPLATE_A__ : '';
+  return typeof window !== 'undefined' ? window.__LIBELEX_FIN_DE_BAIL_TEMPLATE_A__ : '';
 }
 
 /**
@@ -28,7 +28,7 @@ export async function loadTemplate(answers) {
 
   if (isFileProtocol()) {
     throw new Error(
-      'Modèles embarqués manquants (medlex-fin-de-bail-templates-embedded.js). Rechargez la page ou ouvrez le site via GitHub Pages.'
+      'Modèles embarqués manquants (libelex-fin-de-bail-templates-embedded.js). Rechargez la page ou ouvrez le site via GitHub Pages.'
     );
   }
 

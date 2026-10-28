@@ -1,12 +1,12 @@
-# Spécifications MedLex — génération IA du site
+# Spécifications LibéLex — génération IA du site
 
-Ce document décrit le site **MedLex** tel qu’implémenté dans le dossier `MedLex/` d’un dépôt GitHub Pages (`natacha-aviat.github.io/MedLex/`). Une IA peut s’en servir pour **régénérer ou recréer** la page d’accueil et le flux **questionnaire → contrat de remplacement** (HTML + PDF) en conservant le comportement et l’intention produit.
+Ce document décrit le site **LibéLex** tel qu’implémenté dans le dossier `LibéLex/` d’un dépôt GitHub Pages (`natacha-aviat.github.io/LibéLex/`). Une IA peut s’en servir pour **régénérer ou recréer** la page d’accueil et le flux **questionnaire → contrat de remplacement** (HTML + PDF) en conservant le comportement et l’intention produit.
 
 ---
 
 ## 1. Contexte produit
 
-- **Marque** : MedLex — accompagnement juridique ciblé **infirmiers libéraux** (installation, SELARL, contrats, formalités).
+- **Marque** : LibéLex — accompagnement juridique ciblé **infirmiers libéraux** (installation, SELARL, contrats, formalités).
 - **Langue** : français (`lang="fr"`).
 - **Public** : professionnels de santé libéraux ; ton professionnel, rassurant, clair.
 - **Objectif du périmètre décrit** :
@@ -22,21 +22,21 @@ Ce document décrit le site **MedLex** tel qu’implémenté dans le dossier `Me
 | Hébergement | **GitHub Pages** : fichiers statiques uniquement, pas de backend applicatif sur le repo. |
 | Navigateurs | Cible **Chrome / Safari** ; mentionner l’usage en **double-clic / `file://`** et les limites (popups, modules ES). |
 | Front | **HTML5**, **CSS** (variables `:root` pour couleurs), **JavaScript** sans framework obligatoire. |
-| Modules ES | Le questionnaire charge `js/questionnaire-page.js` en `type="module"` ; le générateur de contrat est chargé **à la demande** via `import('./js/contract/medlex-contract.js')` après `medlex-contract-template-embedded.js`. |
+| Modules ES | Le questionnaire charge `js/questionnaire-page.js` en `type="module"` ; le générateur de contrat est chargé **à la demande** via `import('./js/contract/libelex-contract.js')` après `libelex-contract-template-embedded.js`. |
 | Secrets | **Jamais** de clé `service_role` ou secrets serveur dans le dépôt. Côté client : uniquement **URL projet** + **clé anon** Supabase (placeholders `<VOTRE_…>` tant que non configuré). |
-| PDF | Bibliothèque **html2pdf.js** (bundle local `html2pdf.bundle.min.js`) ; capture de la zone `#medlex-print-root` dans la fenêtre d’aperçu ; options html2canvas incluant `scrollX: 0`, `scrollY: 0` pour éviter pages blanches. |
+| PDF | Bibliothèque **html2pdf.js** (bundle local `html2pdf.bundle.min.js`) ; capture de la zone `#libelex-print-root` dans la fenêtre d’aperçu ; options html2canvas incluant `scrollX: 0`, `scrollY: 0` pour éviter pages blanches. |
 
 ---
 
-## 3. Arborescence attendue (`MedLex/`)
+## 3. Arborescence attendue (`LibéLex/`)
 
 ```
-MedLex/
+LibéLex/
 ├── index.html                          # Vitrine
 ├── questionnaire-remplacement.html     # Formulaire + point d’entrée scripts
 ├── questionnaire-remplacement.css      # Styles questionnaire
 ├── html2pdf.bundle.min.js              # Dépendance PDF (vendor)
-├── medlex-contract-template-embedded.js # Template contrat en string globale window.__MEDLEX_CONTRACT_TEMPLATE__
+├── libelex-contract-template-embedded.js # Template contrat en string globale window.__LIBELEX_CONTRACT_TEMPLATE__
 ├── templates/
 │   └── contrat-remplacement-template.txt  # Source du template (fetch si HTTP + embarqué absent)
 ├── js/
@@ -49,7 +49,7 @@ MedLex/
 │       ├── template-engine.js          # applyConditionals, replacements, buildContractText, loadTemplate
 │       ├── render-html.js              # buildContractRenderedHtml (paragraphes + <strong> sur valeurs)
 │       ├── preview-document.js         # buildHtmlPreviewDocument (HTML aperçu + script inline html2pdf)
-│       └── medlex-contract.js          # window.MedLexContract (openHtmlPreview, downloadPdf, …)
+│       └── libelex-contract.js          # window.LibéLexContract (openHtmlPreview, downloadPdf, …)
 ├── images/                             # Assets vitrine (hero, miniatures) — chemins relatifs depuis index.html
 ├── Contrat de remplacement Infirmiers V1.md   # Référence rédactionnelle (hors runtime)
 └── questionnaire V1 contrat de remplacement.md # Référence métier (hors runtime)
@@ -63,12 +63,12 @@ L’IA doit **conserver ces chemins relatifs** entre fichiers du même dossier p
 
 ### 4.1 Métadonnées
 
-- `title` : « MedLex \| Accompagnement juridique des infirmières libérales » (ou équivalent court avec marque + promesse).
+- `title` : « LibéLex \| Accompagnement juridique des infirmières libérales » (ou équivalent court avec marque + promesse).
 - `meta name="description"` : phrase sur structuration SELARL, immatriculation, contrats, formalités.
 
 ### 4.2 Design tokens (CSS inline dans `<style>`)
 
-- Palette : voir `palette.txt` (planche `images/2026-10-05_MedLex_Palette.png`). Fond cream `#F2F2F0`, texte dorian `#465C71`, titres duck `#073D3D`, primaire navy `#18334E`, accent cherry `#A3125A`, succès médi green `#12A3A3`.
+- Palette : voir `palette.txt` (planche `images/2026-10-05_LibéLex_Palette.png`). Fond cream `#F2F2F0`, texte dorian `#465C71`, titres duck `#073D3D`, primaire navy `#18334E`, accent cherry `#A3125A`, succès médi green `#12A3A3`.
 - Typo : `Inter`, `Segoe UI`, `Roboto`, `Arial`, sans-serif.
 - Header **sticky** avec léger flou (`backdrop-filter`).
 
@@ -80,7 +80,7 @@ L’IA doit **conserver ces chemins relatifs** entre fichiers du même dossier p
 4. **Bandeau clair** : « passage en SELARL en 3 étapes » avec numéros 01–03 et CTA.
 5. **Grille offres** (`#creation`, `#contrats`, `#selarl`, etc.) : cartes avec titre, description, **prix** ou fourchette (ex. immatriculation 479 € TTC, contrat remplacement à partir de 119 €, bail 219 €, SELARL 6 000 € HT, LegalUp 29 €/mois), liste à puces ; **lien bouton** vers `questionnaire-remplacement.html` depuis la carte « contrat de remplacement ».
 6. **Bloc confiance** : chiffre / témoignage type « Plus de 5000… » + 2 images lazy `./images/nurse-preparing-their-shift.jpg`, `./images/portrait-female-working-nurse.jpg`.
-7. **Footer** foncé : newsletter (champs factices OK), coordonnées MedLex SAS, Paris, email `contact@medlex.fr`, liens ancres + lien questionnaire, mentions légales / confidentialité en ancres `#footer`.
+7. **Footer** foncé : newsletter (champs factices OK), coordonnées LibéLex SAS, Paris, email `contact@libelex.fr`, liens ancres + lien questionnaire, mentions légales / confidentialité en ancres `#footer`.
 
 ### 4.4 Responsive
 
@@ -92,9 +92,9 @@ L’IA doit **conserver ces chemins relatifs** entre fichiers du même dossier p
 
 ### 5.1 En-tête page
 
-- `title` : « MedLex \| Questionnaire contrat de remplacement ».
+- `title` : « LibéLex \| Questionnaire contrat de remplacement ».
 - Lien feuille de style `./questionnaire-remplacement.css`.
-- Header : logo MedLex, lien `./index.html` « Retour au site », lien ancre `#submit` « Générer mon contrat ».
+- Header : logo LibéLex, lien `./index.html` « Retour au site », lien ancre `#submit` « Générer mon contrat ».
 
 ### 5.2 Formulaire
 
@@ -143,12 +143,12 @@ L’IA doit **conserver ces chemins relatifs** entre fichiers du même dossier p
 
 ### 6.3 Message `postMessage` (reprise depuis l’aperçu)
 
-- Écouter `message` ; si `data.type === 'medlex-restore-form'` et source = `window.medlexLastPreviewWindow` ou même origine, appeler `MedLexContract.applyQuestionnaireSnapshot(payload)`.
-- Sinon stocker le JSON sous la clé **`medlex-pending-restore-json`** (`STORAGE_KEY_PENDING_RESTORE` dans le code) dans `sessionStorage` puis `localStorage`.
+- Écouter `message` ; si `data.type === 'libelex-restore-form'` et source = `window.libelexLastPreviewWindow` ou même origine, appeler `LibéLexContract.applyQuestionnaireSnapshot(payload)`.
+- Sinon stocker le JSON sous la clé **`libelex-pending-restore-json`** (`STORAGE_KEY_PENDING_RESTORE` dans le code) dans `sessionStorage` puis `localStorage`.
 
 ### 6.4 Au chargement
 
-- Si clé présente dans storage et `MedLexContract` disponible après chargement fainéant : parser JSON, `applyQuestionnaireSnapshot`, supprimer la clé, scroll haut.
+- Si clé présente dans storage et `LibéLexContract` disponible après chargement fainéant : parser JSON, `applyQuestionnaireSnapshot`, supprimer la clé, scroll haut.
 
 ### 6.5 Préremplissage connecté (MVP)
 
@@ -163,21 +163,21 @@ L’IA doit **conserver ces chemins relatifs** entre fichiers du même dossier p
 ### 6.7 Chargement fainéant du contrat
 
 - Au clic « Afficher le contrat HTML » ou « Télécharger le projet PDF » :  
-  `loadScript('./medlex-contract-template-embedded.js')` puis `import('./js/contract/medlex-contract.js')`.  
-- Exposer `window.MedLexContract` avec au minimum : `openHtmlPreview(win)`, `downloadPdf()`, `applyQuestionnaireSnapshot`, `collectQuestionnaireSnapshot`, `collectAnswers`, `buildContractText`, `buildContractRenderedHtml`, `buildHtmlPreviewDocument`, `loadTemplate`.
+  `loadScript('./libelex-contract-template-embedded.js')` puis `import('./js/contract/libelex-contract.js')`.  
+- Exposer `window.LibéLexContract` avec au minimum : `openHtmlPreview(win)`, `downloadPdf()`, `applyQuestionnaireSnapshot`, `collectQuestionnaireSnapshot`, `collectAnswers`, `buildContractText`, `buildContractRenderedHtml`, `buildHtmlPreviewDocument`, `loadTemplate`.
 
 ---
 
 ## 7. Pipeline contrat (modules `js/contract/`)
 
-1. **`loadTemplate()`** : si `window.__MEDLEX_CONTRACT_TEMPLATE__` assez long → l’utiliser ; sinon si `file://` sans embarqué → erreur explicite ; sinon `fetch('./templates/contrat-remplacement-template.txt')`.
+1. **`loadTemplate()`** : si `window.__LIBELEX_CONTRACT_TEMPLATE__` assez long → l’utiliser ; sinon si `file://` sans embarqué → erreur explicite ; sinon `fetch('./templates/contrat-remplacement-template.txt')`.
 2. **`collectAnswers()`** : lire tous les champs nécessaires ; normaliser dates (fr-FR), lignes signature, ville extraite de l’adresse, libellés `selectedOptions` pour facturation / statut, etc.
 3. **`buildContractText(template, answers)`** :  
    - `applyConditionals` (mode exercice seul, statut remplaçant cabinet installé ou non, lieu cabinet remplacé vs remplaçant, facturation directe vs via remplacé, non-concurrence).  
    - `reshapeArticle2Duration` (bloc article 2 : plage continue vs texte discontinu).  
    - `applyReplacements` (placeholders type `RÉPONSE 3.5`, `QUESTION 8.1`, etc.).  
    - `stripRedevanceIfNone` si pas de redevance.
-4. **`buildHtmlPreviewDocument(bodyText, answers, { autoDownloadPdf?, formSnapshot? })`** : document HTML complet avec `#medlex-print-root`, boutons Modifier / Imprimer, script async `html2pdf.bundle.min.js`, script inline qui gère `postMessage` / redirect questionnaire avec snapshot en storage.
+4. **`buildHtmlPreviewDocument(bodyText, answers, { autoDownloadPdf?, formSnapshot? })`** : document HTML complet avec `#libelex-print-root`, boutons Modifier / Imprimer, script async `html2pdf.bundle.min.js`, script inline qui gère `postMessage` / redirect questionnaire avec snapshot en storage.
 5. **`openHtmlPreview(previewWindow)`** : `document.write` dans la fenêtre fournie.
 6. **`downloadPdf()`** : ouvrir nouvelle fenêtre, `autoDownloadPdf: true`, même HTML ; après chargement html2pdf, génération auto avec délai + `fonts.ready` + `scrollTo(0,0)`.
 
@@ -207,10 +207,10 @@ L’IA doit **conserver ces chemins relatifs** entre fichiers du même dossier p
 ## 10. Notes pour l’IA rédactrice / développeuse
 
 - Reproduire la **hiérarchie sémantique** (`header`, `main`, `section`, `nav`, `footer`) et l’**accessibilité** de base (`label` associés, `alt` images).
-- Ne pas inventer de endpoints backend hors Supabase documenté dans `supabase/README-medlex.md` du dépôt.
+- Ne pas inventer de endpoints backend hors Supabase documenté dans `supabase/README-libelex.md` du dépôt.
 - Les textes juridiques du contrat proviennent du **template** ; le questionnaire ne doit pas dupliquer le long contrat dans le HTML.
-- Si refactor : garder **rétrocompatibilité** de la clé storage `medlex-pending-restore-json` ou migrer partout avec le même littéral.
+- Si refactor : garder **rétrocompatibilité** de la clé storage `libelex-pending-restore-json` ou migrer partout avec le même littéral.
 
 ---
 
-*Document généré pour décrire l’état cible du site MedLex — à mettre à jour si l’arborescence ou les tables Supabase évoluent.*
+*Document généré pour décrire l’état cible du site LibéLex — à mettre à jour si l’arborescence ou les tables Supabase évoluent.*

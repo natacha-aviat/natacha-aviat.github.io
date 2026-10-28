@@ -7,10 +7,10 @@ import { html2PdfOptions } from './pdf-options.js';
 import { escapeHtml, jsonLiteralForEmbeddedParse } from './utils.js';
 import { collectQuestionnaireSnapshot } from './snapshot.js';
 import { buildContractRenderedHtml } from './render-html.js';
-import { medlexAssetUrl } from './assets.js';
+import { libelexAssetUrl } from './assets.js';
 
 function getHtml2PdfScriptUrl() {
-  return medlexAssetUrl('vendor/html2pdf.bundle.min.js');
+  return libelexAssetUrl('vendor/html2pdf.bundle.min.js');
 }
 
 export { html2PdfOptions };
@@ -36,7 +36,7 @@ export function buildHtmlPreviewDocument(bodyText, answers, opts) {
   const pdfOptsLiteral = jsonLiteralForEmbeddedParse(html2PdfOptions({}, pdfFilename));
   const snapLiteral = jsonLiteralForEmbeddedParse(snap);
   const statusHtml = autoPdf
-    ? '<p id="medlex-pdf-auto-status" class="medlex-no-print" style="margin:0 0 12px;font-size:14px;color:#18334e;font-weight:600">Le contrat s’affiche ci-dessous. Le PDF va se télécharger automatiquement…</p>'
+    ? '<p id="libelex-pdf-auto-status" class="libelex-no-print" style="margin:0 0 12px;font-size:14px;color:#18334e;font-weight:600">Le contrat s’affiche ci-dessous. Le PDF va se télécharger automatiquement…</p>'
     : '';
   let qPageUrlStr = o.questionnairePageUrl || '';
   if (!qPageUrlStr && typeof window !== 'undefined' && window.location && window.location.href) {
@@ -68,7 +68,7 @@ export function buildHtmlPreviewDocument(bodyText, answers, opts) {
       border: 1px solid #e0e4e8;
       border-radius: 12px;
     }
-    .medlex-btn {
+    .libelex-btn {
       padding: 10px 18px;
       font: inherit;
       cursor: pointer;
@@ -78,15 +78,15 @@ export function buildHtmlPreviewDocument(bodyText, answers, opts) {
       border-radius: 8px;
       margin: 8px 0;
     }
-    .medlex-btn-secondary {
+    .libelex-btn-secondary {
       border-color: #748595;
       background: #fff;
       color: #18334e;
     }
-    .medlex-btn-secondary:hover { filter: none; background: #e8ebed; }
-    .medlex-btn:hover { filter: brightness(1.05); }
+    .libelex-btn-secondary:hover { filter: none; background: #e8ebed; }
+    .libelex-btn:hover { filter: brightness(1.05); }
     @media print {
-      .medlex-no-print { display: none !important; }
+      .libelex-no-print { display: none !important; }
       body { background: #fff; }
       main { box-shadow: none; border: none; margin: 0; max-width: none; padding: 0; border-radius: 0; }
     }
@@ -94,22 +94,22 @@ export function buildHtmlPreviewDocument(bodyText, answers, opts) {
 </head>
 <body>
   <main>
-    <div class="medlex-no-print" style="margin-bottom: 16px">
+    <div class="libelex-no-print" style="margin-bottom: 16px">
       <div style="display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-bottom:10px">
-        <button type="button" class="medlex-btn medlex-btn-secondary" id="medlex-btn-edit-top">Modifier</button>
-        <button type="button" class="medlex-btn" id="medlex-btn-pdf-top">Imprimer</button>
+        <button type="button" class="libelex-btn libelex-btn-secondary" id="libelex-btn-edit-top">Modifier</button>
+        <button type="button" class="libelex-btn" id="libelex-btn-pdf-top">Imprimer</button>
       </div>
       ${statusHtml}
       <h1 style="margin: 0 0 12px; font-size: 20px; color: #073d3d">Aperçu du contrat généré</h1>
     </div>
-    <div id="medlex-print-root">${rendered}</div>
-    <div class="medlex-no-print" style="margin-top: 20px; display: flex; flex-wrap: wrap; gap: 10px; align-items: center">
-      <button type="button" class="medlex-btn medlex-btn-secondary" id="medlex-btn-edit-bottom">Modifier</button>
-      <button type="button" class="medlex-btn" id="medlex-btn-pdf-bottom">Imprimer</button>
+    <div id="libelex-print-root">${rendered}</div>
+    <div class="libelex-no-print" style="margin-top: 20px; display: flex; flex-wrap: wrap; gap: 10px; align-items: center">
+      <button type="button" class="libelex-btn libelex-btn-secondary" id="libelex-btn-edit-bottom">Modifier</button>
+      <button type="button" class="libelex-btn" id="libelex-btn-pdf-bottom">Imprimer</button>
     </div>
-    <p id="medlex-modifier-hint" class="medlex-no-print" style="font-size:13px;color:#748595;margin-top:12px;line-height:1.45"></p>
+    <p id="libelex-modifier-hint" class="libelex-no-print" style="font-size:13px;color:#748595;margin-top:12px;line-height:1.45"></p>
   </main>
-  <script src="${escapeHtml(h2p)}" async data-medlex-html2pdf="1"></script>
+  <script src="${escapeHtml(h2p)}" async data-libelex-html2pdf="1"></script>
   <script>
 (function () {
   var pdfOpts = JSON.parse(${pdfOptsLiteral});
@@ -117,11 +117,11 @@ export function buildHtmlPreviewDocument(bodyText, answers, opts) {
   var qPageUrl = ${questionnairePageUrlJson};
   var snap = JSON.parse(${snapLiteral});
   function goModifier() {
-    var hint = document.getElementById('medlex-modifier-hint');
+    var hint = document.getElementById('libelex-modifier-hint');
     var openerWin = window.opener;
     if (openerWin && !openerWin.closed) {
       try {
-        openerWin.postMessage({ type: 'medlex-restore-form', payload: snap }, '*');
+        openerWin.postMessage({ type: 'libelex-restore-form', payload: snap }, '*');
       } catch (e1) {
         window.alert('Impossible de transmettre les données au questionnaire.');
         return;
@@ -157,8 +157,8 @@ export function buildHtmlPreviewDocument(bodyText, answers, opts) {
     );
   }
   function runPdf() {
-    var root = document.getElementById('medlex-print-root');
-    var st = document.getElementById('medlex-pdf-auto-status');
+    var root = document.getElementById('libelex-print-root');
+    var st = document.getElementById('libelex-pdf-auto-status');
     if (!root || typeof window.html2pdf !== 'function') {
       window.alert('Génération PDF indisponible. Vérifiez votre connexion ou rechargez la page.');
       return Promise.reject(new Error('html2pdf'));
@@ -183,8 +183,8 @@ export function buildHtmlPreviewDocument(bodyText, answers, opts) {
     }
     return Promise.resolve();
   }
-  var et = document.getElementById('medlex-btn-edit-top');
-  var eb = document.getElementById('medlex-btn-edit-bottom');
+  var et = document.getElementById('libelex-btn-edit-top');
+  var eb = document.getElementById('libelex-btn-edit-bottom');
   if (et) et.addEventListener('click', goModifier);
   if (eb) eb.addEventListener('click', goModifier);
   function whenHtml2PdfReady(cb) {
@@ -195,7 +195,7 @@ export function buildHtmlPreviewDocument(bodyText, answers, opts) {
     var scripts = document.getElementsByTagName('script');
     var s = null;
     for (var i = 0; i < scripts.length; i++) {
-      if (scripts[i].getAttribute('data-medlex-html2pdf') === '1') {
+      if (scripts[i].getAttribute('data-libelex-html2pdf') === '1') {
         s = scripts[i];
         break;
       }
@@ -216,8 +216,8 @@ export function buildHtmlPreviewDocument(bodyText, answers, opts) {
     }, 40);
   }
   function wirePdf() {
-    var t = document.getElementById('medlex-btn-pdf-top');
-    var b = document.getElementById('medlex-btn-pdf-bottom');
+    var t = document.getElementById('libelex-btn-pdf-top');
+    var b = document.getElementById('libelex-btn-pdf-bottom');
     if (t) t.addEventListener('click', function () { runPdf(); });
     if (b) b.addEventListener('click', function () { runPdf(); });
     if (autoPdf) {

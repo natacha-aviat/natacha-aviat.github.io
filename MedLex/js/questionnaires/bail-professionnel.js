@@ -33,7 +33,7 @@
     if (window.ParcoursBailProfessionnelSnapshot) window.ParcoursBailProfessionnelSnapshot.save();
   }
 
-  var q = window.MedLexQuestionnaire({
+  var q = window.LibéLexQuestionnaire({
     steps: 9,
     type: "bail-professionnel",
     onStep: updateConditionals,

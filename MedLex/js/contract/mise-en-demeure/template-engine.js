@@ -7,14 +7,14 @@ import { isFileProtocol } from '../utils.js';
 
 export async function loadTemplate() {
   const embedded =
-    typeof window !== 'undefined' ? String(window.__MEDLEX_MISE_EN_DEMEURE_TEMPLATE__ || '') : '';
+    typeof window !== 'undefined' ? String(window.__LIBELEX_MISE_EN_DEMEURE_TEMPLATE__ || '') : '';
   if (embedded.length >= EMBEDDED_TEMPLATE_MIN_LENGTH) {
     return embedded;
   }
 
   if (isFileProtocol()) {
     throw new Error(
-      'Modèle embarqué manquant (medlex-mise-en-demeure-template-embedded.js). Rechargez la page ou ouvrez le site via GitHub Pages.'
+      'Modèle embarqué manquant (libelex-mise-en-demeure-template-embedded.js). Rechargez la page ou ouvrez le site via GitHub Pages.'
     );
   }
 

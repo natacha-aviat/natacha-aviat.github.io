@@ -1,5 +1,5 @@
 /**
- * Point d'entrée fin de bail — window.MedLexFinDeBailContract
+ * Point d'entrée fin de bail — window.LibéLexFinDeBailContract
  */
 
 import { collectQuestionnaireSnapshot, applyQuestionnaireSnapshot } from './snapshot.js';
@@ -8,7 +8,7 @@ import { loadTemplate, buildContractText } from './template-engine.js';
 import { buildContractRenderedHtml } from './render-html.js';
 import { PDF_FILENAME } from './constants.js';
 
-window.MedLexFinDeBailContract = {
+window.LibéLexFinDeBailContract = {
   loadTemplate: loadTemplate,
   collectAnswers: collectAnswers,
   buildContractText: buildContractText,

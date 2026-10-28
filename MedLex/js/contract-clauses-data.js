@@ -492,7 +492,7 @@
     return base + '?step=' + editStep + '&from=contrat';
   }
 
-  window.MedLexClauseThemes = {
+  window.LibéLexClauseThemes = {
     collaboration: COLLABORATION,
     remplacement: REMPLACEMENT,
     'fin-de-bail': FIN_DE_BAIL,
@@ -521,7 +521,7 @@
     },
   };
 
-  window.MedLexArticleGuide = {
+  window.LibéLexArticleGuide = {
     getArticleMeta: getArticleMeta,
     questionnaireHref: questionnaireHref,
     articleKeyFromSection: articleKeyFromSection,

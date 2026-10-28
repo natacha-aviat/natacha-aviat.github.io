@@ -60,7 +60,7 @@
     if (window.ParcoursFinDeBailSnapshot) window.ParcoursFinDeBailSnapshot.save();
   }
 
-  window.MedLexQuestionnaire({
+  window.LibéLexQuestionnaire({
     steps: 8,
     type: "fin-de-bail",
     saveLabel: saveLabel,

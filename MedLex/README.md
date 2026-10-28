@@ -1,4 +1,4 @@
-# MedLex
+# LibéLex
 
 Maquette cliquable pour infirmières libérales (IDEL). **Site statique** : aucun serveur, liens relatifs, GitHub Pages compatible.
 
@@ -7,8 +7,9 @@ Maquette cliquable pour infirmières libérales (IDEL). **Site statique** : aucu
 ```
 MedLex/
 ├── index.html                      # Landing
+├── test-selarl.html                # Test gratuit passage en SELARL
 ├── css/
-│   ├── medlex.css                  # Couleurs, typo, tokens
+│   ├── libelex.css                  # Couleurs, typo, tokens
 │   ├── modules.css                 # Composants (boutons, champs, barre…)
 │   ├── site.css                    # Mise en page landing
 │   └── parcours.css                # Mise en page du tunnel

@@ -1,5 +1,5 @@
 /**
- * Point d'entrée mise en demeure — window.MedLexMiseEnDemeureContract
+ * Point d'entrée bail professionnel — window.LibéLexBailProfessionnelContract
  */
 
 import { collectQuestionnaireSnapshot, applyQuestionnaireSnapshot } from './snapshot.js';
@@ -8,7 +8,7 @@ import { loadTemplate, buildContractText } from './template-engine.js';
 import { buildContractRenderedHtml } from './render-html.js';
 import { PDF_FILENAME } from './constants.js';
 
-window.MedLexMiseEnDemeureContract = {
+window.LibéLexBailProfessionnelContract = {
   loadTemplate: loadTemplate,
   collectAnswers: collectAnswers,
   buildContractText: buildContractText,

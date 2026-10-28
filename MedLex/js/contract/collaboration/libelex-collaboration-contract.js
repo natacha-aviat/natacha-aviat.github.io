@@ -1,5 +1,5 @@
 /**
- * Point d'entrée contrat de collaboration — window.MedLexCollaborationContract
+ * Point d'entrée contrat de collaboration — window.LibéLexCollaborationContract
  */
 
 import { $ } from '../utils.js';
@@ -52,7 +52,7 @@ async function downloadPdf() {
   }
 }
 
-window.MedLexCollaborationContract = {
+window.LibéLexCollaborationContract = {
   downloadPdf,
   loadTemplate,
   collectAnswers,

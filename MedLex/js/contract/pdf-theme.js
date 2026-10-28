@@ -1,9 +1,9 @@
 /**
- * Charte graphique MedLex pour l’export PDF (alignée sur parcours.css).
+ * Charte graphique LibéLex pour l’export PDF (alignée sur parcours.css).
  */
 
 import { pdfLog, pdfWarn } from './pdf-debug.js';
-import { medlexAssetUrl } from './assets.js';
+import { libelexAssetUrl } from './assets.js';
 
 /** @type {{ ink: number[]; muted: number[]; teal: number[]; gray: number[]; white: number[] }} */
 export const PDF_THEME = {
@@ -50,7 +50,7 @@ function isFileProtocol() {
 }
 
 function getLocalFontUrl(filename) {
-  return medlexAssetUrl('fonts/' + filename);
+  return libelexAssetUrl('fonts/' + filename);
 }
 
 function getFontUrls(filename) {

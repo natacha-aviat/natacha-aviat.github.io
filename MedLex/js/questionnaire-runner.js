@@ -9,7 +9,7 @@
     if (el) el.classList.toggle("ac-hidden", !show);
   }
 
-  window.MedLexQuestionnaire = function (opts) {
+  window.LibéLexQuestionnaire = function (opts) {
     opts = opts || {};
     var STEPS = opts.steps;
     var params = new URLSearchParams(window.location.search);
