@@ -14,12 +14,14 @@
   text-decoration: none;
 }
 
-.ac-logo__dot {
-  width: 12px;
-  height: 12px;
+.ac-logo__mark {
+  width: 36px;
+  height: 36px;
   border-radius: 50%;
-  background: var(--ac-mustard);
+  object-fit: cover;
   flex-shrink: 0;
+  display: block;
+  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.92);
 }
 
 .ac-back {
@@ -854,7 +856,8 @@ select.ac-input {
   text-decoration: none;
 }
 
-.ac-bottom-nav svg {
+.ac-bottom-nav svg,
+.ac-bottom-nav__logo {
   width: 1.35rem;
   height: 1.35rem;
   fill: none;
@@ -862,6 +865,13 @@ select.ac-input {
   stroke-width: 1.8;
   stroke-linejoin: round;
   stroke-linecap: round;
+}
+
+.ac-bottom-nav__logo {
+  border-radius: 50%;
+  object-fit: cover;
+  display: block;
+  box-shadow: 0 0 0 1.5px rgba(255, 255, 255, 0.92);
 }
 
 .ac-bottom-nav a[aria-current="page"] {

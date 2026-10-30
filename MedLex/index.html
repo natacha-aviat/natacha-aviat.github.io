@@ -3,6 +3,8 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="./images/favicon.jpg" type="image/jpeg" sizes="180x180" />
+    <link rel="apple-touch-icon" href="./images/favicon.jpg" />
     <title>Le juridique, expliqué comme par une collègue</title>
     <meta
       name="description"
@@ -20,7 +22,7 @@
   <body>
     <header class="site-header">
       <div class="container header-inner">
-        <a class="logo" href="#top"><span class="logo-dot" aria-hidden="true"></span><span data-brand="name"></span></a>
+        <a class="logo" href="#top"><img class="logo-mark" src="./images/logo-libelex.jpg" alt="" width="36" height="36" /><span data-brand="name"></span></a>
         <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="main-nav">
           Menu
         </button>
@@ -71,52 +73,39 @@
             </p>
           </div>
 
-          <div class="dashboard-wrap" aria-hidden="true">
-            <div class="dashboard">
-              <div class="dash-topbar">
-                <div class="dash-dots"><span></span><span></span><span></span></div>
-                <span class="dash-title"><span data-brand="domain"></span> — Contrat de remplacement</span>
-              </div>
-              <div class="dash-body">
-                <aside class="dash-sidebar">
-                  <div class="dash-nav-item active"><span class="dash-nav-dot"></span> Questionnaire</div>
-                  <div class="dash-nav-item"><span class="dash-nav-dot"></span> Aperçu</div>
-                  <div class="dash-nav-item"><span class="dash-nav-dot"></span> PDF</div>
-                </aside>
-                <div class="dash-main">
-                  <div class="dash-header-row">
-                    <div>
-                      <h4>Tu nous racontes ta situation</h4>
-                      <p>Étape 8 — Modalités de facturation</p>
-                    </div>
-                    <span class="progress-pill tabular">68 %</span>
-                  </div>
-                  <div class="dash-explain">
-                    <strong>Cette clause ?</strong> Elle dit simplement que si le remplacement dure plus
-                    longtemps que prévu, les deux parties doivent s'accorder par écrit — et voilà pourquoi
-                    elle compte pour toi.
-                  </div>
-                  <p style="margin: 0.75rem 0 0; font-size: 0.72rem; color: var(--gray-text)">
-                    Validé par Maître Violaine · Avocate spécialisée en droit de la santé
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
+          <figure class="hero-photo">
+            <img
+              src="./images/Infirmiere_bureau.png"
+              alt="Infirmière libérale à son bureau, au milieu des dossiers, ordonnances et factures"
+              width="1371"
+              height="1148"
+            />
+          </figure>
         </div>
       </section>
 
       <section class="empathy-strip" id="empathie">
-        <div class="container empathy-inner">
-          <h2>On sait que le juridique, c'est anxiogène.</h2>
-          <p style="color: var(--gray-text); margin: 0">
-            Tu as déjà eu peur de mal faire. De signer trop vite. De laisser passer une clause qui te
-            coûterait cher plus tard. Ce n'est pas un échec personnel : le droit n'est pas ton métier —
-            et ce n'est pas censé l'être.
-          </p>
-          <p class="empathy-quote">
-            « Non, tu n'es pas censée tout connaître du droit. C'est notre métier. »
-          </p>
+        <div class="container empathy-grid">
+          <figure class="scene-photo">
+            <img
+              src="./images/Infirmieres_cafe.png"
+              alt="Deux infirmières et une avocate discutent autour d'un café, un dossier de convention sur la table"
+              width="1371"
+              height="1148"
+              loading="lazy"
+            />
+          </figure>
+          <div class="empathy-copy">
+            <h2>On sait que le juridique, c'est anxiogène.</h2>
+            <p style="color: var(--gray-text); margin: 0">
+              Tu as déjà eu peur de mal faire. De signer trop vite. De laisser passer une clause qui te
+              coûterait cher plus tard. Ce n'est pas un échec personnel : le droit n'est pas ton métier —
+              et ce n'est pas censé l'être.
+            </p>
+            <p class="empathy-quote">
+              « Non, tu n'es pas censée tout connaître du droit. C'est notre métier. »
+            </p>
+          </div>
         </div>
       </section>
 
@@ -367,33 +356,25 @@
               déontologie infirmier.
             </p>
           </div>
-          <div class="phone-wrap" aria-hidden="true">
-            <div class="phone">
-              <div class="phone-screen">
-                <div class="phone-head" data-brand="name"></div>
-                <div class="phone-item">
-                  Remplacement — collègue
-                  <div class="s">✓ PDF prêt · Clause expliquée</div>
-                </div>
-                <div class="phone-item">
-                  Contrat relu entre deux patients
-                  <div class="s" style="color: var(--teal)">En cours · 68 %</div>
-                </div>
-                <div class="phone-item">
-                  SELARL — dossier
-                  <div class="s" style="color: var(--gray-text)">Me Violaine · validé</div>
-                </div>
-                <div class="phone-cta">Je crée mon contrat</div>
-              </div>
-            </div>
-          </div>
+          <figure class="scene-photo scene-photo--portrait">
+            <img
+              src="./images/Infirmiere_Palier.png"
+              alt="Infirmière libérale sur le pas de la porte, sac de soins à la main, entre deux visites"
+              width="1370"
+              height="1148"
+              loading="lazy"
+            />
+          </figure>
         </div>
       </section>
     </main>
 
     <footer id="footer">
       <div class="container footer-inner">
-        <span data-brand="copyright"></span>
+        <span class="footer-brand">
+          <img class="logo-mark" src="./images/logo-libelex.jpg" alt="" width="28" height="28" />
+          <span data-brand="copyright"></span>
+        </span>
         <div class="footer-links">
           <a href="./parcours/choix-contrat.html">Créer mon contrat</a>
           <a href="./mentions-legales.html">Mentions légales</a>

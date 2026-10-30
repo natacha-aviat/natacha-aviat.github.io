@@ -16,8 +16,11 @@
     return '<a href="' + href + '"' + attrs + ">" + icon + label + "</a>";
   }
 
+  var assetBase = inParcours ? "../" : "./";
   var house =
-    '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 10.5 12 4l8 6.5V20a1 1 0 0 1-1 1h-5v-6H10v6H5a1 1 0 0 1-1-1z"/></svg>';
+    '<img class="ac-bottom-nav__logo" src="' +
+    assetBase +
+    'images/logo-libelex.jpg" alt="" width="22" height="22" />';
   var person =
     '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="3.2"/><path d="M5.5 19.2c1.1-2.6 3.4-4 6.5-4s5.4 1.4 6.5 4"/></svg>';
   var info =

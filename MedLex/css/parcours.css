@@ -19,9 +19,9 @@
   color: var(--ac-white);
 }
 
-.ac-shell-header .ac-logo__dot,
-.ac-dash-header .ac-logo__dot {
-  background: var(--ac-mustard);
+.ac-shell-header .ac-logo__mark,
+.ac-dash-header .ac-logo__mark {
+  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.92);
 }
 
 .ac-shell-header .ac-back {
