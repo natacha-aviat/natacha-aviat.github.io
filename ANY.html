@@ -55,6 +55,7 @@
     h1 em { font-style: italic; font-weight: 560; }
     .lede { margin: 10px 0 0; max-width: 46rem; color: var(--muted); }
     .lede a { font-weight: 600; }
+    .lede-link { white-space: nowrap; }
     .layout {
       display: grid;
       grid-template-columns: 292px minmax(0, 1fr);
@@ -125,7 +126,6 @@
     }
     .day[aria-pressed="false"] { color: #b3a89c; background: transparent; text-decoration: line-through; }
     .day[aria-pressed="true"] { background: var(--ink); color: #fffdf8; border-color: var(--ink); }
-    .hint { margin: 6px 0 0; color: var(--muted); font-size: .8rem; }
     .hours-label { display: flex; justify-content: space-between; font-weight: 700; }
     .slider { position: relative; height: 34px; margin-top: 6px; }
     .slider-track, .slider-fill {
@@ -177,17 +177,13 @@
       text-align: left; font-size: .75rem; letter-spacing: .08em; text-transform: uppercase;
       color: var(--muted); background: #fbf6ee; position: sticky; top: 0; z-index: 2;
     }
-    tbody th {
-      text-align: left; font-weight: 650; width: 96px; position: sticky; left: 0;
-      background: #fffdf8; z-index: 1; font-size: .86rem;
-    }
     .month td {
       background: #f6efe4; font-family: Fraunces, Georgia, serif; font-size: 1.15rem;
       padding: 12px 14px; border-bottom: 1px solid var(--line);
     }
     td.today { background: var(--today); }
     tr.now tbody, tr.now { }
-    tr.now th { box-shadow: inset 3px 0 0 var(--accent); }
+    tr.now td:first-child { box-shadow: inset 3px 0 0 var(--accent); }
     .dayhead { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 6px; color: var(--muted); font-size: .75rem; }
     .num { font-weight: 750; color: var(--ink); font-size: .95rem; }
     td.today .num { color: var(--accent); }
@@ -231,11 +227,49 @@
     .desc { white-space: pre-wrap; margin: 0 0 16px; }
     .desc a { word-break: break-all; }
     .official { font-weight: 750; }
+    .dow { display: none; }
+    .slots { display: contents; }
     .past .num { color: #b3a89c; }
     @media (max-width: 980px) {
       .layout { grid-template-columns: 1fr; }
       .filters { position: static; max-height: none; }
       .wrap { width: min(1440px, calc(100% - 16px)); }
+      .table-scroll { overflow: visible; border: none; background: transparent; box-shadow: none; }
+      table { min-width: 0; display: block; }
+      thead { display: none; }
+      tbody { display: block; }
+      tr { display: block; }
+      tr.month td { display: block; border-radius: 12px; margin: 16px 0 8px; }
+      tbody tr:not(.month) {
+        background: var(--paper);
+        border: 1px solid var(--line);
+        border-radius: 16px;
+        margin: 0 0 12px;
+        overflow: hidden;
+      }
+      tbody tr:not(.month):not(:has(.card)) { display: none; }
+      tbody tr:not(.month) td {
+        display: grid;
+        grid-template-columns: 3.4rem minmax(0, 1fr);
+        gap: 2px 10px;
+        align-items: start;
+        padding: 11px 12px;
+        border-bottom: 1px solid var(--line);
+      }
+      tbody tr:not(.month) td:last-child { border-bottom: 0; }
+      tbody tr:not(.month) td:not(:has(.card)) { display: none; }
+      .dayhead { grid-column: 1; margin: 1px 0 0; flex-direction: column; align-items: flex-start; gap: 0; }
+      .slots { grid-column: 2; display: block; min-width: 0; }
+      .dow { display: block; font-size: .72rem; font-weight: 750; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); }
+      .num { font-size: 1.2rem; line-height: 1.1; }
+      .tag { font-size: .62rem; letter-spacing: 0; line-height: 1.15; }
+      .card { padding: 8px 10px 9px; }
+      .card .badge { display: table; }
+      .card time { display: inline; margin-right: .4rem; font-size: .86rem; }
+      .card .title { display: inline; font-size: 1rem; overflow-wrap: break-word; }
+      .card .meta { font-size: .88rem; }
+      tr.now { box-shadow: inset 3px 0 0 var(--accent); }
+      tr.now td:first-child { box-shadow: none; }
     }
   </style>
 </head>
@@ -243,7 +277,7 @@
   <div class="wrap">
     <header class="hero">
       <p class="kicker">Accueil New York</p>
-      <h1>L’agenda, <em>semaine par semaine</em></h1>
+      <h1>Agenda de l’ANY</h1>
       <p class="lede" id="lede"></p>
     </header>
     <div class="layout">
@@ -256,7 +290,6 @@
 
         <h2>Jours affichés</h2>
         <div class="days" id="days" role="group" aria-label="Jours de la semaine"></div>
-        <p class="hint">Décochez un jour pour le masquer, par exemple le mercredi.</p>
 
         <h2>Créneau horaire</h2>
         <div class="hours-label"><span id="hLabel">9 h – 17 h</span></div>
@@ -267,7 +300,6 @@
           <input type="range" id="h1" min="7" max="22" value="17" aria-label="Fin du créneau">
         </div>
         <div class="scale"><span>7 h</span><span>12 h</span><span>17 h</span><span>22 h</span></div>
-        <p class="hint">Un rendez-vous reste visible s’il a lieu pendant ce créneau. Le réglage est conservé sur cet appareil.</p>
 
         <h2>Quartier</h2>
         <div class="areas" id="areas"></div>
@@ -289,8 +321,7 @@
         <div class="table-scroll">
           <table aria-label="Agenda, une ligne par semaine">
             <thead>
-              <tr>
-                <th>Semaine</th>
+              <tr id="head">
                 <th>Lun</th><th>Mar</th><th>Mer</th><th>Jeu</th><th>Ven</th><th>Sam</th><th>Dim</th>
               </tr>
             </thead>
@@ -336,13 +367,12 @@
     ];
     const CAT = Object.fromEntries(CATS.map((c) => [c.id, c]));
     const JOUR = ["dimanche", "lundi", "mardi", "mercredi", "jeudi", "vendredi", "samedi"];
-    const JOUR_C = ["D", "L", "M", "M", "J", "V", "S"];
+    const JOUR_S = ["Dim", "Lun", "Mar", "Mer", "Jeu", "Ven", "Sam"];
     const JOUR_BTN = [
       { d: 1, label: "Lun" }, { d: 2, label: "Mar" }, { d: 3, label: "Mer" },
       { d: 4, label: "Jeu" }, { d: 5, label: "Ven" }, { d: 6, label: "Sam" }, { d: 0, label: "Dim" }
     ];
     const MOIS = ["janvier", "février", "mars", "avril", "mai", "juin", "juillet", "août", "septembre", "octobre", "novembre", "décembre"];
-    const MOIS_C = ["janv.", "févr.", "mars", "avr.", "mai", "juin", "juil.", "août", "sept.", "oct.", "nov.", "déc."];
     const HMIN = 7, HMAX = 22;
     const FILTER_KEY = "any-filters-v1";
     const KNOWN_KEY = "any-known-ids";
@@ -448,6 +478,7 @@
       onlyNew: document.getElementById("onlyNew"),
       emptyWeeks: document.getElementById("emptyWeeks"),
       body: document.getElementById("body"),
+      head: document.getElementById("head"),
       status: document.getElementById("status"),
       note: document.getElementById("note"),
       lede: document.getElementById("lede"),
@@ -532,13 +563,15 @@
     function buildControls() {
       const catInputs = {};
       CATS.forEach((c) => {
+        const catCount = inHorizon.filter((e) => e.cat === c.id).length;
+        if (!catCount) return;
         const block = document.createElement("div");
         block.className = "cat-block";
         const label = document.createElement("label");
         label.className = "check";
         const input = document.createElement("input");
         input.type = "checkbox";
-        const subsOfCat = SUBS.filter((sub) => sub.cat === c.id);
+        const subsOfCat = SUBS.filter((sub) => sub.cat === c.id && sub.count > 0);
         const subInputs = {};
         input.addEventListener("change", () => {
           if (input.checked) {
@@ -555,7 +588,10 @@
         const dot = document.createElement("i");
         dot.className = "dot";
         dot.style.background = c.color;
-        span.append(dot, document.createTextNode(c.name));
+        const count = document.createElement("span");
+        count.className = "count";
+        count.textContent = String(catCount);
+        span.append(dot, document.createTextNode(c.name), count);
         label.append(input, span);
         block.append(label);
         if (subsOfCat.length) {
@@ -610,8 +646,8 @@
           ui.subs[id].checked = !off && !state.excludedSubs.includes(id);
         });
       }
-      CATS.forEach((c) => paintCat(c.id));
-      els.cats.paint = () => CATS.forEach((c) => paintCat(c.id));
+      Object.keys(catInputs).forEach((id) => paintCat(id));
+      els.cats.paint = () => Object.keys(catInputs).forEach((id) => paintCat(id));
 
       JOUR_BTN.forEach((j) => {
         const b = document.createElement("button");
@@ -688,11 +724,14 @@
       paintSlider(); saveFilters(); render();
     }
 
-    function weekLabel(monday) {
-      const sunday = addDays(monday, 6);
-      const same = monday.getMonth() === sunday.getMonth();
-      if (same) return monday.getDate() + " – " + sunday.getDate() + " " + MOIS_C[monday.getMonth()];
-      return monday.getDate() + " " + MOIS_C[monday.getMonth()] + " – " + sunday.getDate() + " " + MOIS_C[sunday.getMonth()];
+    function shownColumnIndexes() {
+      const on = [1, 2, 3, 4, 5, 6, 0].map((d) => !state.excludedDays.includes(d));
+      const first = on.indexOf(true);
+      const last = on.lastIndexOf(true);
+      if (first < 0) return [];
+      const indexes = [];
+      for (let i = first; i <= last; i += 1) indexes.push(i);
+      return indexes;
     }
 
     function render() {
@@ -710,6 +749,14 @@
       });
 
       els.body.replaceChildren();
+      const columns = shownColumnIndexes();
+      const weekLabels = ["Lun", "Mar", "Mer", "Jeu", "Ven", "Sam", "Dim"];
+      els.head.replaceChildren();
+      columns.forEach((i) => {
+        const th = document.createElement("th");
+        th.textContent = weekLabels[i];
+        els.head.append(th);
+      });
       let cursor = new Date(rangeStart);
       let lastMonth = -1;
       let weeksDrawn = 0;
@@ -724,7 +771,7 @@
             const tr = document.createElement("tr");
             tr.className = "month";
             const td = document.createElement("td");
-            td.colSpan = 8;
+            td.colSpan = Math.max(columns.length, 1);
             td.textContent = cap(MOIS[month]) + " " + anchor.getFullYear();
             tr.append(td);
             els.body.append(tr);
@@ -734,36 +781,38 @@
           const weekKey = ymd(cursor);
           tr.id = "w-" + weekKey;
           if (todayKey >= weekKey && todayKey <= ymd(addDays(cursor, 6))) tr.className = "now";
-          const th = document.createElement("th");
-          th.scope = "row";
-          th.textContent = weekLabel(cursor);
-          tr.append(th);
-          days.forEach((dt) => {
+          columns.forEach((i) => {
+            const dt = days[i];
             const key = ymd(dt);
             const td = document.createElement("td");
             if (key === todayKey) td.className = "today";
             else if (key < todayKey) td.className = "past";
             const head = document.createElement("div");
             head.className = "dayhead";
+            const dow = document.createElement("span");
+            dow.className = "dow";
+            dow.textContent = JOUR_S[dt.getDay()];
             const num = document.createElement("span");
             num.className = "num";
             num.textContent = String(dt.getDate());
-            head.append(num);
+            head.append(dow, num);
             if (key === todayKey) {
               const tag = document.createElement("span");
               tag.className = "tag";
               tag.textContent = "aujourd’hui";
               head.append(tag);
             }
-            td.append(head);
+            const slots = document.createElement("div");
+            slots.className = "slots";
+            td.append(head, slots);
             const list = byDate.get(key) || [];
             if (!list.length && key >= todayKey) {
               const empty = document.createElement("span");
               empty.className = "empty-cell";
               empty.textContent = "—";
-              td.append(empty);
+              slots.append(empty);
             }
-            list.forEach((e) => td.append(card(e)));
+            list.forEach((e) => slots.append(card(e)));
             tr.append(td);
           });
           els.body.append(tr);
@@ -949,14 +998,17 @@
 
     const ledeEnd = "31 août " + endYear;
     els.lede.append(
-      document.createTextNode("Du " + todayDt.getDate() + " " + MOIS[todayDt.getMonth()] + " " + todayDt.getFullYear() + " au " + ledeEnd + ". Une ligne correspond à une semaine. "),
+      document.createTextNode("Du " + todayDt.getDate() + " " + MOIS[todayDt.getMonth()] + " " + todayDt.getFullYear() + " au " + ledeEnd + "."),
     );
     const src = document.createElement("a");
     src.href = "https://www.accueilnewyork.org/Calendrier-des-rencontres-175";
     src.target = "_blank";
     src.rel = "noopener noreferrer";
-    src.textContent = "Calendrier officiel de\u00A0l’ANY";
-    els.lede.append(src, document.createTextNode("."));
+    src.textContent = "Calendrier officiel de l’ANY";
+    const linkLine = document.createElement("span");
+    linkLine.className = "lede-link";
+    linkLine.append(src, document.createTextNode("."));
+    els.lede.append(document.createElement("br"), linkLine);
 
     const last = inHorizon.reduce((a, e) => e.date > a ? e.date : a, "");
     els.note.textContent = "Relevé du calendrier public le 18 novembre 2026"
