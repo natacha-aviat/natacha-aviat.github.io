@@ -170,6 +170,7 @@
       padding: 8px 10px;
       font-size: .92rem;
     }
+    .hint { margin: 6px 0 0; color: var(--muted); font-size: .8rem; }
     .table-scroll { overflow-x: auto; border-radius: 16px; border: 1px solid var(--line); background: var(--paper); box-shadow: var(--shadow); }
     table { border-collapse: collapse; width: 100%; min-width: 760px; table-layout: fixed; }
     th, td { border-bottom: 1px solid var(--line); vertical-align: top; padding: 6px; }
@@ -540,7 +541,7 @@
       return { ids: new Set(fresh), first, count: fresh.length };
     }
 
-    function passes(e, ignoreHour) {
+    function passes(e) {
       if (state.excludedCats.includes(e.cat)) return false;
       if (e.sub && state.excludedSubs.includes(e.sub)) return false;
       if (state.excludedDays.includes(e.dow)) return false;
@@ -552,11 +553,9 @@
         const blob = [e.title, e.who, e.place, e.area, e.desc].join(" ").toLowerCase();
         if (!blob.includes(q)) return false;
       }
-      if (!ignoreHour) {
-        const win0 = state.h0 * 60;
-        const win1 = state.h1 * 60 + 59;
-        if (!(e.startMin <= win1 && e.endMin >= win0)) return false;
-      }
+      const win0 = state.h0 * 60;
+      const win1 = state.h1 * 60 + 59;
+      if (!(e.startMin <= win1 && e.endMin >= win0)) return false;
       return true;
     }
 
@@ -737,12 +736,8 @@
     function render() {
       const byDate = new Map();
       let shown = 0;
-      let outside = 0;
       inHorizon.forEach((e) => {
-        const ok = passes(e, false);
-        const okHourIgnored = passes(e, true);
-        if (okHourIgnored && !ok) outside += 1;
-        if (!ok) return;
+        if (!passes(e)) return;
         shown += 1;
         if (!byDate.has(e.date)) byDate.set(e.date, []);
         byDate.get(e.date).push(e);
@@ -821,7 +816,12 @@
         cursor = addDays(cursor, 7);
       }
 
-      renderStatus(shown, outside, weeksDrawn);
+      const total = inHorizon.filter((e) => {
+        const win0 = state.h0 * 60;
+        const win1 = state.h1 * 60 + 59;
+        return e.startMin <= win1 && e.endMin >= win0;
+      }).length;
+      renderStatus(shown, total, weeksDrawn);
     }
 
     function card(e) {
@@ -858,19 +858,14 @@
       return btn;
     }
 
-    function renderStatus(shown, outside, weeksDrawn) {
+    function renderStatus(shown, total, weeksDrawn) {
       els.status.replaceChildren();
       const count = document.createElement("strong");
       count.textContent = String(shown);
       const label = document.createElement("span");
-      label.textContent = shown > 1 ? "rendez-vous affichés" : "rendez-vous affiché";
+      label.textContent = (shown === 1 ? "rendez-vous affiché" : "rendez-vous affichés") + " sur " + total;
       els.status.append(count, label);
-      if (novelty.first) {
-        const ban = document.createElement("span");
-        ban.className = "banner";
-        ban.textContent = "Première visite : les ateliers ajoutés ensuite porteront un badge Nouveau.";
-        els.status.append(ban);
-      } else if (novelty.count) {
+      if (!novelty.first && novelty.count) {
         const ban = document.createElement("span");
         ban.className = "banner";
         ban.textContent = novelty.count + (novelty.count > 1 ? " nouveaux depuis votre dernière visite." : " nouveau depuis votre dernière visite.");
@@ -882,22 +877,6 @@
           state.onlyNew = true;
           els.onlyNew.checked = true;
           render();
-        });
-        ban.append(see);
-        els.status.append(ban);
-      }
-      if (outside) {
-        const ban = document.createElement("span");
-        ban.className = "banner";
-        ban.textContent = outside + (outside > 1 ? " rendez-vous hors créneau." : " rendez-vous hors créneau.");
-        const see = document.createElement("button");
-        see.type = "button";
-        see.className = "linkish";
-        see.textContent = " Étendre à 7 h–22 h";
-        see.addEventListener("click", () => {
-          state.h0 = 7; state.h1 = 22;
-          els.h0.value = 7; els.h1.value = 22;
-          paintSlider(); saveFilters(); render();
         });
         ban.append(see);
         els.status.append(ban);
