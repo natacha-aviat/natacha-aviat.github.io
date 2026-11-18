@@ -94,7 +94,12 @@
       outline: 2px solid var(--accent);
       outline-offset: 2px;
     }
-    .cats, .areas { display: grid; gap: 6px; }
+    .cats, .areas { display: grid; gap: 8px; }
+    .cat-block { display: grid; gap: 4px; }
+    .subs { display: grid; gap: 3px; margin: 0 0 2px 1.35rem; }
+    .subs .check { font-size: .86rem; }
+    .count { color: var(--muted); font-weight: 650; margin-left: .3rem; }
+    .subs input:disabled + span { opacity: .4; }
     .areas { max-height: 210px; overflow: auto; padding-right: 4px; }
     .check {
       display: flex;
@@ -380,6 +385,39 @@
     function fmtHour(h) { return h + " h"; }
     function fmtClock(h, m) { return pad(h) + ":" + pad(m); }
     function cap(s) { return s.charAt(0).toUpperCase() + s.slice(1); }
+    function plainTitle(title) {
+      return title.replace(/[\u{1F300}-\u{1FAFF}\u{2600}-\u{27BF}\uFE0F\u200D]/gu, "").replace(/\s+/g, " ").trim();
+    }
+    function seriesOf(title) {
+      const plain = plainTitle(title);
+      const t = plain.toLowerCase();
+      if (t.startsWith("ca grimpe")) return ["ca-grimpe", "Ca grimpe"];
+      if (t.startsWith("sorties photos")) return ["sorties-photos", "Sorties Photos"];
+      if (t.startsWith("after-work") || t.startsWith("after work")) return ["after-work", "After-work"];
+      if (t.startsWith("cafe ") || t.startsWith("café")) return ["cafe", "Café"];
+      if (t.startsWith("any va")) return ["any-va", "ANY va au musée"];
+      const slug = t.normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+      return [slug || "autre", plain];
+    }
+    function assignSeries(events) {
+      const counts = new Map();
+      events.forEach((e) => {
+        const [slug, label] = seriesOf(e.title);
+        e.series = e.cat + ":" + slug;
+        e.seriesLabel = label;
+        counts.set(e.series, (counts.get(e.series) || 0) + 1);
+      });
+      events.forEach((e) => { e.sub = counts.get(e.series) >= 2 ? e.series : ""; });
+      const seen = new Set();
+      const subs = [];
+      events.forEach((e) => {
+        if (!e.sub || seen.has(e.sub)) return;
+        seen.add(e.sub);
+        subs.push({ id: e.sub, cat: e.cat, label: e.seriesLabel, count: counts.get(e.sub) });
+      });
+      subs.sort((a, b) => b.count - a.count || a.label.localeCompare(b.label, "fr"));
+      return subs;
+    }
 
     const todayDt = new Date();
     const todayKey = ymd(todayDt);
@@ -389,6 +427,7 @@
     const horizonKey = ymd(rangeEnd);
 
     const inHorizon = EVENTS.filter((e) => e.date >= todayKey && e.date <= horizonKey);
+    const SUBS = assignSeries(inHorizon);
 
     const novelty = computeNovelty(inHorizon.map((e) => e.id));
 
@@ -416,7 +455,7 @@
     };
 
     function loadFilters() {
-      const blank = { excludedCats: [], excludedDays: [], excludedAreas: [], h0: 9, h1: 17, place: "", emptyWeeks: false };
+      const blank = { excludedCats: [], excludedSubs: [], excludedDays: [], excludedAreas: [], h0: 9, h1: 17, place: "", emptyWeeks: false };
       try {
         const s = JSON.parse(localStorage.getItem(FILTER_KEY) || "null");
         if (!s || typeof s !== "object") return blank;
@@ -424,6 +463,7 @@
         if (h0 > h1) { const t = h0; h0 = h1; h1 = t; }
         return {
           excludedCats: arr(s.excludedCats),
+          excludedSubs: arr(s.excludedSubs).filter((id) => SUBS.some((sub) => sub.id === id)),
           excludedDays: arr(s.excludedDays).map(Number).filter((n) => n >= 0 && n <= 6),
           excludedAreas: arr(s.excludedAreas),
           h0, h1,
@@ -440,6 +480,7 @@
     function saveFilters() {
       localStorage.setItem(FILTER_KEY, JSON.stringify({
         excludedCats: state.excludedCats,
+        excludedSubs: state.excludedSubs,
         excludedDays: state.excludedDays,
         excludedAreas: state.excludedAreas,
         h0: state.h0, h1: state.h1,
@@ -470,6 +511,7 @@
 
     function passes(e, ignoreHour) {
       if (state.excludedCats.includes(e.cat)) return false;
+      if (e.sub && state.excludedSubs.includes(e.sub)) return false;
       if (state.excludedDays.includes(e.dow)) return false;
       if (state.excludedAreas.includes(e.area)) return false;
       if (state.place && e.place !== state.place) return false;
@@ -488,16 +530,25 @@
     }
 
     function buildControls() {
+      const catInputs = {};
       CATS.forEach((c) => {
+        const block = document.createElement("div");
+        block.className = "cat-block";
         const label = document.createElement("label");
         label.className = "check";
         const input = document.createElement("input");
         input.type = "checkbox";
-        input.checked = !state.excludedCats.includes(c.id);
+        const subsOfCat = SUBS.filter((sub) => sub.cat === c.id);
+        const subInputs = {};
         input.addEventListener("change", () => {
-          state.excludedCats = input.checked
-            ? state.excludedCats.filter((id) => id !== c.id)
-            : state.excludedCats.concat(c.id);
+          if (input.checked) {
+            state.excludedCats = state.excludedCats.filter((id) => id !== c.id);
+            const ids = new Set(subsOfCat.map((sub) => sub.id));
+            state.excludedSubs = state.excludedSubs.filter((id) => !ids.has(id));
+          } else if (!state.excludedCats.includes(c.id)) {
+            state.excludedCats = state.excludedCats.concat(c.id);
+          }
+          paintCat(c.id);
           saveFilters(); render();
         });
         const span = document.createElement("span");
@@ -506,8 +557,61 @@
         dot.style.background = c.color;
         span.append(dot, document.createTextNode(c.name));
         label.append(input, span);
-        els.cats.append(label);
+        block.append(label);
+        if (subsOfCat.length) {
+          const list = document.createElement("div");
+          list.className = "subs";
+          subsOfCat.forEach((sub) => {
+            const subLabel = document.createElement("label");
+            subLabel.className = "check";
+            const subInput = document.createElement("input");
+            subInput.type = "checkbox";
+            subInput.addEventListener("change", () => {
+              if (subInput.checked) {
+                state.excludedSubs = state.excludedSubs.filter((id) => id !== sub.id);
+                state.excludedCats = state.excludedCats.filter((id) => id !== c.id);
+              } else if (!state.excludedSubs.includes(sub.id)) {
+                state.excludedSubs = state.excludedSubs.concat(sub.id);
+                const allOff = subsOfCat.every((item) => state.excludedSubs.includes(item.id));
+                const singletons = inHorizon.some((e) => e.cat === c.id && !e.sub);
+                if (allOff && !singletons && !state.excludedCats.includes(c.id)) {
+                  state.excludedCats = state.excludedCats.concat(c.id);
+                }
+              }
+              paintCat(c.id);
+              saveFilters(); render();
+            });
+            const subSpan = document.createElement("span");
+            subSpan.append(document.createTextNode(sub.label));
+            const count = document.createElement("span");
+            count.className = "count";
+            count.textContent = String(sub.count);
+            subSpan.append(count);
+            subLabel.append(subInput, subSpan);
+            list.append(subLabel);
+            subInputs[sub.id] = subInput;
+          });
+          block.append(list);
+        }
+        catInputs[c.id] = { parent: input, subs: subInputs };
+        els.cats.append(block);
       });
+
+      function paintCat(catId) {
+        const ui = catInputs[catId];
+        const off = state.excludedCats.includes(catId);
+        const subIds = Object.keys(ui.subs);
+        const excluded = subIds.filter((id) => state.excludedSubs.includes(id));
+        const singletons = inHorizon.some((e) => e.cat === catId && !e.sub);
+        ui.parent.checked = !off;
+        ui.parent.indeterminate = !off && excluded.length > 0 && (excluded.length < subIds.length || singletons);
+        subIds.forEach((id) => {
+          ui.subs[id].disabled = off;
+          ui.subs[id].checked = !off && !state.excludedSubs.includes(id);
+        });
+      }
+      CATS.forEach((c) => paintCat(c.id));
+      els.cats.paint = () => CATS.forEach((c) => paintCat(c.id));
 
       JOUR_BTN.forEach((j) => {
         const b = document.createElement("button");
@@ -817,6 +921,7 @@
     els.emptyWeeks.addEventListener("change", () => { state.emptyWeeks = els.emptyWeeks.checked; saveFilters(); render(); });
     document.getElementById("reset").addEventListener("click", () => {
       state.excludedCats = [];
+      state.excludedSubs = [];
       state.excludedDays = [];
       state.excludedAreas = [];
       state.h0 = 9; state.h1 = 17;
@@ -829,7 +934,7 @@
       els.h0.value = 9; els.h1.value = 17;
       els.onlyNew.checked = false;
       els.emptyWeeks.checked = false;
-      els.cats.querySelectorAll("input").forEach((i) => { i.checked = true; });
+      els.cats.querySelectorAll("input").forEach((i) => { i.checked = true; i.indeterminate = false; i.disabled = false; });
       els.areas.querySelectorAll("input").forEach((i) => { i.checked = true; });
       els.days.querySelectorAll("button").forEach((b) => b.setAttribute("aria-pressed", "true"));
       paintSlider(); saveFilters(); render();
@@ -850,7 +955,7 @@
     src.href = "https://www.accueilnewyork.org/Calendrier-des-rencontres-175";
     src.target = "_blank";
     src.rel = "noopener noreferrer";
-    src.textContent = "Calendrier officiel de l’ANY";
+    src.textContent = "Calendrier officiel de\u00A0l’ANY";
     els.lede.append(src, document.createTextNode("."));
 
     const last = inHorizon.reduce((a, e) => e.date > a ? e.date : a, "");
