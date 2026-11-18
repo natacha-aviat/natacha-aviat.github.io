@@ -1,0 +1,867 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Agenda ANY — rencontres Accueil New York</title>
+  <meta name="description" content="Agenda des rencontres de l’Accueil New York, du jour jusqu’à août : une ligne par semaine, filtres par catégorie, horaire, jour, lieu et quartier.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,560;0,9..144,680;1,9..144,560&family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #efe6d8;
+      --paper: #fffdf8;
+      --ink: #1e1a16;
+      --muted: #6e655c;
+      --line: #e3d8c8;
+      --accent: #8e2c42;
+      --accent-soft: #f8e7ea;
+      --today: #fff3cf;
+      --shadow: 0 10px 30px rgba(60, 36, 18, .08);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background:
+        radial-gradient(1200px 400px at 10% -10%, #f7efe2 0%, transparent 50%),
+        var(--bg);
+      color: var(--ink);
+      font-family: Figtree, "Segoe UI", sans-serif;
+      font-size: 16px;
+      line-height: 1.45;
+    }
+    button, input, select { font: inherit; color: inherit; }
+    a { color: var(--accent); }
+    .wrap { width: min(1440px, calc(100% - 28px)); margin: 0 auto; }
+    .hero { padding: 28px 0 8px; }
+    .kicker {
+      margin: 0 0 6px;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      font-size: .72rem;
+      font-weight: 700;
+      color: var(--accent);
+    }
+    h1 {
+      margin: 0;
+      font-family: Fraunces, Georgia, serif;
+      font-weight: 560;
+      font-size: clamp(2rem, 4vw, 3.1rem);
+      letter-spacing: -.03em;
+      line-height: 1.05;
+    }
+    h1 em { font-style: italic; font-weight: 560; }
+    .lede { margin: 10px 0 0; max-width: 46rem; color: var(--muted); }
+    .lede a { font-weight: 600; }
+    .layout {
+      display: grid;
+      grid-template-columns: 292px minmax(0, 1fr);
+      gap: 18px;
+      align-items: start;
+      padding-bottom: 48px;
+    }
+    .filters {
+      position: sticky;
+      top: 12px;
+      max-height: calc(100vh - 24px);
+      overflow: auto;
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 14px 14px 16px;
+      box-shadow: var(--shadow);
+    }
+    .filters h2 {
+      margin: 14px 0 8px;
+      font-size: .78rem;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .filters h2:first-child { margin-top: 0; }
+    .search, .lieu select, .check, .day, .ghost, .solid {
+      border-radius: 10px;
+    }
+    .search, .lieu select {
+      width: 100%;
+      border: 1px solid var(--line);
+      background: #fff;
+      padding: 9px 10px;
+    }
+    .search:focus, .lieu select:focus, .day:focus-visible, .check input:focus-visible + span, button:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
+    }
+    .cats, .areas { display: grid; gap: 6px; }
+    .areas { max-height: 210px; overflow: auto; padding-right: 4px; }
+    .check {
+      display: flex;
+      gap: 8px;
+      align-items: flex-start;
+      font-size: .92rem;
+    }
+    .check input { margin-top: 3px; accent-color: var(--accent); }
+    .dot {
+      width: 10px; height: 10px; border-radius: 99px;
+      display: inline-block; margin-right: 6px; flex: none;
+      transform: translateY(1px);
+      box-shadow: inset 0 0 0 1px rgba(0,0,0,.12);
+    }
+    .days { display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px; }
+    .day {
+      border: 1px solid var(--line);
+      background: #fff;
+      padding: 7px 0;
+      font-size: .78rem;
+      font-weight: 650;
+      cursor: pointer;
+    }
+    .day[aria-pressed="false"] { color: #b3a89c; background: transparent; text-decoration: line-through; }
+    .day[aria-pressed="true"] { background: var(--ink); color: #fffdf8; border-color: var(--ink); }
+    .hint { margin: 6px 0 0; color: var(--muted); font-size: .8rem; }
+    .hours-label { display: flex; justify-content: space-between; font-weight: 700; }
+    .slider { position: relative; height: 34px; margin-top: 6px; }
+    .slider-track, .slider-fill {
+      position: absolute; top: 14px; height: 5px; border-radius: 99px;
+    }
+    .slider-track { left: 0; right: 0; background: #e7dccc; }
+    .slider-fill { background: var(--accent); }
+    .slider input[type="range"] {
+      position: absolute; left: 0; width: 100%; top: 6px; margin: 0;
+      background: none; pointer-events: none; appearance: none; height: 22px;
+    }
+    .slider input[type="range"]::-webkit-slider-thumb {
+      pointer-events: auto; appearance: none; width: 18px; height: 18px;
+      border-radius: 50%; background: #fff; border: 2px solid var(--accent); cursor: grab;
+    }
+    .slider input[type="range"]::-moz-range-thumb {
+      pointer-events: auto; width: 18px; height: 18px; border-radius: 50%;
+      background: #fff; border: 2px solid var(--accent); cursor: grab;
+    }
+    .scale { display: flex; justify-content: space-between; color: var(--muted); font-size: .75rem; }
+    .row-actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+    .ghost, .solid, .linkish {
+      border: 1px solid var(--line); background: #fff; cursor: pointer; padding: 8px 10px;
+    }
+    .solid { background: var(--ink); color: #fffdf8; border-color: var(--ink); }
+    .linkish { border: none; background: none; color: var(--accent); padding: 0; margin-left: .35rem; font-weight: 700; cursor: pointer; }
+    .main { min-width: 0; }
+    .status {
+      display: flex; flex-wrap: wrap; gap: 8px 14px; align-items: center;
+      background: rgba(255, 253, 248, .92);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 10px 12px;
+      margin-bottom: 10px;
+      position: sticky; top: 8px; z-index: 4;
+      backdrop-filter: blur(8px);
+    }
+    .status strong { font-family: Fraunces, Georgia, serif; font-size: 1.25rem; font-weight: 560; }
+    .banner {
+      background: var(--accent-soft);
+      border-radius: 12px;
+      padding: 8px 10px;
+      font-size: .92rem;
+    }
+    .table-scroll { overflow-x: auto; border-radius: 16px; border: 1px solid var(--line); background: var(--paper); box-shadow: var(--shadow); }
+    table { border-collapse: collapse; width: 100%; min-width: 760px; table-layout: fixed; }
+    th, td { border-bottom: 1px solid var(--line); vertical-align: top; padding: 6px; }
+    thead th {
+      text-align: left; font-size: .75rem; letter-spacing: .08em; text-transform: uppercase;
+      color: var(--muted); background: #fbf6ee; position: sticky; top: 0; z-index: 2;
+    }
+    tbody th {
+      text-align: left; font-weight: 650; width: 96px; position: sticky; left: 0;
+      background: #fffdf8; z-index: 1; font-size: .86rem;
+    }
+    .month td {
+      background: #f6efe4; font-family: Fraunces, Georgia, serif; font-size: 1.15rem;
+      padding: 12px 14px; border-bottom: 1px solid var(--line);
+    }
+    td.today { background: var(--today); }
+    tr.now tbody, tr.now { }
+    tr.now th { box-shadow: inset 3px 0 0 var(--accent); }
+    .dayhead { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 6px; color: var(--muted); font-size: .75rem; }
+    .num { font-weight: 750; color: var(--ink); font-size: .95rem; }
+    td.today .num { color: var(--accent); }
+    .tag {
+      font-size: .68rem; font-weight: 750; letter-spacing: .04em; text-transform: uppercase;
+      color: var(--accent);
+    }
+    .card {
+      display: block; width: 100%; text-align: left; cursor: pointer;
+      border: 1px solid var(--line); border-left-width: 4px; border-radius: 10px;
+      background: #fff; padding: 7px 8px 8px; margin: 0 0 6px;
+    }
+    .card:hover { border-color: #c9bba8; }
+    .card time { display: block; font-variant-numeric: tabular-nums; font-size: .78rem; font-weight: 700; }
+    .card .title { display: block; font-weight: 700; font-size: .86rem; line-height: 1.25; margin-top: 2px; overflow-wrap: anywhere; }
+    .card .meta { display: block; color: var(--muted); font-size: .78rem; margin-top: 3px; }
+    .badge {
+      display: inline-block; margin-bottom: 4px;
+      background: var(--accent); color: white; border-radius: 99px;
+      font-size: .68rem; font-weight: 750; letter-spacing: .03em;
+      padding: 2px 6px; text-transform: uppercase;
+    }
+    .empty-cell { color: #c8beb2; font-size: .8rem; }
+    .note { color: var(--muted); font-size: .85rem; margin: 12px 4px 0; }
+    dialog {
+      border: none; padding: 0; border-radius: 18px; width: min(40rem, calc(100% - 1.5rem));
+      background: var(--paper); color: inherit; box-shadow: 0 24px 70px rgba(40, 24, 16, .28);
+    }
+    dialog::backdrop { background: rgba(30, 26, 22, .46); }
+    .sheet { padding: 18px 18px 20px; max-height: min(84vh, 760px); overflow: auto; }
+    .sheet-top { display: flex; justify-content: space-between; gap: 12px; align-items: flex-start; }
+    .catname { margin: 0; font-size: .78rem; font-weight: 750; letter-spacing: .06em; text-transform: uppercase; }
+    .sheet h2 { margin: 4px 0 6px; font-family: Fraunces, Georgia, serif; font-weight: 560; font-size: 1.7rem; letter-spacing: -.02em; }
+    .when { margin: 0; color: var(--muted); }
+    .close {
+      border: 1px solid var(--line); background: #fff; border-radius: 999px; padding: 6px 10px; cursor: pointer;
+    }
+    dl { display: grid; grid-template-columns: 7.2rem 1fr; gap: 6px 10px; margin: 16px 0; }
+    dt { color: var(--muted); font-size: .85rem; }
+    dd { margin: 0; font-weight: 650; }
+    .desc { white-space: pre-wrap; margin: 0 0 16px; }
+    .desc a { word-break: break-all; }
+    .official { font-weight: 750; }
+    .past .num { color: #b3a89c; }
+    @media (max-width: 980px) {
+      .layout { grid-template-columns: 1fr; }
+      .filters { position: static; max-height: none; }
+      .wrap { width: min(1440px, calc(100% - 16px)); }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header class="hero">
+      <p class="kicker">Accueil New York</p>
+      <h1>L’agenda, <em>semaine par semaine</em></h1>
+      <p class="lede" id="lede"></p>
+    </header>
+    <div class="layout">
+      <aside class="filters" aria-label="Filtres">
+        <h2>Recherche</h2>
+        <input class="search" id="q" type="search" placeholder="Titre, animateur, lieu…" autocomplete="off">
+
+        <h2>Catégories</h2>
+        <div class="cats" id="cats"></div>
+
+        <h2>Jours affichés</h2>
+        <div class="days" id="days" role="group" aria-label="Jours de la semaine"></div>
+        <p class="hint">Décochez un jour pour le masquer, par exemple le mercredi.</p>
+
+        <h2>Créneau horaire</h2>
+        <div class="hours-label"><span id="hLabel">9 h – 17 h</span></div>
+        <div class="slider" id="slider">
+          <div class="slider-track"></div>
+          <div class="slider-fill" id="sliderFill"></div>
+          <input type="range" id="h0" min="7" max="22" value="9" aria-label="Début du créneau">
+          <input type="range" id="h1" min="7" max="22" value="17" aria-label="Fin du créneau">
+        </div>
+        <div class="scale"><span>7 h</span><span>12 h</span><span>17 h</span><span>22 h</span></div>
+        <p class="hint">Un rendez-vous reste visible s’il a lieu pendant ce créneau. Le réglage est conservé sur cet appareil.</p>
+
+        <h2>Quartier</h2>
+        <div class="areas" id="areas"></div>
+
+        <h2>Lieu</h2>
+        <div class="lieu"><select id="place" aria-label="Filtrer par lieu"></select></div>
+
+        <h2>Affichage</h2>
+        <label class="check"><input type="checkbox" id="onlyNew"> <span>Nouveautés depuis ma dernière visite</span></label>
+        <label class="check"><input type="checkbox" id="emptyWeeks"> <span>Afficher les semaines vides</span></label>
+        <div class="row-actions">
+          <button type="button" class="ghost" id="reset">Réinitialiser les filtres</button>
+          <button type="button" class="solid" id="jumpToday">Cette semaine</button>
+        </div>
+      </aside>
+
+      <main class="main">
+        <div class="status" id="status" aria-live="polite"></div>
+        <div class="table-scroll">
+          <table aria-label="Agenda, une ligne par semaine">
+            <thead>
+              <tr>
+                <th>Semaine</th>
+                <th>Lun</th><th>Mar</th><th>Mer</th><th>Jeu</th><th>Ven</th><th>Sam</th><th>Dim</th>
+              </tr>
+            </thead>
+            <tbody id="body"></tbody>
+          </table>
+        </div>
+        <p class="note" id="note"></p>
+      </main>
+    </div>
+  </div>
+
+  <dialog id="detail" aria-labelledby="detailTitle">
+    <div class="sheet">
+      <div class="sheet-top">
+        <div>
+          <p class="catname" id="detailCat"></p>
+          <h2 id="detailTitle"></h2>
+          <p class="when" id="detailWhen"></p>
+        </div>
+        <button type="button" class="close" id="detailClose">Fermer</button>
+      </div>
+      <div id="detailBadge"></div>
+      <dl>
+        <dt>Animateur</dt><dd id="detailWho"></dd>
+        <dt>Lieu</dt><dd id="detailPlace"></dd>
+        <dt>Quartier</dt><dd id="detailArea"></dd>
+      </dl>
+      <div class="desc" id="detailDesc"></div>
+      <a class="official" id="detailLink" href="" target="_blank" rel="noopener noreferrer">Voir la fiche sur le site de l’ANY</a>
+    </div>
+  </dialog>
+
+  <script id="events" type="application/json">[{"id":"6432","title":"ANY va au Whitney Museum","start":"2026-11-18 10:45:00","end":"2026-11-18 13:00:00","url":"https://www.accueilnewyork.org/ANY-va-au-Whitney-Museum-6432","cat":"culture","who":"","place":"Whitney Museum","area":"Meatpacking","desc":""},{"id":"6495","title":"Atelier Entreprendre","start":"2026-11-19 10:30:00","end":"2026-11-19 12:30:00","url":"https://www.accueilnewyork.org/Atelier-Entreprendre-6495","cat":"carriere","who":"","place":"Non précisé","area":"Non précisé","desc":"On se retrouve dans cet atelier hebdomadaire pour partager et/ou concretiser nos projets.\n\nle format est simple, on echange a tour de role en repondant a 3 questions :\n\nQu’est ce que tu as fais ?\nQu’est ce que tu vas faire ?\nComment on peut d’aider ?"},{"id":"6461","title":"Marche dans Central Park","start":"2026-11-23 09:30:00","end":"2026-11-23 12:00:00","url":"https://www.accueilnewyork.org/Marche-dans-Central-Park-6461","cat":"sport","who":"Lili et Murielle","place":"Central Park","area":"Central Park","desc":"Une bonne résolution pour commencer la semaine de plein pieds dans la joie et la bonne humeur.\nMarche suivie d’un moment convivial autour d’un café, thé… ☕️🫖\nOn vous contactera pour les détails après votre inscription à l’activité.\nAlors, à vos baskets 👟 et à bientôt.🏃‍♀️🏃‍♀️🏃‍♀️\nLili et Murielle"},{"id":"6496","title":"Atelier Entreprendre","start":"2026-11-26 10:30:00","end":"2026-11-26 12:30:00","url":"https://www.accueilnewyork.org/Atelier-Entreprendre-6496","cat":"carriere","who":"","place":"Non précisé","area":"Non précisé","desc":"On se retrouve dans cet atelier hebdomadaire pour partager et/ou concretiser nos projets.\n\nle format est simple, on echange a tour de role en repondant a 3 questions :\n\nQu’est ce que tu as fais ?\nQu’est ce que tu vas faire ?\nComment on peut d’aider ?"},{"id":"6509","title":"Ca grimpe ! | Bloc à VITAL Climbing Gym - Brooklyn","start":"2026-11-28 11:00:00","end":"2026-11-28 13:00:00","url":"https://www.accueilnewyork.org/Ca-grimpe-Bloc-a-VITAL-Climbing-Gym-Brooklyn-6509","cat":"sport","who":"","place":"VITAL Climbing Gym, 221 N 14th St","area":"Williamsburg","desc":"Amateurs d’escalade et curieux,\n\nPrêts à défier la gravité dans l’un des meilleurs spots d’escalade de Brooklyn ? Rejoignez-nous pour une session de bloc conviviale à VITAL Climbing Gym Brooklyn !\n\n📍 221 N 14th St, Brooklyn, NY 11249\n🚇 Accès facile : métros G, L ou Citibike\n\n✨ CE QUI FAIT DE VITAL UN LIEU UNIQUE :\n\n Mur de bloc intérieur spacieux + espace escalade sur le rooftop Bar/café sur le toit pour refaire vos forces après l’effort Espace fitness complet pour ceux qui accompagnent Zone enfants aménagée (tables, micro-ondes, etc.) Sauna sur le toit pour récupérer après l’effort\n🔰 DÉBUTANTS BIENVENUS !\nPremière fois ? Pas d’inquiétude ! Nous commencerons par une démo de sécurité et vous bénéficierez de conseils personnalisés tout au long de la session. Si vous venez avec des enfants, merci de me contacter en amont.\n\n💰 TARIFS (non pris en charge par l’ANY) :\n\n Day Pass : 35$ Location chaussons : 5$ (apportez les vôtres si vous en avez)\n⚠️ Pour gagner du temps, complétez le waiver en ligne avant de venir : https://www.vitalclimbinggym.com/waiver\n\n🔍 CONSEILS PRATIQUES :\n\n Apportez un petit cadenas pour les casiers Laissez vos bijoux à la maison Portez des vêtements de sport confortables mais pas trop amples\nÀ très vite pour cette aventure verticale !"},{"id":"6462","title":"Marche dans Central Park","start":"2026-11-30 09:30:00","end":"2026-11-30 12:00:00","url":"https://www.accueilnewyork.org/Marche-dans-Central-Park-6462","cat":"sport","who":"Lili et Murielle","place":"Central Park","area":"Central Park","desc":"Une bonne résolution pour commencer la semaine de plein pieds dans la joie et la bonne humeur.\nMarche suivie d’un moment convivial autour d’un café, thé… ☕️🫖\nOn vous contactera pour les détails après votre inscription à l’activité.\nAlors, à vos baskets 👟 et à bientôt.🏃‍♀️🏃‍♀️🏃‍♀️\nLili et Murielle"},{"id":"6521","title":"Bridge","start":"2026-11-30 13:36:00","end":"2026-11-30 14:30:00","url":"https://www.accueilnewyork.org/Bridge-6521","cat":"famille","who":"Françoise","place":"Non précisé","area":"Non précisé","desc":"Cheres amies,\nN’oubliez pas de vous inscrire si vous souhaitez venir jouer ce lundi à 14h30\nsi nous n’avons pas assez de participants, le bridge sera reporte au lundi suivant.\nBon week-end à vous\nFrancoise"},{"id":"6526","title":"Marché de Noël Bryant Park","start":"2026-12-01 10:00:00","end":"2026-12-01 12:00:00","url":"https://www.accueilnewyork.org/Marche-de-Noel-Bryant-Park","cat":"famille","who":"","place":"Bryant Park","area":"Midtown","desc":"🎄 Allons ensemble à la découverte de la magie de Noël à New York !\n\nRetrouvons-nous autour d’une boisson chaude pour profiter de l’ambiance féerique et flâner parmi les jolis stands du marché de Noël de Bryant Park. Un moment chaleureux et convivial pour se plonger dans la magie des fêtes new-yorkaises ! ✨"},{"id":"6419","title":"Games night","start":"2026-12-01 18:30:00","end":"2026-12-01 21:30:00","url":"https://www.accueilnewyork.org/Games-night-6419","cat":"famille","who":"","place":"Non précisé","area":"Non précisé","desc":"Retrouvons-nous pour jouer ensemble à divers jeux tels que : codename, bang, dixit, times up, le 6 qui prend, taboo, explosif kitten et tant d’autres jeux en version française accompagné d’un verre de vin, d’une bière ou d’un soda (consommations non prises en charge par l’ANY).\n\nNous nous retrouverons dès 18h30 pour faire connaissance et le jeu commencera à 19h. Les jeux proposés sont des jeux avec une prise en main rapide et des règles simples.\nAlors n’hésitez pas et venez jouer dans une atmosphère conviviale 😀\n\nPour le bon déroulement de la soirée merci de vous désincrire au minimum 24h à l’avance afin que les éventuelles personnes en liste d’attende puisse être informée qu’une place s’est libérée."},{"id":"6499","title":"Cocktail de bienvenue – Accueil New York","start":"2026-12-02 18:30:00","end":"2026-12-02 20:30:00","url":"https://www.accueilnewyork.org/Cocktail-de-bienvenue-Accueil-New-York","cat":"accueil","who":"","place":"Consulat général de France","area":"Upper East Side","desc":"L’association Accueil New York, en partenariat avec le Consulat général de France à New York, a le plaisir de vous inviter à son cocktail de bienvenue traditionnel, qui se tiendra dans les salons du Consulat.\n\nCe rendez-vous est l’occasion de souhaiter la bienvenue aux nouveaux membres de notre communauté, de faire connaissance et de partager un moment convivial en présence du Consul général de France à New York.\n\nLes bénévoles d’Accueil New York seront également présents pour échanger avec vous, vous faire découvrir les nombreuses activités de l’association et partager leurs expériences de vie new-yorkaise.\n\nQue vous veniez d’arriver à New York ou que vous soyez installés depuis plusieurs années, nous serons heureux de vous retrouver autour d’un verre pour célébrer ensemble l’esprit d’accueil, de partage et de solidarité qui anime notre association.\n\nLes nouveaux membres inscrits cette année seront prioritaires lors des inscriptions, dans la limite des places disponibles."},{"id":"6399","title":"Octagon Private House - Victorian Christmas à Armour-Stiner","start":"2026-12-03 10:30:00","end":"2026-12-03 14:30:00","url":"https://www.accueilnewyork.org/Octagon-House-Victorian-Christmas-a-Armour-Stiner","cat":"culture","who":"","place":"Armour-Stiner Octagon House","area":"Irvington","desc":"Nota : Sortie payante, achat du ticket en ligne via le lien ci dessous\n Ne vous inscrivez que lorsque vous avez acheté votre ticket.  Merci.\n\nVictorian Christmas dans une mansion privée !\n\nDecor de Noel et visite d’ une vieille demeure victorienne du 19 ieme !\nVous serez étonnés de son architecture à 8 côtés, et enchantés de son ambiance de fêtes .\n\n ticket sur lien ci-dessous :"},{"id":"6497","title":"Cafe Harlem","start":"2026-12-04 10:00:00","end":"2026-12-04 12:00:00","url":"https://www.accueilnewyork.org/Cafe-Harlem-6497","cat":"accueil","who":"","place":"Harlem","area":"Harlem","desc":"Venez partager un moment convivial autour d’un bon café pour le dernier de l’année sur le thème de Noel !\nTous les quartiers sont les bienvenus.\n\nCertainement l’un des quartiers les plus vibrants de Manhattan. Entre jazz, hip-hop et gospel, Harlem vit au rythme de la musique et de son incroyable histoire culturelle. Découvrez ses innombrables églises, le mythique Apollo Theater, le tout nouveau Studio Museum… et, avec un peu de chance, laissez-vous surprendre par un concert improvisé au détour d’une rue."},{"id":"6503","title":"L’ANY en fête ! 🎄","start":"2026-12-05 11:00:00","end":"2026-12-05 15:00:00","url":"https://www.accueilnewyork.org/L-ANY-en-fete-2026","cat":"accueil","who":"","place":"Non précisé","area":"Non précisé","desc":"Cette année, l’Accueil New York vous invite à partager une journée festive et conviviale pour célébrer ensemble la fin de l’année !\n\nMembres de l’ANY, familles, amis ou simplement curieux de découvrir notre association, vous êtes tous les bienvenus !\n\nAu programme :\n\n🎁 Des idées de petits cadeaux avec nos exposants : chocolats, gourmandises, porcelaines peintes à la main, cartes de vœux et autres jolies créations.\n\n📚 Une foire aux livres pour dénicher de belles lectures et faire plaisir aux petits comme aux grands.\n\n🎨 Des ateliers créatifs pour les enfants pour préparer les fêtes et repartir avec leurs créations.\n\n☕ Un coin gourmand et convivial pour se retrouver autour d’un chocolat chaud, d’un café, de quelques douceurs et d’un vin chaud.\n\n🎶 Des animations et de belles surprises pour partager un moment tous ensemble !\n\nCe sera aussi l’occasion de rencontrer nos membres, nos bénévoles et de découvrir les nombreuses activités proposées par l’Accueil New York tout au long de l’année.\n\nVenez avec vos enfants, vos amis et votre bonne humeur !\n\nVenez avec vos enfants, vos amis et votre bonne humeur !\n\nInscrivez-vous !\n\nPour nous aider à préparer cette journée, notamment les ateliers pour les enfants, nous vous invitons à vous inscrire à l’avance.\n\nCela nous permettra de prévoir les activités et le matériel en fonction du nombre et de l’âge des enfants.\n\nAu plaisir de vous retrouver nombreux !"},{"id":"6463","title":"Marche dans Central Park","start":"2026-12-07 09:30:00","end":"2026-12-07 12:00:00","url":"https://www.accueilnewyork.org/Marche-dans-Central-Park-6463","cat":"sport","who":"Lili et Murielle","place":"Central Park","area":"Central Park","desc":"Une bonne résolution pour commencer la semaine de plein pieds dans la joie et la bonne humeur.\nMarche suivie d’un moment convivial autour d’un café, thé… ☕️🫖\nOn vous contactera pour les détails après votre inscription à l’activité.\nAlors, à vos baskets 👟 et à bientôt.🏃‍♀️🏃‍♀️🏃‍♀️\nLili et Murielle"},{"id":"6522","title":"Bridge","start":"2026-12-07 13:36:00","end":"2026-12-07 14:30:00","url":"https://www.accueilnewyork.org/Bridge-6522","cat":"famille","who":"Françoise","place":"Non précisé","area":"Non précisé","desc":"Cheres amies,\nN’oubliez pas de vous inscrire si vous souhaitez venir jouer ce lundi à 14h30\nsi nous n’avons pas assez de participants, le bridge sera reporte au lundi suivant.\nBon week-end à vous\nFrancoise"},{"id":"6527","title":"Marchés du monde - Little Odessa","start":"2026-12-08 10:00:00","end":"2026-12-08 12:00:00","url":"https://www.accueilnewyork.org/Marches-du-monde-Little-Odessa-6527","cat":"culture","who":"","place":"Little Odessa","area":"Brighton Beach","desc":""},{"id":"6426","title":"🍸 AFTER-WORK - MAGIC HOUR ROOFTOP 🍷","start":"2026-12-08 18:30:00","end":"2026-12-08 22:00:00","url":"https://www.accueilnewyork.org/%F0%9F%8D%B8-AFTER-WORK-MAGIC-HOUR-ROOFTOP-%F0%9F%8D%B7","cat":"accueil","who":"","place":"Magic Hour Rooftop","area":"Times Square","desc":"Chers membres ANY,\n\nC’est l’heure de notre rendez-vous mensuel ! Rejoignez-nous au Magic Hour Rooftop Bar & Lounge pour notre afterwork sauvage du 8 decembre.\n\nQue vous soyez un habitué ou un nouveau venu, venez échanger en français dans une ambiance décontractée. C’est l’occasion parfaite pour élargir votre cercle, partager vos expériences new-yorkaises et peut-être découvrir votre prochain coup de cœur dans la ville !\n\nN’hésitez pas à venir accompagné(e) - les amis sont toujours les bienvenus.\n\nImportant : merci de mettre à jour votre RSVP si vos plans changent, afin que nous puissions accueillir ceux en liste d’attente.\n\nEn participant à cet évènement, vous serez ajouté au groupe WhatsApp (sinon rejoingnez le tout le suite via ce lien)\n\nÀ mardi !"},{"id":"6453","title":"Cafe UWS","start":"2026-12-09 10:00:00","end":"2026-12-09 13:00:00","url":"https://www.accueilnewyork.org/Cafe-UWS-6453","cat":"accueil","who":"","place":"Adresse communiquée la veille","area":"Upper West Side","desc":"Bonjour à toutes,\n\nÀ l’approche des fêtes de fin d’année, nous organisons un Café UWS, auquel sont conviées les membres de tous les quartiers !\n\nCe sera l’occasion de partager un moment chaleureux avant les fêtes, de retrouver les visages familiers, d’accueillir les nouvelles membres et de faire connaissance avec des participantes venues de toute la ville, dans l’esprit convivial de nos Cafés.\n\nNous conserverons notre formule potluck : chacune est invitée à apporter une petite douceur ou une bouchée salée à partager — fruits, mini-légumes, tartes salées, viennoiseries, gâteaux, chocolats… Vos spécialités de fêtes et vos préparations maison seront particulièrement appréciées !\n\n📍 Le lieu exact sera communiqué aux participantes la veille.\n\nNous espérons vous retrouver nombreuses pour ce Café UWS avant les fêtes !"},{"id":"6519","title":"Club Lecture","start":"2026-12-10 14:30:00","end":"2026-12-10 17:00:00","url":"https://www.accueilnewyork.org/Club-Lecture-6519","cat":"culture","who":"","place":"Non précisé","area":"Non précisé","desc":""},{"id":"6501","title":"ANY va à la Neue Galerie","start":"2026-12-11 10:00:00","end":"2026-12-11 12:00:00","url":"https://www.accueilnewyork.org/ANY-va-a-la-Neue-Galerie","cat":"culture","who":"","place":"Neue Galerie","area":"Upper East Side","desc":""},{"id":"6464","title":"Marche dans Central Park","start":"2026-12-14 09:30:00","end":"2026-12-14 12:00:00","url":"https://www.accueilnewyork.org/Marche-dans-Central-Park-6464","cat":"sport","who":"Lili et Murielle","place":"Central Park","area":"Central Park","desc":"Une bonne résolution pour commencer la semaine de plein pieds dans la joie et la bonne humeur.\nMarche suivie d’un moment convivial autour d’un café, thé… ☕️🫖\nOn vous contactera pour les détails après votre inscription à l’activité.\nAlors, à vos baskets 👟 et à bientôt.🏃‍♀️🏃‍♀️🏃‍♀️\nLili et Murielle"},{"id":"6523","title":"Bridge","start":"2026-12-14 13:36:00","end":"2026-12-14 14:30:00","url":"https://www.accueilnewyork.org/Bridge-6523","cat":"famille","who":"Françoise","place":"Non précisé","area":"Non précisé","desc":"Cheres amies,\nN’oubliez pas de vous inscrire si vous souhaitez venir jouer ce lundi à 14h30\nsi nous n’avons pas assez de participants, le bridge sera reporte au lundi suivant.\nBon week-end à vous\nFrancoise"},{"id":"6420","title":"Games night","start":"2026-12-15 18:30:00","end":"2026-12-15 21:30:00","url":"https://www.accueilnewyork.org/Games-night-6420","cat":"famille","who":"","place":"Non précisé","area":"Non précisé","desc":"Retrouvons-nous pour jouer ensemble à divers jeux tels que : codename, bang, dixit, times up, le 6 qui prend, taboo, explosif kitten et tant d’autres jeux en version française accompagné d’un verre de vin, d’une bière ou d’un soda (consommations non prises en charge par l’ANY).\n\nNous nous retrouverons dès 18h30 pour faire connaissance et le jeu commencera à 19h. Les jeux proposés sont des jeux avec une prise en main rapide et des règles simples.\nAlors n’hésitez pas et venez jouer dans une atmosphère conviviale 😀\n\nPour le bon déroulement de la soirée merci de vous désincrire au minimum 24h à l’avance afin que les éventuelles personnes en liste d’attende puisse être informée qu’une place s’est libérée."},{"id":"6498","title":"Sorties Photos : Special Noel","start":"2026-12-17 13:30:00","end":"2026-12-17 15:30:00","url":"https://www.accueilnewyork.org/Sorties-Photos-Special-Noel","cat":"art","who":"L’équipe photos","place":"Midtown","area":"Midtown","desc":"Noël se prépare dans les petits et grands magasins.\nEt, les rues se parent déjà de mille couleurs et de lumières.\n\nVenez profitez d’une pleine effervescence festive sur Midtown.\nNous clôturerons ainsi en beauté, la dernière sortie Photos de l’année 2026.\n\nL’équipe photos.\nPhoto courtesy : New York City.ca"},{"id":"6510","title":"Ca grimpe ! | Bloc à VITAL - West Harlem 🧗","start":"2026-12-19 11:00:00","end":"2026-12-19 13:00:00","url":"https://www.accueilnewyork.org/Ca-grimpe-Bloc-a-VITAL-West-Harlem-%F0%9F%A7%97","cat":"sport","who":"","place":"VITAL Climbing Gym, 3225 Broadway","area":"West Harlem","desc":"Amateurs d’escalade et curieux,\n\nRejoignez-nous pour une session de bloc à VITAL Climbing Gym - West Harlem !\nsituée au (facilement accessible par la 1, Citybike, etc.). Dans cette salle, c’est du bloc (pas de voie, etc.), avec tous types de difficultés.\n\n📍 3225 Broadway, New York, NY 10027\n🚇 Accès facile : métros 1, bus ou Citybike\n\n✨ CE QUI FAIT DE VITAL UN LIEU UNIQUE :\n\n  Mur de bloc intérieur dans un espace très lumineux.  A deux pas de l’Hudson River.\n🔰 DÉBUTANTS BIENVENUS !\nPremière fois ? Pas d’inquiétude ! Nous commencerons par une démo de sécurité et vous bénéficierez de conseils personnalisés tout au long de la session. Si vous venez avec des enfants, merci de me contacter en amont.\n\n💰 TARIFS (non pris en charge par l’ANY) :\n\n  Day Pass : 25$  Climbing Shoes : 5$ (apportez les vôtres si vous en avez)  ⚠️ Pour gagner du temps, complétez le waiver en ligne avant de venir : https://waiver.smartwaiver.com/w/6155f47b4986c/web/\n🔍 CONSEILS PRATIQUES :\n\n  Apportez un petit cadenas pour les casiers  Laissez vos bijoux à la maison  Portez des vêtements de sport confortables mais pas trop amples\nEn participant à cet évènement, vous serez ajouté au groupe WhatsApp.\n\nÀ très vite pour cette aventure verticale !"},{"id":"6465","title":"Marche dans Central Park","start":"2026-12-21 09:30:00","end":"2026-12-21 12:00:00","url":"https://www.accueilnewyork.org/Marche-dans-Central-Park-6465","cat":"sport","who":"Lili et Murielle","place":"Central Park","area":"Central Park","desc":"Une bonne résolution pour commencer la semaine de plein pieds dans la joie et la bonne humeur.\nMarche suivie d’un moment convivial autour d’un café, thé… ☕️🫖\nOn vous contactera pour les détails après votre inscription à l’activité.\nAlors, à vos baskets 👟 et à bientôt.🏃‍♀️🏃‍♀️🏃‍♀️\nLili et Murielle"},{"id":"6524","title":"Bridge","start":"2026-12-21 13:36:00","end":"2026-12-21 14:30:00","url":"https://www.accueilnewyork.org/Bridge-6524","cat":"famille","who":"Françoise","place":"Non précisé","area":"Non précisé","desc":"Cheres amies,\nN’oubliez pas de vous inscrire si vous souhaitez venir jouer ce lundi à 14h30\nsi nous n’avons pas assez de participants, le bridge sera reporte au lundi suivant.\nBon week-end à vous\nFrancoise"},{"id":"6466","title":"Marche dans Central Park","start":"2026-12-28 09:30:00","end":"2026-12-28 12:00:00","url":"https://www.accueilnewyork.org/Marche-dans-Central-Park-6466","cat":"sport","who":"Lili et Murielle","place":"Central Park","area":"Central Park","desc":"Une bonne résolution pour commencer la semaine de plein pieds dans la joie et la bonne humeur.\nMarche suivie d’un moment convivial autour d’un café, thé… ☕️🫖\nOn vous contactera pour les détails après votre inscription à l’activité.\nAlors, à vos baskets 👟 et à bientôt.🏃‍♀️🏃‍♀️🏃‍♀️\nLili et Murielle"},{"id":"6467","title":"Marche dans Central Park","start":"2027-01-04 09:30:00","end":"2027-01-04 12:00:00","url":"https://www.accueilnewyork.org/Marche-dans-Central-Park-6467","cat":"sport","who":"Lili et Murielle","place":"Central Park","area":"Central Park","desc":"Une bonne résolution pour commencer la semaine de plein pieds dans la joie et la bonne humeur.\nMarche suivie d’un moment convivial autour d’un café, thé… ☕️🫖\nOn vous contactera pour les détails après votre inscription à l’activité.\nAlors, à vos baskets 👟 et à bientôt.🏃‍♀️🏃‍♀️🏃‍♀️\nLili et Murielle"},{"id":"6517","title":"🍸 AFTER-WORK - SKYLARK 🍷","start":"2027-01-05 18:30:00","end":"2027-01-05 21:00:00","url":"https://www.accueilnewyork.org/%F0%9F%8D%B8-AFTER-WORK-SKYLARK-%F0%9F%8D%B7","cat":"accueil","who":"","place":"Skylark","area":"Midtown","desc":"Chers membres ANY,\n\nC’est l’heure de notre rendez-vous mensuel ! Rejoignez-nous au Skylark pour notre afterwork sauvage du 5 janvier.\n\nQue vous soyez un habitué ou un nouveau venu, venez échanger en français dans une ambiance décontractée. C’est l’occasion parfaite pour élargir votre cercle, partager vos expériences new-yorkaises et peut-être découvrir votre prochain coup de cœur dans la ville !\n\nN’hésitez pas à venir accompagné(e) - les amis sont toujours les bienvenus.\n\nImportant : merci de mettre à jour votre RSVP si vos plans changent, afin que nous puissions accueillir ceux en liste d’attente.\n\nEn participant à cet évènement, vous serez ajouté au groupe WhatsApp.\n\nÀ mardi !"},{"id":"6511","title":"Ca grimpe ! | Bloc ou voie - Movement LIC 🧗","start":"2027-01-09 11:00:00","end":"2027-01-09 13:00:00","url":"https://www.accueilnewyork.org/Ca-grimpe-Bloc-ou-voie-Movement-LIC-%F0%9F%A7%97","cat":"sport","who":"","place":"Movement LIC, 11-11 44th Drive","area":"Long Island City","desc":"Amateurs d’escalade et curieux,\n\nRejoignez-nous pour une session de bloc ou de voie (on décidera sur place) à Movement LIC !\n\n📍 11-11 44th Dr, Long Island City, NY 11101\n🚇 Accès facile : métros E, M, 7, G, N, W ou Citybike\n\n✨ CE QUI FAIT DE VITAL UN LIEU UNIQUE :\n\n Mur de bloc intérieur spacieux + voie (auto-enrouleur) Espace fitness complet pour ceux qui accompagnent\n🔰 DÉBUTANTS BIENVENUS !\nPremière fois ? Pas d’inquiétude ! Nous commencerons par une démo de sécurité et vous bénéficierez de conseils personnalisés tout au long de la session. Si vous venez avec des enfants, merci de me contacter en amont.\n\n💰 TARIFS (non pris en charge par l’ANY) :\n\n Day Pass : 35$ Climbing Shoes : 7 (apportez les vôtres si vous en avez) Baudrier : 5 (si on décide de faire de la voie) Bundle (chaussure, baudrier, magnésie) : 12 (si on décide de faire de la voie) ⚠️ Pour gagner du temps, complétez le waiver en ligne avant de venir : https://movementgyms.com/participant-agreement/\n🔍 CONSEILS PRATIQUES :\n\n Apportez un petit cadenas pour les casiers Laissez vos bijoux à la maison Portez des vêtements de sport confortables mais pas trop amples\nEn participant à cet évènement, vous serez ajouté au groupe WhatsApp.\n\nÀ très vite pour cette aventure verticale !"},{"id":"6468","title":"Marche dans Central Park","start":"2027-01-11 09:30:00","end":"2027-01-11 12:00:00","url":"https://www.accueilnewyork.org/Marche-dans-Central-Park-6468","cat":"sport","who":"Lili et Murielle","place":"Central Park","area":"Central Park","desc":"Une bonne résolution pour commencer la semaine de plein pieds dans la joie et la bonne humeur.\nMarche suivie d’un moment convivial autour d’un café, thé… ☕️🫖\nOn vous contactera pour les détails après votre inscription à l’activité.\nAlors, à vos baskets 👟 et à bientôt.🏃‍♀️🏃‍♀️🏃‍♀️\nLili et Murielle"},{"id":"6529","title":"CAFE UPPER WEST SIDE","start":"2027-01-14 10:00:00","end":"2027-01-14 13:00:00","url":"https://www.accueilnewyork.org/CAFE-UPPER-WEST-SIDE-6529","cat":"accueil","who":"","place":"Adresse communiquée la veille","area":"Upper West Side","desc":"Pour bien commencer 2027, l’ANY a le plaisir de vous inviter à son Café UWS de la rentrée, le jeudi 14 janvier 2027, de 10 h à 13 h (nouvel horaire !).\n\nRetrouvons-nous autour d’un café pour échanger nos vœux, faire connaissance avec les nouveaux membres et partager les nouvelles des fêtes. Les membres de tous les quartiers sont les bienvenus !\n\nComme toujours, le café se déroulera en format potluck. Merci d’apporter une petite gourmandise sucrée ou salée, facile à déguster sans assiette ni couverts. Quelques fruits coupés, des mini-quiches, des viennoiseries ou, pourquoi pas, une galette des rois déjà découpée ? Les spécialités maison sont toujours très appréciées !\n\nL’adresse exacte vous sera communiquée la veille.\n\nAu plaisir de commencer l’année ensemble !"},{"id":"6469","title":"Marche dans Central Park","start":"2027-01-18 09:30:00","end":"2027-01-18 12:00:00","url":"https://www.accueilnewyork.org/Marche-dans-Central-Park-6469","cat":"sport","who":"Lili et Murielle","place":"Central Park","area":"Central Park","desc":"Une bonne résolution pour commencer la semaine de plein pieds dans la joie et la bonne humeur.\nMarche suivie d’un moment convivial autour d’un café, thé… ☕️🫖\nOn vous contactera pour les détails après votre inscription à l’activité.\nAlors, à vos baskets 👟 et à bientôt.🏃‍♀️🏃‍♀️🏃‍♀️\nLili et Murielle"},{"id":"6502","title":"Soirée raclette de l’ANY — Réservez votre date !","start":"2027-01-21 18:30:00","end":"2027-01-21 21:30:00","url":"https://www.accueilnewyork.org/Soiree-raclette-de-l-ANY-Reservez-votre-date","cat":"accueil","who":"","place":"Lieu à confirmer","area":"Non précisé","desc":"Quoi de mieux qu’une raclette pour réchauffer une soirée de janvier ?\n\nOn vous prépare un dîner convivial autour du fromage fondu, pour se retrouver et faire de nouvelles rencontres au cœur de l’hiver.\n\nNotez dès maintenant le jeudi 21 janvier 2027 dans votre agenda !\n\nLa soirée est en cours d’organisation : la date reste à confirmer. Le lieu, les horaires, le tarif et les modalités d’inscription seront communiqués prochainement."},{"id":"6470","title":"Marche dans Central Park","start":"2027-01-25 09:30:00","end":"2027-01-25 12:00:00","url":"https://www.accueilnewyork.org/Marche-dans-Central-Park-6470","cat":"sport","who":"Lili et Murielle","place":"Central Park","area":"Central Park","desc":"Une bonne résolution pour commencer la semaine de plein pieds dans la joie et la bonne humeur.\nMarche suivie d’un moment convivial autour d’un café, thé… ☕️🫖\nOn vous contactera pour les détails après votre inscription à l’activité.\nAlors, à vos baskets 👟 et à bientôt.🏃‍♀️🏃‍♀️🏃‍♀️\nLili et Murielle"},{"id":"6518","title":"After-work","start":"2027-01-26 18:30:00","end":"2027-01-26 21:00:00","url":"https://www.accueilnewyork.org/After-work-6518","cat":"accueil","who":"","place":"Non précisé","area":"Non précisé","desc":""},{"id":"6512","title":"Ca grimpe ! | Bloc à VITAL - Lower East Side","start":"2027-01-30 11:00:00","end":"2027-01-30 13:00:00","url":"https://www.accueilnewyork.org/Ca-grimpe-Bloc-a-VITAL-Lower-East-Side-6512","cat":"sport","who":"","place":"VITAL Climbing Gym, 182 Broome St","area":"Lower East Side","desc":"Hello,\n\nOn se maintient au chaud avec une séance à Lower East Side chez VITAL Climbing Gym.\n\nNouvelle salle ouverte à Manhattan, située au 182 Broome St, New York, NY 10002 (facilement accessible par la B, D, F, J, M, Z, Citybike, etc.). Dans cette salle, c’est du bloc (pas de voie, etc.), avec tous types de difficultés.\n\nS’il s’agit de votre première fois, pas d’inquiétude, on démarrera la séance avec une démonstration de sécurité, explications et des conseils tout le long.\nContactez moi si vous comptez venir avec des enfants.\n\nLe prix (non pris en charge par l’ANY) :\n\n  Day Pass : 35  Climbing Shoes : 5 (vous pouvez venir avec votre paire)\nS’il s’agit de votre première fois chez VITAL Climbing Gym, je vous recommande de regarder le waiver (https://waiver.smartwaiver.com/w/i43gfqlcmxxzah9ygcksae/web/) avant de venir (sinon il faudra le faire sur place)\n\nQuelques conseils en plus :\n\n  Evitez de prendre des bijoux  Habits de sports confortables, mais pas trop amples\nA bientôt !"},{"id":"6471","title":"Marche dans Central Park","start":"2027-02-01 09:30:00","end":"2027-02-01 12:00:00","url":"https://www.accueilnewyork.org/Marche-dans-Central-Park-6471","cat":"sport","who":"Lili et Murielle","place":"Central Park","area":"Central Park","desc":"Une bonne résolution pour commencer la semaine de plein pieds dans la joie et la bonne humeur.\nMarche suivie d’un moment convivial autour d’un café, thé… ☕️🫖\nOn vous contactera pour les détails après votre inscription à l’activité.\nAlors, à vos baskets 👟 et à bientôt.🏃‍♀️🏃‍♀️🏃‍♀️\nLili et Murielle"},{"id":"6472","title":"Marche dans Central Park","start":"2027-02-08 09:30:00","end":"2027-02-08 12:00:00","url":"https://www.accueilnewyork.org/Marche-dans-Central-Park-6472","cat":"sport","who":"Lili et Murielle","place":"Central Park","area":"Central Park","desc":"Une bonne résolution pour commencer la semaine de plein pieds dans la joie et la bonne humeur.\nMarche suivie d’un moment convivial autour d’un café, thé… ☕️🫖\nOn vous contactera pour les détails après votre inscription à l’activité.\nAlors, à vos baskets 👟 et à bientôt.🏃‍♀️🏃‍♀️🏃‍♀️\nLili et Murielle"},{"id":"6473","title":"Marche dans Central Park","start":"2027-02-15 09:30:00","end":"2027-02-15 12:00:00","url":"https://www.accueilnewyork.org/Marche-dans-Central-Park-6473","cat":"sport","who":"Lili et Murielle","place":"Central Park","area":"Central Park","desc":"Une bonne résolution pour commencer la semaine de plein pieds dans la joie et la bonne humeur.\nMarche suivie d’un moment convivial autour d’un café, thé… ☕️🫖\nOn vous contactera pour les détails après votre inscription à l’activité.\nAlors, à vos baskets 👟 et à bientôt.🏃‍♀️🏃‍♀️🏃‍♀️\nLili et Murielle"},{"id":"6513","title":"Ca grimpe ! | Bloc à Movement Harlem","start":"2027-02-20 11:00:00","end":"2027-02-20 13:00:00","url":"https://www.accueilnewyork.org/Ca-grimpe-Bloc-a-Movement-Harlem-6513","cat":"sport","who":"","place":"Movement Harlem, 256 W 125th St","area":"Harlem","desc":"Amateurs d’escalade et curieux,\nRejoignez-nous pour une session de bloc à Movement Harlem !\nGrande salle d’escalade de Bloc à Harlem avec un large choix de difficultés, située au 256 W 125th St, New York, NY 10027 en face du théâtre Apollo (facilement accessible par la A, B, C, D, 2, 3, Citybike, etc.).\n\n📍 3225 Broadway, New York, NY 10027\n🚇 Accès facile : métros 1, bus ou Citybike\n\n✨ CE QUI FAIT DE VITAL UN LIEU UNIQUE :\n\n  Mur de bloc intérieur dans un espace très lumineux.  A deux pas de l’Hudson River.\n🔰 DÉBUTANTS BIENVENUS !\nPremière fois ? Pas d’inquiétude ! Nous commencerons par une démo de sécurité et vous bénéficierez de conseils personnalisés tout au long de la session. Si vous venez avec des enfants, merci de me contacter en amont.\n\n💰 TARIFS (non pris en charge par l’ANY) :\n\n  Day Pass : 30$  Climbing Shoes : 7$ (apportez les vôtres si vous en avez)  ⚠️ Pour gagner du temps, complétez le waiver en ligne avant de venir : https://movementgyms.com/participant-agreement/\n🔍 CONSEILS PRATIQUES :\n\n  Apportez un petit cadenas pour les casiers  Laissez vos bijoux à la maison  Portez des vêtements de sport confortables mais pas trop amples\nEn participant à cet évènement, vous serez ajouté au groupe WhatsApp.\n\nÀ très vite pour cette aventure verticale !"},{"id":"6474","title":"Marche dans Central Park","start":"2027-02-22 09:30:00","end":"2027-02-22 12:00:00","url":"https://www.accueilnewyork.org/Marche-dans-Central-Park-6474","cat":"sport","who":"Lili et Murielle","place":"Central Park","area":"Central Park","desc":"Une bonne résolution pour commencer la semaine de plein pieds dans la joie et la bonne humeur.\nMarche suivie d’un moment convivial autour d’un café, thé… ☕️🫖\nOn vous contactera pour les détails après votre inscription à l’activité.\nAlors, à vos baskets 👟 et à bientôt.🏃‍♀️🏃‍♀️🏃‍♀️\nLili et Murielle"},{"id":"6504","title":"Sorties Photos : Neige, Givre, Glace","start":"2027-02-25 11:00:00","end":"2027-02-25 12:30:00","url":"https://www.accueilnewyork.org/Sorties-Photos-Neige-Givre-Glace","cat":"art","who":"","place":"Manhattan","area":"Manhattan","desc":"Focus d’hiver :  Neige et Glace à Manhattan.\n\nUn walking tour en programmation."},{"id":"6475","title":"Marche dans Central Park","start":"2027-03-01 09:30:00","end":"2027-03-01 12:00:00","url":"https://www.accueilnewyork.org/Marche-dans-Central-Park-6475","cat":"sport","who":"Lili et Murielle","place":"Central Park","area":"Central Park","desc":"Une bonne résolution pour commencer la semaine de plein pieds dans la joie et la bonne humeur.\nMarche suivie d’un moment convivial autour d’un café, thé… ☕️🫖\nOn vous contactera pour les détails après votre inscription à l’activité.\nAlors, à vos baskets 👟 et à bientôt.🏃‍♀️🏃‍♀️🏃‍♀️\nLili et Murielle"},{"id":"6476","title":"Marche dans Central Park","start":"2027-03-08 09:30:00","end":"2027-03-08 12:00:00","url":"https://www.accueilnewyork.org/Marche-dans-Central-Park-6476","cat":"sport","who":"Lili et Murielle","place":"Central Park","area":"Central Park","desc":"Une bonne résolution pour commencer la semaine de plein pieds dans la joie et la bonne humeur.\nMarche suivie d’un moment convivial autour d’un café, thé… ☕️🫖\nOn vous contactera pour les détails après votre inscription à l’activité.\nAlors, à vos baskets 👟 et à bientôt.🏃‍♀️🏃‍♀️🏃‍♀️\nLili et Murielle"},{"id":"6514","title":"Ca grimpe ! | Bloc ou voie - Movement LIC 🧗","start":"2027-03-13 11:00:00","end":"2027-03-13 13:00:00","url":"https://www.accueilnewyork.org/Ca-grimpe-Bloc-ou-voie-Movement-LIC-%F0%9F%A7%97-6514","cat":"sport","who":"","place":"Movement LIC, 11-11 44th Drive","area":"Long Island City","desc":"Amateurs d’escalade et curieux,\n\nRejoignez-nous pour une session de bloc ou de voie (on décidera sur place) à Movement LIC !\n\n📍 11-11 44th Dr, Long Island City, NY 11101\n🚇 Accès facile : métros E, M, 7, G, N, W ou Citybike\n\n✨ CE QUI FAIT DE VITAL UN LIEU UNIQUE :\n\n Mur de bloc intérieur spacieux + voie (auto-enrouleur) Espace fitness complet pour ceux qui accompagnent\n🔰 DÉBUTANTS BIENVENUS !\nPremière fois ? Pas d’inquiétude ! Nous commencerons par une démo de sécurité et vous bénéficierez de conseils personnalisés tout au long de la session. Si vous venez avec des enfants, merci de me contacter en amont.\n\n💰 TARIFS (non pris en charge par l’ANY) :\n\n Day Pass : 35$ Climbing Shoes : 7 (apportez les vôtres si vous en avez) Baudrier : 5 (si on décide de faire de la voie) Bundle (chaussure, baudrier, magnésie) : 12 (si on décide de faire de la voie) ⚠️ Pour gagner du temps, complétez le waiver en ligne avant de venir : https://movementgyms.com/participant-agreement/\n🔍 CONSEILS PRATIQUES :\n\n Apportez un petit cadenas pour les casiers Laissez vos bijoux à la maison Portez des vêtements de sport confortables mais pas trop amples\nEn participant à cet évènement, vous serez ajouté au groupe WhatsApp.\n\nÀ très vite pour cette aventure verticale !"},{"id":"6477","title":"Marche dans Central Park","start":"2027-03-15 09:30:00","end":"2027-03-15 12:00:00","url":"https://www.accueilnewyork.org/Marche-dans-Central-Park-6477","cat":"sport","who":"Lili et Murielle","place":"Central Park","area":"Central Park","desc":"Une bonne résolution pour commencer la semaine de plein pieds dans la joie et la bonne humeur.\nMarche suivie d’un moment convivial autour d’un café, thé… ☕️🫖\nOn vous contactera pour les détails après votre inscription à l’activité.\nAlors, à vos baskets 👟 et à bientôt.🏃‍♀️🏃‍♀️🏃‍♀️\nLili et Murielle"},{"id":"6478","title":"Marche dans Central Park","start":"2027-03-22 09:30:00","end":"2027-03-22 12:00:00","url":"https://www.accueilnewyork.org/Marche-dans-Central-Park-6478","cat":"sport","who":"Lili et Murielle","place":"Central Park","area":"Central Park","desc":"Une bonne résolution pour commencer la semaine de plein pieds dans la joie et la bonne humeur.\nMarche suivie d’un moment convivial autour d’un café, thé… ☕️🫖\nOn vous contactera pour les détails après votre inscription à l’activité.\nAlors, à vos baskets 👟 et à bientôt.🏃‍♀️🏃‍♀️🏃‍♀️\nLili et Murielle"},{"id":"6505","title":"Sorties Photos : Eclosion de fleurs","start":"2027-03-25 11:00:00","end":"2027-03-25 12:30:00","url":"https://www.accueilnewyork.org/Sorties-Photos-Eclosion-de-fleurs","cat":"art","who":"","place":"Non précisé","area":"Non précisé","desc":"Special Printemps : Sakura walking tour en programmation.\nPremières éclosions de fleurs et de couleurs !\n\nPour le fun, portons une pointe de jaune, de rose et de fuchsia."},{"id":"6479","title":"Marche dans Central Park","start":"2027-03-29 09:30:00","end":"2027-03-29 12:00:00","url":"https://www.accueilnewyork.org/Marche-dans-Central-Park-6479","cat":"sport","who":"Lili et Murielle","place":"Central Park","area":"Central Park","desc":"Une bonne résolution pour commencer la semaine de plein pieds dans la joie et la bonne humeur.\nMarche suivie d’un moment convivial autour d’un café, thé… ☕️🫖\nOn vous contactera pour les détails après votre inscription à l’activité.\nAlors, à vos baskets 👟 et à bientôt.🏃‍♀️🏃‍♀️🏃‍♀️\nLili et Murielle"},{"id":"6515","title":"Ca grimpe ! | Bloc à VITAL Climbing Gym - Brooklyn 🧗","start":"2027-04-03 11:00:00","end":"2027-04-03 13:00:00","url":"https://www.accueilnewyork.org/Ca-grimpe-Bloc-a-VITAL-Climbing-Gym-Brooklyn-%F0%9F%A7%97","cat":"sport","who":"","place":"VITAL Climbing Gym, 221 N 14th St","area":"Williamsburg","desc":"Amateurs d’escalade et curieux,\n\nPrêts à défier la gravité dans l’un des meilleurs spots d’escalade de Brooklyn ? Rejoignez-nous pour une session de bloc conviviale à VITAL Climbing Gym Brooklyn !\n\n📍 221 N 14th St, Brooklyn, NY 11249\n🚇 Accès facile : métros G, L ou Citibike\n\n✨ CE QUI FAIT DE VITAL UN LIEU UNIQUE :\n\n Mur de bloc intérieur spacieux + espace escalade sur le rooftop Bar/café sur le toit pour refaire vos forces après l’effort Espace fitness complet pour ceux qui accompagnent Zone enfants aménagée (tables, micro-ondes, etc.) Sauna}} sur le toit pour récupérer après l’effort\n🔰 DÉBUTANTS BIENVENUS !\nPremière fois ? Pas d’inquiétude ! Nous commencerons par une démo de sécurité et vous bénéficierez de conseils personnalisés tout au long de la session. Si vous venez avec des enfants, merci de me contacter en amont.\n\n💰 TARIFS (non pris en charge par l’ANY) :\n\n Day Pass : 35$ Location chaussons : 5$ (apportez les vôtres si vous en avez) ⚠️ Pour gagner du temps, complétez le waiver en ligne avant de venir : https://www.vitalclimbinggym.com/waiver\n🔍 CONSEILS PRATIQUES :\n\n Apportez un petit cadenas pour les casiers Laissez vos bijoux à la maison Portez des vêtements de sport confortables mais pas trop amples\nÀ très vite pour cette aventure verticale !"},{"id":"6480","title":"Marche dans Central Park","start":"2027-04-05 09:30:00","end":"2027-04-05 12:00:00","url":"https://www.accueilnewyork.org/Marche-dans-Central-Park-6480","cat":"sport","who":"Lili et Murielle","place":"Central Park","area":"Central Park","desc":"Une bonne résolution pour commencer la semaine de plein pieds dans la joie et la bonne humeur.\nMarche suivie d’un moment convivial autour d’un café, thé… ☕️🫖\nOn vous contactera pour les détails après votre inscription à l’activité.\nAlors, à vos baskets 👟 et à bientôt.🏃‍♀️🏃‍♀️🏃‍♀️\nLili et Murielle"},{"id":"6481","title":"Marche dans Central Park","start":"2027-04-12 09:30:00","end":"2027-04-12 12:00:00","url":"https://www.accueilnewyork.org/Marche-dans-Central-Park-6481","cat":"sport","who":"Lili et Murielle","place":"Central Park","area":"Central Park","desc":"Une bonne résolution pour commencer la semaine de plein pieds dans la joie et la bonne humeur.\nMarche suivie d’un moment convivial autour d’un café, thé… ☕️🫖\nOn vous contactera pour les détails après votre inscription à l’activité.\nAlors, à vos baskets 👟 et à bientôt.🏃‍♀️🏃‍♀️🏃‍♀️\nLili et Murielle"},{"id":"6482","title":"Marche dans Central Park","start":"2027-04-19 09:30:00","end":"2027-04-19 12:00:00","url":"https://www.accueilnewyork.org/Marche-dans-Central-Park-6482","cat":"sport","who":"Lili et Murielle","place":"Central Park","area":"Central Park","desc":"Une bonne résolution pour commencer la semaine de plein pieds dans la joie et la bonne humeur.\nMarche suivie d’un moment convivial autour d’un café, thé… ☕️🫖\nOn vous contactera pour les détails après votre inscription à l’activité.\nAlors, à vos baskets 👟 et à bientôt.🏃‍♀️🏃‍♀️🏃‍♀️\nLili et Murielle"},{"id":"6506","title":"Sorties Photos : Riviére et Cascade","start":"2027-04-22 10:30:00","end":"2027-04-22 14:30:00","url":"https://www.accueilnewyork.org/Sorties-Photos-Riviere-et-Cascade","cat":"art","who":"","place":"Départ Grand Central","area":"Midtown","desc":"Sortie sur Hudson River en court de programmation.\n\nLa fonte des neiges a gonflé les ruisseaux et le spectacle d’une cascade toute spéciale vous émerveillera par son débit et son environnement autant technique que verdoyant.\n\nRendez vous à Gand Central au départ d’ un périple hudsonien."},{"id":"6516","title":"Ca grimpe ! | Bloc à VITAL - Lower East Side","start":"2027-04-24 11:00:00","end":"2027-04-24 13:00:00","url":"https://www.accueilnewyork.org/Ca-grimpe-Bloc-a-VITAL-Lower-East-Side-6516","cat":"sport","who":"","place":"VITAL Climbing Gym, 182 Broome St","area":"Lower East Side","desc":"Hello,\n\nOn se maintient au chaud avec une séance à Lower East Side chez VITAL Climbing Gym.\n\nNouvelle salle ouverte à Manhattan, située au 182 Broome St, New York, NY 10002 (facilement accessible par la B, D, F, J, M, Z, Citybike, etc.). Dans cette salle, c’est du bloc (pas de voie, etc.), avec tous types de difficultés.\n\nS’il s’agit de votre première fois, pas d’inquiétude, on démarrera la séance avec une démonstration de sécurité, explications et des conseils tout le long.\nContactez moi si vous comptez venir avec des enfants.\n\nLe prix (non pris en charge par l’ANY) :\n\n  Day Pass : 35  Climbing Shoes : 5 (vous pouvez venir avec votre paire)\nS’il s’agit de votre première fois chez VITAL Climbing Gym, je vous recommande de regarder le waiver (https://waiver.smartwaiver.com/w/i43gfqlcmxxzah9ygcksae/web/) avant de venir (sinon il faudra le faire sur place)\n\nQuelques conseils en plus :\n\n  Evitez de prendre des bijoux  Habits de sports confortables, mais pas trop amples\nA bientôt !"},{"id":"6483","title":"Marche dans Central Park","start":"2027-04-26 09:30:00","end":"2027-04-26 12:00:00","url":"https://www.accueilnewyork.org/Marche-dans-Central-Park-6483","cat":"sport","who":"Lili et Murielle","place":"Central Park","area":"Central Park","desc":"Une bonne résolution pour commencer la semaine de plein pieds dans la joie et la bonne humeur.\nMarche suivie d’un moment convivial autour d’un café, thé… ☕️🫖\nOn vous contactera pour les détails après votre inscription à l’activité.\nAlors, à vos baskets 👟 et à bientôt.🏃‍♀️🏃‍♀️🏃‍♀️\nLili et Murielle"},{"id":"6484","title":"Marche dans Central Park","start":"2027-05-03 09:30:00","end":"2027-05-03 12:00:00","url":"https://www.accueilnewyork.org/Marche-dans-Central-Park-6484","cat":"sport","who":"Lili et Murielle","place":"Central Park","area":"Central Park","desc":"Une bonne résolution pour commencer la semaine de plein pieds dans la joie et la bonne humeur.\nMarche suivie d’un moment convivial autour d’un café, thé… ☕️🫖\nOn vous contactera pour les détails après votre inscription à l’activité.\nAlors, à vos baskets 👟 et à bientôt.🏃‍♀️🏃‍♀️🏃‍♀️\nLili et Murielle"},{"id":"6485","title":"Marche dans Central Park","start":"2027-05-10 09:30:00","end":"2027-05-10 12:00:00","url":"https://www.accueilnewyork.org/Marche-dans-Central-Park-6485","cat":"sport","who":"Lili et Murielle","place":"Central Park","area":"Central Park","desc":"Une bonne résolution pour commencer la semaine de plein pieds dans la joie et la bonne humeur.\nMarche suivie d’un moment convivial autour d’un café, thé… ☕️🫖\nOn vous contactera pour les détails après votre inscription à l’activité.\nAlors, à vos baskets 👟 et à bientôt.🏃‍♀️🏃‍♀️🏃‍♀️\nLili et Murielle"},{"id":"6486","title":"Marche dans Central Park","start":"2027-05-17 09:30:00","end":"2027-05-17 12:00:00","url":"https://www.accueilnewyork.org/Marche-dans-Central-Park-6486","cat":"sport","who":"Lili et Murielle","place":"Central Park","area":"Central Park","desc":"Une bonne résolution pour commencer la semaine de plein pieds dans la joie et la bonne humeur.\nMarche suivie d’un moment convivial autour d’un café, thé… ☕️🫖\nOn vous contactera pour les détails après votre inscription à l’activité.\nAlors, à vos baskets 👟 et à bientôt.🏃‍♀️🏃‍♀️🏃‍♀️\nLili et Murielle"},{"id":"6507","title":"Sorties Photos : Skyline et Hudson River","start":"2027-05-20 10:00:00","end":"2027-05-20 12:30:00","url":"https://www.accueilnewyork.org/Sorties-Photos-Skyline-et-Hudson-River","cat":"art","who":"","place":"Bord de l’Hudson","area":"Non précisé","desc":"En focus : la plus belle skyline, du plus beau point de vue seaside !\n\nAu menu du walking tour au soleil au bord de l’eau :\nSites d’ évènements historiques mais aussi le ponton des pêcheurs et l’esplanade des \"Will you Marry me ? \""},{"id":"6487","title":"Marche dans Central Park","start":"2027-05-24 09:30:00","end":"2027-05-24 12:00:00","url":"https://www.accueilnewyork.org/Marche-dans-Central-Park-6487","cat":"sport","who":"Lili et Murielle","place":"Central Park","area":"Central Park","desc":"Une bonne résolution pour commencer la semaine de plein pieds dans la joie et la bonne humeur.\nMarche suivie d’un moment convivial autour d’un café, thé… ☕️🫖\nOn vous contactera pour les détails après votre inscription à l’activité.\nAlors, à vos baskets 👟 et à bientôt.🏃‍♀️🏃‍♀️🏃‍♀️\nLili et Murielle"},{"id":"6488","title":"Marche dans Central Park","start":"2027-05-31 09:30:00","end":"2027-05-31 12:00:00","url":"https://www.accueilnewyork.org/Marche-dans-Central-Park-6488","cat":"sport","who":"Lili et Murielle","place":"Central Park","area":"Central Park","desc":"Une bonne résolution pour commencer la semaine de plein pieds dans la joie et la bonne humeur.\nMarche suivie d’un moment convivial autour d’un café, thé… ☕️🫖\nOn vous contactera pour les détails après votre inscription à l’activité.\nAlors, à vos baskets 👟 et à bientôt.🏃‍♀️🏃‍♀️🏃‍♀️\nLili et Murielle"},{"id":"6489","title":"Marche dans Central Park","start":"2027-06-07 09:30:00","end":"2027-06-07 12:00:00","url":"https://www.accueilnewyork.org/Marche-dans-Central-Park-6489","cat":"sport","who":"Lili et Murielle","place":"Central Park","area":"Central Park","desc":"Une bonne résolution pour commencer la semaine de plein pieds dans la joie et la bonne humeur.\nMarche suivie d’un moment convivial autour d’un café, thé… ☕️🫖\nOn vous contactera pour les détails après votre inscription à l’activité.\nAlors, à vos baskets 👟 et à bientôt.🏃‍♀️🏃‍♀️🏃‍♀️\nLili et Murielle"},{"id":"6490","title":"Marche dans Central Park","start":"2027-06-14 09:30:00","end":"2027-06-14 12:00:00","url":"https://www.accueilnewyork.org/Marche-dans-Central-Park-6490","cat":"sport","who":"Lili et Murielle","place":"Central Park","area":"Central Park","desc":"Une bonne résolution pour commencer la semaine de plein pieds dans la joie et la bonne humeur.\nMarche suivie d’un moment convivial autour d’un café, thé… ☕️🫖\nOn vous contactera pour les détails après votre inscription à l’activité.\nAlors, à vos baskets 👟 et à bientôt.🏃‍♀️🏃‍♀️🏃‍♀️\nLili et Murielle"},{"id":"6491","title":"Marche dans Central Park","start":"2027-06-21 09:30:00","end":"2027-06-21 12:00:00","url":"https://www.accueilnewyork.org/Marche-dans-Central-Park-6491","cat":"sport","who":"Lili et Murielle","place":"Central Park","area":"Central Park","desc":"Une bonne résolution pour commencer la semaine de plein pieds dans la joie et la bonne humeur.\nMarche suivie d’un moment convivial autour d’un café, thé… ☕️🫖\nOn vous contactera pour les détails après votre inscription à l’activité.\nAlors, à vos baskets 👟 et à bientôt.🏃‍♀️🏃‍♀️🏃‍♀️\nLili et Murielle"},{"id":"6492","title":"Marche dans Central Park","start":"2027-06-28 09:30:00","end":"2027-06-28 12:00:00","url":"https://www.accueilnewyork.org/Marche-dans-Central-Park-6492","cat":"sport","who":"Lili et Murielle","place":"Central Park","area":"Central Park","desc":"Une bonne résolution pour commencer la semaine de plein pieds dans la joie et la bonne humeur.\nMarche suivie d’un moment convivial autour d’un café, thé… ☕️🫖\nOn vous contactera pour les détails après votre inscription à l’activité.\nAlors, à vos baskets 👟 et à bientôt.🏃‍♀️🏃‍♀️🏃‍♀️\nLili et Murielle"}]</script>
+  <script>
+    const CATS = [
+      { id: "accueil", name: "Accueil et Café de Quartier", color: "#eb506a" },
+      { id: "art", name: "Activités Artistiques et Culinaires", color: "#fac400" },
+      { id: "culture", name: "Activités Culturelles et Touristiques", color: "#2a870b" },
+      { id: "famille", name: "Activités Familiales et de Jeux", color: "#9c77f2" },
+      { id: "sport", name: "Activités Sportives et Bien-Etre", color: "#5890d1" },
+      { id: "langues", name: "Activités Linguistiques", color: "#a1614a" },
+      { id: "carriere", name: "Carrière", color: "#ff801f" }
+    ];
+    const CAT = Object.fromEntries(CATS.map((c) => [c.id, c]));
+    const JOUR = ["dimanche", "lundi", "mardi", "mercredi", "jeudi", "vendredi", "samedi"];
+    const JOUR_C = ["D", "L", "M", "M", "J", "V", "S"];
+    const JOUR_BTN = [
+      { d: 1, label: "Lun" }, { d: 2, label: "Mar" }, { d: 3, label: "Mer" },
+      { d: 4, label: "Jeu" }, { d: 5, label: "Ven" }, { d: 6, label: "Sam" }, { d: 0, label: "Dim" }
+    ];
+    const MOIS = ["janvier", "février", "mars", "avril", "mai", "juin", "juillet", "août", "septembre", "octobre", "novembre", "décembre"];
+    const MOIS_C = ["janv.", "févr.", "mars", "avr.", "mai", "juin", "juil.", "août", "sept.", "oct.", "nov.", "déc."];
+    const HMIN = 7, HMAX = 22;
+    const FILTER_KEY = "any-filters-v1";
+    const KNOWN_KEY = "any-known-ids";
+    const SESSION_NEW = "any-session-new";
+
+    const EVENTS = JSON.parse(document.getElementById("events").textContent).map(prep);
+
+    function prep(e) {
+      const s = parts(e.start);
+      const en = parts(e.end);
+      return Object.assign({}, e, {
+        y: s.y, m: s.m, d: s.d, sh: s.hh, sm: s.mm,
+        eh: en.hh, em: en.mm, date: s.key,
+        startMin: s.hh * 60 + s.mm,
+        endMin: en.hh * 60 + en.mm,
+        dow: new Date(s.y, s.m - 1, s.d).getDay()
+      });
+    }
+    function parts(s) {
+      const [date, time] = s.split(" ");
+      const [y, m, d] = date.split("-").map(Number);
+      const [hh, mm] = time.split(":").map(Number);
+      return { y, m, d, hh, mm, key: date };
+    }
+    function pad(n) { return String(n).padStart(2, "0"); }
+    function ymd(dt) { return dt.getFullYear() + "-" + pad(dt.getMonth() + 1) + "-" + pad(dt.getDate()); }
+    function fromYmd(key) {
+      const [y, m, d] = key.split("-").map(Number);
+      return new Date(y, m - 1, d);
+    }
+    function addDays(dt, n) {
+      const x = new Date(dt.getFullYear(), dt.getMonth(), dt.getDate() + n);
+      return x;
+    }
+    function mondayOf(dt) {
+      const day = dt.getDay();
+      const diff = day === 0 ? -6 : 1 - day;
+      return addDays(dt, diff);
+    }
+    function fmtHour(h) { return h + " h"; }
+    function fmtClock(h, m) { return pad(h) + ":" + pad(m); }
+    function cap(s) { return s.charAt(0).toUpperCase() + s.slice(1); }
+
+    const todayDt = new Date();
+    const todayKey = ymd(todayDt);
+    const rangeStart = mondayOf(new Date(todayDt.getFullYear(), todayDt.getMonth(), todayDt.getDate()));
+    const endYear = todayDt.getMonth() > 7 ? todayDt.getFullYear() + 1 : todayDt.getFullYear();
+    const rangeEnd = new Date(endYear, 7, 31);
+    const horizonKey = ymd(rangeEnd);
+
+    const inHorizon = EVENTS.filter((e) => e.date >= todayKey && e.date <= horizonKey);
+
+    const novelty = computeNovelty(inHorizon.map((e) => e.id));
+
+    const state = loadFilters();
+    state.q = "";
+    state.onlyNew = false;
+
+    const els = {
+      q: document.getElementById("q"),
+      cats: document.getElementById("cats"),
+      days: document.getElementById("days"),
+      areas: document.getElementById("areas"),
+      place: document.getElementById("place"),
+      h0: document.getElementById("h0"),
+      h1: document.getElementById("h1"),
+      hLabel: document.getElementById("hLabel"),
+      sliderFill: document.getElementById("sliderFill"),
+      onlyNew: document.getElementById("onlyNew"),
+      emptyWeeks: document.getElementById("emptyWeeks"),
+      body: document.getElementById("body"),
+      status: document.getElementById("status"),
+      note: document.getElementById("note"),
+      lede: document.getElementById("lede"),
+      dialog: document.getElementById("detail")
+    };
+
+    function loadFilters() {
+      const blank = { excludedCats: [], excludedDays: [], excludedAreas: [], h0: 9, h1: 17, place: "", emptyWeeks: false };
+      try {
+        const s = JSON.parse(localStorage.getItem(FILTER_KEY) || "null");
+        if (!s || typeof s !== "object") return blank;
+        let h0 = num(s.h0, 9), h1 = num(s.h1, 17);
+        if (h0 > h1) { const t = h0; h0 = h1; h1 = t; }
+        return {
+          excludedCats: arr(s.excludedCats),
+          excludedDays: arr(s.excludedDays).map(Number).filter((n) => n >= 0 && n <= 6),
+          excludedAreas: arr(s.excludedAreas),
+          h0, h1,
+          place: typeof s.place === "string" ? s.place : "",
+          emptyWeeks: !!s.emptyWeeks
+        };
+      } catch (e) { return blank; }
+    }
+    function num(v, d) {
+      const n = Number(v);
+      return Number.isFinite(n) ? Math.min(HMAX, Math.max(HMIN, n)) : d;
+    }
+    function arr(v) { return Array.isArray(v) ? v.map(String) : []; }
+    function saveFilters() {
+      localStorage.setItem(FILTER_KEY, JSON.stringify({
+        excludedCats: state.excludedCats,
+        excludedDays: state.excludedDays,
+        excludedAreas: state.excludedAreas,
+        h0: state.h0, h1: state.h1,
+        place: state.place,
+        emptyWeeks: state.emptyWeeks
+      }));
+    }
+    function computeNovelty(ids) {
+      let fresh = [];
+      let first = false;
+      const cached = sessionStorage.getItem(SESSION_NEW);
+      if (cached) {
+        fresh = JSON.parse(cached);
+        first = sessionStorage.getItem("any-first") === "1";
+      } else {
+        const raw = localStorage.getItem(KNOWN_KEY);
+        if (raw == null) first = true;
+        else {
+          const known = new Set(JSON.parse(raw));
+          fresh = ids.filter((id) => !known.has(id));
+        }
+        localStorage.setItem(KNOWN_KEY, JSON.stringify(ids));
+        sessionStorage.setItem(SESSION_NEW, JSON.stringify(fresh));
+        sessionStorage.setItem("any-first", first ? "1" : "0");
+      }
+      return { ids: new Set(fresh), first, count: fresh.length };
+    }
+
+    function passes(e, ignoreHour) {
+      if (state.excludedCats.includes(e.cat)) return false;
+      if (state.excludedDays.includes(e.dow)) return false;
+      if (state.excludedAreas.includes(e.area)) return false;
+      if (state.place && e.place !== state.place) return false;
+      if (state.onlyNew && !novelty.ids.has(e.id)) return false;
+      const q = state.q.trim().toLowerCase();
+      if (q) {
+        const blob = [e.title, e.who, e.place, e.area, e.desc].join(" ").toLowerCase();
+        if (!blob.includes(q)) return false;
+      }
+      if (!ignoreHour) {
+        const win0 = state.h0 * 60;
+        const win1 = state.h1 * 60 + 59;
+        if (!(e.startMin <= win1 && e.endMin >= win0)) return false;
+      }
+      return true;
+    }
+
+    function buildControls() {
+      CATS.forEach((c) => {
+        const label = document.createElement("label");
+        label.className = "check";
+        const input = document.createElement("input");
+        input.type = "checkbox";
+        input.checked = !state.excludedCats.includes(c.id);
+        input.addEventListener("change", () => {
+          state.excludedCats = input.checked
+            ? state.excludedCats.filter((id) => id !== c.id)
+            : state.excludedCats.concat(c.id);
+          saveFilters(); render();
+        });
+        const span = document.createElement("span");
+        const dot = document.createElement("i");
+        dot.className = "dot";
+        dot.style.background = c.color;
+        span.append(dot, document.createTextNode(c.name));
+        label.append(input, span);
+        els.cats.append(label);
+      });
+
+      JOUR_BTN.forEach((j) => {
+        const b = document.createElement("button");
+        b.type = "button";
+        b.className = "day";
+        b.textContent = j.label;
+        b.setAttribute("aria-pressed", state.excludedDays.includes(j.d) ? "false" : "true");
+        b.addEventListener("click", () => {
+          const on = b.getAttribute("aria-pressed") === "true";
+          b.setAttribute("aria-pressed", on ? "false" : "true");
+          state.excludedDays = on
+            ? state.excludedDays.concat(j.d)
+            : state.excludedDays.filter((d) => d !== j.d);
+          saveFilters(); render();
+        });
+        els.days.append(b);
+      });
+
+      const areas = [...new Set(inHorizon.map((e) => e.area))].sort((a, b) => a.localeCompare(b, "fr"));
+      areas.sort((a, b) => (a === "Non précisé") - (b === "Non précisé"));
+      areas.forEach((area) => {
+        const label = document.createElement("label");
+        label.className = "check";
+        const input = document.createElement("input");
+        input.type = "checkbox";
+        input.checked = !state.excludedAreas.includes(area);
+        input.addEventListener("change", () => {
+          state.excludedAreas = input.checked
+            ? state.excludedAreas.filter((a) => a !== area)
+            : state.excludedAreas.concat(area);
+          saveFilters(); render();
+        });
+        const span = document.createElement("span");
+        span.textContent = area;
+        label.append(input, span);
+        els.areas.append(label);
+      });
+
+      const places = [...new Set(inHorizon.map((e) => e.place))].sort((a, b) => a.localeCompare(b, "fr"));
+      const opt0 = document.createElement("option");
+      opt0.value = "";
+      opt0.textContent = "Tous les lieux";
+      els.place.append(opt0);
+      places.forEach((p) => {
+        const o = document.createElement("option");
+        o.value = p;
+        o.textContent = p;
+        els.place.append(o);
+      });
+      if ([...els.place.options].some((o) => o.value === state.place)) els.place.value = state.place;
+      else state.place = "";
+
+      els.h0.value = state.h0;
+      els.h1.value = state.h1;
+      els.emptyWeeks.checked = state.emptyWeeks;
+      paintSlider();
+    }
+
+    function paintSlider() {
+      const span = HMAX - HMIN;
+      const p0 = ((state.h0 - HMIN) / span) * 100;
+      const p1 = ((state.h1 - HMIN) / span) * 100;
+      els.sliderFill.style.left = p0 + "%";
+      els.sliderFill.style.right = (100 - p1) + "%";
+      els.hLabel.textContent = fmtHour(state.h0) + " – " + fmtHour(state.h1);
+    }
+    function onHour(which) {
+      let a = Number(els.h0.value), b = Number(els.h1.value);
+      if (a > b) {
+        if (which === 0) { b = a; els.h1.value = b; }
+        else { a = b; els.h0.value = a; }
+      }
+      state.h0 = a; state.h1 = b;
+      paintSlider(); saveFilters(); render();
+    }
+
+    function weekLabel(monday) {
+      const sunday = addDays(monday, 6);
+      const same = monday.getMonth() === sunday.getMonth();
+      if (same) return monday.getDate() + " – " + sunday.getDate() + " " + MOIS_C[monday.getMonth()];
+      return monday.getDate() + " " + MOIS_C[monday.getMonth()] + " – " + sunday.getDate() + " " + MOIS_C[sunday.getMonth()];
+    }
+
+    function render() {
+      const byDate = new Map();
+      let shown = 0;
+      let outside = 0;
+      inHorizon.forEach((e) => {
+        const ok = passes(e, false);
+        const okHourIgnored = passes(e, true);
+        if (okHourIgnored && !ok) outside += 1;
+        if (!ok) return;
+        shown += 1;
+        if (!byDate.has(e.date)) byDate.set(e.date, []);
+        byDate.get(e.date).push(e);
+      });
+
+      els.body.replaceChildren();
+      let cursor = new Date(rangeStart);
+      let lastMonth = -1;
+      let weeksDrawn = 0;
+      const endMonday = mondayOf(rangeEnd);
+      while (cursor <= endMonday) {
+        const days = Array.from({ length: 7 }, (_, i) => addDays(cursor, i));
+        const any = days.some((dt) => (byDate.get(ymd(dt)) || []).length);
+        const anchor = addDays(cursor, 3);
+        const month = anchor.getMonth();
+        if (any || state.emptyWeeks) {
+          if (month !== lastMonth) {
+            const tr = document.createElement("tr");
+            tr.className = "month";
+            const td = document.createElement("td");
+            td.colSpan = 8;
+            td.textContent = cap(MOIS[month]) + " " + anchor.getFullYear();
+            tr.append(td);
+            els.body.append(tr);
+            lastMonth = month;
+          }
+          const tr = document.createElement("tr");
+          const weekKey = ymd(cursor);
+          tr.id = "w-" + weekKey;
+          if (todayKey >= weekKey && todayKey <= ymd(addDays(cursor, 6))) tr.className = "now";
+          const th = document.createElement("th");
+          th.scope = "row";
+          th.textContent = weekLabel(cursor);
+          tr.append(th);
+          days.forEach((dt) => {
+            const key = ymd(dt);
+            const td = document.createElement("td");
+            if (key === todayKey) td.className = "today";
+            else if (key < todayKey) td.className = "past";
+            const head = document.createElement("div");
+            head.className = "dayhead";
+            const num = document.createElement("span");
+            num.className = "num";
+            num.textContent = String(dt.getDate());
+            head.append(num);
+            if (key === todayKey) {
+              const tag = document.createElement("span");
+              tag.className = "tag";
+              tag.textContent = "aujourd’hui";
+              head.append(tag);
+            }
+            td.append(head);
+            const list = byDate.get(key) || [];
+            if (!list.length && key >= todayKey) {
+              const empty = document.createElement("span");
+              empty.className = "empty-cell";
+              empty.textContent = "—";
+              td.append(empty);
+            }
+            list.forEach((e) => td.append(card(e)));
+            tr.append(td);
+          });
+          els.body.append(tr);
+          weeksDrawn += 1;
+        }
+        cursor = addDays(cursor, 7);
+      }
+
+      renderStatus(shown, outside, weeksDrawn);
+    }
+
+    function card(e) {
+      const btn = document.createElement("button");
+      btn.type = "button";
+      btn.className = "card";
+      btn.style.borderLeftColor = CAT[e.cat].color;
+      const cat = CAT[e.cat].name;
+      btn.setAttribute("aria-label", e.title + ", " + cat);
+      if (novelty.ids.has(e.id)) {
+        const b = document.createElement("span");
+        b.className = "badge";
+        b.textContent = "Nouveau";
+        btn.append(b);
+      }
+      const time = document.createElement("time");
+      time.textContent = fmtClock(e.sh, e.sm) + "–" + fmtClock(e.eh, e.em);
+      time.dateTime = e.start.replace(" ", "T");
+      const title = document.createElement("span");
+      title.className = "title";
+      title.textContent = e.title;
+      btn.append(time, title);
+      const bits = [];
+      if (e.who) bits.push(e.who);
+      if (e.place && e.place !== "Non précisé") bits.push(e.place);
+      else if (e.area && e.area !== "Non précisé") bits.push(e.area);
+      if (bits.length) {
+        const meta = document.createElement("span");
+        meta.className = "meta";
+        meta.textContent = bits.join(" · ");
+        btn.append(meta);
+      }
+      btn.addEventListener("click", () => openDetail(e, btn));
+      return btn;
+    }
+
+    function renderStatus(shown, outside, weeksDrawn) {
+      els.status.replaceChildren();
+      const count = document.createElement("strong");
+      count.textContent = String(shown);
+      const label = document.createElement("span");
+      label.textContent = shown > 1 ? "rendez-vous affichés" : "rendez-vous affiché";
+      els.status.append(count, label);
+      if (novelty.first) {
+        const ban = document.createElement("span");
+        ban.className = "banner";
+        ban.textContent = "Première visite : les ateliers ajoutés ensuite porteront un badge Nouveau.";
+        els.status.append(ban);
+      } else if (novelty.count) {
+        const ban = document.createElement("span");
+        ban.className = "banner";
+        ban.textContent = novelty.count + (novelty.count > 1 ? " nouveaux depuis votre dernière visite." : " nouveau depuis votre dernière visite.");
+        const see = document.createElement("button");
+        see.type = "button";
+        see.className = "linkish";
+        see.textContent = " Voir seulement ceux-là";
+        see.addEventListener("click", () => {
+          state.onlyNew = true;
+          els.onlyNew.checked = true;
+          render();
+        });
+        ban.append(see);
+        els.status.append(ban);
+      }
+      if (outside) {
+        const ban = document.createElement("span");
+        ban.className = "banner";
+        ban.textContent = outside + (outside > 1 ? " rendez-vous hors créneau." : " rendez-vous hors créneau.");
+        const see = document.createElement("button");
+        see.type = "button";
+        see.className = "linkish";
+        see.textContent = " Étendre à 7 h–22 h";
+        see.addEventListener("click", () => {
+          state.h0 = 7; state.h1 = 22;
+          els.h0.value = 7; els.h1.value = 22;
+          paintSlider(); saveFilters(); render();
+        });
+        ban.append(see);
+        els.status.append(ban);
+      }
+      if (!shown) {
+        const p = document.createElement("p");
+        p.className = "hint";
+        p.textContent = weeksDrawn ? "Aucun rendez-vous ne correspond à ces filtres." : "Aucune semaine à afficher.";
+        els.status.append(p);
+      }
+    }
+
+    let opener = null;
+    function openDetail(e, btn) {
+      opener = btn;
+      const cat = CAT[e.cat];
+      const catEl = document.getElementById("detailCat");
+      catEl.textContent = cat.name;
+      catEl.style.color = cat.color;
+      document.getElementById("detailTitle").textContent = e.title;
+      const when = cap(JOUR[e.dow]) + " " + e.d + " " + MOIS[e.m - 1] + " " + e.y
+        + ", " + fmtClock(e.sh, e.sm) + " – " + fmtClock(e.eh, e.em);
+      document.getElementById("detailWhen").textContent = when;
+      const badge = document.getElementById("detailBadge");
+      badge.replaceChildren();
+      if (novelty.ids.has(e.id)) {
+        const b = document.createElement("span");
+        b.className = "badge";
+        b.textContent = "Nouveau depuis votre dernière visite";
+        badge.append(b);
+      }
+      document.getElementById("detailWho").textContent = e.who || "Non indiqué sur la fiche publique";
+      document.getElementById("detailPlace").textContent = e.place;
+      document.getElementById("detailArea").textContent = e.area;
+      const desc = document.getElementById("detailDesc");
+      desc.replaceChildren();
+      if (e.desc) fillLinks(desc, e.desc);
+      else {
+        const p = document.createElement("p");
+        p.textContent = "La fiche publique ne donne pas de description. Le détail réservé aux membres est sur le site de l’ANY.";
+        desc.append(p);
+      }
+      const link = document.getElementById("detailLink");
+      link.href = e.url;
+      els.dialog.showModal();
+    }
+    function fillLinks(node, text) {
+      const re = /https?:\/\/[^\s)]+/g;
+      let last = 0, m;
+      while ((m = re.exec(text))) {
+        node.append(document.createTextNode(text.slice(last, m.index)));
+        const a = document.createElement("a");
+        a.href = m[0];
+        a.textContent = m[0];
+        a.target = "_blank";
+        a.rel = "noopener noreferrer";
+        node.append(a);
+        last = m.index + m[0].length;
+      }
+      node.append(document.createTextNode(text.slice(last)));
+    }
+
+    els.q.addEventListener("input", () => { state.q = els.q.value; render(); });
+    els.place.addEventListener("change", () => { state.place = els.place.value; saveFilters(); render(); });
+    els.h0.addEventListener("input", () => onHour(0));
+    els.h1.addEventListener("input", () => onHour(1));
+    els.h0.addEventListener("pointerdown", () => { els.h0.style.zIndex = 5; els.h1.style.zIndex = 4; });
+    els.h1.addEventListener("pointerdown", () => { els.h1.style.zIndex = 5; els.h0.style.zIndex = 4; });
+    els.onlyNew.addEventListener("change", () => { state.onlyNew = els.onlyNew.checked; render(); });
+    els.emptyWeeks.addEventListener("change", () => { state.emptyWeeks = els.emptyWeeks.checked; saveFilters(); render(); });
+    document.getElementById("reset").addEventListener("click", () => {
+      state.excludedCats = [];
+      state.excludedDays = [];
+      state.excludedAreas = [];
+      state.h0 = 9; state.h1 = 17;
+      state.place = "";
+      state.q = "";
+      state.onlyNew = false;
+      state.emptyWeeks = false;
+      els.q.value = "";
+      els.place.value = "";
+      els.h0.value = 9; els.h1.value = 17;
+      els.onlyNew.checked = false;
+      els.emptyWeeks.checked = false;
+      els.cats.querySelectorAll("input").forEach((i) => { i.checked = true; });
+      els.areas.querySelectorAll("input").forEach((i) => { i.checked = true; });
+      els.days.querySelectorAll("button").forEach((b) => b.setAttribute("aria-pressed", "true"));
+      paintSlider(); saveFilters(); render();
+    });
+    document.getElementById("jumpToday").addEventListener("click", () => {
+      const row = document.querySelector("tr.now");
+      if (row) row.scrollIntoView({ behavior: "smooth", block: "center" });
+    });
+    document.getElementById("detailClose").addEventListener("click", () => els.dialog.close());
+    els.dialog.addEventListener("click", (ev) => { if (ev.target === els.dialog) els.dialog.close(); });
+    els.dialog.addEventListener("close", () => { if (opener) opener.focus(); });
+
+    const ledeEnd = "31 août " + endYear;
+    els.lede.append(
+      document.createTextNode("Du " + todayDt.getDate() + " " + MOIS[todayDt.getMonth()] + " " + todayDt.getFullYear() + " au " + ledeEnd + ". Une ligne correspond à une semaine. "),
+    );
+    const src = document.createElement("a");
+    src.href = "https://www.accueilnewyork.org/Calendrier-des-rencontres-175";
+    src.target = "_blank";
+    src.rel = "noopener noreferrer";
+    src.textContent = "Calendrier officiel de l’ANY";
+    els.lede.append(src, document.createTextNode("."));
+
+    const last = inHorizon.reduce((a, e) => e.date > a ? e.date : a, "");
+    els.note.textContent = "Relevé du calendrier public le 18 novembre 2026"
+      + (last ? ". Dernier rendez-vous publié : " + fromYmd(last).getDate() + " " + MOIS[fromYmd(last).getMonth()] + " " + fromYmd(last).getFullYear() : "")
+      + ". Juillet et août n’ont pas encore de rencontres sur le site de l’ANY. L’adresse exacte et l’animateur ne figurent pas toujours sur la fiche publique : ils sont alors indiqués comme non précisés. Les badges Nouveau comparent cette liste à celle de votre visite précédente, sur cet appareil.";
+
+    buildControls();
+    render();
+    const nowRow = document.querySelector("tr.now");
+    if (nowRow) nowRow.scrollIntoView({ block: "center" });
+  </script>
+</body>
+</html>
