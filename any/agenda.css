@@ -80,7 +80,7 @@ h1 {
   color: var(--muted);
 }
 .filters h2:first-child { margin-top: 0; }
-.search, .lieu select, .check, .day, .ghost, .solid {
+.search, .lieu select, .check, .day, .ghost {
   border-radius: 10px;
 }
 .search, .lieu select {
@@ -167,10 +167,9 @@ h1 {
 }
 .scale { display: flex; justify-content: space-between; color: var(--muted); font-size: .75rem; }
 .row-actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
-.ghost, .solid, .linkish {
+.ghost, .linkish {
   border: 1px solid var(--line); background: #fff; cursor: pointer; padding: 8px 10px;
 }
-.solid { background: var(--ink); color: #fffdf8; border-color: var(--ink); }
 .linkish { border: none; background: none; color: var(--accent); padding: 0; margin-left: .35rem; font-weight: 700; cursor: pointer; }
 .main { min-width: 0; }
 .status {
@@ -239,6 +238,7 @@ td.today .num { color: var(--accent); }
   font-size: .68rem; font-weight: 750; letter-spacing: .03em;
   padding: 2px 6px; text-transform: uppercase;
 }
+.card .seat { display: table; text-align: center; }
 .badge { background: var(--accent); color: white; }
 .seat.wait { background: #f4e3c4; color: #6a4a16; }
 .seat.full { background: #efe6dc; color: #6e655c; }

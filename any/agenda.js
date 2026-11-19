@@ -740,10 +740,6 @@ document.getElementById("reset").addEventListener("click", () => {
   els.days.querySelectorAll("button").forEach((b) => b.setAttribute("aria-pressed", "true"));
   paintSlider(); saveFilters(); render();
 });
-document.getElementById("jumpToday").addEventListener("click", () => {
-  const row = document.querySelector("tr.now");
-  if (row) row.scrollIntoView({ behavior: "smooth", block: "center" });
-});
 document.getElementById("detailClose").addEventListener("click", () => els.dialog.close());
 els.dialog.addEventListener("click", (ev) => { if (ev.target === els.dialog) els.dialog.close(); });
 els.dialog.addEventListener("close", () => { if (opener) opener.focus(); });
