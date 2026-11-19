@@ -272,28 +272,28 @@ const SEO_CONFIG = {
         },
         'fiche-medlex': {
             fr: {
-                title: 'MedLex (Au Clair) — Contrats juridiques pour infirmières libérales | Natacha Aviat',
-                description: 'Application web de génération de contrats pour infirmières libérales : questionnaire guidé, aperçu clause par clause, PDF validé par Me Violaine.',
-                keywords: 'MedLex, Au Clair, contrat infirmière libérale, remplacement infirmier, droit de la santé',
+                title: 'LibéLex — Contrats pour l\'exercice libéral infirmier | Natacha Aviat',
+                description: 'LibéLex génère contrats et courriers pour infirmiers libéraux à partir d\'un questionnaire. Modèles validés par un cabinet d\'avocats partenaire, PDF sur libelex.fr.',
+                keywords: 'LibéLex, contrat infirmier libéral, remplacement, collaboration, bail professionnel, SELARL',
                 ogType: 'product',
-                ogImage: 'https://natacha-aviat.github.io/pro/images/MedLex.png',
+                ogImage: 'https://natacha-aviat.github.io/pro/images/LibeLex.jpg',
                 aiProductType: 'Outil web juridique',
                 aiPrice: 'En ligne',
-                aiDataSource: 'Modèles juridiques validés par avocate',
+                aiDataSource: 'Modèles validés par un cabinet d\'avocats partenaire',
                 aiTechnologies: 'JavaScript, Application web',
-                aiUseCase: 'Accompagnement des infirmières libérales dans leurs contrats professionnels'
+                aiUseCase: 'Établir un contrat ou un courrier de l\'exercice libéral infirmier'
             },
             en: {
-                title: 'MedLex (Au Clair) — Legal contracts for freelance nurses | Natacha Aviat',
-                description: 'Web application for generating contracts for freelance nurses: guided questionnaire, clause preview, PDF validated by a health law attorney.',
-                keywords: 'MedLex, Au Clair, freelance nurse contract, nurse replacement, health law',
+                title: 'LibéLex — Contracts for liberal nursing practice | Natacha Aviat',
+                description: 'LibéLex generates contracts and letters for liberal nurses from a questionnaire. Templates validated by a partner law firm, PDF on libelex.fr.',
+                keywords: 'LibéLex, liberal nurse contract, replacement, collaboration, professional lease',
                 ogType: 'product',
-                ogImage: 'https://natacha-aviat.github.io/pro/images/MedLex.png',
+                ogImage: 'https://natacha-aviat.github.io/pro/images/LibeLex.jpg',
                 aiProductType: 'Legal web tool',
                 aiPrice: 'Live',
-                aiDataSource: 'Attorney-validated legal templates',
+                aiDataSource: 'Templates validated by a partner law firm',
                 aiTechnologies: 'JavaScript, Web application',
-                aiUseCase: 'Supporting freelance nurses in drafting and understanding professional contracts'
+                aiUseCase: 'Draft a contract or letter for liberal nursing practice'
             }
         },
         'fiche-textes-a-la-pelle': {
@@ -496,6 +496,32 @@ const SEO_CONFIG = {
                 aiUseCase: 'Visualize decimal time alongside classic time'
             }
         },
+        'fiche-agenda-any': {
+            fr: {
+                title: 'Agenda de l\'ANY — Calendrier des rencontres | Natacha Aviat',
+                description: 'Interface du calendrier d\'Accueil New York : une semaine par ligne, filtres mémorisés, liste d\'attente et complet.',
+                keywords: 'Agenda ANY, Accueil New York, calendrier, filtres, UX',
+                ogType: 'product',
+                ogImage: 'https://natacha-aviat.github.io/pro/images/AgendaANY.svg',
+                price: 0,
+                aiProductType: 'Interface web',
+                aiPrice: 'En ligne',
+                aiTechnologies: 'JavaScript, HTML, CSS',
+                aiUseCase: 'Parcourir les rencontres de l\'ANY du jour jusqu\'à août'
+            },
+            en: {
+                title: 'ANY agenda — Meetings calendar | Natacha Aviat',
+                description: 'Interface for Accueil New York\'s calendar: one row per week, saved filters, waitlist and full.',
+                keywords: 'ANY agenda, Accueil New York, calendar, filters, UX',
+                ogType: 'product',
+                ogImage: 'https://natacha-aviat.github.io/pro/images/AgendaANY.svg',
+                price: 0,
+                aiProductType: 'Web interface',
+                aiPrice: 'Live',
+                aiTechnologies: 'JavaScript, HTML, CSS',
+                aiUseCase: 'Browse ANY meetings from today through August'
+            }
+        },
         'fiche-optimisation-tournees': {
             fr: {
                 title: 'Outil d\'Optimisation de Tournées Logistiques | Gratuit - Natacha Aviat',
@@ -606,7 +632,9 @@ const FICHE_MAPPING = {
     'fiche-mamacollecte.html': { fr: 'fiches/fiche-mamacollecte.html', en: 'en/fiches/sheet-mamacollecte.html' },
     'sheet-mamacollecte.html': { fr: 'fiches/fiche-mamacollecte.html', en: 'en/fiches/sheet-mamacollecte.html' },
     'fiche-decimalclock.html': { fr: 'fiches/fiche-decimalclock.html', en: 'en/fiches/sheet-decimalclock.html' },
-    'sheet-decimalclock.html': { fr: 'fiches/fiche-decimalclock.html', en: 'en/fiches/sheet-decimalclock.html' }
+    'sheet-decimalclock.html': { fr: 'fiches/fiche-decimalclock.html', en: 'en/fiches/sheet-decimalclock.html' },
+    'fiche-agenda-any.html': { fr: 'fiches/fiche-agenda-any.html', en: 'en/fiches/sheet-any-agenda.html' },
+    'sheet-any-agenda.html': { fr: 'fiches/fiche-agenda-any.html', en: 'en/fiches/sheet-any-agenda.html' }
 };
 
 // Export pour utilisation dans d'autres fichiers

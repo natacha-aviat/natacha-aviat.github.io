@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 700" role="img" aria-labelledby="t d">
+  <title id="t">Agenda de l'ANY</title>
+  <desc id="d">Calendrier des rencontres d'Accueil New York, une ligne par semaine</desc>
+  <rect width="1200" height="700" fill="#efe6d8"/>
+  <rect x="70" y="48" width="1060" height="604" rx="28" fill="#fffdf8"/>
+  <text x="110" y="118" font-family="Georgia, serif" font-size="42" fill="#1e1a16">Agenda de l'ANY</text>
+  <text x="110" y="156" font-family="Arial, Helvetica, sans-serif" font-size="18" fill="#8e2c42" letter-spacing="2">ACCUEIL NEW YORK</text>
+  <g font-family="Arial, Helvetica, sans-serif" font-size="16" fill="#6e655c" font-weight="700">
+    <text x="130" y="214">LUN</text>
+    <text x="270" y="214">MAR</text>
+    <text x="410" y="214">MER</text>
+    <text x="560" y="214">JEU</text>
+    <text x="710" y="214">VEN</text>
+    <text x="850" y="214">SAM</text>
+    <text x="990" y="214">DIM</text>
+  </g>
+  <g font-family="Arial, Helvetica, sans-serif" fill="#1e1a16">
+    <rect x="110" y="240" width="130" height="150" rx="14" fill="#fff" stroke="#e3d8c8"/>
+    <rect x="110" y="240" width="6" height="150" rx="3" fill="#5890d1"/>
+    <text x="126" y="272" font-size="15" font-weight="700">09:30</text>
+    <text x="126" y="298" font-size="16">Marche</text>
+    <text x="126" y="320" font-size="16">Central Park</text>
+    <rect x="260" y="240" width="130" height="150" rx="14" fill="#fff3cf" stroke="#e3d8c8"/>
+    <rect x="260" y="240" width="6" height="150" rx="3" fill="#ff801f"/>
+    <text x="276" y="272" font-size="15" font-weight="700">10:30</text>
+    <text x="276" y="298" font-size="16">Atelier</text>
+    <text x="276" y="320" font-size="16">Entreprendre</text>
+    <rect x="410" y="240" width="130" height="150" rx="14" fill="#fff" stroke="#e3d8c8"/>
+    <text x="470" y="322" font-size="22" fill="#c8beb2">-</text>
+    <rect x="560" y="240" width="130" height="150" rx="14" fill="#fff" stroke="#e3d8c8"/>
+    <rect x="560" y="240" width="6" height="150" rx="3" fill="#2a870b"/>
+    <text x="576" y="272" font-size="15" font-weight="700">14:00</text>
+    <text x="576" y="298" font-size="16">Neue</text>
+    <text x="576" y="320" font-size="16">Galerie</text>
+    <rect x="576" y="340" width="98" height="24" rx="12" fill="#f4e3c4"/>
+    <text x="625" y="356" text-anchor="middle" font-size="11" font-weight="700" fill="#6a4a16">ATTENTE</text>
+    <rect x="710" y="240" width="130" height="150" rx="14" fill="#fff" stroke="#e3d8c8"/>
+    <rect x="710" y="240" width="6" height="150" rx="3" fill="#eb506a"/>
+    <text x="726" y="272" font-size="15" font-weight="700">10:00</text>
+    <text x="726" y="298" font-size="16">Caf&#233; Harlem</text>
+    <rect x="860" y="240" width="130" height="150" rx="14" fill="#fff" stroke="#e3d8c8"/>
+    <rect x="860" y="240" width="6" height="150" rx="3" fill="#9c77f2"/>
+    <text x="876" y="272" font-size="15" font-weight="700">14:30</text>
+    <text x="876" y="298" font-size="16">Bridge</text>
+    <rect x="1010" y="240" width="90" height="150" rx="14" fill="#fff" stroke="#e3d8c8"/>
+    <text x="1048" y="322" font-size="22" fill="#c8beb2">-</text>
+  </g>
+  <g font-family="Arial, Helvetica, sans-serif" font-size="16" fill="#1e1a16">
+    <rect x="110" y="420" width="130" height="120" rx="14" fill="#fff" stroke="#e3d8c8"/>
+    <rect x="110" y="420" width="6" height="120" rx="3" fill="#5890d1"/>
+    <text x="126" y="468">Marche</text>
+    <rect x="260" y="420" width="130" height="120" rx="14" fill="#fff" stroke="#e3d8c8"/>
+    <rect x="260" y="420" width="6" height="120" rx="3" fill="#fac400"/>
+    <text x="276" y="468">Photos</text>
+    <rect x="410" y="420" width="130" height="120" rx="14" fill="#fff" stroke="#e3d8c8"/>
+    <rect x="560" y="420" width="130" height="120" rx="14" fill="#fff" stroke="#e3d8c8"/>
+    <rect x="560" y="420" width="6" height="120" rx="3" fill="#5890d1"/>
+    <text x="576" y="468">Ca grimpe</text>
+    <rect x="710" y="420" width="130" height="120" rx="14" fill="#fff" stroke="#e3d8c8"/>
+    <rect x="860" y="420" width="130" height="120" rx="14" fill="#fff" stroke="#e3d8c8"/>
+    <rect x="860" y="420" width="6" height="120" rx="3" fill="#eb506a"/>
+    <text x="876" y="468">After-work</text>
+    <rect x="1010" y="420" width="90" height="120" rx="14" fill="#fff" stroke="#e3d8c8"/>
+  </g>
+  <text x="110" y="600" font-family="Arial, Helvetica, sans-serif" font-size="18" fill="#6e655c">Du jour au 31 ao&#251;t, filtres m&#233;moris&#233;s</text>
+</svg>

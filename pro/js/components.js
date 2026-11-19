@@ -247,7 +247,9 @@ function getLanguageSwitchUrl(targetLang) {
         'fiche-mamacollecte.html': { fr: 'fiches/fiche-mamacollecte.html', en: 'en/fiches/sheet-mamacollecte.html' },
         'sheet-mamacollecte.html': { fr: 'fiches/fiche-mamacollecte.html', en: 'en/fiches/sheet-mamacollecte.html' },
         'fiche-decimalclock.html': { fr: 'fiches/fiche-decimalclock.html', en: 'en/fiches/sheet-decimalclock.html' },
-        'sheet-decimalclock.html': { fr: 'fiches/fiche-decimalclock.html', en: 'en/fiches/sheet-decimalclock.html' }
+        'sheet-decimalclock.html': { fr: 'fiches/fiche-decimalclock.html', en: 'en/fiches/sheet-decimalclock.html' },
+        'fiche-agenda-any.html': { fr: 'fiches/fiche-agenda-any.html', en: 'en/fiches/sheet-any-agenda.html' },
+        'sheet-any-agenda.html': { fr: 'fiches/fiche-agenda-any.html', en: 'en/fiches/sheet-any-agenda.html' }
     };
     
     let targetPage = '';
