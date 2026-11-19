@@ -104,7 +104,6 @@ const SUBS = assignSeries(inHorizon);
 
 const novelty = computeNovelty(inHorizon.map((e) => e.id));
 const FAVICON_URL = new URL("favicon.png", import.meta.url).href;
-paintTabBadge(novelty.first ? 0 : novelty.count);
 
 const state = loadFilters();
 state.q = "";
@@ -173,21 +172,27 @@ function saveFilters() {
 function computeNovelty(ids) {
   let fresh = [];
   let first = false;
-  const cached = sessionStorage.getItem(SESSION_NEW);
-  if (cached) {
-    fresh = JSON.parse(cached);
-    first = sessionStorage.getItem("any-first") === "1";
-  } else {
-    const raw = localStorage.getItem(KNOWN_KEY);
-    if (raw == null) first = true;
-    else {
-      const known = new Set(JSON.parse(raw));
-      fresh = ids.filter((id) => !known.has(id));
+  try {
+    const cached = sessionStorage.getItem(SESSION_NEW);
+    if (cached) {
+      fresh = JSON.parse(cached);
+      first = sessionStorage.getItem("any-first") === "1";
+    } else {
+      const raw = localStorage.getItem(KNOWN_KEY);
+      if (raw == null) first = true;
+      else {
+        const known = new Set(JSON.parse(raw));
+        fresh = ids.filter((id) => !known.has(id));
+      }
+      localStorage.setItem(KNOWN_KEY, JSON.stringify(ids));
+      sessionStorage.setItem(SESSION_NEW, JSON.stringify(fresh));
+      sessionStorage.setItem("any-first", first ? "1" : "0");
     }
-    localStorage.setItem(KNOWN_KEY, JSON.stringify(ids));
-    sessionStorage.setItem(SESSION_NEW, JSON.stringify(fresh));
-    sessionStorage.setItem("any-first", first ? "1" : "0");
+  } catch (e) {
+    fresh = [];
+    first = true;
   }
+  if (!Array.isArray(fresh)) fresh = [];
   return { ids: new Set(fresh), first, count: fresh.length };
 }
 
@@ -219,33 +224,38 @@ function paintTabBadge(count) {
   const base = "Agenda ANY — rencontres Accueil New York";
   document.title = count ? "(" + count + ") " + base : base;
   const icon = iconLink();
+  icon.href = FAVICON_URL;
+  const badge = (fn) => {
+    try {
+      const result = fn();
+      if (result && result.catch) result.catch(() => {});
+    } catch (e) {}
+  };
   if (!count) {
-    icon.href = FAVICON_URL;
-    if (navigator.clearAppBadge) navigator.clearAppBadge().catch(() => {});
+    badge(() => navigator.clearAppBadge && navigator.clearAppBadge());
     return;
   }
-  if (navigator.setAppBadge) navigator.setAppBadge(count).catch(() => {});
+  badge(() => navigator.setAppBadge && navigator.setAppBadge(count));
   loadFavicon().then((img) => {
-    if (!img) {
-      icon.href = FAVICON_URL;
-      return;
-    }
-    const c = document.createElement("canvas");
-    c.width = 64;
-    c.height = 64;
-    const g = c.getContext("2d");
-    g.drawImage(img, 0, 0, 64, 64);
-    g.fillStyle = "#8e2c42";
-    g.beginPath();
-    g.arc(48, 48, 16, 0, Math.PI * 2);
-    g.fill();
-    g.fillStyle = "#fffdf8";
-    g.textAlign = "center";
-    g.textBaseline = "middle";
-    const label = count > 9 ? "9+" : String(count);
-    g.font = (label.length > 1 ? "700 16px " : "700 22px ") + "sans-serif";
-    g.fillText(label, 48, 50);
-    icon.href = c.toDataURL("image/png");
+    if (!img) return;
+    try {
+      const c = document.createElement("canvas");
+      c.width = 64;
+      c.height = 64;
+      const g = c.getContext("2d");
+      g.drawImage(img, 0, 0, 64, 64);
+      g.fillStyle = "#8e2c42";
+      g.beginPath();
+      g.arc(48, 48, 16, 0, Math.PI * 2);
+      g.fill();
+      g.fillStyle = "#fffdf8";
+      g.textAlign = "center";
+      g.textBaseline = "middle";
+      const label = count > 9 ? "9+" : String(count);
+      g.font = (label.length > 1 ? "700 16px " : "700 22px ") + "sans-serif";
+      g.fillText(label, 48, 50);
+      icon.href = c.toDataURL("image/png");
+    } catch (e) {}
   });
 }
 
@@ -811,5 +821,6 @@ function selectNewAreas() {
 selectNewAreas();
 buildControls();
 render();
+try { paintTabBadge(novelty.first ? 0 : novelty.count); } catch (e) {}
 const nowRow = document.querySelector("tr.now");
 if (nowRow) nowRow.scrollIntoView({ block: "center" });

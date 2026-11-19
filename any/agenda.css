@@ -238,7 +238,7 @@ td.today .num { color: var(--accent); }
   font-size: .68rem; font-weight: 750; letter-spacing: .03em;
   padding: 2px 6px; text-transform: uppercase;
 }
-.card .seat { display: table; text-align: center; }
+.card .seat { display: inline-block; max-width: 100%; text-align: center; }
 .badge { background: var(--accent); color: white; }
 .seat.wait { background: #f4e3c4; color: #6a4a16; }
 .seat.full { background: #efe6dc; color: #6e655c; }
