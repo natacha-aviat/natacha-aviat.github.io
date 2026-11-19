@@ -98,20 +98,42 @@
     .cats, .areas { display: grid; gap: 8px; }
     .cat-block { display: grid; gap: 4px; }
     .subs { display: grid; gap: 3px; margin: 0 0 2px 1.35rem; }
-    .subs .check { font-size: .86rem; }
-    .count { color: var(--muted); font-weight: 650; margin-left: .3rem; }
+    .subs .check { font-size: 1rem; }
+    .count { color: var(--muted); font-weight: 650; margin-left: .35rem; }
     .subs input:disabled + span { opacity: .4; }
     .areas { max-height: 210px; overflow: auto; padding-right: 4px; }
     .check {
       display: flex;
       gap: 8px;
       align-items: flex-start;
-      font-size: .92rem;
+      font-size: 1.05rem;
+      line-height: 1.3;
     }
-    .check input { margin-top: 3px; accent-color: var(--accent); }
+    .check input {
+      appearance: none;
+      width: 15px;
+      height: 15px;
+      margin-top: 4px;
+      flex: none;
+      border: 1.5px solid #d7cbbd;
+      border-radius: 4px;
+      background: #fff center / 11px 11px no-repeat;
+    }
+    .check input:checked,
+    .check input:indeterminate {
+      background-color: #f6f0e7;
+      border-color: #c9bbaa;
+    }
+    .check input:checked {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath d='M2.2 6.2 4.7 8.7 9.8 3.2' fill='none' stroke='%238d8174' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+    }
+    .check input:indeterminate {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath d='M2.5 6h7' fill='none' stroke='%238d8174' stroke-width='1.6' stroke-linecap='round'/%3E%3C/svg%3E");
+    }
+    .check input:disabled { opacity: .45; }
     .dot {
-      width: 10px; height: 10px; border-radius: 99px;
-      display: inline-block; margin-right: 6px; flex: none;
+      width: 12px; height: 12px; border-radius: 99px;
+      display: inline-block; margin-right: 7px; flex: none;
       transform: translateY(1px);
       box-shadow: inset 0 0 0 1px rgba(0,0,0,.12);
     }
@@ -196,8 +218,18 @@
       display: block; width: 100%; text-align: left; cursor: pointer;
       border: 1px solid var(--line); border-left-width: 4px; border-radius: 10px;
       background: #fff; padding: 7px 8px 8px; margin: 0 0 6px;
+      position: relative;
     }
-    .card:hover { border-color: #c9bba8; }
+    @media (hover: hover) and (pointer: fine) and (min-width: 981px) {
+      .card { transition: transform .2s cubic-bezier(.2, .85, .2, 1), box-shadow .2s ease; }
+      td:has(.card:hover) { position: relative; z-index: 6; }
+      .card:hover {
+        transform: scale(1.16);
+        z-index: 2;
+        border-color: #c9bba8;
+        box-shadow: 0 16px 32px rgba(40, 24, 16, .18);
+      }
+    }
     .card time { display: block; font-variant-numeric: tabular-nums; font-size: .78rem; font-weight: 700; }
     .card .title { display: block; font-weight: 700; font-size: .86rem; line-height: 1.25; margin-top: 2px; overflow-wrap: anywhere; }
     .card .meta { display: block; color: var(--muted); font-size: .78rem; margin-top: 3px; }
@@ -377,6 +409,7 @@
     const HMIN = 7, HMAX = 22;
     const FILTER_KEY = "any-filters-v1";
     const KNOWN_KEY = "any-known-ids";
+    const SEEN_AREAS_KEY = "any-seen-areas";
     const SESSION_NEW = "any-session-new";
 
     const EVENTS = JSON.parse(document.getElementById("events").textContent).map(prep);
@@ -559,6 +592,10 @@
       return true;
     }
 
+    function timesLabel(n) {
+      return "(" + n + ")";
+    }
+
     function buildControls() {
       const catInputs = {};
       CATS.forEach((c) => {
@@ -589,7 +626,7 @@
         dot.style.background = c.color;
         const count = document.createElement("span");
         count.className = "count";
-        count.textContent = String(catCount);
+        count.textContent = timesLabel(catCount);
         span.append(dot, document.createTextNode(c.name), count);
         label.append(input, span);
         block.append(label);
@@ -620,7 +657,7 @@
             subSpan.append(document.createTextNode(sub.label));
             const count = document.createElement("span");
             count.className = "count";
-            count.textContent = String(sub.count);
+            count.textContent = timesLabel(sub.count);
             subSpan.append(count);
             subLabel.append(subInput, subSpan);
             list.append(subLabel);
@@ -994,6 +1031,25 @@
       + (last ? ". Dernier rendez-vous publié : " + fromYmd(last).getDate() + " " + MOIS[fromYmd(last).getMonth()] + " " + fromYmd(last).getFullYear() : "")
       + ". Juillet et août n’ont pas encore de rencontres sur le site de l’ANY. L’adresse exacte et l’animateur ne figurent pas toujours sur la fiche publique : ils sont alors indiqués comme non précisés. Les badges Nouveau comparent cette liste à celle de votre visite précédente, sur cet appareil.";
 
+    function selectNewAreas() {
+      const current = [...new Set(inHorizon.map((e) => e.area))];
+      let seen = null;
+      try {
+        const raw = localStorage.getItem(SEEN_AREAS_KEY);
+        if (raw != null) seen = JSON.parse(raw);
+      } catch (e) { seen = null; }
+      if (Array.isArray(seen)) {
+        const known = new Set(seen.map(String));
+        const fresh = new Set(current.filter((area) => !known.has(area)));
+        if (fresh.size) {
+          state.excludedAreas = state.excludedAreas.filter((area) => !fresh.has(area));
+          saveFilters();
+        }
+      }
+      localStorage.setItem(SEEN_AREAS_KEY, JSON.stringify(current));
+    }
+
+    selectNewAreas();
     buildControls();
     render();
     const nowRow = document.querySelector("tr.now");
