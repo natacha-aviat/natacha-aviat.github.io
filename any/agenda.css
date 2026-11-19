@@ -175,9 +175,15 @@ h1 {
   border-radius: 14px;
   background: #fbf6ee;
 }
-.alerts h2 { margin: 0 0 2px; }
+.alerts-title {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0 .4rem;
+}
+.alerts h2 { margin: 0; }
 .alerts-lead {
-  margin: 0 0 2px;
+  margin: 0;
   font-size: 1rem;
   font-weight: 400;
   line-height: 1.35;
@@ -185,6 +191,7 @@ h1 {
   text-transform: none;
   color: var(--ink);
 }
+#freqValue { font-weight: 400; }
 .field-label { display: block; margin: 8px 0 4px; font-weight: 700; font-size: .92rem; }
 .alert-submit {
   width: 100%;

@@ -816,6 +816,7 @@ const alertNote = document.getElementById("alertNote");
 const d0 = document.getElementById("d0");
 const d1 = document.getElementById("d1");
 const dayFill = document.getElementById("dayFill");
+const freqValue = document.getElementById("freqValue");
 let alertDays = { d0: 1, d1: 7 };
 try {
   const saved = JSON.parse(localStorage.getItem(ALERT_KEY) || "null");
@@ -828,10 +829,15 @@ try {
 } catch (e) {}
 d0.value = alertDays.d0;
 d1.value = alertDays.d1;
+function freqLabel(a, b) {
+  if (a === b) return a === 1 ? " : tous les jours" : " : tous les " + a + " jours";
+  return " : tous les " + a + " à " + b + " jours";
+}
 function paintDaySlider() {
   const span = DMAX - DMIN;
   dayFill.style.left = ((alertDays.d0 - DMIN) / span) * 100 + "%";
   dayFill.style.right = (100 - ((alertDays.d1 - DMIN) / span) * 100) + "%";
+  freqValue.textContent = freqLabel(alertDays.d0, alertDays.d1);
 }
 function onDelay(which) {
   let a = Number(d0.value), b = Number(d1.value);
