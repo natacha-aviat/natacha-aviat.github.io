@@ -17,6 +17,9 @@ const JOUR_BTN = [
 const MOIS = ["janvier", "février", "mars", "avril", "mai", "juin", "juillet", "août", "septembre", "octobre", "novembre", "décembre"];
 const HMIN = 7, HMAX = 22;
 const FILTER_KEY = "any-filters-v1";
+const ALERT_KEY = "any-alert-v1";
+const ALERT_URL = "https://script.google.com/macros/s/AKfycbxZ7p5NrKl3njS7ntb0D-5-aPLADpF67VjlmisSdhBwg7ol6lfvqykOA8F_oIWVPxps6g/exec";
+const DMIN = 1, DMAX = 30;
 const KNOWN_KEY = "any-known-ids";
 const SEEN_AREAS_KEY = "any-seen-areas";
 const SESSION_NEW = "any-session-new";
@@ -806,6 +809,86 @@ document.getElementById("reset").addEventListener("click", () => {
   els.areas.querySelectorAll("input").forEach((i) => { i.checked = true; });
   els.days.querySelectorAll("button").forEach((b) => b.setAttribute("aria-pressed", "true"));
   paintSlider(); saveFilters(); render();
+});
+const alertForm = document.getElementById("alerts");
+const alertEmail = document.getElementById("alertEmail");
+const alertNote = document.getElementById("alertNote");
+const d0 = document.getElementById("d0");
+const d1 = document.getElementById("d1");
+const dayFill = document.getElementById("dayFill");
+let alertDays = { d0: 1, d1: 7 };
+try {
+  const saved = JSON.parse(localStorage.getItem(ALERT_KEY) || "null");
+  if (saved && typeof saved === "object") {
+    alertDays.d0 = Math.min(DMAX, Math.max(DMIN, Number(saved.d0) || 1));
+    alertDays.d1 = Math.min(DMAX, Math.max(DMIN, Number(saved.d1) || 7));
+    if (alertDays.d0 > alertDays.d1) alertDays.d1 = alertDays.d0;
+    if (typeof saved.email === "string") alertEmail.value = saved.email;
+  }
+} catch (e) {}
+d0.value = alertDays.d0;
+d1.value = alertDays.d1;
+function paintDaySlider() {
+  const span = DMAX - DMIN;
+  dayFill.style.left = ((alertDays.d0 - DMIN) / span) * 100 + "%";
+  dayFill.style.right = (100 - ((alertDays.d1 - DMIN) / span) * 100) + "%";
+}
+function onDelay(which) {
+  let a = Number(d0.value), b = Number(d1.value);
+  if (a > b) {
+    if (which === 0) { b = a; d1.value = b; }
+    else { a = b; d0.value = a; }
+  }
+  alertDays = { d0: a, d1: b };
+  paintDaySlider();
+  localStorage.setItem(ALERT_KEY, JSON.stringify({ email: alertEmail.value.trim(), d0: a, d1: b }));
+}
+paintDaySlider();
+d0.addEventListener("input", () => onDelay(0));
+d1.addEventListener("input", () => onDelay(1));
+d0.addEventListener("pointerdown", () => { d0.style.zIndex = 5; d1.style.zIndex = 4; });
+d1.addEventListener("pointerdown", () => { d1.style.zIndex = 5; d0.style.zIndex = 4; });
+alertEmail.addEventListener("change", () => {
+  localStorage.setItem(ALERT_KEY, JSON.stringify({ email: alertEmail.value.trim(), d0: alertDays.d0, d1: alertDays.d1 }));
+});
+alertForm.addEventListener("submit", (ev) => {
+  ev.preventDefault();
+  const email = alertEmail.value.trim();
+  alertNote.textContent = "";
+  if (!ALERT_URL) {
+    alertNote.textContent = "L'inscription n'est pas encore branchée : l'adresse du script Google manque.";
+    return;
+  }
+  const payload = {
+    email,
+    minDays: alertDays.d0,
+    maxDays: alertDays.d1,
+    filters: {
+      excludedCats: state.excludedCats,
+      excludedSubs: state.excludedSubs,
+      excludedDays: state.excludedDays,
+      excludedAreas: state.excludedAreas,
+      h0: state.h0,
+      h1: state.h1,
+      place: state.place,
+      showWait: state.showWait,
+      showFull: state.showFull
+    }
+  };
+  const form = document.createElement("form");
+  form.method = "POST";
+  form.action = ALERT_URL;
+  form.target = "alertFrame";
+  const input = document.createElement("input");
+  input.type = "hidden";
+  input.name = "payload";
+  input.value = JSON.stringify(payload);
+  form.append(input);
+  document.body.append(form);
+  form.submit();
+  form.remove();
+  localStorage.setItem(ALERT_KEY, JSON.stringify({ email, d0: alertDays.d0, d1: alertDays.d1 }));
+  alertNote.textContent = "Ajoutez nata-pub-brevoany@aviat.net dans vos contacts et ouvrez le message de confirmation de Brevo pour confirmer.";
 });
 document.getElementById("detailClose").addEventListener("click", () => els.dialog.close());
 els.dialog.addEventListener("click", (ev) => { if (ev.target === els.dialog) els.dialog.close(); });

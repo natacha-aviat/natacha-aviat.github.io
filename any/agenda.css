@@ -167,6 +167,28 @@ h1 {
 }
 .scale { display: flex; justify-content: space-between; color: var(--muted); font-size: .75rem; }
 .row-actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+.alerts {
+  margin-top: 14px;
+  padding: 12px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: #fbf6ee;
+}
+.alerts h2 { margin-top: 0; }
+.field-label { display: block; margin: 8px 0 4px; font-weight: 700; font-size: .92rem; }
+.alert-submit {
+  width: 100%;
+  margin-top: 12px;
+  border: none;
+  border-radius: 10px;
+  background: var(--accent);
+  color: #fffdf8;
+  font-weight: 700;
+  padding: 9px 12px;
+  cursor: pointer;
+}
+.alert-submit:disabled { opacity: .6; cursor: default; }
+.alert-frame { display: none; }
 .ghost, .linkish {
   border: 1px solid var(--line); background: #fff; cursor: pointer; padding: 8px 10px;
 }
