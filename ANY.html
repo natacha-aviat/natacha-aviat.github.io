@@ -185,7 +185,6 @@
       position: sticky; top: 8px; z-index: 4;
       backdrop-filter: blur(8px);
     }
-    .status strong { font-family: Fraunces, Georgia, serif; font-size: 1.25rem; font-weight: 560; }
     .banner {
       background: var(--accent-soft);
       border-radius: 12px;
@@ -592,6 +591,50 @@
       return true;
     }
 
+    function filterBlockers(e) {
+      const out = [];
+      if (state.excludedCats.includes(e.cat)) out.push({ key: "cat:" + e.cat, label: "la catégorie " + CAT[e.cat].name });
+      else if (e.sub && state.excludedSubs.includes(e.sub)) {
+        const sub = SUBS.find((item) => item.id === e.sub);
+        out.push({ key: "sub:" + e.sub, label: "« " + (sub ? sub.label : e.seriesLabel) + " »" });
+      }
+      if (state.excludedDays.includes(e.dow)) out.push({ key: "day:" + e.dow, label: "le " + JOUR[e.dow] });
+      if (state.excludedAreas.includes(e.area)) out.push({ key: "area:" + e.area, label: "le quartier " + e.area });
+      if (state.place && e.place !== state.place) out.push({ key: "place", label: "le lieu « Tous les lieux »" });
+      const q = state.q.trim();
+      if (q) {
+        const blob = [e.title, e.who, e.place, e.area, e.desc].join(" ").toLowerCase();
+        if (!blob.includes(q.toLowerCase())) out.push({ key: "q", label: "la recherche « " + q + " »" });
+      }
+      const win0 = state.h0 * 60;
+      const win1 = state.h1 * 60 + 59;
+      if (!(e.startMin <= win1 && e.endMin >= win0)) {
+        out.push({ key: "hour", label: "le créneau horaire (" + fmtClock(e.sh, e.sm) + "–" + fmtClock(e.eh, e.em) + ")" });
+      }
+      return out;
+    }
+
+    function joinFr(items) {
+      if (items.length <= 1) return items[0] || "";
+      if (items.length === 2) return items[0] + " et " + items[1];
+      return items.slice(0, -1).join(", ") + " et " + items[items.length - 1];
+    }
+
+    function hiddenNewMessage(events) {
+      const labels = new Map();
+      events.forEach((e) => {
+        filterBlockers(e).forEach((b) => {
+          if (!labels.has(b.key)) labels.set(b.key, b.label);
+          else if (b.key === "hour") labels.set(b.key, "le créneau horaire");
+        });
+      });
+      const filters = joinFr([...labels.values()]);
+      if (events.length === 1) {
+        return "« " + plainTitle(events[0].title) + " » n’est pas affiché. Débloquez " + filters + ".";
+      }
+      return events.length + " nouveaux ne sont pas affichés. Débloquez " + filters + ".";
+    }
+
     function timesLabel(n) {
       return "(" + n + ")";
     }
@@ -897,31 +940,40 @@
 
     function renderStatus(shown, total, weeksDrawn) {
       els.status.replaceChildren();
-      const count = document.createElement("strong");
-      count.textContent = String(shown);
-      const label = document.createElement("span");
-      label.textContent = (shown === 1 ? "rendez-vous affiché" : "rendez-vous affichés") + " sur " + total;
-      els.status.append(count, label);
-      if (!novelty.first && novelty.count) {
-        const ban = document.createElement("span");
-        ban.className = "banner";
-        ban.textContent = novelty.count + (novelty.count > 1 ? " nouveaux depuis votre dernière visite." : " nouveau depuis votre dernière visite.");
-        const see = document.createElement("button");
-        see.type = "button";
-        see.className = "linkish";
-        see.textContent = " Voir seulement ceux-là";
-        see.addEventListener("click", () => {
-          state.onlyNew = true;
-          els.onlyNew.checked = true;
-          render();
-        });
-        ban.append(see);
-        els.status.append(ban);
+      const count = document.createElement("span");
+      count.textContent = shown + " " + (shown === 1 ? "activité affichée" : "activités affichées") + " sur " + total;
+      els.status.append(count);
+      if (!novelty.first) {
+        const fresh = inHorizon.filter((e) => novelty.ids.has(e.id));
+        const hidden = fresh.filter((e) => !passes(e));
+        const visible = fresh.length - hidden.length;
+        if (visible) {
+          const ban = document.createElement("span");
+          ban.className = "banner";
+          ban.textContent = visible + (visible > 1 ? " nouveaux depuis votre dernière visite." : " nouveau depuis votre dernière visite.");
+          const see = document.createElement("button");
+          see.type = "button";
+          see.className = "linkish";
+          see.textContent = " Voir seulement ceux-là";
+          see.addEventListener("click", () => {
+            state.onlyNew = true;
+            els.onlyNew.checked = true;
+            render();
+          });
+          ban.append(see);
+          els.status.append(ban);
+        }
+        if (hidden.length) {
+          const ban = document.createElement("span");
+          ban.className = "banner";
+          ban.textContent = hiddenNewMessage(hidden);
+          els.status.append(ban);
+        }
       }
       if (!shown) {
         const p = document.createElement("p");
         p.className = "hint";
-        p.textContent = weeksDrawn ? "Aucun rendez-vous ne correspond à ces filtres." : "Aucune semaine à afficher.";
+        p.textContent = weeksDrawn ? "Aucune activité ne correspond à ces filtres." : "Aucune semaine à afficher.";
         els.status.append(p);
       }
     }
