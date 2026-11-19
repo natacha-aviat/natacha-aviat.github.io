@@ -103,6 +103,7 @@ const inHorizon = EVENTS.filter((e) => e.date >= todayKey && e.date <= horizonKe
 const SUBS = assignSeries(inHorizon);
 
 const novelty = computeNovelty(inHorizon.map((e) => e.id));
+const FAVICON_URL = new URL("favicon.png", import.meta.url).href;
 paintTabBadge(novelty.first ? 0 : novelty.count);
 
 const state = loadFilters();
@@ -190,36 +191,62 @@ function computeNovelty(ids) {
   return { ids: new Set(fresh), first, count: fresh.length };
 }
 
-function paintTabBadge(count) {
-  const base = "Agenda ANY — rencontres Accueil New York";
-  document.title = count ? "(" + count + ") " + base : base;
+function iconLink() {
   let icon = document.querySelector("link[rel='icon']");
-  if (!count) {
-    if (icon) icon.remove();
-    if (navigator.clearAppBadge) navigator.clearAppBadge().catch(() => {});
-    return;
-  }
-  const c = document.createElement("canvas");
-  c.width = 32;
-  c.height = 32;
-  const g = c.getContext("2d");
-  g.fillStyle = "#8e2c42";
-  g.beginPath();
-  g.arc(16, 16, 15, 0, Math.PI * 2);
-  g.fill();
-  g.fillStyle = "#fffdf8";
-  g.textAlign = "center";
-  g.textBaseline = "middle";
-  const label = count > 9 ? "9+" : String(count);
-  g.font = (label.length > 1 ? "700 13px " : "700 18px ") + "sans-serif";
-  g.fillText(label, 16, 17);
   if (!icon) {
     icon = document.createElement("link");
     icon.rel = "icon";
+    icon.type = "image/png";
     document.head.append(icon);
   }
-  icon.href = c.toDataURL("image/png");
+  return icon;
+}
+
+let faviconReady = null;
+function loadFavicon() {
+  if (!faviconReady) {
+    faviconReady = new Promise((resolve) => {
+      const img = new Image();
+      img.onload = () => resolve(img);
+      img.onerror = () => resolve(null);
+      img.src = FAVICON_URL;
+    });
+  }
+  return faviconReady;
+}
+
+function paintTabBadge(count) {
+  const base = "Agenda ANY — rencontres Accueil New York";
+  document.title = count ? "(" + count + ") " + base : base;
+  const icon = iconLink();
+  if (!count) {
+    icon.href = FAVICON_URL;
+    if (navigator.clearAppBadge) navigator.clearAppBadge().catch(() => {});
+    return;
+  }
   if (navigator.setAppBadge) navigator.setAppBadge(count).catch(() => {});
+  loadFavicon().then((img) => {
+    if (!img) {
+      icon.href = FAVICON_URL;
+      return;
+    }
+    const c = document.createElement("canvas");
+    c.width = 64;
+    c.height = 64;
+    const g = c.getContext("2d");
+    g.drawImage(img, 0, 0, 64, 64);
+    g.fillStyle = "#8e2c42";
+    g.beginPath();
+    g.arc(48, 48, 16, 0, Math.PI * 2);
+    g.fill();
+    g.fillStyle = "#fffdf8";
+    g.textAlign = "center";
+    g.textBaseline = "middle";
+    const label = count > 9 ? "9+" : String(count);
+    g.font = (label.length > 1 ? "700 16px " : "700 22px ") + "sans-serif";
+    g.fillText(label, 48, 50);
+    icon.href = c.toDataURL("image/png");
+  });
 }
 
 function fillKind(e) {
