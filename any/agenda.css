@@ -168,13 +168,23 @@ h1 {
 .scale { display: flex; justify-content: space-between; color: var(--muted); font-size: .75rem; }
 .row-actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
 .alerts {
+  grid-column: 1 / -1;
   margin-top: 14px;
   padding: 12px;
   border: 1px solid var(--line);
   border-radius: 14px;
   background: #fbf6ee;
 }
-.alerts h2 { margin-top: 0; }
+.alerts h2 { margin: 0 0 2px; }
+.alerts-lead {
+  margin: 0 0 2px;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.35;
+  letter-spacing: 0;
+  text-transform: none;
+  color: var(--ink);
+}
 .field-label { display: block; margin: 8px 0 4px; font-weight: 700; font-size: .92rem; }
 .alert-submit {
   width: 100%;

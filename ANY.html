@@ -50,23 +50,24 @@
           <div class="row-actions">
             <button type="button" class="ghost" id="reset">Réinitialiser les filtres</button>
           </div>
-          <form class="alerts" id="alerts">
-            <h2>Recevoir les alertes</h2>
-            <label class="field-label" for="alertEmail">E-mail</label>
-            <input class="search" id="alertEmail" name="email" type="email" required autocomplete="email" placeholder="vous@exemple.com">
-            <p class="field-label">Fréquence d'envoi des mails</p>
-            <div class="slider" id="daySlider">
-              <div class="slider-track"></div>
-              <div class="slider-fill" id="dayFill"></div>
-              <input type="range" id="d0" min="1" max="30" value="1" aria-label="Délai minimum en jours">
-              <input type="range" id="d1" min="1" max="30" value="7" aria-label="Délai maximum en jours">
-            </div>
-            <div class="scale"><span>1 j</span><span>10 j</span><span>20 j</span><span>30 j</span></div>
-            <button type="submit" class="alert-submit">S'inscrire aux alertes</button>
-            <p class="hint" id="alertNote" role="status"></p>
-          </form>
-          <iframe class="alert-frame" name="alertFrame" title="Envoi de l'inscription"></iframe>
         </div>
+        <form class="alerts" id="alerts">
+          <h2>Recevoir les alertes</h2>
+          <p class="alerts-lead">qui correspondent à ces filtres</p>
+          <label class="field-label" for="alertEmail">E-mail</label>
+          <input class="search" id="alertEmail" name="email" type="email" required autocomplete="email" placeholder="vous@exemple.com">
+          <p class="field-label">Fréquence d'envoi des mails</p>
+          <div class="slider" id="daySlider">
+            <div class="slider-track"></div>
+            <div class="slider-fill" id="dayFill"></div>
+            <input type="range" id="d0" min="1" max="30" value="1" aria-label="Délai minimum en jours">
+            <input type="range" id="d1" min="1" max="30" value="7" aria-label="Délai maximum en jours">
+          </div>
+          <div class="scale"><span>1 j</span><span>10 j</span><span>20 j</span><span>30 j</span></div>
+          <button type="submit" class="alert-submit">S'inscrire aux alertes</button>
+          <p class="hint" id="alertNote" role="status"></p>
+        </form>
+        <iframe class="alert-frame" name="alertFrame" title="Envoi de l'inscription"></iframe>
       </aside>
       <main class="main">
         <div class="status" id="status" aria-live="polite"></div>
