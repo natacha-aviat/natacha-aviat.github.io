@@ -34,6 +34,7 @@
     "place": "Central Park",
     "area": "Central Park",
     "desc": "Une bonne résolution pour commencer la semaine de plein pieds dans la joie et la bonne humeur.\nMarche suivie d’un moment convivial autour d’un café, thé… ☕️🫖\nOn vous contactera pour les détails après votre inscription à l’activité.\nAlors, à vos baskets 👟 et à bientôt.🏃‍♀️🏃‍♀️🏃‍♀️\nLili et Murielle",
+    "cap": 12,
     "seats": 12,
     "wait": -1
   },
@@ -60,6 +61,7 @@
     "place": "VITAL Climbing Gym, 221 N 14th St",
     "area": "Williamsburg",
     "desc": "Amateurs d’escalade et curieux,\n\nPrêts à défier la gravité dans l’un des meilleurs spots d’escalade de Brooklyn ? Rejoignez-nous pour une session de bloc conviviale à VITAL Climbing Gym Brooklyn !\n\n📍 221 N 14th St, Brooklyn, NY 11249\n🚇 Accès facile : métros G, L ou Citibike\n\n✨ CE QUI FAIT DE VITAL UN LIEU UNIQUE :\n\n Mur de bloc intérieur spacieux + espace escalade sur le rooftop Bar/café sur le toit pour refaire vos forces après l’effort Espace fitness complet pour ceux qui accompagnent Zone enfants aménagée (tables, micro-ondes, etc.) Sauna sur le toit pour récupérer après l’effort\n🔰 DÉBUTANTS BIENVENUS !\nPremière fois ? Pas d’inquiétude ! Nous commencerons par une démo de sécurité et vous bénéficierez de conseils personnalisés tout au long de la session. Si vous venez avec des enfants, merci de me contacter en amont.\n\n💰 TARIFS (non pris en charge par l’ANY) :\n\n Day Pass : 35$ Location chaussons : 5$ (apportez les vôtres si vous en avez)\n⚠️ Pour gagner du temps, complétez le waiver en ligne avant de venir : https://www.vitalclimbinggym.com/waiver\n\n🔍 CONSEILS PRATIQUES :\n\n Apportez un petit cadenas pour les casiers Laissez vos bijoux à la maison Portez des vêtements de sport confortables mais pas trop amples\nÀ très vite pour cette aventure verticale !",
+    "cap": 6,
     "seats": 5,
     "wait": 2
   },
@@ -74,6 +76,7 @@
     "place": "Central Park",
     "area": "Central Park",
     "desc": "Une bonne résolution pour commencer la semaine de plein pieds dans la joie et la bonne humeur.\nMarche suivie d’un moment convivial autour d’un café, thé… ☕️🫖\nOn vous contactera pour les détails après votre inscription à l’activité.\nAlors, à vos baskets 👟 et à bientôt.🏃‍♀️🏃‍♀️🏃‍♀️\nLili et Murielle",
+    "cap": 12,
     "seats": 12,
     "wait": -1
   },
@@ -100,6 +103,7 @@
     "place": "Bryant Park",
     "area": "Midtown",
     "desc": "🎄 Allons ensemble à la découverte de la magie de Noël à New York !\n\nRetrouvons-nous autour d’une boisson chaude pour profiter de l’ambiance féerique et flâner parmi les jolis stands du marché de Noël de Bryant Park. Un moment chaleureux et convivial pour se plonger dans la magie des fêtes new-yorkaises ! ✨",
+    "cap": 10,
     "seats": 7,
     "wait": -1
   },
@@ -114,6 +118,7 @@
     "place": "Non précisé",
     "area": "Non précisé",
     "desc": "Retrouvons-nous pour jouer ensemble à divers jeux tels que : codename, bang, dixit, times up, le 6 qui prend, taboo, explosif kitten et tant d’autres jeux en version française accompagné d’un verre de vin, d’une bière ou d’un soda (consommations non prises en charge par l’ANY).\n\nNous nous retrouverons dès 18h30 pour faire connaissance et le jeu commencera à 19h. Les jeux proposés sont des jeux avec une prise en main rapide et des règles simples.\nAlors n’hésitez pas et venez jouer dans une atmosphère conviviale 😀\n\nPour le bon déroulement de la soirée merci de vous désincrire au minimum 24h à l’avance afin que les éventuelles personnes en liste d’attende puisse être informée qu’une place s’est libérée.",
+    "cap": 8,
     "seats": 0,
     "wait": 1
   },
@@ -128,6 +133,7 @@
     "place": "Consulat général de France",
     "area": "Upper East Side",
     "desc": "L’association Accueil New York, en partenariat avec le Consulat général de France à New York, a le plaisir de vous inviter à son cocktail de bienvenue traditionnel, qui se tiendra dans les salons du Consulat.\n\nCe rendez-vous est l’occasion de souhaiter la bienvenue aux nouveaux membres de notre communauté, de faire connaissance et de partager un moment convivial en présence du Consul général de France à New York.\n\nLes bénévoles d’Accueil New York seront également présents pour échanger avec vous, vous faire découvrir les nombreuses activités de l’association et partager leurs expériences de vie new-yorkaise.\n\nQue vous veniez d’arriver à New York ou que vous soyez installés depuis plusieurs années, nous serons heureux de vous retrouver autour d’un verre pour célébrer ensemble l’esprit d’accueil, de partage et de solidarité qui anime notre association.\n\nLes nouveaux membres inscrits cette année seront prioritaires lors des inscriptions, dans la limite des places disponibles.",
+    "cap": 110,
     "seats": 13,
     "wait": 25
   },
@@ -142,6 +148,7 @@
     "place": "Armour-Stiner Octagon House",
     "area": "Irvington",
     "desc": "Nota : Sortie payante, achat du ticket en ligne via le lien ci dessous\n Ne vous inscrivez que lorsque vous avez acheté votre ticket.  Merci.\n\nVictorian Christmas dans une mansion privée !\n\nDecor de Noel et visite d’ une vieille demeure victorienne du 19 ieme !\nVous serez étonnés de son architecture à 8 côtés, et enchantés de son ambiance de fêtes .\n\n ticket sur lien ci-dessous :",
+    "cap": 15,
     "seats": 4,
     "wait": 5
   },
@@ -156,6 +163,7 @@
     "place": "Harlem",
     "area": "Harlem",
     "desc": "Venez partager un moment convivial autour d’un bon café pour le dernier de l’année sur le thème de Noel !\nTous les quartiers sont les bienvenus.\n\nCertainement l’un des quartiers les plus vibrants de Manhattan. Entre jazz, hip-hop et gospel, Harlem vit au rythme de la musique et de son incroyable histoire culturelle. Découvrez ses innombrables églises, le mythique Apollo Theater, le tout nouveau Studio Museum… et, avec un peu de chance, laissez-vous surprendre par un concert improvisé au détour d’une rue.",
+    "cap": 12,
     "seats": 3,
     "wait": 2
   },
@@ -170,6 +178,7 @@
     "place": "Non précisé",
     "area": "Non précisé",
     "desc": "Cette année, l’Accueil New York vous invite à partager une journée festive et conviviale pour célébrer ensemble la fin de l’année !\n\nMembres de l’ANY, familles, amis ou simplement curieux de découvrir notre association, vous êtes tous les bienvenus !\n\nAu programme :\n\n🎁 Des idées de petits cadeaux avec nos exposants : chocolats, gourmandises, porcelaines peintes à la main, cartes de vœux et autres jolies créations.\n\n📚 Une foire aux livres pour dénicher de belles lectures et faire plaisir aux petits comme aux grands.\n\n🎨 Des ateliers créatifs pour les enfants pour préparer les fêtes et repartir avec leurs créations.\n\n☕ Un coin gourmand et convivial pour se retrouver autour d’un chocolat chaud, d’un café, de quelques douceurs et d’un vin chaud.\n\n🎶 Des animations et de belles surprises pour partager un moment tous ensemble !\n\nCe sera aussi l’occasion de rencontrer nos membres, nos bénévoles et de découvrir les nombreuses activités proposées par l’Accueil New York tout au long de l’année.\n\nVenez avec vos enfants, vos amis et votre bonne humeur !\n\nVenez avec vos enfants, vos amis et votre bonne humeur !\n\nInscrivez-vous !\n\nPour nous aider à préparer cette journée, notamment les ateliers pour les enfants, nous vous invitons à vous inscrire à l’avance.\n\nCela nous permettra de prévoir les activités et le matériel en fonction du nombre et de l’âge des enfants.\n\nAu plaisir de vous retrouver nombreux !",
+    "cap": 100,
     "seats": 43,
     "wait": 5
   },
@@ -184,6 +193,7 @@
     "place": "Central Park",
     "area": "Central Park",
     "desc": "Une bonne résolution pour commencer la semaine de plein pieds dans la joie et la bonne humeur.\nMarche suivie d’un moment convivial autour d’un café, thé… ☕️🫖\nOn vous contactera pour les détails après votre inscription à l’activité.\nAlors, à vos baskets 👟 et à bientôt.🏃‍♀️🏃‍♀️🏃‍♀️\nLili et Murielle",
+    "cap": 12,
     "seats": 12,
     "wait": -1
   },
@@ -210,6 +220,7 @@
     "place": "Little Odessa",
     "area": "Brighton Beach",
     "desc": "",
+    "cap": 12,
     "seats": 10,
     "wait": 5
   },
@@ -224,6 +235,7 @@
     "place": "Magic Hour Rooftop",
     "area": "Times Square",
     "desc": "Chers membres ANY,\n\nC’est l’heure de notre rendez-vous mensuel ! Rejoignez-nous au Magic Hour Rooftop Bar & Lounge pour notre afterwork sauvage du 8 decembre.\n\nQue vous soyez un habitué ou un nouveau venu, venez échanger en français dans une ambiance décontractée. C’est l’occasion parfaite pour élargir votre cercle, partager vos expériences new-yorkaises et peut-être découvrir votre prochain coup de cœur dans la ville !\n\nN’hésitez pas à venir accompagné(e) - les amis sont toujours les bienvenus.\n\nImportant : merci de mettre à jour votre RSVP si vos plans changent, afin que nous puissions accueillir ceux en liste d’attente.\n\nEn participant à cet évènement, vous serez ajouté au groupe WhatsApp (sinon rejoingnez le tout le suite via ce lien)\n\nÀ mardi !",
+    "cap": 25,
     "seats": 16,
     "wait": 5
   },
@@ -262,6 +274,7 @@
     "place": "Neue Galerie",
     "area": "Upper East Side",
     "desc": "",
+    "cap": 12,
     "seats": 0,
     "wait": 2
   },
@@ -276,6 +289,7 @@
     "place": "Central Park",
     "area": "Central Park",
     "desc": "Une bonne résolution pour commencer la semaine de plein pieds dans la joie et la bonne humeur.\nMarche suivie d’un moment convivial autour d’un café, thé… ☕️🫖\nOn vous contactera pour les détails après votre inscription à l’activité.\nAlors, à vos baskets 👟 et à bientôt.🏃‍♀️🏃‍♀️🏃‍♀️\nLili et Murielle",
+    "cap": 12,
     "seats": 12,
     "wait": -1
   },
@@ -302,6 +316,7 @@
     "place": "Non précisé",
     "area": "Non précisé",
     "desc": "Retrouvons-nous pour jouer ensemble à divers jeux tels que : codename, bang, dixit, times up, le 6 qui prend, taboo, explosif kitten et tant d’autres jeux en version française accompagné d’un verre de vin, d’une bière ou d’un soda (consommations non prises en charge par l’ANY).\n\nNous nous retrouverons dès 18h30 pour faire connaissance et le jeu commencera à 19h. Les jeux proposés sont des jeux avec une prise en main rapide et des règles simples.\nAlors n’hésitez pas et venez jouer dans une atmosphère conviviale 😀\n\nPour le bon déroulement de la soirée merci de vous désincrire au minimum 24h à l’avance afin que les éventuelles personnes en liste d’attende puisse être informée qu’une place s’est libérée.",
+    "cap": 8,
     "seats": 0,
     "wait": 2
   },
@@ -316,6 +331,7 @@
     "place": "Midtown",
     "area": "Midtown",
     "desc": "Noël se prépare dans les petits et grands magasins.\nEt, les rues se parent déjà de mille couleurs et de lumières.\n\nVenez profitez d’une pleine effervescence festive sur Midtown.\nNous clôturerons ainsi en beauté, la dernière sortie Photos de l’année 2026.\n\nL’équipe photos.\nPhoto courtesy : New York City.ca",
+    "cap": 15,
     "seats": 7,
     "wait": 5
   },
@@ -330,6 +346,7 @@
     "place": "VITAL Climbing Gym, 3225 Broadway",
     "area": "West Harlem",
     "desc": "Amateurs d’escalade et curieux,\n\nRejoignez-nous pour une session de bloc à VITAL Climbing Gym - West Harlem !\nsituée au (facilement accessible par la 1, Citybike, etc.). Dans cette salle, c’est du bloc (pas de voie, etc.), avec tous types de difficultés.\n\n📍 3225 Broadway, New York, NY 10027\n🚇 Accès facile : métros 1, bus ou Citybike\n\n✨ CE QUI FAIT DE VITAL UN LIEU UNIQUE :\n\n  Mur de bloc intérieur dans un espace très lumineux.  A deux pas de l’Hudson River.\n🔰 DÉBUTANTS BIENVENUS !\nPremière fois ? Pas d’inquiétude ! Nous commencerons par une démo de sécurité et vous bénéficierez de conseils personnalisés tout au long de la session. Si vous venez avec des enfants, merci de me contacter en amont.\n\n💰 TARIFS (non pris en charge par l’ANY) :\n\n  Day Pass : 25$  Climbing Shoes : 5$ (apportez les vôtres si vous en avez)  ⚠️ Pour gagner du temps, complétez le waiver en ligne avant de venir : https://waiver.smartwaiver.com/w/6155f47b4986c/web/\n🔍 CONSEILS PRATIQUES :\n\n  Apportez un petit cadenas pour les casiers  Laissez vos bijoux à la maison  Portez des vêtements de sport confortables mais pas trop amples\nEn participant à cet évènement, vous serez ajouté au groupe WhatsApp.\n\nÀ très vite pour cette aventure verticale !",
+    "cap": 6,
     "seats": 2,
     "wait": 2
   },
@@ -344,6 +361,7 @@
     "place": "Central Park",
     "area": "Central Park",
     "desc": "Une bonne résolution pour commencer la semaine de plein pieds dans la joie et la bonne humeur.\nMarche suivie d’un moment convivial autour d’un café, thé… ☕️🫖\nOn vous contactera pour les détails après votre inscription à l’activité.\nAlors, à vos baskets 👟 et à bientôt.🏃‍♀️🏃‍♀️🏃‍♀️\nLili et Murielle",
+    "cap": 12,
     "seats": 12,
     "wait": -1
   },
@@ -370,6 +388,7 @@
     "place": "Central Park",
     "area": "Central Park",
     "desc": "Une bonne résolution pour commencer la semaine de plein pieds dans la joie et la bonne humeur.\nMarche suivie d’un moment convivial autour d’un café, thé… ☕️🫖\nOn vous contactera pour les détails après votre inscription à l’activité.\nAlors, à vos baskets 👟 et à bientôt.🏃‍♀️🏃‍♀️🏃‍♀️\nLili et Murielle",
+    "cap": 12,
     "seats": 12,
     "wait": -1
   },
@@ -384,6 +403,7 @@
     "place": "Central Park",
     "area": "Central Park",
     "desc": "Une bonne résolution pour commencer la semaine de plein pieds dans la joie et la bonne humeur.\nMarche suivie d’un moment convivial autour d’un café, thé… ☕️🫖\nOn vous contactera pour les détails après votre inscription à l’activité.\nAlors, à vos baskets 👟 et à bientôt.🏃‍♀️🏃‍♀️🏃‍♀️\nLili et Murielle",
+    "cap": 12,
     "seats": 12,
     "wait": -1
   },
@@ -398,6 +418,7 @@
     "place": "Skylark",
     "area": "Midtown",
     "desc": "Chers membres ANY,\n\nC’est l’heure de notre rendez-vous mensuel ! Rejoignez-nous au Skylark pour notre afterwork sauvage du 5 janvier.\n\nQue vous soyez un habitué ou un nouveau venu, venez échanger en français dans une ambiance décontractée. C’est l’occasion parfaite pour élargir votre cercle, partager vos expériences new-yorkaises et peut-être découvrir votre prochain coup de cœur dans la ville !\n\nN’hésitez pas à venir accompagné(e) - les amis sont toujours les bienvenus.\n\nImportant : merci de mettre à jour votre RSVP si vos plans changent, afin que nous puissions accueillir ceux en liste d’attente.\n\nEn participant à cet évènement, vous serez ajouté au groupe WhatsApp.\n\nÀ mardi !",
+    "cap": 25,
     "seats": 25,
     "wait": 5
   },
@@ -412,6 +433,7 @@
     "place": "Movement LIC, 11-11 44th Drive",
     "area": "Long Island City",
     "desc": "Amateurs d’escalade et curieux,\n\nRejoignez-nous pour une session de bloc ou de voie (on décidera sur place) à Movement LIC !\n\n📍 11-11 44th Dr, Long Island City, NY 11101\n🚇 Accès facile : métros E, M, 7, G, N, W ou Citybike\n\n✨ CE QUI FAIT DE VITAL UN LIEU UNIQUE :\n\n Mur de bloc intérieur spacieux + voie (auto-enrouleur) Espace fitness complet pour ceux qui accompagnent\n🔰 DÉBUTANTS BIENVENUS !\nPremière fois ? Pas d’inquiétude ! Nous commencerons par une démo de sécurité et vous bénéficierez de conseils personnalisés tout au long de la session. Si vous venez avec des enfants, merci de me contacter en amont.\n\n💰 TARIFS (non pris en charge par l’ANY) :\n\n Day Pass : 35$ Climbing Shoes : 7 (apportez les vôtres si vous en avez) Baudrier : 5 (si on décide de faire de la voie) Bundle (chaussure, baudrier, magnésie) : 12 (si on décide de faire de la voie) ⚠️ Pour gagner du temps, complétez le waiver en ligne avant de venir : https://movementgyms.com/participant-agreement/\n🔍 CONSEILS PRATIQUES :\n\n Apportez un petit cadenas pour les casiers Laissez vos bijoux à la maison Portez des vêtements de sport confortables mais pas trop amples\nEn participant à cet évènement, vous serez ajouté au groupe WhatsApp.\n\nÀ très vite pour cette aventure verticale !",
+    "cap": 6,
     "seats": 6,
     "wait": 2
   },
@@ -426,6 +448,7 @@
     "place": "Central Park",
     "area": "Central Park",
     "desc": "Une bonne résolution pour commencer la semaine de plein pieds dans la joie et la bonne humeur.\nMarche suivie d’un moment convivial autour d’un café, thé… ☕️🫖\nOn vous contactera pour les détails après votre inscription à l’activité.\nAlors, à vos baskets 👟 et à bientôt.🏃‍♀️🏃‍♀️🏃‍♀️\nLili et Murielle",
+    "cap": 12,
     "seats": 12,
     "wait": -1
   },
@@ -440,6 +463,7 @@
     "place": "Adresse communiquée la veille",
     "area": "Upper West Side",
     "desc": "Pour bien commencer 2027, l’ANY a le plaisir de vous inviter à son Café UWS de la rentrée, le jeudi 14 janvier 2027, de 10 h à 13 h (nouvel horaire !).\n\nRetrouvons-nous autour d’un café pour échanger nos vœux, faire connaissance avec les nouveaux membres et partager les nouvelles des fêtes. Les membres de tous les quartiers sont les bienvenus !\n\nComme toujours, le café se déroulera en format potluck. Merci d’apporter une petite gourmandise sucrée ou salée, facile à déguster sans assiette ni couverts. Quelques fruits coupés, des mini-quiches, des viennoiseries ou, pourquoi pas, une galette des rois déjà découpée ? Les spécialités maison sont toujours très appréciées !\n\nL’adresse exacte vous sera communiquée la veille.\n\nAu plaisir de commencer l’année ensemble !",
+    "cap": 12,
     "seats": 11,
     "wait": 4
   },
@@ -454,6 +478,7 @@
     "place": "Central Park",
     "area": "Central Park",
     "desc": "Une bonne résolution pour commencer la semaine de plein pieds dans la joie et la bonne humeur.\nMarche suivie d’un moment convivial autour d’un café, thé… ☕️🫖\nOn vous contactera pour les détails après votre inscription à l’activité.\nAlors, à vos baskets 👟 et à bientôt.🏃‍♀️🏃‍♀️🏃‍♀️\nLili et Murielle",
+    "cap": 12,
     "seats": 12,
     "wait": -1
   },
@@ -480,6 +505,7 @@
     "place": "Central Park",
     "area": "Central Park",
     "desc": "Une bonne résolution pour commencer la semaine de plein pieds dans la joie et la bonne humeur.\nMarche suivie d’un moment convivial autour d’un café, thé… ☕️🫖\nOn vous contactera pour les détails après votre inscription à l’activité.\nAlors, à vos baskets 👟 et à bientôt.🏃‍♀️🏃‍♀️🏃‍♀️\nLili et Murielle",
+    "cap": 12,
     "seats": 12,
     "wait": -1
   },
@@ -494,6 +520,7 @@
     "place": "Non précisé",
     "area": "Non précisé",
     "desc": "",
+    "cap": 25,
     "seats": 25,
     "wait": 5
   },
@@ -508,6 +535,7 @@
     "place": "VITAL Climbing Gym, 182 Broome St",
     "area": "Lower East Side",
     "desc": "Hello,\n\nOn se maintient au chaud avec une séance à Lower East Side chez VITAL Climbing Gym.\n\nNouvelle salle ouverte à Manhattan, située au 182 Broome St, New York, NY 10002 (facilement accessible par la B, D, F, J, M, Z, Citybike, etc.). Dans cette salle, c’est du bloc (pas de voie, etc.), avec tous types de difficultés.\n\nS’il s’agit de votre première fois, pas d’inquiétude, on démarrera la séance avec une démonstration de sécurité, explications et des conseils tout le long.\nContactez moi si vous comptez venir avec des enfants.\n\nLe prix (non pris en charge par l’ANY) :\n\n  Day Pass : 35  Climbing Shoes : 5 (vous pouvez venir avec votre paire)\nS’il s’agit de votre première fois chez VITAL Climbing Gym, je vous recommande de regarder le waiver (https://waiver.smartwaiver.com/w/i43gfqlcmxxzah9ygcksae/web/) avant de venir (sinon il faudra le faire sur place)\n\nQuelques conseils en plus :\n\n  Evitez de prendre des bijoux  Habits de sports confortables, mais pas trop amples\nA bientôt !",
+    "cap": 6,
     "seats": 6,
     "wait": 2
   },
@@ -522,6 +550,7 @@
     "place": "Central Park",
     "area": "Central Park",
     "desc": "Une bonne résolution pour commencer la semaine de plein pieds dans la joie et la bonne humeur.\nMarche suivie d’un moment convivial autour d’un café, thé… ☕️🫖\nOn vous contactera pour les détails après votre inscription à l’activité.\nAlors, à vos baskets 👟 et à bientôt.🏃‍♀️🏃‍♀️🏃‍♀️\nLili et Murielle",
+    "cap": 12,
     "seats": 12,
     "wait": -1
   },
@@ -536,6 +565,7 @@
     "place": "Central Park",
     "area": "Central Park",
     "desc": "Une bonne résolution pour commencer la semaine de plein pieds dans la joie et la bonne humeur.\nMarche suivie d’un moment convivial autour d’un café, thé… ☕️🫖\nOn vous contactera pour les détails après votre inscription à l’activité.\nAlors, à vos baskets 👟 et à bientôt.🏃‍♀️🏃‍♀️🏃‍♀️\nLili et Murielle",
+    "cap": 12,
     "seats": 12,
     "wait": -1
   },
@@ -550,6 +580,7 @@
     "place": "Central Park",
     "area": "Central Park",
     "desc": "Une bonne résolution pour commencer la semaine de plein pieds dans la joie et la bonne humeur.\nMarche suivie d’un moment convivial autour d’un café, thé… ☕️🫖\nOn vous contactera pour les détails après votre inscription à l’activité.\nAlors, à vos baskets 👟 et à bientôt.🏃‍♀️🏃‍♀️🏃‍♀️\nLili et Murielle",
+    "cap": 12,
     "seats": 12,
     "wait": -1
   },
@@ -564,6 +595,7 @@
     "place": "Movement Harlem, 256 W 125th St",
     "area": "Harlem",
     "desc": "Amateurs d’escalade et curieux,\nRejoignez-nous pour une session de bloc à Movement Harlem !\nGrande salle d’escalade de Bloc à Harlem avec un large choix de difficultés, située au 256 W 125th St, New York, NY 10027 en face du théâtre Apollo (facilement accessible par la A, B, C, D, 2, 3, Citybike, etc.).\n\n📍 3225 Broadway, New York, NY 10027\n🚇 Accès facile : métros 1, bus ou Citybike\n\n✨ CE QUI FAIT DE VITAL UN LIEU UNIQUE :\n\n  Mur de bloc intérieur dans un espace très lumineux.  A deux pas de l’Hudson River.\n🔰 DÉBUTANTS BIENVENUS !\nPremière fois ? Pas d’inquiétude ! Nous commencerons par une démo de sécurité et vous bénéficierez de conseils personnalisés tout au long de la session. Si vous venez avec des enfants, merci de me contacter en amont.\n\n💰 TARIFS (non pris en charge par l’ANY) :\n\n  Day Pass : 30$  Climbing Shoes : 7$ (apportez les vôtres si vous en avez)  ⚠️ Pour gagner du temps, complétez le waiver en ligne avant de venir : https://movementgyms.com/participant-agreement/\n🔍 CONSEILS PRATIQUES :\n\n  Apportez un petit cadenas pour les casiers  Laissez vos bijoux à la maison  Portez des vêtements de sport confortables mais pas trop amples\nEn participant à cet évènement, vous serez ajouté au groupe WhatsApp.\n\nÀ très vite pour cette aventure verticale !",
+    "cap": 6,
     "seats": 6,
     "wait": 2
   },
@@ -578,6 +610,7 @@
     "place": "Central Park",
     "area": "Central Park",
     "desc": "Une bonne résolution pour commencer la semaine de plein pieds dans la joie et la bonne humeur.\nMarche suivie d’un moment convivial autour d’un café, thé… ☕️🫖\nOn vous contactera pour les détails après votre inscription à l’activité.\nAlors, à vos baskets 👟 et à bientôt.🏃‍♀️🏃‍♀️🏃‍♀️\nLili et Murielle",
+    "cap": 12,
     "seats": 12,
     "wait": -1
   },
@@ -604,6 +637,7 @@
     "place": "Central Park",
     "area": "Central Park",
     "desc": "Une bonne résolution pour commencer la semaine de plein pieds dans la joie et la bonne humeur.\nMarche suivie d’un moment convivial autour d’un café, thé… ☕️🫖\nOn vous contactera pour les détails après votre inscription à l’activité.\nAlors, à vos baskets 👟 et à bientôt.🏃‍♀️🏃‍♀️🏃‍♀️\nLili et Murielle",
+    "cap": 12,
     "seats": 12,
     "wait": -1
   },
@@ -618,6 +652,7 @@
     "place": "Central Park",
     "area": "Central Park",
     "desc": "Une bonne résolution pour commencer la semaine de plein pieds dans la joie et la bonne humeur.\nMarche suivie d’un moment convivial autour d’un café, thé… ☕️🫖\nOn vous contactera pour les détails après votre inscription à l’activité.\nAlors, à vos baskets 👟 et à bientôt.🏃‍♀️🏃‍♀️🏃‍♀️\nLili et Murielle",
+    "cap": 12,
     "seats": 12,
     "wait": -1
   },
@@ -632,6 +667,7 @@
     "place": "Movement LIC, 11-11 44th Drive",
     "area": "Long Island City",
     "desc": "Amateurs d’escalade et curieux,\n\nRejoignez-nous pour une session de bloc ou de voie (on décidera sur place) à Movement LIC !\n\n📍 11-11 44th Dr, Long Island City, NY 11101\n🚇 Accès facile : métros E, M, 7, G, N, W ou Citybike\n\n✨ CE QUI FAIT DE VITAL UN LIEU UNIQUE :\n\n Mur de bloc intérieur spacieux + voie (auto-enrouleur) Espace fitness complet pour ceux qui accompagnent\n🔰 DÉBUTANTS BIENVENUS !\nPremière fois ? Pas d’inquiétude ! Nous commencerons par une démo de sécurité et vous bénéficierez de conseils personnalisés tout au long de la session. Si vous venez avec des enfants, merci de me contacter en amont.\n\n💰 TARIFS (non pris en charge par l’ANY) :\n\n Day Pass : 35$ Climbing Shoes : 7 (apportez les vôtres si vous en avez) Baudrier : 5 (si on décide de faire de la voie) Bundle (chaussure, baudrier, magnésie) : 12 (si on décide de faire de la voie) ⚠️ Pour gagner du temps, complétez le waiver en ligne avant de venir : https://movementgyms.com/participant-agreement/\n🔍 CONSEILS PRATIQUES :\n\n Apportez un petit cadenas pour les casiers Laissez vos bijoux à la maison Portez des vêtements de sport confortables mais pas trop amples\nEn participant à cet évènement, vous serez ajouté au groupe WhatsApp.\n\nÀ très vite pour cette aventure verticale !",
+    "cap": 6,
     "seats": 6,
     "wait": 2
   },
@@ -646,6 +682,7 @@
     "place": "Central Park",
     "area": "Central Park",
     "desc": "Une bonne résolution pour commencer la semaine de plein pieds dans la joie et la bonne humeur.\nMarche suivie d’un moment convivial autour d’un café, thé… ☕️🫖\nOn vous contactera pour les détails après votre inscription à l’activité.\nAlors, à vos baskets 👟 et à bientôt.🏃‍♀️🏃‍♀️🏃‍♀️\nLili et Murielle",
+    "cap": 12,
     "seats": 12,
     "wait": -1
   },
@@ -660,6 +697,7 @@
     "place": "Central Park",
     "area": "Central Park",
     "desc": "Une bonne résolution pour commencer la semaine de plein pieds dans la joie et la bonne humeur.\nMarche suivie d’un moment convivial autour d’un café, thé… ☕️🫖\nOn vous contactera pour les détails après votre inscription à l’activité.\nAlors, à vos baskets 👟 et à bientôt.🏃‍♀️🏃‍♀️🏃‍♀️\nLili et Murielle",
+    "cap": 12,
     "seats": 12,
     "wait": -1
   },
@@ -686,6 +724,7 @@
     "place": "Central Park",
     "area": "Central Park",
     "desc": "Une bonne résolution pour commencer la semaine de plein pieds dans la joie et la bonne humeur.\nMarche suivie d’un moment convivial autour d’un café, thé… ☕️🫖\nOn vous contactera pour les détails après votre inscription à l’activité.\nAlors, à vos baskets 👟 et à bientôt.🏃‍♀️🏃‍♀️🏃‍♀️\nLili et Murielle",
+    "cap": 12,
     "seats": 12,
     "wait": -1
   },
@@ -700,6 +739,7 @@
     "place": "VITAL Climbing Gym, 221 N 14th St",
     "area": "Williamsburg",
     "desc": "Amateurs d’escalade et curieux,\n\nPrêts à défier la gravité dans l’un des meilleurs spots d’escalade de Brooklyn ? Rejoignez-nous pour une session de bloc conviviale à VITAL Climbing Gym Brooklyn !\n\n📍 221 N 14th St, Brooklyn, NY 11249\n🚇 Accès facile : métros G, L ou Citibike\n\n✨ CE QUI FAIT DE VITAL UN LIEU UNIQUE :\n\n Mur de bloc intérieur spacieux + espace escalade sur le rooftop Bar/café sur le toit pour refaire vos forces après l’effort Espace fitness complet pour ceux qui accompagnent Zone enfants aménagée (tables, micro-ondes, etc.) Sauna}} sur le toit pour récupérer après l’effort\n🔰 DÉBUTANTS BIENVENUS !\nPremière fois ? Pas d’inquiétude ! Nous commencerons par une démo de sécurité et vous bénéficierez de conseils personnalisés tout au long de la session. Si vous venez avec des enfants, merci de me contacter en amont.\n\n💰 TARIFS (non pris en charge par l’ANY) :\n\n Day Pass : 35$ Location chaussons : 5$ (apportez les vôtres si vous en avez) ⚠️ Pour gagner du temps, complétez le waiver en ligne avant de venir : https://www.vitalclimbinggym.com/waiver\n🔍 CONSEILS PRATIQUES :\n\n Apportez un petit cadenas pour les casiers Laissez vos bijoux à la maison Portez des vêtements de sport confortables mais pas trop amples\nÀ très vite pour cette aventure verticale !",
+    "cap": 6,
     "seats": 6,
     "wait": 2
   },
@@ -714,6 +754,7 @@
     "place": "Central Park",
     "area": "Central Park",
     "desc": "Une bonne résolution pour commencer la semaine de plein pieds dans la joie et la bonne humeur.\nMarche suivie d’un moment convivial autour d’un café, thé… ☕️🫖\nOn vous contactera pour les détails après votre inscription à l’activité.\nAlors, à vos baskets 👟 et à bientôt.🏃‍♀️🏃‍♀️🏃‍♀️\nLili et Murielle",
+    "cap": 12,
     "seats": 12,
     "wait": -1
   },
@@ -728,6 +769,7 @@
     "place": "Central Park",
     "area": "Central Park",
     "desc": "Une bonne résolution pour commencer la semaine de plein pieds dans la joie et la bonne humeur.\nMarche suivie d’un moment convivial autour d’un café, thé… ☕️🫖\nOn vous contactera pour les détails après votre inscription à l’activité.\nAlors, à vos baskets 👟 et à bientôt.🏃‍♀️🏃‍♀️🏃‍♀️\nLili et Murielle",
+    "cap": 12,
     "seats": 12,
     "wait": -1
   },
@@ -742,6 +784,7 @@
     "place": "Central Park",
     "area": "Central Park",
     "desc": "Une bonne résolution pour commencer la semaine de plein pieds dans la joie et la bonne humeur.\nMarche suivie d’un moment convivial autour d’un café, thé… ☕️🫖\nOn vous contactera pour les détails après votre inscription à l’activité.\nAlors, à vos baskets 👟 et à bientôt.🏃‍♀️🏃‍♀️🏃‍♀️\nLili et Murielle",
+    "cap": 12,
     "seats": 12,
     "wait": -1
   },
@@ -768,6 +811,7 @@
     "place": "VITAL Climbing Gym, 182 Broome St",
     "area": "Lower East Side",
     "desc": "Hello,\n\nOn se maintient au chaud avec une séance à Lower East Side chez VITAL Climbing Gym.\n\nNouvelle salle ouverte à Manhattan, située au 182 Broome St, New York, NY 10002 (facilement accessible par la B, D, F, J, M, Z, Citybike, etc.). Dans cette salle, c’est du bloc (pas de voie, etc.), avec tous types de difficultés.\n\nS’il s’agit de votre première fois, pas d’inquiétude, on démarrera la séance avec une démonstration de sécurité, explications et des conseils tout le long.\nContactez moi si vous comptez venir avec des enfants.\n\nLe prix (non pris en charge par l’ANY) :\n\n  Day Pass : 35  Climbing Shoes : 5 (vous pouvez venir avec votre paire)\nS’il s’agit de votre première fois chez VITAL Climbing Gym, je vous recommande de regarder le waiver (https://waiver.smartwaiver.com/w/i43gfqlcmxxzah9ygcksae/web/) avant de venir (sinon il faudra le faire sur place)\n\nQuelques conseils en plus :\n\n  Evitez de prendre des bijoux  Habits de sports confortables, mais pas trop amples\nA bientôt !",
+    "cap": 6,
     "seats": 6,
     "wait": 2
   },
@@ -782,6 +826,7 @@
     "place": "Central Park",
     "area": "Central Park",
     "desc": "Une bonne résolution pour commencer la semaine de plein pieds dans la joie et la bonne humeur.\nMarche suivie d’un moment convivial autour d’un café, thé… ☕️🫖\nOn vous contactera pour les détails après votre inscription à l’activité.\nAlors, à vos baskets 👟 et à bientôt.🏃‍♀️🏃‍♀️🏃‍♀️\nLili et Murielle",
+    "cap": 12,
     "seats": 12,
     "wait": -1
   },
@@ -796,6 +841,7 @@
     "place": "Central Park",
     "area": "Central Park",
     "desc": "Une bonne résolution pour commencer la semaine de plein pieds dans la joie et la bonne humeur.\nMarche suivie d’un moment convivial autour d’un café, thé… ☕️🫖\nOn vous contactera pour les détails après votre inscription à l’activité.\nAlors, à vos baskets 👟 et à bientôt.🏃‍♀️🏃‍♀️🏃‍♀️\nLili et Murielle",
+    "cap": 12,
     "seats": 12,
     "wait": -1
   },
@@ -810,6 +856,7 @@
     "place": "Central Park",
     "area": "Central Park",
     "desc": "Une bonne résolution pour commencer la semaine de plein pieds dans la joie et la bonne humeur.\nMarche suivie d’un moment convivial autour d’un café, thé… ☕️🫖\nOn vous contactera pour les détails après votre inscription à l’activité.\nAlors, à vos baskets 👟 et à bientôt.🏃‍♀️🏃‍♀️🏃‍♀️\nLili et Murielle",
+    "cap": 12,
     "seats": 12,
     "wait": -1
   },
@@ -824,6 +871,7 @@
     "place": "Central Park",
     "area": "Central Park",
     "desc": "Une bonne résolution pour commencer la semaine de plein pieds dans la joie et la bonne humeur.\nMarche suivie d’un moment convivial autour d’un café, thé… ☕️🫖\nOn vous contactera pour les détails après votre inscription à l’activité.\nAlors, à vos baskets 👟 et à bientôt.🏃‍♀️🏃‍♀️🏃‍♀️\nLili et Murielle",
+    "cap": 12,
     "seats": 12,
     "wait": -1
   },
@@ -850,6 +898,7 @@
     "place": "Central Park",
     "area": "Central Park",
     "desc": "Une bonne résolution pour commencer la semaine de plein pieds dans la joie et la bonne humeur.\nMarche suivie d’un moment convivial autour d’un café, thé… ☕️🫖\nOn vous contactera pour les détails après votre inscription à l’activité.\nAlors, à vos baskets 👟 et à bientôt.🏃‍♀️🏃‍♀️🏃‍♀️\nLili et Murielle",
+    "cap": 12,
     "seats": 12,
     "wait": -1
   },
@@ -864,6 +913,7 @@
     "place": "Central Park",
     "area": "Central Park",
     "desc": "Une bonne résolution pour commencer la semaine de plein pieds dans la joie et la bonne humeur.\nMarche suivie d’un moment convivial autour d’un café, thé… ☕️🫖\nOn vous contactera pour les détails après votre inscription à l’activité.\nAlors, à vos baskets 👟 et à bientôt.🏃‍♀️🏃‍♀️🏃‍♀️\nLili et Murielle",
+    "cap": 12,
     "seats": 12,
     "wait": -1
   },
@@ -878,6 +928,7 @@
     "place": "Central Park",
     "area": "Central Park",
     "desc": "Une bonne résolution pour commencer la semaine de plein pieds dans la joie et la bonne humeur.\nMarche suivie d’un moment convivial autour d’un café, thé… ☕️🫖\nOn vous contactera pour les détails après votre inscription à l’activité.\nAlors, à vos baskets 👟 et à bientôt.🏃‍♀️🏃‍♀️🏃‍♀️\nLili et Murielle",
+    "cap": 12,
     "seats": 12,
     "wait": -1
   },
@@ -892,6 +943,7 @@
     "place": "Central Park",
     "area": "Central Park",
     "desc": "Une bonne résolution pour commencer la semaine de plein pieds dans la joie et la bonne humeur.\nMarche suivie d’un moment convivial autour d’un café, thé… ☕️🫖\nOn vous contactera pour les détails après votre inscription à l’activité.\nAlors, à vos baskets 👟 et à bientôt.🏃‍♀️🏃‍♀️🏃‍♀️\nLili et Murielle",
+    "cap": 12,
     "seats": 12,
     "wait": -1
   },
@@ -906,6 +958,7 @@
     "place": "Central Park",
     "area": "Central Park",
     "desc": "Une bonne résolution pour commencer la semaine de plein pieds dans la joie et la bonne humeur.\nMarche suivie d’un moment convivial autour d’un café, thé… ☕️🫖\nOn vous contactera pour les détails après votre inscription à l’activité.\nAlors, à vos baskets 👟 et à bientôt.🏃‍♀️🏃‍♀️🏃‍♀️\nLili et Murielle",
+    "cap": 12,
     "seats": 12,
     "wait": -1
   },
@@ -920,6 +973,7 @@
     "place": "Central Park",
     "area": "Central Park",
     "desc": "Une bonne résolution pour commencer la semaine de plein pieds dans la joie et la bonne humeur.\nMarche suivie d’un moment convivial autour d’un café, thé… ☕️🫖\nOn vous contactera pour les détails après votre inscription à l’activité.\nAlors, à vos baskets 👟 et à bientôt.🏃‍♀️🏃‍♀️🏃‍♀️\nLili et Murielle",
+    "cap": 12,
     "seats": 12,
     "wait": -1
   }

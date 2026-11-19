@@ -232,6 +232,13 @@ td.today .num { color: var(--accent); }
 .card time { display: block; font-variant-numeric: tabular-nums; font-size: .78rem; font-weight: 700; }
 .card .title { display: block; font-weight: 700; font-size: .86rem; line-height: 1.25; margin-top: 2px; overflow-wrap: anywhere; }
 .card .meta { display: block; color: var(--muted); font-size: .78rem; margin-top: 3px; }
+.fill {
+  display: block; height: 6px; margin: 0 0 6px;
+  border-radius: 99px; background: #efe6dc; overflow: hidden;
+}
+.fill > span { display: block; height: 100%; border-radius: inherit; background: #7d9a62; }
+.fill.soon > span { background: #e0a106; }
+#detailBadge .fill { margin-top: 8px; }
 .badge, .seat {
   display: inline-block; margin: 0 4px 4px 0;
   border-radius: 99px;

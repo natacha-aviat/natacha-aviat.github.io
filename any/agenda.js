@@ -269,6 +269,31 @@ function fillLabel(kind) {
   if (kind === "full") return "Complet";
   return "";
 }
+function fillRatio(e) {
+  if (fillKind(e)) return null;
+  if (!Number.isInteger(e.seats) || !Number.isInteger(e.cap) || e.cap <= 0) return null;
+  const left = Math.max(0, Math.min(e.seats, e.cap));
+  const ratio = (e.cap - left) / e.cap;
+  const tone = left <= 2 || ratio >= 0.85 ? "soon" : "open";
+  const label = left + (left > 1 ? " places restantes sur " : " place restante sur ") + e.cap;
+  return { ratio, tone, left, cap: e.cap, label };
+}
+function fillBar(e) {
+  const info = fillRatio(e);
+  if (!info) return null;
+  const bar = document.createElement("span");
+  bar.className = "fill " + info.tone;
+  bar.title = info.label;
+  bar.setAttribute("role", "progressbar");
+  bar.setAttribute("aria-valuemin", "0");
+  bar.setAttribute("aria-valuemax", String(info.cap));
+  bar.setAttribute("aria-valuenow", String(info.cap - info.left));
+  bar.setAttribute("aria-label", info.label);
+  const inner = document.createElement("span");
+  inner.style.width = Math.round(info.ratio * 100) + "%";
+  bar.append(inner);
+  return bar;
+}
 
 function searchBlob(e) {
   return [e.title, e.who, e.place, e.area, e.desc].join(" ").toLowerCase();
@@ -612,7 +637,10 @@ function card(e) {
   const cat = CAT[e.cat].name;
   const kind = fillKind(e);
   const seatText = fillLabel(kind);
-  btn.setAttribute("aria-label", e.title + ", " + cat + (seatText ? ", " + seatText : ""));
+  const ratio = fillRatio(e);
+  btn.setAttribute("aria-label", e.title + ", " + cat + (ratio ? ", " + ratio.label : "") + (seatText ? ", " + seatText : ""));
+  const bar = fillBar(e);
+  if (bar) btn.append(bar);
   if (novelty.ids.has(e.id)) {
     const b = document.createElement("span");
     b.className = "badge";
@@ -699,6 +727,8 @@ function openDetail(e, btn) {
   document.getElementById("detailWhen").textContent = when;
   const badge = document.getElementById("detailBadge");
   badge.replaceChildren();
+  const bar = fillBar(e);
+  if (bar) badge.append(bar);
   if (novelty.ids.has(e.id)) {
     const b = document.createElement("span");
     b.className = "badge";
