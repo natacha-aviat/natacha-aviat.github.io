@@ -236,8 +236,7 @@ td.today .num { color: var(--accent); }
   display: block; height: 6px; margin: 0 0 6px;
   border-radius: 99px; background: #efe6dc; overflow: hidden;
 }
-.fill > span { display: block; height: 100%; border-radius: inherit; background: #7d9a62; }
-.fill.soon > span { background: #e0a106; }
+.fill > span { display: block; height: 100%; border-radius: inherit; }
 #detailBadge .fill { margin-top: 8px; }
 .badge, .seat {
   display: inline-block; margin: 0 4px 4px 0;

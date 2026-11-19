@@ -274,15 +274,14 @@ function fillRatio(e) {
   if (!Number.isInteger(e.seats) || !Number.isInteger(e.cap) || e.cap <= 0) return null;
   const left = Math.max(0, Math.min(e.seats, e.cap));
   const ratio = (e.cap - left) / e.cap;
-  const tone = left <= 2 || ratio >= 0.85 ? "soon" : "open";
   const label = left + (left > 1 ? " places restantes sur " : " place restante sur ") + e.cap;
-  return { ratio, tone, left, cap: e.cap, label };
+  return { ratio, left, cap: e.cap, label };
 }
 function fillBar(e) {
   const info = fillRatio(e);
   if (!info) return null;
   const bar = document.createElement("span");
-  bar.className = "fill " + info.tone;
+  bar.className = "fill";
   bar.title = info.label;
   bar.setAttribute("role", "progressbar");
   bar.setAttribute("aria-valuemin", "0");
@@ -291,6 +290,7 @@ function fillBar(e) {
   bar.setAttribute("aria-label", info.label);
   const inner = document.createElement("span");
   inner.style.width = Math.round(info.ratio * 100) + "%";
+  inner.style.background = CAT[e.cat].color;
   bar.append(inner);
   return bar;
 }
