@@ -13,12 +13,12 @@
 </head>
 <body>
   <div class="wrap">
-    <header class="hero">
-      <p class="kicker">Accueil New York</p>
-      <h1>Agenda de l’ANY</h1>
-      <p class="lede" id="lede"></p>
-    </header>
     <div class="layout">
+      <header class="hero">
+        <p class="kicker">Accueil New York</p>
+        <h1>Agenda de l’ANY</h1>
+        <p class="lede" id="lede"></p>
+      </header>
       <aside class="filters" aria-label="Filtres">
         <div class="filter-cols">
         <div class="filter-col">
@@ -39,8 +39,6 @@
             <input type="range" id="h1" min="7" max="22" value="17" aria-label="Fin du créneau">
           </div>
           <div class="scale"><span>7 h</span><span>12 h</span><span>17 h</span><span>22 h</span></div>
-          <h2>Quartier</h2>
-          <div class="areas" id="areas"></div>
           <h2>Lieu</h2>
           <div class="lieu"><select id="place" aria-label="Filtrer par lieu"></select></div>
           <h2>Affichage</h2>
@@ -51,6 +49,10 @@
           <div class="row-actions">
             <button type="button" class="ghost" id="reset">Réinitialiser les filtres</button>
           </div>
+        </div>
+        <div class="filter-col">
+          <h2>Quartier</h2>
+          <div class="areas" id="areas"></div>
         </div>
         </div>
         <form class="alerts" id="alerts">
