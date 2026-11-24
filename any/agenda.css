@@ -54,17 +54,23 @@ h1 {
 .filters {
   position: sticky;
   top: 12px;
+  display: flex;
+  flex-direction: column;
   max-height: calc(100vh - 24px);
-  overflow: auto;
+  overflow: hidden;
   background: var(--paper);
   border: 1px solid var(--line);
   border-radius: 18px;
   padding: 14px 14px 16px;
   box-shadow: var(--shadow);
 }
+.filter-cols {
+  min-height: 0;
+  overflow: auto;
+}
 @media (min-width: 1100px) {
   .layout { grid-template-columns: minmax(460px, 540px) minmax(0, 1fr); }
-  .filters {
+  .filter-cols {
     display: grid;
     grid-template-columns: 1fr 1fr;
     column-gap: 18px;
@@ -168,7 +174,7 @@ h1 {
 .scale { display: flex; justify-content: space-between; color: var(--muted); font-size: .75rem; }
 .row-actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
 .alerts {
-  grid-column: 1 / -1;
+  flex: none;
   margin-top: 14px;
   padding: 12px;
   border: 1px solid var(--line);
@@ -306,7 +312,8 @@ dd { margin: 0; font-weight: 650; }
 .past .num { color: #b3a89c; }
 @media (max-width: 980px) {
   .layout { grid-template-columns: 1fr; }
-  .filters { position: static; max-height: none; }
+  .filters { position: static; max-height: none; overflow: visible; }
+  .filter-cols { overflow: visible; }
   .wrap { width: min(1440px, calc(100% - 16px)); }
   .table-scroll { overflow: visible; border: none; background: transparent; box-shadow: none; }
   table { min-width: 0; display: block; }
