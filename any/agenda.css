@@ -175,14 +175,7 @@ h1 {
   border-radius: 14px;
   background: #fbf6ee;
 }
-.alerts-title {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: baseline;
-  gap: 0 .4rem;
-}
-.alerts h2 { margin: 0; }
-.alerts-lead {
+.alerts h2.alerts-title {
   margin: 0;
   font-size: 1rem;
   font-weight: 400;
